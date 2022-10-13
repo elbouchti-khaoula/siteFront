@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    font-named-instance: 'Regular';
+    /* font-feature-settings: 'salt' off; */
+    src: url("Montserrat-VF.woff2") format("woff2");
+    /* src: url("Montserrat-VariableFont_wght.ttf") format("truetype"); */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+    font-named-instance: 'Italic';
+    /* font-feature-settings: 'salt' off; */
+    src: url("Montserrat-Italic-VF.woff2") format("woff2");
+    /* src: url("Montserrat-Italic-VariableFont_wght.ttf") format("truetype"); */
+}

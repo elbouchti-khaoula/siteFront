@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "ae_AlMohanad";
+    font-weight: normal;
+    font-style: normal;
+    /* src: url("ae_AlMohanad.ttf") format("truetype"); */
+    /* src: url("ae_AlMohanad.woff") format("woff");  */
+    src: url("ae-almohanad.ttf") format("truetype");
+}
