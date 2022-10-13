@@ -9,7 +9,6 @@
 
 # dependencies
 /node_modules
-/.angular
 
 # profiling files
 chrome-profiler-events*.json
@@ -32,6 +31,7 @@ chrome-profiler-events*.json
 .history/*
 
 # misc
+/.angular
 /.angular/cache
 /.sass-cache
 /connect.lock
