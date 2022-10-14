@@ -13,10 +13,12 @@
         <ng-container fuseVerticalNavigationContentHeader>
             <!-- Logo -->
             <div class="flex items-center h-20 pt-6 px-8">
-                <img
-                    class="w-24"
-                    src="assets/images/logo/logo-text-on-dark.svg"
-                    alt="Logo image">
+                <a [routerLink]="'/home'">
+                    <img
+                        class="w-32"
+                        src="assets/images/logo/logo-text-on-dark.png"
+                        alt="Logo image">
+                </a>
             </div>
         </ng-container>
     </fuse-vertical-navigation>
@@ -31,16 +33,22 @@
             <!-- Logo -->
             <div class="flex items-center mx-2 lg:mr-8">
                 <div class="hidden lg:flex">
-                    <img
-                        class="dark:hidden w-24"
-                        src="assets/images/logo/logo-text.svg">
-                    <img
-                        class="hidden dark:flex w-24"
-                        src="assets/images/logo/logo-text-on-dark.svg">
+                    <a [routerLink]="'/home'">
+                        <img
+                            class="dark:hidden w-40"
+                            src="assets/images/logo/logo-text.png">
+                    </a>
+                    <a [routerLink]="'/home'">
+                        <img
+                            class="hidden dark:flex w-40"
+                            src="assets/images/logo/logo-text-on-dark.png">
+                    </a>
                 </div>
-                <img
-                    class="flex lg:hidden w-8"
-                    src="assets/images/logo/logo.svg">
+                <a [routerLink]="'/home'">
+                    <img
+                        class="flex lg:hidden w-8"
+                        src="assets/images/logo/logo.png">
+                </a>
             </div>
             <!-- Horizontal navigation -->
             <fuse-horizontal-navigation
@@ -62,14 +70,14 @@
             <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
             <search [appearance]="'bar'"></search>
             <shortcuts></shortcuts>
-            <messages></messages>
+            <!-- <messages></messages> -->
             <notifications></notifications>
-            <button
+            <!-- <button
                 class="lg:hidden"
                 mat-icon-button
                 (click)="quickChat.toggle()">
                 <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
-            </button>
+            </button> -->
             <user></user>
         </div>
     </div>
@@ -89,4 +97,4 @@
 </div>
 
 <!-- Quick chat -->
-<quick-chat #quickChat="quickChat"></quick-chat>
+<!-- <quick-chat #quickChat="quickChat"></quick-chat> -->

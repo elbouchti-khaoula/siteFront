@@ -76,6 +76,23 @@
             line-height: 1.7;
             @apply text-secondary #{'!important'};
         }
+
+        &.fuse-expansion-transparent-body {
+
+            &.mat-expanded {
+
+                background-color: rgba(255, 255, 255, 0.5);
+
+                .mat-expansion-panel-header {
+                    @apply bg-default #{'!important'};
+                }
+
+                .mat-expansion-panel-body {
+                    @apply text-default #{'!important'};
+                }
+            }
+
+        }
     }
 }
 
@@ -116,6 +133,14 @@
         height: 48px;
         min-height: 48px;
         max-height: 48px;
+    }
+
+    /* small button */
+    &.fuse-mat-button-small {
+        font-size: small;
+        height: 32px;
+        min-height: 32px;
+        max-height: 32px;
     }
 
     /* Lower the icon opacity on disabled buttons */
@@ -1285,6 +1310,132 @@
 
 .mat-slide-toggle.mat-warn.mat-checked .mat-slide-toggle-bar {
     background-color: rgba(var(--fuse-warn-500-rgb), 0.54) !important;
+}
+
+
+
+.mat-slider.mat-slider-horizontal .mat-slider-ticks-container {
+    height: 5px !important;
+    // top: -1px !important;
+    // transform: translateX(0%);
+
+    .mat-slider-ticks {
+        height: 5px !important;
+        color: white !important;
+        // background-color: var(--fuse-second) !important;
+        // opacity: 1 !important;
+    }
+}
+
+// .mat-slider.mat-slider-horizontal .mat-slider-ticks {
+//     height: 5px !important;
+//     opacity: 1 !important;
+
+//     // background-size: 0% 2px; 
+//     // transform: translateZ(0px) translateX(0%);
+
+//     // background-size: 10.101% 2px !important;
+//     // transform: translateZ(0px) translateX(5.05051%);
+//     // background-size: 16.6667% 2px; transform: translateZ(0px) translateX(8.33333%);
+// }
+
+// .mat-slider.mat-slider-horizontal .mat-slider-ticks {
+//     // make ticks fill full height
+//     height: 8px !important;
+//     // this will force show the ticks
+//     opacity: 1;
+//     background-size: 10.101% 2px !important;
+//     transform: translateZ(0px) translateX(5.05051%); // I adjusted my slider to be thicker, so the correct values for you here may be different
+//   }
+
+
+
+
+
+// .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+//     top: 18px;
+// }
+.mat-slider.mat-slider-horizontal .mat-slider-wrapper,
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 5px;
+    border-radius: 12px;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+    height: 100%;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-background {
+    background-color: transparent !important;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+    outline: 3px solid var(--fuse-primary) !important;
+}
+
+// .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+//     background-color: blue !important;
+// }
+
+.mat-slider.mat-slider-horizontal .mat-slider-thumb {
+    // opacity: 1 !important;
+    // height: 30px;
+    // width: 30px;
+    // background-color: green !important;
+    // border: solid 2px gray !important;
+    // // outline: 5px solid #fff !important;
+    // bottom: -15px;
+    // right: -20px;
+
+    background-color: var(--fuse-primary) !important;
+    border: solid 2px rgba(255, 255, 255, .5) !important;
+    bottom: -10px;
+    right: -10px;
+}
+
+// :not(.mat-slider-thumb-label-showing)
+.mat-slider.mat-slider-min-value .mat-slider-thumb {
+    background-color: var(--fuse-second) !important;
+    border: solid 2px rgba(255, 255, 255, .5) !important;
+    // border: solid 2px  gray !important;
+}
+
+.mat-slider:not(.mat-slider-disabled).cdk-focused .mat-slider-wrapper {
+
+    .mat-slider-thumb-container {
+
+        .mat-slider-thumb {
+            transform: scale(1.2) !important;
+            // transform: scale(0) !important;
+        }
+
+        .mat-slider-thumb-label {
+            white-space: pre;
+            transform: rotate(0deg) !important;
+            border-radius: 12px 12px 0 !important;
+            width: fit-content !important; // 5rem !important;
+            right: 0px !important;
+            top: -50px !important;
+
+            //solution 2
+            //     // transform: rotate(45deg) !important;
+            //     // border-radius: 50% 50% 0 !important;
+            //     // border-radius: 12px !important;
+
+            //solution 3
+            //     //         width: 50px;
+            //     //         height: 50px;
+            //     //         top: -62px;
+            //     //         right: -25px;
+        }
+
+        .mat-slider-thumb-label-text {
+            transform: rotate(0deg) !important;
+            opacity: 1 !important;
+            // color: black !important;
+        }
+    }
 }
 
 /* ----------------------------------------------------------------------------------------------------- */

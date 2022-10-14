@@ -9,15 +9,15 @@ import { InitialDataResolver } from 'app/app.resolvers';
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const appRoutes: Route[] = [
 
-    // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    // Redirect empty path to '/home'
+    {path: '', pathMatch : 'full', redirectTo: 'home'},
 
-    // Redirect signed in user to the '/example'
+    // Redirect signed in user to the '/home'
     //
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'home'},
 
     // Auth routes for guests
     {
@@ -60,7 +60,19 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children   : [
-            {path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
+            {path: 'home1', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
+        ]
+    },
+
+    // home routes
+    {
+        path: '',
+        component  : LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children   : [
+            {path: 'home', loadChildren: () => import('app/modules/home/home.module').then(m => m.HomeModule)},
         ]
     },
 
@@ -75,6 +87,14 @@ export const appRoutes: Route[] = [
         },
         children   : [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
+
+            {path: 'landing', loadChildren: () => import('app/modules/admin/landing/landing.module').then(m => m.LandingModule)},
+
+            {path: 'landingBis', loadChildren: () => import('app/modules/admin/landingBis/landingBis.module').then(m => m.LandingBisModule)},
+            
+            // 404 & Catch all
+            { path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/error/error-404/error-404.module').then(m => m.Error404Module) },
+            { path: '**', redirectTo: '404-not-found' }
         ]
     }
 ];

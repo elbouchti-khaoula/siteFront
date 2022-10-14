@@ -73,6 +73,7 @@ function generateThemesObject(themes)
     {
         const theme = normalizeTheme(value);
         const primary = (theme && theme.primary && theme.primary.DEFAULT) ? theme.primary.DEFAULT : normalizedDefaultTheme.primary.DEFAULT;
+        const second = (theme && theme.second && theme.second.DEFAULT) ? theme.second.DEFAULT : normalizedDefaultTheme.second.DEFAULT;
         const accent = (theme && theme.accent && theme.accent.DEFAULT) ? theme.accent.DEFAULT : normalizedDefaultTheme.accent.DEFAULT;
         const warn = (theme && theme.warn && theme.warn.DEFAULT) ? theme.warn.DEFAULT : normalizedDefaultTheme.warn.DEFAULT;
 
@@ -81,6 +82,7 @@ function generateThemesObject(themes)
                 key,
                 {
                     primary,
+                    second,
                     accent,
                     warn
                 }

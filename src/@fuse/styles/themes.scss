@@ -20,11 +20,13 @@
 
 /* Generate Primary, Accent and Warn palettes */
 $palettes: ();
-@each $name in (primary, accent, warn) {
+@each $name in (primary, second, accent, warn) {
     $palettes: map.merge($palettes, (#{$name}: (
         50: var(--fuse-#{$name}-50),
         100: var(--fuse-#{$name}-100),
+        150: var(--fuse-#{$name}-150),
         200: var(--fuse-#{$name}-200),
+        250: var(--fuse-#{$name}-250),
         300: var(--fuse-#{$name}-300),
         400: var(--fuse-#{$name}-400),
         500: var(--fuse-#{$name}-500),
@@ -35,7 +37,9 @@ $palettes: ();
         contrast: (
             50: var(--fuse-on-#{$name}-50),
             100: var(--fuse-on-#{$name}-100),
+            150: var(--fuse-on-#{$name}-150),
             200: var(--fuse-on-#{$name}-200),
+            250: var(--fuse-on-#{$name}-250),
             300: var(--fuse-on-#{$name}-300),
             400: var(--fuse-on-#{$name}-400),
             500: var(--fuse-on-#{$name}-500),
@@ -67,6 +71,7 @@ body .light {
     $light-theme: (
         color: (
             primary: map.get(map.get($base-light-theme, color), primary),
+            second: map.get(map.get($base-light-theme, color), second),
             accent: map.get(map.get($base-light-theme, color), accent),
             warn: map.get(map.get($base-light-theme, color), warn),
             is-dark: map.get(map.get($base-light-theme, color), is-dark),
@@ -121,6 +126,7 @@ body .dark {
     $dark-theme: (
         color: (
             primary: map.get(map.get($base-dark-theme, color), primary),
+            second: map.get(map.get($base-dark-theme, color), second),
             accent: map.get(map.get($base-dark-theme, color), accent),
             warn: map.get(map.get($base-dark-theme, color), warn),
             is-dark: map.get(map.get($base-dark-theme, color), is-dark),

@@ -13,10 +13,12 @@
         <ng-container fuseVerticalNavigationContentHeader>
             <!-- Logo -->
             <div class="flex items-center h-20 pt-6 px-8">
-                <img
-                    class="w-24"
-                    src="assets/images/logo/logo-text-on-dark.svg"
-                    alt="Logo image">
+                <a [routerLink]="'/home'">
+                    <img
+                        class="w-32"
+                        src="assets/images/logo/logo-text-on-dark.png"
+                        alt="Logo image">
+                </a>
             </div>
         </ng-container>
     </fuse-vertical-navigation>
@@ -34,15 +36,19 @@
                 <ng-container *ngIf="!isScreenSmall">
                     <div class="flex items-center mx-2">
                         <!-- Light version -->
-                        <img
-                            class="w-24 dark:hidden"
-                            src="assets/images/logo/logo-text.svg"
-                            alt="Logo image">
+                        <a [routerLink]="'/home'">
+                            <img
+                                class="dark:hidden w-40"
+                                src="assets/images/logo/logo-text.png"
+                                alt="Logo image">
+                        </a>
                         <!-- Dark version -->
-                        <img
-                            class="hidden dark:flex w-24"
-                            src="assets/images/logo/logo-text-on-dark.svg"
-                            alt="Logo image">
+                        <a [routerLink]="'/home'">
+                            <img
+                                class="hidden dark:flex w-40"
+                                src="assets/images/logo/logo-text-on-dark.png"
+                                alt="Logo image">
+                        </a>
                     </div>
                 </ng-container>
                 <!-- Navigation toggle button -->
@@ -59,7 +65,7 @@
                     <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
                     <search [appearance]="'bar'"></search>
                     <shortcuts></shortcuts>
-                    <messages></messages>
+                    <!-- <messages></messages> -->
                     <notifications></notifications>
                     <user></user>
                 </div>

@@ -15,7 +15,9 @@ const generatePalette = (config) =>
     const palette = {
         50 : null,
         100: null,
+        150: null,
         200: null,
+        250: null,
         300: null,
         400: null,
         500: null,
@@ -86,7 +88,9 @@ const generatePalette = (config) =>
     return {
         50 : scale(0.05).hex(),
         100: scale(0.1).hex(),
+        150: scale(0.15).hex(),
         200: scale(0.2).hex(),
+        250: scale(0.25).hex(),
         300: scale(0.3).hex(),
         400: scale(0.4).hex(),
         500: scale(0.5).hex(),

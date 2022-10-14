@@ -2,3 +2,110 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+
+
+.page-header {
+  position: relative; // ok
+  // background-color: #B2AFAB;
+  background-position: center center; // ok
+  background-size: cover; // ok
+  width: 100%; // ok
+  // min-height: 100vh;
+  // max-height: 999px;
+  // overflow: hidden;
+  z-index: 1; // ok
+  // display: -ms-flexbox;
+  // display: -webkit-flex;
+  display: flex; // ok
+  align-items: center; // ok
+  justify-content: center; // ok
+
+  /* Center horizontaly ie */
+  // -ms-flex-pack: center;
+  .filter {
+    // content: "";
+    // display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+  }
+}
+
+
+// tailwind [transition:transform_0.3s,shadow_0.2s]
+.translatetop {
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
+  // autre
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  // transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.translatetop:hover {
+  box-shadow: 0px 12px 19px -7px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  // autre
+  // box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  // transform: translateY(-0.75rem); //translateY(-30px);
+}
+
+
+.border_left_white {
+  padding-left: 1em;
+  border-left: 0.4em solid #fff;
+  border-left-width: 0.1em;
+}
+
+
+
+
+.animated {
+  transform: translate3D(0,0,0)!important;
+  -webkit-transform: translate3D(0,0,0)!important;
+  opacity: 1!important;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.add-animation{
+  height: 250px !important;
+  width: 180px !important;
+}
+
+// .presentation-page .animated {
+//   transform: translate3D(0,0,0)!important;
+//   -webkit-transform: translate3D(0,0,0)!important;
+//   opacity: 1!important;
+// }
+// .animated {
+//   -webkit-animation-duration: 1s;
+//   animation-duration: 1s;
+//   -webkit-animation-fill-mode: both;
+//   animation-fill-mode: both;
+// }
+.image-container {
+  max-width: 900px;
+  position: relative;
+}
+
+.area-img {
+  top: 9%;
+  left: 45%;
+  height: 350px;
+  width: 280px;
+  z-index: 2;
+  -webkit-transition: 1s ease-out;
+  transition: all 1s ease-out 0s;
+  position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%), 0 5px 5px -3px rgb(0 0 0 / 20%);
+  opacity: 0;
+  transform: translate3D(0,100px,0);
+  -webkit-transform: translate3D(0,100px,0);
+}
