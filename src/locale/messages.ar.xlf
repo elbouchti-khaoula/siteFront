@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="fr" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="appTitle" datatype="html">
+        <source>Angular internationalisation</source>
+        <target>! التدويل في انغلار</target>
+        <!-- <target>Angular internationalization</target> -->
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landingBis/landingBis.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+        <note priority="1" from="description">The title for our i18n sample app</note>
+        <note priority="1" from="meaning">site title</note>
+      </trans-unit>
+      <trans-unit id="homeTitle" datatype="html">
+        <source>Créons une application Angular avec la traduction</source>
+        <target>لنقم بإنشاء تطبيق انغلار باستخدام الترجمة</target>
+        <!-- <target>Let's create Angular application with translation</target> -->
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landingBis/landingBis.component.html</context>
+          <context context-type="linenumber">211</context>
+        </context-group>
+        <note priority="1" from="description">The home title for our i18n sample app</note>
+        <note priority="1" from="meaning">home title</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -16,7 +16,7 @@ export class LandingBisComponent implements OnInit {
     montantValue: number = 0;
     dureeValue: number = 1;
     tauxValue: number = 1;
-    mensualite: string;
+    mensualite: number;
     dateApp =  new Date();
 
     // private slideSubject = new BehaviorSubject<number>(0);
@@ -49,7 +49,8 @@ export class LandingBisComponent implements OnInit {
         // console.log("+-+-+- taux", taux, this.tauxValue);
         var m = (montant * (taux / 12)) / (1 - Math.pow((1 + (taux / 12)), -duree));
         // console.log("+-+-+- m", m);
-        return (Math.round(m * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return (Math.round(m * 100) / 100);
+        // return (Math.round(m * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         // return formatNumber((Math.round(m * 100) / 100), 'en-US', '1.2-2');
     }
 
