@@ -52,17 +52,20 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // Landing routes
-    {
-        path: '',
-        component  : LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children   : [
-            {path: 'home1', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
-        ]
-    },
+    // LandingHome (Fuse) routes
+    // {
+    //     path: '',
+    //     component  : LayoutComponent,
+    //     data: {
+    //         layout: 'empty'
+    //     },
+    //     children   : [
+    //         {
+    //             path: 'homeFuse',
+    //             loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
+    //         },
+    //     ]
+    // },
 
     // home routes
     {
@@ -72,7 +75,11 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children   : [
-            {path: 'home', loadChildren: () => import('app/modules/home/home.module').then(m => m.HomeModule)},
+            {
+                path: 'home',
+                loadChildren: () => import('app/modules/home/home.module').then(m => m.HomeModule),
+                // data: { animationState: 'home' }
+            },
         ]
     },
 
@@ -88,13 +95,39 @@ export const appRoutes: Route[] = [
         children   : [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
 
-            {path: 'landing', loadChildren: () => import('app/modules/admin/landing/landing.module').then(m => m.LandingModule)},
-
-            {path: 'landingBis', loadChildren: () => import('app/modules/admin/landingBis/landingBis.module').then(m => m.LandingBisModule)},
+            {
+                path: 'landing',
+                loadChildren: () => import('app/modules/admin/landing/landing.module').then(m => m.LandingModule),
+                // data: { animationState: 'land' }
+            },
+            {
+                path: 'landingBis',
+                loadChildren: () => import('app/modules/admin/landingBis/landingBis.module').then(m => m.LandingBisModule),
+                // data: { animationState: 'landbis' }
+            },
+            {
+                path: 'darrahetbal',
+                loadChildren: () => import('app/modules/admin/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
+                // data: { animationState: 'darraht' }
+            },
             
+            // Maintenance
+            { 
+                path: 'maintenance',
+                loadChildren: () => import('app/modules/pages/maintenance/maintenance.module').then(m => m.MaintenanceModule),
+                // data: { animationState: 'mainten' }
+            },
+
             // 404 & Catch all
-            { path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/error/error-404/error-404.module').then(m => m.Error404Module) },
-            { path: '**', redirectTo: '404-not-found' }
+            { 
+                path: '404-not-found',
+                pathMatch: 'full',
+                loadChildren: () => import('app/modules/pages/error/error-404/error-404.module').then(m => m.Error404Module)
+            },
+            { 
+                path: '**',
+                redirectTo: '404-not-found'
+            }
         ]
     }
 ];

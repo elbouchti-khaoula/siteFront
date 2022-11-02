@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { take } from 'rxjs';
 import { AvailableLangs, TranslocoService } from '@ngneat/transloco';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
+import { FuseConfigService } from '@fuse/services/config';
+import { DOCUMENT } from '@angular/common';
+import { Direction } from '@angular/cdk/bidi';
 
 @Component({
     selector       : 'languages',
@@ -22,9 +25,10 @@ export class LanguagesComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseNavigationService: FuseNavigationService,
-        private _translocoService: TranslocoService
-    )
-    {
+        private _fuseConfigService: FuseConfigService,
+        private _translocoService: TranslocoService,
+        @Inject(DOCUMENT) private _document: any,
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -47,6 +51,15 @@ export class LanguagesComponent implements OnInit, OnDestroy
 
             // Update the navigation
             this._updateNavigation(activeLang);
+
+            // Update the document direction
+            if (activeLang === 'ma') {
+                this._document.dir = 'rtl';
+                this.setDirection('rtl');
+            } else {
+                this._document.dir = 'ltr';
+                this.setDirection('ltr');
+            }
         });
 
         // Set the country iso codes for languages for flags
@@ -152,4 +165,15 @@ export class LanguagesComponent implements OnInit, OnDestroy
                 });
         }
     }
+
+    /**
+     * Set the direction on the config
+     *
+     * @param direction
+     */
+     setDirection(direction: Direction): void
+     {
+         this._fuseConfigService.config = {direction};
+     }
+
 }

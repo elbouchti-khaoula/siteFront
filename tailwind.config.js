@@ -12,7 +12,9 @@ const generatePalette = require(path.resolve(__dirname, ('src/@fuse/tailwind/uti
 const customPalettes = {
     brand: generatePalette('#2196F3'),
     bordeau: generatePalette('#b4272f'), // (#febe86/#b2282f/#b4272f : foncé)  autre: #a43734
-    moutard: generatePalette('#f9bc85')  // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
+    beige: generatePalette('#f9bc85'), // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
+    roug: generatePalette('#e86441'), // #e86441 site, #f55b3b logo
+    orang: generatePalette('#f5c000'), //#f5c000 site, #fcbd00 logo
 };
 
 /**
@@ -25,8 +27,8 @@ const themes = {
         //     ...colors.indigo,
         //     DEFAULT: colors.indigo[600]
         // },
-        primary : customPalettes.bordeau,
-        second : customPalettes.moutard,
+        primary: customPalettes.roug,
+        second : customPalettes.orang,
         accent   : {
             ...colors.slate,
             DEFAULT: colors.slate[800]
@@ -38,6 +40,10 @@ const themes = {
         'on-warn': {
             500: colors.red['50']
         }
+    },
+    'bordeau'  : {
+        primary : customPalettes.bordeau,
+        second : customPalettes.beige,
     },
     // Rest of the themes will use the 'default' as the base theme
     // and extend them with their given configuration

@@ -1,3 +1,4 @@
+import { Direction } from '@angular/cdk/bidi';
 import { Layout } from 'app/layout/layout.types';
 
 // Types
@@ -17,6 +18,7 @@ export interface AppConfig
     screens: Screens;
     theme: Theme;
     themes: Themes;
+    direction: Direction;
 }
 
 /**
@@ -33,7 +35,7 @@ export interface AppConfig
  * "Themes" are required for Tailwind to generate themes.
  */
 export const appConfig: AppConfig = {
-    layout : 'modern',
+    layout : 'classic',
     scheme : 'light',
     screens: {
         sm: '600px',
@@ -45,7 +47,7 @@ export const appConfig: AppConfig = {
     themes : [
         {
             id  : 'theme-default',
-            name: 'Default'
+            name: 'AWB'
         },
         {
             id  : 'theme-brand',
@@ -56,16 +58,21 @@ export const appConfig: AppConfig = {
             name: 'Teal'
         },
         {
-            id  : 'theme-rose',
-            name: 'Rose'
+            id  : 'theme-bordeau',
+            name: 'WIMO'
         },
         {
-            id  : 'theme-purple',
-            name: 'Purple'
+            id  : 'theme-rose',
+            name: 'rose'
         },
+        // {
+        //     id  : 'theme-purple',
+        //     name: 'Purple'
+        // },
         {
             id  : 'theme-amber',
             name: 'Amber'
         }
-    ]
+    ],
+    direction: 'ltr'
 };

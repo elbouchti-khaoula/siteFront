@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';
@@ -7,12 +7,16 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FUSE_VERSION } from '@fuse/version';
 import { Layout } from 'app/layout/layout.types';
 import { AppConfig } from 'app/core/config/app.config';
+// import { fuseAnimations } from '@fuse/animations';
+import { default as routerAnimations} from '../route-animations';
 
 @Component({
     selector     : 'layout',
     templateUrl  : './layout.component.html',
     styleUrls    : ['./layout.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    // animations   : fuseAnimations
+    animations: [routerAnimations('routeAnimations')],
 })
 export class LayoutComponent implements OnInit, OnDestroy
 {
@@ -21,6 +25,9 @@ export class LayoutComponent implements OnInit, OnDestroy
     scheme: 'dark' | 'light';
     theme: string;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+
+    // @HostBinding('@fadeInLeft') public animateOut = true;
+    @HostBinding('@routeAnimations') public animate = true;
 
     /**
      * Constructor

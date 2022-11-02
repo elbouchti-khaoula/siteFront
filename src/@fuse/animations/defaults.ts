@@ -9,6 +9,6 @@ export class FuseAnimationCurves
 export class FuseAnimationDurations
 {
     static complex = '375ms';
-    static entering = '225ms';
-    static exiting = '195ms';
+    static entering = '1000ms';
+    static exiting = '1000ms';
 }

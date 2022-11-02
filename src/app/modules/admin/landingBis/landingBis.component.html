@@ -1,640 +1,803 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden">
+<ng-container *transloco="let t">
+    <div class="flex flex-col flex-auto min-w-0 overflow-hidden">
 
-    <!-- min-h-[92vh] / pt-3 sm:pt-7 md:pt-0 pb-44 md:pb-10 / pb-0 sm:pb-40 md:pb-44-->
-    <!-- pb-56 md:pb-72  pt-10 sm:pt-18 sm:pb-40 [ngClass]="{'mt-0': isOpened, 'mt-40': !isOpened}" -->
-    <!-- z-10 bg-[url('assets/images/landing/header.jpg')] -->
-    <!-- <div class="z-10 absolute inset-0 bg-black/[.4]"></div> -->
+        <!-- min-h-[92vh] / pt-3 sm:pt-7 md:pt-0 pb-44 md:pb-10 / pb-0 sm:pb-40 md:pb-44-->
+        <!-- pb-56 md:pb-72  pt-10 sm:pt-18 sm:pb-40 [ngClass]="{'mt-0': isOpened, 'mt-40': !isOpened}" -->
+        <!-- z-10 bg-[url('assets/images/landing/header.jpg')] -->
+        <!-- <div class="z-10 absolute inset-0 bg-black/[.4]"></div> -->
 
-    <!-- Header -->
-    <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/landing/header.jpg');"
-        class="flex flex-col items-center sm:justify-center px-6 sm:px-16 sm:py-20 md:py-56 w-full bg-fixed bg-center bg-cover"
-        [ngClass]="{'py-20': isOpened, 'py-52': !isOpened}">
+        <!-- Header -->
+        <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/landing/header.jpg');"
+            class="flex flex-col items-center sm:justify-center px-6 sm:px-16 sm:py-20 md:py-56 w-full bg-fixed bg-center bg-cover"
+            [ngClass]="{'py-20': isOpened, 'py-52': !isOpened}">
 
-        <div class="w-full max-w-7xl text-white">
-            <div class="max-w-xl text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
-                Devenir propriétaire <br />
-                n'a jamais été aussi simple
+            <div class="w-full max-w-7xl text-white">
+                <div class="max-w-xl text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
+                    {{t('header1')}}<br />
+                    {{t('header2')}}
+                </div>
+
+                <div class="max-w-xl md:text-xl mt-2">
+                    {{t('underheader')}}
+                </div>
             </div>
 
-            <div class="max-w-xl md:text-xl mt-2">
-                Un site tout en un pour chercher mon bien, simuler mon crédit, demander et obtenir mon
-                financement en ligne sans me déplacer !
-            </div>
-        </div>
-
-        <div class="max-w-4xl mt-7 md:mt-15">
-            <mat-accordion>
-                <mat-expansion-panel (opened)="isOpened = true" (closed)="isOpened = false"
-                    class="fuse-expansion-transparent-body">
-                    <mat-expansion-panel-header [collapsedHeight]="'56px'">
-                        <mat-panel-title class="md:text-xl font-bold uppercase">
-                            <mat-icon class="float-left icon-size-7 md:icon-size-10 mr-2"
-                                [svgIcon]="'iconsmind:magnifi_glass2'">
-                            </mat-icon>Je trouve mon bien
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <form [formGroup]="searchForm">
-                        <div class="w-full">
-                            <div class="md:text-xl font-semibold mt-3 md:mt-7">Plus de 1000 projets proposés par les
-                                promoteurs partenaires wafa immobilier</div>
-                        </div>
-                        <div class="w-full grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 mt-3 md:mt-7">
-                            <!-- Région -->
-                            <div>
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Région</mat-label> -->
-                                    <mat-icon matPrefix class="icon-size-5"
-                                        [svgIcon]="'heroicons_solid:location-marker'">
-                                    </mat-icon>
-                                    <mat-select [placeholder]="'Région'" [formControlName]="'region'">
-                                        <mat-option [value]="'reg1'">Région 1</mat-option>
-                                        <mat-option [value]="'reg2'">Region 2</mat-option>
-                                        <mat-option [value]="'reg3'">Region 3</mat-option>
-                                        <mat-option [value]="'reg4'">Region 4</mat-option>
-                                        <mat-option [value]="'reg5'">Region 5</mat-option>
-                                        <mat-option [value]="'reg6'">Region 6</mat-option>
-                                        <mat-option [value]="'reg7'">Region 7</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+            <div class="max-w-4xl mt-7 md:mt-15">
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="isOpened = true" (closed)="isOpened = false">
+                        <mat-expansion-panel-header [collapsedHeight]="'56px'">
+                            <mat-panel-title class="md:text-xl font-bold uppercase">
+                                <mat-icon class="float-left icon-size-7 md:icon-size-10 mr-2"
+                                    [svgIcon]="'iconsmind:magnifi_glass2'">
+                                </mat-icon>Je trouve mon bien
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <form [formGroup]="searchForm">
+                            <div class="w-full">
+                                <div class="md:text-xl font-semibold mt-3 md:mt-7">Plus de 1000 projets proposés par les
+                                    promoteurs partenaires wafa immobilier</div>
                             </div>
-                            <!-- Ville -->
-                            <div>
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Ville</mat-label> -->
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:globe-alt'" matPrefix>
-                                    </mat-icon>
-                                    <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
-                                        <mat-option [value]="'ville1'">Ville 1</mat-option>
-                                        <mat-option [value]="'ville2'">Ville 2</mat-option>
-                                        <mat-option [value]="'ville3'">Ville 3</mat-option>
-                                        <mat-option [value]="'ville4'">Ville 4</mat-option>
-                                        <mat-option [value]="'ville5'">Ville 5</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                            <div class="w-full grid grid-cols-2 gap-3 md:gap-6 mt-3 md:mt-7">
+                                <!-- Région -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Région</mat-label> -->
+                                        <mat-icon matPrefix class="icon-size-5"
+                                            [svgIcon]="'heroicons_solid:location-marker'">
+                                        </mat-icon>
+                                        <mat-select [placeholder]="'Région'" [formControlName]="'region'">
+                                            <mat-option [value]="'reg1'">Région 1</mat-option>
+                                            <mat-option [value]="'reg2'">Region 2</mat-option>
+                                            <mat-option [value]="'reg3'">Region 3</mat-option>
+                                            <mat-option [value]="'reg4'">Region 4</mat-option>
+                                            <mat-option [value]="'reg5'">Region 5</mat-option>
+                                            <mat-option [value]="'reg6'">Region 6</mat-option>
+                                            <mat-option [value]="'reg7'">Region 7</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Ville -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Ville</mat-label> -->
+                                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:globe-alt'" matPrefix>
+                                        </mat-icon>
+                                        <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
+                                            <mat-option [value]="'ville1'">Ville 1</mat-option>
+                                            <mat-option [value]="'ville2'">Ville 2</mat-option>
+                                            <mat-option [value]="'ville3'">Ville 3</mat-option>
+                                            <mat-option [value]="'ville4'">Ville 4</mat-option>
+                                            <mat-option [value]="'ville5'">Ville 5</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Quartier -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Quartier</mat-label> -->
+                                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
+                                        </mat-icon>
+                                        <mat-select [placeholder]="'Quartier'" [formControlName]="'quartier'">
+                                            <mat-option [value]="'quart1'">Quartier 1</mat-option>
+                                            <mat-option [value]="'quart2'">Quartier 2</mat-option>
+                                            <mat-option [value]="'quart3'">Quartier 3</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Type de bien -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Type de bien</mat-label> -->
+                                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                            matPrefix>
+                                        </mat-icon>
+                                        <mat-select [placeholder]="'Type de bien'" [formControlName]="'typeBien'">
+                                            <mat-option [value]="'type1'">Type 1</mat-option>
+                                            <mat-option [value]="'type2'">Type 2</mat-option>
+                                            <mat-option [value]="'type3'">Type 3</mat-option>
+                                            <mat-option [value]="'type4'">Type 4</mat-option>
+                                            <mat-option [value]="'type5'">Type 5</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Prix min -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Prix min</mat-label> -->
+                                        <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:aspect_ratio'" matPrefix>
+                                        </mat-icon>
+                                        <input matInput [placeholder]="'Prix min'" [formControlName]="'prixMin'">
+                                    </mat-form-field>
+                                </div>
+                                <!-- Prix max -->
+                                <div>
+                                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                        <!-- <mat-label>Prix max</mat-label> -->
+                                        <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:king_bed'" matPrefix>
+                                        </mat-icon>
+                                        <input matInput [placeholder]="'Prix max'" [formControlName]="'prixMax'">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                            <!-- Quartier -->
-                            <div>
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Quartier</mat-label> -->
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
-                                    </mat-icon>
-                                    <mat-select [placeholder]="'Quartier'" [formControlName]="'quartier'">
-                                        <mat-option [value]="'quart1'">Quartier 1</mat-option>
-                                        <mat-option [value]="'quart2'">Quartier 2</mat-option>
-                                        <mat-option [value]="'quart3'">Quartier 3</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                            <!-- Actions -->
+                            <div class="flex items-center justify-center mt-3 md:mt-7">
+                                <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Valider
+                                </button>
                             </div>
-                            <!-- Type de logement -->
-                            <div class="sm:col-span-1">
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Type de logement</mat-label> -->
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
-                                        matPrefix>
-                                    </mat-icon>
-                                    <mat-select [placeholder]="'Type de logement'" [formControlName]="'ville'">
-                                        <mat-option [value]="'type1'">Type 1</mat-option>
-                                        <mat-option [value]="'type2'">Type 2</mat-option>
-                                        <mat-option [value]="'type3'">Type 3</mat-option>
-                                        <mat-option [value]="'type4'">Type 4</mat-option>
-                                        <mat-option [value]="'type5'">Type 5</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                        </form>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
+            <div
+                class="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 sm:gap-x-6 w-full max-w-sm md:max-w-3xl -mt-16 sm:-mt-8 md:-mt-24">
+                <!-- Search card -->
+                <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
+                    <div class="flex flex-col flex-auto items-center p-6 text-center">
+                        <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700"
+                            [svgIcon]="'iconsmind:magnifi_glass2'">
+                        </mat-icon>
+                        <div class="mt-2 text-primary-700 font-semibold">Je trouve<br />mon bien</div>
+                    </div>
+                    <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
+                        <a class="flex items-center" [routerLink]="'/dashboards/project'">
+                            <span class="absolute inset-0"></span>
+                            <span class="font-medium">Découvrir</span>
+                            <mat-icon class="ml-2 icon-size-5 text-current"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- Simule card -->
+                <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
+                    <div class="flex flex-col flex-auto items-center p-6 text-center">
+                        <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700"
+                            [svgIcon]="'iconsmind:calculator_3'">
+                        </mat-icon>
+                        <div class="mt-2 text-primary-700 font-semibold">Je simule<br />mon crédit</div>
+                    </div>
+                    <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
+                        <a class="flex items-center" [routerLink]="['./']">
+                            <span class="absolute inset-0"></span>
+                            <span class="font-medium">En savoir plus</span>
+                            <mat-icon class="ml-2 icon-size-5 text-current"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- demande card -->
+                <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
+                    <div class="flex flex-col flex-auto items-center p-6 text-center">
+                        <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:notepad'">
+                        </mat-icon>
+                        <div class="mt-2 text-primary-700 font-semibold">Je demande<br />mon crédit</div>
+                    </div>
+                    <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
+                        <a class="flex items-center" [routerLink]="['./']">
+                            <span class="absolute inset-0"></span>
+                            <span class="font-medium">Démarrer</span>
+                            <mat-icon class="ml-2 icon-size-5 text-current"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- contact card -->
+                <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
+                    <div class="flex flex-col flex-auto items-center p-6 text-center">
+                        <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:support'">
+                        </mat-icon>
+                        <div class="mt-2 text-primary-700 font-semibold">Je contacte<br />un conseiller</div>
+                    </div>
+                    <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
+                        <a class="flex items-center" [routerLink]="['./']">
+                            <span class="absolute inset-0"></span>
+                            <span class="font-medium">Contacter</span>
+                            <mat-icon class="ml-2 icon-size-5 text-current"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Je simule mon crédit -->
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+            <div class="w-full max-w-7xl">
+                <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+                    Je simule mon crédit
+                </div>
+
+                <div class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-6 mt-5 md:mt-16">
+                    <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                        Montant du crédit
+                    </div>
+                    <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                        <span class="absolute left-0 top-0 text-sm">0 dhs</span>
+                        <!-- tickInterval="50" -->
+                        <mat-slider class="w-full" [color]="'primary'" min="0" max="5000000" step="10000" thumbLabel
+                            [displayWith]="formatLabelMontant" [(ngModel)]="montantValue"
+                            (change)="updateMontant($event)" (input)="updateMontant($event)">
+                        </mat-slider>
+                        <span class="absolute right-0 top-0 text-sm">5 000 000,00 Dhs</span>
+                    </div>
+
+                    <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                        Durée
+                    </div>
+                    <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                        <span class="absolute left-0 top-0 text-sm">1 an</span>
+                        <!-- tickInterval="5" -->
+                        <mat-slider class="w-full" [color]="'primary'" min="1" max="30" step="1" thumbLabel
+                            [displayWith]="formatLabelDuree" [(ngModel)]="dureeValue" (change)="updateDuree($event)"
+                            (input)="updateDuree($event)">
+                        </mat-slider>
+                        <span class="absolute right-0 top-0 text-sm">30 ans</span>
+                    </div>
+
+                    <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                        Taux du crédit
+                    </div>
+                    <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                        <span class="absolute left-0 top-0 text-sm">1 %</span>
+                        <!-- tickInterval="2" -->
+                        <mat-slider class="w-full" [color]="'primary'" min="1" max="10" step="0.1" thumbLabel
+                            [displayWith]="formatLabelTaux" [(ngModel)]="tauxValue" (change)="updateTaux($event)"
+                            (input)="updateTaux($event)">
+                        </mat-slider>
+                        <span class="absolute right-0 top-0 text-sm">10 %</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6 w-full mt-5 md:mt-16">
+                    <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                        <div class="flex items-start justify-between">
+                            <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                                Montant du crédit
                             </div>
-                            <!-- Superficie -->
-                            <div class="sm:col-span-1">
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Superficie</mat-label> -->
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:aspect_ratio'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'superficie'" [placeholder]="'Superficie'">
-                                </mat-form-field>
+                        </div>
+                        <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                            <div
+                                class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                                <!-- {{montantValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}} -->
+                                {{montantValue | number:'1.2-2'}}
                             </div>
-                            <!-- chambres -->
-                            <div class="sm:col-span-1">
-                                <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
-                                    <!-- <mat-label>Chambres</mat-label> -->
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:king_bed'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'chambres'" [placeholder]="'Chambres'">
-                                </mat-form-field>
+                            <div
+                                class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                                Dhs</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                        <div class="flex items-start justify-between">
+                            <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                                Mensualité HT
                             </div>
                         </div>
-                        <!-- Actions -->
-                        <div class="flex items-center justify-center mt-3 md:mt-7">
-                            <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Valider
-                            </button>
-                        </div>
-                    </form>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
-        <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 sm:gap-x-6 w-full max-w-sm md:max-w-3xl -mt-16 sm:-mt-8 md:-mt-24">
-            <!-- Search card -->
-            <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700"
-                        [svgIcon]="'iconsmind:magnifi_glass2'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je trouve<br />mon bien</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="'/dashboards/project'">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Découvrir</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- Simule card -->
-            <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:calculator_3'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je simule<br />mon crédit</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="['./']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">En savoir plus</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- demande card -->
-            <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:notepad'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je demande<br />mon crédit</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="['./']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Démarrer</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- contact card -->
-            <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:support'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je contacte<br />un conseiller</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="['./']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Contacter</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-150 dark:bg-gray-800">
-        <div class="text-center">
-            <h4 i18n="site title|The title for our i18n sample app@@appTitle">Angular internationalisation</h4>
-        </div>
-        <div class="text-center">
-            <span i18n="home title|The home title for our i18n sample app@@homeTitle">Créons une application Angular avec la traduction</span>
-        </div>
-        <div class="text-center">{{dateApp | date: 'long'}}</div>
-    </div>
-
-    <!-- Je simule mon crédit -->
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card dark:bg-gray-800">
-        <div class="w-full max-w-7xl">
-            <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight">
-                Je simule mon crédit
-            </div>
-
-            <div class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-6 mt-5 md:mt-16">
-                <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
-                    Montant du crédit
-                </div>
-                <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
-                    <span class="absolute left-0 top-0 text-sm">0 dhs</span>
-                    <!-- tickInterval="50" -->
-                    <mat-slider 
-                        class="w-full" 
-                        [color]="'primary'" 
-                        min="0"
-                        max="5000000"
-                        step="10000"
-                        thumbLabel
-                        [displayWith]="formatLabelMontant"
-                        [(ngModel)]="montantValue" 
-                        (change)="updateMontant($event)" 
-                        (input)="updateMontant($event)"
-                        >
-                    </mat-slider>
-                    <span class="absolute right-0 top-0 text-sm">5 000 000,00 Dhs</span>
-                </div>
-
-                <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
-                    Durée
-                </div>
-                <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
-                    <span class="absolute left-0 top-0 text-sm">1 an</span>
-                    <!-- tickInterval="5" -->
-                    <mat-slider 
-                        class="w-full" 
-                        [color]="'primary'"
-                        min="1"
-                        max="30"
-                        step="1"
-                        thumbLabel
-                        [displayWith]="formatLabelDuree"
-                        [(ngModel)]="dureeValue"
-                        (change)="updateDuree($event)" 
-                        (input)="updateDuree($event)">
-                    </mat-slider>
-                    <span class="absolute right-0 top-0 text-sm">30 ans</span>
-                </div>
-
-                <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
-                    Taux du crédit
-                </div>
-                <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
-                    <span class="absolute left-0 top-0 text-sm">1 %</span>
-                    <!-- tickInterval="2" -->
-                    <mat-slider 
-                        class="w-full" 
-                        [color]="'primary'"
-                        min="1"
-                        max="10"
-                        step="0.1"
-                        thumbLabel
-                        [displayWith]="formatLabelTaux"
-                        [(ngModel)]="tauxValue"
-                        (change)="updateTaux($event)" 
-                        (input)="updateTaux($event)">
-                    </mat-slider>
-                    <span class="absolute right-0 top-0 text-sm">10 %</span>
-                </div>
-            </div>
-
-            <!-- <div>{{slideValue$ | async}}</div> -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6 w-full mt-5 md:mt-16">
-                <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 bg-primary-100 shadow rounded-2xl overflow-hidden">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate text-primary">
-                            Montant du crédit
+                        <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                            <div
+                                class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                                {{mensualite}}</div>
+                            <div
+                                class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                                Dhs
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-baseline justify-center w-full mt-5">
-                        <div
-                            class="text-base sm:text-3xl md:text-4xl font-bold tracking-tight leading-none text-blue-500 truncate">
-                            <!-- {{montantValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}} -->
-                            {{montantValue | number:'1.2-2'}}
-                        </div>
-                        <div
-                            class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-blue-600 dark:text-blue-500">
-                            Dhs</div>
-                    </div>
-                </div>
 
-                <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 bg-primary-100 shadow rounded-2xl overflow-hidden">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate text-primary">
-                            Mensualité HT
+                    <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                        <div class="flex items-start justify-between">
+                            <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                                Taux</div>
+                        </div>
+                        <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                            <div
+                                class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                                <!-- {{tauxValue.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}} -->
+                                {{tauxValue | number:'1.1-1'}}
+                            </div>
+                            <div
+                                class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                                %</div>
                         </div>
                     </div>
-                    <div class="flex items-baseline justify-center w-full mt-5">
-                        <div
-                            class="text-base sm:text-3xl md:text-4xl font-bold tracking-tight leading-none text-amber-500 truncate">
-                            {{mensualite | number:'1.2-2'}}</div>
-                        <div
-                            class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-amber-600 dark:text-amber-500">
-                            Dhs
+
+                    <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                        <div class="flex items-start justify-between">
+                            <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                                Durée</div>
+                        </div>
+                        <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                            <div
+                                class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                                {{dureeValue | number:'1.0-0'}}</div>
+                            <div
+                                class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                                ans
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 bg-primary-100 shadow rounded-2xl overflow-hidden">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate text-primary">
-                            Taux</div>
-                    </div>
-                    <div class="flex items-baseline justify-center w-full mt-5">
-                        <div
-                            class="text-base sm:text-3xl md:text-4xl font-bold tracking-tight leading-none text-rose-500 truncate">
-                            <!-- {{tauxValue.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}} -->
-                            {{tauxValue | number:'1.1-1'}}
-                        </div>
-                        <div
-                            class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-rose-600 dark:text-rose-500">
-                            %</div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 bg-primary-100 shadow rounded-2xl overflow-hidden">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate text-primary">
-                            Durée</div>
-                    </div>
-                    <div class="flex items-baseline justify-center w-full mt-5">
-                        <div
-                            class="text-base sm:text-3xl md:text-4xl font-bold tracking-tight leading-none text-green-500 truncate">
-                            {{dureeValue | number:'1.0-0'}}</div>
-                        <div
-                            class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-green-600 dark:text-green-500">
-                            ans
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center justify-center mt-7 md:mt-12">
-                <button class="fuse-mat-button-large" mat-flat-button [color]="'primary'" [routerLink]="['./']">
-                    Je personnalise ma simulation
-                </button>
-                <button class="fuse-mat-button-large mt-3" mat-stroked-button [color]="'primary'">
-                    Vider les champs
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pourquoi nous choisir -->
-    <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/landing/land1.jpg');"
-        class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[100vh] h-min bg-center bg-cover">
-
-        <div class="w-full sm:max-w-7xl text-white">
-            <div class="flex flex-row items-center mb-15 md:mb-40">
-                <div class="max-w-13 sm:max-w-24 lg:max-w-50">
-                    <img src="assets/images/landing/trait2.jpg">
-                </div>
-                <div class="uppercase text-xl sm:text-3xl md:text-4xl font-bold ml-2 sm:ml-5">
-                    Pourquoi nous choisir ?
-                </div>
-            </div>
-
-            <div class="flex flex-row justify-between">
-                <div class="flex flex-row">
-                    <div class="mr-5">
-                        <img class="object-cover w-fit h-44 sm:h-52 md:h-80"
-                            src="assets/images/landing/traitblanc.png">
-                    </div>
-                    <div class="flex flex-col max-w-[70%] sm:max-w-none">
-                        <div class="text-4xl md:text-7xl font-extrabold uppercase leading-tight">
-                            Parcours simplifié
-                        </div>
-                        <div class="text-6xl md:text-8xl font-extrabold uppercase leading-tight">
-                            et 100% digital
-                        </div>
-                        <div class="hidden sm:inline-flex max-w-2xl text-2xl md:text-4xl mt-5">
-                            Je demande mon crédit en ligne
-                            <br />et j'obtiens mon financement sans
-                            <br />me déplacer en agence
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between items-end">
-                    <img class="object-cover w-fit h-12 sm:h-14 md:h-24" src="assets/images/landing/num1.png">
-                    <div class="w-3 h-12 sm:w-4 sm:h-14 md:w-6 md:h-24 bg-gray-400 bg-opacity-80"></div>
-                    <div class="w-3 h-12 sm:w-4 sm:h-14 md:w-6 md:h-24 bg-gray-400 bg-opacity-80"></div>
-                </div>
-            </div>
-
-            <div class="sm:hidden flex flex-col items-center mt-7">
-                <div class="w-fit text-xl">
-                    Je demande mon crédit
-                    <br />en ligne et j'obtiens
-                    <br />mon financement sans
-                    <br />me déplacer en agence
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- cinq étapes -->
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card dark:bg-gray-800">
-        <div class="w-full max-w-7xl">
-            <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight">
-                Je finance mon bien en cinq étapes
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-y-1 w-full mt-12 sm:mt-16">
-                <div class="relative">
-                    <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
-                        src="assets/images/landing/cercle1.png">
-                    <!-- <div style='position:absolute; left:50%; top:50%; transform: translate(-50%, -50%)'
-                        class="text-center bg-red-200">
-                        This text is centered.
-                    </div> -->
-                    <div class="absolute inset-0 m-auto text-center">
-                        <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">1</div>
-                        <div class="text-lg md:text-3xl font-bold">Je simule<br />mon crédit</div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
-                        src="assets/images/landing/cercle2.png">
-                    <div class="absolute inset-0 m-auto text-center">
-                        <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">2</div>
-                        <div class="text-lg md:text-3xl font-bold">Je fais<br />ma demande</div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
-                        src="assets/images/landing/cercle3.png">
-                    <div class="absolute inset-0 m-auto text-center">
-                        <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">3</div>
-                        <div class="text-lg md:text-3xl font-bold">J'obtiens<br />mon accord</div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
-                        src="assets/images/landing/cercle4.png">
-                    <div class="absolute inset-0 m-auto text-center">
-                        <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">4</div>
-                        <div class="text-lg md:text-3xl font-bold">Je justifie<br />mon dossier</div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
-                        src="assets/images/landing/cercle5.png">
-                    <div class="absolute inset-0 m-auto text-center">
-                        <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">5</div>
-                        <div class="text-lg md:text-3xl font-bold">Je signe !</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Dar be rahet lbal -->
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
-        <div class="w-full max-w-7xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 sm:gap-x-4 w-full">
-                <div
-                    class="rounded-2xl overflow-hidden shadow transition-transform duration-200 ease-in-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-lg">
-                    <img class="w-full h-full object-cover" src="assets/images/landing/bg_2.jpg">
-                </div>
-
-                <div
-                    class="rounded-2xl overflow-hidden shadow transition-transform duration-200 ease-in-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-lg">
-                    <img class="w-full h-full object-cover" src="assets/images/landing/land2.jpg">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- des statistiques -->
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-250">
-        <div class="w-full max-w-7xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 lg:gap-16 w-full">
-                <div class="flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
-                        <img class="max-w-15" src="assets/images/landing/morocco.svg">
-                    </span>
-                    <div class="mt-4 text-4xl font-extrabold">360</div>
-                    <div class="mt-2 text-xl text-secondary leading-6 text-center">
-                        Agences
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
-                        <svg role="img" aria-labelledby="Conseillers" width="51" height="39" viewBox="0 0 51 39"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <title id="Conseillers">Conseillers</title>
-                            <path
-                                d="M13.1253 7.81242C13.1253 8.04158 13.3545 8.27075 13.5837 8.49992L18.167 13.0833C18.6253 13.5416 19.0837 13.7708 19.7712 13.7708C20.4587 13.7708 20.917 13.5416 21.3753 13.0833C22.292 12.1666 22.292 10.7916 21.3753 9.87492L20.6878 9.18742H30.3128L29.6253 9.87492C29.167 10.3333 28.9378 10.7916 28.9378 11.4791C28.9378 12.8541 29.8545 13.7708 31.2295 13.7708C31.917 13.7708 32.3753 13.5416 32.8337 13.0833L37.417 8.49992C37.6462 8.27075 37.8753 8.04158 37.8753 7.81242C37.8753 7.58325 38.1045 7.35408 38.1045 6.89575C38.1045 6.66658 38.1045 6.20825 37.8753 5.97908C37.6462 5.74992 37.6462 5.52075 37.417 5.29159L32.8337 0.708252C31.917 -0.208415 30.542 -0.208415 29.6253 0.708252C28.7087 1.62492 28.7087 2.99992 29.6253 3.91658L30.3128 4.60408H20.6878L21.3753 3.91658C22.292 2.99992 22.292 1.62492 21.3753 0.708252C20.4587 -0.208415 19.0837 -0.208415 18.167 0.708252L13.5837 5.29159C13.3545 5.52075 13.1253 5.74992 13.1253 5.97908C13.1253 6.20825 12.8962 6.43742 12.8962 6.89575C12.8962 7.12492 12.8962 7.58325 13.1253 7.81242ZM11.7503 25.6874C14.9587 25.6874 17.7087 22.9374 17.7087 19.7291C17.7087 16.5208 14.9587 13.7708 11.7503 13.7708C8.54199 13.7708 5.79199 16.5208 5.79199 19.7291C5.79199 22.9374 8.54199 25.6874 11.7503 25.6874ZM20.4587 31.8749C14.5003 27.0624 5.79199 27.9791 0.979492 33.9374C0.521159 34.6249 0.291992 35.3124 0.291992 35.9999C0.291992 37.6041 1.66699 38.9791 3.27116 38.9791H20.2295C21.3753 38.9791 22.5212 38.2916 22.9795 37.3749C23.4378 36.4582 23.4378 35.0832 22.5212 34.1666C21.8337 33.2499 21.1462 32.5624 20.4587 31.8749ZM33.292 19.7291C33.292 22.9374 36.042 25.6874 39.2503 25.6874C42.4587 25.6874 45.2087 22.9374 45.2087 19.7291C45.2087 16.5208 42.4587 13.7708 39.2503 13.7708C36.042 13.7708 33.292 16.5208 33.292 19.7291ZM50.0212 34.1666C49.3337 33.4791 48.6462 32.5624 47.9587 32.1041C42.0003 27.2916 33.292 28.2083 28.4795 34.1666C28.0212 34.6249 27.792 35.3124 27.792 35.9999C27.792 37.6041 29.167 38.9791 30.7712 38.9791H47.7295C48.8753 38.9791 50.0212 38.2916 50.4795 37.3749C50.9378 36.2291 50.7087 35.0832 50.0212 34.1666Z"
-                                fill="white"></path>
-                        </svg>
-                    </span>
-                    <div class="mt-4 text-4xl font-extrabold">+ de 2000</div>
-                    <div class="mt-2 text-xl text-secondary leading-6 text-center">
-                        Conseillers
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
-                        <svg role="img" aria-labelledby="Rocket" width="51" height="51" viewBox="0 0 51 51" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title id="Rocket">Rocket</title>
-                            <path
-                                d="M49.7917 2.81241C49.5625 2.12491 48.875 1.43741 48.1875 1.20825C38.5625 -1.31259 28.7083 1.66658 22.0625 9.45825L19.5417 12.4374L13.3542 11.0624C10.375 9.91658 7.16667 11.2916 5.79167 14.0416L0.75 22.9791C0.291667 23.6666 0.291667 24.3541 0.75 25.0416C0.979167 25.7291 1.66667 26.1874 2.35417 26.4166L9.45833 28.0207C8.77083 29.8541 8.54167 31.6874 8.08333 33.5207C8.08333 34.2082 8.3125 34.8957 8.77083 35.3541L15.875 42.4582C16.3333 42.9166 16.7917 43.1457 17.4792 43.1457H17.7083C19.7708 42.9166 21.6042 42.6874 23.4375 41.9999L24.8125 48.8749C25.0417 49.5624 25.5 50.2499 26.1875 50.4791C26.4167 50.7082 26.875 50.7082 27.1042 50.7082C27.5625 50.7082 27.7917 50.7082 28.25 50.4791L37.1875 45.4374C39.7083 44.0624 41.0833 40.8541 40.3958 37.8749L38.7917 31.4582L41.5417 28.9374C49.1042 22.5207 52.3125 12.2082 49.7917 2.81241ZM14.7292 18.1666C13.3542 19.9999 11.9792 21.8332 11.0625 23.6666L6.25 22.5207L9.6875 16.3332C10.1458 15.4166 11.0625 15.1874 12.2083 15.4166L16.1042 16.3332L14.7292 18.1666ZM34.6667 41.3124L28.4792 44.7499L27.5625 40.1666C29.625 39.2499 31.4583 37.8749 33.0625 36.4999L34.6667 34.8957L35.5833 38.7916C36.0417 39.9374 35.3542 41.0832 34.6667 41.3124ZM36.2708 18.1666C34.4375 18.1666 32.8333 16.5624 32.8333 14.7291C32.8333 12.8957 34.4375 11.2916 36.2708 11.2916C38.1042 11.2916 39.7083 12.8957 39.7083 14.7291C39.7083 16.5624 38.3333 18.1666 36.2708 18.1666Z"
-                                fill="white"></path>
-                        </svg>
-                    </span>
-                    <div class="mt-4 text-4xl font-extrabold">35 000</div>
-                    <div class="mt-2 text-xl text-secondary leading-6 text-center">
-                        Projets financés<br />en 2021
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
-                        <svg role="img" aria-labelledby="Sans engagement" width="52" height="52" viewBox="0 0 52 52"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <title id="Sans engagement">Sans engagement</title>
-                            <path
-                                d="M26 52C11.6406 52 0 40.3594 0 26C0 11.6406 11.6406 0 26 0C40.3594 0 52 11.6406 52 26C52 40.3594 40.3594 52 26 52ZM15.1378 31.7373C21.03 38.9252 31.1153 38.9696 36.8669 31.7221C37.292 31.1865 37.2023 30.4077 36.6667 29.9826C36.1311 29.5576 35.3523 29.6472 34.9273 30.1828C30.1664 36.1819 21.9535 36.1458 17.0528 30.1675C16.6193 29.6387 15.8392 29.5614 15.3104 29.9949C14.7816 30.4284 14.7043 31.2085 15.1378 31.7373ZM22.1106 18.1597C21.441 16.2204 19.3952 14.8571 17.2632 14.8571C15.1317 14.8571 13.1157 16.2223 12.4482 18.17C12.2265 18.8169 12.5711 19.521 13.218 19.7426C13.8648 19.9643 14.5689 19.6197 14.7906 18.9728C15.1067 18.0506 16.1659 17.3333 17.2632 17.3333C18.3689 17.3333 19.4557 18.0575 19.7699 18.9677C19.9931 19.6141 20.698 19.9572 21.3443 19.734C21.9906 19.5109 22.3337 18.806 22.1106 18.1597ZM39.4439 18.1597C38.7744 16.2204 36.7286 14.8571 34.5966 14.8571C32.4651 14.8571 30.449 16.2223 29.7815 18.17C29.5598 18.8169 29.9045 19.521 30.5513 19.7426C31.1982 19.9643 31.9022 19.6197 32.1239 18.9728C32.44 18.0506 33.4992 17.3333 34.5966 17.3333C35.7022 17.3333 36.789 18.0575 37.1033 18.9677C37.3264 19.6141 38.0313 19.9572 38.6776 19.734C39.324 19.5109 39.667 18.806 39.4439 18.1597Z"
-                                fill="white"></path>
-                        </svg>
-                    </span>
-                    <div class="mt-4 text-4xl font-extrabold">15 000</div>
-                    <div class="mt-2 text-xl text-secondary leading-6 text-center">
-                        Clients en assurance<br />de prêt en 2021
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- devenir client -->
-    <div style="background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('assets/images/landing/cle-maison.jpg');"
-        class="relative flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-fixed bg-center bg-cover">
-
-        <div class="w-full max-w-7xl flex justify-end">
-            <div class="md:w-1/2 flex flex-col">
-                <div
-                    class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary-700">
-                    Devenir client<br class="md:hidden" /> WAFA IMMOBILIER<br />en toute simplicité
-                </div>
-                <div class="mt-7 md:mt-12">
-                    <button class="fuse-mat-button-large bg-second text-lg" mat-stroked-button [color]="'primary'">
-                        Ouvrir mon compte
+                <div class="flex flex-col items-center justify-center mt-7 md:mt-12">
+                    <button class="fuse-mat-button-large" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                        Simulation personnalisée
                     </button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- localisation -->
-    <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card dark:bg-gray-800">
-        <div class="w-full max-w-7xl flex flex-col sm:flex-row items-center justify-between">
-            <div class="flex flex-col">
-                <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight">
-                    Localisez une agence
+        <!-- Pourquoi nous choisir old -->
+        <!-- <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/landing/land1.jpg');"
+            class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[100vh] h-min bg-center bg-cover">
+
+            <div class="w-full max-w-7xl text-white">
+                <div class="flex flex-row items-center mb-15 md:mb-40">
+                    <div class="max-w-13 sm:max-w-24 lg:max-w-50">
+                        <img src="assets/images/landing/trait2.jpg">
+                    </div>
+                    <div class="uppercase text-xl sm:text-3xl md:text-4xl font-bold ml-2 sm:ml-5">
+                        Pourquoi nous choisir ?
+                    </div>
                 </div>
-                <button class="fuse-mat-button-large w-fit mt-7 md:mt-12" mat-flat-button [color]="'primary'">
-                    <span class="hidden md:inline-block text-lg">Vous cherchez une agence près de chez vous ?</span>
-                    <span class="md:hidden text-lg">Trouver une agence ?</span>
-                </button>
-            </div>
 
-            <img class="object-cover w-fit h-44 md:h-72" src="assets/images/landing/mapipad.png">
+                <div class="flex flex-row justify-between">
+                    <div class="flex flex-row">
+                        <div class="mr-5">
+                            <img class="object-cover w-fit h-44 sm:h-52 md:h-80"
+                                src="assets/images/landing/traitblanc.png">
+                        </div>
+                        <div class="flex flex-col max-w-[70%] sm:max-w-none">
+                            <div class="text-4xl md:text-7xl font-extrabold uppercase leading-tight">
+                                Parcours simplifié
+                            </div>
+                            <div class="text-6xl md:text-8xl font-extrabold uppercase leading-tight">
+                                et 100% digital
+                            </div>
+                            <div class="hidden sm:inline-flex max-w-2xl text-2xl md:text-4xl mt-5">
+                                Je demande mon crédit en ligne
+                                <br />et j'obtiens mon financement sans
+                                <br />me déplacer en agence
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-between items-end">
+                        <img class="object-cover w-fit h-12 sm:h-14 md:h-24" src="assets/images/landing/num1.png">
+                        <div class="w-3 h-12 sm:w-4 sm:h-14 md:w-6 md:h-24 bg-gray-400 bg-opacity-80"></div>
+                        <div class="w-3 h-12 sm:w-4 sm:h-14 md:w-6 md:h-24 bg-gray-400 bg-opacity-80"></div>
+                    </div>
+                </div>
+
+                <div class="sm:hidden flex flex-col items-center mt-7">
+                    <div class="w-fit text-xl">
+                        Je demande mon crédit
+                        <br />en ligne et j'obtiens
+                        <br />mon financement sans
+                        <br />me déplacer en agence
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- test carousel -->
+        <!-- <div class="one">
+            <p class="two">This text should scroll. Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi commodi magni quo officia error ab veniam aspernatur. Quos ducimus, hic, maxime dicta optio quidem nostrum sint commodi velit, ut distinctio. And return to beginning.</p>
+        </div> -->
+
+        <!-- <div class="relative flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-300">
+            <div class="w-full max-w-7xl">
+                <div class="cards">
+                    <div class="card">
+                        <h2 class="card__title">Card Title I</h2>
+                        <div class="card__image">
+                            <img src="assets/images/carousel/1.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="card__title">Card Title II</h2>
+                        <div class="card__image">
+                            <img src="assets/images/carousel/2.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="card__title">Card Title III</h2>
+                        <div class="card__image">
+                            <img src="assets/images/carousel/3.jpg" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div style="width: 500px; height: 500px; background-color: lightblue; margin-bottom: 30px;">
+            <img #mushroom src="assets/images/landing/mushroom.svg" style="width: 50px; height: 50px;" />
         </div>
-    </div>
+        <button (click)="doIt()">Start</button> -->
 
-    <!-- <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
-        <div class="w-full max-w-7xl">
-            <div class="image-container">
-                <img class="area-img add-animation animated object-cover w-full h-44 md:h-40" src="assets/images/landing/mapipad.png"
-                    alt="Card cover image">
+        <!-- Pourquoi nous choisir -->
+        <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/landing/land1.jpg');"
+            class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[100vh] h-min bg-center bg-cover">
+
+            <div class="w-full max-w-7xl text-white">
+
+                <div class="flex flex-row items-center mb-15 md:mb-40">
+                    <div class="max-w-13 sm:max-w-24">
+                        <img src="assets/images/landing/trait2.jpg">
+                    </div>
+                    <div class="uppercase text-xl sm:text-3xl md:text-4xl font-bold ml-2 sm:ml-5">
+                        Pourquoi nous choisir ?
+                    </div>
+                </div>
+
+                <angular-carousel [auto]="true" [infinite]="true" [duration]="2000" class="h-[60vh] w-full">
+                    <div *angularCarouselSlide class="h-[60vh] text-white mt-5">
+                        <div class="flex flex-row justify-center sm:justify-start">
+                            <div
+                                class="h-fit text-9xl sm:text-[220px] font-semibold text-primary mr-5 sm:mr-10 -mt-2 sm:-mt-5 leading-none">
+                                1</div>
+                            <div class="flex flex-col">
+                                <div class="text-4xl md:text-7xl font-extrabold uppercase leading-tight">
+                                    Parcours <br class="sm:hidden" />simplifié
+                                </div>
+                                <div class="text-6xl md:text-8xl font-extrabold uppercase leading-tight">
+                                    et 100% <br class="sm:hidden" />digital
+                                </div>
+                                <div class="hidden sm:inline-flex text-2xl md:text-4xl mt-5">
+                                    Je demande mon crédit en ligne
+                                    <br />et j'obtiens mon financement sans
+                                    <br />me déplacer en agence
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:hidden flex flex-col items-center mt-7">
+                            <div class="text-xl">
+                                Je demande mon crédit
+                                <br />en ligne et j'obtiens
+                                <br />mon financement sans
+                                <br />me déplacer en agence
+                            </div>
+                        </div>
+                    </div>
+                    <div *angularCarouselSlide class="h-[60vh] text-white">
+                        <div class="flex flex-row justify-center sm:justify-start">
+                            <div
+                                class="h-fit text-9xl sm:text-[220px] font-semibold text-primary mr-5 sm:mr-10 -mt-2 sm:-mt-5 leading-none">
+                                2</div>
+                            <div class="flex flex-col">
+                                <div class="text-4xl md:text-7xl font-extrabold uppercase leading-tight">
+                                    Parcours <br class="sm:hidden" />simplifié
+                                </div>
+                                <div class="text-6xl md:text-8xl font-extrabold uppercase leading-tight">
+                                    et 100% <br class="sm:hidden" />digital
+                                </div>
+                                <div class="hidden sm:inline-flex text-2xl md:text-4xl mt-5">
+                                    Je demande mon crédit en ligne
+                                    <br />et j'obtiens mon financement sans
+                                    <br />me déplacer en agence
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:hidden flex flex-col items-center mt-7">
+                            <div class="text-xl">
+                                Je demande mon crédit
+                                <br />en ligne et j'obtiens
+                                <br />mon financement sans
+                                <br />me déplacer en agence
+                            </div>
+                        </div>
+                    </div>
+                    <div *angularCarouselSlide class="h-[60vh] text-white">
+                        <div class="flex flex-row justify-center sm:justify-start">
+                            <div
+                                class="h-fit text-9xl sm:text-[220px] font-semibold text-primary mr-5 sm:mr-10 -mt-2 sm:-mt-5 leading-none">
+                                3</div>
+                            <div class="flex flex-col">
+                                <div class="text-4xl md:text-7xl font-extrabold uppercase leading-tight">
+                                    Parcours <br class="sm:hidden" />simplifié
+                                </div>
+                                <div class="text-6xl md:text-8xl font-extrabold uppercase leading-tight">
+                                    et 100% <br class="sm:hidden" />digital
+                                </div>
+                                <div class="hidden sm:inline-flex text-2xl md:text-4xl mt-5">
+                                    Je demande mon crédit en ligne
+                                    <br />et j'obtiens mon financement sans
+                                    <br />me déplacer en agence
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:hidden flex flex-col items-center mt-7">
+                            <div class="text-xl">
+                                Je demande mon crédit
+                                <br />en ligne et j'obtiens
+                                <br />mon financement sans
+                                <br />me déplacer en agence
+                            </div>
+                        </div>
+                    </div>
+                </angular-carousel>
+            </div>
+            <!-- <div class="carousel__container">
+                    <div class="carousel__slider">
+                        <div *ngIf="infinite || currentSlide > 0" class="carousel__previous">
+                            <button (click)="previousSlide($event)">
+                                <svg viewBox="0 0 20 20">
+                                    <polyline points="12 2, 7 10, 12 18" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" fill="transparent" stroke-linejoin="round">
+                                    </polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <ol [style.left.%]="currentSlide * -100" (mouseenter)="stopInterval()"
+                            (mouseleave)="startInterval()"
+                            class="carousel__slides">
+                            <li *ngFor="let slide of slides; let index = index\"
+                                [ngClass]="{'carousel__slide--active':index===currentSlide}"
+                                class="carousel__slide">
+                                <ng-container [ngTemplateOutlet]="slide.template">
+                                </ng-container>
+                            </li>
+                        </ol>
+                        <div *ngIf="infinite || currentSlide < slides.length - 1" class="carousel__next">
+                            <button (click)="nextSlide($event)">
+                                <svg viewBox="0 0 20 20">\n
+                                    <polyline points="8 2, 13 10, 8 18" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" fill="transparent" stroke-linejoin="round">
+                                    </polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="bullets === undefined || bullets">
+                        <ol class="carousel__bullets">
+                            <li *ngFor="let slide of slides; let index=index">
+                                <button (click)="goToSlide(index + 1, $event)"
+                                    [ngClass]="{'carousel__bullet--active':index===currentSlide}"
+                                    class="carousel__bullet">
+                                    <span class="sr-only">{{ index + 1 }}
+                                    </span>
+                                </button>
+                            </li>
+                        </ol>
+                    </ng-container>
+                </div> -->
+        </div>
+
+        <!-- cinq étapes -->
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card dark:bg-gray-800">
+            <div class="w-full max-w-7xl">
+                <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+                    Je finance mon bien en cinq étapes
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-y-1 w-full mt-12 sm:mt-16">
+                    <div class="relative">
+                        <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
+                            src="assets/images/landing/cercle1.png">
+                        <!-- <div style='position:absolute; left:50%; top:50%; transform: translate(-50%, -50%)'
+                        class="text-center bg-red-200">
+                        This text is centered.
+                    </div> -->
+                        <div class="absolute inset-0 m-auto text-center">
+                            <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">1</div>
+                            <div class="text-lg md:text-3xl font-bold">Je simule<br />mon crédit</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
+                            src="assets/images/landing/cercle2.png">
+                        <div class="absolute inset-0 m-auto text-center">
+                            <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">2</div>
+                            <div class="text-lg md:text-3xl font-bold">Je fais<br />ma demande</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
+                            src="assets/images/landing/cercle3.png">
+                        <div class="absolute inset-0 m-auto text-center">
+                            <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">3</div>
+                            <div class="text-lg md:text-3xl font-bold">J'obtiens<br />mon accord</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
+                            src="assets/images/landing/cercle4.png">
+                        <div class="absolute inset-0 m-auto text-center">
+                            <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">4</div>
+                            <div class="text-lg md:text-3xl font-bold">Je justifie<br />mon dossier</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
+                            src="assets/images/landing/cercle5.png">
+                        <div class="absolute inset-0 m-auto text-center">
+                            <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">5</div>
+                            <div class="text-lg md:text-3xl font-bold">Je signe !</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div> -->
+        
+        <!-- Dar be rahet lbal -->
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+            <div class="w-full max-w-7xl">
 
-    <!-- Suivez-nous -->
-    <div class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
-        <div class="flex flex-col items-center w-full max-w-7xl mx-auto text-center">
-            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-6 sm:leading-10">Suivez-nous</div>
-            <div
-                class="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10 text-black text-opacity-70">
-                Rejoignez notre réseau
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 sm:gap-x-4 w-full">
+                    <div
+                        class="rounded-2xl overflow-hidden shadow transition-transform duration-200 ease-in-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-lg">
+                        <img class="w-full h-full object-cover" src="assets/images/landing/bg_2.jpg">
+                    </div>
+
+                    <div
+                        class="rounded-2xl overflow-hidden shadow transition-transform duration-200 ease-in-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-lg">
+                        <img class="w-full h-full object-cover" src="assets/images/landing/land2.jpg">
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- 0a66c2 0073b2 -->
-            <div class="flex items-center mt-8 space-x-1 sm:space-x-4">
-                <button class="flex-auto bg-[#006097]" type="button" mat-stroked-button>
-                    <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:linkedin'"></mat-icon>
-                </button>
-                <button class="flex-auto bg-[#3b5998]" type="button" mat-stroked-button>
-                    <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:facebook'"></mat-icon>
-                </button>
-                <button class="flex-auto bg-[#55acee]" type="button" mat-stroked-button>
-                    <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:twitter'"></mat-icon>
-                </button>
-                <button class="flex-auto bg-[#125688]" type="button" mat-stroked-button>
-                    <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:instagram'"></mat-icon>
-                </button>
-                <button class="flex-auto bg-[#e52d27]" type="button" mat-stroked-button>
-                    <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:youtube'"></mat-icon>
-                </button>
-                <!-- <button class="flex-auto bg-[#cc2127]" type="button" mat-stroked-button>
+        <!-- des statistiques -->
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-250">
+            <div class="w-full max-w-7xl">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 lg:gap-16 w-full">
+                    <div class="flex flex-col items-center">
+                        <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
+                            <img class="max-w-15" src="assets/images/landing/morocco.svg">
+                        </span>
+                        <div class="mt-4 text-4xl font-extrabold">360</div>
+                        <div class="mt-2 text-xl text-secondary leading-6 text-center">
+                            Agences
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
+                            <svg role="img" aria-labelledby="Conseillers" width="51" height="39" viewBox="0 0 51 39"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <title id="Conseillers">Conseillers</title>
+                                <path
+                                    d="M13.1253 7.81242C13.1253 8.04158 13.3545 8.27075 13.5837 8.49992L18.167 13.0833C18.6253 13.5416 19.0837 13.7708 19.7712 13.7708C20.4587 13.7708 20.917 13.5416 21.3753 13.0833C22.292 12.1666 22.292 10.7916 21.3753 9.87492L20.6878 9.18742H30.3128L29.6253 9.87492C29.167 10.3333 28.9378 10.7916 28.9378 11.4791C28.9378 12.8541 29.8545 13.7708 31.2295 13.7708C31.917 13.7708 32.3753 13.5416 32.8337 13.0833L37.417 8.49992C37.6462 8.27075 37.8753 8.04158 37.8753 7.81242C37.8753 7.58325 38.1045 7.35408 38.1045 6.89575C38.1045 6.66658 38.1045 6.20825 37.8753 5.97908C37.6462 5.74992 37.6462 5.52075 37.417 5.29159L32.8337 0.708252C31.917 -0.208415 30.542 -0.208415 29.6253 0.708252C28.7087 1.62492 28.7087 2.99992 29.6253 3.91658L30.3128 4.60408H20.6878L21.3753 3.91658C22.292 2.99992 22.292 1.62492 21.3753 0.708252C20.4587 -0.208415 19.0837 -0.208415 18.167 0.708252L13.5837 5.29159C13.3545 5.52075 13.1253 5.74992 13.1253 5.97908C13.1253 6.20825 12.8962 6.43742 12.8962 6.89575C12.8962 7.12492 12.8962 7.58325 13.1253 7.81242ZM11.7503 25.6874C14.9587 25.6874 17.7087 22.9374 17.7087 19.7291C17.7087 16.5208 14.9587 13.7708 11.7503 13.7708C8.54199 13.7708 5.79199 16.5208 5.79199 19.7291C5.79199 22.9374 8.54199 25.6874 11.7503 25.6874ZM20.4587 31.8749C14.5003 27.0624 5.79199 27.9791 0.979492 33.9374C0.521159 34.6249 0.291992 35.3124 0.291992 35.9999C0.291992 37.6041 1.66699 38.9791 3.27116 38.9791H20.2295C21.3753 38.9791 22.5212 38.2916 22.9795 37.3749C23.4378 36.4582 23.4378 35.0832 22.5212 34.1666C21.8337 33.2499 21.1462 32.5624 20.4587 31.8749ZM33.292 19.7291C33.292 22.9374 36.042 25.6874 39.2503 25.6874C42.4587 25.6874 45.2087 22.9374 45.2087 19.7291C45.2087 16.5208 42.4587 13.7708 39.2503 13.7708C36.042 13.7708 33.292 16.5208 33.292 19.7291ZM50.0212 34.1666C49.3337 33.4791 48.6462 32.5624 47.9587 32.1041C42.0003 27.2916 33.292 28.2083 28.4795 34.1666C28.0212 34.6249 27.792 35.3124 27.792 35.9999C27.792 37.6041 29.167 38.9791 30.7712 38.9791H47.7295C48.8753 38.9791 50.0212 38.2916 50.4795 37.3749C50.9378 36.2291 50.7087 35.0832 50.0212 34.1666Z"
+                                    fill="white"></path>
+                            </svg>
+                        </span>
+                        <div class="mt-4 text-4xl font-extrabold">+ de 2000</div>
+                        <div class="mt-2 text-xl text-secondary leading-6 text-center">
+                            Conseillers
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
+                            <svg role="img" aria-labelledby="Rocket" width="51" height="51" viewBox="0 0 51 51"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <title id="Rocket">Rocket</title>
+                                <path
+                                    d="M49.7917 2.81241C49.5625 2.12491 48.875 1.43741 48.1875 1.20825C38.5625 -1.31259 28.7083 1.66658 22.0625 9.45825L19.5417 12.4374L13.3542 11.0624C10.375 9.91658 7.16667 11.2916 5.79167 14.0416L0.75 22.9791C0.291667 23.6666 0.291667 24.3541 0.75 25.0416C0.979167 25.7291 1.66667 26.1874 2.35417 26.4166L9.45833 28.0207C8.77083 29.8541 8.54167 31.6874 8.08333 33.5207C8.08333 34.2082 8.3125 34.8957 8.77083 35.3541L15.875 42.4582C16.3333 42.9166 16.7917 43.1457 17.4792 43.1457H17.7083C19.7708 42.9166 21.6042 42.6874 23.4375 41.9999L24.8125 48.8749C25.0417 49.5624 25.5 50.2499 26.1875 50.4791C26.4167 50.7082 26.875 50.7082 27.1042 50.7082C27.5625 50.7082 27.7917 50.7082 28.25 50.4791L37.1875 45.4374C39.7083 44.0624 41.0833 40.8541 40.3958 37.8749L38.7917 31.4582L41.5417 28.9374C49.1042 22.5207 52.3125 12.2082 49.7917 2.81241ZM14.7292 18.1666C13.3542 19.9999 11.9792 21.8332 11.0625 23.6666L6.25 22.5207L9.6875 16.3332C10.1458 15.4166 11.0625 15.1874 12.2083 15.4166L16.1042 16.3332L14.7292 18.1666ZM34.6667 41.3124L28.4792 44.7499L27.5625 40.1666C29.625 39.2499 31.4583 37.8749 33.0625 36.4999L34.6667 34.8957L35.5833 38.7916C36.0417 39.9374 35.3542 41.0832 34.6667 41.3124ZM36.2708 18.1666C34.4375 18.1666 32.8333 16.5624 32.8333 14.7291C32.8333 12.8957 34.4375 11.2916 36.2708 11.2916C38.1042 11.2916 39.7083 12.8957 39.7083 14.7291C39.7083 16.5624 38.3333 18.1666 36.2708 18.1666Z"
+                                    fill="white"></path>
+                            </svg>
+                        </span>
+                        <div class="mt-4 text-4xl font-extrabold">35 000</div>
+                        <div class="mt-2 text-xl text-secondary leading-6 text-center">
+                            Projets financés<br />en 2021
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="flex items-center justify-center w-18 h-18 rounded bg-primary">
+                            <svg role="img" aria-labelledby="Sans engagement" width="52" height="52" viewBox="0 0 52 52"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <title id="Sans engagement">Sans engagement</title>
+                                <path
+                                    d="M26 52C11.6406 52 0 40.3594 0 26C0 11.6406 11.6406 0 26 0C40.3594 0 52 11.6406 52 26C52 40.3594 40.3594 52 26 52ZM15.1378 31.7373C21.03 38.9252 31.1153 38.9696 36.8669 31.7221C37.292 31.1865 37.2023 30.4077 36.6667 29.9826C36.1311 29.5576 35.3523 29.6472 34.9273 30.1828C30.1664 36.1819 21.9535 36.1458 17.0528 30.1675C16.6193 29.6387 15.8392 29.5614 15.3104 29.9949C14.7816 30.4284 14.7043 31.2085 15.1378 31.7373ZM22.1106 18.1597C21.441 16.2204 19.3952 14.8571 17.2632 14.8571C15.1317 14.8571 13.1157 16.2223 12.4482 18.17C12.2265 18.8169 12.5711 19.521 13.218 19.7426C13.8648 19.9643 14.5689 19.6197 14.7906 18.9728C15.1067 18.0506 16.1659 17.3333 17.2632 17.3333C18.3689 17.3333 19.4557 18.0575 19.7699 18.9677C19.9931 19.6141 20.698 19.9572 21.3443 19.734C21.9906 19.5109 22.3337 18.806 22.1106 18.1597ZM39.4439 18.1597C38.7744 16.2204 36.7286 14.8571 34.5966 14.8571C32.4651 14.8571 30.449 16.2223 29.7815 18.17C29.5598 18.8169 29.9045 19.521 30.5513 19.7426C31.1982 19.9643 31.9022 19.6197 32.1239 18.9728C32.44 18.0506 33.4992 17.3333 34.5966 17.3333C35.7022 17.3333 36.789 18.0575 37.1033 18.9677C37.3264 19.6141 38.0313 19.9572 38.6776 19.734C39.324 19.5109 39.667 18.806 39.4439 18.1597Z"
+                                    fill="white"></path>
+                            </svg>
+                        </span>
+                        <div class="mt-4 text-4xl font-extrabold">15 000</div>
+                        <div class="mt-2 text-xl text-secondary leading-6 text-center">
+                            Clients en assurance<br />de prêt en 2021
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- devenir client -->
+        <div style="background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('assets/images/landing/cle-maison.jpg');"
+            class="relative flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-fixed bg-center bg-cover">
+
+            <div class="w-full max-w-7xl flex justify-end">
+                <div class="md:w-1/2 flex flex-col">
+                    <div
+                        class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary-700">
+                        Devenir client<br class="md:hidden" /> WAFA IMMOBILIER<br />en toute simplicité
+                    </div>
+                    <div class="mt-7 md:mt-12">
+                        <button class="fuse-mat-button-large bg-second text-lg" mat-stroked-button [color]="'primary'">
+                            Ouvrir mon compte
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- localisation -->
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card dark:bg-gray-800">
+            <div class="w-full max-w-7xl flex flex-col sm:flex-row items-center justify-between">
+                <div class="flex flex-col">
+                    <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight">
+                        Localisez une agence
+                    </div>
+                    <button class="fuse-mat-button-large w-fit mt-7 md:mt-12" mat-flat-button [color]="'primary'">
+                        <span class="hidden md:inline-block text-lg">Vous cherchez une agence près de chez vous ?</span>
+                        <span class="md:hidden text-lg">Trouver une agence ?</span>
+                    </button>
+                </div>
+
+                <img class="object-cover w-fit h-44 md:h-72" src="assets/images/landing/mapipad.png">
+            </div>
+        </div>
+
+        <!-- <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+            <div class="w-full max-w-7xl">
+                <div class="image-container">
+                    <img class="area-img add-animation animated object-cover w-full h-44 md:h-40" src="assets/images/landing/mapipad.png"
+                        alt="Card cover image">
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Suivez-nous -->
+        <div class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
+            <div class="flex flex-col items-center w-full max-w-7xl mx-auto text-center">
+                <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-6 sm:leading-10">Suivez-nous</div>
+                <div class="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10 text-black text-opacity-70">
+                    Rejoignez notre réseau
+                </div>
+
+                <!-- 0a66c2 0073b2 -->
+                <div class="flex items-center mt-8 space-x-1 sm:space-x-4">
+                    <button class="flex-auto bg-[#006097]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:linkedin'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#3b5998]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:facebook'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#55acee]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:twitter'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#125688]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:instagram'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#e52d27]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:youtube'"></mat-icon>
+                    </button>
+                    <!-- <button class="flex-auto bg-[#cc2127]" type="button" mat-stroked-button>
                     <mat-icon class="icon-size-5 text-white" [svgIcon]="'iconsmind:pinterest'"></mat-icon>
                 </button> -->
 
+                </div>
             </div>
         </div>
+
+        <div class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second dark:bg-gray-800">
+            <!-- <div class="text-center">
+                <h4 i18n="site title|The title for our i18n sample app@@appTitle">Angular internationalisation</h4>
+            </div>
+            <div class="text-center">
+                <span i18n="home title|The home title for our i18n sample app@@homeTitle">Créons une application Angular
+                    avec la traduction</span>
+            </div>
+            <div class="text-center">{{dateApp | date: 'long'}}</div>
+            <br />
+            <br /> -->
+            <span>
+                {{ 1234567890 | translocoDecimal }}
+            </span>
+            <div>{{getDocDir}}</div>
+
+
+            <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">
+                {{t('welcome-back')}}, invité!</div>
+        </div>
+
     </div>
 
-</div>
+</ng-container>

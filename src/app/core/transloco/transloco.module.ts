@@ -2,8 +2,18 @@ import { Translation, TRANSLOCO_CONFIG, TRANSLOCO_LOADER, translocoConfig, Trans
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { environment } from 'environments/environment';
 import { TranslocoHttpLoader } from 'app/core/transloco/transloco.http-loader';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
 @NgModule({
+    imports: [
+        TranslocoLocaleModule.forRoot({
+            defaultLocale: 'fr-FR',
+            langToLocaleMapping: {
+              fr: 'fr-FR',
+              ma: 'ar-MA'
+            }
+        }),
+    ],
     exports  : [
         TranslocoModule
     ],
@@ -27,7 +37,7 @@ import { TranslocoHttpLoader } from 'app/core/transloco/transloco.http-loader';
                     },
                     {
                         id   : 'ma',
-                        label: 'Arabe'
+                        label: 'العربية'
                     }
                 ],
                 defaultLang         : 'fr',

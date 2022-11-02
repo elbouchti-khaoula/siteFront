@@ -7,3 +7,15 @@
 @import 'overrides/highlightjs';
 @import 'overrides/perfect-scrollbar';
 @import 'overrides/quill';
+
+
+/* Reichel Carousel Main Styling */
+@import "~@marcreichel/angular-carousel/css/main.css";
+/* Reichel Carousel Own theme */
+@import "components/carouselwi.scss";
+
+/* style swiper*/
+// @import "~swiper/css";
+// @import "~swiper/css/effect-coverflow";
+// @import "~swiper/css/pagination";
+// @import "~swiper/css/navigation";

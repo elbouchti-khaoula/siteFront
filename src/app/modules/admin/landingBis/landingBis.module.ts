@@ -10,6 +10,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { RouterModule } from '@angular/router';
 import { LandingBisComponent } from 'app/modules/admin/landingBis/landingBis.component';
 import { landingBisRoutes } from 'app/modules/admin/landingBis/landingBis.routing';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
+import { TranslocoModule } from '@ngneat/transloco';
+import { CarouselModule } from '@marcreichel/angular-carousel';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { landingBisRoutes } from 'app/modules/admin/landingBis/landingBis.routin
         MatExpansionModule,
         MatSelectModule,
         MatSliderModule,
-        SharedModule
+        SharedModule,
+        TranslocoModule,
+        TranslocoLocaleModule,
+        CarouselModule
     ]
 })
 export class LandingBisModule
