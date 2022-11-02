@@ -2,32 +2,18 @@
   position: relative;
   overflow: hidden;
   width: 99.9%;
-  // height: 70vh;
-  // height: 280px;
-  // margin: 20px auto;
-  // padding: 0;
-  // border: 1px solid #333;
-  // cursor: pointer;
 }
 
 .landing-inner-content {
-  // background: rgba(0, 50, 502, 0.3);
   display: flex;
   width: 160vw;
-  // height: 280px;
-  // height: auto;
 }
 
 .box {
   position: relative;
   overflow: hidden;
-  // background: rgba(0, 50, 502, 0.3);
   width: 80vw;
   height: auto;
-  // height: 240px;
-  // margin: 20px 20px 0 0;
-  // float: left;
-  //flex: 0 0 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,16 +24,4 @@
 // }
 // .box:last-of-type {
 //   margin-right: 20px;
-// }
-// .box-content {
-//   // background: #000;
-//   /*margin-left: auto;
-//   margin-right: auto;*/
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   z-index: 999;
-// }
-// .box-content img {
-//   width: 100%;
 // }

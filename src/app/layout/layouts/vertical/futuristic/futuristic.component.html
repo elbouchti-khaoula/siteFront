@@ -43,14 +43,60 @@
     <div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
         <!-- Navigation toggle button -->
         <button
-            class="mr-2"
             mat-icon-button
             (click)="toggleNavigation('mainNavigation')">
             <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
         </button>
+        <!-- Logo immo -->
+        <div class="flex items-center mx-2">
+            <div class="hidden lg:flex">
+                <!-- Light version -->
+                <a [routerLink]="'/home'">
+                    <img
+                        class="dark:hidden w-40"
+                        src="assets/images/logo/logo-text.png"
+                        alt="Logo image">
+                </a>
+                <!-- Dark version -->
+                <a [routerLink]="'/home'">
+                    <img
+                        class="hidden dark:flex w-40"
+                        src="assets/images/logo/logo-text-on-dark.png"
+                        alt="Logo image">
+                </a>
+            </div>
+            <a [routerLink]="'/home'">
+                <img
+                    class="flex lg:hidden w-8"
+                    src="assets/images/logo/logo.png">
+            </a>
+        </div>
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
-            <img class="w-40" src="assets/images/logo/logo-awb.png">
+            <!-- Logo AWB -->
+            <div class="flex items-center mr-2">
+                <div class="hidden lg:flex">
+                    <!-- Light version -->
+                    <a [routerLink]="'/home'">
+                        <img
+                            class="dark:hidden w-40"
+                            src="assets/images/logo/logo-awb-text.png"
+                            alt="Logo image">
+                    </a>
+                    <!-- Dark version -->
+                    <a [routerLink]="'/home'">
+                        <img
+                            class="hidden dark:flex w-40"
+                            src="assets/images/logo/logo-awb-text-on-dark.png"
+                            alt="Logo image">
+                    </a>
+                </div>
+                <a [routerLink]="'/home'">
+                    <img
+                        class="flex lg:hidden w-8"
+                        src="assets/images/logo/logo-awb.png">
+                </a>
+            </div>
             <languages></languages>
             <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
             <!-- <search [appearance]="'bar'"></search> -->

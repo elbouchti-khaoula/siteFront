@@ -35,19 +35,19 @@ export class LandingComponent implements OnInit {
     ) {
         this.matIconRegistry.addSvgIcon(
             "property",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/landing/PROPERTY.svg")
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/PROPERTY.svg")
         );
         this.matIconRegistry.addSvgIcon(
             "calculation",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/landing/CALCULATION.svg")
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CALCULATION.svg")
         );
         this.matIconRegistry.addSvgIcon(
             "survey",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/landing/SURVEY.svg")
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/SURVEY.svg")
         );
         this.matIconRegistry.addSvgIcon(
             "agentc",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/landing/AGENT.svg")
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/AGENT.svg")
         );
     }
 
