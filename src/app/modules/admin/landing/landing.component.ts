@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -18,7 +18,7 @@ export class LandingComponent implements OnInit {
     @ViewChild('landingWrapper', { read: ElementRef }) public landingWrapper: ElementRef<any>;
     @ViewChild('landingInnerContent', { read: ElementRef }) public landingInnerContent: ElementRef<any>;
     
-    searchForm: FormGroup;
+    searchForm: UntypedFormGroup;
     isOpened = false;
     montantValue: number = 0;
     dureeValue: number = 1;
@@ -29,7 +29,7 @@ export class LandingComponent implements OnInit {
      * Constructor
      */
     constructor(
-        private _formBuilder: FormBuilder,
+        private _formBuilder: UntypedFormBuilder,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer
     ) {

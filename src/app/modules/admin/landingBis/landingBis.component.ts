@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatSliderChange } from '@angular/material/slider';
 // import { formatNumber } from '@angular/common';
 // import { BehaviorSubject } from 'rxjs'
@@ -15,7 +15,7 @@ import { default as routerAnimations} from '../../../route-animations';
 })
 export class LandingBisComponent implements OnInit
 {
-    searchForm: FormGroup;
+    searchForm: UntypedFormGroup;
     isOpened = false;
     montantValue: number = 0;
     dureeValue: number = 1;
@@ -34,7 +34,7 @@ export class LandingBisComponent implements OnInit
      * Constructor
      */
     constructor(
-        private _formBuilder: FormBuilder
+        private _formBuilder: UntypedFormBuilder
     ) {
     }
 
