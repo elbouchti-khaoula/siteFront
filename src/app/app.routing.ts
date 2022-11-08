@@ -77,7 +77,7 @@ export const appRoutes: Route[] = [
         children   : [
             {
                 path: 'home',
-                loadChildren: () => import('app/modules/home/home.module').then(m => m.HomeModule),
+                loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
                 // data: { animationState: 'home' }
             },
         ]
@@ -97,27 +97,32 @@ export const appRoutes: Route[] = [
 
             {
                 path: 'landing',
-                loadChildren: () => import('app/modules/admin/landing/landing.module').then(m => m.LandingModule),
+                loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
                 // data: { animationState: 'land' }
             },
             {
                 path: 'landingBis',
-                loadChildren: () => import('app/modules/admin/landingBis/landingBis.module').then(m => m.LandingBisModule),
+                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
                 // data: { animationState: 'landbis' }
             },
             {
                 path: 'darrahetbal',
-                loadChildren: () => import('app/modules/admin/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
+                loadChildren: () => import('app/modules/pages/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
                 // data: { animationState: 'darraht' }
             },
-            
+            {
+                path: 'projetsSearch',
+                loadChildren: () => import('app/modules/pages/projetsSearch/projets-search.module').then(m => m.ProjetsSearchModule),
+                // data: { animationState: 'projsearch' }
+            },
+
+
             // Maintenance
             { 
                 path: 'maintenance',
                 loadChildren: () => import('app/modules/pages/maintenance/maintenance.module').then(m => m.MaintenanceModule),
                 // data: { animationState: 'mainten' }
             },
-
             // 404 & Catch all
             { 
                 path: '404-not-found',

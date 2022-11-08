@@ -1,0 +1,130 @@
+<!-- Je simule mon crédit -->
+<div id="simulationId" class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+    <div class="w-full max-w-360">
+        <div class="text-3xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+            Je simule mon crédit
+        </div>
+
+        <div class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-6 mt-5 md:mt-16">
+            <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                Montant du crédit
+            </div>
+            <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                <span class="absolute left-0 top-0 text-sm">0 dhs</span>
+                <!-- tickInterval="50" -->
+                <mat-slider class="w-full" [color]="'primary'" min="0" max="5000000" step="10000" thumbLabel
+                    [displayWith]="formatLabelMontant" [(ngModel)]="montantValue" (change)="updateMontant($event)"
+                    (input)="updateMontant($event)">
+                </mat-slider>
+                <span class="absolute right-0 top-0 text-sm">5 000 000,00 Dhs</span>
+            </div>
+
+            <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                Durée
+            </div>
+            <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                <span class="absolute left-0 top-0 text-sm">1 an</span>
+                <!-- tickInterval="5" -->
+                <mat-slider class="w-full" [color]="'primary'" min="1" max="30" step="1" thumbLabel
+                    [displayWith]="formatLabelDuree" [(ngModel)]="dureeValue" (change)="updateDuree($event)"
+                    (input)="updateDuree($event)">
+                </mat-slider>
+
+                <!-- <mat-input-counter [color]="'primary'" [min]="1" [max]="30" [step]="1" [label]="Your label"
+                            placeholder="your place holder">
+                        </mat-input-counter> -->
+
+                <span class="absolute right-0 top-0 text-sm">30 ans</span>
+            </div>
+
+            <div class="col-span-1 text-sm sm:text-base md:text-lg font-semibold uppercase sm:mt-3">
+                Taux du crédit
+            </div>
+            <div class="relative flex flex-col col-span-1 sm:col-span-2 md:col-span-3">
+                <span class="absolute left-0 top-0 text-sm">1 %</span>
+                <!-- tickInterval="2" -->
+                <mat-slider class="w-full" [color]="'primary'" min="1" max="10" step="0.1" thumbLabel
+                    [displayWith]="formatLabelTaux" [(ngModel)]="tauxValue" (change)="updateTaux($event)"
+                    (input)="updateTaux($event)">
+                </mat-slider>
+                <span class="absolute right-0 top-0 text-sm">10 %</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6 w-full mt-5 md:mt-16">
+            <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                        Montant du crédit
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                    <div
+                        class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                        <!-- {{montantValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}} -->
+                        {{montantValue | number:'1.2-2'}}
+                    </div>
+                    <div
+                        class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                        Dhs</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                        Mensualité HT
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                    <div
+                        class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                        {{mensualite}}</div>
+                    <div
+                        class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                        Dhs
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                        Taux</div>
+                </div>
+                <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                    <div
+                        class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                        <!-- {{tauxValue.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}} -->
+                        {{tauxValue | number:'1.1-1'}}
+                    </div>
+                    <div
+                        class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                        %</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto px-3 py-6 sm:p-6 overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="uppercase text-sm sm:text-base tracking-tight leading-6 truncate">
+                        Durée</div>
+                </div>
+                <div class="flex items-baseline justify-center w-full mt-5 bg-card shadow rounded-full p-2">
+                    <div
+                        class="text-base sm:text-2xl md:text-3xl font-bold tracking-tight leading-none text-primary truncate">
+                        {{dureeValue | number:'1.0-0'}}</div>
+                    <div
+                        class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
+                        ans
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center mt-7 md:mt-12">
+            <button class="fuse-mat-button-large" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                Simulation personnalisée
+            </button>
+        </div>
+    </div>
+</div>

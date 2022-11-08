@@ -1,0 +1,130 @@
+<div class="relative flex flex-auto min-w-0 overflow-hidden min-h-screen" [@fadeInLeft]>
+
+    <!-- <div class="videoContainer">
+        <iframe class="videoContainer__video"
+            src="http://www.youtube.com/embed/KgypC6gVlPY?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=KgypC6gVlPY"
+            frameborder="0">
+        </iframe>
+    </div> -->
+
+    <!-- <div class="video-background">
+        <div class="video-foreground">
+            <iframe
+                src="http://www.youtube.com/embed/KgypC6gVlPY?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=KgypC6gVlPY"
+                frameborder="0">
+            </iframe>
+        </div>
+    </div> -->
+
+    <div class="video-container">
+        <div class="overlay"></div>
+        <iframe class="iframe1"
+            src="http://www.youtube.com/embed/KgypC6gVlPY?controls=0&autoplay=1&mute=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=KgypC6gVlPY"
+            frameborder="0">
+        </iframe>
+    </div>
+
+    <!-- Main -->
+    <div class="z-10 absolute flex flex-col items-center justify-evenly px-6 sm:px-16 w-full h-full">
+        <div class="w-full max-w-7xl">
+            <div class="max-w-xl">
+                <img class="object-cover w-fit h-44 sm:h-52 md:h-64" src="assets/images/pages/landing/dar.png" alt="" />
+                <div class="flex flex-row mt-5 md:mt-10">
+                    <button mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                        Regardez maintenant
+                    </button>
+                    <button class="ml-2" mat-flat-button [color]="'white'" [routerLink]="['./']">
+                        Toutes les épisodes
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-auto max-w-3xl mt-5 prose prose-sm text-white leading-tight">
+                <p>
+                    <span class="font-bold uppercase">Une série web</span> de capsules didactiques pour informer et
+                    vulgariser le crédit immobilier.
+                </p>
+                <p class="max-w-2xl">
+                    Conseils et orientation pratiques pour vous aider à concrétiser votre projet immobilier et accéder à
+                    votre logement
+                </p>
+            </div>
+
+            <div class="flex items-center mt-5 md:mt-7 text-white">
+                <span class="uppercase font-bold">épisodes populaires</span>
+                <span class="ml-auto">Tout voir</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between mt-5 md:mt-7">
+                <div class="relative">
+                    <div class="z-10 absolute inset-0 bg-black/[.4] rounded-2xl"></div>
+                    <img class="object-cover w-100 rounded-2xl" src="https://img.youtube.com/vi/LBt9_TpFKdc/hq1.jpg">
+                    <div class="z-20 absolute inset-x-0 bottom-10 mx-auto w-11/12 h-14 rounded-lg bg-white/[.2] flex items-center">
+                        <span class="pl-2 text-lg text-white font-bold uppercase">épisode 1</span>
+                        <div class="flex items-center justify-center rounded-full cursor-pointer ml-auto mr-2">
+                            <mat-icon class="icon-size-10 text-white" [svgIcon]="'mat_outline:play_circle'">
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="z-10 absolute inset-0 bg-black/[.4] rounded-2xl"></div>
+                    <img class="object-cover w-100 rounded-2xl" src="https://img.youtube.com/vi/bWhSSgxXQJk/hq1.jpg">
+                    <div class="z-20 absolute inset-x-0 bottom-10 mx-auto w-11/12 h-14 rounded-lg bg-white/[.2] flex items-center">
+                        <span class="pl-2 text-lg text-white font-bold uppercase">épisode 2</span>
+                        <div class="flex items-center justify-center rounded-full cursor-pointer ml-auto mr-2">
+                            <mat-icon class="icon-size-10 text-white" [svgIcon]="'mat_outline:play_circle'">
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="z-10 absolute inset-0 bg-black/[.4] rounded-2xl"></div>
+                    <img class="object-cover w-100 rounded-2xl" src="https://img.youtube.com/vi/HzDA0lrec5c/hq3.jpg" />
+                    <div class="z-20 absolute inset-x-0 bottom-10 mx-auto w-11/12 h-14 rounded-lg bg-white/[.2] flex items-center">
+                        <span class="pl-2 text-lg text-white font-bold uppercase">épisode 3</span>
+                        <div class="flex items-center justify-center rounded-full cursor-pointer ml-auto mr-2">
+                            <mat-icon class="icon-size-10 text-white" [svgIcon]="'mat_outline:play_circle'">
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="z-99 absolute flex flex-col items-center w-full min-h-[70vh]"> -->
+
+    <!-- CONTENT GOES HERE -->
+    <!-- <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+            <p>darrahetbal works!</p>
+        </div> -->
+
+    <!-- <div class="relative flex flex-col items-center bg-primary-300 w-full min-h-screen"> -->
+    <!-- <div class="absolute left-0 top-0 h-full"> -->
+    <!-- <div class="absolute object-cover inset-0"> -->
+    <!-- <video autoplay muted loop class="absolute inset-0 w-full ">
+                        <source [src]="videoUrl" type="video/mp4"/>
+                    </video> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+
+    <!-- </div> -->
+
+
+    <!-- <div class="video-wrapper">
+        <video playsinline autoplay muted loop poster="cake.jpg">
+            <source [src]="videoUrl" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="header">
+            <h1>Blueberry Cheesecake</h1>
+            <button>Recipe here</button>
+        </div>
+    </div> -->
+
+</div>

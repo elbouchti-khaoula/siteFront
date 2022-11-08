@@ -14,19 +14,21 @@ var startingStyles = (styles) => {
     return styles;
 }
 
-export default function(name) {
-    return trigger(name, [
-        transition(':enter', [
-            style(startingStyles({
-                opacity: 0, transform: 'translateX(100%)'
-            })),
-            animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0%)'}))
-        ]),
-        transition(':leave', [
-            style(startingStyles({
-                opacity: 1, transform: 'translateX(0%)'
-            })),
-            animate('1s ease-in', style({ opacity: 0, transform: 'translateX(-100%)'}))
-        ])
-    ]);
+export default function (name) {
+    return trigger(name,
+        [
+            transition(':enter', [
+                style(startingStyles({
+                    opacity: 0, transform: 'translateX(100%)'
+                })),
+                animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                style(startingStyles({
+                    opacity: 1, transform: 'translateX(0%)'
+                })),
+                animate('1s ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
+            ])
+        ]
+    );
 }

@@ -1,0 +1,25 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInLeft]>
+
+    <!-- Header -->
+    <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/marketplace/header.jpg');"
+        class="relative flex flex-col items-center justify-evenly px-6 sm:px-16 py-10 sm:py-20 w-full min-h-[80vh] bg-fixed bg-center bg-cover">
+
+        <div class="w-full max-w-360">
+            <div
+                class="max-w-3xl text-xl md:text-5xl font-bold uppercase tracking-tight leading-tight text-white">
+                Wafa immobilier vous<br />accompagne
+                dans la recherche<br />et le financement
+                de votre<br />bien immobilier
+            </div>
+
+            <div class="max-w-xl md:text-3xl text-white mt-3">
+                Plus de 1000 biens immobiliers à découvrir sur notre plateforme aujourd'hui
+            </div>
+        </div>
+    </div>
+
+    <projets-filter></projets-filter>
+
+    <router-outlet></router-outlet>
+
+</div>

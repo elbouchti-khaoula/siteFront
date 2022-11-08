@@ -1,0 +1,68 @@
+<div class="relative flex flex-col flex-auto min-w-0 overflow-hidden">
+
+    <!-- background image -->
+    <div class="z-10 absolute inset-0 bg-black/[.4]"></div>
+    <ng-container>
+        <div class="absolute inset-0 flex flex-col sm:flex-row">
+            <img class="object-cover w-full h-1/2 sm:w-3/6 sm:h-full" src="assets/images/pages/home/bg_5.png">
+            <img class="object-cover w-full h-1/2 sm:w-3/6 sm:h-full" src="assets/images/pages/home/bg_0.jpg">
+        </div>
+    </ng-container>
+
+    <!-- content -->
+    <div class="z-20 relative flex flex-col items-center w-full h-full">
+        <div class="flex flex-col items-center justify-between sm:justify-center min-h-1/2 py-10">
+            <button 
+                class="sm:hidden max-w-max fuse-mat-button-small" 
+                [ngClass]="{'bg-primary shadow text-on-primary': estAcquereur,
+                            'bg-transparent text-on-primary-900': !estAcquereur}" 
+                mat-button
+                (click)="estAcquereur = true" 
+                [routerLink]="'/landing'">
+                Je suis acquéreur
+            </button>
+            <img class="h-40 md:h-60" src="assets/images/logo/logo-noir.png" alt="Logo image">
+        </div>
+
+        <div class="flex flex-col items-center justify-between min-h-1/2 py-10 sm:py-0 sm:pb-15">
+            <div class="w-full sm:max-w-5xl text-center text-white">
+                <div class="text-2xl md:text-[50px] font-bold tracking-tight leading-tight">
+                    ACCOMPAGNEZ VOS PROJETS
+                </div>
+                <div style="font-family: 'ae_AlMohanad';" class="text-5xl md:text-9xl tracking-tight leading-tight">
+                    معكم لتحقيق مشاريعكم
+                </div>
+            </div>
+            <div
+                class="hidden sm:flex items-center h-10 min-h-10 max-h-10 p-0.5 rounded-full overflow-hidden bg-transparent border-2 border-primary">
+                <button 
+                    class="px-6 fuse-mat-button-small" 
+                    [ngClass]="{'bg-primary shadow text-on-primary': estAcquereur,
+                                'bg-transparent text-on-primary-900': !estAcquereur}" 
+                    mat-flat-button
+                    (click)="estAcquereur = true"
+                    [routerLink]="'/landing'">
+                    Acquéreur
+                </button>
+                <button class="px-6 fuse-mat-button-small"
+                    [ngClass]="{'bg-primary shadow text-on-primary': !estAcquereur,
+                                'bg-transparent text-on-primary-900': estAcquereur}"
+                    mat-flat-button
+                    (click)="estAcquereur = false"
+                    [routerLink]="'/landingBis'">
+                    Promoteur
+                </button>
+            </div>
+            <button
+                class="sm:hidden max-w-max fuse-mat-button-small"
+                [ngClass]="{'bg-primary shadow text-on-primary': estAcquereur,
+                            'bg-transparent text-on-primary-900': !estAcquereur}"
+                mat-flat-button
+                (click)="estAcquereur = true"
+                [routerLink]="'/landingBis'">
+                Je suis promoteur
+            </button>
+        </div>
+    </div>
+
+</div>

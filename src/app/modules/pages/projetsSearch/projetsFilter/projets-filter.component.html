@@ -1,0 +1,79 @@
+<div class="flex flex-col items-center px-6 md:px-16 py-5">
+    <div class="w-full md:max-w-7xl">
+        <form [formGroup]="searchForm" class="flex flex-col items-center md:flex-row p-4 md:p-8 md:pb-4 bg-card rounded-2xl shadow overflow-hidden">
+            <div class="w-full md:w-5/6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                <!-- Ville -->
+                <div>
+                    <mat-form-field class="fuse-mat-rounded fuse-mat-emphasized-affix fuse-mat-no-subscript fuse-mat-bold w-full">
+                        <!-- <mat-label>Ville</mat-label> -->
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'"
+                            matPrefix>
+                        </mat-icon>
+                        <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
+                            <mat-option [value]="'ville1'">Ville 1</mat-option>
+                            <mat-option [value]="'ville2'">Ville 2</mat-option>
+                            <mat-option [value]="'ville3'">Ville 3</mat-option>
+                            <mat-option [value]="'ville4'">Ville 4</mat-option>
+                            <mat-option [value]="'ville5'">Ville 5</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- Quartier -->
+                <div>
+                    <mat-form-field class="fuse-mat-rounded fuse-mat-emphasized-affix fuse-mat-no-subscript fuse-mat-bold w-full">
+                        <!-- <mat-label>Quartier</mat-label> -->
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'"
+                            matPrefix>
+                        </mat-icon>
+                        <mat-select [placeholder]="'Quartier'" [formControlName]="'quartier'">
+                            <mat-option [value]="'quart1'">Quartier 1</mat-option>
+                            <mat-option [value]="'quart2'">Quartier 2</mat-option>
+                            <mat-option [value]="'quart3'">Quartier 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- Type de bien -->
+                <div>
+                    <mat-form-field class="fuse-mat-rounded fuse-mat-emphasized-affix fuse-mat-no-subscript fuse-mat-bold w-full">
+                        <!-- <mat-label>Type de bien</mat-label> -->
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                            matPrefix>
+                        </mat-icon>
+                        <mat-select [placeholder]="'Type de bien'" [formControlName]="'typeBien'">
+                            <mat-option [value]="'type1'">Type 1</mat-option>
+                            <mat-option [value]="'type2'">Type 2</mat-option>
+                            <mat-option [value]="'type3'">Type 3</mat-option>
+                            <mat-option [value]="'type4'">Type 4</mat-option>
+                            <mat-option [value]="'type5'">Type 5</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- Prix min -->
+                <div>
+                    <mat-form-field class="fuse-mat-rounded fuse-mat-emphasized-affix fuse-mat-no-subscript fuse-mat-bold w-full">
+                        <!-- <mat-label>Prix min</mat-label> -->
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'"
+                            matPrefix>
+                        </mat-icon>
+                        <input matInput [placeholder]="'Prix min'" [formControlName]="'prixMin'">
+                    </mat-form-field>
+                </div>
+                <!-- Prix max -->
+                <div>
+                    <mat-form-field class="fuse-mat-rounded fuse-mat-emphasized-affix fuse-mat-no-subscript fuse-mat-bold w-full">
+                        <!-- <mat-label>Prix max</mat-label> -->
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'"
+                            matPrefix>
+                        </mat-icon>
+                        <input matInput [placeholder]="'Prix max'" [formControlName]="'prixMax'">
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- Actions -->
+            <div class="flex items-center justify-center mt-5 md:mt-0 md:w-1/6 md:ml-10">
+                <button  class="fuse-mat-button-large w-full" mat-flat-button [color]="'primary'">Chercher
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

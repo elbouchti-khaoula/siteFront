@@ -1,0 +1,232 @@
+<ng-container *transloco="let t">
+    <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInLeft]>
+        <!-- <div class="z-10 relative flex flex-col items-center justify-center px-6 sm:px-16 pt-10 sm:pt-20 pb-56 md:pb-72 w-full bg-fixed bg-center bg-cover bg-[url('assets/images/pages/landing/header.jpg')]"> -->
+        <!-- <div class="z-10 absolute inset-0 bg-black/[.4]"></div> -->
+
+        <!-- Header -->
+        <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/landing/header.jpg');"
+            class="relative flex flex-col items-center justify-evenly px-6 sm:px-16 py-10 sm:py-20 w-full min-h-[92vh] bg-fixed bg-center bg-cover">
+
+            <div class="w-full max-w-360 sm:mt-0" [ngClass]="{'mt-0': isOpened, 'mt-40': !isOpened}">
+                <div
+                    class="max-w-xl text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight text-primary-700">
+                    {{t('header1')}}<br />
+                    {{t('header2')}}
+                </div>
+
+                <div class="max-w-lg md:text-xl mt-2 text-white">
+                    {{t('underheader')}}
+                </div>
+            </div>
+
+            <div class="w-full max-w-360 mt-7 md:mt-10">
+                <div class="max-w-xl">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="isOpened = true" (closed)="isOpened = false">
+                            <mat-expansion-panel-header [collapsedHeight]="'56px'">
+                                <mat-panel-title class="md:text-lg font-bold uppercase">
+                                    <!-- <mat-icon class="float-left icon-size-7 md:icon-size-10 mr-2" svgIcon="property">
+                                    </mat-icon> -->
+                                    <span class="mr-2 float-left bg-primary-50 flex items-center justify-center w-7 h-7 md:w-12 md:h-12 cursor-pointer rounded-full">
+                                        <mat-icon class="icon-size-7 md:icon-size-12 text-primary-700"
+                                            svgIcon="property">
+                                        </mat-icon>
+                                    </span>
+                                    Je trouve mon bien
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <form [formGroup]="searchForm">
+                                <div class="w-full">
+                                    <div class="md:text-xl font-semibold mt-3 md:mt-7">Plus de 1000 projets proposés par
+                                        les
+                                        promoteurs partenaires wafa immobilier</div>
+                                </div>
+                                <div class="w-full grid grid-cols-2 gap-3 md:gap-6 mt-3 md:mt-7">
+                                    <!-- Ville -->
+                                    <div>
+                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                            <!-- <mat-label>Ville</mat-label> -->
+                                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'"
+                                                matPrefix>
+                                            </mat-icon>
+                                            <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
+                                                <mat-option [value]="'ville1'">Ville 1</mat-option>
+                                                <mat-option [value]="'ville2'">Ville 2</mat-option>
+                                                <mat-option [value]="'ville3'">Ville 3</mat-option>
+                                                <mat-option [value]="'ville4'">Ville 4</mat-option>
+                                                <mat-option [value]="'ville5'">Ville 5</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Quartier -->
+                                    <div>
+                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                            <!-- <mat-label>Quartier</mat-label> -->
+                                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'"
+                                                matPrefix>
+                                            </mat-icon>
+                                            <mat-select [placeholder]="'Quartier'" [formControlName]="'quartier'">
+                                                <mat-option [value]="'quart1'">Quartier 1</mat-option>
+                                                <mat-option [value]="'quart2'">Quartier 2</mat-option>
+                                                <mat-option [value]="'quart3'">Quartier 3</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Type de bien -->
+                                    <div>
+                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                            <!-- <mat-label>Type de bien</mat-label> -->
+                                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                                matPrefix>
+                                            </mat-icon>
+                                            <mat-select [placeholder]="'Type de bien'" [formControlName]="'typeBien'">
+                                                <mat-option [value]="'type1'">Type 1</mat-option>
+                                                <mat-option [value]="'type2'">Type 2</mat-option>
+                                                <mat-option [value]="'type3'">Type 3</mat-option>
+                                                <mat-option [value]="'type4'">Type 4</mat-option>
+                                                <mat-option [value]="'type5'">Type 5</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div></div>
+                                    <!-- Prix min -->
+                                    <div>
+                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                            <!-- <mat-label>Prix min</mat-label> -->
+                                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'"
+                                                matPrefix>
+                                            </mat-icon>
+                                            <input matInput [placeholder]="'Prix min'" [formControlName]="'prixMin'">
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Prix max -->
+                                    <div>
+                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                            <!-- <mat-label>Prix max</mat-label> -->
+                                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'"
+                                                matPrefix>
+                                            </mat-icon>
+                                            <input matInput [placeholder]="'Prix max'" [formControlName]="'prixMax'">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- Actions -->
+                                <div class="flex items-center justify-center mt-3 md:mt-7">
+                                    <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Valider
+                                    </button>
+                                </div>
+                            </form>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+
+            <div class="w-full max-w-360 mt-7 md:mt-20">
+                <div class="max-w-xl">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-6 rounded-2xl sm:rounded-full bg-card py-3">
+                        <div class="flex flex-col items-center">
+                            <span [routerLink]="['/projetsSearch']"
+                                class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700" svgIcon="property">
+                                </mat-icon>
+                            </span>
+                            <div class="sm:hidden flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 mt-2">
+                                <span>Je trouve</span>
+                                <span>mon bien</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <a [routerLink]="['./']" (click)="scrollTo('simulationId')">
+                                <span
+                                    class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                    <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700"
+                                        svgIcon="calculation">
+                                    </mat-icon>
+                                </span>
+                            </a>
+                            <div class="sm:hidden flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 mt-2">
+                                <span>Je simule </span>
+                                <span>mon crédit</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span [routerLink]="['./']"
+                                class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700" svgIcon="survey">
+                                </mat-icon>
+                            </span>
+                            <div class="sm:hidden flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 mt-2">
+                                <span>Je demande</span>
+                                <span>mon crédit</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span [routerLink]="['./']"
+                                class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700" svgIcon="agentc">
+                                </mat-icon>
+                            </span>
+                            <div class="sm:hidden flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 mt-2">
+                                <span>Je contacte</span>
+                                <span>un conseiller</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden sm:grid grid-cols-4 gap-2 md:gap-6 py-3 mt-2">
+                        <div class="flex flex-col items-center text-sm md:text-lg md:font-semibold text-white">
+                            <span>Je trouve</span>
+                            <span>mon bien</span>
+                        </div>
+                        <div class="flex flex-col items-center text-sm md:text-lg md:font-semibold text-white">
+                            <span>Je simule </span>
+                            <span>mon crédit</span>
+                        </div>
+                        <div class="flex flex-col items-center text-sm md:text-lg md:font-semibold text-white">
+                            <span>Je demande</span>
+                            <span>mon crédit</span>
+                        </div>
+                        <div class="flex flex-col items-center text-sm md:text-lg md:font-semibold text-white">
+                            <span>Je contacte</span>
+                            <span>mon conseiller</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <simulation></simulation>
+        <nous-choisir></nous-choisir>
+        <cinq-etapes></cinq-etapes>
+        <actualites></actualites>
+
+        <!-- Suivez-nous -->
+        <div class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
+            <div class="flex flex-col items-center mx-auto text-center">
+                <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-6 sm:leading-10">Suivez-nous</div>
+                <div class="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10 text-black text-opacity-70">
+                    Rejoignez notre réseau
+                </div>
+
+                <div class="flex items-center mt-8 space-x-1 sm:space-x-4">
+                    <button class="flex-auto bg-[#006097]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:linkedin'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#3b5998]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:facebook'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#55acee]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:twitter'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#125688]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:instagram'"></mat-icon>
+                    </button>
+                    <button class="flex-auto bg-[#e52d27]" type="button" mat-stroked-button>
+                        <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:youtube'"></mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</ng-container>

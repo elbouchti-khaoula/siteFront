@@ -1,0 +1,49 @@
+<div class="flex flex-col flex-auto overflow-y-auto lg:overflow-hidden bg-card dark:bg-default">
+
+    <ng-container *ngIf="projet; else startNewSearchProjects">
+
+        <mat-drawer-container
+            class="flex-auto h-full"
+            [hasBackdrop]="false">
+
+            <!-- Drawer -->
+            <mat-drawer
+                class="w-full sm:w-100 lg:border-l lg:shadow-none dark:bg-gray-900"
+                [autoFocus]="false"
+                [mode]="drawerMode"
+                [position]="'end'"
+                [(opened)]="drawerOpened"
+                #drawer>
+
+                <!-- Contact info -->
+                <!-- <chat-contact-info
+                    [drawer]="drawer"
+                    [chat]="chat"></chat-contact-info> -->
+            </mat-drawer>
+
+            <!-- Drawer content -->
+            <mat-drawer-content class="flex flex-col overflow-hidden">
+
+                <!-- Localisation -->
+                <div class="flex overflow-y-auto flex-col-reverse">
+                    <div class="flex flex-col flex-auto shrink p-6 bg-card dark:bg-transparent">
+                        TOTO
+                    </div>
+                </div>
+
+            </mat-drawer-content>
+
+        </mat-drawer-container>
+
+    </ng-container>
+
+    <ng-template #startNewSearchProjects>
+        <div class="flex flex-col flex-auto items-center justify-center bg-second-300 dark:bg-transparent">
+            <mat-icon
+                class="icon-size-24"
+                [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
+            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">Effectuer une nouvelle recherche de bien</div>
+        </div>
+    </ng-template>
+
+</div>
