@@ -61,7 +61,7 @@ export class ProjetsProjetResolver implements Resolve<any>
     {
         return this._projetsService.getProjetById(route.paramMap.get('id'))
                    .pipe(
-                       // Error here means the requested contact is not available
+                       // Error here means the requested projet is not available
                        catchError((error) => {
 
                            // Log the error

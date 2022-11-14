@@ -18,7 +18,7 @@
 
     <div class="video-container">
         <div class="overlay"></div>
-        <iframe class="iframe1"
+        <iframe
             src="http://www.youtube.com/embed/KgypC6gVlPY?controls=0&autoplay=1&mute=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=KgypC6gVlPY"
             frameborder="0">
         </iframe>
@@ -105,9 +105,9 @@
     <!-- <div class="relative flex flex-col items-center bg-primary-300 w-full min-h-screen"> -->
     <!-- <div class="absolute left-0 top-0 h-full"> -->
     <!-- <div class="absolute object-cover inset-0"> -->
-    <!-- <video autoplay muted loop class="absolute inset-0 w-full ">
-                        <source [src]="videoUrl" type="video/mp4"/>
-                    </video> -->
+        <!-- <video autoplay muted loop class="absolute inset-0 w-full ">
+            <source [src]="videoUrl" type="video/mp4"/>
+        </video> -->
     <!-- </div> -->
     <!-- </div> -->
     <!-- </div> -->
@@ -126,5 +126,89 @@
             <button>Recipe here</button>
         </div>
     </div> -->
+
+
+    <!-- <swiper 
+        [effect]="'coverflow'"
+        [grabCursor]="true"
+        [centeredSlides]="true"
+        [slidesPerView]="'auto'"
+        [spaceBetween]="50"
+        [coverflowEffect]="{
+                            rotate: 50,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 1,
+                            slideShadows: true
+                        }"
+        [pagination]="{
+                        clickable: true
+                    }"
+        [navigation]="true"
+        class="mySwiper">
+        <ng-template swiperSlide>
+            <div class="z-10 absolute inset-0 bg-black/[.4] rounded-2xl"></div>
+            <div class="absolute inset-0">
+                <img class="object-cover rounded-2xl" src="https://img.youtube.com/vi/LBt9_TpFKdc/hq1.jpg">
+            </div>
+            <div class="z-20 relative h-full flex flex-col justify-end p-3">
+                <div class="pl-2 rounded-lg text-white font-bold uppercase flex items-center font-bold h-14 bg-white/[.3] ">
+                    <span class="z-30">épisode 1</span>
+                </div>
+            </div>
+
+            <video crossorigin playsinline 
+                poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg">
+                <source src="https://www.youtube.com/watch?v=LBt9_TpFKdc"
+                size="100">
+            </video>
+
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/LBt9_TpFKdc?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/bWhSSgxXQJk/hq1.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/bWhSSgxXQJk?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/HzDA0lrec5c/hq3.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/HzDA0lrec5c?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/Gos8g8LkDIY/hq2.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/Gos8g8LkDIY?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/UWSmJWi4xTk/hq2.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/UWSmJWi4xTk?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/4MfHep4XOWE/hq1.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/4MfHep4XOWE?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+            <img class="rounded-2xl" src="https://img.youtube.com/vi/rpYstezmTkI/hq1.jpg" />
+            <div class="video-container1">
+                <iframe src="https://www.youtube.com/embed/rpYstezmTkI?controls=0&playsinline=1"></iframe>
+            </div>
+        </ng-template>
+    </swiper> -->
 
 </div>

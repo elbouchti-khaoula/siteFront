@@ -10,15 +10,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from '@angular/material/slider';
 
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CarouselModule } from '@marcreichel/angular-carousel';
-import { SimulationComponent } from './simulation/simulation.component';
+// import { SimulationComponent } from './simulation/simulation.component';
 import { NousChoisirComponent } from './nouschoisir/nous-choisir.component';
 import { CinqEtapesComponent } from './cinqetapes/cinq-etapes.component';
 import { ActualitesComponent } from './actualites/actualites.component';
+import { SimulationModule } from './simulation/simulation.module';
 
 // import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
 // import { MatExpansionPanel } from '@angular/material/expansion';
@@ -49,7 +49,7 @@ import { ActualitesComponent } from './actualites/actualites.component';
 @NgModule({
     declarations: [
         LandingComponent,
-        SimulationComponent,
+        // SimulationComponent,
         NousChoisirComponent,
         CinqEtapesComponent,
         ActualitesComponent
@@ -57,13 +57,14 @@ import { ActualitesComponent } from './actualites/actualites.component';
     imports     : [
         RouterModule.forChild(landingRoutes),
         SharedModule,
+        SimulationModule,
         MatButtonModule,
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
         MatExpansionModule,
         MatSelectModule,
-        MatSliderModule,
+        
         TranslocoModule,
         TranslocoLocaleModule,
         CarouselModule

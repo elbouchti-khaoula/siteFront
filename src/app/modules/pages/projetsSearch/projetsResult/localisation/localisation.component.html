@@ -1,48 +1,39 @@
-<div class="flex flex-col flex-auto overflow-y-auto lg:overflow-hidden bg-card dark:bg-default">
+<div class="flex flex-auto h-full dark:bg-default">
 
-    <ng-container *ngIf="projet; else startNewSearchProjects">
+    <ng-container *ngIf="projets; else startNewSearchProjects">
 
-        <mat-drawer-container
-            class="flex-auto h-full"
-            [hasBackdrop]="false">
+        <div class="flex flex-col flex-auto dark:bg-default">
 
-            <!-- Drawer -->
-            <mat-drawer
-                class="w-full sm:w-100 lg:border-l lg:shadow-none dark:bg-gray-900"
-                [autoFocus]="false"
-                [mode]="drawerMode"
-                [position]="'end'"
-                [(opened)]="drawerOpened"
-                #drawer>
+            <!-- Header -->
+            <div class="flex flex-0 items-center h-18 px-4 border-b bg-gray-50 dark:bg-transparent">
+                <button class="md:hidden" mat-icon-button (click)="drawer.close()">
+                    <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                </button>
+                <div class="ml-2 text-lg font-medium">Localisation</div>
+            </div>
 
-                <!-- Contact info -->
-                <!-- <chat-contact-info
-                    [drawer]="drawer"
-                    [chat]="chat"></chat-contact-info> -->
-            </mat-drawer>
-
-            <!-- Drawer content -->
-            <mat-drawer-content class="flex flex-col overflow-hidden">
-
-                <!-- Localisation -->
-                <div class="flex overflow-y-auto flex-col-reverse">
-                    <div class="flex flex-col flex-auto shrink p-6 bg-card dark:bg-transparent">
-                        TOTO
-                    </div>
+            <!-- Content -->
+            <div class="overflow-y-auto">
+                <div>
+                    <div>Latitude: {{display?.lat}}</div>
+                    <div>Longitude: {{display?.lng}}</div>
                 </div>
 
-            </mat-drawer-content>
+                <google-map height="810px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+                    (mapMousemove)="move($event)">
+                </google-map>
 
-        </mat-drawer-container>
+            </div>
+        </div>
 
     </ng-container>
 
     <ng-template #startNewSearchProjects>
-        <div class="flex flex-col flex-auto items-center justify-center bg-second-300 dark:bg-transparent">
-            <mat-icon
-                class="icon-size-24"
-                [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
-            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">Effectuer une nouvelle recherche de bien</div>
+        <div class="flex flex-col flex-auto items-center justify-center bg-second-200 dark:bg-transparent">
+            <mat-icon class="icon-size-24" [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
+            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
+                Effectuer une nouvelle recherche de bien
+            </div>
         </div>
     </ng-template>
 

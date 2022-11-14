@@ -5,7 +5,6 @@ import { darrahetbalRoutes } from './darrahetbal.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// import { SwiperModule } from 'swiper/angular';
 // import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        // SwiperModule,
         // YouTubePlayerModule
     ]
 })

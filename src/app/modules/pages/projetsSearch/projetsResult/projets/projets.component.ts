@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Projet } from '../../common/projets.types';
 import { ProjetsService } from '../../common/projets.service';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
     selector: 'projets',
@@ -10,16 +11,20 @@ import { ProjetsService } from '../../common/projets.service';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjetsComponent implements OnInit, OnDestroy 
-{
-    drawerOpened: boolean = false;
+export class ProjetsComponent implements OnInit, OnDestroy {
+    drawerMainOpened: boolean = true;
+    drawerMode: 'over' | 'side' = 'side';
 
-    projets: Projet[];
-    filteredProjets: Projet[];
-    selectedProjet: Projet;
+    drawerChildOpened: boolean = false;
+    drawerChildComponent: 'contact' | 'projet-info';
 
     projets$: Observable<Projet[]>;
+    projets: Projet[];
+
     projetsCount: number = 0;
+
+    filteredProjets: Projet[];
+    selectedProjet: Projet;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -29,6 +34,7 @@ export class ProjetsComponent implements OnInit, OnDestroy
     constructor(
         private _projetsService: ProjetsService,
         private _changeDetectorRef: ChangeDetectorRef,
+        private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
     }
 
@@ -40,7 +46,7 @@ export class ProjetsComponent implements OnInit, OnDestroy
      * On init
      */
     ngOnInit(): void {
-        // Projets
+        // Get the projets
         this.projets$ = this._projetsService.projets$;
         this._projetsService.projets$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -54,25 +60,24 @@ export class ProjetsComponent implements OnInit, OnDestroy
                 this._changeDetectorRef.markForCheck();
             });
 
-        // Profile
-        // this._projetService.profile$
-        //     .pipe(takeUntil(this._unsubscribeAll))
-        //     .subscribe((profile: Profile) => {
-        //         this.profile = profile;
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({ matchingAliases }) => {
 
-        //         // Mark for check
-        //         this._changeDetectorRef.markForCheck();
-        //     });
+                // Set the drawerMode if the given breakpoint is active
+                if (matchingAliases.includes('lg')) {
+                    this.drawerMode = 'side';
+                    this.drawerMainOpened = true;
+                }
+                else {
+                    this.drawerMode = 'over';
+                    this.drawerMainOpened = false;
+                }
 
-        // Selected projet
-        // this._projetsService.projet$
-        //     .pipe(takeUntil(this._unsubscribeAll))
-        //     .subscribe((projet: Projet) => {
-        //         this.selectedProjet = projet;
-
-        //         // Mark for check
-        //         this._changeDetectorRef.markForCheck();
-        //     });
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
     }
 
     /**
@@ -82,6 +87,20 @@ export class ProjetsComponent implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
+    }
+
+    /**
+     * Select projet
+     *
+     * @param projet
+     */
+    selectProjet(projet: Projet): void {
+        this.selectedProjet = projet;
+
+        // Close the drawer on 'over' mode
+        // if (this.drawerMode === 'over') {
+        //     this.drawer.close();
+        // }
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -103,29 +122,28 @@ export class ProjetsComponent implements OnInit, OnDestroy
     //     this.filteredProjets = this.projets.filter(projet => projet.contact.name.toLowerCase().includes(query.toLowerCase()));
     // }
 
-    /**
-     * Open the new projet sidebar
-     */
-    // openNewProjet(): void
-    // {
-    //     this.drawerComponent = 'new-projet';
-    //     this.drawerOpened = true;
-
-    //     // Mark for check
-    //     this._changeDetectorRef.markForCheck();
-    // }
+    toggleMain(): void
+    {
+        if ( this.drawerMainOpened )
+        {
+            this.drawerMainOpened = false;
+        }
+        else
+        {
+            this.drawerMainOpened = true;
+        }
+    }
 
     /**
      * Open the profile sidebar
      */
-    // openProfile(): void
-    // {
-    //     this.drawerComponent = 'profile';
-    //     this.drawerOpened = true;
+    openContact(): void {
+        this.drawerChildComponent = 'contact';
+        this.drawerChildOpened = true;
 
-    //     // Mark for check
-    //     this._changeDetectorRef.markForCheck();
-    // }
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+    }
 
     /**
      * Track by function for ngFor loops

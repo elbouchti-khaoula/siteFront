@@ -1,13 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 
-// import { SwiperComponent } from "swiper/angular";
-// import Swiper core and required modules
-// import SwiperCore, { EffectCoverflow, Pagination, Navigation } from "swiper";
-// install Swiper modules
-// SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
-
-
 @Component({
   selector: 'darrahetbal',
   templateUrl: './darrahetbal.component.html',

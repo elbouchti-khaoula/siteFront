@@ -1,23 +1,20 @@
-export interface Projet
-{
+export interface Projet {
     id: string;
-    avatar?: string | null;
-    background?: string | null;
     name: string;
-    emails?: {
-        email: string;
-        label: string;
+    images?: {
+        chemin: string;
     }[];
-    phoneNumbers?: {
-        country: string;
-        phoneNumber: string;
-        label: string;
-    }[];
-    title?: string;
-    company?: string;
-    birthday?: string | null;
+    promoteur: {
+        name: string;
+        logo: string;
+    }
+    statut?: string;
+    prixMin?: string;
+    devise?: string;
+    ville?: string | null;
     address?: string | null;
-    notes?: string | null;
-    tags: string[];
-}
+    descriptionSmall?: string | null;
 
+    standing?: string | null;
+    descriptionLong: string | null;
+}

@@ -25,9 +25,7 @@
                         <mat-expansion-panel (opened)="isOpened = true" (closed)="isOpened = false">
                             <mat-expansion-panel-header [collapsedHeight]="'56px'">
                                 <mat-panel-title class="md:text-lg font-bold uppercase">
-                                    <!-- <mat-icon class="float-left icon-size-7 md:icon-size-10 mr-2" svgIcon="property">
-                                    </mat-icon> -->
-                                    <span class="mr-2 float-left bg-primary-50 flex items-center justify-center w-7 h-7 md:w-12 md:h-12 cursor-pointer rounded-full">
+                                    <span class="mr-2 float-left bg-primary-100 flex items-center justify-center w-7 h-7 md:w-12 md:h-12 cursor-pointer rounded-full">
                                         <mat-icon class="icon-size-7 md:icon-size-12 text-primary-700"
                                             svgIcon="property">
                                         </mat-icon>
@@ -126,7 +124,7 @@
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-6 rounded-2xl sm:rounded-full bg-card py-3">
                         <div class="flex flex-col items-center">
                             <span [routerLink]="['/projetsSearch']"
-                                class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                class="bg-primary-100 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
                                 <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700" svgIcon="property">
                                 </mat-icon>
                             </span>
@@ -137,8 +135,7 @@
                         </div>
                         <div class="flex flex-col items-center">
                             <a [routerLink]="['./']" (click)="scrollTo('simulationId')">
-                                <span
-                                    class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                <span class="bg-primary-100 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
                                     <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700"
                                         svgIcon="calculation">
                                     </mat-icon>
@@ -162,7 +159,7 @@
                         </div>
                         <div class="flex flex-col items-center">
                             <span [routerLink]="['./']"
-                                class="bg-primary-50 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
+                                class="bg-primary-100 flex items-center justify-center w-14 h-14 md:w-20 md:h-20 cursor-pointer rounded-full focus:bg-primary-300">
                                 <mat-icon class="icon-size-12 md:icon-size-18 text-primary-700" svgIcon="agentc">
                                 </mat-icon>
                             </span>
@@ -194,7 +191,12 @@
             </div>
         </div>
 
-        <simulation></simulation>
+        <div id="simulationId" class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card">
+            <div class="w-full max-w-360">
+                <simulation></simulation>
+            </div>
+        </div>
+
         <nous-choisir></nous-choisir>
         <cinq-etapes></cinq-etapes>
         <actualites></actualites>

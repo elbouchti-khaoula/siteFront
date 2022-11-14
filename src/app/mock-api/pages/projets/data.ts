@@ -19,7 +19,6 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet1/childroom.jpg'
             }
         ],
-        imageP      : 'assets/images/pages/marketplace/projet1/princ.jpg',
         name        : 'NEXT HOUSE CASA ANFA',
         statut      : 'En cours de construction',
         promoteur   : {
@@ -31,6 +30,8 @@ export const projets = [
         ville               : 'Casablanca',
         address             : 'Quartier Victoria Bouskoura, CASABLANCA',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
+
+        standing            : 'Moyen standing',
         descriptionLong     : "<p></p>",
     },
     {
@@ -52,7 +53,6 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet2/childroom.jpg'
             }
         ],
-        imageP      : 'assets/images/pages/marketplace/projet2/princ.jpg',
         name        : 'LA CITE DES ARTS',
         statut      : 'En cours de construction',
         promoteur   : {
@@ -64,6 +64,8 @@ export const projets = [
         ville               : 'Casablanca',
         address             : '279 Independence Avenue, Calvary, Guam, PO4127',
         descriptionSmall    : "<p>Au cœur de Casablanca, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>",
+
+        standing            : 'Moyen standing',
         descriptionLong     : "<p></p>",
     },
     {
@@ -85,7 +87,6 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet3/childroom.jpg'
             }
         ],
-        imageP      : 'assets/images/pages/marketplace/projet3/princ.jpg',
         name        : 'LA CITADELLE',
         statut      : 'En cours de construction',
         promoteur   : {
@@ -97,6 +98,8 @@ export const projets = [
         ville               : 'Casablanca',
         address             : '279 Independence Avenue, Calvary, Guam, PO4127',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
+
+        standing            : 'Moyen standing',
         descriptionLong     : "<p></p>",
     },
     {
@@ -118,7 +121,6 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet4/childroom.jpg'
             }
         ],
-        imageP      : 'assets/images/pages/marketplace/projet4/princ.jpg',
         name        : 'AERIA PARK',
         statut      : 'En cours de construction',
         promoteur   : {
@@ -130,6 +132,8 @@ export const projets = [
         ville               : 'Casablanca',
         address             : '279 Independence Avenue, Calvary, Guam, PO4127',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
+
+        standing            : 'Moyen standing',
         descriptionLong     : "<p></p>",
     },
     {
@@ -151,7 +155,6 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet5/childroom.jfif'
             }
         ],
-        imageP      : 'assets/images/pages/marketplace/projet5/princ.jpg',
         name        : 'ROSE GARDEN',
         statut      : 'En cours de construction',
         promoteur   : {
@@ -163,6 +166,7 @@ export const projets = [
         ville               : 'Casablanca',
         address             : '279 Independence Avenue, Calvary, Guam, PO4127',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
+        standing            : 'Moyen standing',
         descriptionLong     : "<p></p>",
     },
 
