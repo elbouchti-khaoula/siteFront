@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
@@ -13,6 +13,8 @@ export class SimulationComponent
     dureeValue: number = 1;
     tauxValue: number = 1;
     mensualite: string = "0";
+
+    @Input() isChild: boolean = false;;
 
     /**
      * Constructor

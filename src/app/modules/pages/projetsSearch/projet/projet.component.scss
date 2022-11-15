@@ -9,7 +9,7 @@
     background-position: center;
     background-size: cover;
     width: 100%;
-    height: 700px;
+    // height: 700px;
 }
 
 .swiper-slide img {
@@ -40,7 +40,7 @@
 //     // height: 20px;
 //     // stripes
 //     // width: 4rem;
-//     height: 0.3rem;
+//     height: 0.25rem;
 //     background: white;
 //     opacity: .5;
 // }
@@ -52,7 +52,6 @@
 .swiper-pagination-bullet {
     position: relative;
     margin: 0 5px !important;
-    // width: 156px;
     height: auto;
     border-radius: 0;
     opacity: 1;
@@ -64,12 +63,11 @@
         left: 0;
         z-index: 1;
         width: 100%;
-        height: 0.3rem;
+        height: 0.25rem;
         border-radius: 9999px;
-        // background-color: hotpink;
-        background: white;
+        background-color: white;
         opacity: .5;
-        // progress
+        // progress bar empty
     }
 
     b {
@@ -78,11 +76,10 @@
         left: 0;
         z-index: 2;
         width: 0%;
-        height: 0.3rem;
+        height: 0.25rem;
         border-radius: 9999px;
-        // background-color: rgba(17, 17, 17, 1);
-        background: var(--fuse-primary);
-        // progress bar
+        background-color: var(--fuse-primary);
+        // progress bar full
     }
 }
 
