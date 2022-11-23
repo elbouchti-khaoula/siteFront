@@ -7,7 +7,6 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FUSE_VERSION } from '@fuse/version';
 import { Layout } from 'app/layout/layout.types';
 import { AppConfig } from 'app/core/config/app.config';
-// import { fuseAnimations } from '@fuse/animations';
 import { default as routerAnimations} from '../route-animations';
 
 @Component({
@@ -15,7 +14,6 @@ import { default as routerAnimations} from '../route-animations';
     templateUrl  : './layout.component.html',
     styleUrls    : ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    // animations   : fuseAnimations
     animations: [routerAnimations('routeAnimations')],
 })
 export class LayoutComponent implements OnInit, OnDestroy
@@ -26,8 +24,7 @@ export class LayoutComponent implements OnInit, OnDestroy
     theme: string;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    // @HostBinding('@fadeInLeft') public animateOut = true;
-    @HostBinding('@routeAnimations') public animate = true;
+     @HostBinding('@routeAnimations') public animate = true;
 
     /**
      * Constructor

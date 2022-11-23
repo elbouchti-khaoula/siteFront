@@ -13,16 +13,12 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
-import { CarouselModule } from '@marcreichel/angular-carousel';
-// import { SimulationComponent } from './simulation/simulation.component';
-import { NousChoisirComponent } from './nouschoisir/nous-choisir.component';
 import { CinqEtapesComponent } from './cinqetapes/cinq-etapes.component';
-import { ActualitesComponent } from './actualites/actualites.component';
 import { SimulationModule } from './simulation/simulation.module';
+import { NousChoisirModule } from './nouschoisir/nous-choisir.module';
+import { ActualitesModule } from './actualites/actualites.module';
 
-// import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
 // import { MatExpansionPanel } from '@angular/material/expansion';
-
 // import {
 //     animate,
 //     animateChild,
@@ -34,8 +30,6 @@ import { SimulationModule } from './simulation/simulation.module';
 //     query,
 //     AnimationTriggerMetadata,
 // } from '@angular/animations';
-
-
 // const EXPANSION_PANEL_ANIMATION_TIMING = '10000ms cubic-bezier(0.4,0.0,0.2,1)';
 // MatExpansionPanel['decorators'][0].args[0].animations = [
 //     trigger('bodyExpansion', [
@@ -45,30 +39,26 @@ import { SimulationModule } from './simulation/simulation.module';
 //             animate(EXPANSION_PANEL_ANIMATION_TIMING)),
 //     ])];
 
-
 @NgModule({
     declarations: [
         LandingComponent,
-        // SimulationComponent,
-        NousChoisirComponent,
-        CinqEtapesComponent,
-        ActualitesComponent
+        CinqEtapesComponent
     ],
     imports     : [
         RouterModule.forChild(landingRoutes),
         SharedModule,
-        SimulationModule,
         MatButtonModule,
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
         MatExpansionModule,
         MatSelectModule,
-        
         TranslocoModule,
         TranslocoLocaleModule,
-        CarouselModule
-        // MatInputCounterModule,
+
+        SimulationModule,
+        NousChoisirModule,
+        ActualitesModule,
     ]
 })
 export class LandingModule

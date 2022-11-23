@@ -56,7 +56,7 @@ export const projetDescription = `
 export const projets = [
     {
         id          : 'cd5fa417-b667-482d-b208-798d9da3213c',
-        images      : [
+        photos      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet1/princ.jpg'
             },
@@ -73,27 +73,27 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet1/childroom.jpg'
             }
         ],
-        name        : 'NEXT HOUSE CASA ANFA',
+        nom         : 'NEXT HOUSE CASA ANFA',
         statut      : 'En cours de construction',
         promoteur   : {
-            name    : 'name',
-            logo    : 'assets/images/pages/marketplace/projet1/promoteur.png',
+            nom         : 'nom',
+            logoPath    : 'assets/images/pages/marketplace/projet1/promoteur.png',
         },
         prixMin             : '4 525 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
-        address             : 'Quartier Casa Anfa boulevard des clubs',
+        ville               : 'ville1',
+        adresse             : 'Quartier Casa Anfa boulevard des clubs',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
-        superficieMin          : '248 m²',
-        superficieMax          : '370 m²',
-        disponibilite       : 'En construction. 2ème tranche',
-        descriptionLong     : `${projetDescription}`,
+        superficieMin       : '248 m²',
+        superficieMax       : '370 m²',
+        disponibilites      : 'En construction. 2ème tranche',
+        description         : `${projetDescription}`,
     },
     {
         id          : 'beec5287-ed50-4504-858a-5dc3f8ce6935',
-        images      : [
+        photos      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet2/princ.jpg'
             },
@@ -110,27 +110,27 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet2/childroom.jpg'
             }
         ],
-        name        : 'LA CITE DES ARTS',
+        nom         : 'LA CITE DES ARTS',
         statut      : 'En cours de construction',
         promoteur   : {
-            name    : 'name',
-            logo    : 'assets/images/pages/marketplace/projet2/promoteur.jpeg',
+            nom         : 'nom',
+            logoPath    : 'assets/images/pages/marketplace/projet2/promoteur.jpeg',
         },
         prixMin             : '1 000 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
-        address             : 'Angle Bd Tan tan et Bd ben Barka. Bourgogne',
+        ville               : 'ville1',
+        adresse             : 'Angle Bd Tan tan et Bd ben Barka. Bourgogne',
         descriptionSmall    : "<p>Au cœur de Casablanca, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>",
 
         standing            : 'Moyen standing',
-        superficieMin          : '25 m²',
-        superficieMax          : '151 m²',
-        disponibilite       : '34 livrables',
-        descriptionLong     : `${projetDescription}`,
+        superficieMin       : '25 m²',
+        superficieMax       : '151 m²',
+        disponibilites      : '34 livrables',
+        description         : `${projetDescription}`,
     },
     {
         id          : '9d3f0e7f-dcbd-4e56-a5e8-87b8154e9edf',
-        images      : [
+        photos      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet3/princ.jpg'
             },
@@ -147,27 +147,27 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet3/childroom.jpg'
             }
         ],
-        name        : 'LA CITADELLE',
+        nom         : 'LA CITADELLE',
         statut      : 'En cours de construction',
         promoteur   : {
-            name    : 'name',
-            logo    : 'assets/images/pages/marketplace/projet3/promoteur.png',
+            nom         : 'nom',
+            logoPath    : 'assets/images/pages/marketplace/projet3/promoteur.png',
         },
         prixMin             : '1 070 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
-        address             : '21, rue Hafid Ibrahim. Quartier Gauthier',
+        ville               : 'ville1',
+        adresse             : '21, rue Hafid Ibrahim. Quartier Gauthier',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
-        superficieMin          : '41 m²',
-        superficieMax          : '198 m²',
-        disponibilite       : 'En construction',
-        descriptionLong     : `${projetDescription}`,
+        superficieMin       : '41 m²',
+        superficieMax       : '198 m²',
+        disponibilites      : 'En construction',
+        description         : `${projetDescription}`,
     },
     {
         id          : '42a5da95-5e6d-42fd-a09d-de755d123a47',
-        images      : [
+        photos      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet4/princ.jpg'
             },
@@ -184,27 +184,27 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet4/childroom.jpg'
             }
         ],
-        name        : 'AERIA PARK',
+        nom         : 'AERIA PARK',
         statut      : 'En cours de construction',
         promoteur   : {
-            name    : 'name',
-            logo    : 'assets/images/pages/marketplace/projet4/promoteur.png',
+            nom         : 'nom',
+            logoPath    : 'assets/images/pages/marketplace/projet4/promoteur.png',
         },
         prixMin             : '1 400 000,00',
         devise              : 'MAD',
         ville               : 'Casablanca',
-        address             : 'CFC CASA ANFA, Lot 37, Bd Abdellah Cherif',
+        adresse             : 'CFC CASA ANFA, Lot 37, Bd Abdellah Cherif',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
-        superficieMin          : '63 m²',
-        superficieMax          : '374 m²',
-        disponibilite       : null,
-        descriptionLong     : `${projetDescription}`,
+        superficieMin       : '63 m²',
+        superficieMax       : '374 m²',
+        disponibilites      : null,
+        description         : `${projetDescription}`,
     },
     {
         id          : 'a7806ced-03f1-4197-8b30-00bdd463366b',
-        images      : [
+        photos      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet5/princ.jpg'
             },
@@ -221,27 +221,23 @@ export const projets = [
                 chemin    : 'assets/images/pages/marketplace/projet5/childroom.jfif'
             }
         ],
-        name        : 'ROSE GARDEN',
+        nom        : 'ROSE GARDEN',
         statut      : 'En cours de construction',
         promoteur   : {
-            name    : 'name',
-            logo    : 'assets/images/pages/marketplace/projet5/promoteur.png',
+            nom         : 'nom',
+            logoPath    : 'assets/images/pages/marketplace/projet5/promoteur.png',
         },
         prixMin             : '1 250 000,00',
         devise              : 'MAD',
         ville               : 'Casablanca',
-        address             : 'Quartier Victoria Bouskoura',
+        adresse             : 'Quartier Victoria Bouskoura',
         descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
-        superficieMin          : '250 m²',
-        superficieMax          : '375 m²',
-        disponibilite       : 'Lots en Bande - Lots jumelés',
-        descriptionLong     : `${projetDescription}`,
+        superficieMin       : '250 m²',
+        superficieMax       : '375 m²',
+        disponibilites      : 'Lots en Bande - Lots jumelés',
+        description         : `${projetDescription}`,
     },
 
 ];
-
-
-
-

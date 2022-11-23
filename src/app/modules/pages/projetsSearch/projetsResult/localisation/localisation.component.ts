@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Projet } from '../../common/projets.types';
 import { ProjetsService } from '../../common/projets.service';
@@ -7,8 +7,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 @Component({
     selector: 'localisation',
     templateUrl: './localisation.component.html',
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation: ViewEncapsulation.None
 })
 export class LocalisationComponent implements OnInit, OnDestroy {
     // projet: Projet;

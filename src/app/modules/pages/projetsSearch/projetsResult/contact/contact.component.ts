@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { fuseAnimations } from '@fuse/animations';
@@ -8,7 +8,8 @@ import { fuseAnimations } from '@fuse/animations';
     selector     : 'projet-contact',
     templateUrl  : './contact.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations   : fuseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjetContactComponent implements OnInit
 {

@@ -28,7 +28,7 @@ export class ProjetsResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet[]>
     {
-        return this._projetsService.getProjets();
+        return this._projetsService.searchProjets(state.root.queryParams);
     }
 }
 

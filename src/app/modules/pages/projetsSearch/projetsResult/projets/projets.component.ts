@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Projet } from '../../common/projets.types';
 import { ProjetsService } from '../../common/projets.service';
@@ -8,12 +8,11 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
     selector: 'projets',
     templateUrl: './projets.component.html',
     styleUrls: ['./projets.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjetsComponent implements OnInit, OnDestroy {
     drawerMainOpened: boolean = true;
-    drawerMode: 'over' | 'side' = 'side';
+    drawerMainMode: 'over' | 'side' = 'side';
 
     drawerChildOpened: boolean = false;
     drawerChildComponent: 'contact' | 'projet-info';
@@ -67,11 +66,11 @@ export class ProjetsComponent implements OnInit, OnDestroy {
 
                 // Set the drawerMode if the given breakpoint is active
                 if (matchingAliases.includes('lg')) {
-                    this.drawerMode = 'side';
+                    this.drawerMainMode = 'side';
                     this.drawerMainOpened = true;
                 }
                 else {
-                    this.drawerMode = 'over';
+                    this.drawerMainMode = 'over';
                     this.drawerMainOpened = false;
                 }
 

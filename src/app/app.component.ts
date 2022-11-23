@@ -38,7 +38,13 @@ export class AppComponent
         // used in projet
         this.matIconRegistry.addSvgIcon(
             "underconstruct",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/under-construction-icon.svg")
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/under-construction.svg")
         );
+        this.matIconRegistry.addSvgIcon(
+            "maplocation",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/map-location.svg")
+        );
+
+        
     }
 }

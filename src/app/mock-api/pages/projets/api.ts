@@ -39,8 +39,8 @@ export class ProjetsMockApi
                 // Clone the projets
                 const projets = cloneDeep(this._projets);
 
-                // Sort the projets by the name field by default
-                projets.sort((a, b) => a.name.localeCompare(b.name));
+                // Sort the projets by the nom field by default
+                projets.sort((a, b) => a.nom.localeCompare(b.nom));
 
                 // Return the response
                 return [200, projets];
@@ -54,20 +54,20 @@ export class ProjetsMockApi
             .reply(({request}) => {
 
                 // Get the search query
-                const query = request.params.get('query');
+                const ville = request.params.get('ville');
 
                 // Clone the projets
                 let projets = cloneDeep(this._projets);
 
                 // If the query exists...
-                if ( query )
+                if ( ville )
                 {
                     // Filter the projets
-                    projets = projets.filter(projet => projet.name && projet.name.toLowerCase().includes(query.toLowerCase()));
+                    projets = projets.filter(projet => projet.ville && projet.ville.toLowerCase().includes(ville.toLowerCase()));
                 }
 
-                // Sort the projets by the name field by default
-                projets.sort((a, b) => a.name.localeCompare(b.name));
+                // Sort the projets by the nom field by default
+                projets.sort((a, b) => a.nom.localeCompare(b.nom));
 
                 // Return the response
                 return [200, projets];
@@ -103,18 +103,18 @@ export class ProjetsMockApi
                 // Generate a new projet
                 const newProjet = {
                     id          : FuseMockApiUtils.guid(),
-                    avatar      : null,
-                    name        : 'New Projet',
-                    emails      : [],
-                    phoneNumbers: [],
-                    job         : {
-                        title  : '',
-                        company: ''
-                    },
-                    birthday    : null,
-                    address     : null,
-                    notes       : null,
-                    tags        : []
+                    // avatar      : null,
+                    nom        : 'New Projet',
+                    // emails      : [],
+                    // phoneNumbers: [],
+                    // job         : {
+                    //     title  : '',
+                    //     company: ''
+                    // },
+                    // birthday    : null,
+                    adresse     : null,
+                    // notes       : null,
+                    // tags        : []
                 };
 
                 // Unshift the new projet

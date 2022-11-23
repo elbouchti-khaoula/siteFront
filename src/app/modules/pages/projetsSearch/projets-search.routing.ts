@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 import { ProjetsProjetResolver, ProjetsResolver } from './common/projets.resolvers';
 import { ProjetsSearchComponent } from './projets-search.component';
-// import { LocalisationComponent } from './projetsResult/localisation/localisation.component';
 import { ProjetComponent } from './projet/projet.component';
 import { ProjetsResultComponent } from './projetsResult/projets-result.component';
 import { ProjetsComponent } from './projetsResult/projets/projets.component';
@@ -21,12 +20,6 @@ export const projetsSearchRoutes: Route[] = [
                         resolve: {
                             projets: ProjetsResolver,
                         },
-                        // children : [
-                        //     {
-                        //         path     : '',
-                        //         component: LocalisationComponent,
-                        //     }
-                        // ]
                     }
                 ]
             }

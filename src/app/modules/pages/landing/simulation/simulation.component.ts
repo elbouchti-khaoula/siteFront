@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
     selector       : 'simulation',
     templateUrl    : './simulation.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation  : ViewEncapsulation.None
 })
 export class SimulationComponent
 {

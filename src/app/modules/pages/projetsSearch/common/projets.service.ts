@@ -46,24 +46,31 @@ export class ProjetsService
     /**
      * Get projets
      */
-    getProjets(): Observable<Projet[]>
-    {
-        return this._httpClient.get<Projet[]>('api/projets/all').pipe(
-            tap((projets) => {
-                this._projets.next(projets);
-            })
-        );
-    }
+    // getProjets(): Observable<Projet[]>
+    // {
+    //     return this._httpClient.get<Projet[]>('api/projets/all').pipe(
+    //         tap((projets) => {
+    //             this._projets.next(projets);
+    //         })
+    //     );
+    // }
 
     /**
      * Search projets with given query
      *
-     * @param query
+     * @param queryParams
      */
-    searchProjets(query: string): Observable<Projet[]>
+    searchProjets(queryParams: { ville?: string; quartier?: string; typeBien?: string; prixMin?: number; prixMax?: number }): Observable<Projet[]>
     {
+        // const httpOptions = {
+        //     headers: { 'Content-Type': 'application/json' },
+        //     params: { ...searchParams}
+        // };
+        // return this.http.get(this.Url, httpOptions);
+
+        // { params: params } is the same as { params } 
         return this._httpClient.get<Projet[]>('api/projets/search', {
-            params: {query}
+            params: queryParams
         }).pipe(
             tap((projets) => {
                 this._projets.next(projets);

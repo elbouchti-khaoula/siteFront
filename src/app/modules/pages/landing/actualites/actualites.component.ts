@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { gsap } from "gsap";
 
 @Component({
     selector       : 'actualites',
     templateUrl    : './actualites.component.html',
     styleUrls       : ['./actualites.component.scss'],
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation  : ViewEncapsulation.None
 })
 export class ActualitesComponent
 {

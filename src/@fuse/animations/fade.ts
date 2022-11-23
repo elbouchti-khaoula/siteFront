@@ -164,6 +164,23 @@ const fadeInRight = trigger('fadeInRight',
     ]
 );
 
+const fadeInRightBis = trigger('fadeInRightBis',
+    [
+        transition(':enter', [
+            style({
+                opacity: 0, transform: 'translateX(100%)'
+            }),
+            animate('1s ease-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+        ]),
+        transition(':leave', [
+            style({
+                opacity: 1, transform: 'translateX(0%)'
+            }),
+            animate('1s ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
+        ])
+    ]
+);
+
 // -----------------------------------------------------------------------------------------------------
 // @ Fade out
 // -----------------------------------------------------------------------------------------------------
@@ -327,4 +344,4 @@ const fadeOutRight = trigger('fadeOutRight',
     ]
 );
 
-export { fadeIn, fadeInTop, fadeInBottom, fadeInLeft, fadeInRight, fadeOut, fadeOutTop, fadeOutBottom, fadeOutLeft, fadeOutRight };
+export { fadeIn, fadeInTop, fadeInBottom, fadeInLeft, fadeInRight, fadeInRightBis, fadeOut, fadeOutTop, fadeOutBottom, fadeOutLeft, fadeOutRight };
