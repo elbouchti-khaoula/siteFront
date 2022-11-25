@@ -47,7 +47,7 @@ fuse-vertical-navigation {
 
         /* Side mode */
         &.fuse-vertical-navigation-mode-side {
-            margin-left: calc(var(--fuse-vertical-navigation-width) * -1);
+            margin-left: calc(#{var(--fuse-vertical-navigation-width)} * -1);
 
             &.fuse-vertical-navigation-opened {
                 margin-left: 0;

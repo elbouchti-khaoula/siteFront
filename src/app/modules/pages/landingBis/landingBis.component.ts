@@ -115,4 +115,18 @@ export class LandingBisComponent implements OnInit
         return `  ${value} %  `;
     }
 
+
+
+    animateBottom(el: HTMLElement) {
+        el.style.animation = `anim-bottom 1s ${el.dataset.delay} forwards ease-out`;
+    }
+
+    animateTop(el: HTMLElement) {
+        el.style.animation = `anim-top 1s ${el.dataset.delay} forwards ease-out`;
+    }
+
+    animateNone(el: HTMLElement) {
+        el.style.animation = 'none';
+    }
+
 }

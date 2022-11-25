@@ -5,15 +5,20 @@
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full mt-5"
-    [ngClass]="{'md:grid-cols-2': isChild, 'md:mt-16 md:grid-cols-4 md:gap-6': !isChild}">
+    [ngClass]="{'md:grid-cols-2': isChild, 'md:mt-16 md:grid-cols-4 md:gap-6': !isChild}"
+    (appear)="onAppear1()"
+    (disappear)="onDisappear1()">
     <div class="col-span-1 text-sm sm:text-base font-semibold uppercase sm:mt-3"
-        [ngClass]="{'md:text-lg': !isChild}">
+        [ngClass]="{'md:text-lg': !isChild}" 
+        *ngIf="hasAppeared1"
+        [@slideInLeft]="{value:'', params: {duration: 300}}">
         Montant du crédit
     </div>
     <div class="relative flex flex-col col-span-1 sm:col-span-2"
-        [ngClass]="{'md:col-span-3': !isChild}">
+        [ngClass]="{'md:col-span-3': !isChild}"
+        *ngIf="hasAppeared1"
+        [@slideInRight]="{value:'', params: {duration: 300}}">
         <span class="absolute left-0 top-0 text-sm">0 dhs</span>
-        <!-- tickInterval="50" -->
         <mat-slider class="w-full" [color]="'primary'" min="0" max="5000000" step="10000" thumbLabel
             [displayWith]="formatLabelMontant" [(ngModel)]="montantValue" (change)="updateMontant($event)"
             (input)="updateMontant($event)">
@@ -22,33 +27,34 @@
     </div>
 
     <div class="col-span-1 text-sm sm:text-base font-semibold uppercase sm:mt-3"
-        [ngClass]="{'md:text-lg': !isChild}">
+        [ngClass]="{'md:text-lg': !isChild}"
+        *ngIf="hasAppeared1"
+        [@slideInLeft]="{value:'', params: {duration: 300, delay: 200}}">
         Durée
     </div>
     <div class="relative flex flex-col col-span-1 sm:col-span-2"
-        [ngClass]="{'md:col-span-3': !isChild}">
+        [ngClass]="{'md:col-span-3': !isChild}"
+        *ngIf="hasAppeared1"
+        [@slideInRight]="{value:'', params: {duration: 300, delay: 200}}">
         <span class="absolute left-0 top-0 text-sm">1 an</span>
-        <!-- tickInterval="5" -->
         <mat-slider class="w-full" [color]="'primary'" min="1" max="30" step="1" thumbLabel
             [displayWith]="formatLabelDuree" [(ngModel)]="dureeValue" (change)="updateDuree($event)"
             (input)="updateDuree($event)">
         </mat-slider>
-
-        <!-- <mat-input-counter [color]="'primary'" [min]="1" [max]="30" [step]="1" [label]="Your label"
-            placeholder="your place holder">
-        </mat-input-counter> -->
-
         <span class="absolute right-0 top-0 text-sm">30 ans</span>
     </div>
 
     <div class="col-span-1 text-sm sm:text-base font-semibold uppercase sm:mt-3"
-        [ngClass]="{'md:text-lg': !isChild}">
+        [ngClass]="{'md:text-lg': !isChild}"
+        *ngIf="hasAppeared1"
+        [@slideInLeft]="{value:'', params: {duration: 300, delay: 400}}">
         Taux du crédit
     </div>
     <div class="relative flex flex-col col-span-1 sm:col-span-2"
-        [ngClass]="{'md:col-span-3': !isChild}">
+        [ngClass]="{'md:col-span-3': !isChild}"
+        *ngIf="hasAppeared1"
+        [@slideInRight]="{value:'', params: {duration: 300, delay: 400}}">
         <span class="absolute left-0 top-0 text-sm">1 %</span>
-        <!-- tickInterval="2" -->
         <mat-slider class="w-full" [color]="'primary'" min="1" max="10" step="0.1" thumbLabel
             [displayWith]="formatLabelTaux" [(ngModel)]="tauxValue" (change)="updateTaux($event)"
             (input)="updateTaux($event)">
@@ -58,9 +64,13 @@
 </div>
 
 <div class="grid grid-cols-2 gap-2 w-full mt-5"
-    [ngClass]="{'md:mt-16 md:grid-cols-4 md:gap-6': !isChild}">
+    [ngClass]="{'md:mt-16 md:grid-cols-4 md:gap-6': !isChild}"
+    (appear)="onAppear2()"
+    (disappear)="onDisappear2()">
 
-    <div class="flex flex-col flex-auto p-3">
+    <div class="flex flex-col flex-auto p-3"
+        *ngIf="hasAppeared2"
+        [@fadeInBottom]="{value:'', params: {duration: 300, delay: 600}}">
         <div class="flex items-start uppercase text-sm sm:text-base font-semibold tracking-tight leading-6 truncate">
             Montant du crédit
         </div>
@@ -76,7 +86,9 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-auto p-3">
+    <div class="flex flex-col flex-auto p-3"
+        *ngIf="hasAppeared2"
+        [@fadeInBottom]="{value:'', params: {duration: 300, delay: 800}}">
         <div class="uppercase text-sm sm:text-base font-semibold tracking-tight leading-6 truncate">
             Mensualité HT
         </div>
@@ -91,7 +103,9 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-auto p-3">
+    <div class="flex flex-col flex-auto p-3"
+        *ngIf="hasAppeared2"
+        [@fadeInBottom]="{value:'', params: {duration: 300, delay: 1000}}">
         <div class="uppercase text-sm sm:text-base font-semibold tracking-tight leading-6 truncate">
             Taux
         </div>
@@ -107,7 +121,9 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-auto p-3">
+    <div class="flex flex-col flex-auto p-3"
+        *ngIf="hasAppeared2"
+        [@fadeInBottom]="{value:'', params: {duration: 300, delay: 1200}}">
         <div class="uppercase text-sm sm:text-base font-semibold tracking-tight leading-6 truncate">
             Durée
         </div>

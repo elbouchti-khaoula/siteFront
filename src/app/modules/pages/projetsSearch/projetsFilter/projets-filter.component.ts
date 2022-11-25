@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { ProjetsService } from '../common/projets.service';
 
 @Component({
   selector: 'projets-filter',
@@ -27,6 +28,7 @@ export class ProjetsFilterComponent implements OnInit {
    * Constructor
    */
   constructor(
+    private _projetsService: ProjetsService,
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router
@@ -114,15 +116,19 @@ export class ProjetsFilterComponent implements OnInit {
    * Perform the search
    */
   search(): void {
-    // Add query params using the router
-    this._router.navigate(
-      [],
-      {
-        fragment: "projetsId",
-        queryParams: this.searchForm.value,
-        relativeTo: this._activatedRoute
-      }
-    );
+
+    this._projetsService.searchProjets(this.searchForm.value).subscribe(() => {
+
+      // Add query params using the router
+      this._router.navigate(
+        [],
+        {
+          fragment: "projetsId",
+          queryParams: this.searchForm.value,
+          relativeTo: this._activatedRoute
+        }
+      );
+    });
   }
 
 }

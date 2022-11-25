@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
-// import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
+import { VisibilityModule } from '@fuse/directives/visible/visible.module';
 
 import { SimulationComponent } from './simulation.component';
 
@@ -15,8 +15,8 @@ import { SimulationComponent } from './simulation.component';
         RouterModule,
         MatButtonModule,
         MatSliderModule,
-        SharedModule
-        // MatInputCounterModule,
+        SharedModule,
+        VisibilityModule
     ],
     exports     : [
         SimulationComponent

@@ -136,3 +136,33 @@
     max-width: 900px;
     position: relative;
   }
+
+
+
+
+
+.anim {
+    opacity: 0;
+}
+
+@keyframes anim-bottom {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes anim-top {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

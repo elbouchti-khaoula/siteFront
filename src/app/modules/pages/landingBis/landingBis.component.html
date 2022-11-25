@@ -131,7 +131,7 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
+        <div class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18 bg-card">
             <div
                 class="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 sm:gap-x-6 w-full max-w-sm md:max-w-3xl -mt-16 sm:-mt-8 md:-mt-24">
                 <!-- Search card -->
@@ -234,6 +234,9 @@
                             [displayWith]="formatLabelDuree" [(ngModel)]="dureeValue" (change)="updateDuree($event)"
                             (input)="updateDuree($event)">
                         </mat-slider>
+                        <!-- <mat-input-counter [color]="'primary'" [min]="1" [max]="30" [step]="1" [label]="Your label"
+                            placeholder="your place holder">
+                        </mat-input-counter> -->
                         <span class="absolute right-0 top-0 text-sm">30 ans</span>
                     </div>
 
@@ -571,19 +574,25 @@
                     Je finance mon bien en cinq étapes
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-y-1 w-full mt-12 sm:mt-16">
-                    <div class="relative">
+                    <div #c1 class="relative anim"
+                        (appear)="animateBottom(c1)"
+                        (disappear)="animateNone(c1)"
+                        data-delay="0s">
                         <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
                             src="assets/images/pages/landing/cercle1.png">
                         <!-- <div style='position:absolute; left:50%; top:50%; transform: translate(-50%, -50%)'
-                        class="text-center bg-red-200">
-                        This text is centered.
-                    </div> -->
+                                class="text-center bg-red-200">
+                                This text is centered.
+                            </div> -->
                         <div class="absolute inset-0 m-auto text-center">
                             <div class="text-7xl md:text-8xl font-extrabold pt-4 pb-1">1</div>
                             <div class="text-lg md:text-3xl font-bold">Je simule<br />mon crédit</div>
                         </div>
                     </div>
-                    <div class="relative">
+                    <div #c2 class="relative anim"
+                        (appear)="animateTop(c2)"
+                        (disappear)="animateNone(c2)"
+                        data-delay=".3s">
                         <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
                             src="assets/images/pages/landing/cercle2.png">
                         <div class="absolute inset-0 m-auto text-center">
@@ -591,7 +600,10 @@
                             <div class="text-lg md:text-3xl font-bold">Je fais<br />ma demande</div>
                         </div>
                     </div>
-                    <div class="relative">
+                    <div #c3 class="relative anim"
+                        (appear)="animateBottom(c3)"
+                        (disappear)="animateNone(c3)"
+                        data-delay=".6s">
                         <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
                             src="assets/images/pages/landing/cercle3.png">
                         <div class="absolute inset-0 m-auto text-center">
@@ -599,7 +611,10 @@
                             <div class="text-lg md:text-3xl font-bold">J'obtiens<br />mon accord</div>
                         </div>
                     </div>
-                    <div class="relative">
+                    <div #c4 class="relative anim"
+                        (appear)="animateTop(c4)"
+                        (disappear)="animateNone(c4)"
+                        data-delay=".9s">
                         <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
                             src="assets/images/pages/landing/cercle4.png">
                         <div class="absolute inset-0 m-auto text-center">
@@ -607,7 +622,10 @@
                             <div class="text-lg md:text-3xl font-bold">Je justifie<br />mon dossier</div>
                         </div>
                     </div>
-                    <div class="relative">
+                    <div #c5 class="relative anim"
+                        (appear)="animateBottom(c5)"
+                        (disappear)="animateNone(c5)"
+                        data-delay="1.2s">
                         <img class="mx-auto object-cover w-44 h-fit md:w-auto md:h-auto"
                             src="assets/images/pages/landing/cercle5.png">
                         <div class="absolute inset-0 m-auto text-center">

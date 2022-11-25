@@ -13,10 +13,36 @@ import { landingBisRoutes } from './landingBis.routing';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CarouselModule } from '@marcreichel/angular-carousel';
+import { VisibilityModule } from '@fuse/directives/visible/visible.module';
+// import { OnVisibleDirective, OnHiddenDirective } from '@fuse/directives/visible/visible.directive';
+// import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
+
+// import { MatExpansionPanel } from '@angular/material/expansion';
+// import {
+//     animate,
+//     animateChild,
+//     group,
+//     state,
+//     style,
+//     transition,
+//     trigger,
+//     query,
+//     AnimationTriggerMetadata,
+// } from '@angular/animations';
+// const EXPANSION_PANEL_ANIMATION_TIMING = '10000ms cubic-bezier(0.4,0.0,0.2,1)';
+// MatExpansionPanel['decorators'][0].args[0].animations = [
+//     trigger('bodyExpansion', [
+//         state('collapsed, void', style({ height: '0px', visibility: 'hidden' })),
+//         state('expanded', style({ height: '*', visibility: 'visible' })),
+//         transition('expanded <=> collapsed, void => collapsed',
+//             animate(EXPANSION_PANEL_ANIMATION_TIMING)),
+//     ])];
 
 @NgModule({
     declarations: [
-        LandingBisComponent
+        LandingBisComponent,
+        // OnVisibleDirective,
+        // OnHiddenDirective
     ],
     imports     : [
         RouterModule.forChild(landingBisRoutes),
@@ -30,7 +56,9 @@ import { CarouselModule } from '@marcreichel/angular-carousel';
         SharedModule,
         TranslocoModule,
         TranslocoLocaleModule,
-        CarouselModule
+        CarouselModule,
+        VisibilityModule
+        // MatInputCounterModule,
     ]
 })
 export class LandingBisModule
