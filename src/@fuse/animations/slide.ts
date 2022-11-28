@@ -154,7 +154,7 @@ const slideOutTop = trigger('slideOutTop',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -187,7 +187,7 @@ const slideOutBottom = trigger('slideOutBottom',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -220,7 +220,7 @@ const slideOutLeft = trigger('slideOutLeft',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -253,7 +253,7 @@ const slideOutRight = trigger('slideOutRight',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,

@@ -212,7 +212,7 @@ const fadeOut = trigger('fadeOut',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -247,7 +247,7 @@ const fadeOutTop = trigger('fadeOutTop',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -282,7 +282,7 @@ const fadeOutBottom = trigger('fadeOutBottom',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -317,7 +317,7 @@ const fadeOutLeft = trigger('fadeOutLeft',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,
@@ -352,7 +352,7 @@ const fadeOutRight = trigger('fadeOutRight',
         transition('false => void', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
                     duration: `${FuseAnimationDurations.exiting}`,

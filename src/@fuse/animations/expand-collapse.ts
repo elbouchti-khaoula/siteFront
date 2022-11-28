@@ -21,10 +21,12 @@ const expandCollapse = trigger('expandCollapse',
 
         // Transition
         transition('void <=> *, collapsed <=> expanded',
-            animate('{{timings}}'),
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
                 params: {
-                    timings: `${FuseAnimationDurations.entering} ${FuseAnimationCurves.deceleration}`
+                    duration: `${FuseAnimationDurations.entering}`,
+                    delay: 0,
+                    curve: `${FuseAnimationCurves.deceleration}`
                 }
             }
         )
