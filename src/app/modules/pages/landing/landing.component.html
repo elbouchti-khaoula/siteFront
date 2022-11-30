@@ -4,7 +4,7 @@
         <!-- <div class="z-10 absolute inset-0 bg-black/[.4]"></div> -->
 
         <!-- Header -->
-        <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/landing/header.jpg');"
+        <header style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/landing/header.jpg');"
             class="relative flex flex-col items-center justify-evenly px-6 sm:px-16 py-10 sm:py-20 w-full min-h-[92vh] bg-fixed bg-center bg-cover">
 
             <div class="w-full max-w-360">
@@ -48,7 +48,7 @@
                                                 matPrefix>
                                             </mat-icon>
                                             <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
-                                                <mat-option [value]="'ville1'">Ville 1</mat-option>
+                                                <mat-option [value]="'Casablanca'">Casablanca</mat-option>
                                                 <mat-option [value]="'ville2'">Ville 2</mat-option>
                                                 <mat-option [value]="'ville3'">Ville 3</mat-option>
                                                 <mat-option [value]="'ville4'">Ville 4</mat-option>
@@ -207,20 +207,20 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div id="simulationId" class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-100">
-            <div class="w-full max-w-360 bg-card rounded-2xl shadow-md p-10">
+        <section id="simulationId" class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-second-100">
+            <div class="w-full max-w-360 bg-card rounded-2xl shadow-md px-5 py-7 sm:p-10">
                 <simulation></simulation>
             </div>
-        </div>
+        </section>
 
         <nous-choisir></nous-choisir>
         <cinq-etapes></cinq-etapes>
         <actualites></actualites>
 
         <!-- Suivez-nous -->
-        <div class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
+        <section class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
             <div class="flex flex-col items-center mx-auto text-center">
                 <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-6 sm:leading-10">Suivez-nous</div>
                 <div class="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10 text-black text-opacity-70">
@@ -245,7 +245,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
 
     </div>
 

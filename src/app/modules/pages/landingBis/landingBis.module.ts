@@ -16,6 +16,7 @@ import { CarouselModule } from '@marcreichel/angular-carousel';
 import { VisibilityModule } from '@fuse/directives/visible/visible.module';
 // import { OnVisibleDirective, OnHiddenDirective } from '@fuse/directives/visible/visible.directive';
 // import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
+// import { SwiperModule } from 'swiper/angular';
 
 // import { MatExpansionPanel } from '@angular/material/expansion';
 // import {
@@ -59,6 +60,7 @@ import { VisibilityModule } from '@fuse/directives/visible/visible.module';
         CarouselModule,
         VisibilityModule
         // MatInputCounterModule,
+        // SwiperModule
     ]
 })
 export class LandingBisModule

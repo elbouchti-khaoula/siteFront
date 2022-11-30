@@ -66,16 +66,29 @@ export class ProjetsService
         //     headers: { 'Content-Type': 'application/json' },
         //     params: { ...searchParams}
         // };
-        // return this.http.get(this.Url, httpOptions);
+        // return this._httpClient.get<Projet[]>('api/projets/search', httpOptions);
 
-        // { params: params } is the same as { params } 
         return this._httpClient.get<Projet[]>('api/projets/search', {
-            params: queryParams
-        }).pipe(
-            tap((projets) => {
-                this._projets.next(projets);
-            })
-        );
+        //return this._httpClient.get<Projet[]>('api/real-estate-projects/search', {
+                params: queryParams
+            }).pipe(
+                tap((projets : Projet[]) => {
+
+                    // Sort the projets by the name field by default
+                    projets.sort((a, b) => a.nom.localeCompare(b.nom));
+
+                    // projets = projets.map(projet => {
+                    //     return {...projet, 
+                    //             descriptionSmall: projet.description.substring(0, projet.description.indexOf("</p>") + 4)
+                    //         }
+                    // });
+                    projets.forEach(projet => 
+                        projet.descriptionSmall = projet.description.substring(0, projet.description.indexOf("</p>") + 4)
+                    );
+
+                    this._projets.next(projets);
+                })
+            );
     }
 
     /**
@@ -109,145 +122,30 @@ export class ProjetsService
     }
 
     /**
-     * Create projet
-     */
-    createProjet(): Observable<Projet>
-    {
-        return this.projets$.pipe(
-            take(1),
-            switchMap(projets => this._httpClient.post<Projet>('api/projets/projet', {}).pipe(
-                map((newProjet) => {
-
-                    // Update the projets with the new projet
-                    this._projets.next([newProjet, ...projets]);
-
-                    // Return the new projet
-                    return newProjet;
-                })
-            ))
-        );
-    }
-
-    /**
-     * Update projet
-     *
-     * @param id
-     * @param projet
-     */
-    updateProjet(id: string, projet: Projet): Observable<Projet>
-    {
-        return this.projets$.pipe(
-            take(1),
-            switchMap(projets => this._httpClient.patch<Projet>('api/projets/projet', {
-                id,
-                projet
-            }).pipe(
-                map((updatedProjet) => {
-
-                    // Find the index of the updated projet
-                    const index = projets.findIndex(item => item.id === id);
-
-                    // Update the projet
-                    projets[index] = updatedProjet;
-
-                    // Update the projets
-                    this._projets.next(projets);
-
-                    // Return the updated projet
-                    return updatedProjet;
-                }),
-                switchMap(updatedProjet => this.projet$.pipe(
-                    take(1),
-                    filter(item => item && item.id === id),
-                    tap(() => {
-
-                        // Update the projet if it's selected
-                        this._projet.next(updatedProjet);
-
-                        // Return the updated projet
-                        return updatedProjet;
-                    })
-                ))
-            ))
-        );
-    }
-
-    /**
-     * Delete the projet
+     * Get projet
      *
      * @param id
      */
-    deleteProjet(id: string): Observable<boolean>
-    {
-        return this.projets$.pipe(
-            take(1),
-            switchMap(projets => this._httpClient.delete('api/projets/projet', {params: {id}}).pipe(
-                map((isDeleted: boolean) => {
-
-                    // Find the index of the deleted projet
-                    const index = projets.findIndex(item => item.id === id);
-
-                    // Delete the projet
-                    projets.splice(index, 1);
-
-                    // Update the projets
-                    this._projets.next(projets);
-
-                    // Return the deleted status
-                    return isDeleted;
-                })
-            ))
-        );
-    }
-
-
-
-    /**
-     * Update the avatar of the given projet
-     *
-     * @param id
-     * @param avatar
-     */
-    // uploadAvatar(id: string, avatar: File): Observable<Projet>
+    // getProjetById(id: string): Observable<any>
     // {
-    //     return this.projets$.pipe(
-    //         take(1),
-    //         switchMap(projets => this._httpClient.post<Projet>('api/projets/avatar', {
-    //             id,
-    //             avatar
-    //         }, {
-    //             headers: {
-    //                 // eslint-disable-next-line @typescript-eslint/naming-convention
-    //                 'Content-Type': avatar.type
+    //     return this._httpClient.get<Projet>('api/real-estate-projects/' + id).pipe(
+    //         map((response) => {
+
+    //             // Update the projet
+    //             this._projet.next(response);
+
+    //             // Return the projet
+    //             return response;
+    //         }),
+    //         switchMap((response) => {
+
+    //             if (!response) {
+    //                 return throwError('Could not found chat with id of ' + id + '!');
     //             }
-    //         }).pipe(
-    //             map((updatedProjet) => {
 
-    //                 // Find the index of the updated projet
-    //                 const index = projets.findIndex(item => item.id === id);
-
-    //                 // Update the projet
-    //                 projets[index] = updatedProjet;
-
-    //                 // Update the projets
-    //                 this._projets.next(projets);
-
-    //                 // Return the updated projet
-    //                 return updatedProjet;
-    //             }),
-    //             switchMap(updatedProjet => this.projet$.pipe(
-    //                 take(1),
-    //                 filter(item => item && item.id === id),
-    //                 tap(() => {
-
-    //                     // Update the projet if it's selected
-    //                     this._projet.next(updatedProjet);
-
-    //                     // Return the updated projet
-    //                     return updatedProjet;
-    //                 })
-    //             ))
-    //         ))
+    //             return of(response);
+    //         })
     //     );
     // }
+
 }

@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
 import { NousChoisirComponent } from './nous-choisir.component';
 import { CarouselModule } from '@marcreichel/angular-carousel';
-// import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
     declarations: [
@@ -12,8 +11,7 @@ import { CarouselModule } from '@marcreichel/angular-carousel';
     imports     : [
         RouterModule,
         SharedModule,
-        CarouselModule,
-        // SwiperModule
+        CarouselModule
     ],
     exports     : [
         NousChoisirComponent

@@ -78,7 +78,6 @@ export const appRoutes: Route[] = [
             {
                 path: 'home',
                 loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
-                // data: { animationState: 'home' }
             },
         ]
     },
@@ -98,22 +97,18 @@ export const appRoutes: Route[] = [
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
-                // data: { animationState: 'land' }
             },
             {
                 path: 'landingBis',
                 loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
-                // data: { animationState: 'landbis' }
             },
             {
                 path: 'darrahetbal',
                 loadChildren: () => import('app/modules/pages/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
-                // data: { animationState: 'darraht' }
             },
             {
                 path: 'projetsSearch',
                 loadChildren: () => import('app/modules/pages/projetsSearch/projets-search.module').then(m => m.ProjetsSearchModule),
-                // data: { animationState: 'projsearch' }
             },
 
 
@@ -121,13 +116,16 @@ export const appRoutes: Route[] = [
             { 
                 path: 'maintenance',
                 loadChildren: () => import('app/modules/pages/maintenance/maintenance.module').then(m => m.MaintenanceModule),
-                // data: { animationState: 'mainten' }
             },
-            // 404 & Catch all
+            // 404 & 500 & Catch all
             { 
                 path: '404-not-found',
                 pathMatch: 'full',
                 loadChildren: () => import('app/modules/pages/error/error-404/error-404.module').then(m => m.Error404Module)
+            },
+            { 
+                path: '500-server-error', 
+                loadChildren: () => import('app/modules/pages/error/error-500/error-500.module').then(m => m.Error500Module)
             },
             { 
                 path: '**',

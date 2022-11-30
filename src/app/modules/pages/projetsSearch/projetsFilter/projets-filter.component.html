@@ -20,7 +20,7 @@
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                             </mat-icon>
                             <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
-                                <mat-option [value]="'ville1'">Ville 1</mat-option>
+                                <mat-option [value]="'Casablanca'">Casablanca</mat-option>
                                 <mat-option [value]="'ville2'">Ville 2</mat-option>
                                 <mat-option [value]="'ville3'">Ville 3</mat-option>
                                 <mat-option [value]="'ville4'">Ville 4</mat-option>
@@ -81,7 +81,7 @@
                         mat-stroked-button
                         type="button" 
                         [color]="'primary'"
-                        [disabled]="searchForm.pristine || searchForm.invalid"
+                        [disabled]="searchForm.invalid"
                         (click)="reset()">
                         Vider
                     </button>

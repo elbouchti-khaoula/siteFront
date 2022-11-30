@@ -1,10 +1,7 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <div class="flex flex-col items-center w-full">
-        <!-- <div class="relative flex flex-col items-center justify-evenly px-6 sm:px-16 py-10 sm:py-20 w-full min-h-[92vh]"> -->
-
-        <!-- [config]="swiperConfig" -->
+    <header class="flex flex-col items-center w-full h-[60vh] sm:h-[80vh]">
         <swiper
             [autoplay]="{
                 delay: 2000,
@@ -28,16 +25,16 @@
             [pagination]="pagination"
             class="mySwiper custom-swiper-projet">
 
-            <ng-container *ngFor="let photo of projet.photos; trackBy: trackByFn">
+            <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
                 <ng-template swiperSlide class="h-[400px] md:h-[700px]">
                     <div class="z-10 absolute inset-0 bg-black/[.4]"></div>
                     <div class="absolute inset-0">
-                        <img [src]="photo.chemin">
+                        <img [src]="image.chemin">
                     </div>
                 </ng-template>
             </ng-container>
         </swiper>
-    </div>
+    </header>
 
     <div class="hidden md:inline-flex z-20 flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
         <div class="flex flex-row justify-center h-40 w-full max-w-400 shadow-lg rounded-3xl bg-card -mt-24">
@@ -145,7 +142,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
+    <section class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
         <div class="flex flex-row w-full md:max-w-400">
             <div class="h-fit w-full md:w-2/3 rounded-3xl overflow-hidden">
                 <iframe
@@ -226,6 +223,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 </div>

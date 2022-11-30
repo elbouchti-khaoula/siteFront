@@ -97,53 +97,54 @@
                                                             'bg-second-100 dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}" (click)="selectProjet(projet)">
 
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
-                                                <!-- carousel projet photo -->
+                                                <!-- carousel projet images -->
                                                 <div class="flex flex-0 items-center justify-center">
-                                                    <ng-container *ngIf="projet.photos.length > 0">
-                                                        <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full overflow-hidden">
-                                                            <ng-container
-                                                                *ngFor="let photo of projet.photos; trackBy: trackByFn">
+                                                    <ng-container *ngIf="projet.images && projet.images.length > 0">
+                                                        <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-60 overflow-hidden">
+                                                            <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
                                                                 <div *angularCarouselSlide class="h-60">
-                                                                    <div class="z-[2] absolute inset-0 bg-black/[.3]">
-                                                                    </div>
-                                                                    <img [src]="photo.chemin"
-                                                                        class="object-cover h-full" />
+                                                                    <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
+                                                                    <img [src]="image.chemin" class="object-cover h-full" />
                                                                 </div>
                                                             </ng-container>
                                                         </angular-carousel>
                                                     </ng-container>
-                                                    <ng-container *ngIf="!projet.photos.length">
-                                                        <div
-                                                            class="flex items-center justify-center w-full h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                            No photo
-                                                        </div>
+                                                    <ng-container *ngIf="!projet.images || !projet.images.length">
+                                                        <span class="flex items-center justify-center w-full h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                            No image
+                                                        </span>
                                                     </ng-container>
                                                 </div>
                                                 <!-- projet description -->
                                                 <div class="md:ml-4 flex flex-col">
                                                     <div class="flex flex-row justify-between">
-                                                        <div>
-                                                            <div
-                                                                class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                                                                à partir de <strong>{{projet.prixMin}}
-                                                                    {{projet.devise}}</strong>
-                                                            </div>
-                                                            <div
-                                                                class="mt-5 font-extrabold text-xl uppercase text-primary">
+                                                        <div class="flex flex-col">
+                                                            <span class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                                à partir de 
+                                                                <strong>{{projet.prixMin}} {{projet.devise}}</strong>
+                                                            </span>
+                                                            <span class="mt-5 font-extrabold text-xl uppercase text-primary">
                                                                 {{projet.nom}}
-                                                            </div>
+                                                            </span>
                                                             <div class="flex items-center text-center">
                                                                 <mat-icon class="icon-size-5 text-primary-700"
                                                                     [svgIcon]="'heroicons_outline:location-marker'">
                                                                 </mat-icon>
-                                                                <div class="ml-1 text-md">{{projet.ville}}</div>
+                                                                <span class="ml-1 text-md">{{projet.ville}}</span>
                                                             </div>
-                                                            <div class="text-md text-second-600">{{projet.statut}}</div>
+                                                            <span class="text-md text-second-600">{{projet.statut}}</span>
                                                         </div>
-                                                        <div class="flex items-center justify-center w-1/3 bg-card">
-                                                            <img [src]="projet.promoteur.logoPath"
-                                                                class="object-cover w-32 h-fit" />
-                                                        </div>
+                                                        
+                                                        <ng-container *ngIf="projet.promoteur.logoPath">
+                                                            <figure class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 bg-card">
+                                                                <img [src]="projet.promoteur.logoPath" class="object-cover w-full h-fit" />
+                                                            </figure>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="!projet.promoteur.logoPath">
+                                                            <span class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                                No Logo
+                                                            </span>
+                                                        </ng-container>
                                                     </div>
 
                                                     <div class="prose prose-sm my-3 md:mt-4 overflow-hidden"

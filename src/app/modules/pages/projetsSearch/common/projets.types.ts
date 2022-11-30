@@ -1,7 +1,7 @@
 export interface Projet {
     id: string;
     nom: string;
-    photos?: {
+    images?: {
         chemin: string | null;
         classement?: number;
         typePhoto?: number;
@@ -30,11 +30,13 @@ export interface Projet {
     dateCreation?: Date | null;
     dateModification?: Date | null;
     agent?: string | null;
+    classement?: number;
+    gpsLatitude?: number;
+    gpsLongitude?: number;
 }
 
 
     //"superficies": "De 285mÃ‚Â² ÃƒÂ  614mÃ‚Â²",
     //"gpsLatitude": 33.5236235,
-    //"gps_longitude": -7.8313316,
-    //"etat": 1,
-    //"classement": 2,
+    //"gpsLongitude": -7.8313316,
+    //"etat": 1, ?? aziz

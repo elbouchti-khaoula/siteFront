@@ -6,6 +6,12 @@ import { fuseAnimations } from '@fuse/animations';
 // import { BehaviorSubject } from 'rxjs'
 // import { default as routerAnimations} from '../../../route-animations';
 
+// import { SwiperComponent } from "swiper/angular";
+// // import Swiper core and required modules
+// import SwiperCore, { Autoplay, Pagination } from "swiper";
+// // install Swiper modules
+// SwiperCore.use([Autoplay, Pagination]);
+
 @Component({
     selector        : 'landingBis',
     templateUrl     : './landingBis.component.html',

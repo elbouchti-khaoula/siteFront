@@ -18,7 +18,7 @@ export class OnVisibleDirective implements AfterViewInit, OnDestroy {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0,
+            threshold: [0.5],
         };
 
         this.observer = new IntersectionObserver((entries) => {
@@ -56,7 +56,7 @@ export class OnHiddenDirective implements AfterViewInit, OnDestroy {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0,
+            threshold: [0.5],
         };
 
         this.observer = new IntersectionObserver((entries) => {

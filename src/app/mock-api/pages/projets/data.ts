@@ -52,11 +52,10 @@ export const projetDescription = `
 `;
 
 
-
 export const projets = [
     {
         id          : 'cd5fa417-b667-482d-b208-798d9da3213c',
-        photos      : [
+        images      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet1/princ.jpg'
             },
@@ -81,19 +80,18 @@ export const projets = [
         },
         prixMin             : '4 525 000,00',
         devise              : 'MAD',
-        ville               : 'ville1',
+        ville               : 'Casablanca',
         adresse             : 'Quartier Casa Anfa boulevard des clubs',
-        descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
         superficieMin       : '248 m²',
         superficieMax       : '370 m²',
         disponibilites      : 'En construction. 2ème tranche',
-        description         : `${projetDescription}`,
+        description         : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>" + `${projetDescription}`,
     },
     {
         id          : 'beec5287-ed50-4504-858a-5dc3f8ce6935',
-        photos      : [
+        images      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet2/princ.jpg'
             },
@@ -118,19 +116,18 @@ export const projets = [
         },
         prixMin             : '1 000 000,00',
         devise              : 'MAD',
-        ville               : 'ville1',
+        ville               : 'Casablanca',
         adresse             : 'Angle Bd Tan tan et Bd ben Barka. Bourgogne',
-        descriptionSmall    : "<p>Au cœur de Casablanca, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>",
 
         standing            : 'Moyen standing',
         superficieMin       : '25 m²',
         superficieMax       : '151 m²',
         disponibilites      : '34 livrables',
-        description         : `${projetDescription}`,
+        description         : "<p>Au cœur de Casablanca, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>" + `${projetDescription}`,
     },
     {
         id          : '9d3f0e7f-dcbd-4e56-a5e8-87b8154e9edf',
-        photos      : [
+        images      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet3/princ.jpg'
             },
@@ -155,19 +152,18 @@ export const projets = [
         },
         prixMin             : '1 070 000,00',
         devise              : 'MAD',
-        ville               : 'ville1',
+        ville               : 'Casablanca',
         adresse             : '21, rue Hafid Ibrahim. Quartier Gauthier',
-        descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
         superficieMin       : '41 m²',
         superficieMax       : '198 m²',
         disponibilites      : 'En construction',
-        description         : `${projetDescription}`,
+        description         : "<p>La Citadelle est un complexe immobilier de haut standing offrant des studios, des appartements, des ...</p>" + `${projetDescription}`,
     },
     {
         id          : '42a5da95-5e6d-42fd-a09d-de755d123a47',
-        photos      : [
+        images      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet4/princ.jpg'
             },
@@ -194,17 +190,16 @@ export const projets = [
         devise              : 'MAD',
         ville               : 'Casablanca',
         adresse             : 'CFC CASA ANFA, Lot 37, Bd Abdellah Cherif',
-        descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
         superficieMin       : '63 m²',
         superficieMax       : '374 m²',
         disponibilites      : null,
-        description         : `${projetDescription}`,
+        description         : "<p>Aeria Park, c'est une expérience unique au cœur de Casablanca : un monde de sérénité, ...</p>" + `${projetDescription}`,
     },
     {
         id          : 'a7806ced-03f1-4197-8b30-00bdd463366b',
-        photos      : [
+        images      : [
             {
                 chemin    : 'assets/images/pages/marketplace/projet5/princ.jpg'
             },
@@ -229,15 +224,14 @@ export const projets = [
         },
         prixMin             : '1 250 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
+        ville               : 'Rabat',
         adresse             : 'Quartier Victoria Bouskoura',
-        descriptionSmall    : "<p>Idéalement situé sur le site historique de l'ancien aéroport d'Anfa, Next House Casa Anfa est le ...</p>",
 
         standing            : 'Moyen standing',
         superficieMin       : '250 m²',
         superficieMax       : '375 m²',
         disponibilites      : 'Lots en Bande - Lots jumelés',
-        description         : `${projetDescription}`,
+        description         : "<p>Lots de terrains pour villas: Vous rêvez de vivre à  la campagne mais n'êtes pas prêts à ...</p>" + `${projetDescription}`,
     },
 
 ];
