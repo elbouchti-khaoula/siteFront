@@ -12,7 +12,6 @@ import { ProjetsMockApi } from './pages/projets/api';
 
 export const mockApiServices = [
     AuthMockApi,
-    
     IconsMockApi,
     MessagesMockApi,
     NavigationMockApi,
