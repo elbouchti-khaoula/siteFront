@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FuseAnimationCurves, FuseAnimationDurations } from '@fuse/animations/defaults';
+import { paramsIn, paramsOut } from '@fuse/animations/defaults';
 
 // -----------------------------------------------------------------------------------------------------
 // @ Fade in
@@ -22,13 +22,10 @@ const fadeIn = trigger('fadeIn',
         transition('void => false', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('void => *',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
     ]
@@ -57,13 +54,10 @@ const fadeInTop = trigger('fadeInTop',
         transition('void => false', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('void => *',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
     ]
@@ -92,13 +86,10 @@ const fadeInBottom = trigger('fadeInBottom',
         transition('void => false', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('void => *',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
     ]
@@ -127,13 +118,10 @@ const fadeInLeft = trigger('fadeInLeft',
         transition('void => false', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('void => *',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
     ]
@@ -162,13 +150,10 @@ const fadeInRight = trigger('fadeInRight',
         transition('void => false', []),
 
         // Transition
-        transition('void => *', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('void => *',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
     ]
@@ -212,13 +197,10 @@ const fadeOut = trigger('fadeOut',
         transition('false => void', []),
 
         // Transition
-        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.exiting}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.acceleration}`
-                }
+                params: paramsOut
             }
         )
     ]
@@ -247,14 +229,9 @@ const fadeOutTop = trigger('fadeOutTop',
         transition('false => void', []),
 
         // Transition
-        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
-            {
-                params: {
-                    duration: `${FuseAnimationDurations.exiting}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.acceleration}`
-                }
-            }
+        transition('* => void',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
+            { params: paramsOut }
         )
     ]
 );
@@ -282,13 +259,10 @@ const fadeOutBottom = trigger('fadeOutBottom',
         transition('false => void', []),
 
         // Transition
-        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.exiting}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.acceleration}`
-                }
+                params: paramsOut
             }
         )
     ]
@@ -317,13 +291,10 @@ const fadeOutLeft = trigger('fadeOutLeft',
         transition('false => void', []),
 
         // Transition
-        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.exiting}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.acceleration}`
-                }
+                params: paramsOut
             }
         )
     ]
@@ -352,13 +323,10 @@ const fadeOutRight = trigger('fadeOutRight',
         transition('false => void', []),
 
         // Transition
-        transition('* => void', animate('{{duration}}ms {{delay}}ms {{curve}}'),
+        transition('* => void',
+            animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.exiting}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.acceleration}`
-                }
+                params: paramsOut
             }
         )
     ]

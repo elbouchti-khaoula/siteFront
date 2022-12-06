@@ -14,3 +14,16 @@ export class FuseAnimationDurations
     static entering = 225;
     static exiting = 195;
 }
+
+
+export const paramsIn = {
+    duration: `${FuseAnimationDurations.entering}`,
+    delay: 0,
+    curve: `${FuseAnimationCurves.deceleration}`
+}
+
+export const paramsOut = {
+    duration: `${FuseAnimationDurations.exiting}`,
+    delay: 0,
+    curve: `${FuseAnimationCurves.acceleration}`
+}

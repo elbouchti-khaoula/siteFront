@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FuseAnimationCurves, FuseAnimationDurations } from '@fuse/animations/defaults';
+import { paramsIn } from '@fuse/animations/defaults';
 
 // -----------------------------------------------------------------------------------------------------
 // @ Expand / collapse
@@ -23,14 +23,9 @@ const expandCollapse = trigger('expandCollapse',
         transition('void <=> *, collapsed <=> expanded',
             animate('{{duration}}ms {{delay}}ms {{curve}}'),
             {
-                params: {
-                    duration: `${FuseAnimationDurations.entering}`,
-                    delay: 0,
-                    curve: `${FuseAnimationCurves.deceleration}`
-                }
+                params: paramsIn
             }
         )
-    ]
-);
+    ]);
 
 export { expandCollapse };

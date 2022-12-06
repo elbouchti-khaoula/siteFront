@@ -44,13 +44,13 @@
                     <div class="flex flex-col flex-auto">
 
                         <!-- Header -->
-                        <div class="flex flex-row py-7 px-5 md:px-7 border-b">
+                        <div class="flex flex-row p-5 md:p-7 border-b">
                             <!-- Title -->
                             <div>
-                                <div class="text-3xl md:text-4xl font-extrabold tracking-tight leading-none">
+                                <div class="text-2xl md:text-4xl font-extrabold tracking-tight leading-none">
                                     Projets immobiliers
                                 </div>
-                                <div class="ml-0.5 font-medium text-secondary">
+                                <div class="ml-0.5 font-semibold text-secondary">
                                     <ng-container *ngIf="projetsCount > 0">
                                         {{projetsCount}}
                                     </ng-container>
@@ -64,16 +64,21 @@
 
                             <!-- Open localisation -->
                             <button
-                                class="ml-auto hidden md:inline-flex"
+                                class="ml-auto hidden md:block rounded-full bg-second-100"
                                 mat-icon-button
                                 (click)="toggleMain()">
-                                <mat-icon [svgIcon]="'heroicons_outline:switch-horizontal'"></mat-icon>
+                                <mat-icon
+                                    [svgIcon]="'heroicons_outline:switch-horizontal'">
+                                </mat-icon>
                             </button>
                             <button
-                                class="ml-auto md:hidden"
+                                class="ml-auto md:hidden rounded-full bg-second-100"
                                 mat-icon-button
                                 (click)="toggleMain()">
-                                <mat-icon class="icon-size-6" [svgIcon]="'maplocation'"></mat-icon>
+                                <mat-icon
+                                    class="icon-size-6 text-primary-700"
+                                    [svgIcon]="'heroicons_solid:location-marker'">
+                                </mat-icon>
                             </button>
                         </div>
 
@@ -86,7 +91,7 @@
                                     <ng-container *ngFor="let projet of projets; let i = index; trackBy: trackByFn">
                                         <!-- Group -->
                                         <ng-container *ngIf="i === 0 || projet.nom.charAt(0) !== projets[i - 1].nom.charAt(0)">
-                                            <div class="z-10 sticky top-0 -mt-px px-6 py-1 border-t border-b font-medium uppercase text-secondary bg-gray-50 dark:bg-gray-900">
+                                            <div class="z-10 sticky top-0 -mt-px px-6 md:py-1 border-t border-b font-semibold uppercase text-secondary bg-gray-50 dark:bg-gray-900">
                                                 {{projet.nom.charAt(0)}}
                                             </div>
                                         </ng-container>
@@ -100,9 +105,9 @@
                                                 <!-- carousel projet images -->
                                                 <div class="flex flex-0 items-center justify-center">
                                                     <ng-container *ngIf="projet.images && projet.images.length > 0">
-                                                        <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-60 overflow-hidden">
+                                                        <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-50 md:h-60 overflow-hidden">
                                                             <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
-                                                                <div *angularCarouselSlide class="h-60">
+                                                                <div *angularCarouselSlide class="h-50 md:h-60">
                                                                     <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
                                                                     <img [src]="image.chemin" class="object-cover h-full" />
                                                                 </div>
@@ -110,7 +115,7 @@
                                                         </angular-carousel>
                                                     </ng-container>
                                                     <ng-container *ngIf="!projet.images || !projet.images.length">
-                                                        <span class="flex items-center justify-center w-full h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                        <span class="flex items-center justify-center w-full h-50 md:h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                             No image
                                                         </span>
                                                     </ng-container>

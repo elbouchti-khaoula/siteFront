@@ -11,21 +11,21 @@
         <div class="flex items-center mx-2">
             <div class="hidden lg:flex">
                 <!-- Light version -->
-                <a [routerLink]="'/home'">
+                <a [routerLink]="'/landing'">
                     <img
                         class="dark:hidden w-40"
                         src="assets/images/logo/logo-text.png"
                         alt="Logo image">
                 </a>
                 <!-- Dark version -->
-                <a [routerLink]="'/home'">
+                <a [routerLink]="'/landing'">
                     <img
                         class="hidden dark:flex w-40"
                         src="assets/images/logo/logo-text-on-dark.png"
                         alt="Logo image">
                 </a>
             </div>
-            <a [routerLink]="'/home'">
+            <a [routerLink]="'/landing'">
                 <img
                     class="flex lg:hidden w-8"
                     src="assets/images/logo/logo.png">
@@ -38,28 +38,28 @@
             <div class="flex items-center mr-2">
                 <div class="hidden lg:flex">
                     <!-- Light version -->
-                    <a [routerLink]="'/home'">
+                    <a href="https://www.attijariwafabank.com/fr" target="blank">
                         <img
                             class="dark:hidden w-40"
                             src="assets/images/logo/logo-awb-text.png"
                             alt="Logo image">
                     </a>
                     <!-- Dark version -->
-                    <a [routerLink]="'/home'">
+                    <a href="https://www.attijariwafabank.com/fr" target="blank">
                         <img
                             class="hidden dark:flex w-40"
                             src="assets/images/logo/logo-awb-text-on-dark.png"
                             alt="Logo image">
                     </a>
                 </div>
-                <a [routerLink]="'/home'">
+                <a href="https://www.attijariwafabank.com/fr" target="blank">
                     <img
                         class="flex lg:hidden w-8"
                         src="assets/images/logo/logo-awb.png">
                 </a>
             </div>
             <languages></languages>
-            <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
+            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
             <!-- <search [appearance]="'bar'"></search> -->
             <!-- <shortcuts></shortcuts> -->
             <!-- <messages></messages> -->
@@ -81,15 +81,19 @@
     </div>
 
     <!-- Content -->
-    <div class="flex flex-col flex-auto">
+    <div class="flex flex-col flex-auto mb-12 md:mb-0">
         <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
              Otherwise, layout changes won't be registered and the view won't be updated! -->
         <router-outlet *ngIf="true"></router-outlet>
     </div>
 
     <!-- Footer -->
-    <div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-second-150 dark:bg-transparent print:hidden">
+    <div class="relative hidden md:flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-second-150 dark:bg-transparent print:hidden">
         <span class="font-medium text-secondary">Wafa Immobilier &copy; {{currentYear}} - Tous droits réservés</span>
+    </div>
+
+    <div class="md:hidden fixed bottom-0 flex flex-0 items-center justify-center w-full h-12 px-4 z-49 border-t bg-primary-500 dark:bg-transparent print:hidden">
+        <span class="font-medium uppercase text-on-primary-500">J'obtiens mon financement en ligne</span>
     </div>
 
 </div>
@@ -108,14 +112,14 @@
         <!-- Logo -->
         <div class="flex items-center h-20 p-6 pb-0">
             <!-- Light version -->
-            <a [routerLink]="'/home'">
+            <a [routerLink]="'/landing'">
                 <img
                     class="dark:hidden w-32"
                     src="assets/images/logo/logo-text.png"
                     alt="Logo image">
             </a>
             <!-- Dark version -->
-            <a [routerLink]="'/home'">
+            <a [routerLink]="'/landing'">
                 <img
                     class="hidden dark:flex w-32"
                     src="assets/images/logo/logo-text-on-dark.png"

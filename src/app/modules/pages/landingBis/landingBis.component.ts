@@ -30,6 +30,8 @@ export class LandingBisComponent implements OnInit
     mensualite: number = 0;
     dateApp =  new Date();
 
+    animationsEnabled: boolean = false;
+    
     // @ViewChild('mushroom') box: ElementRef;
 
     // private slideSubject = new BehaviorSubject<number>(0);
@@ -122,7 +124,7 @@ export class LandingBisComponent implements OnInit
     }
 
 
-
+    // solution 1
     animateBottom(el: HTMLElement) {
         el.style.animation = `anim-bottom 1s ${el.dataset.delay} forwards ease-out`;
     }
@@ -133,6 +135,15 @@ export class LandingBisComponent implements OnInit
 
     animateNone(el: HTMLElement) {
         el.style.animation = 'none';
+    }
+
+    // solution 2
+    onAppear() {
+        this.animationsEnabled = true;
+    }
+
+    onDisappear() {
+        this.animationsEnabled = false;
     }
 
 }

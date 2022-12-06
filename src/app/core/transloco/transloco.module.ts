@@ -10,7 +10,7 @@ import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
             defaultLocale: 'fr-FR',
             langToLocaleMapping: {
               fr: 'fr-FR',
-              ma: 'ar-MA'
+              ar: 'ar-MA'
             }
         }),
     ],
@@ -36,7 +36,7 @@ import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
                         label: 'Français'
                     },
                     {
-                        id   : 'ma',
+                        id   : 'ar',
                         label: 'العربية'
                     }
                 ],

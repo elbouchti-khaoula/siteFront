@@ -53,7 +53,7 @@ export class LanguagesComponent implements OnInit, OnDestroy
             this._updateNavigation(activeLang);
 
             // Update the document direction
-            if (activeLang === 'ma') {
+            if (activeLang === 'ar') {
                 this._document.dir = 'rtl';
                 this.setDirection('rtl');
             } else {
@@ -67,7 +67,7 @@ export class LanguagesComponent implements OnInit, OnDestroy
             // 'en': 'us',
             // 'tr': 'tr',
             'fr':'fr',
-            'ma':'ma'
+            'ar':'ar'
         };
     }
 

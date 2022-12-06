@@ -13,7 +13,6 @@ export class CinqEtapesComponent implements OnInit, OnDestroy
 {
 
     isXsScreen: boolean;
-    animationsEnabled: boolean = false;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     
     /**
@@ -55,13 +54,5 @@ export class CinqEtapesComponent implements OnInit, OnDestroy
      // -----------------------------------------------------------------------------------------------------
      // @ Public methods
      // -----------------------------------------------------------------------------------------------------
-
-    onAppear() {
-        this.animationsEnabled = true;
-    }
-
-    onDisappear() {
-        this.animationsEnabled = false;
-    }
 
 }

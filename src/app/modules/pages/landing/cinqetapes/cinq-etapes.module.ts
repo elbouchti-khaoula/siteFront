@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { VisibilityModule } from '@fuse/directives/visible/visible.module';
 import { SharedModule } from 'app/shared/shared.module';
+import { AnimateAfterAppearModule } from '@fuse/animations/directive/animate-after-appear.module';
 import { CinqEtapesComponent } from './cinq-etapes.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { CinqEtapesComponent } from './cinq-etapes.component';
     ],
     imports     : [
         SharedModule,
-        VisibilityModule
+        AnimateAfterAppearModule
     ],
     exports     : [
         CinqEtapesComponent
