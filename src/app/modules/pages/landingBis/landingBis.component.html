@@ -133,7 +133,7 @@
         <!-- Actions -->
         <section class="flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18 bg-card">
             <div
-                class="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 sm:gap-x-6 w-full max-w-sm md:max-w-3xl -mt-16 sm:-mt-8 md:-mt-24">
+                class="grid grid-cols-2 md:grid-cols-4 max-md:gap-y-6 sm:gap-x-6 w-full max-w-sm md:max-w-3xl -mt-16 sm:-mt-8 md:-mt-24">
                 <!-- Search card -->
                 <div class="translatetop w-40 relative rounded-2xl overflow-hidden bg-second-200">
                     <div class="flex flex-col flex-auto items-center p-6 text-center">
@@ -733,7 +733,7 @@
                 <!-- <div class="flex flex-col items-center sm:flex-row sm:items-start w-full pt-7 pb-10 sm:pt-30"
                     (appear)="onAppear()"
                     (disappear)="onDisappear()">
-                    <div class="relative sm:w-1/5 sm:aspect-square mr-36 sm:mr-0 sm:-mt-18"
+                    <div class="relative sm:w-1/5 sm:aspect-square max-sm:mr-36 sm:-mt-18"
                         *ngIf="animationsEnabled"
                         [@fadeInTop]="{value:!isXsScreen, params: {duration: 1000, delay: 0}}"
                         [@fadeInLeft]="{value:isXsScreen, params: {duration: 1000, delay: 0}}">
@@ -748,7 +748,7 @@
                             <span class="text-sm md:text-xl uppercase font-bold">Je simule<br />mon crédit</span>
                         </div>
                     </div>
-                    <div class="relative sm:w-1/5 sm:aspect-square ml-36 sm:ml-0 -mt-10 sm:mt-20"
+                    <div class="relative sm:w-1/5 sm:aspect-square max-sm:ml-36 -mt-10 sm:mt-20"
                         *ngIf="animationsEnabled"
                         [@fadeInBottom]="{value:!isXsScreen, params: {duration: 1000, delay: 200}}"
                         [@fadeInRight]="{value:isXsScreen, params: {duration: 1000, delay: 200}}">
@@ -763,7 +763,7 @@
                             <span class="text-sm md:text-xl uppercase font-bold">Je fais<br />ma demande</span>
                         </div>
                     </div>
-                    <div class="relative sm:w-1/5 sm:aspect-square mr-36 sm:mr-0 -mt-10 sm:-mt-18"
+                    <div class="relative sm:w-1/5 sm:aspect-square max-sm:mr-36 -mt-10 sm:-mt-18"
                         *ngIf="animationsEnabled"
                         [@fadeInTop]="{value:!isXsScreen, params: {duration: 1000, delay: 400}}"
                         [@fadeInLeft]="{value:isXsScreen, params: {duration: 1000, delay: 400}}">
@@ -778,7 +778,7 @@
                             <span class="text-sm md:text-xl uppercase font-bold">J'obtiens<br />mon accord</span>
                         </div>
                     </div>
-                    <div class="relative sm:w-1/5 sm:aspect-square ml-36 sm:ml-0 -mt-10 sm:mt-20"
+                    <div class="relative sm:w-1/5 sm:aspect-square max-sm:ml-36 -mt-10 sm:mt-20"
                         *ngIf="animationsEnabled"
                         [@fadeInBottom]="{value:!isXsScreen, params: {duration: 1000, delay: 600}}"
                         [@fadeInRight]="{value:isXsScreen, params: {duration: 1000, delay: 600}}">
@@ -793,7 +793,7 @@
                             <span class="text-sm md:text-xl uppercase font-bold">Je justifie<br />mon dossier</span>
                         </div>
                     </div>
-                    <div class="relative sm:w-1/5 sm:aspect-square mr-36 sm:mr-0 -mt-10 sm:-mt-18"
+                    <div class="relative sm:w-1/5 sm:aspect-square max-sm:mr-36 -mt-10 sm:-mt-18"
                         *ngIf="animationsEnabled"
                         [@fadeInTop]="{value:!isXsScreen, params: {duration: 1000, delay: 800}}"
                         [@fadeInLeft]="{value:isXsScreen, params: {duration: 1000, delay: 800}}">

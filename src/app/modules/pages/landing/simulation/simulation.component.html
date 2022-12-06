@@ -15,8 +15,8 @@
         [@slideInLeft]="{value:'', params: {duration: 300}}">
         Montant du crédit
     </div>
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 mt-2"
-        [ngClass]="{'md:col-span-3 md:mt-0': !isChild}"
+    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-2"
+        [ngClass]="{'md:col-span-3': !isChild}"
         *ngIf="hasAppeared1"
         [@slideInRight]="{value:'', params: {duration: 300}}">
         <span class="absolute left-0 top-0 text-xs md:text-sm">0 dhs</span>
@@ -33,8 +33,8 @@
         [@slideInLeft]="{value:'', params: {duration: 300, delay: 200}}">
         Durée
     </div>
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 mt-2"
-        [ngClass]="{'md:col-span-3 md:mt-0': !isChild}"
+    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-2"
+        [ngClass]="{'md:col-span-3': !isChild}"
         *ngIf="hasAppeared1"
         [@slideInRight]="{value:'', params: {duration: 300, delay: 200}}">
         <span class="absolute left-0 top-0 text-xs md:text-sm">1 an</span>
@@ -51,8 +51,8 @@
         [@slideInLeft]="{value:'', params: {duration: 300, delay: 400}}">
         Taux du crédit
     </div>
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 mt-2"
-        [ngClass]="{'md:col-span-3 md:mt-0': !isChild}"
+    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-2"
+        [ngClass]="{'md:col-span-3': !isChild}"
         *ngIf="hasAppeared1"
         [@slideInRight]="{value:'', params: {duration: 300, delay: 400}}">
         <span class="absolute left-0 top-0 text-xs md:text-sm">1 %</span>

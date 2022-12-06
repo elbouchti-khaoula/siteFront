@@ -2,6 +2,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 import { ProjetsService } from '../common/projets.service';
 
@@ -12,6 +13,8 @@ import { ProjetsService } from '../common/projets.service';
 })
 export class ProjetsFilterComponent implements OnInit {
 
+  isScreenSmall: boolean;
+  
   searchForm: UntypedFormGroup;
   searchFormDefaults: any = {
     ville: null,
@@ -28,6 +31,7 @@ export class ProjetsFilterComponent implements OnInit {
    * Constructor
    */
   constructor(
+    private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _projetsService: ProjetsService,
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
@@ -85,6 +89,15 @@ export class ProjetsFilterComponent implements OnInit {
           prixMax: queryParams?.prixMax ? coerceBooleanProperty(queryParams?.prixMax) : this.searchFormDefaults.prixMax
         }, { emitEvent: false });
       });
+
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({matchingAliases}) => {
+
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
+            });
 
   }
 
