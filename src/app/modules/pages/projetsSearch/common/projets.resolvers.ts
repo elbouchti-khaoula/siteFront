@@ -85,7 +85,7 @@ export class ProjetsProjetResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet>
     {
-        return this._projetsService.getProjetById(route.paramMap.get('id')).pipe(
+        return this._projetsService.getProjetById(route.queryParamMap.get('id')).pipe(
                 // Error here means the requested projet is not available
                 catchError((error) => {
 

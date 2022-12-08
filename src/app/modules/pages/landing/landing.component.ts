@@ -75,12 +75,12 @@ export class LandingComponent implements OnInit {
                 ['/projetsSearch'],
                 { queryParams: this.searchForm.value }
             );
+            // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
+            // this._router.navigate(
+            //     ['/projetsSearch'], 
+            //     navigationExtras
+            // );
         }
     }
-
-    // navigateToMarketPlace() {
-    //     const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
-    //     this._router.navigate(['/projetsSearch'], navigationExtras);
-    // }
 
 }

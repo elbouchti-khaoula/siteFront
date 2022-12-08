@@ -3,6 +3,7 @@ import { ProjetsService } from '../common/projets.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Projet } from '../common/projets.types';
 import { fuseAnimations } from '@fuse/animations';
+import { Location } from "@angular/common";
 
 import { SwiperComponent } from "swiper/angular";
 //import Swiper core and required modules
@@ -33,6 +34,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
+        private _location: Location,
         private _projetsService: ProjetsService,
         private _changeDetectorRef: ChangeDetectorRef,
     ) {
@@ -69,6 +71,10 @@ export class ProjetComponent implements OnInit, OnDestroy {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+
+    goBack(): void {
+        this._location.back();
+    }
 
     /**
      * Track by function for ngFor loops

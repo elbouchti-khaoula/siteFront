@@ -1,7 +1,18 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header class="flex flex-col items-center w-full h-[60vh] sm:h-[80vh]">
+    <header class="flex flex-col w-full h-[60vh] sm:h-[80vh] bg-second-100">
+        <!-- back button -->
+        <div class="flex flex-0 items-center h-14 px-6 border-b bg-gray-50 w-full dark:bg-transparent">
+            <a
+                mat-button
+                (click)="goBack()"
+                [color]="'primary'">
+                <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
+                <span class="ml-2 text-md font-semibold">Back to search</span>
+            </a>
+        </div>
+
         <swiper
             [autoplay]="{
                 delay: 2000,
@@ -26,7 +37,7 @@
             class="mySwiper custom-swiper-projet">
 
             <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
-                <ng-template swiperSlide class="h-[400px] md:h-[700px]">
+                <ng-template swiperSlide class="h-[60vh] sm:h-[75vh]">
                     <div class="z-10 absolute inset-0 bg-black/[.4]"></div>
                     <div class="absolute inset-0">
                         <img [src]="image.chemin">
@@ -36,61 +47,59 @@
         </swiper>
     </header>
 
-    <div class="hidden md:inline-flex z-20 flex flex-col items-center px-6 sm:px-16 pb-10 sm:pb-18">
-        <div class="flex flex-row justify-center h-40 w-full max-w-400 shadow-lg rounded-3xl bg-card -mt-24">
-            <div class="flex flex-row items-center justify-between w-[30%]">
-                <div class="flex items-center justify-center border-primary border p-1 h-32 w-1/4">
-                    <img [src]="projet.promoteur.logoPath" class="object-cover" />
-                </div>
-                <div class="flex flex-col w-2/3">
-                    <div class="font-extrabold text-3xl text-primary">
-                        {{projet.nom}}
-                    </div>
-                    <div class="flex items-center">
-                        <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:location-marker'">
-                        </mat-icon>
-                        <div class="ml-3 text-xl font-semibold">{{projet.ville}}</div>
-                    </div>
-                    <button class="mt-3 text-md uppercase w-fit fuse-mat-button-small" mat-flat-button [color]="'primary'">
-                        Faites-vous rappeler
-                    </button>
-                </div>
+    <div class="hidden z-20 md:flex flex-row justify-center h-40 w-full max-w-400 shadow-lg rounded-3xl bg-card -mt-20 mb-10 mx-auto">
+        <div class="flex flex-row items-center justify-between w-[30%]">
+            <div class="flex items-center justify-center border-primary border p-1 h-32 w-1/4">
+                <img [src]="projet.promoteur.logoPath" class="object-cover" />
             </div>
-
-            <div class="ml-5 mr-10 my-auto border-gray-400 border-l-2 h-3/4"></div>
-
-            <div class="flex flex-col justify-evenly w-1/4">
-                <div class="flex flex-row items-center">
-                    <mat-icon class="icon-size-7" [svgIcon]="'mat_outline:home_work'">
+            <div class="flex flex-col w-2/3">
+                <div class="font-extrabold text-3xl text-primary">
+                    {{projet.nom}}
+                </div>
+                <div class="flex items-center">
+                    <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:location-marker'">
                     </mat-icon>
-                    <div class="ml-3 text-lg font-semibold">{{projet.standing}}</div>
+                    <div class="ml-3 text-xl font-semibold">{{projet.ville}}</div>
                 </div>
-                <div class="flex flex-row items-center">
-                    <mat-icon class="icon-size-7" svgIcon="underconstruct">
-                    </mat-icon>
-                    <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
-                </div>
-                <div class="flex flex-row items-center">
-                    <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:heart'">
-                    </mat-icon>
-                    <div class="ml-3 text-lg font-semibold">Ajouter au favoris</div>
-                </div>
-            </div>
-
-            <div class="ml-5 mr-10 my-auto border-gray-400 border-l-2 h-3/4"></div>
-
-            <div class="flex flex-col justify-center">
-                <div class="py-0.5 px-3 rounded-full text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                    à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
-                </div>
-                <button class="fuse-mat-button-large mt-5 uppercase" mat-flat-button [color]="'primary'">
-                    Obtenez votre financement
+                <button class="mt-3 text-md uppercase w-fit fuse-mat-button-small" mat-flat-button [color]="'primary'">
+                    Faites-vous rappeler
                 </button>
             </div>
         </div>
+
+        <div class="ml-5 mr-10 my-auto border-gray-400 border-l-2 h-3/4"></div>
+
+        <div class="flex flex-col justify-evenly w-1/4">
+            <div class="flex flex-row items-center">
+                <mat-icon class="icon-size-7" [svgIcon]="'mat_outline:home_work'">
+                </mat-icon>
+                <div class="ml-3 text-lg font-semibold">{{projet.standing}}</div>
+            </div>
+            <div class="flex flex-row items-center">
+                <mat-icon class="icon-size-7" svgIcon="underconstruct">
+                </mat-icon>
+                <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
+            </div>
+            <div class="flex flex-row items-center">
+                <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:heart'">
+                </mat-icon>
+                <div class="ml-3 text-lg font-semibold">Ajouter au favoris</div>
+            </div>
+        </div>
+
+        <div class="ml-5 mr-10 my-auto border-gray-400 border-l-2 h-3/4"></div>
+
+        <div class="flex flex-col justify-center">
+            <div class="py-0.5 px-3 rounded-full text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
+            </div>
+            <button class="fuse-mat-button-large mt-5 uppercase" mat-flat-button [color]="'primary'">
+                Obtenez votre financement
+            </button>
+        </div>
     </div>
 
-    <div class="md:hidden z-20 flex flex-col px-6 sm:px-16 pb-10 sm:pb-18 w-full -mt-14">
+    <div class="md:hidden z-20 flex flex-col w-full px-6 sm:px-16 pb-10 -mt-15">
         <div class="w-full flex flex-row items-center space-x-3">
             <div class="flex items-center justify-center border-primary border p-1 h-30 w-28">
                 <img [src]="projet.promoteur.logoPath" class="object-cover" />

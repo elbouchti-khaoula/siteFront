@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Projet } from '../../common/projets.types';
 import { ProjetsService } from '../../common/projets.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { MatDrawerContainer } from '@angular/material/sidenav';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
     selector: 'projets',
@@ -10,7 +12,11 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
     styleUrls: ['./projets.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProjetsComponent implements OnInit, OnDestroy {
+export class ProjetsComponent implements
+    OnInit,
+    OnDestroy,
+    AfterViewInit
+{
     drawerMainOpened: boolean = true;
     drawerMainMode: 'over' | 'side' = 'side';
 
@@ -19,11 +25,13 @@ export class ProjetsComponent implements OnInit, OnDestroy {
 
     projets$: Observable<Projet[]>;
     projets: Projet[];
-
     projetsCount: number = 0;
-
     filteredProjets: Projet[];
     selectedProjet: Projet;
+
+    private previousUrl: string;
+
+    @ViewChild('drawerContainerProjets') drawerContainerProjets: MatDrawerContainer;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -33,8 +41,34 @@ export class ProjetsComponent implements OnInit, OnDestroy {
     constructor(
         private _projetsService: ProjetsService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _fuseMediaWatcherService: FuseMediaWatcherService
+        private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private _router: Router,
     ) {
+        this._router.events
+            .pipe(
+                takeUntil(this._unsubscribeAll),
+                filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+                map(event => this.refineURL(event.url) === 'projetsSearch')
+            )
+            .subscribe((_ev: any) => {
+                this.previousUrl = this._router.getCurrentNavigation()?.previousNavigation?.initialUrl?.toString();
+                // const refineUrl = this.refineURL(this.previousUrl);
+                // if (refineUrl.localeCompare("projetsSearch") === 0) {
+                //     console.log("+-+-+- here 2 ev.url === this.previousUrl", 'projetSearch', refineUrl, this.previousUrl);
+                // } else {
+                //     console.log("+-+-+- here 3 ev.url != this.previousUrl", 'projetSearch', refineUrl, this.previousUrl);
+                // }
+            });
+    }
+
+    refineURL(currURL: string): string {
+        // Get the URL between what's after '/' and befor '?' 
+        // 1- get URL after'/'
+        var afterDomain = currURL?.substring(currURL.lastIndexOf('/') + 1);
+        // 2- get the part before '?'
+        var beforeQueryString = afterDomain?.split("?")[0];
+
+        return beforeQueryString;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -79,6 +113,24 @@ export class ProjetsComponent implements OnInit, OnDestroy {
             });
     }
 
+    ngAfterViewInit() {
+        if ("projetDetails".localeCompare(this.refineURL(this.previousUrl)) === 0) {
+            const topval = Number(localStorage.getItem('projetsPosition'));
+            // console.log("+-+-- topval navend", topval);
+            this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop = topval;
+        } else {
+            localStorage.setItem('projetsPosition', "0");
+            this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop = 0;
+        }
+
+        this.drawerContainerProjets.scrollable.elementScrolled()
+            .subscribe((_scrolled: Event) => {
+                const pos = this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop;
+                // console.log('+-+-+- pos', pos);
+                localStorage.setItem('projetsPosition', pos.toString());
+            });
+    }
+
     /**
      * On destroy
      */
@@ -105,21 +157,6 @@ export class ProjetsComponent implements OnInit, OnDestroy {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Filter the projets
-     *
-     * @param query
-     */
-    // filterProjets(query: string): void {
-    //     // Reset the filter
-    //     if (!query) {
-    //         this.filteredProjets = this.projets;
-    //         return;
-    //     }
-
-    //     this.filteredProjets = this.projets.filter(projet => projet.contact.name.toLowerCase().includes(query.toLowerCase()));
-    // }
 
     toggleMain(): void
     {

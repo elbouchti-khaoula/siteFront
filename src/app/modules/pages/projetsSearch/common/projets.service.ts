@@ -101,7 +101,7 @@ export class ProjetsService
             map((projets) => {
 
                 // Find the projet
-                const projet = projets.find(item => item.id === id) || null;
+                const projet = projets?.find(item => item.id === id) || null;
 
                 // Update the projet
                 this._projet.next(projet);

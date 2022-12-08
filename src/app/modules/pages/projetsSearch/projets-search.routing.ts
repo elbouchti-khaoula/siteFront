@@ -26,7 +26,7 @@ export const projetsSearchRoutes: Route[] = [
         ]
     },
     {
-        path     : 'projet/:id',
+        path     : 'projetDetails',
         component: ProjetComponent,
         resolve: {
             projet: ProjetsProjetResolver

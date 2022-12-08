@@ -4,7 +4,7 @@
         class="flex-auto" 
         [hasBackdrop]="false">
 
-        <!-- Drawer Main -->
+        <!-- Main Drawer overlay -->
         <mat-drawer class="w-full md:w-5/12 lg:border-r lg:shadow-none dark:bg-gray-900"
             [autoFocus]="false"
             [position]="'end'"
@@ -16,29 +16,30 @@
 
         </mat-drawer>
 
-        <!-- Drawer content -->
+        <!-- Main Drawer Content -->
         <mat-drawer-content>
 
             <mat-drawer-container
                 class="flex-auto h-full bg-card dark:bg-transparent"
-                [hasBackdrop]="true">
+                [hasBackdrop]="true"
+                #drawerContainerProjets>
 
-                <!-- Drawer -->
+                <!-- Sub Drawer overlay  -->
                 <mat-drawer
                     class="w-full sm:w-3/4 lg:border-r lg:shadow-none dark:bg-gray-900"
                     [autoFocus]="false"
                     [(opened)]="drawerChildOpened"
-                    #drawerProjets>
+                    #drawerContact>
 
                     <!-- Contact -->
                     <ng-container *ngIf="drawerChildComponent === 'contact'">
-                        <projet-contact [drawer]="drawerProjets"></projet-contact>
+                        <projet-contact [drawer]="drawerContact"></projet-contact>
                     </ng-container>
 
                 </mat-drawer>
 
-                <!-- Drawer content -->
-                <mat-drawer-content class="flex flex-auto">
+                <!-- Sub Drawer content -->
+                <div class="flex flex-auto">
                     
                     <!-- Main -->
                     <div class="flex flex-col flex-auto">
@@ -99,7 +100,8 @@
                                         <!-- Projet -->
                                         <a class="z-20 flex items-center px-6 py-4 cursor-pointer border-b"
                                             [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedProjet || selectedProjet.id !== projet.id,
-                                                            'bg-second-100 dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}" (click)="selectProjet(projet)">
+                                                         'bg-second-100 dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
+                                            (click)="selectProjet(projet)">
 
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
                                                 <!-- carousel projet images -->
@@ -156,11 +158,16 @@
                                                         [innerHTML]="projet.descriptionSmall"></div>
 
                                                     <div class="grid grid-cols-2 gap-4 mx-auto w-full">
-                                                        <button class="flex-auto" mat-flat-button [color]="'primary'"
-                                                            [routerLink]="['/projetsSearch/projet/', projet.id]">
+                                                        <button class="flex-auto"
+                                                            mat-flat-button 
+                                                            [color]="'primary'"
+                                                            [routerLink]="['/projetsSearch/projetDetails']"
+                                                            [queryParams]="{id: projet.id}">
                                                             En savoir plus
                                                         </button>
-                                                        <button class="flex-auto" mat-stroked-button [color]="'primary'"
+                                                        <button class="flex-auto"
+                                                            mat-stroked-button 
+                                                            [color]="'primary'"
                                                             (click)="openContact()">
                                                             Contacter
                                                         </button>
@@ -185,7 +192,7 @@
                         </ng-template>
                     </div>
 
-                </mat-drawer-content>
+                </div>
 
             </mat-drawer-container>
 
