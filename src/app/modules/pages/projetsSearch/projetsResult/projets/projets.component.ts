@@ -4,7 +4,7 @@ import { Projet } from '../../common/projets.types';
 import { ProjetsService } from '../../common/projets.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { MatDrawerContainer } from '@angular/material/sidenav';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
     selector: 'projets',
@@ -30,6 +30,7 @@ export class ProjetsComponent implements
     selectedProjet: Projet;
 
     private previousUrl: string;
+    private fragment: string;
 
     @ViewChild('drawerContainerProjets') drawerContainerProjets: MatDrawerContainer;
 
@@ -43,6 +44,7 @@ export class ProjetsComponent implements
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _router: Router,
+        private _route: ActivatedRoute
     ) {
         this._router.events
             .pipe(
@@ -52,6 +54,7 @@ export class ProjetsComponent implements
             )
             .subscribe((_ev: any) => {
                 this.previousUrl = this._router.getCurrentNavigation()?.previousNavigation?.initialUrl?.toString();
+                // console.log("+-+- previousUrl", this.previousUrl);
                 // const refineUrl = this.refineURL(this.previousUrl);
                 // if (refineUrl.localeCompare("projetsSearch") === 0) {
                 //     console.log("+-+-+- here 2 ev.url === this.previousUrl", 'projetSearch', refineUrl, this.previousUrl);
@@ -79,6 +82,12 @@ export class ProjetsComponent implements
      * On init
      */
     ngOnInit(): void {
+        this._route.fragment
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(fragment => {
+                this.fragment = fragment;
+            });
+
         // Get the projets
         this.projets$ = this._projetsService.projets$;
         this._projetsService.projets$
@@ -114,11 +123,19 @@ export class ProjetsComponent implements
     }
 
     ngAfterViewInit() {
+        setTimeout(() => {
+            try {
+                document.querySelector('#' + this.fragment).scrollIntoView();
+            } catch (e) {
+            }
+        });
+
         if ("projetDetails".localeCompare(this.refineURL(this.previousUrl)) === 0) {
             const topval = Number(localStorage.getItem('projetsPosition'));
-            // console.log("+-+-- topval navend", topval);
             this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop = topval;
+            // console.log("+-+-- topval projetDetails", topval);
         } else {
+            // console.log("+-+-- topval other");
             localStorage.setItem('projetsPosition', "0");
             this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop = 0;
         }

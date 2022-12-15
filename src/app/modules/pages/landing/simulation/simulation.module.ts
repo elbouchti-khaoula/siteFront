@@ -3,8 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
-import { VisibilityModule } from '@fuse/directives/visible/visible.module';
-
+import { AnimateAfterAppearModule } from '@fuse/animations/directive/animate-after-appear.module';
 import { SimulationComponent } from './simulation.component';
 
 @NgModule({
@@ -16,7 +15,7 @@ import { SimulationComponent } from './simulation.component';
         MatButtonModule,
         MatSliderModule,
         SharedModule,
-        VisibilityModule
+        AnimateAfterAppearModule
     ],
     exports     : [
         SimulationComponent

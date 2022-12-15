@@ -1,12 +1,10 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-import { fuseAnimations } from '@fuse/animations';
 
 @Component({
     selector       : 'simulation',
     templateUrl    : './simulation.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    animations: fuseAnimations
+    encapsulation  : ViewEncapsulation.None
 })
 export class SimulationComponent
 {
@@ -16,9 +14,6 @@ export class SimulationComponent
     mensualite: string = "0";
 
     @Input() isChild: boolean = false;
-
-    hasAppeared1: boolean = false;
-    hasAppeared2: boolean = false;
 
     /**
      * Constructor
@@ -30,21 +25,6 @@ export class SimulationComponent
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    onAppear1() {
-        this.hasAppeared1 = true;
-        // console.log("I have appeared! 1");   // This is a good idea for debugging
-    }
-    onDisappear1() {
-        this.hasAppeared1 = false;
-    }
-
-    onAppear2() {
-        this.hasAppeared2 = true;
-    }
-    onDisappear2() {
-        this.hasAppeared2 = false;
-    }
-
     updateMontant(event: MatSliderChange) {
         this.montantValue = event.value;
         this.mensualite = this.simulateur();

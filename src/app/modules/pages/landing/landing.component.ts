@@ -5,10 +5,11 @@ import { ViewportScroller } from '@angular/common';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
-    selector: 'landing',
-    templateUrl: './landing.component.html',
-    encapsulation: ViewEncapsulation.None,
-    animations: fuseAnimations
+    selector        : 'landing',
+    templateUrl     : './landing.component.html',
+    styleUrls       : ['./landing.component.scss'],
+    encapsulation   : ViewEncapsulation.None,
+    animations      : fuseAnimations
 })
 
 export class LandingComponent implements OnInit {
@@ -73,7 +74,7 @@ export class LandingComponent implements OnInit {
             // Add query params using the router
             this._router.navigate(
                 ['/projetsSearch'],
-                { queryParams: this.searchForm.value }
+                { fragment: 'projetsId', queryParams: this.searchForm.value }
             );
             // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
             // this._router.navigate(

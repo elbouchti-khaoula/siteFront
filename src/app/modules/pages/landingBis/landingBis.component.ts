@@ -31,7 +31,10 @@ export class LandingBisComponent implements OnInit
     dateApp =  new Date();
 
     animationsEnabled: boolean = false;
-    
+
+    hasAppeared1: boolean = false;
+    hasAppeared2: boolean = false;
+
     // @ViewChild('mushroom') box: ElementRef;
 
     // private slideSubject = new BehaviorSubject<number>(0);
@@ -86,6 +89,24 @@ export class LandingBisComponent implements OnInit
     //     return this._translocoLocaleService.getLocale();
     // }
 
+    // -----------------------------------------------------------------------------------------------------
+    // @ simulation
+    // -----------------------------------------------------------------------------------------------------
+    onAppear1() {
+        this.hasAppeared1 = true;
+        // console.log("I have appeared! 1");   // This is a good idea for debugging
+    }
+    onDisappear1() {
+        this.hasAppeared1 = false;
+    }
+
+    onAppear2() {
+        this.hasAppeared2 = true;
+    }
+    onDisappear2() {
+        this.hasAppeared2 = false;
+    }
+
     simulateur() {
         var montant = this.montantValue;
         var duree = this.dureeValue * 12
@@ -123,7 +144,9 @@ export class LandingBisComponent implements OnInit
         return `  ${value} %  `;
     }
 
-
+    // -----------------------------------------------------------------------------------------------------
+    // @ cinq étapes
+    // -----------------------------------------------------------------------------------------------------
     // solution 1
     animateBottom(el: HTMLElement) {
         el.style.animation = `anim-bottom 1s ${el.dataset.delay} forwards ease-out`;
