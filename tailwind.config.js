@@ -11,10 +11,10 @@ const generatePalette = require(path.resolve(__dirname, ('src/@fuse/tailwind/uti
  */
 const customPalettes = {
     brand: generatePalette('#2196F3'),
-    bordeau: generatePalette('#b4272f'), // (#febe86/#b2282f/#b4272f : foncé)  autre: #a43734
-    beige: generatePalette('#f9bc85'), // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
-    roug: generatePalette('#e86441'), // #e86441 site, #f55b3b logo
-    orang: generatePalette('#f5c000'), //#f5c000 site, #fcbd00 logo
+    bordeau: generatePalette('#b4272f'),    // (#febe86/#b2282f/#b4272f : foncé)  autre: #a43734
+    beige: generatePalette('#f9bc85'),      // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
+    roug: generatePalette('#e86441'),       // #e86441 site, #f55b3b logo
+    orang: generatePalette('#f5c000'),      //#f5c000 site, #fcbd00 logo
 };
 
 /**
@@ -23,12 +23,18 @@ const customPalettes = {
 const themes = {
     // Default theme is required for theming system to work correctly
     'default': {
+        // AWB
+        // primary: customPalettes.roug,
+        // second : customPalettes.orang,
+
+        // WIMMO
+        primary : customPalettes.bordeau,
+        second : customPalettes.beige,
+
         // primary  : {
         //     ...colors.indigo,
         //     DEFAULT: colors.indigo[600]
         // },
-        primary: customPalettes.roug,
-        second : customPalettes.orang,
         accent   : {
             ...colors.slate,
             DEFAULT: colors.slate[800]
@@ -40,6 +46,10 @@ const themes = {
         'on-warn': {
             500: colors.red['50']
         }
+    },
+    'orange'  : {
+        primary: customPalettes.roug,
+        second : customPalettes.orang,
     },
     'bordeau'  : {
         primary : customPalettes.bordeau,
@@ -151,6 +161,7 @@ const config = {
                 '26': '6.5rem',
                 '30': '7.5rem',
                 '50': '12.5rem',
+                '68': '17rem',
                 '90': '22.5rem',
 
                 // Bigger values

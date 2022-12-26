@@ -35,7 +35,7 @@ export interface AppConfig
  * "Themes" are required for Tailwind to generate themes.
  */
 export const appConfig: AppConfig = {
-    layout : 'modern',
+    layout : 'classic',
     scheme : 'light',
     screens: {
         sm: '600px',
@@ -47,7 +47,7 @@ export const appConfig: AppConfig = {
     themes : [
         {
             id  : 'theme-default',
-            name: 'AWB'
+            name: 'WIMO'
         },
         {
             id  : 'theme-brand',
@@ -57,9 +57,13 @@ export const appConfig: AppConfig = {
             id  : 'theme-teal',
             name: 'Teal'
         },
+        // {
+        //     id  : 'theme-bordeau',
+        //     name: 'WIMO'
+        // },
         {
-            id  : 'theme-bordeau',
-            name: 'WIMO'
+            id  : 'theme-orange',
+            name: 'AWB'
         },
         {
             id  : 'theme-rose',

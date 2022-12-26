@@ -27,8 +27,8 @@
             </div>
             <a [routerLink]="'/landing'">
                 <img
-                    class="flex lg:hidden w-8"
-                    src="assets/images/logo/logo.png">
+                    class="flex lg:hidden h-8"
+                    src="assets/images/logo/logo-text.png">
             </a>
         </div>
 
@@ -54,13 +54,13 @@
                 </div>
                 <a href="https://www.attijariwafabank.com/fr" target="blank">
                     <img
-                        class="flex lg:hidden w-8"
-                        src="assets/images/logo/logo-awb.png">
+                        class="flex lg:hidden h-8"
+                        src="assets/images/logo/logo-awb-text.png">
                 </a>
             </div>
-            <languages></languages>
-            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
-            <!-- <search [appearance]="'bar'"></search> -->
+            <languages class="hidden md:block"></languages>
+            <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
+            <search class="hidden md:block" [appearance]="'bar'"></search>
             <!-- <shortcuts></shortcuts> -->
             <!-- <messages></messages> -->
             <!-- <notifications></notifications> -->
@@ -70,7 +70,7 @@
                 (click)="quickChat.toggle()">
                 <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
             </button> -->
-            <user></user>
+            <user class="hidden md:block"></user>
             <!-- Navigation toggle button -->
             <button
                 mat-icon-button
@@ -88,8 +88,8 @@
     </div>
 
     <!-- Footer -->
-    <div class="relative hidden md:flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-second-150 dark:bg-transparent print:hidden">
-        <span class="font-medium text-secondary">Wafa Immobilier &copy; {{currentYear}} - Tous droits réservés</span>
+    <div class="relative hidden md:flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 bg-stone-900 dark:bg-transparent print:hidden">
+        <span class="font-medium text-[#7b7b7b]">Wafa Immobilier &copy; {{currentYear}} - Tous droits réservés</span>
     </div>
 
     <div class="md:hidden fixed bottom-0 flex flex-0 items-center justify-center w-full h-12 px-4 z-49 border-t bg-primary-500 dark:bg-transparent print:hidden">
@@ -101,7 +101,7 @@
 <!-- Navigation -->
 <!-- [mode]="isScreenSmall ? 'over' : 'side'" [opened]="!isScreenSmall" -->
 <fuse-vertical-navigation
-    class="dark bg-accent print:hidden"
+    class="dark bg-stone-700 print:hidden"
     [mode]="'over'"
     [name]="'mainNavigation'"
     [navigation]="navigation.default"

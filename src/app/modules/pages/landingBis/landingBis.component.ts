@@ -1,7 +1,9 @@
-import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatSliderChange } from '@angular/material/slider';
 import { fuseAnimations } from '@fuse/animations';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { Subject, takeUntil } from 'rxjs';
 // import { formatNumber } from '@angular/common';
 // import { BehaviorSubject } from 'rxjs'
 // import { default as routerAnimations} from '../../../route-animations';
@@ -20,7 +22,7 @@ import { fuseAnimations } from '@fuse/animations';
     // animations      : [routerAnimations('routeAnimations')],
     animations      : fuseAnimations
 })
-export class LandingBisComponent implements OnInit
+export class LandingBisComponent implements OnInit, OnDestroy
 {
     searchForm: UntypedFormGroup;
     isOpened = false;
@@ -28,7 +30,7 @@ export class LandingBisComponent implements OnInit
     dureeValue: number = 1;
     tauxValue: number = 1;
     mensualite: number = 0;
-    dateApp =  new Date();
+    dateApp = new Date();
 
     animationsEnabled: boolean = false;
 
@@ -43,11 +45,15 @@ export class LandingBisComponent implements OnInit
     //     this.slideSubject.next(event.value);
     // }
 
+    isXsScreen: boolean;
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
+
     /**
      * Constructor
      */
     constructor(
-        private _formBuilder: UntypedFormBuilder
+        private _formBuilder: UntypedFormBuilder,
+        private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
     }
 
@@ -71,6 +77,23 @@ export class LandingBisComponent implements OnInit
             prixMax: null
         });
         this.simulateur();
+
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({ matchingAliases }) => {
+
+                // Check if the screen is small
+                this.isXsScreen = !matchingAliases.includes('sm');
+            });
+    }
+
+    /**
+     * On destroy
+     */
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next(null);
+        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

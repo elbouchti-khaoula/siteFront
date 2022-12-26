@@ -13,7 +13,7 @@ export class SimulationComponent
     tauxValue: number = 1;
     mensualite: string = "0";
 
-    @Input() isChild: boolean = false;
+    @Input() isFull: boolean = false;
 
     /**
      * Constructor

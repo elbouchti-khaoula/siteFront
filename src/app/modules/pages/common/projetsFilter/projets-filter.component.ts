@@ -1,10 +1,10 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from '../common/projets.service';
+import { ProjetsService } from '../../projetsSearch/common/projets.service';
 
 @Component({
   selector: 'projets-filter',
@@ -14,7 +14,8 @@ import { ProjetsService } from '../common/projets.service';
 export class ProjetsFilterComponent implements OnInit {
 
   isScreenSmall: boolean;
-  
+  @Input() parentComponent: 'landing' | 'projet-search';
+
   searchForm: UntypedFormGroup;
   searchFormDefaults: any = {
     ville: null,
@@ -90,14 +91,14 @@ export class ProjetsFilterComponent implements OnInit {
         }, { emitEvent: false });
       });
 
-        // Subscribe to media changes
-        this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
+    // Subscribe to media changes
+    this._fuseMediaWatcherService.onMediaChange$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(({ matchingAliases }) => {
 
-                // Check if the screen is small
-                this.isScreenSmall = !matchingAliases.includes('md');
-            });
+        // Check if the screen is small
+        this.isScreenSmall = !matchingAliases.includes('md');
+      });
 
   }
 
@@ -119,17 +120,18 @@ export class ProjetsFilterComponent implements OnInit {
    */
   reset(): void {
     this.searchForm.reset(this.searchFormDefaults);
-    this._router.navigate(['./'], {
-      queryParams: {},
-      relativeTo: this._activatedRoute
-    });
+    if (this.parentComponent === 'projet-search') {
+      this._router.navigate(['./'], {
+        queryParams: {},
+        relativeTo: this._activatedRoute
+      });
+    }
   }
 
   /**
    * Perform the search
    */
   search(): void {
-
     this._projetsService.searchProjets(this.searchForm.value).subscribe(() => {
 
       // Add query params using the router
@@ -142,6 +144,24 @@ export class ProjetsFilterComponent implements OnInit {
         }
       );
     });
+  }
+
+  /**
+     * Perform the search and navigate
+     */
+  navigateToMarketPlace(): void {
+    if (!(this.searchForm.pristine || this.searchForm.invalid)) {
+      // Add query params using the router
+      this._router.navigate(
+        ['/projetsSearch'],
+        { fragment: 'projetsId', queryParams: this.searchForm.value }
+      );
+      // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
+      // this._router.navigate(
+      //     ['/projetsSearch'], 
+      //     navigationExtras
+      // );
+    }
   }
 
 }

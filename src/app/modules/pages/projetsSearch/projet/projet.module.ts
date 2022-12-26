@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'app/shared/shared.module';
 import { SwiperModule } from 'swiper/angular';
 import { MatDividerModule } from '@angular/material/divider';
-import { SimulationModule } from 'app/modules/pages/landing/simulation/simulation.module';
+import { SimulationModule } from 'app/modules/pages/common/simulation/simulation.module';
 import { ProjetComponent } from './projet.component';
 
 @NgModule({

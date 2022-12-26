@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
-import { AnimateAfterAppearModule } from '@fuse/animations/directive/animate-after-appear.module';
+import { MatIconModule } from '@angular/material/icon';
 import { CinqEtapesComponent } from './cinq-etapes.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { CinqEtapesComponent } from './cinq-etapes.component';
     ],
     imports     : [
         SharedModule,
-        AnimateAfterAppearModule
+        MatIconModule,
     ],
     exports     : [
         CinqEtapesComponent

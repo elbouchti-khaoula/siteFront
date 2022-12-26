@@ -2,9 +2,9 @@
 
     <!-- Header -->
     <div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/marketplace/header.jpg');"
-        class="relative flex flex-col items-center justify-center px-6 sm:px-16 md:pt-20 w-full min-h-[50vh] sm:min-h-[75vh] bg-fixed bg-center bg-cover">
+        class="relative flex flex-col items-center justify-center px-6 sm:px-16 md:pt-20 w-full min-h-[50vh] sm:min-h-[77vh] md:bg-fixed bg-center bg-cover">
 
-        <div class="w-full max-w-7xl">
+        <div class="w-full max-w-360">
             <div class="text-xl md:text-5xl font-bold uppercase tracking-tight leading-tight text-white">
                 Wafa immobilier vous<br />
                 accompagne dans la recherche<br />
@@ -18,7 +18,9 @@
         </div>
     </div>
 
-    <projets-filter></projets-filter>
+    <div class="relative mx-auto w-full max-w-sm md:max-w-360 max-sm:px-6 py-5 max-md:-mt-20">
+        <projets-filter [parentComponent]="'projet-search'"></projets-filter>
+    </div>
 
     <router-outlet></router-outlet>
 

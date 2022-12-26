@@ -80,7 +80,7 @@ export const projets = [
         },
         prixMin             : '4 525 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
+        ville               : 'Tanger',
         adresse             : 'Quartier Casa Anfa boulevard des clubs',
 
         standing            : 'Moyen standing',
@@ -116,14 +116,14 @@ export const projets = [
         },
         prixMin             : '1 000 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
+        ville               : 'Rabat',
         adresse             : 'Angle Bd Tan tan et Bd ben Barka. Bourgogne',
 
         standing            : 'Moyen standing',
         superficieMin       : '25 m²',
         superficieMax       : '151 m²',
         disponibilites      : '34 livrables',
-        description         : "<p>Au cœur de Casablanca, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>" + `${projetDescription}`,
+        description         : "<p>Au cœur de Rabat, La Cité Des Arts est une résidence qui offre un espace de vie unique. ...</p>" + `${projetDescription}`,
     },
     {
         id          : '9d3f0e7f-dcbd-4e56-a5e8-87b8154e9edf',
@@ -152,7 +152,7 @@ export const projets = [
         },
         prixMin             : '1 070 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
+        ville               : 'Marrackech',
         adresse             : '21, rue Hafid Ibrahim. Quartier Gauthier',
 
         standing            : 'Moyen standing',
@@ -224,7 +224,7 @@ export const projets = [
         },
         prixMin             : '1 250 000,00',
         devise              : 'MAD',
-        ville               : 'Rabat',
+        ville               : 'Agadir',
         adresse             : 'Quartier Victoria Bouskoura',
 
         standing            : 'Moyen standing',

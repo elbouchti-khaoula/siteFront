@@ -31,10 +31,24 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/SURVEY.svg")
         );
         this.matIconRegistry.addSvgIcon(
-            "agentc",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/AGENT.svg")
+            "timeline",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/TIMELINE.svg")
         );
-        
+
+        this.matIconRegistry.addSvgIcon(
+            "delivery-time",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/DELIVERY-TIME.svg")
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            "checklist",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CHECKLIST.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "finance",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/FINANCE.svg")
+        );
+
         // used in projet
         this.matIconRegistry.addSvgIcon(
             "underconstruct",

@@ -14,6 +14,7 @@ import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CarouselModule } from '@marcreichel/angular-carousel';
 import { VisibilityModule } from '@fuse/directives/visible/visible.module';
+// import { AnimateAfterAppearModule } from '@fuse/animations/directive/animate-after-appear.module';
 // import { OnVisibleDirective, OnHiddenDirective } from '@fuse/directives/visible/visible.directive';
 // import { MatInputCounterModule } from '@angular-material-extensions/input-counter';
 // import { SwiperModule } from 'swiper/angular';
@@ -59,6 +60,7 @@ import { VisibilityModule } from '@fuse/directives/visible/visible.module';
         TranslocoLocaleModule,
         CarouselModule,
         VisibilityModule
+        // AnimateAfterAppearModule
         // MatInputCounterModule,
         // SwiperModule
     ]

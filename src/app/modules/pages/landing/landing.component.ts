@@ -1,28 +1,27 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { ViewportScroller } from '@angular/common';
-import { NavigationExtras, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
-    selector        : 'landing',
-    templateUrl     : './landing.component.html',
-    styleUrls       : ['./landing.component.scss'],
-    encapsulation   : ViewEncapsulation.None,
-    animations      : fuseAnimations
+    selector: 'landing',
+    templateUrl: './landing.component.html',
+    styleUrls: ['./landing.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations: fuseAnimations
 })
 
 export class LandingComponent implements OnInit {
-    searchForm: UntypedFormGroup;
-    isOpened = false;
+    isScreenSmall: boolean;
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
      * Constructor
      */
     constructor(
-        private _formBuilder: UntypedFormBuilder,
+        private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _viewScroller: ViewportScroller,
-        private _router: Router
     ) {
     }
 
@@ -33,23 +32,14 @@ export class LandingComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
-        // Create the form
-        this.searchForm = this._formBuilder.group(
-            {
-                ville: [null],
-                quartier: [null],
-                typeBien: [null],
-                prixMin: [null],
-                prixMax: [null]
-            },
-            { validators: this.atLeastOneValue }
-        );
-    }
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({ matchingAliases }) => {
 
-    atLeastOneValue(form: FormGroup): ValidationErrors {
-        return Object.keys(form.value).some(key => !!form.value[key]) ?
-            null :
-            { atLeastOneValue: '* Veuillez saisir au moins un critère' };
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
+            });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -57,31 +47,6 @@ export class LandingComponent implements OnInit {
     // -----------------------------------------------------------------------------------------------------
     scrollTo(tag: string) {
         this._viewScroller.scrollToAnchor(tag);
-    }
-
-    /**
-     * Reset the search form using the default
-     */
-    reset(): void {
-        this.searchForm.reset();
-    }
-
-    /**
-     * Perform the search
-     */
-    navigateToMarketPlace(): void {
-        if (!(this.searchForm.pristine || this.searchForm.invalid)) {
-            // Add query params using the router
-            this._router.navigate(
-                ['/projetsSearch'],
-                { fragment: 'projetsId', queryParams: this.searchForm.value }
-            );
-            // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
-            // this._router.navigate(
-            //     ['/projetsSearch'], 
-            //     navigationExtras
-            // );
-        }
     }
 
 }

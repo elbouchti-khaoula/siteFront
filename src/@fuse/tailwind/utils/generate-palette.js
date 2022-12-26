@@ -19,11 +19,17 @@ const generatePalette = (config) =>
         200: null,
         250: null,
         300: null,
+        350: null,
         400: null,
+        450: null,
         500: null,
+        550: null,
         600: null,
+        650: null,
         700: null,
+        750: null,
         800: null,
+        850: null,
         900: null
     };
 
@@ -92,11 +98,17 @@ const generatePalette = (config) =>
         200: scale(0.2).hex(),
         250: scale(0.25).hex(),
         300: scale(0.3).hex(),
+        350: scale(0.35).hex(),
         400: scale(0.4).hex(),
+        450: scale(0.45).hex(),
         500: scale(0.5).hex(),
+        550: scale(0.55).hex(),
         600: scale(0.6).hex(),
+        650: scale(0.65).hex(),
         700: scale(0.7).hex(),
+        750: scale(0.75).hex(),
         800: scale(0.8).hex(),
+        850: scale(0.85).hex(),
         900: scale(0.9).hex()
     };
 };
