@@ -1,9 +1,3 @@
-<!-- 'mx-auto max-w-md': (parentComponent === 'landing' && !isScreenSmall),
- 'w-full': (parentComponent === 'landing' && isScreenSmall) -->
-
- <!-- [ngClass]="{'w-full md:max-w-360': parentComponent === 'projet-search',
- 'w-full': parentComponent === 'landing'}"
-  -->
 <form [formGroup]="searchForm"
     class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:p-8 md:pb-4">
 
@@ -24,7 +18,6 @@
             <div>
                 <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                    <!-- <mat-label>Ville</mat-label> -->
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                     </mat-icon>
                     <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
@@ -40,7 +33,6 @@
             <div>
                 <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                    <!-- <mat-label>Quartier</mat-label> -->
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                     </mat-icon>
                     <mat-select [placeholder]="'Quartier'" [formControlName]="'quartier'">
@@ -54,7 +46,6 @@
             <div>
                 <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                    <!-- <mat-label>Type de bien</mat-label> -->
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                     </mat-icon>
                     <mat-select [placeholder]="'Type de bien'" [formControlName]="'typeBien'">
@@ -71,7 +62,6 @@
             <div>
                 <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                    <!-- <mat-label>Prix min</mat-label> -->
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'" matPrefix>
                     </mat-icon>
                     <input matInput [placeholder]="'Prix min'" [formControlName]="'prixMin'">
@@ -81,7 +71,6 @@
             <div>
                 <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                    <!-- <mat-label>Prix max</mat-label> -->
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'" matPrefix>
                     </mat-icon>
                     <input matInput [placeholder]="'Prix max'" [formControlName]="'prixMax'">

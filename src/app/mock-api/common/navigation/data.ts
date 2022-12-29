@@ -32,11 +32,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/darrahetbal'
     },
     {
-        id   : 'projetsSearch',
+        id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
         icon : 'heroicons_outline:search-circle',
-        link : '/projetsSearch'
+        link : '/projets-search'
     },
 ];
 export const compactNavigation: FuseNavigationItem[] = [
@@ -69,11 +69,11 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/darrahetbal'
     },
     {
-        id   : 'projetsSearch',
+        id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
         icon : 'heroicons_outline:search-circle',
-        link : '/projetsSearch'
+        link : '/projets-search'
     },
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -106,11 +106,11 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/darrahetbal'
     },
     {
-        id   : 'projetsSearch',
+        id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
         icon : 'heroicons_outline:search-circle',
-        link : '/projetsSearch'
+        link : '/projets-search'
     },
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -143,10 +143,10 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/darrahetbal'
     },
     {
-        id   : 'projetsSearch',
+        id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
         icon : 'heroicons_outline:search-circle',
-        link : '/projetsSearch'
+        link : '/projets-search'
     },
 ];

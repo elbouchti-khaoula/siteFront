@@ -1,6 +1,6 @@
-Envato Standard License
+Standard License
 
-Copyright (c) Sercan Yemen <sercanyemen@gmail.com>
+Copyright (c)
 
-This project is protected by Envato's Standard License. For more information,
-check the official license page at [https://themeforest.net/licenses/standard](https://themeforest.net/licenses/standard)
+This project is protected by Standard License. For more information,
+check the official license page at []()

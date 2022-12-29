@@ -1,17 +1,17 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from '../../projetsSearch/common/projets.service';
+import { ProjetsService } from '../../projets-search/common/projets.service';
 
 @Component({
   selector: 'projets-filter',
   templateUrl: './projets-filter.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class ProjetsFilterComponent implements OnInit {
+export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   isScreenSmall: boolean;
   @Input() parentComponent: 'landing' | 'projet-search';
@@ -147,18 +147,18 @@ export class ProjetsFilterComponent implements OnInit {
   }
 
   /**
-     * Perform the search and navigate
-     */
+   * Perform the search and navigate
+   */
   navigateToMarketPlace(): void {
     if (!(this.searchForm.pristine || this.searchForm.invalid)) {
       // Add query params using the router
       this._router.navigate(
-        ['/projetsSearch'],
+        ['/projets-search'],
         { fragment: 'projetsId', queryParams: this.searchForm.value }
       );
       // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
       // this._router.navigate(
-      //     ['/projetsSearch'], 
+      //     ['/projets-search'], 
       //     navigationExtras
       // );
     }

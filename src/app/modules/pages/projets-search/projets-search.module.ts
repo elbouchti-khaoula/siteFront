@@ -13,10 +13,10 @@ import { GoogleMapsModule } from '@angular/google-maps'
 import { projetsSearchRoutes } from './projets-search.routing';
 
 import { ProjetsSearchComponent } from './projets-search.component';
-import { ProjetsResultComponent } from './projetsResult/projets-result.component';
-import { ProjetContactComponent } from './projetsResult/contact/contact.component';
-import { ProjetsComponent } from './projetsResult/projets/projets.component';
-import { LocalisationComponent } from './projetsResult/localisation/localisation.component';
+import { ProjetsResultComponent } from './projets-result/projets-result.component';
+import { ProjetContactComponent } from './projets-result/contact/contact.component';
+import { ProjetsComponent } from './projets-result/projets/projets.component';
+import { LocalisationComponent } from './projets-result/localisation/localisation.component';
 
 import { ProjetModule } from './projet/projet.module';
 import { ProjetsFilterModule } from '../common/projetsFilter/projets-filter.module';

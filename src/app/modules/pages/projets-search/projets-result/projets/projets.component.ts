@@ -50,16 +50,16 @@ export class ProjetsComponent implements
             .pipe(
                 takeUntil(this._unsubscribeAll),
                 filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-                map(event => this.refineURL(event.url) === 'projetsSearch')
+                map(event => this.refineURL(event.url) === 'projets-search')
             )
             .subscribe((_ev: any) => {
                 this.previousUrl = this._router.getCurrentNavigation()?.previousNavigation?.initialUrl?.toString();
                 // console.log("+-+- previousUrl", this.previousUrl);
                 // const refineUrl = this.refineURL(this.previousUrl);
-                // if (refineUrl.localeCompare("projetsSearch") === 0) {
-                //     console.log("+-+-+- here 2 ev.url === this.previousUrl", 'projetSearch', refineUrl, this.previousUrl);
+                // if (refineUrl.localeCompare("projets-search") === 0) {
+                //     console.log("+-+-+- here 2 ev.url === this.previousUrl", 'projets-search', refineUrl, this.previousUrl);
                 // } else {
-                //     console.log("+-+-+- here 3 ev.url != this.previousUrl", 'projetSearch', refineUrl, this.previousUrl);
+                //     console.log("+-+-+- here 3 ev.url != this.previousUrl", 'projets-search', refineUrl, this.previousUrl);
                 // }
             });
     }
@@ -130,10 +130,10 @@ export class ProjetsComponent implements
             }
         });
 
-        if ("projetDetails".localeCompare(this.refineURL(this.previousUrl)) === 0) {
+        if ("projet-details".localeCompare(this.refineURL(this.previousUrl)) === 0) {
             const topval = Number(localStorage.getItem('projetsPosition'));
             this.drawerContainerProjets.scrollable.getElementRef().nativeElement.scrollTop = topval;
-            // console.log("+-+-- topval projetDetails", topval);
+            // console.log("+-+-- topval projet-details", topval);
         } else {
             // console.log("+-+-- topval other");
             localStorage.setItem('projetsPosition', "0");

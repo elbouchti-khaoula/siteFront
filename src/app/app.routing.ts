@@ -52,7 +52,7 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // LandingHome (Fuse) routes
+    // LandingHome routes
     // {
     //     path: '',
     //     component  : LayoutComponent,
@@ -68,19 +68,19 @@ export const appRoutes: Route[] = [
     // },
 
     // home routes
-    // {
-    //     path: '',
-    //     component  : LayoutComponent,
-    //     data: {
-    //         layout: 'empty'
-    //     },
-    //     children   : [
-    //         {
-    //             path: 'home',
-    //             loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
-    //         },
-    //     ]
-    // },
+    {
+        path: '',
+        component  : LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children   : [
+            {
+                path: 'home',
+                loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
+            },
+        ]
+    },
 
     // Admin routes
     {
@@ -107,10 +107,13 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
             },
             {
-                path: 'projetsSearch',
-                loadChildren: () => import('app/modules/pages/projetsSearch/projets-search.module').then(m => m.ProjetsSearchModule),
+                path: 'projets-search',
+                loadChildren: () => import('app/modules/pages/projets-search/projets-search.module').then(m => m.ProjetsSearchModule),
             },
-
+            {
+                path: 'simulation-personnalisee',
+                loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
+            },
 
             // Maintenance
             { 

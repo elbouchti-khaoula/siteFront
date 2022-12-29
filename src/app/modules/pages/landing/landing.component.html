@@ -7,7 +7,7 @@
 
         <!-- Header -->
         <header style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/landing/header.jpg');"
-            class="relative flex flex-col items-center justify-center md:justify-end w-full min-h-[50vh] sm:min-h-[75vh] md:min-h-[95vh] md:bg-fixed bg-center bg-cover">
+            class="relative flex flex-col items-center justify-center md:justify-end w-full min-h-[45vh] sm:min-h-[75vh] md:min-h-[95vh] md:bg-fixed bg-center bg-cover">
 
             <div class="flex flex-row md:items-end w-full max-w-360">
                 <!-- Formulaire recherche md -->
@@ -30,8 +30,8 @@
 
             <!-- Parcours md -->
             <div class="hidden md:grid grid-cols-4 gap-12 w-full max-w-5xl text-white mt-20 mb-10">
-                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-black/[.4] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['/projetsSearch']">
+                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-stone-700/[.7] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                    [routerLink]="['/projets-search']">
                     <mat-icon class="icon-size-12 md:icon-size-24 text-white" svgIcon="property">
                     </mat-icon>
                     <div class="flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 mt-2">
@@ -39,7 +39,7 @@
                         <span>mon bien</span>
                     </div>
                 </a>
-                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-black/[.4] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-stone-700/[.7] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
                     [routerLink]="['./']" (click)="scrollTo('simulationId')">
                     <mat-icon class="icon-size-12 md:icon-size-24 text-white" svgIcon="calculation">
                     </mat-icon>
@@ -48,7 +48,7 @@
                         <span>mon crédit</span>
                     </div>
                 </a>
-                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-black/[.4] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-stone-700/[.7] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
                     [routerLink]="['./']">
                     <mat-icon class="icon-size-12 md:icon-size-24 text-white" svgIcon="survey">
                     </mat-icon>
@@ -57,7 +57,7 @@
                         <span>mon crédit</span>
                     </div>
                 </a>
-                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-black/[.4] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                <a class="flex flex-col items-center rounded-2xl border-2 border-primary-700 bg-stone-700/[.7] py-7 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
                     [routerLink]="['./']">
                     <mat-icon class="icon-size-12 md:icon-size-24 text-white" svgIcon="timeline">
                     </mat-icon>
@@ -77,7 +77,7 @@
             <div class="grid grid-cols-4 gap-2 mt-7 sm:py-3">
                 <div class="carre flex flex-col items-center cursor-pointer">
                     <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
-                        [routerLink]="['/projetsSearch']">
+                        [routerLink]="['/projets-search']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
                         </mat-icon>
                     </span>
@@ -217,7 +217,7 @@
                     [ngClass]="{'columns-2 [column-fill:_balance]' : isScreenSmall,
                                 'grid grid-cols-10' : !isScreenSmall}">
                     <figure class="town relative overflow-hidden cursor-pointer rounded-xl md:rounded-2xl md:h-64"
-                        [routerLink]="['/projetsSearch']" [fragment]="'projetsId'"
+                        [routerLink]="['/projets-search']" [fragment]="'projetsId'"
                         [queryParams]="{ ville: 'Casablanca' }" [ngClass]="{'break-inside-avoid mb-4 ' : isScreenSmall,
                                     'col-span-6' : !isScreenSmall}">
                         <div class="z-10 absolute inset-0 bg-black/[.3]"></div>
@@ -230,7 +230,7 @@
                         </figcaption>
                     </figure>
                     <figure class="town relative overflow-hidden cursor-pointer rounded-xl md:rounded-2xl md:h-64"
-                        [routerLink]="['/projetsSearch']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Rabat' }"
+                        [routerLink]="['/projets-search']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Rabat' }"
                         [ngClass]="{'break-inside-avoid mb-4' : isScreenSmall,
                                     'col-span-4' : !isScreenSmall}">
                         <div class="z-10 absolute inset-0 bg-black/[.3]"></div>
@@ -242,7 +242,7 @@
                         </figcaption>
                     </figure>
                     <figure class="town relative overflow-hidden cursor-pointer rounded-xl md:rounded-2xl md:h-64"
-                        [routerLink]="['/projetsSearch']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Tanger' }"
+                        [routerLink]="['/projets-search']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Tanger' }"
                         [ngClass]="{'break-inside-avoid mb-4' : isScreenSmall,
                                     'col-span-3' : !isScreenSmall}">
                         <div class="z-10 absolute inset-0 bg-black/[.3]"></div>
@@ -254,7 +254,7 @@
                         </figcaption>
                     </figure>
                     <figure class="town relative overflow-hidden cursor-pointer rounded-xl md:rounded-2xl md:h-64"
-                        [routerLink]="['/projetsSearch']" [fragment]="'projetsId'"
+                        [routerLink]="['/projets-search']" [fragment]="'projetsId'"
                         [queryParams]="{ ville: 'Marrackech' }" [ngClass]="{'break-inside-avoid mb-4' : isScreenSmall,
                                     'col-span-4' : !isScreenSmall}">
                         <div class="z-10 absolute inset-0 bg-black/[.3]"></div>
@@ -267,7 +267,7 @@
                         </figcaption>
                     </figure>
                     <figure class="town relative overflow-hidden cursor-pointer rounded-xl md:rounded-2xl md:h-64"
-                        [routerLink]="['/projetsSearch']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Agadir' }"
+                        [routerLink]="['/projets-search']" [fragment]="'projetsId'" [queryParams]="{ ville: 'Agadir' }"
                         [ngClass]="{'break-inside-avoid mb-4' : isScreenSmall,
                                     'col-span-3' : !isScreenSmall}">
                         <div class="z-10 absolute inset-0 bg-black/[.3]"></div>

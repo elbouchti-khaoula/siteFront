@@ -23,6 +23,9 @@ export class AnimateAfterAppearDirective implements OnInit, OnDestroy {
 
     _player: AnimationPlayer;
 
+    /**
+     * Constructor
+     */
     constructor(
         private _observer: IntersectionObserverService,
         private _elementRef: ElementRef,
@@ -30,15 +33,9 @@ export class AnimateAfterAppearDirective implements OnInit, OnDestroy {
     ) {
     }
 
-    getAnimation(animateAfterAppear: string): AnimationReferenceMetadata | undefined
-    {
-        const match = fuseAnimationsMap.find(item => item.name === animateAfterAppear);
-        if (match) {
-            return match.animation
-        } else {
-            return null;
-        }
-    }
+    // -----------------------------------------------------------------------------------------------------
+    // @ Lifecycle hooks
+    // -----------------------------------------------------------------------------------------------------
 
     ngOnInit() {
         let animationFactory: AnimationFactory;
@@ -74,6 +71,30 @@ export class AnimateAfterAppearDirective implements OnInit, OnDestroy {
             this._observer.addTarget(this._elementRef.nativeElement, callback);
         }
     }
+    
+    /**
+     * On destroy
+     */
+     ngOnDestroy(): void {
+        // Finish the animation
+        if (this._player) {
+            this._player.finish();
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    getAnimation(animateAfterAppear: string): AnimationReferenceMetadata | undefined
+    {
+        const match = fuseAnimationsMap.find(item => item.name === animateAfterAppear);
+        if (match) {
+            return match.animation
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Builds and triggers the animation
@@ -83,16 +104,6 @@ export class AnimateAfterAppearDirective implements OnInit, OnDestroy {
     startAnimating(inViewport: boolean) {
         if (inViewport) {
             this._player.play();
-        }
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Finish the animation
-        if (this._player) {
-            this._player.finish();
         }
     }
 

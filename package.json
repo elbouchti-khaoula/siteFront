@@ -2,8 +2,8 @@
   "name": "@wimmoweb/site",
   "version": "0.0.0",
   "description": "Wimmoweb - Site web de Wafa immobilier",
-  "author": "https://themeforest.net/user/srcn",
-  "license": "https://themeforest.net/licenses/standard",
+  "author": "",
+  "license": "",
   "private": true,
   "scripts": {
     "ng": "ng",
