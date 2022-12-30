@@ -14,6 +14,7 @@ export class SimulationComponent
     mensualite: string = "0";
 
     @Input() isFull: boolean = false;
+    @Input() isScreenSmall: boolean;
 
     /**
      * Constructor

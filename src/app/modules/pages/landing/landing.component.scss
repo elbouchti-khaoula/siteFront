@@ -48,8 +48,15 @@ figure.town:hover figcaption .icone {
 
 
 // css simulation
-.wimmo-bg-simul {
+.bg-simul {
     background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/landing/bg-simul.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.landing-bg-header {
+    background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/landing/header.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

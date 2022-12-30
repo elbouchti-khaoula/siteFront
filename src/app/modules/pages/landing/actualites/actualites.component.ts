@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { gsap } from "gsap";
 
 @Component({
@@ -9,6 +9,7 @@ import { gsap } from "gsap";
 })
 export class ActualitesComponent
 {
+    @Input() isScreenSmall: boolean;
     @ViewChild('landingWrapper', { read: ElementRef }) public landingWrapper: ElementRef<any>;
     @ViewChild('landingInnerContent', { read: ElementRef }) public landingInnerContent: ElementRef<any>;
 

@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
   selector: 'projets-search',
   templateUrl: './projets-search.component.html',
+  styleUrls: ['./projets-search.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })

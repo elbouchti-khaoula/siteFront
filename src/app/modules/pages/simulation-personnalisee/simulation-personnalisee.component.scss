@@ -1,0 +1,12 @@
+.simul-bg-header {
+    background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/simulation/cle-maison.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+@media (max-width: 767px) {
+    .simul-bg-header {
+        background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/simulation/cle-maison-sm.jpg');
+    }
+}

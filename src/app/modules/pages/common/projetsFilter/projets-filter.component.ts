@@ -1,4 +1,3 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -85,10 +84,14 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         this.searchForm.setValue({
           ville: queryParams?.ville ?? this.searchFormDefaults.ville,
           quartier: queryParams?.quartier ?? this.searchFormDefaults.quartier,
-          typeBien: queryParams?.typeBien ? coerceBooleanProperty(queryParams?.typeBien) : this.searchFormDefaults.typeBien,
-          prixMin: queryParams?.prixMin ? coerceBooleanProperty(queryParams?.prixMin) : this.searchFormDefaults.prixMin,
-          prixMax: queryParams?.prixMax ? coerceBooleanProperty(queryParams?.prixMax) : this.searchFormDefaults.prixMax
+          typeBien: queryParams?.typeBien ? queryParams?.typeBien : this.searchFormDefaults.typeBien,
+          prixMin: queryParams?.prixMin ? queryParams?.prixMin : this.searchFormDefaults.prixMin,
+          prixMax: queryParams?.prixMax ? queryParams?.prixMax : this.searchFormDefaults.prixMax
         }, { emitEvent: false });
+
+        if (queryParams?.ville || queryParams?.typeBien || queryParams?.prixMin || queryParams?.prixMax) {
+          this.searchForm.markAsDirty();
+        }
       });
 
     // Subscribe to media changes
