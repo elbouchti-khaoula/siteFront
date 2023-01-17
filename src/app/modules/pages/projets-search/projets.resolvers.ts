@@ -15,8 +15,7 @@ export class ProjetsResolver implements Resolve<any>
     constructor(
         private _projetsService: ProjetsService,
         private _router: Router
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -33,29 +32,29 @@ export class ProjetsResolver implements Resolve<any>
     {
         // return this._projetsService.searchProjets(state.root.queryParams);
         return this._projetsService.searchProjets(state.root.queryParams).pipe(
-                // Error here means the requested projet is not available
-                catchError((error) => {
+            // Error here means the requested projet is not available
+            catchError((error) => {
 
-                    // Log the error
-                    console.error(error);
+                // Log the error
+                console.error(error);
 
-                    if (error.status === 500) {
-                        this._router.navigateByUrl('/500-server-error');
-                    } else if (error.status === 400) {
-                        this._router.navigateByUrl('/404-not-found');
-                    } else {
-                        // Get the parent url
-                        const parentUrl = state.url.split('/').slice(0, -1).join('/');
+                if (error.status === 500) {
+                    this._router.navigateByUrl('/500-server-error');
+                } else if (error.status === 400) {
+                    this._router.navigateByUrl('/404-not-found');
+                } else {
+                    // Get the parent url
+                    const parentUrl = state.url.split('/').slice(0, -1).join('/');
 
-                        // Navigate to there
-                        this._router.navigateByUrl(parentUrl);
-                    }
+                    // Navigate to there
+                    this._router.navigateByUrl(parentUrl);
+                }
 
-                    // Throw an error
-                    return throwError(error);
-                })
-            );
-        }
+                // Throw an error
+                return throwError(error);
+            })
+        );
+    }
 }
 
 @Injectable({
@@ -69,8 +68,7 @@ export class ProjetsProjetResolver implements Resolve<any>
     constructor(
         private _projetsService: ProjetsService,
         private _router: Router
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -86,28 +84,28 @@ export class ProjetsProjetResolver implements Resolve<any>
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet>
     {
         return this._projetsService.getProjetById(route.queryParamMap.get('id')).pipe(
-                // Error here means the requested projet is not available
-                catchError((error) => {
+            // Error here means the requested projet is not available
+            catchError((error) => {
 
-                    // Log the error
-                    console.error(error);
+                // Log the error
+                console.error(error);
 
-                    if (error.status === 500) {
-                        this._router.navigateByUrl('/500-server-error');
-                    } else if (error.status === 400) {
-                        this._router.navigateByUrl('/404-not-found');
-                    } else {
-                        // Get the parent url
-                        const parentUrl = state.url.split('/').slice(0, -1).join('/');
+                if (error.status === 500) {
+                    this._router.navigateByUrl('/500-server-error');
+                } else if (error.status === 400) {
+                    this._router.navigateByUrl('/404-not-found');
+                } else {
+                    // Get the parent url
+                    const parentUrl = state.url.split('/').slice(0, -1).join('/');
 
-                        // Navigate to there
-                        this._router.navigateByUrl(parentUrl);
-                    }
+                    // Navigate to there
+                    this._router.navigateByUrl(parentUrl);
+                }
 
-                    // Throw an error
-                    return throwError(error);
-                })
-            );
+                // Throw an error
+                return throwError(error);
+            })
+        );
     }
 }
 

@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ProjetsProjetResolver, ProjetsResolver } from './common/projets.resolvers';
+import { ProjetsProjetResolver, ProjetsResolver } from './projets.resolvers';
 import { ProjetsSearchComponent } from './projets-search.component';
 import { ProjetComponent } from './projet/projet.component';
 import { ProjetsResultComponent } from './projets-result/projets-result.component';

@@ -80,7 +80,8 @@ export const projets = [
         },
         prixMin             : '4 525 000,00',
         devise              : 'MAD',
-        ville               : 'Tanger',
+        ville               : '640',
+        villeLibelle        : 'Tanger',
         adresse             : 'Quartier Casa Anfa boulevard des clubs',
 
         standing            : 'Moyen standing',
@@ -116,7 +117,8 @@ export const projets = [
         },
         prixMin             : '1 000 000,00',
         devise              : 'MAD',
-        ville               : 'Rabat',
+        ville               : '810',
+        villeLibelle        : 'Rabat',
         adresse             : 'Angle Bd Tan tan et Bd ben Barka. Bourgogne',
 
         standing            : 'Moyen standing',
@@ -152,7 +154,8 @@ export const projets = [
         },
         prixMin             : '1 070 000,00',
         devise              : 'MAD',
-        ville               : 'Marrackech',
+        ville               : '450',
+        villeLibelle        : 'Marrackech',
         adresse             : '21, rue Hafid Ibrahim. Quartier Gauthier',
 
         standing            : 'Moyen standing',
@@ -188,7 +191,8 @@ export const projets = [
         },
         prixMin             : '1 400 000,00',
         devise              : 'MAD',
-        ville               : 'Casablanca',
+        ville               : '780',
+        villeLibelle        : 'Casablanca',
         adresse             : 'CFC CASA ANFA, Lot 37, Bd Abdellah Cherif',
 
         standing            : 'Moyen standing',
@@ -224,7 +228,8 @@ export const projets = [
         },
         prixMin             : '1 250 000,00',
         devise              : 'MAD',
-        ville               : 'Agadir',
+        ville               : '10',
+        villeLibelle        : 'Agadir',
         adresse             : 'Quartier Victoria Bouskoura',
 
         standing            : 'Moyen standing',

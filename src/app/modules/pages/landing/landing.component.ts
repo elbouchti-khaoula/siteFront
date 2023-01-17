@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
      */
     constructor(
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _viewScroller: ViewportScroller,
+        private _viewScroller: ViewportScroller
     ) {
     }
 

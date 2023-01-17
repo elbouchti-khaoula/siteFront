@@ -120,7 +120,7 @@
                         },
                         "development": {
                             "browserTarget": "wimmoweb:build:development",
-                            "proxyConfig": "proxy.conf.json"
+                            "proxyConfig": "proxy.conf.js"
                         },
                         "ar": {
                             "browserTarget": "wimmoweb:build:ar"

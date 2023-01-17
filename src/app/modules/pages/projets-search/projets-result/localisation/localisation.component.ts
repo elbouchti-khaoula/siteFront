@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Projet } from '../../common/projets.types';
-import { ProjetsService } from '../../common/projets.service';
+import { Projet } from '../../projets.types';
+import { ProjetsService } from '../../projets.service';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({

@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
-import { Projet } from '../../common/projets.types';
-import { ProjetsService } from '../../common/projets.service';
+import { Projet } from '../../projets.types';
+import { ProjetsService } from '../../projets.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { MatDrawerContainer } from '@angular/material/sidenav';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';

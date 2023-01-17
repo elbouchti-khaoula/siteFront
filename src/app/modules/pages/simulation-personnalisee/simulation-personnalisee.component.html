@@ -1,10 +1,24 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]>
 
     <!-- Header -->
-    <div class="flex flex-col items-center justify-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[90vh] simul-bg-header bg-fixed">
+    <div class="flex flex-col px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[90vh] simul-bg-header bg-fixed">
 
-        <div class="w-full max-w-360 pb-10 md:pb-18">
-            <div class="text-2xl md:text-5xl uppercase font-extrabold tracking-tight leading-tight text-white">
+        <div class="relative flex flex-col justify-center h-30 mb-16">
+            <!-- <div class="z-10 absolute top-5 left-5 w-60 h-20"
+                style="background-image: url('/assets/images/pages/simulation/patternstransparent.png');">
+            </div> -->
+            <div class="u-shape-svg u-shape-1">
+                <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 130">
+                    <use xlink:href="#svg-b4cc"></use>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    xml:space="preserve" class="u-svg-content" viewBox="0 0 160 130" x="0px" y="0px" id="svg-b4cc">
+                    <path d="M52.6,11.4C12,28.8-29.7,90.3,29.4,124c19.1,10.9,43.7,6.6,57.2-10.7c0.4-0.5,0.8-1,1.1-1.5c17.8-24.6,32.6-4.1,48.4-8.5
+                            C180.4,91.2,168.9-38.5,52.6,11.4z">
+                    </path>
+                </svg>
+            </div>
+            <div class="ml-10 relative text-2xl md:text-5xl uppercase font-extrabold tracking-tight leading-tight text-white">
                 Je simule mon crédit
             </div>
         </div>
@@ -13,76 +27,38 @@
 
             <div class="flex flex-col md:flex-row md:items-start">
 
-                <form [formGroup]="simulationForm"
-                    class="ml-auto flex flex-col md:w-[29%] overflow-hidden rounded-2xl bg-white/[.85] px-6 pt-7 pb-8 ring-2 ring-black">
+                <form class="flex flex-col md:w-1/2 overflow-hidden rounded-2xl bg-card bg-opacity-80 px-6 pt-7 pb-8 ring-2 ring-black text-black"
+                    [formGroup]="simulationForm">
 
                     <div class="w-full mb-5">
-                        <div class="text-xl md:text-2xl font-bold text-primary leading-none">
+                        <div class="text-xl md:text-2xl font-bold text-primary">
                             Mon projet
                         </div>
                         <div class="w-8 h-1 rounded-2xl mt-2 bg-second-500"></div>
                     </div>
 
-                    <div class="w-full grid grid-cols-2 gap-x-2">
+                    <div class="w-full grid grid-cols-2 md:grid-cols-7 gap-x-2 items-baseline">
                         <!-- Montant -->
-                        <mat-form-field
-                            class="col-span-2 w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:currency-dollar'"
-                                matPrefix>
-                            </mat-icon>
-                            <input
-                                matInput
-                                [formControlName]="'montant'"
-                                required>
-                            <mat-label class="text-sm text-black">Montant</mat-label>
+                        <mat-form-field class="md:col-span-4 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <input matInput [formControlName]="'montant'">
+                            <mat-label class="text-sm font-medium text-black">Montant</mat-label>
+                            <span matSuffix>Dhs</span>
                             <mat-error *ngIf="simulationForm.get('montant').hasError('required')">
                                 Montant obligatoire
                             </mat-error>
                         </mat-form-field>
 
                         <!-- Durée -->
-                        <mat-form-field
-                            class="w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <!-- <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'mat_solid:timelapse'"
-                                matPrefix>
-                            </mat-icon> -->
-                            <input
-                                matInput
-                                [formControlName]="'duree'"
-                                required>
-                             <mat-label class="text-sm text-black">Durée</mat-label>
-                             <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
+                        <mat-form-field class="md:col-span-3 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <input matInput [formControlName]="'duree'">
+                            <mat-label class="text-sm font-medium text-black">Durée</mat-label>
+                            <span matSuffix>ans</span>
+                            <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
                                 Durée obligatoire
                             </mat-error>
-                            <!-- <span matPrefix>$</span> -->
-                            <span matSuffix>ans</span>
                         </mat-form-field>
 
-                        <!-- Objet de financement -->
-                        <mat-form-field
-                            class="w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <!-- <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:template'"
-                                matPrefix>
-                            </mat-icon> -->
-                            <mat-select
-                                [formControlName]="'objetFinancement'">
-                                <mat-option [value]="'quart1'">objet 1</mat-option>
-                                <mat-option [value]="'quart2'">objet 2</mat-option>
-                                <mat-option [value]="'quart3'">objet 3</mat-option>
-                            </mat-select>
-                            <mat-label class="text-sm text-black">Objet de financement</mat-label>
-                        </mat-form-field>
-
-                        <div class="col-span-2 mb-5">
+                        <div class="col-span-2 md:col-span-7 mb-5">
                             <div class="text-xl md:text-2xl font-bold text-primary">
                                 Mon profil
                             </div>
@@ -90,131 +66,114 @@
                         </div>
 
                         <!-- Nom -->
-                        <mat-form-field
-                            class="w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:user'"
-                                matPrefix>
+                        <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                             </mat-icon>
-                            <input
-                                matInput
-                                [formControlName]="'nom'"
-                                required>
-                            <mat-label class="text-sm text-black">Nom</mat-label>
+                            <input matInput [formControlName]="'nom'">
+                            <mat-label class="text-sm font-medium text-black">Nom</mat-label>
+                            <mat-error *ngIf="simulationForm.get('nom').hasError('required')">
+                                Nom obligatoire
+                            </mat-error>
                         </mat-form-field>
 
                         <!-- Prénom -->
-                        <mat-form-field
-                            class="w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:user'"
-                                matPrefix>
+                        <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                             </mat-icon>
-                            <input
-                                matInput
-                                [formControlName]="'prenom'"
-                                required>
-                            <mat-label class="text-sm text-black">Prénom</mat-label>
+                            <input matInput [formControlName]="'prenom'">
+                            <mat-label class="text-sm font-medium text-black">Prénom</mat-label>
+                            <mat-error *ngIf="simulationForm.get('prenom').hasError('required')">
+                                Prénom obligatoire
+                            </mat-error>
                         </mat-form-field>
 
                         <!-- Catégorie socio professionnelle -->
-                        <mat-form-field
-                            class="col-span-2 w-full"
+                        <mat-form-field class="col-span-2 md:col-span-3 w-full"
                             [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:briefcase'"
-                                matPrefix>
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:briefcase'" matPrefix>
                             </mat-icon>
-                            <mat-select
-                                [formControlName]="'categorieSocioProfessionnelle'">
-                                <mat-option [value]="'type1'">CSP 1</mat-option>
-                                <mat-option [value]="'type2'">CSP 2</mat-option>
-                                <mat-option [value]="'type3'">CSP 3</mat-option>
-                                <mat-option [value]="'type4'">CSP 4</mat-option>
-                                <mat-option [value]="'type5'">CSP 5</mat-option>
+                            <mat-select [formControlName]="'cspCode'">
+                                <ng-container *ngFor="let category of categories">
+                                    <mat-option [value]="category.code">
+                                        {{category.libelle}}
+                                    </mat-option>
+                                </ng-container>
                             </mat-select>
-                            <mat-label class="text-sm text-black">Catégorie socio-professionnelle</mat-label>
-                            <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
+                            <mat-label class="text-sm font-medium text-black">Catégorie socio-professionnelle
+                            </mat-label>
+                            <mat-error *ngIf="simulationForm.get('cspCode').hasError('required')">
                                 Catégorie socio-professionnelle obligatoire
                             </mat-error>
                         </mat-form-field>
 
                         <!-- Téléphone -->
-                        <mat-form-field
-                            class="fuse-mat-bold w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:phone'"
-                                matPrefix></mat-icon>
-                            <input
-                                matInput
-                                [formControlName]="'telephone'">
-                            <mat-label class="text-sm text-black">Téléphone</mat-label>
-                        </mat-form-field>
-
-                        <!-- Email -->
-                        <mat-form-field 
-                            class="fuse-mat-bold w-full"
-                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon
-                                class="icon-size-5"
-                                [svgIcon]="'heroicons_solid:mail'"
-                                matPrefix></mat-icon>
-                            <input
-                                type="email"
-                                matInput
-                                [formControlName]="'email'">
-                            <mat-label class="text-sm text-black">E-mail</mat-label>
-                            <mat-error *ngIf="simulationForm.get('email').hasError('email')">
-                                Enter a valid email address
+                        <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                            <input matInput [formControlName]="'telephone'">
+                            <mat-label class="text-sm font-medium text-black">Téléphone</mat-label>
+                            <mat-error *ngIf="simulationForm.get('telephone').hasError('required')">
+                                Téléphone obligatoire
                             </mat-error>
                         </mat-form-field>
 
-                        <small *ngIf="simulationForm.hasError('atLeastOne')" class="col-span-2 text-warn mb-2">
-                            {{simulationForm.getError('atLeastOne')}}
-                        </small>
+                        <!-- Email -->
+                        <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                            <input type="email" matInput [formControlName]="'email'">
+                            <mat-label class="text-sm font-medium text-black">E-mail</mat-label>
+                            <mat-error *ngIf="simulationForm.get('email').hasError('email')">
+                                Enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="simulationForm.get('email').hasError('required')">
+                                Email obligatoire
+                            </mat-error>
+                        </mat-form-field>
 
-                        <mat-checkbox
-                            class="col-span-2 text-sm mt-2"
-                            [color]="'primary'"
+                        <!-- Résident -->
+                        <mat-radio-group class="flex flex-row col-span-2 md:col-span-3 w-full" [color]="'primary'"
+                            [formControlName]="'residentMarocain'">
+                            <mat-label class="text-sm font-medium text-black">Résident au Maroc ? <span
+                                    class="text-base">*</span></mat-label>
+                            <mat-radio-button class="ml-2" [value]="'true'">
+                                Oui
+                            </mat-radio-button>
+                            <mat-radio-button class="ml-2" [value]="'false'">
+                                Non
+                            </mat-radio-button>
+                            <mat-error *ngIf="simulationForm.get('residentMarocain').touched 
+                                            && simulationForm.get('residentMarocain').hasError('required')">
+                                Résidence est obligatoire
+                            </mat-error>
+                        </mat-radio-group>
+
+                        <mat-checkbox class="col-span-2 md:col-span-7 text-sm mt-2 font-medium" [color]="'primary'"
                             [formControlName]="'agreements'">
-                            <span class="text-black">Je déclare avoir lu et accepter les </span>
-                            <a class="ml-1 text-primary-500 hover:underline"
-                                [routerLink]="['./']">conditions générales
+                            <span>Je déclare avoir lu et accepter les </span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">conditions générales
                             </a>
-                            <span class="text-black"> d’utilisation du site </span>
+                            <span> d’utilisation du site </span>
                             <a class="ml-1 text-primary-500 hover:underline"
                                 [routerLink]="['/landing']">www.wafaimmobilier.com
                             </a>
-                            <span class="text-black">, notamment les mentions relatives à la protection des données personnelles</span>
+                            <span>, notamment les mentions relatives à la protection des données
+                                personnelles</span>
                         </mat-checkbox>
                     </div>
 
-                    <span class="text-sm text-black mt-3">
-                        « Conformément à la loi 09-08, vous disposez d’un droit d’accès, de rectification et d’opposition au traitement de vos données personnelles. Ce traitement est opéré conformément aux autorisations obtenues par Wafa Immobilier auprès de la CNDP »
+                    <span class="text-sm font-medium mt-3">
+                        « Conformément à la loi 09-08, vous disposez d’un droit d’accès, de rectification et
+                        d’opposition au traitement de vos données personnelles. Ce traitement est opéré conformément aux
+                        autorisations obtenues par Wafa Immobilier auprès de la CNDP »
                     </span>
 
                     <!-- Actions -->
                     <div class="flex items-center justify-center mt-5">
-                        <button
-                            mat-stroked-button
-                            type="button"
-                            [color]="'primary'"
-                            [disabled]="simulationForm.pristine">
+                        <button mat-stroked-button type="button" [color]="'primary'"
+                            [disabled]="simulationForm.pristine" (click)="reset()">
                             Vider
                         </button>
-                        <button
-                            class="ml-2 w-full"
-                            mat-flat-button
-                            type="button"
-                            [color]="'primary'"
-                            [disabled]="simulationForm.pristine || simulationForm.invalid">
+                        <button class="ml-2 px-12" mat-flat-button type="button" [color]="'primary'"
+                            [disabled]="simulationForm.pristine || simulationForm.invalid" (click)="simuler()">
                             Lancer la simulation
                         </button>
                     </div>
@@ -222,161 +181,275 @@
                 </form>
 
                 <!-- Resultat -->
-                <div class="max-md:mt-12 md:ml-10 max-w-3xl">
-                    <fuse-card class="flex-col px-6 py-8 sm:py-12 sm:px-10 ring-2 ring-primary overflow-visible">
+                <div class="max-md:mt-16 md:ml-10 md:w-1/2">
+                    <fuse-card
+                        class="flex-col px-6 pb-8 pt-3 bg-card bg-opacity-80 ring-2 ring-primary overflow-visible">
                         <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
-                            <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">Votre simulation</div>
+                            <div
+                                class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
+                                Votre simulation
+                            </div>
                         </div>
 
-                        <div class="flex items-start">
-                            <div class="flex flex-col">
-                                <div class="text-3xl font-bold tracking-tight leading-tight">Mensualités TTC</div>
-                                <div class="text-amber-600 font-medium text-sm tracking-tight mt-2">Cette échéance n'inclut pas les frais d'assurance</div>
-                                <div class="w-8 h-1 mt-2 rounded-2xl bg-second-500"></div>
-                            </div>
-                            <div class="ml-auto">
-                                <button
-                                    mat-icon-button
-                                    [matMenuTriggerFor]="simulationMenu">
-                                    <mat-icon
-                                        class="icon-size-5"
-                                        [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                        <div class="flex flex-col">
+                            <div class="ml-auto mb-3">
+                                <button class="bg-card" mat-icon-button [matMenuTriggerFor]="simulationMenu">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'">
+                                    </mat-icon>
                                 </button>
                                 <mat-menu #simulationMenu="matMenu">
                                     <button mat-menu-item>
                                         <span class="flex items-center">
-                                            <mat-icon
-                                                class="icon-size-5 mr-3"
-                                                [svgIcon]="'heroicons_solid:printer'"></mat-icon>
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:printer'">
+                                            </mat-icon>
                                             <span>Print simulation</span>
                                         </span>
                                     </button>
                                     <button mat-menu-item>
                                         <span class="flex items-center">
-                                            <mat-icon
-                                                class="icon-size-5 mr-3"
-                                                [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:mail'">
+                                            </mat-icon>
                                             <span>Email simulation</span>
                                         </span>
                                     </button>
                                 </mat-menu>
                             </div>
-                        </div>
 
-                        <div class="flex items-baseline whitespace-nowrap mt-7">
-                            <div class="mr-2 text-2xl">Dhs</div>
-                            <div class="text-4xl font-semibold leading-tight tracking-tight text-primary">
-                                4 562,56
-                            </div>
-                        </div>
-                        <!-- Durée -->
-                        <div class="flex flex-col mt-1 text-secondary">
-                            <div>Durée 15 ans</div>
-                            <div><b>180</b> mois</div>
-                        </div>
+                            <div
+                                class="w-full flex flex-col py-6 px-5 shadow-md rounded-2xl bg-primary-500 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5 mt-7">
-                            <div class="flex flex-col">
-                                <div class="text-sm font-semibold leading-none text-secondary">Montant crédit demandé</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        600 000,00
+                                <div class="flex flex-col md:flex-row items-start justify-between text-white">
+
+                                    <div class="text-3xl font-bold tracking-tight leading-tight">Mensualités TTC</div>
+
+                                    <div class="flex items-baseline whitespace-nowrap">
+                                        <div class="text-4xl font-semibold leading-tight tracking-tight" #mensualiteId>
+                                            {{simulation.mensualite | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-2xl">Dhs/Mois</div>
                                     </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
+
                                 </div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-semibold leading-none text-secondary">Total des intérêts</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        223 435,00
-                                    </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
+
+                                <div class="w-8 h-1 rounded-2xl bg-second-500"></div>
+
+                                <div class="font-semibold text-sm tracking-tight mt-2 text-second-500">
+                                    Cette échéance n'inclut pas les frais d'assurance
                                 </div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-semibold leading-none text-secondary">Coût total du crédit</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        823 435,00
-                                    </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
-                                </div>
-                            </div>
-                            <div class="hidden md:block"></div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-semibold leading-none text-secondary">Expertise immobilière</div>
-                                <div class="text-green-600 mt-2 font-medium text-3xl leading-none">GRATUIT</div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-semibold leading-none text-secondary">Frais de dossier</div>
-                                <div class="text-green-600 mt-2 font-medium text-3xl leading-none">GRATUIT</div>
                             </div>
                         </div>
 
-                        <!-- <div class="absolute bottom-0 right-0 w-24 h-24 -m-6">
-                            <mat-icon
-                                class="icon-size-24 opacity-25 text-red-500 dark:text-red-400"
-                                [svgIcon]="'heroicons_outline:exclamation-circle'"></mat-icon>
-                        </div> -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 mt-7">
 
-                        <hr class="border-b mx-6 sm:mx-8 mt-7">
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
 
-                        <div class="text-3xl font-bold tracking-tight leading-tight">Frais annexes</div>
-                        <div class="text-amber-600 text-sm font-semibold tracking-tight mt-2">Ces montants sont à titre indicatifs et ne sont aucunement contractuels</div>
-                        <div class="w-8 h-1 mt-2 rounded-2xl bg-second-500"></div>
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-semibold leading-none text-secondary">Durée</div>
+                                    <div class="flex flex-row mt-2">
+                                        <div class="flex flex-row">
+                                            <div class="font-medium text-3xl leading-none tracking-tight" #dureeId>
+                                                {{simulation.duree}}
+                                            </div>
+                                            <div class="ml-2 text-xl">ans</div>
+                                        </div>
+                                        <div class="flex flex-row ml-2">
+                                            <div class="font-medium text-3xl leading-none tracking-tight" #nbreMoisId>
+                                                {{simulation.duree * 12}}
+                                            </div>
+                                            <div class="ml-2 text-xl">mois</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="flex items-baseline whitespace-nowrap mt-7">
-                            <div class="mr-2 text-2xl">Dhs</div>
-                            <div class="text-4xl font-semibold leading-tight tracking-tight text-primary">
-                                40 400,00
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-semibold leading-none text-secondary">Montant crédit
+                                        demandé
+                                    </div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight" #montantId>
+                                            {{simulation.montant | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-semibold leading-none text-secondary">Total des intérêts
+                                    </div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight" #totalInteretsId>
+                                            {{simulation.totalInterets | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-semibold leading-none text-secondary">Coût total du crédit
+                                    </div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight" #coutTotalId>
+                                            {{simulation.coutTotal | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                        Expertise immobilière
+                                    </div>
+                                    <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
+                                        {{simulation.expertiseImmobiliere}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-semibold leading-none text-secondary">
+                                        Frais de dossier
+                                    </span>
+                                    <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
+                                        {{simulation.fraisDossier}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="w-full flex flex-col mt-7 py-6 px-5 shadow-md rounded-2xl bg-primary-150 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+
+                            <div class="flex flex-col md:flex-row items-start justify-between text-primary-600">
+
+                                <div class="text-3xl font-bold tracking-tight leading-tight">Frais annexes</div>
+
+                                <div class="flex items-baseline whitespace-nowrap">
+                                    <div class="text-4xl font-semibold leading-tight tracking-tight" #totalFraisId>
+                                        {{simulation.totalFrais | number:'1.2-2'}}
+                                    </div>
+                                    <div class="ml-2 text-2xl">Dhs</div>
+                                </div>
+
+                            </div>
+
+                            <div class="w-8 h-1 rounded-2xl bg-amber-600"></div>
+
+                            <div class="text-sm font-semibold tracking-tight mt-2 text-amber-600">
+                                Ces montants sont à titre indicatifs et ne sont aucunement contractuels
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5 mt-7">
-                            <div class="flex flex-col">
-                                <div class="text-sm font-medium leading-none text-secondary">Enregistrement hypothécaire</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        24 000,00
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 mt-7">
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-medium leading-none text-secondary">Enregistrement
+                                        hypothécaire
                                     </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight"
+                                            #droitsEnregistrementId>
+                                            {{simulation.droitsEnregistrement | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-medium leading-none text-secondary">Conservation foncière</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        9 000,00
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-medium leading-none text-secondary">Conservation foncière
                                     </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight"
+                                            #conservationFonciereId>
+                                            {{simulation.conservationFonciere | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-medium leading-none text-secondary">Frais de dossier</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        1 500,00
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-medium leading-none text-secondary">Frais de dossier
+                                        notaire</div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight" #fraisDiversId>
+                                            {{simulation.fraisDivers | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
                                     </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
                                 </div>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="text-sm font-medium leading-none text-secondary">Honoraires de notaire</div>
-                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                    <div class="font-medium text-3xl leading-none tracking-tight">
-                                        6 000,00
+
+                            <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                <!-- Border -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                <!-- Content -->
+                                <div class="flex flex-col">
+                                    <div class="text-sm font-medium leading-none text-secondary">Honoraires de notaire
                                     </div>
-                                    <div class="ml-2 text-xl">Dhs</div>
+                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                        <div class="font-medium text-3xl leading-none tracking-tight"
+                                            #honorairesNotaireId>
+                                            {{simulation.honorairesNotaire | number:'1.2-2'}}
+                                        </div>
+                                        <div class="ml-2 text-xl">Dhs</div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Action -->
-                        <button
-                            class="mx-auto w-fit fuse-mat-button-large mt-7"
-                            mat-flat-button
-                            [color]="'primary'">
+                        <button class="mx-auto w-fit fuse-mat-button-large mt-7" mat-flat-button [color]="'primary'">
                             Accéder à la simulation détaillée
                         </button>
                     </fuse-card>
@@ -385,8 +458,6 @@
 
             </div>
         </div>
-
-
 
     </div>
 

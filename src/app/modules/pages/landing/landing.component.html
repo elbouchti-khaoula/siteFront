@@ -6,7 +6,7 @@
         </div>
 
         <!-- Header -->
-        <header class="flex flex-col items-center justify-center md:justify-end w-full min-h-[45vh] sm:min-h-[75vh] md:min-h-[95vh] landing-bg-header md:bg-fixed">
+        <header class="flex flex-col items-center justify-center md:justify-end w-full min-h-[50vh] sm:min-h-[77vh] md:min-h-[95vh] landing-bg-header md:bg-fixed">
 
             <div class="flex flex-row md:items-end w-full max-w-360">
                 <!-- Formulaire recherche md -->
@@ -68,7 +68,7 @@
             </div>
         </header>
 
-        <div class="md:hidden relative mx-auto w-full max-w-sm max-sm:px-6 py-5 -mt-20">
+        <div class="md:hidden relative mx-auto w-full max-w-sm max-sm:px-6 py-5 -mt-24">
             <!-- Formulaire recherche xs,sm -->
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
@@ -207,7 +207,7 @@
         <section id="simulationId" class="max-md:flex max-md:flex-col-reverse md:grid grid-cols-5">
 
             <!-- recherche par ville -->
-            <div class="max-md:w-full px-6 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pl-30 md:pr-12 md:pt-18 md:pb-20 bg-card">
+            <div class="max-md:w-full px-6 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pl-[7%] md:pr-12 md:pt-18 md:pb-20 bg-card">
                 <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mb-10">
                     Trouvez votre bien immobilier de rêve <br class="hidden md:block" />où vous voulez au maroc
                 </div>
@@ -281,7 +281,7 @@
             </div>
 
             <!-- simulation -->
-            <div class="max-md:w-full px-6 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-12 md:pr-30 md:pt-18 md:pb-20"
+            <div class="max-md:w-full px-6 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-12 md:pr-[7%] md:pt-18 md:pb-20"
                 [ngClass]="{'bg-simul': isScreenSmall}">
                 <div class="p-5 sm:p-10 shadow-lg rounded-2xl bg-card">
                     <simulation [isScreenSmall]="isScreenSmall"></simulation>

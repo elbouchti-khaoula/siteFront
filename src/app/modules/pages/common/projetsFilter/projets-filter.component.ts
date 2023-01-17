@@ -1,9 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from '../../projets-search/common/projets.service';
+import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
+import { ProjetsService } from '../../projets-search/projets.service';
+import { ReferentielService } from '../referentiel.service';
+import { Quartier, TypeBien, Ville } from '../referentiel.types';
 
 @Component({
   selector: 'projets-filter',
@@ -27,28 +29,27 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   queryParams: Params;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  villes: Ville[];
+  typesBiens: TypeBien[];
+  quartiers: Quartier[];
+  quartiers$: Observable<Quartier[]>;
+
   /**
    * Constructor
    */
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _projetsService: ProjetsService,
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _referentielService: ReferentielService
   ) {
-    // const navigation = this._router.getCurrentNavigation();
-    // const state = navigation.extras.state as { ville: string, quartier: string, typeBien: string, prixMin: number, prixMax: number};
-    // console.log("+-+-+- state state.ville", state, state?.ville);
 
     // Prepare the search form with defaults
     this.searchForm = this._formBuilder.group(
       {
-        // ville: [state?.ville ?? this.searchFormDefaults.ville],
-        // quartier: [state?.quartier ?? this.searchFormDefaults.quartier],
-        // typeBien: [state?.typeBien ?? this.searchFormDefaults.typeBien],
-        // prixMin: [state?.prixMin ?? this.searchFormDefaults.prixMin],
-        // prixMax: [state?.prixMax ?? this.searchFormDefaults.prixMax]
         ville: [this.searchFormDefaults.ville],
         quartier: [this.searchFormDefaults.quartier],
         typeBien: [this.searchFormDefaults.typeBien],
@@ -57,6 +58,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
       },
       { validators: this.atLeastOneValue }
     );
+
   }
 
   atLeastOneValue(form: FormGroup): ValidationErrors {
@@ -71,27 +73,28 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // Subscribe to query params change
-    this._activatedRoute.queryParams
+    // Get the villes
+    this._referentielService.villes$
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((queryParams) => {
+      .subscribe((villes: Ville[]) => {
 
-        // Store the query params
-        this.queryParams = queryParams;
+        // Update the villes
+        this.villes = villes;
 
-        // Fill the form with the values from query
-        // params without emitting any form events
-        this.searchForm.setValue({
-          ville: queryParams?.ville ?? this.searchFormDefaults.ville,
-          quartier: queryParams?.quartier ?? this.searchFormDefaults.quartier,
-          typeBien: queryParams?.typeBien ? queryParams?.typeBien : this.searchFormDefaults.typeBien,
-          prixMin: queryParams?.prixMin ? queryParams?.prixMin : this.searchFormDefaults.prixMin,
-          prixMax: queryParams?.prixMax ? queryParams?.prixMax : this.searchFormDefaults.prixMax
-        }, { emitEvent: false });
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
 
-        if (queryParams?.ville || queryParams?.typeBien || queryParams?.prixMin || queryParams?.prixMax) {
-          this.searchForm.markAsDirty();
-        }
+    // Get the types de bien
+    this._referentielService.typesBiens$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((typesBiens: TypeBien[]) => {
+
+        // Update the types de bien
+        this.typesBiens = typesBiens;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
       });
 
     // Subscribe to media changes
@@ -103,6 +106,43 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         this.isScreenSmall = !matchingAliases.includes('md');
       });
 
+    this.searchForm.get('ville').valueChanges
+      .pipe(
+        debounceTime(300),
+        takeUntil(this._unsubscribeAll)
+      )
+      .subscribe((value) => {
+
+        // this.quartiers$ = this._referentielService.getQuartiersByVille(value);
+        this.getQuartiersByVille(value);
+      });
+
+    // Subscribe to query params change
+    this._activatedRoute.queryParams
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((queryParams) => {
+
+        // Store the query params
+        this.queryParams = queryParams;
+
+        // Fill the form with the values from query
+        // params without emitting any form events
+        this.searchForm.setValue({
+          ville: queryParams?.ville ? +queryParams?.ville : this.searchFormDefaults.ville,
+          quartier: queryParams?.quartier ? +queryParams?.quartier : this.searchFormDefaults.quartier,
+          typeBien: queryParams?.typeBien ? queryParams?.typeBien : this.searchFormDefaults.typeBien,
+          prixMin: queryParams?.prixMin ? queryParams?.prixMin : this.searchFormDefaults.prixMin,
+          prixMax: queryParams?.prixMax ? queryParams?.prixMax : this.searchFormDefaults.prixMax
+        }, { emitEvent: false });
+
+        if (queryParams?.ville || queryParams?.typeBien || queryParams?.prixMin || queryParams?.prixMax) {
+          this.searchForm.markAsDirty();
+        }
+
+        if (queryParams?.ville) {
+          this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.ville);
+        }
+      });
   }
 
   /**
@@ -117,6 +157,23 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Get quartiers by ville using ville code
+   *
+   * @param ville
+   */
+  getQuartiersByVille(ville: number) {
+
+    this.quartiers$ = this._referentielService.quartiers$;
+    this._referentielService.getQuartiersByVille(ville)
+      .subscribe((response) => {
+
+        // Set the quartiers
+        this.quartiers = response;
+      });
+
+  }
 
   /**
    * Reset the search form using the default
@@ -159,11 +216,6 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         ['/projets-search'],
         { fragment: 'projetsId', queryParams: this.searchForm.value }
       );
-      // const navigationExtras: NavigationExtras = { state: { ville: 'ville1' } };
-      // this._router.navigate(
-      //     ['/projets-search'], 
-      //     navigationExtras
-      // );
     }
   }
 

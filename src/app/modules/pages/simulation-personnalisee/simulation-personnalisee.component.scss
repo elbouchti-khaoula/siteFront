@@ -1,5 +1,6 @@
+// linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3))
 .simul-bg-header {
-    background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/simulation/cle-maison.jpg');
+    background-image:linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2)), url('/assets/images/pages/simulation/cle-maison.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -7,6 +8,32 @@
 
 @media (max-width: 767px) {
     .simul-bg-header {
-        background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/simulation/cle-maison-sm.jpg');
+        background-image: url('/assets/images/pages/simulation/cle-maison-sm.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
     }
+}
+
+
+.u-shape-svg {
+    width: 255px;
+    height: 150px;
+    margin: -15px auto 0 83px;
+    transition-duration: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.u-svg-link {
+    width: 100%;
+    height: 100%;
+    // fill: #f1a40e !important;
+    fill: var(--fuse-primary) !important;
+}
+.u-svg-content {
+    width: 0;
+    height: 0;
 }

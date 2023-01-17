@@ -20,6 +20,7 @@ export interface Projet {
     devise?: string | null;
     quartier?: string | null;
     ville?: string | null;
+    villeLibelle?: string | null;
     adresse?: string | null;
     descriptionSmall?: string | null;
     standing?: string | null;
@@ -35,8 +36,5 @@ export interface Projet {
     gpsLongitude?: number;
 }
 
-
-    //"superficies": "De 285mÃ‚Â² ÃƒÂ  614mÃ‚Â²",
-    //"gpsLatitude": 33.5236235,
-    //"gpsLongitude": -7.8313316,
-    //"etat": 1, ?? aziz
+//"superficies": "De 285mÃ‚Â² ÃƒÂ  614mÃ‚Â²",
+//"etat": 1, ?? aziz

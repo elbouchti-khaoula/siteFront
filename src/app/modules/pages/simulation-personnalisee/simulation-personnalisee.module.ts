@@ -11,6 +11,7 @@ import { simulationPersonaliseeRoutes } from './simulation-personnalisee.routing
 import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
         MatSelectModule,
         MatCheckboxModule,
         MatMenuModule,
+        MatRadioModule,
         FuseCardModule
     ],
     exports     : [

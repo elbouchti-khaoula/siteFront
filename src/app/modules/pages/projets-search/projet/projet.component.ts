@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ProjetsService } from '../common/projets.service';
 import { Subject, takeUntil } from 'rxjs';
-import { Projet } from '../common/projets.types';
+import { ProjetsService } from '../projets.service';
+import { Projet } from '../projets.types';
 import { fuseAnimations } from '@fuse/animations';
 import { Location } from "@angular/common";
 

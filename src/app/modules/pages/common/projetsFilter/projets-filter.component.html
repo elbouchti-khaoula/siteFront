@@ -1,5 +1,6 @@
 <form [formGroup]="searchForm"
-    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:p-8 md:pb-4">
+    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:p-7 md:pb-5"
+    [ngClass]="{'md:bg-opacity-70': parentComponent === 'landing'}">
 
     <div class="w-full mb-5"
         [ngClass]="{'md:hidden': parentComponent === 'projet-search'}">
@@ -10,76 +11,75 @@
     </div>
 
     <div class="flex flex-col"
-        [ngClass]="{'md:flex-row': parentComponent === 'projet-search'}">
+        [ngClass]="{'md:flex-row items-end': parentComponent === 'projet-search'}">
 
         <div class="w-full grid grid-cols-2 gap-3"
             [ngClass]="{'md:grid-cols-5 md:w-5/6': parentComponent === 'projet-search'}">
+            
             <!-- Ville -->
-            <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
-                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                 </mat-icon>
-                <mat-select [placeholder]="'Ville'" [formControlName]="'ville'">
-                    <mat-option [value]="'Casablanca'">Casablanca</mat-option>
-                    <mat-option [value]="'Rabat'">Rabat</mat-option>
-                    <mat-option [value]="'Tanger'">Tanger</mat-option>
-                    <mat-option [value]="'Marrackech'">Marrackech</mat-option>
-                    <mat-option [value]="'Agadir'">Agadir</mat-option>
+                <mat-label class="text-sm font-medium text-black">Ville</mat-label>
+                <mat-select [formControlName]="'ville'">
+                    <ng-container *ngFor="let ville of villes">
+                        <mat-option [value]="ville.codeVille">
+                            {{ville.description}}
+                        </mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
-            
+
             <!-- Quartier -->
-            <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
-                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
-                <mat-select
-                    [placeholder]="'Quartier'"
-                    [formControlName]="'quartier'"
+                <mat-label class="text-sm font-medium text-black">Quartier</mat-label>
+                <mat-select [formControlName]="'quartier'"
                     [disableControl]="!searchForm.get('ville').value">
-                    <mat-option [value]="'quart1'">Quartier 1</mat-option>
-                    <mat-option [value]="'quart2'">Quartier 2</mat-option>
-                    <mat-option [value]="'quart3'">Quartier 3</mat-option>
+                    <ng-container *ngFor="let quartier of quartiers$ | async">
+                        <mat-option [value]="quartier.code">
+                            {{quartier.libelle}}
+                        </mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
             
             <!-- Type de bien -->
-            <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
-                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                 </mat-icon>
-                <mat-select [placeholder]="'Type de bien'" [formControlName]="'typeBien'">
-                    <mat-option [value]="'type1'">Type 1</mat-option>
-                    <mat-option [value]="'type2'">Type 2</mat-option>
-                    <mat-option [value]="'type3'">Type 3</mat-option>
-                    <mat-option [value]="'type4'">Type 4</mat-option>
-                    <mat-option [value]="'type5'">Type 5</mat-option>
+                <mat-label class="text-sm font-medium text-black">Type de bien</mat-label>
+                <mat-select [formControlName]="'typeBien'">
+                    <ng-container *ngFor="let typeBien of typesBiens">
+                        <mat-option [value]="typeBien.code">
+                            {{typeBien.libelle}}
+                        </mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
 
             <div [ngClass]="{'md:hidden': parentComponent === 'projet-search'}"></div>
 
             <!-- Prix min -->
-            <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
-                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'" matPrefix>
-                </mat-icon>
-                <input matInput [placeholder]="'Prix min'" [formControlName]="'prixMin'">
+            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <input matInput [formControlName]="'prixMin'">
+                <mat-label class="text-sm font-medium text-black">Prix min</mat-label>
+                <span matSuffix>Dhs</span>
             </mat-form-field>
 
             <!-- Prix max -->
-            <mat-form-field class="fuse-mat-rounded fuse-mat-no-subscript fuse-mat-bold w-full"
-                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:currency-dollar'" matPrefix>
-                </mat-icon>
-                <input matInput [placeholder]="'Prix max'" [formControlName]="'prixMax'">
+            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <input matInput [formControlName]="'prixMax'">
+                <mat-label class="text-sm font-medium text-black">Prix max</mat-label>
+                <span matSuffix>Dhs</span>
             </mat-form-field>
         </div>
 
         <!-- Actions -->
         <div class="flex items-center justify-center"
-            [ngClass]="{'max-md:mt-3 md:w-1/6 md:ml-10': parentComponent === 'projet-search',
-                        'mt-3 md:mt-7': parentComponent === 'landing'}">
+            [ngClass]="{'max-md:mt-5 md:w-1/6 md:ml-10 md:mb-1': parentComponent === 'projet-search',
+                        'mt-5': parentComponent === 'landing'}">
             <button
                 mat-stroked-button
                 type="button" 

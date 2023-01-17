@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, filter, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet } from './projets.types';
 
 @Injectable({
@@ -44,18 +44,6 @@ export class ProjetsService
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Get projets
-     */
-    // getProjets(): Observable<Projet[]>
-    // {
-    //     return this._httpClient.get<Projet[]>('api/projets/all').pipe(
-    //         tap((projets) => {
-    //             this._projets.next(projets);
-    //         })
-    //     );
-    // }
-
-    /**
      * Search projets with given query
      *
      * @param queryParams
@@ -77,11 +65,7 @@ export class ProjetsService
                     // Sort the projets by the name field by default
                     projets.sort((a, b) => a.nom.localeCompare(b.nom));
 
-                    // projets = projets.map(projet => {
-                    //     return {...projet, 
-                    //             descriptionSmall: projet.description.substring(0, projet.description.indexOf("</p>") + 4)
-                    //         }
-                    // });
+                    // Get description small
                     projets.forEach(projet => 
                         projet.descriptionSmall = projet.description.substring(0, projet.description.indexOf("</p>") + 4)
                     );
