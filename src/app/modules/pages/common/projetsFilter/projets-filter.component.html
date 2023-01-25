@@ -20,7 +20,7 @@
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-medium text-black">Ville</mat-label>
+                <mat-label class="text-sm font-semibold">Ville</mat-label>
                 <mat-select [formControlName]="'ville'">
                     <ng-container *ngFor="let ville of villes">
                         <mat-option [value]="ville.codeVille">
@@ -34,7 +34,7 @@
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-medium text-black">Quartier</mat-label>
+                <mat-label class="text-sm font-semibold">Quartier</mat-label>
                 <mat-select [formControlName]="'quartier'"
                     [disableControl]="!searchForm.get('ville').value">
                     <ng-container *ngFor="let quartier of quartiers$ | async">
@@ -49,7 +49,7 @@
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-medium text-black">Type de bien</mat-label>
+                <mat-label class="text-sm font-semibold">Type de bien</mat-label>
                 <mat-select [formControlName]="'typeBien'">
                     <ng-container *ngFor="let typeBien of typesBiens">
                         <mat-option [value]="typeBien.code">
@@ -64,14 +64,14 @@
             <!-- Prix min -->
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMin'">
-                <mat-label class="text-sm font-medium text-black">Prix min</mat-label>
+                <mat-label class="text-sm font-semibold">Prix min</mat-label>
                 <span matSuffix>Dhs</span>
             </mat-form-field>
 
             <!-- Prix max -->
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMax'">
-                <mat-label class="text-sm font-medium text-black">Prix max</mat-label>
+                <mat-label class="text-sm font-semibold">Prix max</mat-label>
                 <span matSuffix>Dhs</span>
             </mat-form-field>
         </div>

@@ -93,7 +93,10 @@ export const appRoutes: Route[] = [
         },
         children   : [
             // {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
-
+            {
+                path: 'nous-connaitre',
+                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
+            },
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),

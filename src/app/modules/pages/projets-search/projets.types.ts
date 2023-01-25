@@ -36,5 +36,4 @@ export interface Projet {
     gpsLongitude?: number;
 }
 
-//"superficies": "De 285mÃ‚Â² ÃƒÂ  614mÃ‚Â²",
-//"etat": 1, ?? aziz
+//"etat": 1, ?? aziz : visibilité dans le site web

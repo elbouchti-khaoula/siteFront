@@ -1,33 +1,22 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]>
 
-    <!-- Header -->
-    <div class="flex flex-col px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[90vh] simul-bg-header bg-fixed">
+    <div class="px-6 sm:px-16 py-10 sm:py-20 simul-bg-header bg-fixed">
 
-        <div class="relative flex flex-col justify-center h-30 mb-16">
-            <!-- <div class="z-10 absolute top-5 left-5 w-60 h-20"
-                style="background-image: url('/assets/images/pages/simulation/patternstransparent.png');">
-            </div> -->
-            <div class="u-shape-svg u-shape-1">
-                <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 130">
-                    <use xlink:href="#svg-b4cc"></use>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                    xml:space="preserve" class="u-svg-content" viewBox="0 0 160 130" x="0px" y="0px" id="svg-b4cc">
-                    <path d="M52.6,11.4C12,28.8-29.7,90.3,29.4,124c19.1,10.9,43.7,6.6,57.2-10.7c0.4-0.5,0.8-1,1.1-1.5c17.8-24.6,32.6-4.1,48.4-8.5
-                            C180.4,91.2,168.9-38.5,52.6,11.4z">
-                    </path>
-                </svg>
+        <div class="w-full max-w-400 mx-auto">
+            <div class="relative mb-10 w-fit">
+                <div class="absolute inset-0 h-14 w-28 md:h-24 md:w-44 m-auto">
+                    <img class="object-cover opacity-20 h-full" src="assets/images/pages/nous-connaitre/maison.png" alt="" />
+                </div>
+                <div class="relative w-fit border-b-2 border-t-2 md:border-b-4 md:border-t-4 border-primary py-5 md:py-8">
+                    <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-white">
+                        Je simule mon crédit
+                    </span>
+                </div>
             </div>
-            <div class="ml-10 relative text-2xl md:text-5xl uppercase font-extrabold tracking-tight leading-tight text-white">
-                Je simule mon crédit
-            </div>
-        </div>
-
-        <div class="w-full max-w-400">
-
+        
             <div class="flex flex-col md:flex-row md:items-start">
 
-                <form class="flex flex-col md:w-1/2 overflow-hidden rounded-2xl bg-card bg-opacity-80 px-6 pt-7 pb-8 ring-2 ring-black text-black"
+                <form class="flex flex-col md:w-1/2 overflow-hidden rounded-2xl bg-card bg-opacity-80 px-6 pt-7 pb-8 ring-2 ring-current"
                     [formGroup]="simulationForm">
 
                     <div class="w-full mb-5">
@@ -41,7 +30,7 @@
                         <!-- Montant -->
                         <mat-form-field class="md:col-span-4 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <input matInput [formControlName]="'montant'">
-                            <mat-label class="text-sm font-medium text-black">Montant</mat-label>
+                            <mat-label class="text-sm font-semibold">Montant</mat-label>
                             <span matSuffix>Dhs</span>
                             <mat-error *ngIf="simulationForm.get('montant').hasError('required')">
                                 Montant obligatoire
@@ -51,7 +40,7 @@
                         <!-- Durée -->
                         <mat-form-field class="md:col-span-3 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <input matInput [formControlName]="'duree'">
-                            <mat-label class="text-sm font-medium text-black">Durée</mat-label>
+                            <mat-label class="text-sm font-semibold">Durée</mat-label>
                             <span matSuffix>ans</span>
                             <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
                                 Durée obligatoire
@@ -70,7 +59,7 @@
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                             </mat-icon>
                             <input matInput [formControlName]="'nom'">
-                            <mat-label class="text-sm font-medium text-black">Nom</mat-label>
+                            <mat-label class="text-sm font-semibold">Nom</mat-label>
                             <mat-error *ngIf="simulationForm.get('nom').hasError('required')">
                                 Nom obligatoire
                             </mat-error>
@@ -81,7 +70,7 @@
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                             </mat-icon>
                             <input matInput [formControlName]="'prenom'">
-                            <mat-label class="text-sm font-medium text-black">Prénom</mat-label>
+                            <mat-label class="text-sm font-semibold">Prénom</mat-label>
                             <mat-error *ngIf="simulationForm.get('prenom').hasError('required')">
                                 Prénom obligatoire
                             </mat-error>
@@ -99,7 +88,7 @@
                                     </mat-option>
                                 </ng-container>
                             </mat-select>
-                            <mat-label class="text-sm font-medium text-black">Catégorie socio-professionnelle
+                            <mat-label class="text-sm font-semibold">Catégorie socio-professionnelle
                             </mat-label>
                             <mat-error *ngIf="simulationForm.get('cspCode').hasError('required')">
                                 Catégorie socio-professionnelle obligatoire
@@ -110,7 +99,7 @@
                         <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
                             <input matInput [formControlName]="'telephone'">
-                            <mat-label class="text-sm font-medium text-black">Téléphone</mat-label>
+                            <mat-label class="text-sm font-semibold">Téléphone</mat-label>
                             <mat-error *ngIf="simulationForm.get('telephone').hasError('required')">
                                 Téléphone obligatoire
                             </mat-error>
@@ -120,7 +109,7 @@
                         <mat-form-field class="md:col-span-2 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
                             <input type="email" matInput [formControlName]="'email'">
-                            <mat-label class="text-sm font-medium text-black">E-mail</mat-label>
+                            <mat-label class="text-sm font-semibold">E-mail</mat-label>
                             <mat-error *ngIf="simulationForm.get('email').hasError('email')">
                                 Enter a valid email address
                             </mat-error>
@@ -132,7 +121,7 @@
                         <!-- Résident -->
                         <mat-radio-group class="flex flex-row col-span-2 md:col-span-3 w-full" [color]="'primary'"
                             [formControlName]="'residentMarocain'">
-                            <mat-label class="text-sm font-medium text-black">Résident au Maroc ? <span
+                            <mat-label class="text-sm font-semibold">Résident au Maroc ? <span
                                     class="text-base">*</span></mat-label>
                             <mat-radio-button class="ml-2" [value]="'true'">
                                 Oui
