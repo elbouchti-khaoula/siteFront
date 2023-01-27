@@ -23,21 +23,16 @@ const customPalettes = {
 const themes = {
     // Default theme is required for theming system to work correctly
     'default': {
-        // AWB
-        // primary: customPalettes.roug,
-        // second : customPalettes.orang,
-
         // WIMMO
         primary : customPalettes.bordeau,
         second : customPalettes.beige,
-
         // primary  : {
         //     ...colors.indigo,
         //     DEFAULT: colors.indigo[600]
         // },
         accent   : {
-            ...colors.slate,
-            DEFAULT: colors.slate[800]
+            ...colors.neutral,
+            DEFAULT: colors.neutral[800]
         },
         warn     : {
             ...colors.red,
@@ -116,7 +111,7 @@ const config = {
                 'spin-slow': 'spin 3s linear infinite'
             },
             colors                  : {
-                gray: colors.slate
+                gray: colors.neutral
             },
             flex                    : {
                 '0': '0 0 auto'
