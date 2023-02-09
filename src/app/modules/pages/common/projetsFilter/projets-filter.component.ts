@@ -185,7 +185,6 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         queryParams: {},
         relativeTo: this._activatedRoute
       });
-      // console.log("+-+- projets-search reset", this._activatedRoute, this._router)
     }
   }
 
@@ -198,12 +197,11 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
       this._router.navigate(
         [],
         {
-          fragment: 'projetsId',
+          fragment: 'projetsResultId',
           queryParams: this.searchForm.value,
           relativeTo: this._activatedRoute
         }
       );
-      // console.log("+-+- projets-search search", this._activatedRoute, this._router);
     });
   }
 
@@ -216,7 +214,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
       this._router.navigate(
         ['/projets-search'],
         {
-          fragment: 'projetsId',
+          fragment: 'projetsResultId',
           queryParams: this.searchForm.value
         }
       );

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
@@ -12,8 +12,8 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ProjetsSearchComponent implements
   OnInit,
-  OnDestroy,
-  AfterViewInit {
+  OnDestroy
+{
 
   private fragment: string;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -36,24 +36,22 @@ export class ProjetsSearchComponent implements
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(fragment => {
         this.fragment = fragment;
-        // console.log("+-+-+- fragment ngOnInit", fragment);
         if (fragment && document.getElementById(fragment) != null) {
-          document.getElementById(fragment).scrollIntoView({ behavior: "smooth" });
-        }
+          setTimeout(() => {
+            try {
+              document.getElementById(this.fragment).scrollIntoView();
+            } catch (e) { }
+          }, 300);
+        } 
+        // else {
+        //   setTimeout(() => {
+        //     const nativeElement = this._elementRef.nativeElement;
+        //     const firstChild = nativeElement.children[0];
+        //     firstChild.scrollTop = 0
+        //   }, 300);
+        // }
       });
-  }
 
-  /**
-   * After view init
-   */
-  ngAfterViewInit() {
-    setTimeout(() => {
-      try {
-        // console.log("+-+-+- this.fragment ngAfterViewInit", this.fragment);
-        document.querySelector('#' + this.fragment).scrollIntoView();
-      } catch (e) {
-      }
-    });
   }
 
   /**
