@@ -13,8 +13,10 @@ const customPalettes = {
     brand: generatePalette('#2196F3'),
     bordeau: generatePalette('#b4272f'),    // (#febe86/#b2282f/#b4272f : foncé)  autre: #a43734
     beige: generatePalette('#f9bc85'),      // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
-    roug: generatePalette('#e86441'),       // #e86441 site, #f55b3b logo
-    orang: generatePalette('#f5c000'),      //#f5c000 site, #fcbd00 logo
+    rouge: generatePalette('#e86441'),       // #e86441 site, #f55b3b logo
+    orange: generatePalette('#f5c000'),      //#f5c000 site, #fcbd00 logo
+    rougea: generatePalette('#d8473b'),
+    beigea: generatePalette('#D6B596'),
 };
 
 /**
@@ -42,13 +44,17 @@ const themes = {
             500: colors.red['50']
         }
     },
-    'orange'  : {
-        primary: customPalettes.roug,
-        second : customPalettes.orang,
+    'awb'  : {
+        primary: customPalettes.rouge,
+        second : customPalettes.orange,
     },
-    'bordeau'  : {
+    'wimmo'  : {
         primary : customPalettes.bordeau,
         second : customPalettes.beige,
+    },
+    'agence'  : {
+        primary : customPalettes.rougea,
+        second : customPalettes.beigea,
     },
     // Rest of the themes will use the 'default' as the base theme
     // and extend them with their given configuration
@@ -193,6 +199,8 @@ const config = {
                 '5/12': '41.666667%',
                 '7/12': '58.333333%',
                 '11/12': '91.666667%',
+                '9/20': '45%',
+                '11/20': '55%',
             },
             minHeight               : ({theme}) => ({
                 ...theme('spacing'),

@@ -1,9 +1,9 @@
 <form [formGroup]="searchForm"
-    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:p-7 md:pb-5"
+    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:py-5 md:px-7"
     [ngClass]="{'md:bg-opacity-70': parentComponent === 'landing'}">
 
     <div class="w-full mb-5"
-        [ngClass]="{'md:hidden': parentComponent === 'projet-search'}">
+        [ngClass]="{'md:hidden': parentComponent === 'projets-search'}">
         <div class="text-lg font-bold text-primary">
             Trouvez votre bien immobilier
         </div>
@@ -11,17 +11,18 @@
     </div>
 
     <div class="flex flex-col"
-        [ngClass]="{'md:flex-row items-end': parentComponent === 'projet-search'}">
+        [ngClass]="{'md:flex-row items-end': parentComponent === 'projets-search'}">
 
         <div class="w-full grid grid-cols-2 gap-3"
-            [ngClass]="{'md:grid-cols-5 md:w-5/6': parentComponent === 'projet-search'}">
+            [ngClass]="{'md:grid-cols-5 md:w-5/6': parentComponent === 'projets-search'}">
             
             <!-- Ville -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-semibold">Ville</mat-label>
-                <mat-select [formControlName]="'ville'">
+                <!-- <mat-label class="text-sm font-semibold">Ville</mat-label> -->
+                <mat-select [formControlName]="'ville'" [placeholder]="'Ville'">
                     <ng-container *ngFor="let ville of villes">
                         <mat-option [value]="ville.codeVille">
                             {{ville.description}}
@@ -31,11 +32,12 @@
             </mat-form-field>
 
             <!-- Quartier -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-semibold">Quartier</mat-label>
-                <mat-select [formControlName]="'quartier'"
+                <!-- <mat-label class="text-sm font-semibold">Quartier</mat-label> -->
+                <mat-select [formControlName]="'quartier'" [placeholder]="'Quartier'"
                     [disableControl]="!searchForm.get('ville').value">
                     <ng-container *ngFor="let quartier of quartiers$ | async">
                         <mat-option [value]="quartier.code">
@@ -46,11 +48,12 @@
             </mat-form-field>
             
             <!-- Type de bien -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                 </mat-icon>
-                <mat-label class="text-sm font-semibold">Type de bien</mat-label>
-                <mat-select [formControlName]="'typeBien'">
+                <!-- <mat-label class="text-sm font-semibold">Type de bien</mat-label> -->
+                <mat-select [formControlName]="'typeBien'" [placeholder]="'Type de bien'">
                     <ng-container *ngFor="let typeBien of typesBiens">
                         <mat-option [value]="typeBien.code">
                             {{typeBien.libelle}}
@@ -59,42 +62,45 @@
                 </mat-select>
             </mat-form-field>
 
-            <div [ngClass]="{'md:hidden': parentComponent === 'projet-search'}"></div>
+            <div [ngClass]="{'md:hidden': parentComponent === 'projets-search'}"></div>
 
             <!-- Prix min -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <input matInput [formControlName]="'prixMin'">
-                <mat-label class="text-sm font-semibold">Prix min</mat-label>
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <!-- <mat-label class="text-sm font-semibold">Prix min</mat-label> -->
+                <input matInput [formControlName]="'prixMin'" [placeholder]="'Prix min'">
                 <span matSuffix>Dhs</span>
             </mat-form-field>
 
             <!-- Prix max -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <input matInput [formControlName]="'prixMax'">
-                <mat-label class="text-sm font-semibold">Prix max</mat-label>
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <!-- <mat-label class="text-sm font-semibold">Prix max</mat-label> -->
+                <input matInput [formControlName]="'prixMax'" [placeholder]="'Prix max'">
                 <span matSuffix>Dhs</span>
             </mat-form-field>
         </div>
 
         <!-- Actions -->
         <div class="flex items-center justify-center"
-            [ngClass]="{'max-md:mt-5 md:w-1/6 md:ml-10 md:mb-1': parentComponent === 'projet-search',
+            [ngClass]="{'max-md:mt-5 md:w-1/6 md:ml-10 md:mb-1': parentComponent === 'projets-search',
                         'mt-5': parentComponent === 'landing'}">
             <button
                 mat-stroked-button
                 type="button" 
                 [color]="'primary'"
-                [disabled]="parentComponent === 'projet-search' ? searchForm.invalid : (searchForm.pristine || searchForm.invalid)"
+                [disabled]="parentComponent === 'projets-search' ? searchForm.invalid : (searchForm.pristine || searchForm.invalid)"
                 (click)="reset()">
                 Vider
             </button>
             <button 
                 class="ml-2"
+                [ngClass]="{'bg-primary-200' : searchForm.pristine || searchForm.invalid}"
                 mat-flat-button
                 type="button"
                 [color]="'primary'"
                 [disabled]="searchForm.pristine || searchForm.invalid"
-                (click)="parentComponent === 'projet-search' ? search() : navigateToMarketPlace()">
+                (click)="parentComponent === 'projets-search' ? search() : navigateToMarketPlace()">
                 Voir les annonces
             </button>
         </div>

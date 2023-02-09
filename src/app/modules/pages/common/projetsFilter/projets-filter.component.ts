@@ -15,7 +15,7 @@ import { Quartier, TypeBien, Ville } from '../referentiel.types';
 export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   isScreenSmall: boolean;
-  @Input() parentComponent: 'landing' | 'projet-search';
+  @Input() parentComponent: 'landing' | 'projets-search';
 
   searchForm: UntypedFormGroup;
   searchFormDefaults: any = {
@@ -106,17 +106,6 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         this.isScreenSmall = !matchingAliases.includes('md');
       });
 
-    this.searchForm.get('ville').valueChanges
-      .pipe(
-        debounceTime(300),
-        takeUntil(this._unsubscribeAll)
-      )
-      .subscribe((value) => {
-
-        // this.quartiers$ = this._referentielService.getQuartiersByVille(value);
-        this.getQuartiersByVille(value);
-      });
-
     // Subscribe to query params change
     this._activatedRoute.queryParams
       .pipe(takeUntil(this._unsubscribeAll))
@@ -139,9 +128,20 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
           this.searchForm.markAsDirty();
         }
 
-        if (queryParams?.ville) {
-          this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.ville);
-        }
+        // if (queryParams?.ville) {
+        //   this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.ville);
+        // }
+      });
+
+    this.quartiers$ = this._referentielService.quartiers$;
+    this.searchForm.get('ville').valueChanges
+      .pipe(
+        debounceTime(300),
+        takeUntil(this._unsubscribeAll)
+      )
+      .subscribe((value) => {
+
+        this.getQuartiersByVille(value);
       });
   }
 
@@ -164,15 +164,14 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * @param ville
    */
   getQuartiersByVille(ville: number) {
+    if (ville) {
+      this._referentielService.getQuartiersByVille(ville)
+        .subscribe((response) => {
 
-    this.quartiers$ = this._referentielService.quartiers$;
-    this._referentielService.getQuartiersByVille(ville)
-      .subscribe((response) => {
-
-        // Set the quartiers
-        this.quartiers = response;
-      });
-
+          // Set the quartiers
+          this.quartiers = response;
+        });
+    }
   }
 
   /**
@@ -180,11 +179,13 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    */
   reset(): void {
     this.searchForm.reset(this.searchFormDefaults);
-    if (this.parentComponent === 'projet-search') {
+    if (this.parentComponent === 'projets-search') {
       this._router.navigate(['./'], {
+        fragment: null,
         queryParams: {},
         relativeTo: this._activatedRoute
       });
+      // console.log("+-+- projets-search reset", this._activatedRoute, this._router)
     }
   }
 
@@ -193,16 +194,16 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    */
   search(): void {
     this._projetsService.searchProjets(this.searchForm.value).subscribe(() => {
-
       // Add query params using the router
       this._router.navigate(
         [],
         {
-          fragment: "projetsId",
+          fragment: 'projetsId',
           queryParams: this.searchForm.value,
           relativeTo: this._activatedRoute
         }
       );
+      // console.log("+-+- projets-search search", this._activatedRoute, this._router);
     });
   }
 
@@ -214,7 +215,10 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
       // Add query params using the router
       this._router.navigate(
         ['/projets-search'],
-        { fragment: 'projetsId', queryParams: this.searchForm.value }
+        {
+          fragment: 'projetsId',
+          queryParams: this.searchForm.value
+        }
       );
     }
   }

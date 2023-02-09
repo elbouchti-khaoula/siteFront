@@ -178,7 +178,7 @@
         [ngClass]="{'fuse-mat-button-large': !isScreenSmall}"
         mat-flat-button
         [color]="'primary'"
-        [routerLink]="['/simulation-personnalisee']">
+        (click)="navigateToSimulationPersonnalisee()">
         Simulation personnalisée
     </button>
 </div>

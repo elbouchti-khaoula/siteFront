@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
+import { Router } from '@angular/router';
 
 @Component({
     selector       : 'simulation',
@@ -19,7 +20,7 @@ export class SimulationComponent
     /**
      * Constructor
      */
-    constructor()
+    constructor(private _router: Router)
     {
     }
 
@@ -42,9 +43,9 @@ export class SimulationComponent
     }
 
     simulateur() {
-        var montant = this.montantValue;
-        var duree = this.dureeValue * 12
-        var taux = this.tauxValue / 100;
+        const montant = this.montantValue;
+        const duree = this.dureeValue * 12
+        const taux = this.tauxValue / 100;
         var m = (montant * (taux / 12)) / (1 - Math.pow((1 + (taux / 12)), -duree));
         return (Math.round(m * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
@@ -59,5 +60,18 @@ export class SimulationComponent
 
     formatLabelTaux(value: number) {
         return `  ${value} %  `;
+    }
+
+    /**
+     * Perform the search and navigate
+     */
+    navigateToSimulationPersonnalisee(): void {
+        // Add query params using the router
+        this._router.navigate(
+            ['/simulation-personnalisee'],
+            {
+                queryParams: { montant: this.montantValue, duree: this.dureeValue }
+            }
+        );
     }
 }

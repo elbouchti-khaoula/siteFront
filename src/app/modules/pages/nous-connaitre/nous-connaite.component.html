@@ -1,4 +1,6 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden">
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden"> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis]
+    cdkScrollable>
 
     <section class="u-section-2 px-6 sm:px-16 py-10 sm:py-20 bg-gray-600">
 
@@ -11,7 +13,7 @@
                 </div>
 
                 <div
-                    class="relative w-fit border-b-2 border-t-2 md:border-b-4 md:border-t-4 border-primary-500 py-5 md:py-8">
+                    class="relative w-fit border-b-2 border-t-2 md:border-b-4 md:border-t-4 border-second py-5 md:py-8">
                     <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-white">
                         Nous connaitre
                     </span>
@@ -64,7 +66,7 @@
                                         </div>
 
                                         <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollTo('secAboutUs')">
+                                            <a [routerLink]="['./']" (click)="scrollToElement(secAboutUs)">
                                                 <span
                                                     class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
                                                     En savoir plus
@@ -146,7 +148,7 @@
                                         </div>
 
                                         <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollTo('secMissions')">
+                                            <a [routerLink]="['./']" (click)="scrollToElement(secMissions)">
                                                 <span
                                                     class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
                                                     En savoir plus
@@ -254,20 +256,6 @@
                                             </span>
                                         </div>
 
-                                        <!-- <div class="prose my-3">
-                                            <span class="u-text-3 mt-3">
-                                                L'équipe dédiée de spécialistes de Wafa immobilier intervient auprès :
-                                            </span>
-                                            <ol>
-                                                <li>
-                                                    de votre personnel, pour faciliter l’accès à la propriété.
-                                                </li>
-                                                <li>
-                                                    des promoteurs, pour aider à mener à bien les projets immobiliers
-                                                </li>
-                                            </ol>
-                                        </div> -->
-
                                         <div class="u-text-3 mt-3">
                                             Le Groupe Attijariwafa Bank, premier groupe bancaire et financier du
                                             Maghreb, est une multinationale panafricaine qui accompagne aujourd'hui 10,8
@@ -277,7 +265,7 @@
                                         </div>
 
                                         <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollTo('secGroup')">
+                                            <a [routerLink]="['./']" (click)="scrollToElement(secGroup)">
                                                 <span
                                                     class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
                                                     En savoir plus
@@ -298,7 +286,7 @@
 
     </section>
 
-    <section class="px-6 sm:px-16 py-10 sm:py-20 bg-card" id="secAboutUs">
+    <div #secAboutUs class="px-6 sm:px-16 py-10 sm:py-20 bg-card">
         <div class="w-full max-w-400 mx-auto grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-10">
             <div class="md:col-span-1">
                 <img class="object-cover h-full rounded-lg" src="assets/images/pages/nous-connaitre/about-us.jpg"
@@ -392,9 +380,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="px-6 sm:px-16 py-10 sm:py-20 bg-gray-600" id="secMissions">
+    <div #secMissions class="px-6 sm:px-16 py-10 sm:py-20 bg-gray-600">
         <div class="w-full max-w-400 mx-auto flex flex-col md:flex-row">
             <div class="md:w-[60%] md:mr-10 max-md:mt-8">
                 <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-white">
@@ -491,7 +479,7 @@
                 <img class="object-cover h-full rounded-lg" src="assets/images/pages/nous-connaitre/team1.jpg" alt="" />
             </div>
         </div>
-    </section>
+    </div>
 
     <section
         style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('assets/images/pages/nous-connaitre/backgd.jpg');"
@@ -556,7 +544,7 @@
         </div>
     </section>
 
-    <section class="u-section-3 px-6 sm:px-16 py-10 sm:py-20" id="secGroup">
+    <div #secGroup class="u-section-3 px-6 sm:px-16 py-10 sm:py-20">
         <div class="w-full max-w-400 mx-auto flex flex-col-reverse md:flex-row">
             <div class="md:w-[45%] max-md:mt-8 md:mr-10">
                 <img class="rounded-lg u-image u-image-1" src="assets/images/pages/nous-connaitre/groupe1.jpg" alt="" />
@@ -635,6 +623,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
 </div>

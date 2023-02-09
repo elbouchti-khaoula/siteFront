@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { ViewportScroller } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
@@ -15,13 +14,13 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 export class LandingComponent implements OnInit {
     isScreenSmall: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    @ViewChild('simulationId', { read: ElementRef }) public simulationId: ElementRef<any>;
 
     /**
      * Constructor
      */
     constructor(
-        private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _viewScroller: ViewportScroller
+        private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
     }
 
@@ -45,8 +44,8 @@ export class LandingComponent implements OnInit {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    scrollTo(tag: string) {
-        this._viewScroller.scrollToAnchor(tag);
+    scrollToSimulation() {
+        this.simulationId.nativeElement.scrollIntoView();
     }
 
 }

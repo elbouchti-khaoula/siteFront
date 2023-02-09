@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -20,8 +19,7 @@ export class NousConnaiteComponent implements OnInit, OnDestroy
      * Constructor
      */
     constructor(
-        private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _viewScroller: ViewportScroller
+        private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
     }
 
@@ -53,8 +51,8 @@ export class NousConnaiteComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    scrollTo(tag: string) {
-        this._viewScroller.scrollToAnchor(tag);
+    scrollToElement(el: HTMLElement) {
+        el.scrollIntoView();
     }
 
 }

@@ -1,12 +1,14 @@
 .simul-bg-header {
-    background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/simulation/cle-maison.jpg');
+    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/simulation/simul.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    // background-attachment: scroll;
 }
-@media (max-width: 575px) {
+@media (max-width: 767px) {
     .simul-bg-header {
-        background-image: url('/assets/images/pages/simulation/cle-maison-sm.jpg');
+        background-image:  linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)), url('/assets/images/pages/simulation/header-sm.jpg');
+        background-attachment: fixed;
     }
 }
 

@@ -43,8 +43,6 @@ export class SimulationService {
         })
             .pipe(
                 tap((response: SimulationPersonnalisee) => {
-                    response.expertiseImmobiliere = "GRATUIT";
-                    response.fraisDossier = "GRATUIT";
                     this._simulation.next(response);
                 })
             );

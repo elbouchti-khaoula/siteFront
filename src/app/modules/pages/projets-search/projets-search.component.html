@@ -1,4 +1,6 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]>
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis]
+    cdkScrollable>
 
     <!-- Header -->
     <header class="flex flex-col items-center justify-center px-6 sm:px-16 md:pt-20 w-full min-h-[50vh] sm:min-h-[77vh] md:min-h-[95vh] projets-bg-header md:bg-fixed">
@@ -17,9 +19,12 @@
     </header>
 
     <div class="relative w-full md:max-w-400 mx-auto max-w-sm px-6 py-5 max-md:-mt-20">
-        <projets-filter [parentComponent]="'projet-search'"></projets-filter>
+        <projets-filter [parentComponent]="'projets-search'"></projets-filter>
     </div>
 
-    <router-outlet></router-outlet>
-
+    <div id="projetsId" class="flex flex-col items-center sm:px-20 md:px-6 md:py-3 min-h-screen w-full">
+        <div class="relative flex flex-auto w-full max-w-400">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>

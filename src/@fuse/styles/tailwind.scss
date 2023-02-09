@@ -29,19 +29,19 @@
         min-height: 100%;
         -webkit-font-smoothing: auto;
         -moz-osx-font-smoothing: auto;
+        scroll-behavior: smooth;
     }
 
     /* Font size */
     html {
         font-size: 16px;
-        scroll-behavior: smooth;
     }
 
     body {
         font-size: 0.875rem;
     }
 
-    /* Stylistic alternates for Inter */
+    /* Stylistic alternates off for selected font */
     body {
         font-feature-settings: 'salt' off;
     }
@@ -74,6 +74,40 @@
 
         .dark & {
             --tw-border-opacity: 0.12 !important;
+        }
+    }
+
+    @media only screen and (min-width: 960px) {
+
+        body:not(.os-mac) ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #0000
+        }
+
+        body:not(.os-mac) ::-webkit-scrollbar:hover {
+            width: 8px;
+            height: 8px;
+            background-color: #0000000f
+        }
+
+        body:not(.os-mac) ::-webkit-scrollbar-thumb {
+            border: 2px solid transparent;
+            border-radius: 20px;
+            box-shadow: inset 0 0 0 20px #0000003d
+        }
+
+        body:not(.os-mac) ::-webkit-scrollbar-thumb:active {
+            border-radius: 20px;
+            box-shadow: inset 0 0 0 20px #0000005e
+        }
+
+        body:not(.os-mac).dark ::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 0 20px #ffffff3d
+        }
+
+        body:not(.os-mac).dark ::-webkit-scrollbar-thumb:active {
+            box-shadow: inset 0 0 0 20px #ffffff5e
         }
     }
 

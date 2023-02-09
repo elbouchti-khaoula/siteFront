@@ -19,6 +19,7 @@ export interface AppConfig
     theme: Theme;
     themes: Themes;
     direction: Direction;
+    devise: string;
 }
 
 /**
@@ -50,19 +51,23 @@ export const appConfig: AppConfig = {
             name: 'WIMO'
         },
         {
-            id  : 'theme-brand',
-            name: 'Brand'
+            id  : 'theme-agence',
+            name: 'Agence'
         },
+        // {
+        //     id  : 'theme-brand',
+        //     name: 'Brand'
+        // },
         {
             id  : 'theme-teal',
             name: 'Teal'
         },
         // {
-        //     id  : 'theme-bordeau',
+        //     id  : 'theme-wimmo',
         //     name: 'WIMO'
         // },
         {
-            id  : 'theme-orange',
+            id  : 'theme-awb',
             name: 'AWB'
         },
         {
@@ -78,5 +83,6 @@ export const appConfig: AppConfig = {
             name: 'Amber'
         }
     ],
-    direction: 'ltr'
+    direction: 'ltr',
+    devise: 'Dhs'
 };

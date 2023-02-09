@@ -8,17 +8,19 @@ import { TranslocoModule } from '@ngneat/transloco';
 
 import { LandingComponent } from './landing.component';
 import { landingRoutes } from './landing.routing';
-import { CinqEtapesModule } from './cinqetapes/cinq-etapes.module';
+
+import { ProjetsFilterModule } from '../common/projetsFilter/projets-filter.module';
+import { VosAvantagesModule } from './nos-avantages/vos-avantages.module';
+import { RechercheVilleModule } from './recherche-ville/recherche-ville.module';
 import { SimulationModule } from '../common/simulation/simulation.module';
 import { NousChoisirModule } from './nouschoisir/nous-choisir.module';
+import { CinqEtapesModule } from './cinqetapes/cinq-etapes.module';
 import { ActualitesModule } from './actualites/actualites.module';
-import { ProjetsFilterModule } from '../common/projetsFilter/projets-filter.module';
-import { ContactezNousComponent } from './contactez-nous/contactez-nous.component';
+import { ContactezNousModule } from './contactez-nous/contactez-nous.module';
 
 @NgModule({
     declarations: [
-        LandingComponent,
-        ContactezNousComponent
+        LandingComponent
     ],
     imports     : [
         RouterModule.forChild(landingRoutes),
@@ -29,10 +31,13 @@ import { ContactezNousComponent } from './contactez-nous/contactez-nous.componen
         TranslocoLocaleModule,
 
         ProjetsFilterModule,
+        VosAvantagesModule,
+        RechercheVilleModule,
         SimulationModule,
         NousChoisirModule,
-        ActualitesModule,
         CinqEtapesModule,
+        ActualitesModule,
+        ContactezNousModule
     ]
 })
 export class LandingModule

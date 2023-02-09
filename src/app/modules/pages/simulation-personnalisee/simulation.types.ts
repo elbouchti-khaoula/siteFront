@@ -16,12 +16,13 @@ export interface SimulationPersonnalisee
     tauxMoyen?          : number;
     totalInterets       : number;
     coutTotal           : number;
+    expertiseImmobiliere: number;
+    fraisDossier        : number;
     droitsEnregistrement: number;
     conservationFonciere: number;
     honorairesNotaire   : number;
     fraisDivers         : number;
     totalFrais          : number;
 
-    expertiseImmobiliere: string;
-    fraisDossier        : string;
+
 }
