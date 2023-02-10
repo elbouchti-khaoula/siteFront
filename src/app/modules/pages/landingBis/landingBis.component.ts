@@ -82,7 +82,7 @@ export class LandingBisComponent implements OnInit, OnDestroy
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({ matchingAliases }) => {
 
-                // Check if the screen is small
+                // Check if the screen is xsSmall
                 this.isXsScreen = !matchingAliases.includes('sm');
             });
     }
