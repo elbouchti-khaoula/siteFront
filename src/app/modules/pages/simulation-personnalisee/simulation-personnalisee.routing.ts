@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { CategoriesSPResolver } from '../common/referentiel.resolvers';
+import { CategoriesSPResolver, NationalitesResolver } from '../common/referentiel.resolvers';
 import { SimulationPersonaliseeComponent } from './simulation-personnalisee.component';
 
 export const simulationPersonaliseeRoutes: Route[] = [
@@ -7,7 +7,8 @@ export const simulationPersonaliseeRoutes: Route[] = [
         path     : '',
         component: SimulationPersonaliseeComponent,
         resolve  : {
-            categories: CategoriesSPResolver
+            categories: CategoriesSPResolver,
+            nationalites: NationalitesResolver
         }
     }
 ];

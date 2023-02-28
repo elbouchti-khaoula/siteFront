@@ -135,17 +135,17 @@
                                                                 <mat-icon class="icon-size-5 text-primary-700"
                                                                     [svgIcon]="'heroicons_outline:location-marker'">
                                                                 </mat-icon>
-                                                                <span class="ml-1 text-md">{{projet.villeLibelle}}</span>
+                                                                <span class="ml-1 text-md">{{projet.libelleVille}}</span>
                                                             </div>
                                                             <span class="text-md font-medium text-second-550">{{projet.statut}}</span>
                                                         </div>
                                                         
-                                                        <ng-container *ngIf="projet.promoteur.logoPath">
+                                                        <ng-container *ngIf="projet.promoter.logoPath">
                                                             <figure class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 bg-card">
-                                                                <img [src]="projet.promoteur.logoPath" class="object-cover w-full h-fit" />
+                                                                <img [src]="projet.promoter.logoPath" class="object-cover w-full h-fit" />
                                                             </figure>
                                                         </ng-container>
-                                                        <ng-container *ngIf="!projet.promoteur.logoPath">
+                                                        <ng-container *ngIf="!projet.promoter.logoPath">
                                                             <span class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                                 No Logo
                                                             </span>

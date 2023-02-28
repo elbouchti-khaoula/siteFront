@@ -10,14 +10,22 @@
 
     <!-- Content -->
     <ng-container *ngIf="projets && projets.length > 0; else startNewSearchProjects">
-        <div class="overflow-y-auto">
-            <div>
+        <div class="flex-auto">
+            <!-- <div>
                 <div>Latitude: {{display?.lat}}</div>
                 <div>Longitude: {{display?.lng}}</div>
-            </div>
-
-            <google-map height="810px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)">
+            </div> -->
+            <!-- (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)" -->
+            <!-- [center]="center"
+            [zoom]="zoom" -->
+            <google-map 
+                height="100%"
+                width="100%"
+                [options]="mapOptions">
+                <map-marker *ngFor="let markerPosition of markerPositions"
+                    [position]="markerPosition"
+                    [options]="markerOptions"></map-marker>
             </google-map>
 
         </div>

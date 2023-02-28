@@ -81,13 +81,15 @@ export class ProjetsResultComponent implements
     ngOnInit(): void {
         // Get the projets
         this.projets$ = this._projetsService.projets$;
+
         this._projetsService.projets$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((projets: Projet[]) => {
-                this.projets = this.filteredProjets = projets;
+            .subscribe((response: Projet[]) => {
+
+                this.projets = this.filteredProjets = response;
 
                 // Update the counts
-                this.projetsCount = projets.length;
+                this.projetsCount = response.length;
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

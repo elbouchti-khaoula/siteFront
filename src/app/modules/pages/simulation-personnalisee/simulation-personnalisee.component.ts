@@ -5,7 +5,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle } from '../common/referentiel.types';
+import { CategorieSocioProfessionnelle, Nationalite } from '../common/referentiel.types';
 import { ReferentielService } from '../common/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationService } from './simulation.service';
@@ -23,22 +23,25 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   
   categories: CategorieSocioProfessionnelle[];
+  nationalites: Nationalite[];
   queryParams: Params;
   simulationForm: UntypedFormGroup;
   simulationFormDefaults: any = {
-    montant: null,
-    duree: null,
     nom: null,
-    prenom: null,
-    cspCode: null,
     telephone: null,
     email: null,
+    prenom: null,
+    nationaliteCode: null,
     residentMarocain: null,
-    agreements: null
+    agreements: null,
+    cspCode: null,
+    montant: null,
+    duree: null,
   };
 
   simulationResultat: SimulationPersonnalisee;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
+  isVisible: boolean = false;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
   @ViewChild('mensualiteId') mensualiteId: any;
@@ -90,27 +93,28 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     // Prepare the form with defaults
     this.simulationForm = this._formBuilder.group(
       {
-        montant: [this.simulationFormDefaults.montant, [Validators.required]],
-        duree: [this.simulationFormDefaults.duree, [Validators.required]],
-        nom: [this.simulationFormDefaults.nom, [Validators.required]],
-        prenom: [this.simulationFormDefaults.prenom, [Validators.required]],
-        cspCode: [this.simulationFormDefaults.cspCode, [Validators.required]],
-        telephone: [this.simulationFormDefaults.telephone, [Validators.required]],
-        email: [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
+        nom             : [this.simulationFormDefaults.nom, [Validators.required]],
+        prenom          : [this.simulationFormDefaults.prenom, [Validators.required]],
+        telephone       : [this.simulationFormDefaults.telephone, [Validators.required]],
+        email           : [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
+        nationaliteCode : [this.simulationFormDefaults.nationaliteCode, [Validators.required]],
         residentMarocain: [this.simulationFormDefaults.residentMarocain, [Validators.required]],
-        agreements: [this.simulationFormDefaults.agreements, [Validators.required]]
+        agreements      : [this.simulationFormDefaults.agreements, [Validators.required]],
+        cspCode         : [this.simulationFormDefaults.cspCode, [Validators.required]],
+        montant         : [this.simulationFormDefaults.montant, [Validators.required]],
+        duree           : [this.simulationFormDefaults.duree, [Validators.required]]
       },
-      // { validators: this.atLeastOne }
+      // { validators: this.atLeastEmailOrPhone }
     );
   }
 
-  // atLeastOne(form: FormGroup): ValidationErrors {
+  // atLeastEmailOrPhone(form: FormGroup): ValidationErrors {
   //   const emailCtrl = form.get('email');
   //   const phoneCtr = form.get('telephone');
   //   if (!!emailCtrl.value || !!phoneCtr.value) {
   //     return null;
   //   }
-  //   return { atLeastOne: '* Veuillez saisir émail ou téléphone' };
+  //   return { atLeastEmailOrPhone: '* Veuillez saisir émail ou téléphone' };
   // }
 
   // -----------------------------------------------------------------------------------------------------
@@ -118,6 +122,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+
     // Subscribe to query params change
     this._activatedRoute.queryParams
       .pipe(takeUntil(this._unsubscribeAll))
@@ -144,16 +149,26 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     // Get the categories
     this._referentielService.categoriesSocioProf$
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((categories: CategorieSocioProfessionnelle[]) => {
+      .subscribe((response: CategorieSocioProfessionnelle[]) => {
 
         // Update the categories
-        this.categories = categories;
+        this.categories = response;
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
       });
 
-    // console.log("+-+-+- this.categories", this.categories);
+    // Get the nationalités
+    this._referentielService.nationalites$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((response: Nationalite[]) => {
+
+        // Update the categories
+        this.nationalites = response;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
 
   }
 
@@ -170,12 +185,15 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-
   /**
    * Reset the form using the default
    */
-  reset(): void {
-    this.simulationForm.reset(this.simulationFormDefaults);
+  newSimulation(): void {
+    // this.isVisible = false;
+    // this.simulationForm.reset(this.simulationFormDefaults);
+
+    this.simulationForm.get('montant').reset();
+    this.simulationForm.get('duree').reset();
 
     // Mensualité
     this._animateCounterService.animateValue(this.mensualiteId, this.simulationResultat.mensualite, 0, 600);
@@ -209,11 +227,14 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   simuler(): void {
 
+    this.isVisible = true;
+
     const critere = {
-      montant: this.simulationForm.get('montant').value,
-      cspCode: this.simulationForm.get('cspCode').value,
+      montant         : this.simulationForm.get('montant').value,
+      duree           : this.simulationForm.get('duree').value,
+      cspCode         : this.simulationForm.get('cspCode').value,
+      nationaliteCode : this.simulationForm.get('nationaliteCode').value,
       residentMarocain: this.simulationForm.get('residentMarocain').value,
-      duree: this.simulationForm.get('duree').value
     }
 
     // Get the product by id

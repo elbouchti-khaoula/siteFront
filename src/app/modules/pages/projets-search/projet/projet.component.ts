@@ -30,6 +30,20 @@ export class ProjetComponent implements OnInit, OnDestroy {
         },
     };
 
+    mapOptions: google.maps.MapOptions = {
+        center: {
+            lat: 32,
+            lng: -7
+        },
+        zoom: 13,
+        gestureHandling: "none",
+        disableDefaultUI: true,
+    }
+    markerOptions: google.maps.MarkerOptions = {
+        draggable: false
+    };
+    markerPositions: google.maps.LatLngLiteral[] = [];
+
     /**
      * Constructor
      */
@@ -51,8 +65,11 @@ export class ProjetComponent implements OnInit, OnDestroy {
         // Selected projet
         this._projetsService.projet$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((projet: Projet) => {
-                this.projet = projet;
+            .subscribe((response: Projet) => {
+                this.projet = response;
+
+                this.markerPositions.push(new google.maps.LatLng(response.gpsLatitude, response.gpsLongitude).toJSON());
+                this.mapOptions.center = new google.maps.LatLng(response.gpsLatitude, response.gpsLongitude).toJSON();
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

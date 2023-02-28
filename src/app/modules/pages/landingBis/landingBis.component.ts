@@ -6,7 +6,6 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 // import { formatNumber } from '@angular/common';
 // import { BehaviorSubject } from 'rxjs'
-// import { default as routerAnimations} from '../../../route-animations';
 
 // import { SwiperComponent } from "swiper/angular";
 // // import Swiper core and required modules
@@ -19,7 +18,6 @@ import { Subject, takeUntil } from 'rxjs';
     templateUrl     : './landingBis.component.html',
     styleUrls       : ['./landingBis.component.scss'],
     encapsulation   : ViewEncapsulation.None,
-    // animations      : [routerAnimations('routeAnimations')],
     animations      : fuseAnimations
 })
 export class LandingBisComponent implements OnInit, OnDestroy
@@ -33,7 +31,6 @@ export class LandingBisComponent implements OnInit, OnDestroy
     dateApp = new Date();
 
     animationsEnabled: boolean = false;
-
     hasAppeared1: boolean = false;
     hasAppeared2: boolean = false;
 
@@ -56,9 +53,6 @@ export class LandingBisComponent implements OnInit, OnDestroy
         private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
     }
-
-    // @HostBinding('@routeAnimations')
-    // public animatePage = true;
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks

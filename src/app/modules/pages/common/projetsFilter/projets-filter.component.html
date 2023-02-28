@@ -22,7 +22,9 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                 </mat-icon>
                 <!-- <mat-label class="text-sm font-semibold">Ville</mat-label> -->
-                <mat-select [formControlName]="'ville'" [placeholder]="'Ville'">
+                <mat-select
+                    [formControlName]="'codeVille'"
+                    [placeholder]="'Ville'">
                     <ng-container *ngFor="let ville of villes">
                         <mat-option [value]="ville.codeVille">
                             {{ville.description}}
@@ -37,8 +39,10 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
                 <!-- <mat-label class="text-sm font-semibold">Quartier</mat-label> -->
-                <mat-select [formControlName]="'quartier'" [placeholder]="'Quartier'"
-                    [disableControl]="!searchForm.get('ville').value">
+                <mat-select
+                    [formControlName]="'codeQuartier'"
+                    [placeholder]="'Quartier'"
+                    [disableControl]="!searchForm.get('codeVille').value">
                     <ng-container *ngFor="let quartier of quartiers$ | async">
                         <mat-option [value]="quartier.code">
                             {{quartier.libelle}}
@@ -53,7 +57,9 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                 </mat-icon>
                 <!-- <mat-label class="text-sm font-semibold">Type de bien</mat-label> -->
-                <mat-select [formControlName]="'typeBien'" [placeholder]="'Type de bien'">
+                <mat-select 
+                    [formControlName]="'codeTypeBien'"
+                    [placeholder]="'Type de bien'">
                     <ng-container *ngFor="let typeBien of typesBiens">
                         <mat-option [value]="typeBien.code">
                             {{typeBien.libelle}}
@@ -87,6 +93,7 @@
                         'mt-5': parentComponent === 'landing'}">
             <button
                 mat-stroked-button
+                class="bg-default"
                 type="button" 
                 [color]="'primary'"
                 [disabled]="parentComponent === 'projets-search' ? searchForm.invalid : (searchForm.pristine || searchForm.invalid)"

@@ -218,10 +218,16 @@ const config = {
                 screen: '100vw'
             }),
             transitionDuration      : {
-                '400': '400ms'
+                '400': '400ms',
+                '1000': '1000ms'
             },
             transitionTimingFunction: {
                 'drawer': 'cubic-bezier(0.25, 0.8, 0.25, 1)'
+            },
+            transitionProperty: {
+                'width': 'width',
+                'height': 'height',
+                'spacing': 'margin, padding',
             },
 
             // @tailwindcss/typography

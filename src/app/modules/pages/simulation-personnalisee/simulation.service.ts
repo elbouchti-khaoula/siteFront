@@ -36,7 +36,7 @@ export class SimulationService {
      *
      * @param queryParams
      */
-    simuler(queryParams: { montant: number; cspCode: string; residentMarocain: boolean; duree: number }): Observable<SimulationPersonnalisee>
+    simuler(queryParams: { montant: number; duree: number; cspCode: string; nationaliteCode: string; residentMarocain: boolean }): Observable<SimulationPersonnalisee>
     {
         return this._httpClient.get<SimulationPersonnalisee>('api/repositories/simulation-personnalisee', {
             params: queryParams

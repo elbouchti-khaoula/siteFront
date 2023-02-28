@@ -3,8 +3,10 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'app/shared/shared.module';
-import { SwiperModule } from 'swiper/angular';
 import { MatDividerModule } from '@angular/material/divider';
+import { SwiperModule } from 'swiper/angular';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 import { SimulationModule } from 'app/modules/pages/common/simulation/simulation.module';
 import { ProjetComponent } from './projet.component';
 
@@ -18,8 +20,9 @@ import { ProjetComponent } from './projet.component';
         SimulationModule,
         MatButtonModule,
         MatIconModule,
+        MatDividerModule,
         SwiperModule,
-        MatDividerModule
+        GoogleMapsModule
     ],
     exports     : [
         ProjetComponent

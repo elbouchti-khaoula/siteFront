@@ -10,23 +10,33 @@ import { MatDrawer } from '@angular/material/sidenav';
     encapsulation: ViewEncapsulation.None
 })
 export class LocalisationComponent implements OnInit, OnDestroy {
-    // projet: Projet;
     projets: Projet[];
     @Input() drawer: MatDrawer;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    display: any;
     center: google.maps.LatLngLiteral = {
-        lat: 24,
-        lng: 12
+        lat: 33.55,
+        lng: -7.6
     };
-    zoom = 4;
-    moveMap(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.center = (event.latLng.toJSON());
-    }
-    move(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.display = event.latLng.toJSON();
-    }
+    zoom = 11;
+    mapOptions: google.maps.MapOptions = {
+        center: this.center,
+        zoom : this.zoom,
+        gestureHandling: "none",
+        disableDefaultUI: true,
+     }
+    markerOptions: google.maps.MarkerOptions = {
+        draggable: false
+    };
+    markerPositions: google.maps.LatLngLiteral[] = [];
+
+    // display: any;
+    // moveMap(event: google.maps.MapMouseEvent) {
+    //     if (event.latLng != null) this.center = (event.latLng.toJSON());
+    // }
+    // move(event: google.maps.MapMouseEvent) {
+    //     if (event.latLng != null) this.display = event.latLng.toJSON();
+    // }
 
     /**
      * Constructor
@@ -45,21 +55,17 @@ export class LocalisationComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        // Projet
-        // this._projetsService.projet$
-        // .pipe(takeUntil(this._unsubscribeAll))
-        // .subscribe((projet: Projet) => {
-        //     this.projet = projet;
-
-        //     // Mark for check
-        //     this._changeDetectorRef.markForCheck();
-        // });
-
         // Get the projets
         this._projetsService.projets$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((projets: Projet[]) => {
-                this.projets = projets;
+            .subscribe((response: Projet[]) => {
+                this.projets = response;
+                
+                this.markerPositions = [];
+                for ( const project of response )
+                {
+                    this.markerPositions.push(new google.maps.LatLng(project.gpsLatitude, project.gpsLongitude).toJSON());
+                }
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

@@ -40,7 +40,7 @@ export class OnVisibleDirective implements AfterViewInit, OnDestroy {
 
 /**
  * @description
- * Emits the `appear` event when the element comes into view in the viewport.
+ * Emits the `disappear` event when the element comes into view in the viewport.
  *
  */
  @Directive({

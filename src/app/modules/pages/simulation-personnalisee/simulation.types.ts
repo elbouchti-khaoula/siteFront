@@ -1,21 +1,23 @@
 export interface CritereSimulation
 {
     montant             : number;
-    cspCode             : string;
-    residentMarocain    : boolean;
     duree               : number;
+    cspCode             : string;
+    nationaliteCode     : string;
+    residentMarocain    : boolean;
 }
 
 export interface SimulationPersonnalisee
 {
     montant             : number;
-    cspCode?            : string;
-    residentMarocain?   : boolean;
     duree               : number;
+    cspCode?            : string;
+    nationaliteCode?    : string;
+    residentMarocain?   : boolean;
     mensualite          : number;
-    tauxMoyen?          : number;
     totalInterets       : number;
     coutTotal           : number;
+    tauxMoyen?          : number;
     expertiseImmobiliere: number;
     fraisDossier        : number;
     droitsEnregistrement: number;
@@ -23,6 +25,4 @@ export interface SimulationPersonnalisee
     honorairesNotaire   : number;
     fraisDivers         : number;
     totalFrais          : number;
-
-
 }

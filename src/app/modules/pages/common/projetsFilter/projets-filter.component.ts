@@ -19,9 +19,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   searchForm: UntypedFormGroup;
   searchFormDefaults: any = {
-    ville: null,
-    quartier: null,
-    typeBien: null,
+    codeVille: null,
+    codeQuartier: null,
+    codeTypeBien: null,
     prixMin: null,
     prixMax: null
   };
@@ -50,9 +50,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     // Prepare the search form with defaults
     this.searchForm = this._formBuilder.group(
       {
-        ville: [this.searchFormDefaults.ville],
-        quartier: [this.searchFormDefaults.quartier],
-        typeBien: [this.searchFormDefaults.typeBien],
+        codeVille: [this.searchFormDefaults.codeVille],
+        codeQuartier: [this.searchFormDefaults.codeQuartier],
+        codeTypeBien: [this.searchFormDefaults.codeTypeBien],
         prixMin: [this.searchFormDefaults.prixMin],
         prixMax: [this.searchFormDefaults.prixMax]
       },
@@ -76,10 +76,10 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     // Get the villes
     this._referentielService.villes$
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((villes: Ville[]) => {
+      .subscribe((response: Ville[]) => {
 
         // Update the villes
-        this.villes = villes;
+        this.villes = response;
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -88,10 +88,10 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     // Get the types de bien
     this._referentielService.typesBiens$
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((typesBiens: TypeBien[]) => {
+      .subscribe((response: TypeBien[]) => {
 
         // Update the types de bien
-        this.typesBiens = typesBiens;
+        this.typesBiens = response;
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -117,30 +117,30 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         // Fill the form with the values from query
         // params without emitting any form events
         this.searchForm.setValue({
-          ville: queryParams?.ville ? +queryParams?.ville : this.searchFormDefaults.ville,
-          quartier: queryParams?.quartier ? +queryParams?.quartier : this.searchFormDefaults.quartier,
-          typeBien: queryParams?.typeBien ? queryParams?.typeBien : this.searchFormDefaults.typeBien,
+          codeVille: queryParams?.codeVille ? +queryParams?.codeVille : this.searchFormDefaults.codeVille,
+          codeQuartier: queryParams?.codeQuartier ? +queryParams?.codeQuartier : this.searchFormDefaults.codeQuartier,
+          codeTypeBien: queryParams?.codeTypeBien ? queryParams?.codeTypeBien : this.searchFormDefaults.codeTypeBien,
           prixMin: queryParams?.prixMin ? queryParams?.prixMin : this.searchFormDefaults.prixMin,
           prixMax: queryParams?.prixMax ? queryParams?.prixMax : this.searchFormDefaults.prixMax
         }, { emitEvent: false });
 
-        if (queryParams?.ville || queryParams?.typeBien || queryParams?.prixMin || queryParams?.prixMax) {
+        if (queryParams?.codeVille || queryParams?.codeTypeBien || queryParams?.prixMin || queryParams?.prixMax) {
           this.searchForm.markAsDirty();
         }
 
-        // if (queryParams?.ville) {
-        //   this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.ville);
+        // if (queryParams?.codeVille) {
+        //   this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.codeVille);
         // }
       });
 
     this.quartiers$ = this._referentielService.quartiers$;
-    this.searchForm.get('ville').valueChanges
+
+    this.searchForm.get('codeVille').valueChanges
       .pipe(
         debounceTime(300),
         takeUntil(this._unsubscribeAll)
       )
       .subscribe((value) => {
-
         this.getQuartiersByVille(value);
       });
   }
@@ -161,11 +161,11 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   /**
    * Get quartiers by ville using ville code
    *
-   * @param ville
+   * @param codeVille
    */
-  getQuartiersByVille(ville: number) {
-    if (ville) {
-      this._referentielService.getQuartiersByVille(ville)
+  getQuartiersByVille(codeVille: number) {
+    if (codeVille) {
+      this._referentielService.getQuartiersByVille(codeVille)
         .subscribe((response) => {
 
           // Set the quartiers

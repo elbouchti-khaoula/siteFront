@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CarouselModule } from '@marcreichel/angular-carousel';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { projetsSearchRoutes } from './projets-search.routing';
 

@@ -145,7 +145,7 @@ body .dark {
             foreground: (
                 base: #FFFFFF,
                 divider: rgba(245, 245, 245, 0.12), /* neutral.100 + opacity */  // rgba(241, 245, 249, 0.12), /* slate.100 + opacity */
-                dividers: rgb(245, 245, 245, 0.12), /* neutral.100 + opacity */  // rgb(241, 245, 249, 0.12), /* slate.100 + opacity */
+                dividers: rgba(245, 245, 245, 0.12), /* neutral.100 + opacity */  // rgba(241, 245, 249, 0.12), /* slate.100 + opacity */
                 disabled: rgba(82, 82, 82), /* neutral.600 */   //#475569, /* slate.600 */
                 disabled-button: rgba(64, 64, 64), /* neutral.800 */   //#1E293B, /* slate.800 */
                 disabled-text: rgba(82, 82, 82), /* neutral.600 */   //#475569, /* slate.600 */

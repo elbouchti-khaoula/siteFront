@@ -30,7 +30,6 @@ export class ProjetsResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet[]>
     {
-        // return this._projetsService.searchProjets(state.root.queryParams);
         return this._projetsService.searchProjets(state.root.queryParams).pipe(
             // Error here means the requested projet is not available
             catchError((error) => {
@@ -83,7 +82,7 @@ export class ProjetsProjetResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet>
     {
-        return this._projetsService.getProjetById(route.queryParamMap.get('id')).pipe(
+        return this._projetsService.getProjetById(Number(route.queryParamMap.get('id'))).pipe(
             // Error here means the requested projet is not available
             catchError((error) => {
 
