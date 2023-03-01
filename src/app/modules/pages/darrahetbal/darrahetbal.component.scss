@@ -20,92 +20,91 @@
 // }
 
 
-// sol 2
-// .video-background {
-//     background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4));
-//     position: fixed;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//     z-index: -99;
-// }
-// .video-foreground,
-// .video-background iframe {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     pointer-events: none;
-// }
-// @media (min-aspect-ratio: 16/9) {
-//     .video-foreground iframe {
-//         height: 300%; 
-//         top: -100%;
-//     }
-// }
-// @media (max-aspect-ratio: 16/9) {
-//     .video-foreground iframe {
-//         width: 300%; 
-//         left: -100%;
-//     }
-// }
-
-
-// sol3 - ok
-.video-container {
-    width: 100vw;
-    height: 100vh;
+// sol2 (mix with sol3 : overlay and aspect-ratio 16/9)
+.video-background {
+    // background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4));
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -99;
 }
-.video-container .overlay {
+.video-foreground,
+.video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.video-background .overlay {
     position: absolute;
     top: 0px;
     left: 0px;
     height: 100%;
     width: 100%;
     background: black;
-    opacity: 0.7;
+    opacity: 0.5;
     z-index: 2;
 }
-.video-container iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
+
 @media (min-aspect-ratio: 16/9) {
-    .video-container iframe {
+    .video-background iframe, 
+    .video-background .overlay {
+        // height: 300%; 
+        // top: -100%;
         /* height = 100 * (9 / 16) = 56.25 */
         height: 56.25vw;
     }
 }
 @media (max-aspect-ratio: 16/9) {
-    .video-container iframe {
+    .video-background iframe,
+    .video-background .overlay {
+        // width: 300%; 
+        // left: -100%;
         /* width = 100 / (9 / 16) = 177.777777 */
         width: 177.78vh;
     }
 }
 
 
+// sol3 - ok
 // .video-container {
-//   position: absolute;
+//     width: 100vw;
+//     height: 100vh;
 // }
-// .video-container-cover {
-//   position: absolute;
-//   height: 200px;
-//   width: 400px;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   left: 0;
+// .video-container .overlay {
+//     position: absolute;
+//     top: 0px;
+//     left: 0px;
+//     height: 100%;
+//     width: 100%;
+//     background: black;
+//     opacity: 0.7;
+//     z-index: 2;
 // }
-// .video-container-cover video {
-//   position: absolute;
-//   vertical-align: top;
-//   height: inherit;
-//   width: inherit;
+// .video-container iframe {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     height: 100%;
+//     width: 100%;
+//     transform: translate(-50%, -50%);
+//     z-index: 1;
+// }
+// @media (min-aspect-ratio: 16/9) {
+//     .video-container iframe {
+//         /* height = 100 * (9 / 16) = 56.25 */
+//         height: 56.25vw;
+//     }
+// }
+// @media (max-aspect-ratio: 16/9) {
+//     .video-container iframe {
+//         /* width = 100 / (9 / 16) = 177.777777 */
+//         width: 177.78vh;
+//     }
 // }
