@@ -36,7 +36,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
             lng: -7
         },
         zoom: 13,
-        gestureHandling: "none",
+        // gestureHandling: "none",
         disableDefaultUI: true,
     }
     markerOptions: google.maps.MarkerOptions = {

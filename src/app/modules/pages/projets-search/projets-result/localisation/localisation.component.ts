@@ -22,7 +22,7 @@ export class LocalisationComponent implements OnInit, OnDestroy {
     mapOptions: google.maps.MapOptions = {
         center: this.center,
         zoom : this.zoom,
-        gestureHandling: "none",
+        // gestureHandling: "none",
         disableDefaultUI: true,
      }
     markerOptions: google.maps.MarkerOptions = {
