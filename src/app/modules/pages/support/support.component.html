@@ -1,0 +1,203 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+
+    <!-- Header -->
+    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full md:min-h-[35vh] support-bg-header">
+        <div class="w-full max-w-400">
+            <div class="max-w-2xl text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white">
+                Contactez-nous
+            </div>
+            <div class="max-w-2xl hidden md:block text-3xl text-white mt-3">
+                Joignez-nous en tout temps, comme il vous convient
+            </div>
+        </div>
+    </header>
+
+    <div class="px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+        <div class="w-full max-w-400 mx-auto flex flex-col md:flex-row space-x-7">
+            <div>
+                <fuse-card class="flex flex-col md:flex-row">
+                    <div class="flex-0 w-80 md:w-60 ">
+                        <img
+                            class="w-full h-full object-cover"
+                            src="assets/images/pages/support/phone.jpg"
+                            alt="Card cover image">
+                    </div>
+                    <div class="flex flex-col flex-auto m-8 mb-4">
+                        <div class="text-3xl font-semibold leading-tight">Par téléphone</div>
+                        <div class="mt-4">Contactez notre service clientèle, au 
+                            <button
+                                class="fuse-mat-button-small mr-1"
+                                mat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                <span class="ml-2">2626*</span>
+                            </button>
+                            depuis le Maroc et au 
+                            <button
+                                class="fuse-mat-button-small mr-1"
+                                mat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                <span class="ml-2">00212529060606</span>
+                            </button>
+                            depuis l’étranger.
+                        </div>
+                        <div class="mt-4">Du lundi au vendredi de 08h30 à 19h00 et le samedi de 10h à 16h.</div>
+                        <hr class="w-full border-b mt-3 mb-1">
+                        <div class="text-sm italic font-medium text-secondary mt-1">* Prix d’un appel local</div>
+                    </div>
+                </fuse-card>
+
+                <fuse-card class="flex flex-col md:flex-row mt-3">
+                    <div class="flex-0 w-80 md:w-60 ">
+                        <img
+                            class="w-full h-full object-cover"
+                            src="assets/images/pages/support/agence.jpg"
+                            alt="Card cover image">
+                    </div>
+                    <div class="flex flex-col flex-auto m-8 mb-4">
+                        <div class="text-3xl font-semibold leading-tight">En agence</div>
+                        <div class="mt-4">
+                            Rendez-vous dans l’agence la plus proche de chez vous, nos conseillers de clientèle sont à votre disposition pour vous écouter et vous proposer des services adaptés.
+                        </div>
+                        <button
+                            class="w-fit mt-3"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [routerLink]="['./']">
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                            <span class="ml-2">Rechercher une agence</span>
+                        </button>
+                    </div>
+                </fuse-card>
+
+                <fuse-card class="flex flex-col md:flex-row mt-5">
+                    <div class="flex-0 w-80 md:w-60 ">
+                        <img
+                            class="w-full h-full object-cover"
+                            src="assets/images/pages/support/reseaux-sociaux.jpg"
+                            alt="Card cover image">
+                    </div>
+                    <div class="flex flex-col flex-auto m-8 mb-4">
+                        <div class="text-3xl font-semibold leading-tight">Réseaux sociaux</div>
+                        <div class="mt-4">
+                            Rejoignez nous sur nos réseaux sociaux pour suivre nos dernières actualités digitales! Nous répondrons également à toutes vos questions!
+                            <br/>
+                            Suivez-nous sur :
+                        </div>
+                        <div class="max-w-60 flex items-center space-x-3 mt-3">
+                            <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
+                                <mat-icon class="icon-size-5" [svgIcon]="'feather:linkedin'"></mat-icon>
+                            </button>
+                            <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
+                                <mat-icon class="icon-size-5" [svgIcon]="'feather:facebook'"></mat-icon>
+                            </button>
+                            <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
+                                <mat-icon class="icon-size-5" [svgIcon]="'feather:twitter'"></mat-icon>
+                            </button>
+                            <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
+                                <mat-icon class="icon-size-5" [svgIcon]="'feather:instagram'"></mat-icon>
+                            </button>
+                            <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
+                                <mat-icon class="icon-size-5" [svgIcon]="'feather:youtube'"></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </fuse-card>
+            </div>
+
+            <fuse-card class="w-full flex flex-col bg-card">
+                <!-- Header -->
+                <div class="flex flex-0 items-center h-18 px-6 border-b">
+                    <!-- <button mat-icon-button (click)="drawer.close()">
+                        <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
+                    </button> -->
+                    <div class="ml-2 text-2xl font-semibold">En renseignant le formulaire ci-dessous</div>
+                </div>
+
+                <!-- Main Form -->
+                <div class="px-10 py-6 overflow-y-auto">
+                    <!-- Alert -->
+                    <fuse-alert *ngIf="alert" [type]="alert.type" [showIcon]="false">
+                        {{alert.message}}
+                    </fuse-alert>
+                    <form class="space-y-1" [formGroup]="supportForm" #supportNgForm="ngForm">
+                        <!-- <div class="my-3">
+                            <div class="text-secondary">
+                                Votre demande sera traitée et notre équipe vous reviendra dans les 24 heures
+                                Your request will be processed and our support staff will get back to you in 24 hours.
+                            </div>
+                        </div> -->
+                        <!-- Name -->
+                        <mat-form-field class="w-full">
+                            <input matInput [formControlName]="'name'" [required]="true">
+                            <mat-label>Nom</mat-label>
+                            <mat-error *ngIf="supportForm.get('name').hasError('required')">
+                                Required
+                            </mat-error>
+                        </mat-form-field>
+                        <!-- Email -->
+                        <mat-form-field class="w-full">
+                            <input type="email" matInput [formControlName]="'email'" [required]="true">
+                            <mat-label>Email</mat-label>
+                            <mat-error *ngIf="supportForm.get('email').hasError('required')">
+                                Required
+                            </mat-error>
+                            <mat-error *ngIf="supportForm.get('email').hasError('email')">
+                                Enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+                        <!-- Phone -->
+                        <mat-form-field class="w-full">
+                            <input matInput [formControlName]="'phone'">
+                            <mat-label>Téléphone</mat-label>
+                        </mat-form-field>
+                        <!-- Subject
+                        <mat-form-field class="w-full">
+                            <input matInput [formControlName]="'subject'" [required]="true">
+                            <mat-label>Subject</mat-label>
+                            <mat-error *ngIf="supportForm.get('subject').hasError('required')">
+                                Required
+                            </mat-error>
+                        </mat-form-field> -->
+                        <!-- Message -->
+                        <mat-form-field class="fuse-mat-textarea w-full">
+                            <textarea matInput [formControlName]="'message'" [required]="true" [rows]="5"
+                                matTextareaAutosize></textarea>
+                            <mat-label>Message</mat-label>
+                            <mat-error *ngIf="supportForm.get('message').hasError('required')">
+                                Required
+                            </mat-error>
+                        </mat-form-field>
+                        <!-- Actions -->
+                        <div class="flex items-center justify-end">
+                            <button mat-stroked-button
+                                [color]="'accent'"
+                                [disabled]="supportForm.pristine || supportForm.untouched"
+                                (click)="clearForm()">
+                                Vider
+                            </button>
+                            <button class="ml-2"
+                                mat-flat-button
+                                [color]="'primary'"
+                                [disabled]="supportForm.pristine || supportForm.invalid"
+                                (click)="sendForm()">
+                                Envoyer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </fuse-card>
+        </div>
+    </div>
+
+</div>

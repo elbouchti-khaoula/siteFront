@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Projet } from '../../projets.types';
-import { ProjetsService } from '../../projets.service';
+import { Projet } from '../../projets-search/projets.types';
+import { ProjetsService } from '../../projets-search/projets.service';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ReferentielService } from '../referentiel.service';
+import { Agence } from '../referentiel.types';
 
 @Component({
     selector: 'localisation',
@@ -10,7 +12,8 @@ import { MatDrawer } from '@angular/material/sidenav';
     encapsulation: ViewEncapsulation.None
 })
 export class LocalisationComponent implements OnInit, OnDestroy {
-    projets: Projet[];
+
+    @Input() parentComponent: 'agences' | 'projets';
     @Input() drawer: MatDrawer;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -21,10 +24,10 @@ export class LocalisationComponent implements OnInit, OnDestroy {
     zoom = 11;
     mapOptions: google.maps.MapOptions = {
         center: this.center,
-        zoom : this.zoom,
+        zoom: this.zoom,
         // gestureHandling: "none",
         disableDefaultUI: true,
-     }
+    }
     markerOptions: google.maps.MarkerOptions = {
         draggable: false
     };
@@ -43,7 +46,8 @@ export class LocalisationComponent implements OnInit, OnDestroy {
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
-        private _projetsService: ProjetsService
+        private _projetsService: ProjetsService,
+        private _referentielService: ReferentielService
     ) {
     }
 
@@ -55,21 +59,39 @@ export class LocalisationComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        // Get the projets
-        this._projetsService.projets$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((response: Projet[]) => {
-                this.projets = response;
-                
-                this.markerPositions = [];
-                for ( const project of response )
-                {
-                    this.markerPositions.push(new google.maps.LatLng(project.gpsLatitude, project.gpsLongitude).toJSON());
-                }
+        if (this.parentComponent === 'projets') {
+            // Get the projets
+            this._projetsService.projets$
+                .pipe(takeUntil(this._unsubscribeAll))
+                .subscribe((response: Projet[]) => {
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+                    this.markerPositions = [];
+                    if (response && response.length > 0) {
+                        for (const project of response) {
+                            this.markerPositions.push(new google.maps.LatLng(project.gpsLatitude, project.gpsLongitude).toJSON());
+                        }
+                    }
+
+                    // Mark for check
+                    this._changeDetectorRef.markForCheck();
+                });
+        } else {
+            // Get the agences
+            this._referentielService.agences$
+                .pipe(takeUntil(this._unsubscribeAll))
+                .subscribe((response: Agence[]) => {
+
+                    this.markerPositions = [];
+                    if (response && response.length > 0) {
+                        for (const agence of response) {
+                            this.markerPositions.push(new google.maps.LatLng(agence.gpsLatitude, agence.gpsLongitude).toJSON());
+                        }
+                    }
+
+                    // Mark for check
+                    this._changeDetectorRef.markForCheck();
+                });
+        }
     }
 
     /**

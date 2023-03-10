@@ -1,7 +1,20 @@
-//**************************************************************************************
-// Pourquoi nous choisir FZ
-//**************************************************************************************
+.nous-connaitre-bg-header {
+    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nous-connaitre/header.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
 
+.chiffre-bg {
+    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nous-connaitre/backgd.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+//**************************************************************************************
+// nous connaitre FZ
+//**************************************************************************************
 .u-section-2 {
     position: relative;
     display: block;

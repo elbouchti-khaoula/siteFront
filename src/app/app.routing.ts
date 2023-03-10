@@ -117,6 +117,18 @@ export const appRoutes: Route[] = [
                 path: 'simulation-personnalisee',
                 loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
             },
+            {
+                path: 'nous-contacter',
+                loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
+            },
+            {
+                path: 'agences',
+                loadChildren: () => import('app/modules/pages/agences/agences.module').then(m => m.AgencesModule),
+            },
+            {
+                path: 'reclamation',
+                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
+            },
 
             // Maintenance
             {

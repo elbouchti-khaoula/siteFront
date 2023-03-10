@@ -1,0 +1,139 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+    
+    <mat-drawer-container
+        class="flex-auto" 
+        [hasBackdrop]="false">
+
+        <!-- Main Drawer overlay -->
+        <mat-drawer class="w-full md:w-7/12 lg:border-r lg:shadow-none dark:bg-gray-900"
+            [autoFocus]="false"
+            [position]="'end'"
+            [mode]="drawerMainMode"
+            [(opened)]="drawerMainOpened"
+            #drawerMain>
+
+            <localisation [drawer]="drawerMain" [parentComponent]="'agences'"></localisation>
+
+        </mat-drawer>
+
+        <!-- Main Drawer Content -->
+        <mat-drawer-content>
+
+            <mat-drawer-container
+                class="flex-auto h-full bg-card dark:bg-transparent"
+                [hasBackdrop]="true"
+                #drawerContainerAgences>
+
+                <div class="flex flex-col flex-auto h-full dark:bg-default">
+
+                    <!-- Header -->
+                    <div class="flex flex-row p-5 md:p-7 border-b">
+                        <!-- Title -->
+                        <div>
+                            <div class="text-2xl md:text-4xl font-extrabold tracking-tight leading-none">
+                                Agences
+                            </div>
+                            <div class="ml-0.5 font-semibold text-secondary">
+                                <ng-container *ngIf="agencesCount > 0">
+                                    {{agencesCount}}
+                                </ng-container>
+                                {{agencesCount | i18nPlural: {
+                                '=0' : 'No agences',
+                                '=1' : 'agence',
+                                'other': 'agences'
+                                } }}
+                            </div>
+                        </div>
+
+                        <!-- Open localisation -->
+                        <button
+                            class="ml-auto lg:hidden rounded-full bg-second-100"
+                            mat-icon-button
+                            (click)="toggleMain()">
+                            <mat-icon
+                                class="icon-size-6 text-primary-700"
+                                [svgIcon]="'heroicons_solid:location-marker'">
+                            </mat-icon>
+                        </button>
+                    </div>
+
+                    <!-- Agences list -->
+                    <ng-container *ngIf="agences$ | async as agences">
+                        <ng-container *ngIf="agences && agencesCount > 0; else noAgences">
+
+                            <div class="relative overflow-y-auto" cdkScrollable #agencesList>
+
+                                <ng-container *ngFor="let agence of agences; let i = index; trackBy: trackByFn">
+                                    <!-- Group -->
+                                    <ng-container *ngIf="i === 0 || agence.nom.charAt(0) !== agences[i - 1].nom.charAt(0)">
+                                        <div class="z-10 sticky top-0 -mt-px px-6 md:py-1 border-t border-b font-semibold uppercase text-secondary bg-gray-50 dark:bg-gray-800">
+                                            {{agence.nom.charAt(0)}}
+                                        </div>
+                                    </ng-container>
+
+                                    <!-- Agence -->
+                                    <a class="z-20 flex items-center px-6 py-4 cursor-pointer border-b"
+                                        [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedAgence || selectedAgence.id !== agence.id,
+                                                        'bg-second-100 dark:bg-hover': selectedAgence && selectedAgence.id === agence.id}"
+                                        (click)="selectAgence(agence)">
+
+                                        <!-- agence description -->
+                                        <div class="grid grid-cols-1 w-full">
+                                            <div class="flex justify-between items-center">
+                                                <div class="flex flex-col">
+                                                    <span class="text-md font-medium text-second-550">Agence</span>
+                                                    <span class="font-extrabold text-xl uppercase text-primary">
+                                                        {{agence.nom}}
+                                                    </span>
+                                                </div>
+                                                <a class="flex items-center h-fit w-fit py-1 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                    <mat-icon class="icon-size-5 text-primary-700"
+                                                        [svgIcon]="'heroicons_outline:location-marker'">
+                                                    </mat-icon>
+                                                    <span class="ml-1">{{agence.libelleVille}}</span>
+                                                </a>
+                                            </div>
+
+                                            <div class="prose prose-sm my-3 md:mt-4 overflow-hidden"
+                                                [innerHTML]="agence.adresse"></div>
+
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <button 
+                                                    class="flex-auto"
+                                                    mat-flat-button 
+                                                    [color]="'primary'">
+                                                    {{agence.telephone}}
+                                                </button>
+                                                <button *ngIf="agence.fax"
+                                                    class="flex-auto"
+                                                    mat-stroked-button 
+                                                    [color]="'primary'">
+                                                    {{agence.fax}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+
+                    <!-- No agences template -->
+                    <ng-template #noAgences>
+                        <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent">
+                            <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
+                            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
+                                There are no agences!
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+
+            </mat-drawer-container>
+
+        </mat-drawer-content>
+
+    </mat-drawer-container>
+
+</div>

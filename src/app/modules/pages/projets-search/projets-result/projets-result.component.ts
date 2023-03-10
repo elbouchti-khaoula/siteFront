@@ -89,7 +89,7 @@ export class ProjetsResultComponent implements
                 this.projets = this.filteredProjets = response;
 
                 // Update the counts
-                this.projetsCount = response.length;
+                this.projetsCount = response?.length;
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
@@ -119,22 +119,24 @@ export class ProjetsResultComponent implements
      * After view init
      */
     ngAfterViewInit() {
-        if ("projet-details".localeCompare(this.refineURL(this.previousUrl)) === 0) {
-            const resultPosition = Number(localStorage.getItem('projetsPosition'));
-            this.projectsList.getElementRef().nativeElement.scrollTop = resultPosition;
-            // console.log("+-+-- resultPosition projet-details", topval);
-        } else {
-            localStorage.setItem('projetsPosition', "0");
-            this.projectsList.getElementRef().nativeElement.scrollTop = 0;
-            // console.log("+-+-- resultPosition other");
-        }
+        if (this.projets && this.projets.length > 0) {
+            if ("projet-details".localeCompare(this.refineURL(this.previousUrl)) === 0) {
+                const resultPosition = Number(localStorage.getItem('projetsPosition'));
+                this.projectsList.getElementRef().nativeElement.scrollTop = resultPosition;
+                // console.log("+-+-- resultPosition projet-details", topval);
+            } else {
+                localStorage.setItem('projetsPosition', "0");
+                this.projectsList.getElementRef().nativeElement.scrollTop = 0;
+                // console.log("+-+-- resultPosition other");
+            }
 
-        this.projectsList.elementScrolled()
-            .subscribe((_scrolled: Event) => {
-                const resultPosition = this.projectsList.getElementRef().nativeElement.scrollTop;
-                // console.log('+-+-+- resultPosition', resultPosition);
-                localStorage.setItem('projetsPosition', resultPosition.toString());
-            });
+            this.projectsList.elementScrolled()
+                .subscribe((_scrolled: Event) => {
+                    const resultPosition = this.projectsList.getElementRef().nativeElement.scrollTop;
+                    // console.log('+-+-+- resultPosition', resultPosition);
+                    localStorage.setItem('projetsPosition', resultPosition.toString());
+                });
+        }
     }
 
     /**

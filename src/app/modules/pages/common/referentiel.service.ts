@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement } from './referentiel.types';
+import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence } from './referentiel.types';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,8 @@ export class ReferentielService {
     private _villes: BehaviorSubject<Ville[] | null> = new BehaviorSubject(null);
     private _quartiers: BehaviorSubject<Quartier[] | null> = new BehaviorSubject(null);
     private _typesBiens: BehaviorSubject<TypeBien[] | null> = new BehaviorSubject(null);
-
+    private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
+    private _agence: BehaviorSubject<Agence | null> = new BehaviorSubject(null);
     /**
      * Constructor
      */
@@ -28,8 +29,7 @@ export class ReferentielService {
     /**
      * Getter for CategoriesSocioProfessionnelle
      */
-    get categoriesSocioProf$(): Observable<CategorieSocioProfessionnelle[]>
-    {
+    get categoriesSocioProf$(): Observable<CategorieSocioProfessionnelle[]> {
         return this._categoriesSocioProf.asObservable();
     }
 
@@ -50,25 +50,36 @@ export class ReferentielService {
     /**
      * Getter for villes
      */
-    get villes$(): Observable<Ville[]>
-    {
+    get villes$(): Observable<Ville[]> {
         return this._villes.asObservable();
     }
 
     /**
      * Getter for quartiers
      */
-    get quartiers$(): Observable<Quartier[]>
-    {
+    get quartiers$(): Observable<Quartier[]> {
         return this._quartiers.asObservable();
     }
 
     /**
      * Getter for types de biens
      */
-    get typesBiens$(): Observable<TypeBien[]>
-    {
+    get typesBiens$(): Observable<TypeBien[]> {
         return this._typesBiens.asObservable();
+    }
+
+    /**
+     * Getter for agences
+     */
+    get agences$(): Observable<Agence[]> {
+        return this._agences.asObservable();
+    }
+
+    /**
+     * Getter for agence
+     */
+    get agence$(): Observable<Agence> {
+        return this._agence.asObservable();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -77,8 +88,7 @@ export class ReferentielService {
     /**
      * Get categories socio-professionnelle
      */
-    getCategories(): Observable<any>
-    {
+    getCategories(): Observable<any> {
         return this._httpClient.get<CategorieSocioProfessionnelle[]>('api/repositories/categories-socio-professionelles')
             .pipe(
                 tap((response: CategorieSocioProfessionnelle[]) => {
@@ -114,8 +124,7 @@ export class ReferentielService {
     /**
      * Get villes
      */
-    getVilles(): Observable<any>
-    {
+    getVilles(): Observable<any> {
         return this._httpClient.get<Ville[]>('api/repositories/villes')
             .pipe(
                 tap((response: Ville[]) => {
@@ -134,8 +143,7 @@ export class ReferentielService {
      *
      * @param codeVille
      */
-    getQuartiersByVille(codeVille: number): Observable<Quartier[]>
-    {
+    getQuartiersByVille(codeVille: number): Observable<Quartier[]> {
         return this._httpClient.get<Quartier[]>(
             `api/repositories/${codeVille}/quartiers`
             // 'api/repositories/quartiers', { params: { codeVille } }
@@ -154,8 +162,7 @@ export class ReferentielService {
     /**
      * Get types de biens
      */
-    getTypesBiens(): Observable<any>
-    {
+    getTypesBiens(): Observable<any> {
         return this._httpClient.get<TypeBien[]>('api/repositories/types-biens')
             .pipe(
                 tap((response: TypeBien[]) => {
@@ -167,6 +174,78 @@ export class ReferentielService {
                     this._typesBiens.next(response);
                 })
             );
+    }
+
+
+    /**
+     * Get villes
+     */
+    getAgences(): Observable<any> {
+        return this._httpClient.get<Agence[]>('api/repositories/agences')
+            .pipe(
+                tap((response: Agence[]) => {
+                    // Sort the villes by the description field by default
+                    response.sort((a, b) => a.nom.localeCompare(b.nom));
+
+                    let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
+                    for (let i = 0; i < response?.length; i++) {
+                        response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                    }
+
+                    this._agences.next(response);
+                })
+            );
+    }
+
+    /**
+     * Get agences by ville using ville code
+     *
+     * @param codeVille
+     */
+    getAgencesByVille(codeVille: number): Observable<Agence[]> {
+        return this._httpClient.get<Agence[]>(
+            `api/repositories/${codeVille}/agences`
+        ).pipe(
+            tap((response: Agence[]) => {
+                // Sort the agences by the libelle field by default
+                response.sort((a, b) => a.nom.localeCompare(b.nom));
+
+                let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
+                for (let i = 0; i < response?.length; i++) {
+                    response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                }
+
+                this._agences.next(response);
+            })
+        );
+    }
+
+    /**
+     * Get agence by id
+     */
+    getAgenceById(id: number): Observable<Agence> {
+        return this._agences.pipe(
+            take(1),
+            map((agences) => {
+
+                // Find the agence
+                const agence = agences?.find(item => item.id === id) || null;
+
+                // Update the agence
+                this._agence.next(agence);
+
+                // Return the agence
+                return agence;
+            }),
+            switchMap((agence) => {
+
+                if (!agence) {
+                    return throwError('Could not found agence with id of ' + id + '!');
+                }
+
+                return of(agence);
+            })
+        );
     }
 
 }

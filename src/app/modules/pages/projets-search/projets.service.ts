@@ -62,6 +62,9 @@ export class ProjetsService
             ).pipe(
                 tap((projets : Projet[]) => {
 
+                    // Sort the projets by the name field by default
+                    projets.sort((a, b) => a.nom.localeCompare(b.nom));
+
                     let images = [
                         [
                             {
@@ -162,10 +165,7 @@ export class ProjetsService
                     let typesBiens: TypeBien[] = JSON.parse(localStorage.getItem('typesBiens'));
                     let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
-                    // Sort the projets by the name field by default
-                    projets.sort((a, b) => a.nom.localeCompare(b.nom));
-
-                    for (let i = 0; i < projets.length; i++) {
+                    for (let i = 0; i < projets?.length; i++) {
                         projets[i].descriptionSmall = projets[i]?.description ? projets[i]?.description.substring(0, 90) + '...' : "";
                         projets[i].images = images[i % 5];
                         projets[i].promoter.logoPath = logos[i % 5];

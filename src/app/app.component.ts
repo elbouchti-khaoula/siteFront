@@ -49,6 +49,11 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/FINANCE.svg")
         );
 
+        this.matIconRegistry.addSvgIcon(
+            "clock",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/clock.svg")
+        );
+
         // used in projet
         this.matIconRegistry.addSvgIcon(
             "underconstruct",

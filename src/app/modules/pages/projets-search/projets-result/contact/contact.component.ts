@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, ViewEncap
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { fuseAnimations } from '@fuse/animations';
-// import { HelpCenterService } from 'app/modules/admin/apps/help-center/help-center.service';
 
 @Component({
     selector     : 'projet-contact',
@@ -24,7 +23,6 @@ export class ProjetContactComponent implements OnInit
      */
     constructor(
         private _formBuilder: FormBuilder,
-        // private _helpCenterService: HelpCenterService
     )
     {
     }
@@ -43,7 +41,7 @@ export class ProjetContactComponent implements OnInit
             name   : ['', Validators.required],
             email  : ['', [Validators.required, Validators.email]],
             phone  : [''],
-            subject: ['', Validators.required],
+            // subject: ['', Validators.required],
             message: ['', Validators.required]
         });
     }

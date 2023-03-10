@@ -1,37 +1,28 @@
-<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}"
-    cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 md:pt-20 w-full min-h-[65vh] simul-det-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[35vh] simul-det-bg-header">
         <div class="w-full max-w-400">
-            <div class="max-w-2xl text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white">
+            <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
                 Prenez quelques minutes pour décrire votre projet
             </div>
 
-            <div class="max-w-2xl hidden md:block text-3xl text-white mt-3">
+            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
                 C'est simple, rapide et sans engagement. Plus vous serez complet dans la description de votre situation et plus notre comparaison des meilleurs taux pour vous sera précise !
             </div>
         </div>
     </header>
 
-
     <div class="px-6 sm:px-16 py-10 md:pt-18 md:pb-20 simul-det-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
 
-            <!-- <div class="relative mb-20 w-fit"> -->
-                <!-- <div class="absolute inset-0 h-14 w-28 md:h-24 md:w-44 m-auto">
-                    <img class="object-cover opacity-30 h-full" src="assets/images/pages/nous-connaitre/maison.png" alt="" />
-                </div> -->
-                <!-- <div class="relative w-fit border-b-2 border-t-2 border-second py-3"> -->
-                    <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                        Je simule mon crédit
-                    </span>
-                <!-- </div>
-            </div> -->
+            <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+                Je simule mon crédit
+            </span>
 
-            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-20">
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
 
                 <form class="md:w-3/4 md:translate-x-[15%] bg-default shadow rounded-2xl overflow-hidden ring-2 ring-current"
                     [formGroup]="simulationStepperForm"
@@ -464,7 +455,6 @@
                     </div>
                 </form>
 
-                <!-- [@fadeOutBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 500}}" -->
                 <!-- Resultat -->
                 <fuse-card #resultat
                     *ngIf="isVisible"

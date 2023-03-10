@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ReferentielService } from './referentiel.service';
-import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement, TypeBien, Ville } from './referentiel.types';
+import { Agence, CategorieSocioProfessionnelle, Nationalite, ObjetFinancement, TypeBien, Ville } from './referentiel.types';
 
 @Injectable({
     providedIn: 'root'
@@ -240,6 +240,112 @@ export class TypesBiensResolver implements Resolve<any>
     {
         return this._referentielService.getTypesBiens().pipe(
             // Error here means the requested is not available
+            catchError((error) => {
+
+                // Log the error
+                console.error(error);
+
+                if (error.status === 500) {
+                    this._router.navigateByUrl('/500-server-error');
+                } else if (error.status === 400) {
+                    this._router.navigateByUrl('/404-not-found');
+                } else {
+                    // Get the parent url
+                    const parentUrl = state.url.split('/').slice(0, -1).join('/');
+
+                    // Navigate to there
+                    this._router.navigateByUrl(parentUrl);
+                }
+
+                // Throw an error
+                return throwError(error);
+            })
+        );
+    }
+}
+
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AgencesResolver implements Resolve<any>
+{
+    /**
+     * Constructor
+     */
+    constructor(
+        private _referentielService: ReferentielService,
+        private _router: Router
+    ) {
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Resolver
+     *
+     * @param route
+     * @param state
+     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Agence[]>
+    {
+        return this._referentielService.getAgences().pipe(
+            // Error here means the requested is not available
+            catchError((error) => {
+
+                // Log the error
+                console.error(error);
+
+                if (error.status === 500) {
+                    this._router.navigateByUrl('/500-server-error');
+                } else if (error.status === 400) {
+                    this._router.navigateByUrl('/404-not-found');
+                } else {
+                    // Get the parent url
+                    const parentUrl = state.url.split('/').slice(0, -1).join('/');
+
+                    // Navigate to there
+                    this._router.navigateByUrl(parentUrl);
+                }
+
+                // Throw an error
+                return throwError(error);
+            })
+        );
+    }
+}
+
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AgencesAgenceResolver implements Resolve<any>
+{
+    /**
+     * Constructor
+     */
+    constructor(
+        private _referentielService: ReferentielService,
+        private _router: Router
+    ) {
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Resolver
+     *
+     * @param route
+     * @param state
+     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Agence>
+    {
+        return this._referentielService.getAgenceById(Number(route.queryParamMap.get('id'))).pipe(
+            // Error here means the requested agence is not available
             catchError((error) => {
 
                 // Log the error

@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -38,6 +39,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * Constructor
    */
   constructor(
+    @Inject(DOCUMENT) private _document: Document,
     private _changeDetectorRef: ChangeDetectorRef,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _projetsService: ProjetsService,
@@ -179,11 +181,15 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    */
   reset(): void {
     this.searchForm.reset(this.searchFormDefaults);
+
     if (this.parentComponent === 'projets-search') {
-      this._router.navigate(['./'], {
-        fragment: null,
-        queryParams: {},
-        relativeTo: this._activatedRoute
+      this._projetsService.searchProjets({}).subscribe(() => {
+        this._router.navigate([], {
+          fragment: null,
+          queryParams: {},
+          relativeTo: this._activatedRoute
+        });
+        this._scrollResultIntoView();
       });
     }
   }
@@ -194,14 +200,24 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   search(): void {
     this._projetsService.searchProjets(this.searchForm.value).subscribe(() => {
       // Add query params using the router
-      this._router.navigate(
-        [],
-        {
-          fragment: 'projetsResultId',
-          queryParams: this.searchForm.value,
-          relativeTo: this._activatedRoute
-        }
-      );
+      this._router.navigate([], {
+        fragment: 'projetsResultId',
+        queryParams: this.searchForm.value,
+        relativeTo: this._activatedRoute
+      });
+      this._scrollResultIntoView();
+    });
+  }
+
+  private _scrollResultIntoView(): void {
+    // Wrap everything into setTimeout so we can make sure that we points to correct element
+    setTimeout(() => {
+
+      // Get the result element and scroll it into view
+      const projetsResultId = this._document.getElementById('projetsResultId');
+      if (projetsResultId) {
+        projetsResultId.scrollIntoView();
+      }
     });
   }
 

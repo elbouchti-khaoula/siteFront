@@ -12,7 +12,7 @@
             [(opened)]="drawerMainOpened"
             #drawerMain>
 
-            <localisation [drawer]="drawerMain"></localisation>
+            <localisation [drawer]="drawerMain" [parentComponent]="'projets'"></localisation>
 
         </mat-drawer>
 
@@ -62,16 +62,16 @@
                             </div>
 
                             <!-- Open localisation -->
-                            <button
+                            <!-- <button
                                 class="ml-auto hidden md:block rounded-full bg-second-100"
                                 mat-icon-button
                                 (click)="toggleMain()">
                                 <mat-icon
                                     [svgIcon]="'heroicons_outline:switch-horizontal'">
                                 </mat-icon>
-                            </button>
+                            </button> -->
                             <button
-                                class="ml-auto md:hidden rounded-full bg-second-100"
+                                class="ml-auto lg:hidden rounded-full bg-second-100"
                                 mat-icon-button
                                 (click)="toggleMain()">
                                 <mat-icon

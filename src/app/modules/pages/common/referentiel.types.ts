@@ -32,3 +32,16 @@ export interface Quartier {
     libelle?    : string;
 }
 
+export interface Agence {
+    id: number;
+    nom: string;
+    code: string | null;
+    adresse?: string | null;
+    telephone?: string | null;
+    fax?: string | null;
+    gpsLatitude?: number;
+    gpsLongitude?: number;
+	codeVille?: number | null;
+    libelleVille?: string | null;
+    image: string | null;
+}

@@ -1,281 +1,285 @@
-<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}"
-    cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]>
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis] cdkScrollable> -->
 
-    <section class="u-section-2 px-6 sm:px-16 py-10 sm:py-20 bg-gray-600">
+    <!-- Header -->
+    <header class="flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[50vh] sm:min-h-[35vh] nous-connaitre-bg-header">
+        <div class="w-full max-w-400">
+            <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
+                Nous connaitre
+            </div>
+        </div>
+    </header>
+
+    <section class="u-section-2 px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
 
         <div class="w-full max-w-400 mx-auto">
 
-            <div class="relative mb-10 w-fit">
+            <!-- <div class="relative w-fit mb-10">
                 <div class="absolute inset-0 h-16 w-28 md:h-24 md:w-44 m-auto">
                     <img class="object-cover opacity-10 h-full" src="assets/images/pages/nous-connaitre/maison.png"
                         alt="" />
                 </div>
-
-                <div
-                    class="relative w-fit border-b-2 border-t-2 md:border-b-4 md:border-t-4 border-second py-5 md:py-8">
+                <div class="relative w-fit border-b-2 border-t-2 md:border-b-4 md:border-t-4 border-second py-5 md:py-8">
                     <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-white">
                         Nous connaitre
                     </span>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="w-full max-w-400">
-                <div class="u-full u-layout-wrap-1">
-                    <div class="u-layout-row">
-                        <div class="u-size-20">
-                            <div class="u-layout-col">
-                                <div class="u-layout-cell u-size-40 u-layout-cell-2 bg-card rounded-lg overflow-hidden">
-                                    <div class="u-container-layout flex flex-col justify-center p-5">
-                                        <span class="h-16 w-16 mb-7">
-                                            <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
-                                                viewBox="0 0 505.4 505.4">
-                                                <use xlink:href="#svg-2c92"></use>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                xml:space="preserve" class="u-svg-content" viewBox="0 0 505.4 505.4"
-                                                x="0px" y="0px" id="svg-2c92"
-                                                style="enable-background:new 0 0 505.4 505.4;">
+            <div class="u-full u-layout-wrap-1">
+                <div class="u-layout-row">
+                    <div class="u-size-20">
+                        <div class="u-layout-col">
+                            <div class="u-layout-cell u-size-40 u-layout-cell-2 bg-card rounded-lg overflow-hidden">
+                                <div class="u-container-layout flex flex-col justify-center p-5">
+                                    <span class="h-16 w-16 mb-7">
+                                        <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
+                                            viewBox="0 0 505.4 505.4">
+                                            <use xlink:href="#svg-2c92"></use>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                            xml:space="preserve" class="u-svg-content" viewBox="0 0 505.4 505.4"
+                                            x="0px" y="0px" id="svg-2c92"
+                                            style="enable-background:new 0 0 505.4 505.4;">
+                                            <g>
                                                 <g>
-                                                    <g>
-                                                        <path
-                                                            d="M437.1,233.45c14.8-10.4,24.6-27.7,24.6-47.2c0-31.9-25.8-57.7-57.7-57.7c-31.9,0-57.7,25.8-57.7,57.7    c0,19.5,9.7,36.8,24.6,47.2c-12.7,4.4-24.3,11.2-34.1,20c-13.5-11.5-29.4-20.3-46.8-25.5c21.1-12.8,35.3-36.1,35.3-62.6    c0-40.4-32.7-73.1-73.1-73.1c-40.4,0-73.1,32.8-73.1,73.1c0,26.5,14.1,49.8,35.3,62.6c-17.2,5.2-32.9,13.9-46.3,25.2    c-9.8-8.6-21.2-15.3-33.7-19.6c14.8-10.4,24.6-27.7,24.6-47.2c0-31.9-25.8-57.7-57.7-57.7s-57.7,25.8-57.7,57.7    c0,19.5,9.7,36.8,24.6,47.2C28.5,247.25,0,284.95,0,329.25v6.6c0,0.2,0.2,0.4,0.4,0.4h122.3c-0.7,5.5-1.1,11.2-1.1,16.9v6.8    c0,29.4,23.8,53.2,53.2,53.2h155c29.4,0,53.2-23.8,53.2-53.2v-6.8c0-5.7-0.4-11.4-1.1-16.9H505c0.2,0,0.4-0.2,0.4-0.4v-6.6    C505.2,284.85,476.8,247.15,437.1,233.45z M362.3,186.15c0-23,18.7-41.7,41.7-41.7s41.7,18.7,41.7,41.7    c0,22.7-18.3,41.2-40.9,41.7c-0.3,0-0.5,0-0.8,0s-0.5,0-0.8,0C380.5,227.45,362.3,208.95,362.3,186.15z M194.9,165.35    c0-31.5,25.6-57.1,57.1-57.1s57.1,25.6,57.1,57.1c0,30.4-23.9,55.3-53.8,57c-1.1,0-2.2,0-3.3,0c-1.1,0-2.2,0-3.3,0    C218.8,220.65,194.9,195.75,194.9,165.35z M59.3,186.15c0-23,18.7-41.7,41.7-41.7s41.7,18.7,41.7,41.7c0,22.7-18.3,41.2-40.9,41.7    c-0.3,0-0.5,0-0.8,0s-0.5,0-0.8,0C77.6,227.45,59.3,208.95,59.3,186.15z M125.5,320.15H16.2c4.5-42.6,40.5-76,84.2-76.3    c0.2,0,0.4,0,0.6,0s0.4,0,0.6,0c20.8,0.1,39.8,7.8,54.5,20.3C141.7,279.75,131,298.95,125.5,320.15z M366.8,359.95    c0,20.5-16.7,37.2-37.2,37.2h-155c-20.5,0-37.2-16.7-37.2-37.2v-6.8c0-62.1,49.6-112.9,111.3-114.7c1.1,0.1,2.3,0.1,3.4,0.1    s2.3,0,3.4-0.1c61.7,1.8,111.3,52.6,111.3,114.7V359.95z M378.7,320.15c-5.5-21.1-16-40-30.3-55.6c14.8-12.8,34-20.5,55-20.7    c0.2,0,0.4,0,0.6,0s0.4,0,0.6,0c43.7,0.3,79.7,33.7,84.2,76.3H378.7z">
-                                                        </path>
-                                                    </g>
+                                                    <path
+                                                        d="M437.1,233.45c14.8-10.4,24.6-27.7,24.6-47.2c0-31.9-25.8-57.7-57.7-57.7c-31.9,0-57.7,25.8-57.7,57.7    c0,19.5,9.7,36.8,24.6,47.2c-12.7,4.4-24.3,11.2-34.1,20c-13.5-11.5-29.4-20.3-46.8-25.5c21.1-12.8,35.3-36.1,35.3-62.6    c0-40.4-32.7-73.1-73.1-73.1c-40.4,0-73.1,32.8-73.1,73.1c0,26.5,14.1,49.8,35.3,62.6c-17.2,5.2-32.9,13.9-46.3,25.2    c-9.8-8.6-21.2-15.3-33.7-19.6c14.8-10.4,24.6-27.7,24.6-47.2c0-31.9-25.8-57.7-57.7-57.7s-57.7,25.8-57.7,57.7    c0,19.5,9.7,36.8,24.6,47.2C28.5,247.25,0,284.95,0,329.25v6.6c0,0.2,0.2,0.4,0.4,0.4h122.3c-0.7,5.5-1.1,11.2-1.1,16.9v6.8    c0,29.4,23.8,53.2,53.2,53.2h155c29.4,0,53.2-23.8,53.2-53.2v-6.8c0-5.7-0.4-11.4-1.1-16.9H505c0.2,0,0.4-0.2,0.4-0.4v-6.6    C505.2,284.85,476.8,247.15,437.1,233.45z M362.3,186.15c0-23,18.7-41.7,41.7-41.7s41.7,18.7,41.7,41.7    c0,22.7-18.3,41.2-40.9,41.7c-0.3,0-0.5,0-0.8,0s-0.5,0-0.8,0C380.5,227.45,362.3,208.95,362.3,186.15z M194.9,165.35    c0-31.5,25.6-57.1,57.1-57.1s57.1,25.6,57.1,57.1c0,30.4-23.9,55.3-53.8,57c-1.1,0-2.2,0-3.3,0c-1.1,0-2.2,0-3.3,0    C218.8,220.65,194.9,195.75,194.9,165.35z M59.3,186.15c0-23,18.7-41.7,41.7-41.7s41.7,18.7,41.7,41.7c0,22.7-18.3,41.2-40.9,41.7    c-0.3,0-0.5,0-0.8,0s-0.5,0-0.8,0C77.6,227.45,59.3,208.95,59.3,186.15z M125.5,320.15H16.2c4.5-42.6,40.5-76,84.2-76.3    c0.2,0,0.4,0,0.6,0s0.4,0,0.6,0c20.8,0.1,39.8,7.8,54.5,20.3C141.7,279.75,131,298.95,125.5,320.15z M366.8,359.95    c0,20.5-16.7,37.2-37.2,37.2h-155c-20.5,0-37.2-16.7-37.2-37.2v-6.8c0-62.1,49.6-112.9,111.3-114.7c1.1,0.1,2.3,0.1,3.4,0.1    s2.3,0,3.4-0.1c61.7,1.8,111.3,52.6,111.3,114.7V359.95z M378.7,320.15c-5.5-21.1-16-40-30.3-55.6c14.8-12.8,34-20.5,55-20.7    c0.2,0,0.4,0,0.6,0s0.4,0,0.6,0c43.7,0.3,79.7,33.7,84.2,76.3H378.7z">
+                                                    </path>
                                                 </g>
-                                            </svg>
-                                        </span>
+                                            </g>
+                                        </svg>
+                                    </span>
 
+                                    <span class="u-text-2 font-bold uppercase leading-tight text-primary-500">
+                                        Qui sommes-nous
+                                    </span>
+
+                                    <!-- <div class="prose my-3">
+                                        <p>
+                                            En tant que Spécialiste, Wafa Immobilier dispose de toutes les expertises
+                                            nécessaires pour la conclusion de conventions privilégiées avec des grands
+                                            groupes privés, des ministères, des administrations publiques et des
+                                            promoteurs institutionnels et privés.
+                                        </p>
+                                    </div> -->
+
+                                    <div class="u-text-3 mt-3">
+                                        Wafa Immobilier, créée en 1991, est une filiale à 100% du Groupe
+                                        Attijariwafa bank, s’érige en véritable spécialiste de l'immobilier.
+                                    </div>
+
+                                    <div class="mt-7">
+                                        <a [routerLink]="['./']" (click)="scrollToElement(secAboutUs)">
+                                            <span
+                                                class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
+                                                En savoir plus
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="u-layout-cell u-size-20 u-image u-image-1 rounded-lg overflow-hidden">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-size-20">
+                        <div class="u-layout-col">
+                            <div class="u-layout-cell u-size-20 u-image u-image-2 rounded-lg overflow-hidden">
+                            </div>
+                            <div class="u-layout-cell u-size-40 u-layout-cell-3 bg-card rounded-lg overflow-hidden">
+                                <div class="u-container-layout flex flex-col justify-center p-5">
+                                    <span class="h-16 w-16 mb-7">
+                                        <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
+                                            viewBox="0 0 512 512">
+                                            <use xlink:href="#svg-d0f0"></use>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-d0f0"
+                                            x="0px" y="0px" viewBox="0 0 512 512"
+                                            style="enable-background:new 0 0 512 512;" xml:space="preserve"
+                                            class="u-svg-content">
+                                            <g>
+                                                <g>
+                                                    <path
+                                                        d="M509.622,464.823L402.004,289.912c-2.943-4.782-8.052-7.637-13.667-7.637c-5.614,0-10.723,2.856-13.664,7.637    l-13.972,22.709c-2.174,3.533-1.072,8.16,2.461,10.334c3.535,2.173,8.16,1.072,10.335-2.461l13.972-22.71    c0.074-0.12,0.299-0.486,0.87-0.486c0.571,0,0.797,0.366,0.871,0.486l107.618,174.911c0.086,0.139,0.314,0.51,0.022,1.033    c-0.292,0.523-0.728,0.523-0.892,0.523h-59.6L269.665,203.333c-1.497-2.434-3.557-4.365-5.958-5.678    c0.003,0.001,0.006,0.003,0.008,0.004v-50.98c6.251,1.695,12.34,2.419,18.297,2.419c17.132,0,33.175-5.955,48.87-11.781    c21.748-8.073,42.29-15.698,64.508-6.788c2.865,1.149,6.103,0.803,8.66-0.927c2.561-1.732,4.089-4.611,4.089-7.701V37.044    c0-3.74-2.219-7.101-5.65-8.561c-28.203-12.027-52.927-2.851-76.836,6.023c-22.398,8.314-43.553,16.167-66.588,5.872    c-2.325-1.039-5.016-0.829-7.152,0.555c-2.136,1.385-3.425,3.757-3.425,6.303v0.279c-0.129,0.559-0.203,1.138-0.203,1.736v148.408    c-2.397,1.313-4.455,3.243-5.951,5.674l-79.139,128.623l-25.868-42.043c-2.942-4.782-8.051-7.637-13.666-7.637    c-5.614,0-10.723,2.855-13.665,7.637L2.377,464.823c-3.043,4.945-3.173,11.166-0.341,16.235c2.832,5.069,8.199,8.218,14.006,8.218    h479.915c5.807,0,11.174-3.149,14.006-8.218C512.796,475.989,512.665,469.767,509.622,464.823z M263.512,57.901    c24.317,6.67,46.158-1.437,67.37-9.311c20.985-7.79,40.867-15.168,62.234-7.642v72.985c-24.39-6.688-46.253,1.428-67.462,9.3    c-20.95,7.776-40.813,15.149-62.142,7.646V57.901z M93.282,474.252l25.771-41.885c2.174-3.533,1.072-8.16-2.461-10.334    c-3.534-2.173-8.16-1.072-10.334,2.461l-30.615,49.758h-59.6c-0.164,0-0.6,0-0.892-0.523s-0.065-0.893,0.022-1.033l107.619-174.91    c0.074-0.12,0.299-0.486,0.87-0.486c0.571,0,0.796,0.366,0.87,0.486l29.844,48.504l-29.799,48.431    c-2.174,3.533-1.072,8.16,2.461,10.334c3.535,2.174,8.161,1.072,10.334-2.461L255.13,211.205c0.074-0.12,0.299-0.486,0.87-0.486    c0.57,0,0.795,0.366,0.87,0.486l161.848,263.047H93.282z">
+                                                    </path>
+                                                </g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                            <g>
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <div class="flex flex-col">
                                         <span class="u-text-2 font-bold uppercase leading-tight text-primary-500">
-                                            Qui sommes-nous
+                                            Missions, vision<br />& valeurs
                                         </span>
-
-                                        <!-- <div class="prose my-3">
-                                            <p>
-                                                En tant que Spécialiste, Wafa Immobilier dispose de toutes les expertises
-                                                nécessaires pour la conclusion de conventions privilégiées avec des grands
-                                                groupes privés, des ministères, des administrations publiques et des
-                                                promoteurs institutionnels et privés.
-                                            </p>
-                                        </div> -->
-
-                                        <div class="u-text-3 mt-3">
-                                            Wafa Immobilier, créée en 1991, est une filiale à 100% du Groupe
-                                            Attijariwafa bank, s’érige en véritable spécialiste de l'immobilier.
-                                        </div>
-
-                                        <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollToElement(secAboutUs)">
-                                                <span
-                                                    class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
-                                                    En savoir plus
-                                                </span>
-                                            </a>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="u-layout-cell u-size-20 u-image u-image-1 rounded-lg overflow-hidden">
+
+                                    <div class="u-text-3 mt-3">
+                                        Wafa Immobilier, filiale du premier groupe bancaire marocain Attijariwafa
+                                        bank, consacre depuis plus de 30 ans, l'ensemble de son activité à
+                                        l'accession du plus grand nombre à la propriété.
+                                    </div>
+
+                                    <div class="mt-7">
+                                        <a [routerLink]="['./']" (click)="scrollToElement(secMissions)">
+                                            <span
+                                                class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
+                                                En savoir plus
+                                            </span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="u-size-20">
-                            <div class="u-layout-col">
-                                <div class="u-layout-cell u-size-20 u-image u-image-2 rounded-lg overflow-hidden">
-                                </div>
-                                <div class="u-layout-cell u-size-40 u-layout-cell-3 bg-card rounded-lg overflow-hidden">
-                                    <div class="u-container-layout flex flex-col justify-center p-5">
-                                        <span class="h-16 w-16 mb-7">
-                                            <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
-                                                viewBox="0 0 512 512">
-                                                <use xlink:href="#svg-d0f0"></use>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-d0f0"
-                                                x="0px" y="0px" viewBox="0 0 512 512"
-                                                style="enable-background:new 0 0 512 512;" xml:space="preserve"
-                                                class="u-svg-content">
+                    </div>
+                    <div class="u-size-20">
+                        <div class="u-layout-col">
+                            <div class="u-layout-cell u-size-40 u-layout-cell-6 bg-card rounded-lg overflow-hidden">
+                                <div class="u-container-layout flex flex-col justify-center p-5">
+                                    <span class="h-16 w-16 mb-7">
+                                        <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
+                                            viewBox="0 0 512 512">
+                                            <use xlink:href="#svg-5874"></use>
+                                        </svg>
+                                        <svg version="1.1" id="svg-5874" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                                            xml:space="preserve" class="u-svg-content">
+                                            <g>
                                                 <g>
                                                     <g>
                                                         <path
-                                                            d="M509.622,464.823L402.004,289.912c-2.943-4.782-8.052-7.637-13.667-7.637c-5.614,0-10.723,2.856-13.664,7.637    l-13.972,22.709c-2.174,3.533-1.072,8.16,2.461,10.334c3.535,2.173,8.16,1.072,10.335-2.461l13.972-22.71    c0.074-0.12,0.299-0.486,0.87-0.486c0.571,0,0.797,0.366,0.871,0.486l107.618,174.911c0.086,0.139,0.314,0.51,0.022,1.033    c-0.292,0.523-0.728,0.523-0.892,0.523h-59.6L269.665,203.333c-1.497-2.434-3.557-4.365-5.958-5.678    c0.003,0.001,0.006,0.003,0.008,0.004v-50.98c6.251,1.695,12.34,2.419,18.297,2.419c17.132,0,33.175-5.955,48.87-11.781    c21.748-8.073,42.29-15.698,64.508-6.788c2.865,1.149,6.103,0.803,8.66-0.927c2.561-1.732,4.089-4.611,4.089-7.701V37.044    c0-3.74-2.219-7.101-5.65-8.561c-28.203-12.027-52.927-2.851-76.836,6.023c-22.398,8.314-43.553,16.167-66.588,5.872    c-2.325-1.039-5.016-0.829-7.152,0.555c-2.136,1.385-3.425,3.757-3.425,6.303v0.279c-0.129,0.559-0.203,1.138-0.203,1.736v148.408    c-2.397,1.313-4.455,3.243-5.951,5.674l-79.139,128.623l-25.868-42.043c-2.942-4.782-8.051-7.637-13.666-7.637    c-5.614,0-10.723,2.855-13.665,7.637L2.377,464.823c-3.043,4.945-3.173,11.166-0.341,16.235c2.832,5.069,8.199,8.218,14.006,8.218    h479.915c5.807,0,11.174-3.149,14.006-8.218C512.796,475.989,512.665,469.767,509.622,464.823z M263.512,57.901    c24.317,6.67,46.158-1.437,67.37-9.311c20.985-7.79,40.867-15.168,62.234-7.642v72.985c-24.39-6.688-46.253,1.428-67.462,9.3    c-20.95,7.776-40.813,15.149-62.142,7.646V57.901z M93.282,474.252l25.771-41.885c2.174-3.533,1.072-8.16-2.461-10.334    c-3.534-2.173-8.16-1.072-10.334,2.461l-30.615,49.758h-59.6c-0.164,0-0.6,0-0.892-0.523s-0.065-0.893,0.022-1.033l107.619-174.91    c0.074-0.12,0.299-0.486,0.87-0.486c0.571,0,0.796,0.366,0.87,0.486l29.844,48.504l-29.799,48.431    c-2.174,3.533-1.072,8.16,2.461,10.334c3.535,2.174,8.161,1.072,10.334-2.461L255.13,211.205c0.074-0.12,0.299-0.486,0.87-0.486    c0.57,0,0.795,0.366,0.87,0.486l161.848,263.047H93.282z">
+                                                            d="M366.933,477.867H128c-4.71,0-8.533,3.823-8.533,8.533v17.067c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     v-8.533h230.4c4.71,0,8.533-3.823,8.533-8.533S371.644,477.867,366.933,477.867z">
+                                                        </path>
+                                                        <path
+                                                            d="M187.733,213.333c0,4.71,3.823,8.533,8.533,8.533H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V213.333z M204.8,170.667h17.067V204.8H204.8V170.667z">
+                                                        </path>
+                                                        <path
+                                                            d="M110.933,102.4H8.533c-4.71,0-8.533,3.823-8.533,8.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     V119.467h93.867c4.71,0,8.533-3.823,8.533-8.533S115.644,102.4,110.933,102.4z">
+                                                        </path>
+                                                        <path
+                                                            d="M409.6,418.133c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V418.133z M426.667,375.467h17.067V409.6h-17.067     V375.467z">
+                                                        </path>
+                                                        <path
+                                                            d="M42.667,307.2C0.486,307.2,0,417.024,0,418.133c0,20.608,14.686,37.837,34.133,41.805v43.529     c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533v-43.529c19.447-3.968,34.133-21.197,34.133-41.805     C85.333,417.024,84.847,307.2,42.667,307.2z M42.667,443.733c-14.114,0-25.6-11.486-25.6-25.6     c0-42.513,11.418-93.867,25.6-93.867c14.182,0,25.6,51.354,25.6,93.867C68.267,432.247,56.781,443.733,42.667,443.733z">
+                                                        </path>
+                                                        <path
+                                                            d="M93.867,256H59.733c-4.71,0-8.533,3.823-8.533,8.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     v-8.533h17.067v42.667c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533v-51.2     C102.4,259.823,98.577,256,93.867,256z">
+                                                        </path>
+                                                        <path
+                                                            d="M418.133,221.867h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533h-34.133     c-4.71,0-8.533,3.823-8.533,8.533v51.2C409.6,218.044,413.423,221.867,418.133,221.867z M426.667,170.667h17.067V204.8h-17.067     V170.667z">
+                                                        </path>
+                                                        <path
+                                                            d="M93.867,153.6H59.733c-4.71,0-8.533,3.823-8.533,8.533v51.2c0,4.71,3.823,8.533,8.533,8.533h34.133     c4.71,0,8.533-3.823,8.533-8.533v-51.2C102.4,157.423,98.577,153.6,93.867,153.6z M85.333,204.8H68.267v-34.133h17.067V204.8z">
+                                                        </path>
+                                                        <path
+                                                            d="M273.067,213.333c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533H281.6c-4.71,0-8.533,3.823-8.533,8.533V213.333z M290.133,170.667H307.2V204.8h-17.067V170.667z     ">
+                                                        </path>
+                                                        <path
+                                                            d="M503.467,102.4h-102.4c-4.71,0-8.533,3.823-8.533,8.533s3.823,8.533,8.533,8.533h93.867V462.37     c-2.679-0.956-5.521-1.57-8.533-1.57c-1.476,0-2.944,0.128-4.386,0.384c-5.888-10.607-17.092-17.451-29.747-17.451     c-12.655,0-23.859,6.844-29.747,17.451c-1.442-0.256-2.91-0.384-4.386-0.384c-14.114,0-25.6,11.486-25.6,25.6     s11.486,25.6,25.6,25.6H486.4c14.114,0,25.6-11.486,25.6-25.6V110.933C512,106.223,508.177,102.4,503.467,102.4z M486.4,494.933     h-68.267c-4.702,0-8.533-3.831-8.533-8.533s3.831-8.533,8.533-8.533c1.638,0,3.191,0.469,4.625,1.391     c2.338,1.502,5.257,1.775,7.834,0.734c2.577-1.041,4.48-3.277,5.103-5.982c1.801-7.774,8.619-13.21,16.572-13.21     c7.953,0,14.771,5.436,16.572,13.21c0.623,2.705,2.526,4.941,5.103,5.982c2.569,1.041,5.495,0.768,7.834-0.734     c5.555-3.584,13.158,0.802,13.158,7.142C494.933,491.102,491.102,494.933,486.4,494.933z">
+                                                        </path>
+                                                        <path
+                                                            d="M281.6,119.467h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533H281.6     c-4.71,0-8.533,3.823-8.533,8.533v51.2C273.067,115.644,276.89,119.467,281.6,119.467z M290.133,68.267H307.2V102.4h-17.067     V68.267z">
+                                                        </path>
+                                                        <path
+                                                            d="M273.067,315.733c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533H281.6c-4.71,0-8.533,3.823-8.533,8.533V315.733z M290.133,273.067H307.2V307.2h-17.067V273.067z     ">
+                                                        </path>
+                                                        <path
+                                                            d="M196.267,119.467H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533h-34.133     c-4.71,0-8.533,3.823-8.533,8.533v51.2C187.733,115.644,191.556,119.467,196.267,119.467z M204.8,68.267h17.067V102.4H204.8     V68.267z">
+                                                        </path>
+                                                        <path
+                                                            d="M249.941,412.075c-1.536,1.621-2.475,3.84-2.475,6.059c0,2.219,0.939,4.437,2.475,6.059     c1.621,1.536,3.84,2.475,6.059,2.475c2.219,0,4.437-0.939,6.059-2.475c1.536-1.621,2.475-3.84,2.475-6.059     c0-2.219-0.939-4.437-2.475-6.059C258.816,408.917,253.184,408.917,249.941,412.075z">
+                                                        </path>
+                                                        <path
+                                                            d="M187.733,315.733c0,4.71,3.823,8.533,8.533,8.533H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V315.733z M204.8,273.067h17.067V307.2H204.8V273.067z">
+                                                        </path>
+                                                        <path
+                                                            d="M170.667,366.933c0,4.71,3.823,8.533,8.533,8.533h25.6v76.8c0,4.71,3.823,8.533,8.533,8.533     c4.71,0,8.533-3.823,8.533-8.533v-76.8h68.267v76.8c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-76.8h25.6     c4.71,0,8.533-3.823,8.533-8.533s-3.823-8.533-8.533-8.533H179.2C174.49,358.4,170.667,362.223,170.667,366.933z">
+                                                        </path>
+                                                        <path
+                                                            d="M409.6,315.733c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V315.733z M426.667,273.067h17.067V307.2h-17.067     V273.067z">
+                                                        </path>
+                                                        <path
+                                                            d="M366.933,0H145.067c-4.71,0-8.533,3.823-8.533,8.533v443.733c0,4.71,3.823,8.533,8.533,8.533     c4.71,0,8.533-3.823,8.533-8.533v-435.2h204.8v435.2c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533V8.533     C375.467,3.823,371.644,0,366.933,0z">
                                                         </path>
                                                     </g>
                                                 </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
+                                            </g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                            <g></g>
+                                        </svg>
+                                    </span>
+
+                                    <div class="flex flex-col">
+                                        <span class="u-text-2 font-bold uppercase leading-tight text-primary-500">
+                                            Le groupe
                                         </span>
+                                    </div>
 
-                                        <div class="flex flex-col">
-                                            <span class="u-text-2 font-bold uppercase leading-tight text-primary-500">
-                                                Missions, vision<br />& valeurs
+                                    <div class="u-text-3 mt-3">
+                                        Le Groupe Attijariwafa Bank, premier groupe bancaire et financier du
+                                        Maghreb, est une multinationale panafricaine qui accompagne aujourd'hui 10,8
+                                        millions de clients particuliers, professionnels, entreprises et
+                                        institutionnels et mobilise 20 590 collaborateurs dans 29 pays en Afrique,
+                                        en europe et au Moyen-Orient.
+                                    </div>
+
+                                    <div class="mt-7">
+                                        <a [routerLink]="['./']" (click)="scrollToElement(secGroup)">
+                                            <span
+                                                class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
+                                                En savoir plus
                                             </span>
-                                        </div>
-
-                                        <div class="u-text-3 mt-3">
-                                            Wafa Immobilier, filiale du premier groupe bancaire marocain Attijariwafa
-                                            bank, consacre depuis plus de 30 ans, l'ensemble de son activité à
-                                            l'accession du plus grand nombre à la propriété.
-                                        </div>
-
-                                        <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollToElement(secMissions)">
-                                                <span
-                                                    class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
-                                                    En savoir plus
-                                                </span>
-                                            </a>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="u-size-20">
-                            <div class="u-layout-col">
-                                <div class="u-layout-cell u-size-40 u-layout-cell-6 bg-card rounded-lg overflow-hidden">
-                                    <div class="u-container-layout flex flex-col justify-center p-5">
-                                        <span class="h-16 w-16 mb-7">
-                                            <svg class="u-svg-link fill-current" preserveAspectRatio="xMidYMin slice"
-                                                viewBox="0 0 512 512">
-                                                <use xlink:href="#svg-5874"></use>
-                                            </svg>
-                                            <svg version="1.1" id="svg-5874" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-                                                xml:space="preserve" class="u-svg-content">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path
-                                                                d="M366.933,477.867H128c-4.71,0-8.533,3.823-8.533,8.533v17.067c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     v-8.533h230.4c4.71,0,8.533-3.823,8.533-8.533S371.644,477.867,366.933,477.867z">
-                                                            </path>
-                                                            <path
-                                                                d="M187.733,213.333c0,4.71,3.823,8.533,8.533,8.533H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V213.333z M204.8,170.667h17.067V204.8H204.8V170.667z">
-                                                            </path>
-                                                            <path
-                                                                d="M110.933,102.4H8.533c-4.71,0-8.533,3.823-8.533,8.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     V119.467h93.867c4.71,0,8.533-3.823,8.533-8.533S115.644,102.4,110.933,102.4z">
-                                                            </path>
-                                                            <path
-                                                                d="M409.6,418.133c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V418.133z M426.667,375.467h17.067V409.6h-17.067     V375.467z">
-                                                            </path>
-                                                            <path
-                                                                d="M42.667,307.2C0.486,307.2,0,417.024,0,418.133c0,20.608,14.686,37.837,34.133,41.805v43.529     c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533v-43.529c19.447-3.968,34.133-21.197,34.133-41.805     C85.333,417.024,84.847,307.2,42.667,307.2z M42.667,443.733c-14.114,0-25.6-11.486-25.6-25.6     c0-42.513,11.418-93.867,25.6-93.867c14.182,0,25.6,51.354,25.6,93.867C68.267,432.247,56.781,443.733,42.667,443.733z">
-                                                            </path>
-                                                            <path
-                                                                d="M93.867,256H59.733c-4.71,0-8.533,3.823-8.533,8.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533     v-8.533h17.067v42.667c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533v-51.2     C102.4,259.823,98.577,256,93.867,256z">
-                                                            </path>
-                                                            <path
-                                                                d="M418.133,221.867h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533h-34.133     c-4.71,0-8.533,3.823-8.533,8.533v51.2C409.6,218.044,413.423,221.867,418.133,221.867z M426.667,170.667h17.067V204.8h-17.067     V170.667z">
-                                                            </path>
-                                                            <path
-                                                                d="M93.867,153.6H59.733c-4.71,0-8.533,3.823-8.533,8.533v51.2c0,4.71,3.823,8.533,8.533,8.533h34.133     c4.71,0,8.533-3.823,8.533-8.533v-51.2C102.4,157.423,98.577,153.6,93.867,153.6z M85.333,204.8H68.267v-34.133h17.067V204.8z">
-                                                            </path>
-                                                            <path
-                                                                d="M273.067,213.333c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533H281.6c-4.71,0-8.533,3.823-8.533,8.533V213.333z M290.133,170.667H307.2V204.8h-17.067V170.667z     ">
-                                                            </path>
-                                                            <path
-                                                                d="M503.467,102.4h-102.4c-4.71,0-8.533,3.823-8.533,8.533s3.823,8.533,8.533,8.533h93.867V462.37     c-2.679-0.956-5.521-1.57-8.533-1.57c-1.476,0-2.944,0.128-4.386,0.384c-5.888-10.607-17.092-17.451-29.747-17.451     c-12.655,0-23.859,6.844-29.747,17.451c-1.442-0.256-2.91-0.384-4.386-0.384c-14.114,0-25.6,11.486-25.6,25.6     s11.486,25.6,25.6,25.6H486.4c14.114,0,25.6-11.486,25.6-25.6V110.933C512,106.223,508.177,102.4,503.467,102.4z M486.4,494.933     h-68.267c-4.702,0-8.533-3.831-8.533-8.533s3.831-8.533,8.533-8.533c1.638,0,3.191,0.469,4.625,1.391     c2.338,1.502,5.257,1.775,7.834,0.734c2.577-1.041,4.48-3.277,5.103-5.982c1.801-7.774,8.619-13.21,16.572-13.21     c7.953,0,14.771,5.436,16.572,13.21c0.623,2.705,2.526,4.941,5.103,5.982c2.569,1.041,5.495,0.768,7.834-0.734     c5.555-3.584,13.158,0.802,13.158,7.142C494.933,491.102,491.102,494.933,486.4,494.933z">
-                                                            </path>
-                                                            <path
-                                                                d="M281.6,119.467h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533H281.6     c-4.71,0-8.533,3.823-8.533,8.533v51.2C273.067,115.644,276.89,119.467,281.6,119.467z M290.133,68.267H307.2V102.4h-17.067     V68.267z">
-                                                            </path>
-                                                            <path
-                                                                d="M273.067,315.733c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533H281.6c-4.71,0-8.533,3.823-8.533,8.533V315.733z M290.133,273.067H307.2V307.2h-17.067V273.067z     ">
-                                                            </path>
-                                                            <path
-                                                                d="M196.267,119.467H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2c0-4.71-3.823-8.533-8.533-8.533h-34.133     c-4.71,0-8.533,3.823-8.533,8.533v51.2C187.733,115.644,191.556,119.467,196.267,119.467z M204.8,68.267h17.067V102.4H204.8     V68.267z">
-                                                            </path>
-                                                            <path
-                                                                d="M249.941,412.075c-1.536,1.621-2.475,3.84-2.475,6.059c0,2.219,0.939,4.437,2.475,6.059     c1.621,1.536,3.84,2.475,6.059,2.475c2.219,0,4.437-0.939,6.059-2.475c1.536-1.621,2.475-3.84,2.475-6.059     c0-2.219-0.939-4.437-2.475-6.059C258.816,408.917,253.184,408.917,249.941,412.075z">
-                                                            </path>
-                                                            <path
-                                                                d="M187.733,315.733c0,4.71,3.823,8.533,8.533,8.533H230.4c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V315.733z M204.8,273.067h17.067V307.2H204.8V273.067z">
-                                                            </path>
-                                                            <path
-                                                                d="M170.667,366.933c0,4.71,3.823,8.533,8.533,8.533h25.6v76.8c0,4.71,3.823,8.533,8.533,8.533     c4.71,0,8.533-3.823,8.533-8.533v-76.8h68.267v76.8c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-76.8h25.6     c4.71,0,8.533-3.823,8.533-8.533s-3.823-8.533-8.533-8.533H179.2C174.49,358.4,170.667,362.223,170.667,366.933z">
-                                                            </path>
-                                                            <path
-                                                                d="M409.6,315.733c0,4.71,3.823,8.533,8.533,8.533h34.133c4.71,0,8.533-3.823,8.533-8.533v-51.2     c0-4.71-3.823-8.533-8.533-8.533h-34.133c-4.71,0-8.533,3.823-8.533,8.533V315.733z M426.667,273.067h17.067V307.2h-17.067     V273.067z">
-                                                            </path>
-                                                            <path
-                                                                d="M366.933,0H145.067c-4.71,0-8.533,3.823-8.533,8.533v443.733c0,4.71,3.823,8.533,8.533,8.533     c4.71,0,8.533-3.823,8.533-8.533v-435.2h204.8v435.2c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533V8.533     C375.467,3.823,371.644,0,366.933,0z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                                <g></g>
-                                            </svg>
-                                        </span>
-
-                                        <div class="flex flex-col">
-                                            <span class="u-text-2 font-bold uppercase leading-tight text-primary-500">
-                                                Le groupe
-                                            </span>
-                                        </div>
-
-                                        <div class="u-text-3 mt-3">
-                                            Le Groupe Attijariwafa Bank, premier groupe bancaire et financier du
-                                            Maghreb, est une multinationale panafricaine qui accompagne aujourd'hui 10,8
-                                            millions de clients particuliers, professionnels, entreprises et
-                                            institutionnels et mobilise 20 590 collaborateurs dans 29 pays en Afrique,
-                                            en europe et au Moyen-Orient.
-                                        </div>
-
-                                        <div class="mt-7">
-                                            <a [routerLink]="['./']" (click)="scrollToElement(secGroup)">
-                                                <span
-                                                    class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
-                                                    En savoir plus
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="u-layout-cell u-size-20 u-image u-image-3 rounded-lg overflow-hidden">
-                                </div>
+                            <div class="u-layout-cell u-size-20 u-image u-image-3 rounded-lg overflow-hidden">
                             </div>
                         </div>
                     </div>
@@ -286,7 +290,7 @@
 
     </section>
 
-    <div #secAboutUs class="px-6 sm:px-16 py-10 sm:py-20 bg-card">
+    <div #secAboutUs class="px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card">
         <div class="w-full max-w-400 mx-auto grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-10">
             <div class="md:col-span-1">
                 <img class="object-cover h-full rounded-lg" src="assets/images/pages/nous-connaitre/about-us.jpg"
@@ -382,7 +386,7 @@
         </div>
     </div>
 
-    <div #secMissions class="px-6 sm:px-16 py-10 sm:py-20 bg-gray-600">
+    <div #secMissions class="px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-gray-600">
         <div class="w-full max-w-400 mx-auto flex flex-col md:flex-row">
             <div class="md:w-[60%] md:mr-10 max-md:mt-8">
                 <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-white">
@@ -481,9 +485,7 @@
         </div>
     </div>
 
-    <section
-        style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('assets/images/pages/nous-connaitre/backgd.jpg');"
-        class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-fixed bg-center bg-cover">
+    <section class="flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 chiffre-bg bg-fixed">
         <div class="w-full max-w-400">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 lg:gap-16 w-full">
                 <div class="flex flex-col items-center">
@@ -544,7 +546,7 @@
         </div>
     </section>
 
-    <div #secGroup class="u-section-3 px-6 sm:px-16 py-10 sm:py-20">
+    <div #secGroup class="u-section-3 px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
         <div class="w-full max-w-400 mx-auto flex flex-col-reverse md:flex-row">
             <div class="md:w-[45%] max-md:mt-8 md:mr-10">
                 <img class="rounded-lg u-image u-image-1" src="assets/images/pages/nous-connaitre/groupe1.jpg" alt="" />

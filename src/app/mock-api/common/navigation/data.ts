@@ -3,16 +3,9 @@
 import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
-    // {
-    //     id   : 'example',
-    //     title: 'Example',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:chart-pie',
-    //     link : '/example'
-    // },
     {
         id   : 'landing',
-        title: 'Landing',
+        title: 'Accueil',
         type : 'basic',
         icon : 'heroicons_outline:home',
         link : '/landing'
@@ -32,6 +25,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
+        id   : 'simulation-detaillee',
+        title: 'Simulation détaillée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-detaillee'
+    },
+    {
         id   : 'nousConnaitre',
         title: 'Nous connaitre',
         type : 'basic',
@@ -40,23 +40,37 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'darrahetbal',
-        title: 'Dar Rahet lbal',
+        title: 'Multimédia',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     },
-    // {
-    //     id   : 'landingBis',
-    //     title: 'LandingBis',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:library',
-    //     link : '/landingBis'
-    // },
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
-        title: 'Landing',
+        title: 'Accueil',
         type : 'basic',
         icon : 'heroicons_outline:home',
         link : '/landing'
@@ -76,6 +90,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
+        id   : 'simulation-detaillee',
+        title: 'Simulation détaillée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-detaillee'
+    },
+    {
         id   : 'nousConnaitre',
         title: 'Nous connaitre',
         type : 'basic',
@@ -84,23 +105,37 @@ export const compactNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'darrahetbal',
-        title: 'Dar Rahet lbal',
+        title: 'Multimédia',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     },
-    // {
-    //     id   : 'landingBis',
-    //     title: 'LandingBis',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:library',
-    //     link : '/landingBis'
-    // },
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
-        title: 'Landing',
+        title: 'Accueil',
         type : 'basic',
         icon : 'heroicons_outline:home',
         link : '/landing'
@@ -120,6 +155,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
+        id   : 'simulation-detaillee',
+        title: 'Simulation détaillée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-detaillee'
+    },
+    {
         id   : 'nousConnaitre',
         title: 'Nous connaitre',
         type : 'basic',
@@ -128,23 +170,37 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'darrahetbal',
-        title: 'Dar Rahet lbal',
+        title: 'Multimédia',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     },
-    // {
-    //     id   : 'landingBis',
-    //     title: 'LandingBis',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:library',
-    //     link : '/landingBis'
-    // },
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
-        title: 'Landing',
+        title: 'Accueil',
         type : 'basic',
         icon : 'heroicons_outline:home',
         link : '/landing'
@@ -164,6 +220,13 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
+        id   : 'simulation-detaillee',
+        title: 'Simulation détaillée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-detaillee'
+    },
+    {
         id   : 'nousConnaitre',
         title: 'Nous connaitre',
         type : 'basic',
@@ -172,16 +235,30 @@ export const horizontalNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'darrahetbal',
-        title: 'Dar Rahet lbal',
+        title: 'Multimédia',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     },
-    // {
-    //     id   : 'landingBis',
-    //     title: 'LandingBis',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:library',
-    //     link : '/landingBis'
-    // },
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    }
 ];
