@@ -7,8 +7,9 @@
             Suivez-nous
         </span>
 
-        <div class="flex flex-col md:flex-row items-start justify-between mt-8 md:mt-10">
-            <div class="flex flex-col space-y-5 md:space-y-20 w-3/5">
+        <div class="flex flex-col max-md:space-y-5 md:flex-row md:items-start md:justify-between mt-8 md:mt-10">
+            
+            <div class="flex flex-col space-y-5 md:space-y-20 md:w-3/5">
                 <div class="max-w-60 flex items-center space-x-3">
                     <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
                         <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:linkedin'"></mat-icon>
@@ -27,21 +28,29 @@
                     </button>
                 </div>
 
-                <div class="flex flex-row">
-                    <button mat-flat-button [color]="'white'" [routerLink]="['./']">
+                <div class="max-w-120 grid grid-cols-2 md:grid-cols-3 gap-2">
+                    <button
+                        mat-flat-button
+                        [color]="'white'"
+                        [routerLink]="'/agences'">
                         Notre réseau
                     </button>
-                    <button class="ml-3 bg-default bg-opacity-70" mat-stroked-button [color]="'primary'"
-                        [routerLink]="['./']">
+                    <button class="md:ml-3 bg-default bg-opacity-70" 
+                        mat-stroked-button
+                        [color]="'primary'"
+                        [routerLink]="'/nous-contacter'">
                         Nous contacter
                     </button>
-                    <button class="ml-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                    <button class="md:ml-3"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [routerLink]="'/reclamation'">
                         Réclamation
                     </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 max-md:gap-y-10 md:gap-16 w-2/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 max-md:gap-y-10 md:gap-16 md:w-2/5">
                 <div class="grid grid-cols-1 gap-y-5">
                     <div class="flex flex-row space-x-3 items-center">
                         <span>

@@ -39,6 +39,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
     {
+        id   : 'nosConventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
+    },
+    {
         id   : 'darrahetbal',
         title: 'Multimédia',
         type : 'basic',
@@ -102,6 +109,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
+    },
+    {
+        id   : 'nosConventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
     },
     {
         id   : 'darrahetbal',
@@ -169,6 +183,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
     {
+        id   : 'nosConventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
+    },
+    {
         id   : 'darrahetbal',
         title: 'Multimédia',
         type : 'basic',
@@ -232,6 +253,13 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
+    },
+    {
+        id   : 'nosConventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
     },
     {
         id   : 'darrahetbal',

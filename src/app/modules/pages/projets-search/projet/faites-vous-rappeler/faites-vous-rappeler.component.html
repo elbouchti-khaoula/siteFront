@@ -1,0 +1,106 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 max-h-160 -m-6 overflow-y-auto">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
+        <div class="text-lg font-medium">Faites-vous rappeler</div>
+        <button
+            mat-icon-button
+            (click)="matDialogRef.close()"
+            [tabIndex]="-1">
+            <mat-icon
+                class="text-current"
+                [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <!-- Main Form -->
+    <div class="px-10 py-6 overflow-y-auto">
+        <!-- Alert -->
+        <fuse-alert *ngIf="alert"
+            [type]="alert.type"
+            [showIcon]="false">
+            {{alert.message}}
+        </fuse-alert>
+
+        <form class="space-y-1 mt-3"
+            [formGroup]="faitesVousRappelerForm"
+            #faitesVousRappelerNgForm="ngForm">
+            
+            <!-- Nom -->
+            <mat-form-field class="w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                </mat-icon>
+                <input matInput [formControlName]="'nom'">
+                <mat-label class="text-sm font-semibold">Nom</mat-label>
+                <mat-error *ngIf="faitesVousRappelerForm.get('nom').hasError('required')">
+                    Nom obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Prénom -->
+            <mat-form-field class="w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                </mat-icon>
+                <input matInput [formControlName]="'prenom'">
+                <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                <mat-error *ngIf="faitesVousRappelerForm.get('prenom').hasError('required')">
+                    Prénom obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Téléphone -->
+            <mat-form-field class="w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                <input matInput [formControlName]="'telephone'">
+                <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                <mat-error *ngIf="faitesVousRappelerForm.get('telephone').hasError('required')">
+                    Téléphone obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field class="w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                <input type="email" matInput [formControlName]="'email'">
+                <mat-label class="text-sm font-semibold">E-mail</mat-label>
+                <mat-error *ngIf="faitesVousRappelerForm.get('email').hasError('email')">
+                    Enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="faitesVousRappelerForm.get('email').hasError('required')">
+                    Email obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Message -->
+            <mat-form-field class="fuse-mat-textarea w-full">
+                <textarea matInput
+                    [formControlName]="'message'"
+                    [rows]="3"
+                    matTextareaAutosize>
+                </textarea>
+                <mat-label class="text-sm font-semibold">Message</mat-label>
+            </mat-form-field>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end">
+                <button mat-button
+                    [color]="'accent'"
+                    [disabled]="faitesVousRappelerForm.pristine || faitesVousRappelerForm.untouched"
+                    (click)="clearForm()">
+                    Vider
+                </button>
+                <button class="ml-2" 
+                    mat-flat-button
+                    [color]="'primary'"
+                    [disabled]="faitesVousRappelerForm.pristine || faitesVousRappelerForm.invalid"
+                    (click)="sendForm()">
+                    Envoyer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

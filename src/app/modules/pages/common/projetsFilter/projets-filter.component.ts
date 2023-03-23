@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewEnc
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
+import { catchError, debounceTime, Observable, Subject, takeUntil, throwError } from 'rxjs';
 import { ProjetsService } from '../../projets-search/projets.service';
 import { ReferentielService } from '../referentiel.service';
 import { Quartier, TypeBien, Ville } from '../referentiel.types';
@@ -183,14 +183,18 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     this.searchForm.reset(this.searchFormDefaults);
 
     if (this.parentComponent === 'projets-search') {
-      this._projetsService.searchProjets({}).subscribe(() => {
-        this._router.navigate([], {
-          fragment: null,
-          queryParams: {},
-          relativeTo: this._activatedRoute
+
+      this._projetsService.searchProjets({})
+        .subscribe(() => {
+
+          this._router.navigate([], {
+            fragment: null,
+            queryParams: {},
+            relativeTo: this._activatedRoute
+          });
+          this._scrollResultIntoView();
         });
-        this._scrollResultIntoView();
-      });
+
     }
   }
 
@@ -198,15 +202,39 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * Perform the search
    */
   search(): void {
-    this._projetsService.searchProjets(this.searchForm.value).subscribe(() => {
-      // Add query params using the router
-      this._router.navigate([], {
-        fragment: 'projetsResultId',
-        queryParams: this.searchForm.value,
-        relativeTo: this._activatedRoute
+    this._projetsService.searchProjets(this.searchForm.value)
+    .pipe(
+      // Error here means the requested is not available
+      catchError((error) => {
+
+        // Log the error
+        console.error(error);
+
+        if (error.status === 500) {
+          this._router.navigateByUrl('/500-server-error');
+        } else if (error.status === 400) {
+          this._router.navigateByUrl('/404-not-found');
+        } else {
+          // Get the parent url
+          const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
+
+          // Navigate to there
+          this._router.navigateByUrl(parentUrl);
+        }
+
+        // Throw an error
+        return throwError(error);
+      }))
+      .subscribe(() => {
+
+        // Add query params using the router
+        this._router.navigate([], {
+          fragment: 'projetsResultId',
+          queryParams: this.searchForm.value,
+          relativeTo: this._activatedRoute
+        });
+        this._scrollResultIntoView();
       });
-      this._scrollResultIntoView();
-    });
   }
 
   private _scrollResultIntoView(): void {

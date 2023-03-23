@@ -52,6 +52,7 @@ export const appRoutes: Route[] = [
         ]
     },
 
+    // Admin routes
     {
         path: '',
         canActivate: [AuthGuard],
@@ -64,7 +65,11 @@ export const appRoutes: Route[] = [
             {
                 path: 'simulation-detaillee',
                 loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-            }
+            },
+            {
+                path: 'tableau-amortissement',
+                loadChildren: () => import('app/modules/admin/tableau-amortissement/tableau-amortissement.module').then(m => m.TableauAmortissementModule),
+            },
         ]
     },
 
@@ -83,7 +88,7 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // Admin routes
+    // Pages routes
     {
         path       : '',
         // canActivate: [AuthGuard],
@@ -93,10 +98,6 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children   : [
-            {
-                path: 'nous-connaitre',
-                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
-            },
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
@@ -116,6 +117,14 @@ export const appRoutes: Route[] = [
             {
                 path: 'simulation-personnalisee',
                 loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
+            },
+            {
+                path: 'nous-connaitre',
+                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
+            },
+            {
+                path: 'nos-conventions',
+                loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
             {
                 path: 'nous-contacter',

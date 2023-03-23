@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CarouselModule } from '@marcreichel/angular-carousel';
+import { FuseCardModule } from '@fuse/components/card';
 
 import { projetsSearchRoutes } from './projets-search.routing';
 import { ProjetsSearchComponent } from './projets-search.component';
@@ -32,6 +33,7 @@ import { LocalisationModule } from '../common/localisation/localisation.module';
         MatInputModule,
         MatSidenavModule,
         CarouselModule,
+        FuseCardModule,
 
         ProjetsFilterModule,
         ProjetModule,

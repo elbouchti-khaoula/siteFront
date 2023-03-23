@@ -1,31 +1,39 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[35vh] simul-bg-header">
         <div class="w-full max-w-400">
             <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
-                Prenez quelques minutes pour décrire votre projet
-            </div>
-
-            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                C'est simple, rapide et sans engagement. Plus vous serez complet dans la description de votre situation et plus notre comparaison des meilleurs taux pour vous sera précise !
+                Simulez votre crédit immobilier
             </div>
         </div>
     </header>
 
     <div class="px-6 sm:px-16 py-10 md:pt-18 md:pb-20 simul-bg-header-sm">
         <div class="w-full max-w-400 mx-auto">
-            <span class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+            <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                 Je simule mon crédit
             </span>
+            
+            <div class="hidden md:flex flex-row justify-center space-x-5">
+                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-primary w-68">
+                    <span class="ml-2 font-medium text-white">Je simule mon crédit</span>
+                </div>
+                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-card ring ring-1 ring-gray-500 w-68">
+                    <span class="ml-2 font-medium">Je personnalise ma simulation</span>
+                </div>
+                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-card ring ring-1 ring-gray-500 w-68">
+                    <span class="ml-2 font-medium">Je demande mon crédit</span>
+                </div>
+            </div>
             
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
 
                 <!-- 'md:w-full md:max-w-5xl translate-x-0' : !isVisible, -->
-                <form class="flex flex-col items-center space-y-5 md:w-3/4 md:translate-x-[15%] bg-card rounded-2xl overflow-hidden px-6 pt-7 pb-3 ring-2 ring-current"
+                <form class="flex flex-col items-center space-y-5 md:w-3/4 md:translate-x-[17%] bg-card rounded-2xl overflow-hidden px-6 pt-7 pb-3 ring-2 ring-current"
                     [formGroup]="simulationForm"
-                    [ngClass]="{'transition-all duration-1000 ease-in-out md:translate-x-0 md:w-2/5' : isVisible }">
+                    [ngClass]="{'transition-all duration-1000 ease-in-out md:translate-x-[0%] md:w-2/5' : isVisible }">
 
                     <div class="w-full">
                         <div class="text-xl md:text-2xl font-bold text-primary">
@@ -355,6 +363,8 @@
                                         </div>
                                     </div>
 
+                                    <div></div>
+                                    
                                     <!-- Expertise immobilière -->
                                     <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
                                         <!-- Border -->
@@ -520,8 +530,8 @@
                         class="mx-auto w-fit md:fuse-mat-button-large mt-7"
                         mat-flat-button
                         [color]="'primary'"
-                        [routerLink]="['/simulation-detaillee']">
-                        Accéder à la simulation détaillée
+                        (click)="navigateToSimulationDetaillee()">
+                        Je personnalise ma simulation
                     </button>
                 </fuse-card>
 

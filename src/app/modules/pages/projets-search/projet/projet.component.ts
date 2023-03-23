@@ -4,6 +4,9 @@ import { ProjetsService } from '../projets.service';
 import { Projet } from '../projets.types';
 import { fuseAnimations } from '@fuse/animations';
 import { Location } from "@angular/common";
+import { cloneDeep } from 'lodash-es';
+import { MatDialog } from '@angular/material/dialog';
+import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
 
 import { SwiperComponent } from "swiper/angular";
 //import Swiper core and required modules
@@ -51,6 +54,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
         private _location: Location,
         private _projetsService: ProjetsService,
         private _changeDetectorRef: ChangeDetectorRef,
+        private _matDialog: MatDialog
     ) {
     }
 
@@ -93,6 +97,19 @@ export class ProjetComponent implements OnInit, OnDestroy {
         this._location.back();
     }
 
+    /**
+     * Open the note dialog
+     */
+    openFaitesVousRappelerDialog(): void
+    {
+        this._matDialog.open(FaitesVousRappelerComponent, {
+            autoFocus: false,
+            data     : {
+                projet: cloneDeep(this.projet)
+            }
+        });
+    }
+    
     /**
      * Track by function for ngFor loops
      *

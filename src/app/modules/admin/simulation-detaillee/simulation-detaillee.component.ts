@@ -112,30 +112,30 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     // Horizontal stepper form
     this.simulationStepperForm = this._formBuilder.group({
       step1: this._formBuilder.group({
-        nom                       : [this.simulationFormDefaults.nom, [Validators.required]],
-        prenom                    : [this.simulationFormDefaults.prenom, [Validators.required]],
-        telephone                 : [this.simulationFormDefaults.telephone, [Validators.required]],
-        email                     : [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
-        dateNaissance             : [this.simulationFormDefaults.dateNaissance, [Validators.required]],
-        nationaliteCode           : [this.simulationFormDefaults.nationaliteCode, [Validators.required]],
-        residentMarocain          : [this.simulationFormDefaults.residentMarocain, [Validators.required]],
-        agreements                : [this.simulationFormDefaults.agreements, [Validators.required]],
+        nom: [this.simulationFormDefaults.nom, [Validators.required]],
+        prenom: [this.simulationFormDefaults.prenom, [Validators.required]],
+        telephone: [this.simulationFormDefaults.telephone, [Validators.required]],
+        email: [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
+        dateNaissance: [this.simulationFormDefaults.dateNaissance, [Validators.required]],
+        nationaliteCode: [this.simulationFormDefaults.nationaliteCode, [Validators.required]],
+        residentMarocain: [this.simulationFormDefaults.residentMarocain, [Validators.required]],
+        agreements: [this.simulationFormDefaults.agreements, [Validators.required]],
       }),
       step2: this._formBuilder.group({
-        cspCode                   : [this.simulationFormDefaults.cspCode, [Validators.required]],
-        employeur                 : [this.simulationFormDefaults.employeur, [Validators.required]],
-        salaireAnnuelNet          : [this.simulationFormDefaults.salaireAnnuelNet, [Validators.required]],
-        autresRevenus             : [this.simulationFormDefaults.autresRevenus, [Validators.required]],
-        mensualitesCreditsEnCours : [this.simulationFormDefaults.mensualitesCreditsEnCours, [Validators.required]]
+        cspCode: [this.simulationFormDefaults.cspCode, [Validators.required]],
+        employeur: [this.simulationFormDefaults.employeur, [Validators.required]],
+        salaireAnnuelNet: [this.simulationFormDefaults.salaireAnnuelNet, [Validators.required]],
+        autresRevenus: [this.simulationFormDefaults.autresRevenus, [Validators.required]],
+        mensualitesCreditsEnCours: [this.simulationFormDefaults.mensualitesCreditsEnCours, [Validators.required]]
       }),
       step3: this._formBuilder.group({
-        objetFinancementCode      : [this.simulationFormDefaults.objetFinancementCode, [Validators.required]],
-        prixBien                  : [this.simulationFormDefaults.prixBien, [Validators.required]],
-        montant                   : [this.simulationFormDefaults.montant, [Validators.required]],
-        duree                     : [this.simulationFormDefaults.duree, [Validators.required]],
-        typeTaux                  : [this.simulationFormDefaults.typeTaux, [Validators.required]],
-        statutProjet              : [this.simulationFormDefaults.statutProjet, [Validators.required]],
-        promoteur                 : [this.simulationFormDefaults.promoteur, [Validators.required]]
+        objetFinancementCode: [this.simulationFormDefaults.objetFinancementCode, [Validators.required]],
+        prixBien: [this.simulationFormDefaults.prixBien, [Validators.required]],
+        montant: [this.simulationFormDefaults.montant, [Validators.required]],
+        duree: [this.simulationFormDefaults.duree, [Validators.required]],
+        typeTaux: [this.simulationFormDefaults.typeTaux, [Validators.required]],
+        statutProjet: [this.simulationFormDefaults.statutProjet, [Validators.required]],
+        promoteur: [this.simulationFormDefaults.promoteur, [Validators.required]]
       })
     });
 
@@ -169,6 +169,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Fill the form with the values from query
         // params without emitting any form events
+        this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
+        this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
+        this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
+        this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
+        this.simulationStepperForm.get('step1').get('nationaliteCode').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationaliteCode);
+        this.simulationStepperForm.get('step1').get('residentMarocain').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residentMarocain);
+        this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
+        this.simulationStepperForm.get('step2').get('cspCode').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.cspCode);
         this.simulationStepperForm.get('step3').get('montant').setValue(queryParams?.montant ?? this.simulationFormDefaults.montant);
         this.simulationStepperForm.get('step3').get('duree').setValue(queryParams?.duree ?? this.simulationFormDefaults.duree);
       });

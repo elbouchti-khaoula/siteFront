@@ -33,7 +33,7 @@
 
                     <!-- Contact -->
                     <ng-container *ngIf="drawerChildComponent === 'contact'">
-                        <projet-contact [drawer]="drawerContact"></projet-contact>
+                        <projet-contact [drawer]="drawerContact" [projet]="selectedProjet"></projet-contact>
                     </ng-container>
 
                 </mat-drawer>
@@ -166,7 +166,7 @@
                                                         <button class="flex-auto"
                                                             mat-stroked-button 
                                                             [color]="'primary'"
-                                                            (click)="openContact()">
+                                                            (click)="openContact(projet)">
                                                             Contacter
                                                         </button>
                                                     </div>

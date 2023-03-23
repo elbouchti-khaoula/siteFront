@@ -1,86 +1,215 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
-    <div class="grid grid-cols-2 gap-x-10 h-full place-items-center">
-        <!-- <div></div> -->
-        <div class="support-bg-header h-full w-full"></div>
-        
-        <fuse-card class="flex flex-col max-w-3xl p-6 sm:py-12 sm:px-10 bg-card">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:h-full">
+        <div class="reclamation-bg-header h-[45vh] md:h-full w-full"></div>
+
+        <fuse-card class="flex flex-col max-w-3xl p-6 sm:py-8 sm:px-10 bg-card my-5 md:my-10 mx-3 sm:mx-auto overflow-y-auto">
 
             <!-- Header -->
-            <div class="flex flex-0 items-center h-18 px-6 border-b">
-                <!-- <button mat-icon-button (click)="drawer.close()">
-                    <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
-                </button> -->
-                <div class="ml-2 text-2xl font-semibold">Contacter un spécialiste</div>
+            <div class="flex flex-0 items-center h-14 border-b">
+                <div class="text-2xl font-semibold">Remplissez le formulaire sécurisé ci-dessous</div>
             </div>
 
             <!-- Main Form -->
-            <div class="px-10 py-6 overflow-y-auto">
+            <div class="py-6">
                 <!-- Alert -->
-                <fuse-alert *ngIf="alert" [type]="alert.type" [showIcon]="false">
+                <fuse-alert
+                    class="w-120"
+                    *ngIf="alert"
+                    [appearance]="'outline'"
+                    [type]="alert.type">
                     {{alert.message}}
                 </fuse-alert>
-                <form class="space-y-1" [formGroup]="supportForm" #supportNgForm="ngForm">
-                    <!-- <div class="my-3">
-                        <div class="text-secondary">
-                            Votre demande sera traitée et notre équipe vous reviendra dans les 24 heures
-                            Your request will be processed and our support staff will get back to you in 24 hours.
-                        </div>
-                    </div> -->
-                    <!-- Name -->
-                    <mat-form-field class="w-full">
-                        <input matInput [formControlName]="'name'" [required]="true">
-                        <mat-label>Nom</mat-label>
-                        <mat-error *ngIf="supportForm.get('name').hasError('required')">
-                            Required
+
+                <form class="w-full grid grid-cols-2 gap-x-2 gap-y-1 mt-5"
+                    [formGroup]="reclamationForm"
+                    #reclamationNgForm="ngForm">
+
+                    <!-- Nom -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'nom'" [required]="true">
+                        <mat-label class="text-sm font-semibold">Nom</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('nom').hasError('required')">
+                            Nom obligatoire
                         </mat-error>
                     </mat-form-field>
-                    <!-- Email -->
-                    <mat-form-field class="w-full">
-                        <input type="email" matInput [formControlName]="'email'" [required]="true">
-                        <mat-label>Email</mat-label>
-                        <mat-error *ngIf="supportForm.get('email').hasError('required')">
-                            Required
+
+                    <!-- Prénom -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'prenom'" [required]="true">
+                        <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('prenom').hasError('required')">
+                            Prénom obligatoire
                         </mat-error>
-                        <mat-error *ngIf="supportForm.get('email').hasError('email')">
+                    </mat-form-field>
+
+                    <!-- CIN -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'cin'" [required]="true">
+                        <mat-label class="text-sm font-semibold">CIN</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('cin').hasError('required')">
+                            CIN obligatoire
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Numéro de dossier -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'numeroDossier'">
+                        <mat-label class="text-sm font-semibold">Numéro de dossier</mat-label>
+                    </mat-form-field>
+
+                    <!-- Téléphone -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'telephone'" [required]="true">
+                        <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('telephone').hasError('required')">
+                            Téléphone obligatoire
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Email -->
+                    <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'"
+                            matPrefix></mat-icon>
+                        <input type="email" matInput [formControlName]="'email'" [required]="true">
+                        <mat-label class="text-sm font-semibold">E-mail</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('email').hasError('email')">
                             Enter a valid email address
                         </mat-error>
+                        <mat-error *ngIf="reclamationForm.get('email').hasError('required')">
+                            Email obligatoire
+                        </mat-error>
                     </mat-form-field>
-                    <!-- Phone -->
-                    <mat-form-field class="w-full">
-                        <input matInput [formControlName]="'phone'">
-                        <mat-label>Téléphone</mat-label>
-                    </mat-form-field>
-                    <!-- Subject
-                    <mat-form-field class="w-full">
-                        <input matInput [formControlName]="'subject'" [required]="true">
-                        <mat-label>Subject</mat-label>
-                        <mat-error *ngIf="supportForm.get('subject').hasError('required')">
-                            Required
+
+                    <!-- Ville -->
+                    <!-- <mat-form-field class="w-full"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
+                        </mat-icon>
+                        <mat-label class="text-sm font-semibold">Ville</mat-label>
+                        <mat-select
+                            [formControlName]="'codeVille'">
+                            <ng-container *ngFor="let ville of villes">
+                                <mat-option [value]="ville.codeVille">
+                                    {{ville.description}}
+                                </mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error *ngIf="reclamationForm.get('codeVille').hasError('codeVille')">
+                            Ville obligatoire
                         </mat-error>
                     </mat-form-field> -->
+
+                    <!-- adresse -->
+                    <!-- <mat-form-field class="fuse-mat-no-subscript w-full col-span-2"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
+                        </mat-icon>
+                        <input matInput [formControlName]="'adresse'" [required]="true">
+                        <mat-label>Adresse de correspondance</mat-label>
+                        <mat-error *ngIf="reclamationForm.get('adresse').hasError('required')">
+                            Adresse obligatoire
+                        </mat-error>
+                    </mat-form-field> -->
+
+                    <!-- Objet réclamation -->
+                    <mat-form-field class="w-full col-span-2"
+                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:information-circle'" matPrefix>
+                        </mat-icon>
+                        <mat-label class="text-sm font-semibold">Objet réclamation</mat-label>
+                        <mat-select
+                            [formControlName]="'motif'">
+                            <ng-container *ngFor="let obj of objetsReclamation">
+                                <mat-option [value]="obj.id">
+                                    {{obj.libelle}}
+                                </mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="flex flex-col col-span-2">
+                        <ng-container *ngIf="(piecesByObjet$ | async) as pieces">
+                            <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
+                                <div class="flex flex-row items-center justify-between">
+                                    <span class="font-medium w-44">
+                                        {{piece.libelle}} :
+                                    </span>
+                                    <span class="text-sm text-primary w-44">
+                                        {{piece.fileName}}
+                                    </span>
+                                    <!-- file -->
+                                    <div>
+                                        <input
+                                            id="{{ 'file-input' + i }}"
+                                            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                            type="file"
+                                            [multiple]="false"
+                                            [accept]="'image/jpeg, image/png'"
+                                            (change)="uploadPiece(piece, $event.target.files)"
+                                            #fileInput>
+                                        <button
+                                            *ngIf="piece.file"
+                                            class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                            mat-icon-button
+                                            (click)="deletePiece(piece, i)">
+                                            <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                                        </button>
+                                        <label
+                                            *ngIf="!piece.file"
+                                            class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                            for="{{ 'file-input' + i }}"
+                                            matRipple>
+                                            <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
+                                        </label>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
                     <!-- Message -->
-                    <mat-form-field class="fuse-mat-textarea w-full">
-                        <textarea matInput [formControlName]="'message'" [required]="true" [rows]="5"
+                    <mat-form-field class="fuse-mat-textarea w-full col-span-2">
+                        <textarea matInput
+                            [formControlName]="'text'"
+                            [required]="true"
+                            [rows]="5"
                             matTextareaAutosize></textarea>
                         <mat-label>Message</mat-label>
-                        <mat-error *ngIf="supportForm.get('message').hasError('required')">
-                            Required
+                        <mat-error *ngIf="reclamationForm.get('text').hasError('required')">
+                            Message obligatoire
                         </mat-error>
                     </mat-form-field>
+
                     <!-- Actions -->
-                    <div class="flex items-center justify-end">
+                    <div class="flex items-center justify-end col-span-2">
                         <button mat-stroked-button
                             [color]="'accent'"
-                            [disabled]="supportForm.pristine || supportForm.untouched"
+                            [disabled]="reclamationForm.pristine || reclamationForm.untouched"
                             (click)="clearForm()">
                             Vider
                         </button>
                         <button class="ml-2"
                             mat-flat-button
                             [color]="'primary'"
-                            [disabled]="supportForm.pristine || supportForm.invalid"
+                            [disabled]="reclamationForm.pristine || reclamationForm.invalid"
                             (click)="sendForm()">
                             Envoyer
                         </button>

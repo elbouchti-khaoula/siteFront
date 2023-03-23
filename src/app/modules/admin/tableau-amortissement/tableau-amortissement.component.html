@@ -1,0 +1,123 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div
+            class="absolute inset-x-0 bottom-0"
+            *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+
+        <!-- back button -->
+        <div class="flex flex-0 items-center h-14 px-6 border-b bg-gray-50 w-full dark:bg-transparent">
+            <a mat-button
+                (click)="goBack()"
+                [color]="'primary'">
+                <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
+                <span class="ml-2 text-md font-semibold">Retour à la simulation</span>
+            </a>
+        </div>
+
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Tableau d'amortissement</div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+
+        <!-- Tableau d'amortissement -->
+        <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+            <ng-container *ngIf="(tableauAmortissement$ | async) as tableauAmortissement">
+                <ng-container *ngIf="tableauAmortissement.length > 0; else noTableauAmortissement">
+                    <div class="grid">
+                        <!-- Header -->
+                        <div
+                            class="amortissement-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            matSort
+                            matSortDisableClear>
+                            <div
+                                [mat-sort-header]="'echeance'">
+                                Echéance
+                            </div>
+                            <div [mat-sort-header]="'amortissement'">
+                                Amortissement
+                            </div>
+                            <div
+                                [mat-sort-header]="'interetTTC'">
+                                Intérêt TTC
+                            </div>
+                            <div
+                                [mat-sort-header]="'prestationsTTC'">
+                                Prestations TTC
+                            </div>
+                            <div
+                                [mat-sort-header]="'echeanceClientTTC'">
+                                Echéance Client TTC
+                            </div>
+                            <div
+                                [mat-sort-header]="'crd'">
+                                CRD
+                            </div>
+                        </div>
+                        <!-- Rows -->
+                        <ng-container *ngIf="(tableauAmortissement$ | async) as tableauAmortissement">
+                            <ng-container *ngFor="let ligneEcheance of tableauAmortissement; trackBy: trackByFn">
+                                <div class="amortissement-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                    <!-- echeance -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.echeance}}
+                                    </div>
+
+                                    <!-- amortissement -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.amortissement | currency:'Dhs':'symbol':'1.2-2'}}
+                                    </div>
+
+                                    <!-- interetTTC -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.interetTTC | currency:'Dhs':'symbol':'1.2-2'}}
+                                    </div>
+
+                                    <!-- prestationsTTC -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.prestationsTTC | currency:'Dhs':'symbol':'1.2-2'}}
+                                    </div>
+
+                                    <!-- echeanceClientTTC -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.echeanceClientTTC | currency:'Dhs':'symbol':'1.2-2'}}
+                                    </div>
+
+                                    <!-- crd -->
+                                    <div class="truncate">
+                                        {{ligneEcheance.crd | currency:'Dhs':'symbol':'1.2-2'}}
+                                    </div>
+
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <mat-paginator
+                        class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                        [ngClass]="{'pointer-events-none': isLoading}"
+                        [length]="pagination.length"
+                        [pageIndex]="pagination.page"
+                        [pageSize]="pagination.size"
+                        [pageSizeOptions]="[5, 10, 25, 100]"
+                        [showFirstLastButtons]="true"></mat-paginator>
+
+                </ng-container>
+            </ng-container>
+
+            <ng-template #noTableauAmortissement>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There are no tableauAmortissement!</div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>

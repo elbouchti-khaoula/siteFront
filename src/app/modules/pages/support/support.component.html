@@ -1,5 +1,5 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full md:min-h-[35vh] support-bg-header">
@@ -14,7 +14,7 @@
     </header>
 
     <div class="px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
-        <div class="w-full max-w-400 mx-auto flex flex-col md:flex-row space-x-7">
+        <div class="w-full max-w-400 mx-auto flex flex-col max-md:space-y-7 md:flex-row md:space-x-7">
             <div>
                 <fuse-card class="flex flex-col md:flex-row">
                     <div class="flex-0 w-80 md:w-60 ">
@@ -118,66 +118,79 @@
             <fuse-card class="w-full flex flex-col bg-card">
                 <!-- Header -->
                 <div class="flex flex-0 items-center h-18 px-6 border-b">
-                    <!-- <button mat-icon-button (click)="drawer.close()">
-                        <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
-                    </button> -->
                     <div class="ml-2 text-2xl font-semibold">En renseignant le formulaire ci-dessous</div>
                 </div>
 
                 <!-- Main Form -->
                 <div class="px-10 py-6 overflow-y-auto">
                     <!-- Alert -->
-                    <fuse-alert *ngIf="alert" [type]="alert.type" [showIcon]="false">
+                    <fuse-alert 
+                        *ngIf="alert"
+                        [type]="alert.type"
+                        [showIcon]="false">
                         {{alert.message}}
                     </fuse-alert>
-                    <form class="space-y-1" [formGroup]="supportForm" #supportNgForm="ngForm">
-                        <!-- <div class="my-3">
-                            <div class="text-secondary">
-                                Votre demande sera traitée et notre équipe vous reviendra dans les 24 heures
-                                Your request will be processed and our support staff will get back to you in 24 hours.
-                            </div>
-                        </div> -->
-                        <!-- Name -->
-                        <mat-form-field class="w-full">
-                            <input matInput [formControlName]="'name'" [required]="true">
-                            <mat-label>Nom</mat-label>
-                            <mat-error *ngIf="supportForm.get('name').hasError('required')">
-                                Required
+
+                    <form class="space-y-1 mt-3" [formGroup]="supportForm" #supportNgForm="ngForm">
+                        <!-- Nom -->
+                        <mat-form-field class="w-full"
+                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                            </mat-icon>
+                            <input matInput [formControlName]="'nom'" [required]="true">
+                            <mat-label class="text-sm font-semibold">Nom</mat-label>
+                            <mat-error *ngIf="supportForm.get('nom').hasError('required')">
+                                Nom obligatoire
                             </mat-error>
                         </mat-form-field>
-                        <!-- Email -->
-                        <mat-form-field class="w-full">
-                            <input type="email" matInput [formControlName]="'email'" [required]="true">
-                            <mat-label>Email</mat-label>
-                            <mat-error *ngIf="supportForm.get('email').hasError('required')">
-                                Required
+
+                        <!-- Prénom -->
+                        <mat-form-field class="w-full"
+                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                            </mat-icon>
+                            <input matInput [formControlName]="'prenom'" [required]="true">
+                            <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                            <mat-error *ngIf="supportForm.get('prenom').hasError('required')">
+                                Prénom obligatoire
                             </mat-error>
+                        </mat-form-field>
+
+                        <!-- Téléphone -->
+                        <mat-form-field class="w-full"
+                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                            <input matInput [formControlName]="'telephone'" [required]="true">
+                            <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                            <mat-error *ngIf="supportForm.get('telephone').hasError('required')">
+                                Téléphone obligatoire
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!-- Email -->
+                        <mat-form-field class="w-full"
+                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                            <input type="email" matInput [formControlName]="'email'" [required]="true">
+                            <mat-label class="text-sm font-semibold">E-mail</mat-label>
                             <mat-error *ngIf="supportForm.get('email').hasError('email')">
                                 Enter a valid email address
                             </mat-error>
-                        </mat-form-field>
-                        <!-- Phone -->
-                        <mat-form-field class="w-full">
-                            <input matInput [formControlName]="'phone'">
-                            <mat-label>Téléphone</mat-label>
-                        </mat-form-field>
-                        <!-- Subject
-                        <mat-form-field class="w-full">
-                            <input matInput [formControlName]="'subject'" [required]="true">
-                            <mat-label>Subject</mat-label>
-                            <mat-error *ngIf="supportForm.get('subject').hasError('required')">
-                                Required
+                            <mat-error *ngIf="supportForm.get('email').hasError('required')">
+                                Email obligatoire
                             </mat-error>
-                        </mat-form-field> -->
+                        </mat-form-field>
+
                         <!-- Message -->
                         <mat-form-field class="fuse-mat-textarea w-full">
-                            <textarea matInput [formControlName]="'message'" [required]="true" [rows]="5"
-                                matTextareaAutosize></textarea>
-                            <mat-label>Message</mat-label>
-                            <mat-error *ngIf="supportForm.get('message').hasError('required')">
-                                Required
-                            </mat-error>
+                            <textarea matInput
+                                [formControlName]="'message'"
+                                [rows]="3"
+                                matTextareaAutosize>
+                            </textarea>
+                            <mat-label class="text-sm font-semibold">Message</mat-label>
                         </mat-form-field>
+
                         <!-- Actions -->
                         <div class="flex items-center justify-end">
                             <button mat-stroked-button

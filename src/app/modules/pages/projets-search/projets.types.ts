@@ -7,6 +7,7 @@ export interface Projet {
     gpsLatitude?: number;
     gpsLongitude?: number;
     agence?: string | null;
+    // contact promoteur
     contact?: string | null;
     telephone?: string | null;
     email?: string | null;
@@ -23,17 +24,17 @@ export interface Projet {
     nombreChambresMax: number;
     nombreBiens: number;
     classement?: number;
+
     codeTypeBien?: string | null;
     codeQuartier?: number | null;
     codeVille?: number | null;
+    libelleVille?: string | null;
+    libelleTypeBien?: string | null;
+    libelleQuartier?: string | null;
 
     dateLivraison?: Date | null;
     dateCreation?: Date | null;
     dateModification?: Date | null;
-
-    libelleVille?: string | null;
-    libelleTypeBien?: string | null;
-    libelleQuartier?: string | null;
 
     images?: {
         chemin: string | null;

@@ -1,6 +1,6 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FuseMediaWatcherService } from '@fuse/services/media-watcher/media-watcher.service';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ReferentielService } from '../../common/referentiel.service';
 import { Agence } from '../../common/referentiel.types';

@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
@@ -36,6 +37,7 @@ import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
         MatRadioModule,
         FuseCardModule,
         MatStepperModule,
+        MatBadgeModule,
         MatDatepickerModule,
         MatMomentDateModule
     ],

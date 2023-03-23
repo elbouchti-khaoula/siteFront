@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild,
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseMediaWatcherService } from '@fuse/services/media-watcher/media-watcher.service';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 import { ReferentielService } from '../common/referentiel.service';
 import { Ville } from '../common/referentiel.types';

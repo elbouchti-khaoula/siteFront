@@ -7,7 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRippleModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
+import { FuseAlertModule } from '@fuse/components/alert';
 
 @NgModule({
     declarations: [
@@ -20,7 +23,10 @@ import { FuseCardModule } from '@fuse/components/card';
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
-        FuseCardModule
+        MatSelectModule,
+        MatRippleModule,
+        FuseCardModule,
+        FuseAlertModule
     ]
 })
 export class ReclamationModule

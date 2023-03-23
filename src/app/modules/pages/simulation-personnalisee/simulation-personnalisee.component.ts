@@ -103,19 +103,9 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         cspCode         : [this.simulationFormDefaults.cspCode, [Validators.required]],
         montant         : [this.simulationFormDefaults.montant, [Validators.required]],
         duree           : [this.simulationFormDefaults.duree, [Validators.required]]
-      },
-      // { validators: this.atLeastEmailOrPhone }
+      }
     );
   }
-
-  // atLeastEmailOrPhone(form: FormGroup): ValidationErrors {
-  //   const emailCtrl = form.get('email');
-  //   const phoneCtr = form.get('telephone');
-  //   if (!!emailCtrl.value || !!phoneCtr.value) {
-  //     return null;
-  //   }
-  //   return { atLeastEmailOrPhone: '* Veuillez saisir émail ou téléphone' };
-  // }
 
   // -----------------------------------------------------------------------------------------------------
   // @ Lifecycle hooks
@@ -308,6 +298,28 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       });
 
+  }
+
+  navigateToSimulationDetaillee(): void {
+    // Add query params using the router
+    this._router.navigate(
+        ['/simulation-detaillee'],
+        {
+            queryParams: 
+            {
+              nom             : this.simulationForm.get('nom').value,
+              prenom          : this.simulationForm.get('prenom').value,
+              telephone       : this.simulationForm.get('telephone').value,
+              email           : this.simulationForm.get('email').value,
+              nationaliteCode : this.simulationForm.get('nationaliteCode').value,
+              residentMarocain: this.simulationForm.get('residentMarocain').value,
+              agreements      : this.simulationForm.get('agreements').value,
+              cspCode         : this.simulationForm.get('cspCode').value,
+              montant         : this.simulationForm.get('montant').value,
+              duree           : this.simulationForm.get('duree').value
+            }
+        }
+    );
   }
 
 }

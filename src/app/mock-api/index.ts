@@ -9,6 +9,7 @@ import { UserMockApi } from 'app/mock-api/common/user/api';
 // import { ContactsMockApi } from 'app/mock-api/apps/contacts/api';
 // import { TasksMockApi } from 'app/mock-api/apps/tasks/api';
 import { ProjetsMockApi } from './pages/projets/api';
+import { TableauAmortissementMockApi } from './pages/tableauAmortissement/api';
 
 export const mockApiServices = [
     AuthMockApi,
@@ -21,5 +22,6 @@ export const mockApiServices = [
     UserMockApi,
     // ContactsMockApi,
     // TasksMockApi,
-    ProjetsMockApi
+    ProjetsMockApi,
+    TableauAmortissementMockApi
 ];

@@ -176,7 +176,9 @@ export class ProjetsResultComponent implements
     /**
      * Open the profile sidebar
      */
-    openContact(): void {
+    openContact(projet: Projet): void {
+        this.selectedProjet = projet;
+
         this.drawerChildComponent = 'contact';
         this.drawerChildOpened = true;
 

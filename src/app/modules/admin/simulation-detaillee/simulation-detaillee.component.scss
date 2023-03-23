@@ -1,5 +1,5 @@
 .simul-det-bg-header {
-    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/simulation/header.jpg');
+    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/simulation/header-det.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -15,6 +15,10 @@
     }
 }
 
+.mat-badge-content {
+    background: transparent !important;
+    color: black !important;
+}
 
 @media (min-width: 992px) {
     .mat-horizontal-stepper-header {
