@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { AuthSignUpPopupComponent } from '../sign-up-popup/sign-up-popup.component';
 
 @Component({
     selector     : 'sign-in-popup',
@@ -31,7 +32,8 @@ export class AuthSignInPopupComponent implements OnInit
         private _activatedRoute: ActivatedRoute,
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
-        private _router: Router
+        private _router: Router,
+        private _matDialog: MatDialog
     )
     {
     }
@@ -56,7 +58,18 @@ export class AuthSignInPopupComponent implements OnInit
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-
+    
+    /**
+     * Sign up
+     */
+    signUp(): void{
+        this._matDialog.closeAll();
+        this._matDialog.open(AuthSignUpPopupComponent, {
+            autoFocus: false,
+            backdropClass: 'bdrop',
+            maxHeight: '90vh'
+        });
+    }
     /**
      * Sign in
      */
@@ -78,7 +91,7 @@ export class AuthSignInPopupComponent implements OnInit
         this._authService.signIn(this.signInForm.value)
             .subscribe(
                 () => {
-                    console.log('+-+-+- this._activatedRoute', this._activatedRoute)
+
                     // Set the redirect url.
                     // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
                     // to the correct page after a successful sign in. This way, that url can be set via

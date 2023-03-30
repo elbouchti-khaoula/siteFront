@@ -49,6 +49,13 @@
     <mat-divider class="my-2"></mat-divider>
     <button
         mat-menu-item
+        (click)="signIn()">
+        <mat-icon [svgIcon]="'heroicons_outline:login'"></mat-icon>
+        <span>Sign in</span>
+    </button>
+    <mat-divider class="my-2"></mat-divider>
+    <button
+        mat-menu-item
         (click)="signOut()">
         <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>
         <span>Sign out</span>

@@ -2,3 +2,8 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and application's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+
+.bdrop {
+    background-color: rgba(192, 192, 192, 0.8);
+    backdrop-filter: blur(4px);
+}

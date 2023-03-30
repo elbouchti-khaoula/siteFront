@@ -9,12 +9,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
-import { AuthSignInPopupComponent } from './sign-in-popup.component';
-import { AuthSignUpPopupModule } from '../sign-up-popup/sign-up-popup.module';
+import { AuthSignUpPopupComponent } from './sign-up-popup.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
     declarations: [
-        AuthSignInPopupComponent
+        AuthSignUpPopupComponent
     ],
     imports     : [
         RouterModule,
@@ -27,9 +27,9 @@ import { AuthSignUpPopupModule } from '../sign-up-popup/sign-up-popup.module';
         FuseCardModule,
         FuseAlertModule,
         SharedModule,
-        AuthSignUpPopupModule,
+        MatRadioModule
     ]
 })
-export class AuthSignInPopupModule
+export class AuthSignUpPopupModule
 {
 }

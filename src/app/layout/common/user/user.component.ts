@@ -99,13 +99,12 @@ export class UserComponent implements OnInit, OnDestroy
         this._router.navigate(['/sign-out']);
     }
 
-    /**
-     * Sign in
-     */
     signIn(): void
     {
+        console.log('sign in');
         this._matDialog.open(AuthSignInPopupComponent, {
-            autoFocus: false
+            autoFocus: false,
+            backdropClass: 'bdrop'
         });
     }
 }
