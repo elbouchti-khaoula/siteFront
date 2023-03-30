@@ -73,6 +73,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:map',
         link : '/agences'
     }
+    ,
+    {
+        id   : 'espace_connected',
+        title: 'Espace connecté',
+        type : 'basic',
+        icon : 'heroicons_outline:user-group',
+        link : '/espace-connected'
+    }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
@@ -144,6 +152,14 @@ export const compactNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
+    }
+    ,
+    {
+        id   : 'espace_connected',
+        title: 'Espace connecté',
+        type : 'basic',
+        icon : 'heroicons_outline:user-group',
+        link : '/espace-connected'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -217,6 +233,14 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:map',
         link : '/agences'
     }
+    ,
+    {
+        id   : 'espace_connected',
+        title: 'Espace connecté',
+        type : 'basic',
+        icon : 'heroicons_outline:user-group',
+        link : '/espace-connected'
+    }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
@@ -288,5 +312,13 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
+    }
+    ,
+    {
+        id   : 'espace_connected',
+        title: 'Espace connecté',
+        type : 'basic',
+        icon : 'heroicons_outline:user-group',
+        link : '/espace-connected'
     }
 ];
