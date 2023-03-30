@@ -28,3 +28,8 @@
     flex: 1;
     max-width: 100%;
 }
+
+.bdrop {
+    background-color: rgba(192, 192, 192, 0.8);
+    backdrop-filter: blur(4px);
+}
