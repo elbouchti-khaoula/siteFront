@@ -8,7 +8,7 @@ import { catchError, debounceTime, Observable, of, Subject, takeUntil, throwErro
 // import { ReferentielService } from '../common/referentiel.service';
 // import { Ville } from '../common/referentiel.types';
 import { ReclamationsService } from './reclamation.service';
-import { Piece } from './reclamation.types';
+import { Motif, Piece } from './reclamation.types';
 
 @Component({
     selector: 'reclamation',
@@ -22,38 +22,21 @@ export class ReclamationComponent implements OnInit {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
     @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
 
+    motifs: Motif[];
     // villes: Ville[];
     isScreenSmall: boolean;
     alert: any;
     reclamationForm: FormGroup;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    objetsReclamation: any[] = [
-        { id: 1, libelle: "Contestation Délai: Décision Crédit" },
-        { id: 2, libelle: "Contestation Délai: Déblocage / réception chèque" },
-        { id: 3, libelle: "Contestation Délai: Mainlevée" },
-        { id: 4, libelle: "Contestation Délai: Restitution solde" },
-        { id: 5, libelle: "Contestation Prélèvement: Sur le compte" },
-        { id: 6, libelle: "Contestation Prélèvement: à la source (sur salaire)" },
-        { id: 7, libelle: "Contestation Prélèvement: Post remboursement anticipé (total ou partiel)" },
-        { id: 8, libelle: "Contestation Prélèvement: non mise à jour du solde" },
-    ];
-
     piecesRef: any[] = [
-        { id: 1, libelle: "N° AFFAIRE ou N° CNIE", parent: 1 },
-        { id: 2, libelle: "N° AFFAIRE ou N° CNIE", parent: 2 },
-        { id: 3, libelle: "N° AFFAIRE ou N° CNIE", parent: 3 },
-        { id: 4, libelle: "Justificatif de règlement des frais de mainlevée", parent: 3 },
-        { id: 5, libelle: "Relevé ou Extrait de compte", parent: 4 },
-        { id: 6, libelle: "Relevé ou Extrait de compte", parent: 5 },
-        { id: 7, libelle: "Relevé ou Extrait de compte", parent: 6 },
-        { id: 8, libelle: "Justificatif de remboursement", parent: 7 },
-        { id: 9, libelle: "Extrait de compte", parent: 7 },
-        { id: 10, libelle: "N° AFFAIRE ou N° CNIE", parent: 8 },
+        { id: 1, libelle: "Justificatif de règlement de mainlevée", parent: 226 },
+        { id: 2, libelle: "Relevé ou Extrait de compte", parent: 291 },
+        { id: 3, libelle: "Justificatif de remboursement", parent: 209 },
+        { id: 4, libelle: "Extrait de compte", parent: 209 },
     ];
 
-    // piecesByObjet: Piece[];
-    piecesByObjet$: Observable<Piece[]>;
+    piecesByMotif$: Observable<Piece[]>;
     pieceChanged: Subject<Piece> = new Subject<Piece>();
 
     /**
@@ -103,6 +86,18 @@ export class ReclamationComponent implements OnInit {
         //         this._changeDetectorRef.markForCheck();
         //     });
 
+        // Get the motifs
+        this._reclamationsService.motifs$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((response: Motif[]) => {
+
+                // Update the motifs
+                this.motifs = response;
+
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
+
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -112,20 +107,20 @@ export class ReclamationComponent implements OnInit {
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
 
+        // Subscribe to motif change
         this.reclamationForm.get('motif').valueChanges
             .pipe(
                 debounceTime(100),
                 takeUntil(this._unsubscribeAll)
             )
             .subscribe((value) => {
-                this.piecesByObjet$ = of(this.piecesRef.filter(e => e.parent === value));
+                this.piecesByMotif$ = of(this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, file: null, fileName: null } }));
             });
 
-        // Subscribe to note updates
         this.pieceChanged
             .pipe(
                 takeUntil(this._unsubscribeAll),
-                debounceTime(500),
+                debounceTime(300),
                 // switchMap(note => this._notesService.updateNote(note))
             )
             .subscribe(() => {
@@ -182,7 +177,7 @@ export class ReclamationComponent implements OnInit {
         this.pieceChanged.next(piece);
         
         const id = 'file-input' + index;
-        this.inputFiles.map (e => {
+        this.inputFiles.map(e => {
             if (e.nativeElement.id === id) {
                 e.nativeElement.value = null;
                 e.nativeElement.files = null;
@@ -229,7 +224,8 @@ export class ReclamationComponent implements OnInit {
                     } else if (error.status === 404) {
                         this._router.navigateByUrl('/404-not-found');
                     } else {
-                        this._showAlertMessage('error', 'Erreur champ ' + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage);
+                        // + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage
+                        this._showAlertMessage('error', 'Erreur champ de saisie');
                     }
 
                     // Throw an error

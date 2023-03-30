@@ -62,14 +62,15 @@
                         </mat-error>
                     </mat-form-field>
 
+                    <div></div>
                     <!-- Numéro de dossier -->
-                    <mat-form-field class="w-full"
+                    <!-- <mat-form-field class="w-full"
                         [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'numeroDossier'">
                         <mat-label class="text-sm font-semibold">Numéro de dossier</mat-label>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <!-- Téléphone -->
                     <mat-form-field class="w-full"
@@ -137,22 +138,22 @@
                         <mat-label class="text-sm font-semibold">Objet réclamation</mat-label>
                         <mat-select
                             [formControlName]="'motif'">
-                            <ng-container *ngFor="let obj of objetsReclamation">
-                                <mat-option [value]="obj.id">
-                                    {{obj.libelle}}
+                            <ng-container *ngFor="let motif of motifs">
+                                <mat-option [value]="motif.id">
+                                    {{motif.libelleselfcare}}
                                 </mat-option>
                             </ng-container>
                         </mat-select>
                     </mat-form-field>
 
-                    <div class="flex flex-col col-span-2">
-                        <ng-container *ngIf="(piecesByObjet$ | async) as pieces">
+                    <div class="flex flex-col col-span-2 mb-3">
+                        <ng-container *ngIf="(piecesByMotif$ | async) as pieces">
                             <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
                                 <div class="flex flex-row items-center justify-between">
                                     <span class="font-medium w-44">
                                         {{piece.libelle}} :
                                     </span>
-                                    <span class="text-sm text-primary w-44">
+                                    <span class="text-sm text-primary">
                                         {{piece.fileName}}
                                     </span>
                                     <!-- file -->
@@ -190,7 +191,7 @@
                         <textarea matInput
                             [formControlName]="'text'"
                             [required]="true"
-                            [rows]="5"
+                            [rows]="3"
                             matTextareaAutosize></textarea>
                         <mat-label>Message</mat-label>
                         <mat-error *ngIf="reclamationForm.get('text').hasError('required')">

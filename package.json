@@ -9,9 +9,6 @@
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --disable-host-check",
     "build": "ng build",
-    "start:ar": "ng serve --host=0.0.0.0 --disable-host-check --configuration=ar",
-    "build:ar": "ng build --configuration=ar",
-    "i18n:extract": "ng extract-i18n --output-path src/locale",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"

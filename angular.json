@@ -19,14 +19,6 @@
             "root": "",
             "sourceRoot": "src",
             "prefix": "app",
-            "i18n": {
-                "sourceLocale": "fr",
-                "locales": {
-                    "ar": {
-                        "translation" : "src/locale/messages.ar.xlf"
-                    }
-                }
-            },
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -97,17 +89,7 @@
                             "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
-                            "namedChunks": true,
-                            "localize": ["fr"]
-                        },
-                        "ar": {
-                            "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
-                            "extractLicenses": false,
-                            "sourceMap": true,
-                            "namedChunks": true,
-                            "localize": ["ar"]
+                            "namedChunks": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -121,9 +103,6 @@
                         "development": {
                             "browserTarget": "wimmoweb:build:development",
                             "proxyConfig": "proxy.conf.js"
-                        },
-                        "ar": {
-                            "browserTarget": "wimmoweb:build:ar"
                         }
                     },
                     "defaultConfiguration": "development"

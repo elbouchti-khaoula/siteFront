@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, EMPTY, Observable, of, switchMap, throwError } from 'rxjs';
-import { Reclamation } from './reclamation.types';
+import { BehaviorSubject, catchError, EMPTY, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { Motif, Reclamation } from './reclamation.types';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ReclamationsService {
+
+    private _motifs: BehaviorSubject<Motif[] | null> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -15,8 +17,31 @@ export class ReclamationsService {
     }
 
     // -----------------------------------------------------------------------------------------------------
+    // @ Accessors
+    // -----------------------------------------------------------------------------------------------------
+    /**
+     * Getter for CategoriesSocioProfessionnelle
+     */
+    get motifs$(): Observable<Motif[]> {
+        return this._motifs.asObservable();
+    }
+
+
+    // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Get motifs
+     */
+    getMotifs(): Observable<any> {
+        return this._httpClient.get<Motif[]>('api/reclamations/motifs/selfcare')
+            .pipe(
+                tap((response: Motif[]) => {
+                    this._motifs.next(response);
+                })
+            );
+    }
 
     /**
      * Create reclamation
@@ -33,7 +58,7 @@ export class ReclamationsService {
             telephone: string | null;
             // adresse: string;
             // ville: string;
-            motif : number;
+            motif: number;
             text: string | null;
             statut: string;
             canal: number;
@@ -86,7 +111,7 @@ export class ReclamationsService {
             telephone: string | null;
             // adresse: string;
             // ville: string;
-            motif : number;
+            motif: number;
             text: string | null;
             statut: string;
             canal: number;
@@ -94,38 +119,40 @@ export class ReclamationsService {
             dateReception: Date | null;
         }) {
 
-        return this.createReclamation(reclamation).pipe(
-            catchError(err1 => {
-                // console.log("Error from first call: ", err1);
-                // return EMPTY;
-                return throwError(err1);
-            }),
-            switchMap((reclamation: Reclamation) => {
-                if (reclamation?.id != undefined && reclamation?.id != null) {
-                    return this.createStatut(
-                        {
-                            id: {
-                                statut: 'publié',
-                                step: 1,
-                                reclamation: reclamation
-                            },
-                            // "motif" : null,
-                            intervenant: 'siteweb',
-                            role: 'initiateur',
-                            entite: 'SITE WEB',
-                            nombreJours: 1,
-                            enRetard: false
-                        }
-                    ).pipe(
-                        catchError(err2 => {
-                            // console.log("Error from second call: ", err2);
-                            // return EMPTY;
-                            return throwError(err2);
-                        }),
-                    );
-                }
-                return EMPTY;
-            }));
+        return this.createReclamation(reclamation)
+            .pipe(
+                catchError(err1 => {
+                    // console.log("Error from first call: ", err1);
+                    // return EMPTY;
+                    return throwError(err1);
+                }),
+                switchMap((reclamation: Reclamation) => {
+                    if (reclamation?.id != undefined && reclamation?.id != null) {
+                        return this.createStatut(
+                            {
+                                id: {
+                                    statut: 'publié',
+                                    step: 1,
+                                    reclamation: reclamation
+                                },
+                                // "motif" : null,
+                                intervenant: 'siteweb',
+                                role: 'initiateur',
+                                entite: 'SITE WEB',
+                                nombreJours: 1,
+                                enRetard: false
+                            }
+                        )
+                            .pipe(
+                                catchError(err2 => {
+                                    // console.log("Error from second call: ", err2);
+                                    // return EMPTY;
+                                    return throwError(err2);
+                                }),
+                            );
+                    }
+                    return EMPTY;
+                }));
     }
 
 }

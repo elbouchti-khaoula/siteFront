@@ -8,7 +8,8 @@ import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { CategorieSocioProfessionnelle, Nationalite } from '../common/referentiel.types';
 import { ReferentielService } from '../common/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
-import { SimulationService } from './simulation.service';
+import { SimulationPersonaliseeService } from './simulation.service';
+import { SalesForceService } from '../common/salesforce.service';
 
 @Component({
   selector: 'simulation-personnalisee',
@@ -69,7 +70,8 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
-    private _simulationService: SimulationService
+    private _simulationService: SimulationPersonaliseeService,
+    private _salesForceService: SalesForceService
   ) {
 
     this.simulationResultat = {
@@ -153,7 +155,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: Nationalite[]) => {
 
-        // Update the categories
+        // Update the nationalités
         this.nationalites = response;
 
         // Mark for check
@@ -227,7 +229,6 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
       residentMarocain: this.simulationForm.get('residentMarocain').value,
     }
 
-    // Get the product by id
     this._simulationService.simuler(critere)
       .pipe(
         // Error here means the requested is not available
@@ -261,7 +262,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         this.totalInteretsId.nativeElement.textContent = response.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         this.coutTotalId.nativeElement.textContent = response.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-        if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
+        if (response.expertiseImmobiliere && response.expertiseImmobiliere > 0) {
           this.expertiseImmobiliereId.nativeElement.textContent = Number(response.expertiseImmobiliere).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           this.estExpImmoNum = true;
         } else {
@@ -270,7 +271,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           this.estExpImmoNum = false;
         }
 
-        if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
+        if (response.fraisDossier && response.fraisDossier > 0) {
           this.fraisDossierId.nativeElement.textContent = Number(response.fraisDossier).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           this.estFraisDossNum = true;
         } else {
@@ -296,6 +297,29 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
+      });
+
+    this._salesForceService.createLead(
+      {
+        nom: this.simulationForm.get('nom').value,
+        prenom: this.simulationForm.get('prenom').value,
+        email: this.simulationForm.get('email').value,
+        telephone: this.simulationForm.get('telephone').value,
+        nationaliteCode: this.simulationForm.get('nationaliteCode').value,
+        residentMarocain: this.simulationForm.get('residentMarocain').value,
+        cspCode: this.simulationForm.get('cspCode').value,
+        montant: this.simulationForm.get('montant').value
+      }
+    )
+      .pipe(
+        catchError((error) => {
+          // Log the error
+          console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
+          // Throw an error
+          return throwError(error);
+        }))
+      .subscribe((response) => {
+        console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
       });
 
   }

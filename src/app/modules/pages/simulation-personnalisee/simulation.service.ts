@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { SimulationPersonnalisee } from './simulation.types';
+import { CriterePersonnalisee, SimulationPersonnalisee } from './simulation.types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SimulationService {
+export class SimulationPersonaliseeService {
 
     // Private
     private _simulation: BehaviorSubject<SimulationPersonnalisee | null> = new BehaviorSubject(null);
@@ -36,10 +36,10 @@ export class SimulationService {
      *
      * @param queryParams
      */
-    simuler(queryParams: { montant: number; duree: number; cspCode: string; nationaliteCode: string; residentMarocain: boolean }): Observable<SimulationPersonnalisee>
-    {
+    simuler(critere: CriterePersonnalisee): Observable<SimulationPersonnalisee> {
+
         return this._httpClient.get<SimulationPersonnalisee>('api/repositories/simulation-personnalisee', {
-            params: queryParams
+            params: new HttpParams({ fromObject: critere })
         })
             .pipe(
                 tap((response: SimulationPersonnalisee) => {

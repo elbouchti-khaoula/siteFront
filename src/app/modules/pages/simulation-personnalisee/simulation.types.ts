@@ -1,10 +1,11 @@
-export interface CritereSimulation
+export interface CriterePersonnalisee
 {
     montant             : number;
     duree               : number;
     cspCode             : string;
     nationaliteCode     : string;
     residentMarocain    : boolean;
+    [param: string]: string | number | boolean;
 }
 
 export interface SimulationPersonnalisee

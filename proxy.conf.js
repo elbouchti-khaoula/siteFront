@@ -21,8 +21,24 @@ const PROXY_CONFIG = [
         context: [
             "/api/reclamations"
         ],
-        // target: "http://localhost:8882",
-        target: "http://10.10.1.187:8085",
+        target: "http://localhost:8882",
+        // target: "http://10.10.1.187:8085",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
+            "/api/projects"
+        ],
+        target: "http://10.10.1.198:9099",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
+            "/services"
+        ],
+        target: "https://wafaimmobilier--preprod.sandbox.my.salesforce.com",
         secure: false,
         logLevel: "debug"
     },

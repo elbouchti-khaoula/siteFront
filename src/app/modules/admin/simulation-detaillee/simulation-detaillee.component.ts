@@ -6,9 +6,9 @@ import { AnimateCounterService } from '@fuse/services/animate-counter/animate-co
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/modules/pages/common/referentiel.types';
-import { SimulationPersonnalisee } from 'app/modules/pages/simulation-personnalisee/simulation.types';
+import { SimulationDetaillee } from './simulation-detaillee.types';
 import { ReferentielService } from 'app/modules/pages/common/referentiel.service';
-import { SimulationService } from 'app/modules/pages/simulation-personnalisee/simulation.service';
+import { SimulationDetailleeService } from './simulation-detaillee.service';
 import * as moment from 'moment';
 
 @Component({
@@ -36,26 +36,26 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     telephone: null,
     email: null,
     dateNaissance: null,
-    nationaliteCode: null,
-    residentMarocain: null,
+    nationalite: null,
+    residantMaroc: null,
     agreements: null,
     // situation
-    cspCode: null,
-    employeur: null,
-    salaireAnnuelNet: null,
+    categorieSocioProfessionnelle: null,
+    nomEmployeur: null,
+    salaire: null,
     autresRevenus: null,
-    mensualitesCreditsEnCours: null,
+    creditsEnCours: null,
     // projet
-    objetFinancementCode: null,
-    prixBien: null,
+    objetFinancement: null,
     montant: null,
+    montantProposition: null,
     duree: null,
     typeTaux: null,
     statutProjet: null,
-    promoteur: null
+    nomPromoteur: null
   };
 
-  simulationResultat: SimulationPersonnalisee;
+  simulationResultat: SimulationDetaillee;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   isVisible: boolean = false;
   estExpImmoNum: boolean = true;
@@ -66,7 +66,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   @ViewChild('montantId') montantId: any;
   @ViewChild('totalInteretsId') totalInteretsId: any;
   @ViewChild('coutTotalId') coutTotalId: any;
-  @ViewChild('tauxMoyenId') tauxMoyenId: any;
+  @ViewChild('assurancesId') assurancesId: any;
+  @ViewChild('tauxParticipationId') tauxParticipationId: any;
+  @ViewChild('tauxEffectifGlobalId') tauxEffectifGlobalId: any;
   @ViewChild('expertiseImmobiliereId') expertiseImmobiliereId: any;
   @ViewChild('fraisDossierId') fraisDossierId: any;
   @ViewChild('totalFraisId') totalFraisId: any;
@@ -86,18 +88,21 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
-    private _simulationService: SimulationService
+    private _simulationService: SimulationDetailleeService
   ) {
 
     this.simulationResultat = {
-      montant: 0.00,
+      id: null,
+      montantProposition: 0.00,
       duree: 0,
       mensualite: 0.00,
-      tauxMoyen: 0.00,
+      tauxEffectifGlobal: 0,
+      tauxParticipation: 0,
+      assurances: 0,
       totalInterets: 0.00,
       coutTotal: 0.00,
-      expertiseImmobiliere: 0.00,
       fraisDossier: 0.00,
+      expertiseImmobiliere: 0.00,
 
       droitsEnregistrement: 0.00,
       conservationFonciere: 0.00,
@@ -117,25 +122,25 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         telephone: [this.simulationFormDefaults.telephone, [Validators.required]],
         email: [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
         dateNaissance: [this.simulationFormDefaults.dateNaissance, [Validators.required]],
-        nationaliteCode: [this.simulationFormDefaults.nationaliteCode, [Validators.required]],
-        residentMarocain: [this.simulationFormDefaults.residentMarocain, [Validators.required]],
+        nationalite: [this.simulationFormDefaults.nationalite, [Validators.required]],
+        residantMaroc: [this.simulationFormDefaults.residantMaroc, [Validators.required]],
         agreements: [this.simulationFormDefaults.agreements, [Validators.required]],
       }),
       step2: this._formBuilder.group({
-        cspCode: [this.simulationFormDefaults.cspCode, [Validators.required]],
-        employeur: [this.simulationFormDefaults.employeur, [Validators.required]],
-        salaireAnnuelNet: [this.simulationFormDefaults.salaireAnnuelNet, [Validators.required]],
+        categorieSocioProfessionnelle: [this.simulationFormDefaults.categorieSocioProfessionnelle, [Validators.required]],
+        nomEmployeur: [this.simulationFormDefaults.nomEmployeur, [Validators.required]],
+        salaire: [this.simulationFormDefaults.salaire, [Validators.required]],
         autresRevenus: [this.simulationFormDefaults.autresRevenus, [Validators.required]],
-        mensualitesCreditsEnCours: [this.simulationFormDefaults.mensualitesCreditsEnCours, [Validators.required]]
+        creditsEnCours: [this.simulationFormDefaults.creditsEnCours, [Validators.required]]
       }),
       step3: this._formBuilder.group({
-        objetFinancementCode: [this.simulationFormDefaults.objetFinancementCode, [Validators.required]],
-        prixBien: [this.simulationFormDefaults.prixBien, [Validators.required]],
+        objetFinancement: [this.simulationFormDefaults.objetFinancement, [Validators.required]],
         montant: [this.simulationFormDefaults.montant, [Validators.required]],
+        montantProposition: [this.simulationFormDefaults.montantProposition, [Validators.required]],
         duree: [this.simulationFormDefaults.duree, [Validators.required]],
         typeTaux: [this.simulationFormDefaults.typeTaux, [Validators.required]],
         statutProjet: [this.simulationFormDefaults.statutProjet, [Validators.required]],
-        promoteur: [this.simulationFormDefaults.promoteur, [Validators.required]]
+        nomPromoteur: [this.simulationFormDefaults.nomPromoteur, [Validators.required]]
       })
     });
 
@@ -173,11 +178,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
         this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
         this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
-        this.simulationStepperForm.get('step1').get('nationaliteCode').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationaliteCode);
-        this.simulationStepperForm.get('step1').get('residentMarocain').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residentMarocain);
+        this.simulationStepperForm.get('step1').get('nationalite').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationalite);
+        this.simulationStepperForm.get('step1').get('residantMaroc').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residantMaroc);
         this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
-        this.simulationStepperForm.get('step2').get('cspCode').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.cspCode);
-        this.simulationStepperForm.get('step3').get('montant').setValue(queryParams?.montant ?? this.simulationFormDefaults.montant);
+        this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.categorieSocioProfessionnelle);
+        this.simulationStepperForm.get('step3').get('montantProposition').setValue(queryParams?.montant ?? this.simulationFormDefaults.montantProposition);
         this.simulationStepperForm.get('step3').get('duree').setValue(queryParams?.duree ?? this.simulationFormDefaults.duree);
       });
 
@@ -193,12 +198,12 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       });
 
-    // Get the categories
+    // Get the nationalites
     this._referentielService.nationalites$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: Nationalite[]) => {
 
-        // Update the categories
+        // Update the nationalites
         this.nationalites = response;
 
         // Mark for check
@@ -210,7 +215,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: ObjetFinancement[]) => {
 
-        // Update the categories
+        // Update the objets de financement
         this.objetsFinancement = response;
 
         // Mark for check
@@ -255,7 +260,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
     this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInterets, 0, 600);
     this._animateCounterService.animateValue(this.coutTotalId, this.simulationResultat.coutTotal, 0, 600);
-    this._animateCounterService.animateValue(this.tauxMoyenId, this.simulationResultat.tauxMoyen, 0, 600);
+    this._animateCounterService.animateValue(this.assurancesId, this.simulationResultat.assurances, 0, 600);
+    this._animateCounterService.animateValue(this.tauxParticipationId, this.simulationResultat.tauxParticipation, 0, 600);
+    this._animateCounterService.animateValue(this.tauxEffectifGlobalId, this.simulationResultat.tauxEffectifGlobal, 0, 600);
 
     let nbExp = 0;
     if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
@@ -287,11 +294,33 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     this.isVisible = true;
 
     const critere = {
+      provenance: "SITE",
+      type: "personnePhysique",
+      codeApporteur: "100",
+      codeUtilisateur: "WEB",
+      // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+      objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
       montant: this.simulationStepperForm.get('step3').get('montant').value,
+      montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
       duree: this.simulationStepperForm.get('step3').get('duree').value,
-      cspCode: this.simulationStepperForm.get('step2').get('cspCode').value,
-      nationaliteCode: this.simulationStepperForm.get('step1').get('nationaliteCode').value,
-      residentMarocain: this.simulationStepperForm.get('step1').get('residentMarocain').value,
+      typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+      nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+      tiers: {
+        nom: this.simulationStepperForm.get('step1').get('nom').value,
+        prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+        categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+        // numIdentite: this.simulationStepperForm.get('step3').get('cin').value,
+        residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+        nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
+        segment: "NV",
+        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        salaire: this.simulationStepperForm.get('step2').get('salaire').value,
+        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+        telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+        email: this.simulationStepperForm.get('step1').get('email').value,
+        nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+      }
     }
 
     // Get the product by id
@@ -303,59 +332,65 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           // Log the error
           console.error(error);
 
-          if (error.status === 500) {
-            this._router.navigateByUrl('/500-server-error');
-          } else if (error.status === 400) {
-            this._router.navigateByUrl('/404-not-found');
-          } else {
-            // Get the parent url
-            const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
+          // if (error.status === 500) {
+          //   this._router.navigateByUrl('/500-server-error');
+          // } else if (error.status === 400) {
+          //   this._router.navigateByUrl('/404-not-found');
+          // } else {
+          //   // Get the parent url
+          //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
 
-            // Navigate to there
-            this._router.navigateByUrl(parentUrl);
-          }
+          //   // Navigate to there
+          //   this._router.navigateByUrl(parentUrl);
+          // }
 
           // Throw an error
           return throwError(error);
         })
-      ).subscribe((response) => {
+      ).subscribe((response: SimulationDetaillee[]) => {
+
+        console.log("+-+-+- response component", response);
+
+        let simulation = response[0];
 
         // Mensualité
-        this.mensualiteId.nativeElement.textContent = response.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.dureeId.nativeElement.textContent = response.duree;
-        this.nbreMoisId.nativeElement.textContent = response.duree * 12;
-        this.montantId.nativeElement.textContent = response.montant.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.totalInteretsId.nativeElement.textContent = response.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.coutTotalId.nativeElement.textContent = response.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.tauxMoyenId.nativeElement.textContent = response.tauxMoyen.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        this.mensualiteId.nativeElement.textContent = simulation.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.dureeId.nativeElement.textContent = simulation.duree;
+        this.nbreMoisId.nativeElement.textContent = simulation.duree * 12;
+        this.montantId.nativeElement.textContent = simulation.montantProposition.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.totalInteretsId.nativeElement.textContent = simulation.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.assurancesId.nativeElement.textContent = simulation.assurances.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        this.tauxParticipationId.nativeElement.textContent = simulation.tauxParticipation.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        this.tauxEffectifGlobalId.nativeElement.textContent = simulation.tauxEffectifGlobal.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        this.coutTotalId.nativeElement.textContent = simulation.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-        if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
-          this.expertiseImmobiliereId.nativeElement.textContent = Number(response.expertiseImmobiliere).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (simulation.expertiseImmobiliere && simulation.expertiseImmobiliere > 0) {
+          this.expertiseImmobiliereId.nativeElement.textContent = Number(simulation.expertiseImmobiliere).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           this.estExpImmoNum = true;
         } else {
-          response.expertiseImmobiliere = 0;
+          simulation.expertiseImmobiliere = 0;
           this.expertiseImmobiliereId.nativeElement.textContent = "GRATUIT";
           this.estExpImmoNum = false;
         }
 
-        if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
-          this.fraisDossierId.nativeElement.textContent = Number(response.fraisDossier).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (simulation.fraisDossier && simulation.fraisDossier > 0) {
+          this.fraisDossierId.nativeElement.textContent = Number(simulation.fraisDossier).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           this.estFraisDossNum = true;
         } else {
-          response.fraisDossier = 0;
+          simulation.fraisDossier = 0;
           this.fraisDossierId.nativeElement.textContent = "GRATUIT";
           this.estFraisDossNum = false;
         }
 
         // Frais
-        this.totalFraisId.nativeElement.textContent = response.totalFrais.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.droitsEnregistrementId.nativeElement.textContent = response.droitsEnregistrement.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.conservationFonciereId.nativeElement.textContent = response.conservationFonciere.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.fraisDiversId.nativeElement.textContent = response.fraisDivers.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.honorairesNotaireId.nativeElement.textContent = response.honorairesNotaire.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.totalFraisId.nativeElement.textContent = simulation.totalFrais.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.droitsEnregistrementId.nativeElement.textContent = simulation.droitsEnregistrement.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.conservationFonciereId.nativeElement.textContent = simulation.conservationFonciere.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.fraisDiversId.nativeElement.textContent = simulation.fraisDivers.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        this.honorairesNotaireId.nativeElement.textContent = simulation.honorairesNotaire.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
         // Set the selected simulation
-        this.simulationResultat = response;
+        this.simulationResultat = simulation;
 
         if (this.isScreenSmall) {
           // Scroll to result
@@ -366,6 +401,10 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       });
 
+  }
+
+  formatMomentToString(date: moment.Moment): string {
+    return date.format("DD/MM/YYYY");
   }
 
 }
