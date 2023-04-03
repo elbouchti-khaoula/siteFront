@@ -5,7 +5,7 @@
 <div class="flex flex-col flex-auto w-full min-w-0">
 
     <!-- Header -->
-    <div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
+    <div class="relative flex flex-0 items-center w-full h-20 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
 
         <!-- Logo immo -->
         <div class="flex items-center mx-2">
@@ -13,52 +13,55 @@
                 <!-- Light version -->
                 <a [routerLink]="'/landing'">
                     <img
-                        class="dark:hidden w-40"
+                        class="dark:hidden w-48"
                         src="assets/images/logo/logo-text.png"
                         alt="Logo image">
                 </a>
                 <!-- Dark version -->
                 <a [routerLink]="'/landing'">
                     <img
-                        class="hidden dark:flex w-40"
+                        class="hidden dark:flex w-48"
                         src="assets/images/logo/logo-text-on-dark.png"
                         alt="Logo image">
                 </a>
             </div>
             <a [routerLink]="'/landing'">
                 <img
-                    class="flex lg:hidden h-8"
+                    class="flex lg:hidden h-10"
                     src="assets/images/logo/logo-text.png">
+            </a>
+        </div>
+
+        <div class="ml-3 mr-7 my-auto border-gray-400 border-l-2 h-12"></div>
+
+        <!-- Logo AWB -->
+        <div class="flex items-center">
+            <div class="hidden lg:flex">
+                <!-- Light version -->
+                <a href="https://www.attijariwafabank.com/fr" target="blank">
+                    <img
+                        class="dark:hidden w-48"
+                        src="assets/images/logo/logo-awb-text.png"
+                        alt="Logo image">
+                </a>
+                <!-- Dark version -->
+                <a href="https://www.attijariwafabank.com/fr" target="blank">
+                    <img
+                        class="hidden dark:flex w-48"
+                        src="assets/images/logo/logo-awb-text-on-dark.png"
+                        alt="Logo image">
+                </a>
+            </div>
+            <a href="https://www.attijariwafabank.com/fr" target="blank">
+                <img
+                    class="flex lg:hidden h-10"
+                    src="assets/images/logo/logo-awb-text.png">
             </a>
         </div>
 
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
-            <!-- Logo AWB -->
-            <div class="flex items-center mr-2">
-                <div class="hidden lg:flex">
-                    <!-- Light version -->
-                    <a href="https://www.attijariwafabank.com/fr" target="blank">
-                        <img
-                            class="dark:hidden w-40"
-                            src="assets/images/logo/logo-awb-text.png"
-                            alt="Logo image">
-                    </a>
-                    <!-- Dark version -->
-                    <a href="https://www.attijariwafabank.com/fr" target="blank">
-                        <img
-                            class="hidden dark:flex w-40"
-                            src="assets/images/logo/logo-awb-text-on-dark.png"
-                            alt="Logo image">
-                    </a>
-                </div>
-                <a href="https://www.attijariwafabank.com/fr" target="blank">
-                    <img
-                        class="flex lg:hidden h-8"
-                        src="assets/images/logo/logo-awb-text.png">
-                </a>
-            </div>
-            <languages class="hidden md:block"></languages>
+            <!-- <languages class="hidden md:block"></languages> -->
             <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
             <search class="hidden md:block" [appearance]="'bar'"></search>
             <!-- <shortcuts></shortcuts> -->
@@ -70,7 +73,7 @@
                 (click)="quickChat.toggle()">
                 <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
             </button> -->
-            <user class="hidden md:block"></user>
+            <user></user>
             <!-- Navigation toggle button -->
             <button
                 mat-icon-button
