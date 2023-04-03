@@ -32,27 +32,43 @@
         <div class="relative flex flex-0 items-center w-full h-16 sm:h-20 px-4 md:px-6 z-49 bg-card border-b dark:bg-default print:hidden">
             <ng-container *ngIf="!isScreenSmall">
                 <!-- Logo -->
-                <div class="flex items-center mx-2 lg:mr-8">
-                    <div class="hidden lg:flex">
-                        <!-- Light version -->
-                        <a [routerLink]="'/landing'">
-                            <img
-                                class="dark:hidden w-40"
-                                src="assets/images/logo/logo-text.png"
-                                alt="Logo image">
-                        </a>
-                        <!-- Dark version -->
-                        <a [routerLink]="'/landing'">
-                            <img
-                                class="hidden dark:flex w-40"
-                                src="assets/images/logo/logo-text-on-dark.png"
-                                alt="Logo image">
-                        </a>
-                    </div>
+                <div class="flex items-center mx-2">
+                    <!-- Light version -->
+                    <a [routerLink]="'/landing'">
+                        <img
+                            class="dark:hidden w-40"
+                            src="assets/images/logo/logo-text.png"
+                            alt="Logo image">
+                    </a>
+                    <!-- Dark version -->
+                    <a [routerLink]="'/landing'">
+                        <img
+                            class="hidden dark:flex w-40"
+                            src="assets/images/logo/logo-text-on-dark.png"
+                            alt="Logo image">
+                    </a>
+                </div>
+                <div class="ml-3 mr-7 my-auto border-gray-400 border-l-2 h-12"></div>
+                <!-- Logo AWB -->
+                <div class="flex items-center mr-2">
+                    <!-- Light version -->
+                    <a href="https://www.attijariwafabank.com/fr" target="blank">
+                        <img
+                            class="dark:hidden w-40"
+                            src="assets/images/logo/logo-awb-text.png"
+                            alt="Logo image">
+                    </a>
+                    <!-- Dark version -->
+                    <a href="https://www.attijariwafabank.com/fr" target="blank">
+                        <img
+                            class="hidden dark:flex w-40"
+                            src="assets/images/logo/logo-awb-text-on-dark.png"
+                            alt="Logo image">
+                    </a>
                 </div>
                 <!-- Horizontal navigation -->
                 <fuse-horizontal-navigation
-                    class="mr-2"
+                    class="mr-10"
                     [name]="'mainNavigation'"
                     [navigation]="navigation.horizontal"></fuse-horizontal-navigation>
             </ng-container>
@@ -65,40 +81,23 @@
                 </button>
                 <a [routerLink]="'/landing'">
                     <img
-                        class="mx-2 w-8"
-                        src="assets/images/logo/logo.png"
+                        class="mx-2 h-10"
+                        src="assets/images/logo/logo-text.png"
                         alt="Logo image">
                 </a>
+                <div class="mx-3 my-auto border-gray-400 border-l-2 h-10"></div>
+                <a href="https://www.attijariwafabank.com/fr" target="blank">
+                    <img
+                        class="h-10"
+                        src="assets/images/logo/logo-awb-text.png">
+                </a>
             </ng-container>
+
             <!-- Components -->
             <div class="flex items-center pl-2 ml-auto space-x-1 sm:space-x-2">
-                <!-- Logo AWB -->
-                <div class="flex items-center mr-2">
-                    <div class="hidden lg:flex">
-                        <!-- Light version -->
-                        <a href="https://www.attijariwafabank.com/fr" target="blank">
-                            <img
-                                class="dark:hidden w-40"
-                                src="assets/images/logo/logo-awb-text.png"
-                                alt="Logo image">
-                        </a>
-                        <!-- Dark version -->
-                        <a href="https://www.attijariwafabank.com/fr" target="blank">
-                            <img
-                                class="hidden dark:flex w-40"
-                                src="assets/images/logo/logo-awb-text-on-dark.png"
-                                alt="Logo image">
-                        </a>
-                    </div>
-                    <a href="https://www.attijariwafabank.com/fr" target="blank">
-                        <img
-                            class="flex lg:hidden w-8"
-                            src="assets/images/logo/logo-awb.png">
-                    </a>
-                </div>
-                <languages></languages>
+                <!-- <languages></languages> -->
                 <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
-                <search [appearance]="'bar'"></search>
+                <search [appearance]="'bar'" class="hidden md:block"></search>
                 <!-- <shortcuts></shortcuts> -->
                 <!-- <messages></messages> -->
                 <!-- <notifications></notifications> -->
