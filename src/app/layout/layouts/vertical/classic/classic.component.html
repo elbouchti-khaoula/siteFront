@@ -63,7 +63,7 @@
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
             <!-- <languages class="hidden md:block"></languages> -->
             <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
-            <search class="hidden md:block" [appearance]="'bar'"></search>
+            <search [appearance]="'bar'" class="hidden md:block"></search>
             <!-- <shortcuts></shortcuts> -->
             <!-- <messages></messages> -->
             <!-- <notifications></notifications> -->
@@ -73,7 +73,7 @@
                 (click)="quickChat.toggle()">
                 <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
             </button> -->
-            <user></user>
+            <user class="hidden md:block"></user>
             <!-- Navigation toggle button -->
             <button
                 mat-icon-button

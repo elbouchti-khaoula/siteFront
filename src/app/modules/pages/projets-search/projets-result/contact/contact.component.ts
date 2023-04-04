@@ -5,7 +5,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { SalesForceService } from 'app/modules/pages/common/salesforce.service';
+import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { Projet } from '../../projets.types';
 

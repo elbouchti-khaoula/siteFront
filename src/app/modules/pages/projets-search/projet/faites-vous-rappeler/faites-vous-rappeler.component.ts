@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { SalesForceService } from 'app/modules/pages/common/salesforce.service';
+import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Projet } from '../../projets.types';
 

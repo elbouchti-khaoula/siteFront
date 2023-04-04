@@ -9,7 +9,7 @@ import { CategorieSocioProfessionnelle, Nationalite } from '../common/referentie
 import { ReferentielService } from '../common/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
-import { SalesForceService } from '../common/salesforce.service';
+import { SalesForceService } from '../../../core/salesforce/salesforce.service';
 
 @Component({
   selector: 'simulation-personnalisee',
