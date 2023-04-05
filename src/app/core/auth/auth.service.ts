@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { User } from '../user/user.types';
 
 @Injectable()
 export class AuthService
@@ -73,17 +74,28 @@ export class AuthService
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let body = 'grant_type=password&username='+credentials.email+'&password='+credentials.password+'&client_id=front-end&client_secret=89b79687-a793-41fc-9ad6-08edec13007f'
+          
+        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, {headers:headers})
+        .pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.accessToken;
+                this.accessToken = response.access_token;
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
                 // Store the user on the user service
-                this._userService.user = response.user;
+                const userLog: User = { 
+                    email : credentials.email,
+                    id : '1test23',
+                    name : 'test'
+                } 
+                this._userService.user = userLog;
 
                 // Return a new observable with the response
                 return of(response);
@@ -142,9 +154,22 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: { name: string; prenom: string; email: string; CIN: string; telephone: string; datenaissance: string; agreements: any;}): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        alert('Sign up');
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let body = 'grant_type=password&username='+user.name+'&password='+user.email+'&client_id=front-end&client_secret=89b79687-a793-41fc-9ad6-08edec13007f'
+          
+        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, {headers:headers})
+        .pipe(
+            switchMap((response: any) => {
+
+                // Return a new observable with the response
+                return of(response);
+            })
+        );
     }
 
     /**
