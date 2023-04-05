@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { CategoriesSPResolver, NationalitesResolver } from '../common/referentiel.resolvers';
+import { CategoriesSPResolver, NationalitesResolver } from 'app/modules/common/referentiel.resolvers';
 import { SimulationPersonaliseeComponent } from './simulation-personnalisee.component';
 
 export const simulationPersonaliseeRoutes: Route[] = [
