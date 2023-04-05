@@ -5,7 +5,7 @@ import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Projet } from '../../projets.types';
+import { Projet } from 'app/core/projets/projets.types';
 
 @Component({
     selector       : 'faites-vous-rappeler',

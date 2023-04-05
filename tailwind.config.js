@@ -168,6 +168,7 @@ const config = {
                 '30': '7.5rem',
                 '50': '12.5rem',
                 '68': '17rem',
+                '88': '22rem',
                 '90': '22.5rem',
 
                 // Bigger values
@@ -335,8 +336,8 @@ const config = {
 
         // Other third party and/or custom plugins
         require('@tailwindcss/typography')({modifiers: ['sm', 'lg']}),
-        // require('@tailwindcss/aspect-ratio'),
-        // require('@tailwindcss/line-clamp')
+        require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/line-clamp')
     ]
 };
 

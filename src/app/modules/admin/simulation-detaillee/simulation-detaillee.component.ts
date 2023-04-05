@@ -5,23 +5,27 @@ import { fuseAnimations } from '@fuse/animations';
 import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/modules/pages/common/referentiel.types';
+import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
 import { SimulationDetaillee } from './simulation-detaillee.types';
-import { ReferentielService } from 'app/modules/pages/common/referentiel.service';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from './simulation-detaillee.service';
 import * as moment from 'moment';
+import { resize } from 'app/modules/common/resize';
 
 @Component({
   selector: 'simulation-detaillee',
   templateUrl: './simulation-detaillee.component.html',
   styleUrls: ['./simulation-detaillee.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations
+  animations: [fuseAnimations, resize]
 })
+
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   isScreenSmall: boolean;
   isXsScreen: boolean;
+  animationState: string;
+  isVisible: boolean = false;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   categories: CategorieSocioProfessionnelle[];
@@ -57,7 +61,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   simulationResultat: SimulationDetaillee;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
-  isVisible: boolean = false;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
   @ViewChild('mensualiteId') mensualiteId: any;
@@ -162,6 +165,13 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Check if the screen is xsSmall
         this.isXsScreen = !matchingAliases.includes('sm');
+
+        if (this.isScreenSmall) {
+          this.animationState = 'largeMobile'
+        }
+        else {
+          this.animationState = 'largeDesktop'
+        }
       });
 
     // Subscribe to query params change
@@ -291,6 +301,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    */
   simuler(): void {
 
+    this.animationState = 'smallDesktop';
     this.isVisible = true;
 
     const critere = {
@@ -329,25 +340,26 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Error here means the requested is not available
         catchError((error) => {
 
-          // Log the error
-          console.error(error);
+      //     // Log the error
+      //     console.error(error);
 
-          // if (error.status === 500) {
-          //   this._router.navigateByUrl('/500-server-error');
-          // } else if (error.status === 400) {
-          //   this._router.navigateByUrl('/404-not-found');
-          // } else {
-          //   // Get the parent url
-          //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
+      //     // if (error.status === 500) {
+      //     //   this._router.navigateByUrl('/500-server-error');
+      //     // } else if (error.status === 400) {
+      //     //   this._router.navigateByUrl('/404-not-found');
+      //     // } else {
+      //     //   // Get the parent url
+      //     //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
 
-          //   // Navigate to there
-          //   this._router.navigateByUrl(parentUrl);
-          // }
+      //     //   // Navigate to there
+      //     //   this._router.navigateByUrl(parentUrl);
+      //     // }
 
-          // Throw an error
-          return throwError(error);
-        })
-      ).subscribe((response: SimulationDetaillee[]) => {
+           // Throw an error
+           return throwError(error);
+         })
+      )
+      .subscribe((response: SimulationDetaillee[]) => {
 
         console.log("+-+-+- response component", response);
 

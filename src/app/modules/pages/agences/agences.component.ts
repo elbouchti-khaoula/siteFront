@@ -4,8 +4,8 @@ import { Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-import { ReferentielService } from '../common/referentiel.service';
-import { Ville } from '../common/referentiel.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { Ville } from 'app/core/referentiel/referentiel.types';
 
 @Component({
     selector: 'agences',
