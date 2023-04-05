@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from '../projets.service';
-import { Projet } from '../projets.types';
+import { ProjetsService } from 'app/core/projets/projets.service';
+import { Projet } from 'app/core/projets/projets.types';
 import { fuseAnimations } from '@fuse/animations';
 import { Location } from "@angular/common";
 import { cloneDeep } from 'lodash-es';

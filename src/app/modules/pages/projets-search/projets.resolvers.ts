@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ProjetsService } from './projets.service';
-import { Projet } from './projets.types';
+import { ProjetsService } from 'app/core/projets/projets.service';
+import { Projet } from 'app/core/projets/projets.types';
 
 @Injectable({
     providedIn: 'root'

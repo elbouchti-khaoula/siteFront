@@ -4,9 +4,9 @@ import { FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidationErrors } fro
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, debounceTime, Observable, Subject, takeUntil, throwError } from 'rxjs';
-import { ProjetsService } from '../../projets-search/projets.service';
-import { ReferentielService } from '../referentiel.service';
-import { Quartier, TypeBien, Ville } from '../referentiel.types';
+import { ProjetsService } from 'app/core/projets/projets.service';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
 
 @Component({
   selector: 'projets-filter',

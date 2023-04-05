@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SwiperModule } from 'swiper/angular';
 import { GoogleMapsModule } from '@angular/google-maps';
 
-import { SimulationModule } from 'app/modules/pages/common/simulation/simulation.module';
+import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
 import { ProjetComponent } from './projet.component';
 import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
 

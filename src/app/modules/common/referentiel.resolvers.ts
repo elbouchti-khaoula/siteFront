@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ReferentielService } from './referentiel.service';
-import { Agence, CategorieSocioProfessionnelle, Nationalite, ObjetFinancement, TypeBien, Ville } from './referentiel.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { Agence, CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
 
 @Injectable({
     providedIn: 'root'

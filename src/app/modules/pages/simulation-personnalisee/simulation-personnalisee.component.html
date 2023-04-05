@@ -2,7 +2,7 @@
 <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[35vh] simul-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[30vh] simul-bg-header">
         <div class="w-full max-w-400">
             <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
                 Simulez votre crédit immobilier
@@ -10,30 +10,34 @@
         </div>
     </header>
 
-    <div class="px-6 sm:px-16 py-10 md:pt-18 md:pb-20 simul-bg-header-sm">
+    <div class="px-6 sm:px-16 max-md:py-10 md:pb-20 simul-bg-header-sm">
+
         <div class="w-full max-w-400 mx-auto">
+            
             <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                 Je simule mon crédit
             </span>
             
-            <div class="hidden md:flex flex-row justify-center space-x-5">
-                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-primary w-68">
-                    <span class="ml-2 font-medium text-white">Je simule mon crédit</span>
+            <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-12 h-24 shadow-md">
+                <div class="relative w-68 h-full flex items-center bg-primary">
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">01</div>
+                    <span class="z-20 text-lg font-semibold text-white ml-12 mt-5">Je simule mon crédit</span>
                 </div>
-                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-card ring ring-1 ring-gray-500 w-68">
-                    <span class="ml-2 font-medium">Je personnalise ma simulation</span>
+                <div class="relative w-88 h-full flex items-center">
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">02</div>
+                    <span class="text-lg font-semibold ml-12 mt-5">Je personnalise ma simulation</span>
                 </div>
-                <div class="relative flex flex-col items-center p-5 rounded-full shadow bg-card ring ring-1 ring-gray-500 w-68">
-                    <span class="ml-2 font-medium">Je demande mon crédit</span>
+                <div class="relative w-72 h-full flex items-center border-l">
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div>
+                    <span class="text-lg font-semibold ml-12 mt-5">Je demande mon crédit</span>
                 </div>
-            </div>
+            </fuse-card>
             
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
 
-                <!-- 'md:w-full md:max-w-5xl translate-x-0' : !isVisible, -->
-                <form class="flex flex-col items-center space-y-5 md:w-3/4 md:translate-x-[17%] bg-card rounded-2xl overflow-hidden px-6 pt-7 pb-3 ring-2 ring-current"
+                <form class="flex flex-col items-center space-y-5 bg-card rounded-2xl overflow-hidden px-6 pt-7 pb-3 ring-2 ring-current"
                     [formGroup]="simulationForm"
-                    [ngClass]="{'transition-all duration-1000 ease-in-out md:translate-x-[0%] md:w-2/5' : isVisible }">
+                    [@resize]="!isScreenSmall && animationState">
 
                     <div class="w-full">
                         <div class="text-xl md:text-2xl font-bold text-primary">
@@ -220,7 +224,6 @@
                     </div>
                 </form>
 
-                <!-- [@fadeOutBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 600}}" -->
                 <!-- Resultat -->
                 <fuse-card #resultat
                     *ngIf="isVisible"

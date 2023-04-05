@@ -5,24 +5,27 @@ import { fuseAnimations } from '@fuse/animations';
 import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Nationalite } from '../common/referentiel.types';
-import { ReferentielService } from '../common/referentiel.service';
+import { CategorieSocioProfessionnelle, Nationalite } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
-import { SalesForceService } from '../common/salesforce.service';
+import { SalesForceService } from 'app/core/salesforce/salesforce.service';
+import { resize } from 'app/modules/common/resize';
 
 @Component({
   selector: 'simulation-personnalisee',
   templateUrl: './simulation-personnalisee.component.html',
   styleUrls: ['./simulation-personnalisee.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations
+  animations: [fuseAnimations, resize]
 })
 export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   isScreenSmall: boolean;
+  isVisible: boolean = false;
+  animationState: string;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
-  
+
   categories: CategorieSocioProfessionnelle[];
   nationalites: Nationalite[];
   queryParams: Params;
@@ -42,7 +45,6 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   simulationResultat: SimulationPersonnalisee;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
-  isVisible: boolean = false;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
   @ViewChild('mensualiteId') mensualiteId: any;
@@ -136,6 +138,13 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
         // Check if the screen is small
         this.isScreenSmall = !matchingAliases.includes('md');
+
+        if (this.isScreenSmall) {
+          this.animationState = 'largeMobile'
+        }
+        else {
+          this.animationState = 'largeDesktop'
+        }
       });
 
     // Get the categories
@@ -219,6 +228,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   simuler(): void {
 
+    this.animationState = 'smallDesktop';
     this.isVisible = true;
 
     const critere = {
@@ -291,8 +301,10 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         this.simulationResultat = response;
 
         if (this.isScreenSmall) {
-          // Scroll to result
-          this.resultat.nativeElement.scrollIntoView();
+          setTimeout(() => {
+            // Scroll to result
+            this.resultat.nativeElement.scrollIntoView();
+          }, 200);
         }
 
         // Mark for check
