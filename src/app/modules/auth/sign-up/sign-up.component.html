@@ -82,6 +82,21 @@
                         </mat-error>
                     </mat-form-field>
 
+                    <mat-form-field>
+                        <mat-label>Mot de passe</mat-label>
+                        <input id="pass1" matInput [formControlName]="'pass1'" type="password">
+                        <mat-error *ngIf="signUpForm.get('pass1').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Confirmer le mot de passe</mat-label>
+                        <input id="pass2" matInput [formControlName]="'pass2'" type="password">
+                        <mat-error *ngIf="signUpForm.get('pass2').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
                     <!-- ToS and PP -->
                     <div class="inline-flex items-end w-full mt-1.5 col-span-2">
                         <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">

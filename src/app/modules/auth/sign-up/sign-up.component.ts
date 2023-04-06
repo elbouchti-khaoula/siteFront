@@ -60,6 +60,8 @@ export class AuthSignUpComponent implements OnInit
                 CIN       : [''],
                 telephone    : ['', [Validators.required]],
                 datenaissance    : [''],
+                pass1    : ['', [Validators.required]],
+                pass2    : ['', [Validators.required]],
                 agreements: ['']
             }
         );
@@ -113,7 +115,7 @@ export class AuthSignUpComponent implements OnInit
         {
             return;
         }
-        
+
         // Disable the form
         this.signUpForm.disable();
 
@@ -124,8 +126,7 @@ export class AuthSignUpComponent implements OnInit
         this._authService.signUp(this.signUpForm.value)
             .subscribe(
                 () => {
-                    alert('dkhel 1');
-
+                    
                     // Set the alert
                     this.alert = {
                         type   : 'success',
@@ -133,28 +134,50 @@ export class AuthSignUpComponent implements OnInit
                     };
                     // Show the alert
                     this.showAlert = true;
+                    
+                    // send mail
+                     this._authService.sendMail()
+                        .subscribe(
+                        () => {
+                            console.log('success');
+                        },
+                        (response) => {
+                            console.log(response);
+                        }
+                    );
 
                     // Navigate to the confirmation required page
                     //this._router.navigateByUrl('/confirmation-required');
                 },
                 (response) => {
-                    
+
                     console.log(response);
+
+                    if(response.status == 409){
+                        // Set the alert
+                        this.alert = {
+                            type   : 'warning',
+                            message: 'Compte existant.'
+                        };
+                    }
+                    else{
+                        // Set the alert
+                        this.alert = {
+                            type   : 'error',
+                            message: 'Une erreur s\'est produite.'
+                        };
+                    }
+
                     // Re-enable the form
                     this.signUpForm.enable();
 
                     // Reset the form
                     this.signUpNgForm.resetForm();
 
-                    // Set the alert
-                    this.alert = {
-                        type   : 'error',
-                        message: 'Compte existant.'
-                    };
-
                     // Show the alert
                     this.showAlert = true;
                 }
             );
     }
+    
 }

@@ -109,4 +109,9 @@ export class UserComponent implements OnInit, OnDestroy
     {
         this._router.navigate(['/sign-in']);
     }
+
+    signUp(): void
+    {
+        this._router.navigate(['/sign-up']);
+    }
 }
