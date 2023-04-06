@@ -156,13 +156,27 @@ export class AuthService
      */
     signUp(user: { name: string; prenom: string; email: string; CIN: string; telephone: string; datenaissance: string; agreements: any;}): Observable<any>
     {
-        alert('Sign up');
         const headers = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        let body = 'grant_type=password&username='+user.name+'&password='+user.email+'&client_id=front-end&client_secret=89b79687-a793-41fc-9ad6-08edec13007f'
+        let body = 'grant_type=password&username=admin&password=admin&client_id=front-end&client_secret=89b79687-a793-41fc-9ad6-08edec13007f'
           
-        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, {headers:headers})
+        return this._httpClient.post('http://10.10.1.230:8080/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, {headers:headers})
+        .pipe(
+            switchMap((response: any) => {
+
+                console.log(response);
+                // Return a new observable with the response
+                return of(response);
+            })
+        );
+        /*
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let body = 'username='+user.email+'&enabled=true'
+          
+        return this._httpClient.post('/auth/admin/realms/wafaimmo-siteweb/users', body, {headers:headers})
         .pipe(
             switchMap((response: any) => {
 
@@ -170,6 +184,7 @@ export class AuthService
                 return of(response);
             })
         );
+        */
     }
 
     /**

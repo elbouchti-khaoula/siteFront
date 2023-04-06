@@ -53,14 +53,14 @@ export class AuthSignUpComponent implements OnInit
     {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                client    : ['', [Validators.required]],
+                client    : ['false'],
                 name      : ['', Validators.required],
                 prenom    : ['', [Validators.required]],
                 email     : ['', [Validators.required, Validators.email]],
                 CIN       : [''],
-                telephone    : [''],
-                datenaissance    : ['', [Validators.required]],
-                agreements: ['', Validators.requiredTrue]
+                telephone    : ['', [Validators.required]],
+                datenaissance    : [''],
+                agreements: ['']
             }
         );
 
@@ -74,17 +74,15 @@ export class AuthSignUpComponent implements OnInit
           takeUntil(this._unsubscribeAll)
         )
         .subscribe((value) => {
-           console.log('traitement');
-           console.log(this.signUpForm.get('client').value);
 
            if(this.signUpForm.get('client').value == 'false'){
-                console.log('dkhel true');
+
                 this.choix = false;
                 this.abonne = true;
                 this.connecte = false;
            }
            if(this.signUpForm.get('client').value == 'true'){
-                console.log('dkhel false');
+
                 this.choix = false;
                 this.abonne = false;
                 this.connecte = true;
@@ -109,30 +107,39 @@ export class AuthSignUpComponent implements OnInit
      * Sign up
      */
     signUp(): void
-    {
+    {   
         // Do nothing if the form is invalid
         if ( this.signUpForm.invalid )
         {
             return;
         }
-
+        
         // Disable the form
         this.signUpForm.disable();
 
         // Hide the alert
         this.showAlert = false;
 
-        // Sign up
+
         this._authService.signUp(this.signUpForm.value)
             .subscribe(
                 () => {
                     alert('dkhel 1');
+
+                    // Set the alert
+                    this.alert = {
+                        type   : 'success',
+                        message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
+                    };
+                    // Show the alert
+                    this.showAlert = true;
+
                     // Navigate to the confirmation required page
-                    this._router.navigateByUrl('/confirmation-required');
+                    //this._router.navigateByUrl('/confirmation-required');
                 },
                 (response) => {
-                    alert('dkhel 2');
-                    alert(response);
+                    
+                    console.log(response);
                     // Re-enable the form
                     this.signUpForm.enable();
 
@@ -142,7 +149,7 @@ export class AuthSignUpComponent implements OnInit
                     // Set the alert
                     this.alert = {
                         type   : 'error',
-                        message: 'Something went wrong, please try again.'
+                        message: 'Compte existant.'
                     };
 
                     // Show the alert
