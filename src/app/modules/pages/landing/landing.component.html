@@ -98,7 +98,7 @@
         </header>
 
         <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
-        <div class="md:hidden relative w-full mx-auto px-6 py-5 -mt-20 sm:max-w-md">
+        <div class="md:hidden relative w-full mx-auto p-5 -mt-20 sm:max-w-md">
             
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
@@ -157,12 +157,12 @@
 
             <div class="w-full max-w-400 mx-auto max-md:flex max-md:flex-col-reverse md:grid grid-cols-5">
                 <!-- recherche par ville -->
-                <div class="max-md:w-full max-sm:px-6 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pr-7">
+                <div class="max-md:w-full max-sm:px-5 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pr-7">
                     <recherche-ville [isScreenSmall]="isScreenSmall"></recherche-ville>
                 </div>
 
                 <!-- simulation -->
-                <div class="max-md:w-full max-sm:px-6 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-7"
+                <div class="max-md:w-full max-sm:px-5 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-7"
                     [ngClass]="{'bg-simul': isScreenSmall}">
                     <div class="p-5 sm:p-10 shadow-lg rounded-2xl bg-card">
                         <simulation [isScreenSmall]="isScreenSmall"></simulation>
