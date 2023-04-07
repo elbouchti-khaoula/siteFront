@@ -4,8 +4,8 @@ import { EspaceConnectedComponent } from './espace-connected.component';
 import { EspaceConnectedRoutes } from './espace-connected.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { VosAvantagesModule } from '../landing/nos-avantages/vos-avantages.module';
-import { NousChoisirModule } from '../landing/nouschoisir/nous-choisir.module';
+import { VosAvantagesModule } from '../../pages/landing/nos-avantages/vos-avantages.module';
+import { NousChoisirModule } from '../../pages/landing/nouschoisir/nous-choisir.module';
 
 @NgModule({
     declarations: [

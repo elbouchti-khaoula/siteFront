@@ -10,12 +10,15 @@
     background-color:  #b4272f;
   }
 
-  .mat-expansion-panel-header2 {
-    background-color:  #b4272f;
+  .mat-expansion-panel-header:hover {
+    background-color:  #b4272f !important;
+    cursor: pointer;
   }
 
-
-
+  .my-header-class:hover {
+    background-color: green;
+    cursor: pointer;
+  }
 
   .h-18:hover {
     transform: scale(1.5);
