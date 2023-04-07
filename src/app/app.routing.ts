@@ -130,7 +130,7 @@ export const appRoutes: Route[] = [
 
             {
                 path: 'espace-connected',
-                loadChildren: () => import('app/modules/pages/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
             },
 
             {
