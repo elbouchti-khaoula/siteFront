@@ -86,7 +86,12 @@ const themes = {
  */
 const config = {
     darkMode   : 'class',
-    content    : ['./src/**/*.{html,scss,ts}'],
+    // content    : ['./src/**/*.{html,scss,ts}'],
+    content: [
+        './src/@fuse/**/*.{html,scss,ts}',
+        './src/app/**/*.{html,scss,ts}',
+        './src/index.html',
+    ],
     important  : true,
     theme      : {
         fontSize: {
@@ -163,6 +168,7 @@ const config = {
                 '30': '7.5rem',
                 '50': '12.5rem',
                 '68': '17rem',
+                '88': '22rem',
                 '90': '22.5rem',
 
                 // Bigger values
@@ -330,7 +336,7 @@ const config = {
 
         // Other third party and/or custom plugins
         require('@tailwindcss/typography')({modifiers: ['sm', 'lg']}),
-        // require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/line-clamp')
     ]
 };

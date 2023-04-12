@@ -9,10 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ProjetsFilterModule } from '../../pages/common/projetsFilter/projets-filter.module';
-
-
-
+import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 
 @NgModule({
     declarations: [

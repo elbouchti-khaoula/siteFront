@@ -9,12 +9,12 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { LandingComponent } from './landing.component';
 import { landingRoutes } from './landing.routing';
 
-import { ProjetsFilterModule } from '../common/projetsFilter/projets-filter.module';
+import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { VosAvantagesModule } from './nos-avantages/vos-avantages.module';
 import { RechercheVilleModule } from './recherche-ville/recherche-ville.module';
-import { SimulationModule } from '../common/simulation/simulation.module';
-import { NousChoisirModule } from './nouschoisir/nous-choisir.module';
-import { CinqEtapesModule } from './cinqetapes/cinq-etapes.module';
+import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
+import { NousChoisirModule } from './nous-choisir/nous-choisir.module';
+import { CinqEtapesModule } from './cinq-etapes/cinq-etapes.module';
 import { ActualitesModule } from './actualites/actualites.module';
 import { ContactezNousModule } from './contactez-nous/contactez-nous.module';
 

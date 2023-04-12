@@ -45,8 +45,8 @@ export class AuthSignInComponent implements OnInit
     {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            email     : ['email.example@wafaimmobilier.co.ma', [Validators.required, Validators.email]],
-            password  : ['admin', Validators.required],
+            email     : ['', [Validators.required, Validators.email]],
+            password  : ['', Validators.required],
             rememberMe: ['']
         });
     }
@@ -82,6 +82,14 @@ export class AuthSignInComponent implements OnInit
                     // to the correct page after a successful sign in. This way, that url can be set via
                     // routing file and we don't have to touch here.
                     const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+
+                    localStorage.setItem('email', this.signInForm.value.email);
+                    if(this.signInForm.value.email == 'a.kadmiri@wafaimmobilier.co.ma'){
+                        localStorage.setItem('statut', 'connecte');
+                    }
+                    else{
+                        localStorage.setItem('statut', 'abonne');
+                    }
 
                     // Navigate to the redirect url
                     this._router.navigateByUrl(redirectURL);

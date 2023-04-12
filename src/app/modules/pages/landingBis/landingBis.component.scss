@@ -487,17 +487,6 @@
     }
 }
 
-.u-layout-col>* {
-    min-height: -webkit-fit-content;
-    min-height: fit-content;
-    max-width: 100%;
-}
-
-.u-layout-col {
-    flex-direction: column;
-    min-height: 100%;
-}
-
 .u-layout-row {
     flex-direction: row;
     flex-wrap: wrap;
@@ -508,6 +497,18 @@
 .u-layout-row>.u-size-20 {
     flex: 0 0 33.33333333%;
     max-width: 33.33333333%;
+}
+
+
+.u-layout-col>* {
+    min-height: -webkit-fit-content;
+    min-height: fit-content;
+    max-width: 100%;
+}
+
+.u-layout-col {
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .u-layout-col>.u-size-20 {

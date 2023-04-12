@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet } from './projets.types';
-import { Quartier, TypeBien, Ville } from '../common/referentiel.types';
+import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
 
 @Injectable({
     providedIn: 'root'
