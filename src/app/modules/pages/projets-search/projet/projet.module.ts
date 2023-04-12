@@ -12,6 +12,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
 import { ProjetComponent } from './projet.component';
 import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-
         MatInputModule,
         MatDividerModule,
         SwiperModule,
-        GoogleMapsModule
+        GoogleMapsModule,
+        MatDialogModule
     ],
     exports     : [
         ProjetComponent

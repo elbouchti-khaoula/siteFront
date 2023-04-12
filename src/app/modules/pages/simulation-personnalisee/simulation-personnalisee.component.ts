@@ -48,7 +48,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
   @ViewChild('mensualiteId') mensualiteId: any;
-  @ViewChild('dureeId') dureeId: any;
+  @ViewChild('nbreAnneeId') nbreAnneeId: any;
   @ViewChild('nbreMoisId') nbreMoisId: any;
   @ViewChild('montantId') montantId: any;
   @ViewChild('totalInteretsId') totalInteretsId: any;
@@ -143,7 +143,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           this.animationState = 'largeMobile'
         }
         else {
-          this.animationState = 'largeDesktop'
+          this.animationState = this.isVisible ? 'smallDesktop' : 'largeDesktop'
         }
       });
 
@@ -192,14 +192,13 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   newSimulation(): void {
     // this.isVisible = false;
     // this.simulationForm.reset(this.simulationFormDefaults);
-
     this.simulationForm.get('montant').reset();
     this.simulationForm.get('duree').reset();
 
     // Mensualité
     this._animateCounterService.animateValue(this.mensualiteId, this.simulationResultat.mensualite, 0, 600);
-    this._animateCounterService.animateValue(this.dureeId, this.simulationResultat.duree, 0, 600);
-    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.duree * 12, 0, 600);
+    this._animateCounterService.animateValue(this.nbreAnneeId, this.simulationResultat.nbreAnnee, 0, 600);
+    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.nbreMois, 0, 600);
     this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
     this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInterets, 0, 600);
     this._animateCounterService.animateValue(this.coutTotalId, this.simulationResultat.coutTotal, 0, 600);
@@ -228,7 +227,10 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   simuler(): void {
 
-    this.animationState = 'smallDesktop';
+    if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
+      this.animationState = 'smallDesktop';
+    }
+    
     this.isVisible = true;
 
     const critere = {
@@ -264,10 +266,13 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         })
       ).subscribe((response) => {
 
+        response.nbreAnnee = Math.trunc(response.duree / 12);
+        response.nbreMois = response.duree % 12;
+
         // Mensualité
         this.mensualiteId.nativeElement.textContent = response.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.dureeId.nativeElement.textContent = response.duree;
-        this.nbreMoisId.nativeElement.textContent = response.duree * 12;
+        this.nbreAnneeId.nativeElement.textContent = response.nbreAnnee;
+        this.nbreMoisId.nativeElement.textContent = response.nbreMois;
         this.montantId.nativeElement.textContent = response.montant.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         this.totalInteretsId.nativeElement.textContent = response.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         this.coutTotalId.nativeElement.textContent = response.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

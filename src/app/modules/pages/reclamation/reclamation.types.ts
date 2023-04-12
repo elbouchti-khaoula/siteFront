@@ -1,3 +1,5 @@
+import { Piece } from "app/core/common/common.types";
+
 export interface Reclamation {
 	id              : number;
 	nom             : string;
@@ -33,10 +35,3 @@ export interface Motif {
 	delaiTraitementAdd: number;
 }
 
-export interface Piece {
-	id              : number;
-	libelle         : string;
-	parent			: number;
-	file			: string | null;
-	fileName		: string;
-}

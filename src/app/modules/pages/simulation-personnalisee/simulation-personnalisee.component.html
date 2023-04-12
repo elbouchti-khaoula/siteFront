@@ -2,7 +2,7 @@
 <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[30vh] simul-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[30vh] simul-bg-header">
         <div class="w-full max-w-400">
             <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
                 Simulez votre crédit immobilier
@@ -10,32 +10,29 @@
         </div>
     </header>
 
-    <div class="px-6 sm:px-16 max-md:py-10 md:pb-20 simul-bg-header-sm">
+    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
             
             <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Je simule mon crédit
+                Je simule mon crédit en ligne :
             </span>
             
             <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-12 h-24 shadow-md">
-                <div class="relative w-68 h-full flex items-center bg-primary">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">01</div>
-                    <span class="z-20 text-lg font-semibold text-white ml-12 mt-5">Je simule mon crédit</span>
+                <div class="w-68 h-full flex items-center justify-center bg-primary">
+                    <span class="text-lg font-semibold text-white">Je simule mon crédit</span>
                 </div>
-                <div class="relative w-88 h-full flex items-center">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">02</div>
-                    <span class="text-lg font-semibold ml-12 mt-5">Je personnalise ma simulation</span>
+                <div class="w-88 h-full flex items-center justify-center">
+                    <span class="text-lg font-semibold">Je personnalise ma simulation</span>
                 </div>
-                <div class="relative w-72 h-full flex items-center border-l">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div>
-                    <span class="text-lg font-semibold ml-12 mt-5">Je demande mon crédit</span>
+                <div class="w-72 h-full flex items-center justify-center border-l">
+                    <span class="text-lg font-semibold">Je demande mon crédit</span>
                 </div>
             </fuse-card>
             
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
 
-                <form class="flex flex-col items-center space-y-5 bg-card rounded-2xl overflow-hidden px-6 pt-7 pb-3 ring-2 ring-current"
+                <form class="flex flex-col items-center space-y-5 px-6 pt-7 pb-3 bg-card rounded-md overflow-hidden ring-1 ring-current"
                     [formGroup]="simulationForm"
                     [@resize]="!isScreenSmall && animationState">
 
@@ -60,7 +57,7 @@
                         <!-- Durée -->
                         <mat-form-field class="md:col-span-3 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <input matInput [formControlName]="'duree'">
-                            <mat-label class="text-sm font-semibold">Durée</mat-label>
+                            <mat-label class="text-sm font-semibold">Durée (en mois)</mat-label>
                             <span matSuffix>ans</span>
                             <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
                                 Durée obligatoire
@@ -200,7 +197,7 @@
                             [color]="'primary'"
                             [disabled]="simulationForm.pristine"
                             (click)="newSimulation()">
-                            Nouvelle simulation
+                            Refaire simulation
                         </button>
                         <button
                             mat-flat-button    
@@ -214,7 +211,7 @@
                         </button>
                     </div>
 
-                    <div class="flex flex-row space-x-2 py-2 px-4 rounded-xl overflow-hidden shadow bg-amber-100">
+                    <div class="flex flex-row space-x-2 py-2 px-4 rounded-md overflow-hidden shadow bg-amber-100">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
                         <span class="text-xs font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et
@@ -224,10 +221,10 @@
                     </div>
                 </form>
 
-                <!-- Resultat -->
+                <!-- Résultat -->
                 <fuse-card #resultat
                     *ngIf="isVisible"
-                    class="flex flex-col md:w-3/5 px-6 pb-8 pt-3 bg-default ring-2 ring-primary overflow-visible"
+                    class="flex flex-col md:w-3/5 px-6 pb-8 pt-3 bg-default rounded-md shadow overflow-visible ring-1 ring-primary"
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 500}}">
                     
                     <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
@@ -266,17 +263,17 @@
                             <!-- mensualité -->
                             <div class="md:w-2/3">
                                 <!-- header -->
-                                <div class="min-h-36 flex flex-col py-3 px-5 shadow-md rounded-2xl bg-primary-500 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+                                <div class="min-h-36 flex flex-col py-3 px-5 bg-primary-500 shadow rounded-md dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
 
                                     <div class="flex flex-row items-center md:items-end justify-between space-x-3 text-white">
-                                        <div class="flex flex-col w-3/5">
+                                        <div class="flex flex-col w-3/5 border-r border-white pr-3">
                                             <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualités TTC</div>
 
                                             <div class="flex items-baseline whitespace-nowrap md:ml-auto mt-2">
                                                 <div class="text-4xl font-bold leading-tight tracking-tight" #mensualiteId>
                                                     {{simulationResultat.mensualite | number:'1.2-2'}}
                                                 </div>
-                                                <div class="ml-2 md:text-xl leading-none">Dhs/Mois</div>
+                                                <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
                                             </div>
                                         </div>
 
@@ -284,14 +281,14 @@
                                             <div class="text-lg md:text-xl font-semibold leading-none">Durée</div>
                                             <div class="flex flex-col md:flex-row mt-2">
                                                 <div class="flex flex-row items-baseline">
-                                                    <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #dureeId>
-                                                        {{simulationResultat.duree}}
+                                                    <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreAnneeId>
+                                                        {{simulationResultat.nbreAnnee}}
                                                     </div>
                                                     <div class="ml-2 md:text-xl leading-none">ans</div>
                                                 </div>
                                                 <div class="flex flex-row items-baseline md:ml-2">
                                                     <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreMoisId>
-                                                        {{simulationResultat.duree * 12}}
+                                                        {{simulationResultat.nbreMois}}
                                                     </div>
                                                     <div class="ml-2 md:text-xl leading-none">mois</div>
                                                 </div>
@@ -310,7 +307,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-7">
                                     
                                     <!-- Montant -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
 
@@ -329,7 +326,7 @@
                                     </div>
 
                                     <!-- Total des intérêts -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
 
@@ -348,7 +345,7 @@
                                     </div>
 
                                     <!-- Coût total du crédit -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
 
@@ -369,7 +366,7 @@
                                     <div></div>
                                     
                                     <!-- Expertise immobilière -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             
@@ -392,7 +389,7 @@
                                     </div>
             
                                     <!-- Frais de dossier -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             
@@ -421,7 +418,7 @@
                             <div class="w-full md:w-1/3">
 
                                 <!-- header -->
-                                <div class="min-h-36 flex flex-col py-3 px-5 shadow-md rounded-2xl bg-primary-150 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+                                <div class="min-h-36 flex flex-col py-3 px-5 bg-primary-150 shadow rounded-md dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
 
                                     <div class="flex flex-col text-primary-600">
                                         <div class="text-2xl font-semibold leading-tight tracking-tight">
@@ -447,7 +444,7 @@
                                 <div class="grid grid-cols-1 gap-y-5 mt-7">
 
                                     <!-- Enregistrement hypothécaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             
@@ -466,7 +463,7 @@
                                     </div>
             
                                     <!-- Conservation foncière -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             
@@ -485,7 +482,7 @@
                                     </div>
             
                                     <!-- Frais de dossier notaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             
@@ -504,7 +501,7 @@
                                     </div>
             
                                     <!-- Honoraires de notaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
                                         <!-- Border -->
                                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
             

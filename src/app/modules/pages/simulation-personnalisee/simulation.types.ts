@@ -12,6 +12,8 @@ export interface SimulationPersonnalisee
 {
     montant             : number;
     duree               : number;
+    nbreAnnee?          : number;
+    nbreMois?           : number;
     cspCode?            : string;
     nationaliteCode?    : string;
     residentMarocain?   : boolean;

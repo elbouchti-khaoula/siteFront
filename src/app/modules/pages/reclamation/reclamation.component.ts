@@ -8,7 +8,8 @@ import { catchError, debounceTime, Observable, of, Subject, takeUntil, throwErro
 // import { ReferentielService } from '../common/referentiel.service';
 // import { Ville } from '../common/referentiel.types';
 import { ReclamationsService } from './reclamation.service';
-import { Motif, Piece } from './reclamation.types';
+import { Motif } from './reclamation.types';
+import { Piece } from 'app/core/common/common.types';
 
 @Component({
     selector: 'reclamation',
@@ -166,7 +167,6 @@ export class ReclamationComponent implements OnInit {
             this.pieceChanged.next(piece);
         });
 
-        // console.log("+-+-+- piece", piece);
     }
 
     deletePiece(piece: Piece, index: number): void {

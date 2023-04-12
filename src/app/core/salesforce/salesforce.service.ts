@@ -49,7 +49,7 @@ export class SalesForceService {
      */
     private getAccessToken(): Observable<string> {
         this.accessTokenSalesForce = '';
-        console.log("+-+-+- enter access token")
+        // console.log("+-+-+- enter access token")
 
         const params = new HttpParams()
             .set('grant_type', 'password')
@@ -61,7 +61,7 @@ export class SalesForceService {
             .pipe(
                 switchMap((response: any) => {
 
-                    console.log("+-+-+- response token :" , response);
+                    // console.log("+-+-+- response token :" , response);
 
                     // Store the access token in the local storage
                     this.accessTokenSalesForce = response.access_token;
@@ -79,18 +79,12 @@ export class SalesForceService {
      * Check the authentication status
      */
     private check(): Observable<boolean> {
-        console.log("+-+-+- enter check");
-        this.accessTokenSalesForce = '';
+        // console.log("+-+-+- enter check");
 
         // Check the access token availability
-        if (!this.accessTokenSalesForce || this.accessTokenSalesForce === '') {
+        if (this.accessTokenSalesForce === undefined || this.accessTokenSalesForce === null || this.accessTokenSalesForce === '') {
             return of(false);
         }
-
-        // Check the access token expire date
-        // if (AuthUtils.isTokenExpired(this.accessTokenSalesForce)) {
-        //     return of(false);
-        // }
 
         // Convert the expiration date
         // const dateExpitation = new Date(0);
@@ -98,32 +92,34 @@ export class SalesForceService {
 
         // const expired = this.expirationTokenSalesForce * 1000 > Date.now();
         if (Date.now() >= this.expirationTokenSalesForce * 1000) {
-            console.log("+-+-+- here token expired");
+            console.log("+-+-+- token salesForce expired");
             return of(false);
         }
 
+        // If the access token exists and it didn't expire
         return of(true);
-
-        // If the access token exists and it didn't expire, refresh token
-        // return this.refreshToken();
     }
 
+    /**
+     * Get token
+     *
+     */
     private getToken(): Observable<string> {
-        console.log("+-+-+- enter getToken");
+        console.log("+-+-+- enter getToken salesForce");
 
         // Check the authentication status
         return this.check()
             .pipe(
-                switchMap((authenticated) => {
+                switchMap((check) => {
 
-                    console.log("+-+-+- getToken authenticated", authenticated);
+                    console.log("+-+-+- getToken salesForce check", check);
 
                     // If the user is not authenticated...
-                    if (!authenticated) {
+                    if (!check) {
                         // get token from salesForce
                         return this.getAccessToken();
                     }
-                    console.log("+-+-+- getToken this.accessTokenSalesForce", this.accessTokenSalesForce);
+                    console.log("+-+-+- getToken salesForce existe in local storage", this.accessTokenSalesForce);
 
                     // Return token from local storage
                     return of(this.accessTokenSalesForce.toString());

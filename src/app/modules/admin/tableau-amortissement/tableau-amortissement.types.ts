@@ -1,11 +1,12 @@
 export interface TableauAmortissement
 {
-    id: number;
-    echeance?: number;
+    numEcheance?: number;
     amortissement: number;
-    interetTTC: number;
-    prestationsTTC: number;
-    echeanceClientTTC: number;
+    interet: number;
+    assurance: number;
+    cotisation: number;
+    echeanceClient: number;
+    echeanceParticipant: number;
     crd?: number;
 }
 

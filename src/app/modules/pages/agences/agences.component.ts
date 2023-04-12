@@ -33,13 +33,8 @@ export class AgencesComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _formBuilder: UntypedFormBuilder
-    ) {
-        // Prepare the search form with defaults
-        this.searchForm = this._formBuilder.group(
-            {
-                codeVille: [null]
-            }
-        );
+    ) 
+    {
     }
 
     refineURL(currURL: string): string {
@@ -60,6 +55,13 @@ export class AgencesComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+        // Prepare the search form with defaults
+        this.searchForm = this._formBuilder.group(
+            {
+                codeVille: [null]
+            }
+        );
+
         // Get the villes
         this._referentielService.villes$
             .pipe(takeUntil(this._unsubscribeAll))

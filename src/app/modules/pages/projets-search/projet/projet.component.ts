@@ -98,7 +98,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Open the note dialog
+     * Open the dialog
      */
     openFaitesVousRappelerDialog(): void
     {

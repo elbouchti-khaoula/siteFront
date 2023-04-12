@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Params, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -11,6 +11,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from './simulation-detaillee.service';
 import * as moment from 'moment';
 import { resize } from 'app/modules/common/resize';
+import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -22,11 +23,12 @@ import { resize } from 'app/modules/common/resize';
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
+  drawerOpened: boolean = false;
+
   isScreenSmall: boolean;
   isXsScreen: boolean;
   animationState: string;
   isVisible: boolean = false;
-  private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   categories: CategorieSocioProfessionnelle[];
   nationalites: Nationalite[];
@@ -35,36 +37,38 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   simulationStepperForm: UntypedFormGroup;
   simulationFormDefaults: any = {
     // profil
-    nom: null,
-    prenom: null,
-    telephone: null,
-    email: null,
+    nom: 'test1',
+    prenom: 'test1',
+    telephone: '0522111111',
+    email: 'test1@test1.com',
     dateNaissance: null,
-    nationalite: null,
-    residantMaroc: null,
-    agreements: null,
+    nationalite: 'MA',
+    residantMaroc: 'true',
+    agreements: true,
     // situation
-    categorieSocioProfessionnelle: null,
-    nomEmployeur: null,
-    salaire: null,
-    autresRevenus: null,
-    creditsEnCours: null,
+    categorieSocioProfessionnelle: null, // 'SASP',
+    nomEmployeur: 'Employeur',
+    salaire: 500000,
+    autresRevenus: 200000,
+    creditsEnCours: 3000,
     // projet
-    objetFinancement: null,
-    montant: null,
-    montantProposition: null,
-    duree: null,
-    typeTaux: null,
-    statutProjet: null,
-    nomPromoteur: null
+    objetFinancement: 'ACQU',
+    montant: 500000,
+    montantProposition: 500000,
+    duree: 240,
+    typeTaux: null, // 'FIXE',
+    statutProjet: 'active',
+    nomPromoteur: 'Promoteur'
   };
+  tab = ['step1', 'step2', 'step3'];
 
   simulationResultat: SimulationDetaillee;
-  @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
+
+  @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   @ViewChild('mensualiteId') mensualiteId: any;
-  @ViewChild('dureeId') dureeId: any;
+  @ViewChild('nbreAnneeId') nbreAnneeId: any;
   @ViewChild('nbreMoisId') nbreMoisId: any;
   @ViewChild('montantId') montantId: any;
   @ViewChild('totalInteretsId') totalInteretsId: any;
@@ -80,6 +84,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   @ViewChild('fraisDiversId') fraisDiversId: any;
   @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
 
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
+
   /**
    * Constructor
    */
@@ -91,13 +97,16 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
-    private _simulationService: SimulationDetailleeService
+    private _simulationService: SimulationDetailleeService,
+    private _tableauAmortissementService: TableauAmortissementService
   ) {
 
     this.simulationResultat = {
       id: null,
       montantProposition: 0.00,
       duree: 0,
+      nbreAnnee: 0,
+      nbreMois: 0,
       mensualite: 0.00,
       tauxEffectifGlobal: 0,
       tauxParticipation: 0,
@@ -146,7 +155,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomPromoteur: [this.simulationFormDefaults.nomPromoteur, [Validators.required]]
       })
     });
-
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -154,7 +162,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
-    
+
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
       .pipe(takeUntil(this._unsubscribeAll))
@@ -170,7 +178,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.animationState = 'largeMobile'
         }
         else {
-          this.animationState = 'largeDesktop'
+          this.animationState = this.isVisible ? 'smallDesktop' : 'largeDesktop'
         }
       });
 
@@ -250,23 +258,24 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   /**
    * Check if the task is overdue or not
    */
-  isOverdue(): boolean
-  {
-      return moment(this.simulationStepperForm.get('step1').get('dateNaissance').value, moment.ISO_8601).isAfter(moment(), 'days');
+  isOverdue(): boolean {
+    return moment(this.simulationStepperForm.get('step1').get('dateNaissance').value, moment.ISO_8601).isAfter(moment(), 'days');
   }
 
   /**
    * Reset the form using the default
    */
-  reset(): void {
+  newSimulation(): void {
     // this.isVisible = false;
     // this.simulationStepper.reset();
-    this.simulationStepperForm.reset(this.simulationFormDefaults);
+    // this.simulationStepperForm.reset(this.simulationFormDefaults);
+    this.simulationStepperForm.get('step3').get('montant').reset();
+    this.simulationStepperForm.get('step3').reset();
 
     // Mensualité
     this._animateCounterService.animateValue(this.mensualiteId, this.simulationResultat.mensualite, 0, 600);
-    this._animateCounterService.animateValue(this.dureeId, this.simulationResultat.duree, 0, 600);
-    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.duree * 12, 0, 600);
+    this._animateCounterService.animateValue(this.nbreAnneeId, this.simulationResultat.nbreAnnee, 0, 600);
+    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.nbreMois, 0, 600);
     this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
     this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInterets, 0, 600);
     this._animateCounterService.animateValue(this.coutTotalId, this.simulationResultat.coutTotal, 0, 600);
@@ -340,35 +349,35 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Error here means the requested is not available
         catchError((error) => {
 
-      //     // Log the error
-      //     console.error(error);
+          //     // Log the error
+          //     console.error(error);
 
-      //     // if (error.status === 500) {
-      //     //   this._router.navigateByUrl('/500-server-error');
-      //     // } else if (error.status === 400) {
-      //     //   this._router.navigateByUrl('/404-not-found');
-      //     // } else {
-      //     //   // Get the parent url
-      //     //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
+          //     // if (error.status === 500) {
+          //     //   this._router.navigateByUrl('/500-server-error');
+          //     // } else if (error.status === 400) {
+          //     //   this._router.navigateByUrl('/404-not-found');
+          //     // } else {
+          //     //   // Get the parent url
+          //     //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
 
-      //     //   // Navigate to there
-      //     //   this._router.navigateByUrl(parentUrl);
-      //     // }
+          //     //   // Navigate to there
+          //     //   this._router.navigateByUrl(parentUrl);
+          //     // }
 
-           // Throw an error
-           return throwError(error);
-         })
+          // Throw an error
+          return throwError(error);
+        })
       )
       .subscribe((response: SimulationDetaillee[]) => {
 
-        console.log("+-+-+- response component", response);
-
         let simulation = response[0];
+        simulation.nbreAnnee = Math.trunc(simulation.duree / 12);
+        simulation.nbreMois = simulation.duree % 12;
 
         // Mensualité
         this.mensualiteId.nativeElement.textContent = simulation.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.dureeId.nativeElement.textContent = simulation.duree;
-        this.nbreMoisId.nativeElement.textContent = simulation.duree * 12;
+        this.nbreAnneeId.nativeElement.textContent = simulation.nbreAnnee;
+        this.nbreMoisId.nativeElement.textContent = simulation.nbreMois;
         this.montantId.nativeElement.textContent = simulation.montantProposition.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         this.totalInteretsId.nativeElement.textContent = simulation.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         this.assurancesId.nativeElement.textContent = simulation.assurances.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
@@ -417,6 +426,52 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   formatMomentToString(date: moment.Moment): string {
     return date.format("DD/MM/YYYY");
+  }
+
+  /**
+   * Open tableau amortissement
+   */
+  openTableauAmortissement(): void {
+    this.drawerOpened = true;
+
+    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
+
+    // Mark for check
+    this._changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Perform navigate
+   */
+  navigateToDemandeCredit(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        // Mon profil
+        nom: this.simulationStepperForm.get('step1').get('nom').value,
+        prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+        telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+        email: this.simulationStepperForm.get('step1').get('email').value,
+        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
+        residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+        // ma situation
+        categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+        nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+        salaire: this.simulationStepperForm.get('step2').get('salaire').value,
+        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+        // Mon projet
+        montant: this.simulationStepperForm.get('step3').get('montant').value,
+        objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
+        montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
+        duree: this.simulationStepperForm.get('step3').get('duree').value,
+        nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+        statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+        typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+        ...this.simulationResultat 
+      }
+    };
+    this._router.navigate(['/demande-credit'], navigationExtras);
   }
 
 }
