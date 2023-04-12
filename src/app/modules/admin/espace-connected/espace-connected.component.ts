@@ -3,6 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 
+
 @Component({
     selector        : 'espace-connected',
     templateUrl     : './espace-connected.component.html',
@@ -12,9 +13,10 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class EspaceConnectedComponent implements OnInit, OnDestroy
 {
+
     isXsScreen: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-
+   
     /**
      * Constructor
      */
@@ -55,4 +57,5 @@ export class EspaceConnectedComponent implements OnInit, OnDestroy
         el.scrollIntoView();
     }
 
+    panelOpenState = false;
 }

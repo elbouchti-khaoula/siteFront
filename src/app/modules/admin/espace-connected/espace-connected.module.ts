@@ -5,7 +5,14 @@ import { EspaceConnectedRoutes } from './espace-connected.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { VosAvantagesModule } from '../../pages/landing/nos-avantages/vos-avantages.module';
-import { NousChoisirModule } from '../../pages/landing/nouschoisir/nous-choisir.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ProjetsFilterModule } from '../../pages/common/projetsFilter/projets-filter.module';
+
+
+
 
 @NgModule({
     declarations: [
@@ -16,7 +23,11 @@ import { NousChoisirModule } from '../../pages/landing/nouschoisir/nous-choisir.
         SharedModule,
         VosAvantagesModule,
         MatIconModule,
-        NousChoisirModule
+        MatMenuModule,
+        ProjetsFilterModule,
+        MatCardModule,
+        MatExpansionModule,
+       MatButtonModule
     ]
 })
 export class EspaceConnectedModule
