@@ -40,7 +40,7 @@
                 &:not([aria-disabled=true]) {
 
                     &.cdk-keyboard-focused,
-                    &.cdk-program-focused,
+                    &.cdk-program-focused
                     &:hover {
                         background: transparent !important;
                     }

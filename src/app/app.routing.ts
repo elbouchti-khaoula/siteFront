@@ -17,7 +17,7 @@ export const appRoutes: Route[] = [
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'landing' },
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'espace-connected' },
 
     // Auth routes for guests
     {
@@ -142,7 +142,7 @@ export const appRoutes: Route[] = [
 
             {
                 path: 'espace-connected',
-                loadChildren: () => import('app/modules/pages/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
             },
 
             {

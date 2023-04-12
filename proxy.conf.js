@@ -1,6 +1,14 @@
 const PROXY_CONFIG = [
     {
         context: [
+            "/auth"
+        ],
+        target: "http://10.10.1.230:8080",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
             "/api/repositories"
         ],
         // target: "http://localhost:8888",
