@@ -56,13 +56,13 @@
                         [autoFocus]="false"
                         [(opened)]="drawerOpened"
                         #drawerTableauDC>
-                        <tableau-amortissement [dossierId]="simulationResultat.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
+                        <tableau-amortissement [dossierId]="recapitulatif.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
                     </mat-drawer>
 
                     <mat-drawer-content class="px-1 pt-5 pb-1">
 
                         <fuse-card #resultat
-                            class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-gray-50 rounded-md shadow overflow-visible min-h-[85vh]">
+                            class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-default rounded-md shadow overflow-visible md:min-h-[75vh]">
                             
                             <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
                                 <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
@@ -72,7 +72,7 @@
 
                             <div class="flex flex-col space-y-5">
                                 <!-- bouton tableau amortissement -->
-                                <div class="ml-auto mt-3 mb-5">
+                                <div class="ml-auto mt-3">
                                     <button
                                         mat-flat-button
                                         class="fuse-mat-button-small"
@@ -83,10 +83,12 @@
                                     </button>
                                 </div>
 
-                                <fuse-card class="flex flex-col px-8 py-5 ring-1 ring-gray-300 rounded-md" #fuseCardProfil>
+                                <fuse-card class="flex flex-col px-8 py-5 rounded-md shadow"
+                                    #fuseCardProfil
+                                    [expanded]="true">
                                     <div class="flex flex-row items-center">
                                         <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-400"
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
                                             (click)="fuseCardProfil.expanded = !fuseCardProfil.expanded">
                                             <mat-icon
@@ -103,7 +105,7 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 mt-7">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Nom
@@ -112,15 +114,63 @@
                                                     {{recapitulatif?.nom}}
                                                 </div>
                                             </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Prénom
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.prenom}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Téléphone
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.telephone}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Email
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.email}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Date de naissance
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.dateNaissance}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Nationalite
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.nationalite}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Résidant au maroc
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.residantMaroc}}
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 ring-1 ring-gray-300 rounded-md" #fuseCardSituation>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardSituation>
                                     <div class="flex flex-row items-center">
                                         <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-400"
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
                                             (click)="fuseCardSituation.expanded = !fuseCardSituation.expanded">
                                             <mat-icon
@@ -137,24 +187,55 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 mt-7">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Nom
+                                                    Categorie Socio Professionnelle
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nom}}
+                                                    {{recapitulatif?.categorieSocioProfessionnelle}}
+                                                </div>
+                                            </div>
+                                             <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Employeur
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.nomEmployeur}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Salaire
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.salaire}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Autres revenus
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.autresRevenus}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Montant des crédits en cours
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.creditsEnCours}}
                                                 </div>
                                             </div>
                                         </div>
-
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 ring-1 ring-gray-300 rounded-md" #fuseCardProjet>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardProjet>
                                     <div class="flex flex-row items-center">
                                         <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-400"
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
                                             (click)="fuseCardProjet.expanded = !fuseCardProjet.expanded">
                                             <mat-icon
@@ -171,24 +252,71 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 mt-7">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Nom
+                                                    Prix du bien
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nom}}
+                                                    {{recapitulatif?.montant}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Objet de financement
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.objetFinancement}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Montant
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.montantProposition}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    duree
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.duree}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Promoteur
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.nomPromoteur}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Statut du projet
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.statutProjet}}
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    type de taux
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{recapitulatif?.typeTaux}}
                                                 </div>
                                             </div>
                                         </div>
-
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 ring-1 ring-gray-300 rounded-md" #fuseCardResultat>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardResultat>
                                     <div class="flex flex-row items-center">
                                         <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-400"
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
                                             (click)="fuseCardResultat.expanded = !fuseCardResultat.expanded">
                                             <mat-icon
@@ -205,7 +333,7 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-7">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
 
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
@@ -213,7 +341,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
-                                                        {{simulationResultat?.montant | number:'1.2-2'}}
+                                                        {{recapitulatif?.montant | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -225,7 +353,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #totalInteretsId>
-                                                        {{simulationResultat?.totalInterets | number:'1.2-2'}}
+                                                        {{recapitulatif?.totalInterets | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -237,7 +365,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #coutTotalId>
-                                                        {{simulationResultat?.coutTotal | number:'1.2-2'}}
+                                                        {{recapitulatif?.coutTotal | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -249,7 +377,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #assurancesId>
-                                                        {{simulationResultat?.totalInterets | number:'1.2-2'}}
+                                                        {{recapitulatif?.totalInterets | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -261,7 +389,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxParticipationId>
-                                                        {{simulationResultat?.tauxParticipation | number:'1.2-2'}}
+                                                        {{recapitulatif?.tauxParticipation | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -273,7 +401,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                        {{simulationResultat?.tauxEffectifGlobal | number:'1.3-3'}}
+                                                        {{recapitulatif?.tauxEffectifGlobal | number:'1.3-3'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -286,7 +414,7 @@
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight"
                                                         #expertiseImmobiliereId [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                        {{simulationResultat?.expertiseImmobiliere | number:'1.2-2'}}
+                                                        {{recapitulatif?.expertiseImmobiliere | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
                                                 </div>
@@ -299,7 +427,7 @@
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #fraisDossierId
                                                         [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                        {{simulationResultat?.fraisDossier | number:'1.2-2'}}
+                                                        {{recapitulatif?.fraisDossier | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
                                                 </div>
@@ -311,7 +439,7 @@
                                                 </span>
                                                 <div class="ml-auto flex items-baseline whitespace-nowrap">
                                                     <div class="text-2xl font-bold leading-tight tracking-tight">
-                                                        {{simulationResultat?.mensualite | number:'1.2-2'}}
+                                                        {{recapitulatif?.mensualite | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
                                                 </div>

@@ -128,7 +128,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         // Fill the form with the values from query
         // params without emitting any form events
         this.simulationForm.get('montant').setValue(queryParams?.montant ?? this.simulationFormDefaults.montant);
-        this.simulationForm.get('duree').setValue(queryParams?.duree ?? this.simulationFormDefaults.duree);
+        this.simulationForm.get('duree').setValue(queryParams?.duree * 12 ?? this.simulationFormDefaults.duree);
       });
 
     // Subscribe to media changes

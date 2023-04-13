@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
 import { SimulationDetaillee } from '../simulation-detaillee/simulation-detaillee.types';
@@ -25,7 +25,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   demandeForm: UntypedFormGroup;
-  simulationResultat: SimulationDetaillee;
+  // simulationResultat: SimulationDetaillee;
   recapitulatif : any;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
@@ -33,16 +33,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   documents: any;
   pieceChanged: Subject<Piece> = new Subject<Piece>();
   pieces: Piece[] = [];
-  // = [
-  //   { id: 1, libelle: "Pièce jointe 1", parent: null, fileName: null, file: null },
-  //   { id: 2, libelle: "Pièce jointe 2", parent: null, fileName: null, file: null },
-  //   { id: 3, libelle: "Pièce jointe 3", parent: null, fileName: null, file: null },
-  //   { id: 4, libelle: "Pièce jointe 4", parent: null, fileName: null, file: null },
-  //   { id: 5, libelle: "Pièce jointe 5", parent: null, fileName: null, file: null },
-  //   { id: 6, libelle: "Pièce jointe 6", parent: null, fileName: null, file: null },
-  //   { id: 7, libelle: "Pièce jointe 7", parent: null, fileName: null, file: null },
-  //   { id: 8, libelle: "Pièce jointe 8", parent: null, fileName: null, file: null },
-  // ];
 
   /**
    * Constructor
@@ -57,16 +47,31 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   ) {
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
     if (data) {
-      this.simulationResultat = data;
+      this.recapitulatif = data;
     } else {
       this.recapitulatif = {
         "nom": "test1",
-        "id": 674266,
+        "prenom": "test1",
+        "telephone": "0522111111",
+        "email": "test1@test1.com",
+        "dateNaissance": "01/01/2000",
+        "nationalite": "MA",
+        "residantMaroc": "true",
+        "categorieSocioProfessionnelle": "SALA",
+        "nomEmployeur": "Employeur",
+        "salaire": 500000,
+        "autresRevenus": 200000,
+        "creditsEnCours": 3000,
         "montant": 500000,
+        "objetFinancement": "ACQU",
         "montantProposition": 500000,
         "duree": 240,
+        "nomPromoteur": "Promoteur",
+        "statutProjet": "active",
+        "typeTaux": "FIXE",
+        "id": 674335,
         "statut": "NPRO",
-        "dossierId": 803618,
+        "dossierId": 803757,
         "dossierMontant": 700000,
         "dossierDuree": 240,
         "mensualite": 5201.31,
@@ -85,33 +90,33 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         "totalFrais": 34200,
         "nbreAnnee": 20,
         "nbreMois": 0
-      }
-      this.simulationResultat = {
-        "id": 674266,
-        "montant": 500000,
-        "montantProposition": 500000,
-        "duree": 240,
-        "statut": "NPRO",
-        "dossierId": 803618,
-        "dossierMontant": 700000,
-        "dossierDuree": 240,
-        "mensualite": 5201.31,
-        "tauxNominal": 5.45,
-        "tauxEffectifGlobal": 6.457,
-        "tauxParticipation": 0,
-        "assurances": 39231.82,
-        "totalInterets": 509082.58,
-        "coutTotal": 587546.22,
-        "fraisDossier": 770,
-        "expertiseImmobiliere": 0,
-        "droitsEnregistrement": 20000,
-        "conservationFonciere": 7700,
-        "honorairesNotaire": 5000,
-        "fraisDivers": 1500,
-        "totalFrais": 34200,
-        "nbreAnnee": 20,
-        "nbreMois": 0
-      }
+    }
+      // this.simulationResultat = {
+      //   "id": 674266,
+      //   "montant": 500000,
+      //   "montantProposition": 500000,
+      //   "duree": 240,
+      //   "statut": "NPRO",
+      //   "dossierId": 803618,
+      //   "dossierMontant": 700000,
+      //   "dossierDuree": 240,
+      //   "mensualite": 5201.31,
+      //   "tauxNominal": 5.45,
+      //   "tauxEffectifGlobal": 6.457,
+      //   "tauxParticipation": 0,
+      //   "assurances": 39231.82,
+      //   "totalInterets": 509082.58,
+      //   "coutTotal": 587546.22,
+      //   "fraisDossier": 770,
+      //   "expertiseImmobiliere": 0,
+      //   "droitsEnregistrement": 20000,
+      //   "conservationFonciere": 7700,
+      //   "honorairesNotaire": 5000,
+      //   "fraisDivers": 1500,
+      //   "totalFrais": 34200,
+      //   "nbreAnnee": 20,
+      //   "nbreMois": 0
+      // }
     }
   }
 
@@ -169,13 +174,13 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Open the dialog
+   * Open agence dialog
    */
   openChangerAgenceDialog(): void {
     this._matDialog.open(ChangerAgenceComponent, {
       autoFocus: false,
       data: {
-        simulationId: this.simulationResultat.id
+        simulationId: this.recapitulatif.id
       }
     });
   }
@@ -186,7 +191,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   openTableauAmortissement(): void {
     this.drawerOpened = true;
 
-    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
+    this._tableauAmortissementService.getTableauAmortissement(this.recapitulatif.dossierId).subscribe();
 
     // Mark for check
     this._changeDetectorRef.markForCheck();

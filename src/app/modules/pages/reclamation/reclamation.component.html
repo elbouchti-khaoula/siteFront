@@ -147,43 +147,45 @@
                     </mat-form-field>
 
                     <ng-container *ngIf="(piecesByMotif$ | async) as pieces">
-                        <div class="flex flex-col col-span-2 mb-3 border border-gray-300 shadow-sm rounded-md p-3">
-                            <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
-                                <div class="flex flex-row items-center justify-between">
-                                    <span class="font-medium w-44">
-                                        {{piece.libelle}} :
-                                    </span>
-                                    <span class="text-sm text-primary">
-                                        {{piece.fileName}}
-                                    </span>
-                                    <!-- file -->
-                                    <div>
-                                        <input
-                                            id="{{ 'file-input' + i }}"
-                                            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                            type="file"
-                                            [multiple]="false"
-                                            [accept]="'image/jpeg, image/png'"
-                                            (change)="uploadPiece(piece, $event.target.files)"
-                                            #fileInput>
-                                        <button
-                                            *ngIf="piece.file"
-                                            class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                            mat-icon-button
-                                            (click)="deletePiece(piece, i)">
-                                            <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
-                                        </button>
-                                        <label
-                                            *ngIf="!piece.file"
-                                            class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                            for="{{ 'file-input' + i }}"
-                                            matRipple>
-                                            <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                        </label>
+                        <ng-container *ngIf="pieces.length > 0">
+                            <div class="flex flex-col col-span-2 mb-3 border border-gray-300 shadow-sm rounded-md p-3">
+                                <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
+                                    <div class="flex flex-row items-center justify-between">
+                                        <span class="font-medium w-44">
+                                            {{piece.libelle}} :
+                                        </span>
+                                        <span class="text-sm text-primary">
+                                            {{piece.fileName}}
+                                        </span>
+                                        <!-- file -->
+                                        <div>
+                                            <input
+                                                id="{{ 'file-input' + i }}"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                                type="file"
+                                                [multiple]="false"
+                                                [accept]="'image/jpeg, image/png'"
+                                                (change)="uploadPiece(piece, $event.target.files)"
+                                                #fileInput>
+                                            <button
+                                                *ngIf="piece.file"
+                                                class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                mat-icon-button
+                                                (click)="deletePiece(piece, i)">
+                                                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                                            </button>
+                                            <label
+                                                *ngIf="!piece.file"
+                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                for="{{ 'file-input' + i }}"
+                                                matRipple>
+                                                <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                            </ng-container>
-                        </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
                     </ng-container>
 
                     <!-- Message -->

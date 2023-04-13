@@ -60,9 +60,9 @@ export class SimulationDetailleeService {
                                     const params = new HttpParams()
                                         .set('montant', critere.montantProposition);
 
-                                    return this._httpClient.get('api/repositories/frais-annexes', {params: params})
+                                    return this._httpClient.get('api/repositories/frais-annexes', { params: params })
                                         .pipe(
-                                            map((response2 : any) => {
+                                            map((response2: any) => {
 
                                                 let convert = this.convertToSimulation(response1, response2);
 
@@ -110,6 +110,37 @@ export class SimulationDetailleeService {
                 totalFrais          : response2.total
             }
         })
+    }
+
+    /**
+     * Abandonner une simulation
+     *
+     * @param queryParams
+     */
+    abandonner(projectId: number): Observable<SimulationDetaillee> {
+
+        return this._projectAuthService.getToken()
+            .pipe(
+                switchMap((token: string) => {
+
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.patch(`api/projects/${projectId}`, {codeStatut : "ANNU"}, { headers: headers })
+                            .pipe(
+                                map((updatedProject: any) => {
+                                    
+                                    // Return the updated tag
+                                    return updatedProject;
+                                })
+                            );
+                    }
+                    return EMPTY;
+                }));
     }
 
 }
