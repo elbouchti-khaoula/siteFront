@@ -4,7 +4,12 @@ import { EspaceConnectedComponent } from './espace-connected.component';
 import { EspaceConnectedRoutes } from './espace-connected.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { VosAvantagesModule } from '../landing/nos-avantages/vos-avantages.module';
+import { VosAvantagesModule } from '../../pages/landing/nos-avantages/vos-avantages.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 
 @NgModule({
     declarations: [
@@ -14,7 +19,12 @@ import { VosAvantagesModule } from '../landing/nos-avantages/vos-avantages.modul
         RouterModule.forChild(EspaceConnectedRoutes),
         SharedModule,
         VosAvantagesModule,
-        MatIconModule
+        MatIconModule,
+        MatMenuModule,
+        ProjetsFilterModule,
+        MatCardModule,
+        MatExpansionModule,
+       MatButtonModule
     ]
 })
 export class EspaceConnectedModule
