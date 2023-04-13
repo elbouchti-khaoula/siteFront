@@ -134,6 +134,11 @@ export const appRoutes: Route[] = [
             },
 
             {
+                path: 'espace-connected-client',
+                loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
+            },
+
+            {
                 path: 'nous-contacter',
                 loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
             },
