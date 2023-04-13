@@ -83,6 +83,14 @@ export class AuthSignInComponent implements OnInit
                     // routing file and we don't have to touch here.
                     const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
 
+                    localStorage.setItem('email', this.signInForm.value.email);
+                    if(this.signInForm.value.email == 'a.kadmiri@wafaimmobilier.co.ma'){
+                        localStorage.setItem('statut', 'connecte');
+                    }
+                    else{
+                        localStorage.setItem('statut', 'abonne');
+                    }
+
                     // Navigate to the redirect url
                     this._router.navigateByUrl(redirectURL);
 
