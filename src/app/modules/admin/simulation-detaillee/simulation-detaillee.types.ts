@@ -33,6 +33,8 @@ export interface SimulationDetaillee {
     montant?: number;
     montantProposition: number;
     duree: number;
+    nbreAnnee?: number;
+    nbreMois?: number;
     statut?: string;
 
     dossierId?: number;

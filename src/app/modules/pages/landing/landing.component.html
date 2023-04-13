@@ -98,13 +98,13 @@
         </header>
 
         <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
-        <div class="md:hidden relative w-full mx-auto px-6 py-5 -mt-20 sm:max-w-md">
+        <div class="md:hidden relative w-full mx-auto p-5 -mt-20 sm:max-w-md">
             
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
-            <div class="grid grid-cols-4 gap-2 mt-7 sm:py-3">
+            <div class="grid grid-cols-5 gap-2 mt-7 sm:py-3">
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['/projets-search']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
                         </mat-icon>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['./']"
                         (click)="scrollToSimulation()">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
@@ -127,7 +127,17 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                        [routerLink]="['./']">
+                        <img class="w-10" src="assets/images/logo/logo-awb.jpg">
+                    </span>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                        <span>J'ouvre</span>
+                        <span>mon compte</span>
+                    </div>
+                </div>
+                <div class="carre flex flex-col items-center">
+                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
                         [routerLink]="['./']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
                         </mat-icon>
@@ -138,7 +148,7 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['./']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
                         </mat-icon>
@@ -157,12 +167,12 @@
 
             <div class="w-full max-w-400 mx-auto max-md:flex max-md:flex-col-reverse md:grid grid-cols-5">
                 <!-- recherche par ville -->
-                <div class="max-md:w-full max-sm:px-6 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pr-7">
+                <div class="max-md:w-full max-sm:px-5 sm:max-md:px-16 max-md:py-10 md:col-span-3 md:pr-7">
                     <recherche-ville [isScreenSmall]="isScreenSmall"></recherche-ville>
                 </div>
 
                 <!-- simulation -->
-                <div class="max-md:w-full max-sm:px-6 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-7"
+                <div class="max-md:w-full max-sm:px-5 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-7"
                     [ngClass]="{'bg-simul': isScreenSmall}">
                     <div class="p-5 sm:p-10 shadow-lg rounded-2xl bg-card">
                         <simulation [isScreenSmall]="isScreenSmall"></simulation>

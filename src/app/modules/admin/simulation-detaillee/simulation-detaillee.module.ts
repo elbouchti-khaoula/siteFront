@@ -8,17 +8,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatBadgeModule } from '@angular/material/badge';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import * as moment from 'moment';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
+import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 
 @NgModule({
     declarations: [
@@ -33,13 +32,13 @@ import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
         MatInputModule,
         MatSelectModule,
         MatCheckboxModule,
-        MatMenuModule,
         MatRadioModule,
         FuseCardModule,
         MatStepperModule,
-        MatBadgeModule,
         MatDatepickerModule,
-        MatMomentDateModule
+        MatMomentDateModule,
+        MatSidenavModule,
+        TableauAmortissementModule
     ],
     providers   : [
         {

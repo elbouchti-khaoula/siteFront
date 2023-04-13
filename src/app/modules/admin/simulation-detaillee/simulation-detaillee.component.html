@@ -2,9 +2,12 @@
 <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[30vh] simul-det-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[30vh] simul-det-bg-header">
         <div class="w-full max-w-400">
             <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
+                Bienvenur Mr LAMDA Beta
+            </div>
+            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
                 Prenez quelques minutes pour décrire votre projet
             </div>
 
@@ -14,7 +17,7 @@
         </div>
     </header>
 
-    <div class="px-6 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
+    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
 
@@ -40,23 +43,32 @@
             </div> -->
 
             <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-12 h-24 shadow-md">
-                <div class="relative w-68 h-full flex items-center">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">01</div>
-                    <span class="z-20 text-lg font-semibold ml-12 mt-5">Je simule mon crédit</span>
+                <div class="relative w-68 h-full flex items-center justify-center overflow-hidden">
+                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">01</div> -->
+                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">01</div> -->
+                    <div class="absolute bottom-0 right-0 w-18 h-18 -m-5">
+                        <mat-icon
+                            class="icon-size-18 opacity-25 text-green-500 dark:text-green-400"
+                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                    </div>
+                    <span class="text-lg font-semibold">Je simule mon crédit</span>
                 </div>
-                <div class="relative w-88 h-full flex items-center bg-primary">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">02</div>
-                    <span class="text-lg font-semibold text-white ml-12 mt-5">Je personnalise ma simulation</span>
+                <div class="w-88 h-full flex items-center justify-center bg-primary">
+                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">02</div> -->
+                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">02</div> -->
+                    <span class="text-lg font-semibold text-white">Je personnalise ma simulation</span>
                 </div>
-                <div class="relative w-72 h-full flex items-center">
-                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div>
-                    <span class="text-lg font-semibold ml-12 mt-5">Je demande mon crédit</span>
+                <div class="w-72 h-full flex items-center justify-center">
+                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-20 text-white">03</div> -->
+                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div> -->
+                    <!-- <span class="z-20 text-lg font-semibold ml-12 mt-2">Je demande mon crédit</span> -->
+                    <span class="text-lg font-semibold">Je demande mon crédit</span>
                 </div>
             </fuse-card>
 
-            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-14">
 
-                <form class="bg-card shadow rounded-2xl overflow-hidden ring-2 ring-current"
+                <form class="ring-1 ring-current bg-card rounded-md shadow overflow-hidden"
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
 
@@ -68,12 +80,24 @@
                         
                         <!-- <ng-template matStepperIcon="edit" let-index="index">{{index + 1}}</ng-template>
                         <ng-template matStepperIcon="done" let-index="index">{{index + 1}}</ng-template> -->
-
+                        <!-- <ng-template matStepperIcon="done">
+                            <mat-icon>account_circle</mat-icon>
+                        </ng-template>
+                        <ng-template matStepperIcon="active">
+                            <mat-icon>account_circle</mat-icon>
+                        </ng-template> -->
                         <ng-template matStepperIcon="edit">
-                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:check-circle'">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:check'">
                             </mat-icon>
                         </ng-template>
-
+                        <!-- <ng-template matStepperIcon="number" let-index="index">
+                            <span *ngIf="simulationStepperForm.get(tab[index]).pristine || simulationStepperForm.get(tab[index]).invalid">{{index + 1}}</span>
+                            <mat-icon 
+                                *ngIf="!simulationStepperForm.get(tab[index]).pristine && simulationStepperForm.get(tab[index]).valid"
+                                [svgIcon]="'heroicons_outline:check'">
+                            </mat-icon>
+                        </ng-template> -->
+                        
                         <mat-step 
                             [formGroupName]="'step1'"
                             [stepControl]="simulationStepperForm.get('step1')"
@@ -152,48 +176,46 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Due date -->
-                                <div class="w-full">
-                                    <div class="text-sm font-semibold">Date de naissance *</div>
-                                    <div class="relative flex items-center mt-1.5 md:mt-2 px-4 py-2 md:py-2.5 rounded-full cursor-pointer"
-                                        [ngClass]="{'text-gray-500 bg-gray-300 dark:text-gray-300 dark:bg-gray-700': !simulationStepperForm.get('step1').get('dateNaissance').value,
-                                                    'text-green-800 bg-green-200 dark:text-green-100 dark:bg-green-500': simulationStepperForm.get('step1').get('dateNaissance').value && !isOverdue(),
-                                                    'text-red-800 bg-red-200 dark:text-red-100 dark:bg-red-500': simulationStepperForm.get('step1').get('dateNaissance').value && isOverdue()}"
-                                        (click)="dateNaissancePicker.open()">
-                                        
-                                        <mat-icon class="icon-size-5 text-current"
-                                            [svgIcon]="'heroicons_solid:calendar'"></mat-icon>
-                                        <span class="ml-2 text-md font-medium">
-                                            <ng-container *ngIf="simulationStepperForm.get('step1').get('dateNaissance').value">{{simulationStepperForm.get('step1').get('dateNaissance').value | date:'longDate'}}</ng-container>
-                                            <ng-container *ngIf="!simulationStepperForm.get('step1').get('dateNaissance').value">Not set</ng-container>
-                                        </span>
-                                        <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense invisible absolute inset-0 -mt-2.5 opacity-0 pointer-events-none">
-                                            <input matInput [formControlName]="'dateNaissance'"
-                                                [matDatepicker]="dateNaissancePicker">
-                                            <mat-datepicker #dateNaissancePicker>
-                                                <mat-datepicker-actions>
-                                                    <button 
-                                                        mat-button
-                                                        (click)="simulationStepperForm.get('step1').get('dateNaissance').setValue(null)"
-                                                        matDatepickerCancel>
-                                                        Clear
-                                                    </button>
-                                                    <button 
-                                                        class=""
-                                                        mat-flat-button
-                                                        [color]="'primary'"
-                                                        matDatepickerApply>
-                                                        Select
-                                                    </button>
-                                                </mat-datepicker-actions>
-                                            </mat-datepicker>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
+                                <!-- Birthday -->
+                                <mat-form-field class="w-full"
+                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-label>Date de naissance</mat-label>
+                                    <mat-icon
+                                        matPrefix
+                                        class="hidden sm:flex icon-size-5"
+                                        [svgIcon]="'heroicons_solid:cake'"></mat-icon>
+                                    <input
+                                        matInput
+                                        [matDatepicker]="dateNaissancePicker"
+                                        [formControlName]="'dateNaissance'"
+                                        [placeholder]="'Date de naissance'">
+                                    <mat-datepicker-toggle
+                                        matSuffix
+                                        [for]="dateNaissancePicker">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #dateNaissancePicker>
+                                        <mat-datepicker-actions>
+                                            <button 
+                                                mat-button
+                                                (click)="simulationStepperForm.get('step1').get('dateNaissance').setValue(null)"
+                                                matDatepickerCancel>
+                                                Clear
+                                            </button>
+                                            <button 
+                                                class=""
+                                                mat-flat-button
+                                                [color]="'primary'"
+                                                matDatepickerApply>
+                                                Select
+                                            </button>
+                                        </mat-datepicker-actions>
+                                    </mat-datepicker>
+                                </mat-form-field>
 
                                 <!-- Résident -->
                                 <mat-radio-group class="flex flex-col w-full"
-                                    [color]="'primary'" [formControlName]="'residantMaroc'">
+                                    [color]="'primary'"
+                                    [formControlName]="'residantMaroc'">
                                     <mat-label class="text-sm font-semibold">Résident au Maroc ? *</mat-label>
                                     <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'true'">
@@ -211,7 +233,8 @@
 
                                 <!-- Agreements -->
                                 <mat-checkbox class="col-span-2 text-sm mt-7 font-medium"
-                                    [color]="'primary'" [formControlName]="'agreements'">
+                                    [color]="'primary'"
+                                    [formControlName]="'agreements'">
                                     <span>Je déclare avoir lu et accepter les </span>
                                     <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">conditions
                                         générales
@@ -387,8 +410,8 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'duree'">
-                                    <mat-label class="text-sm font-semibold">Durée</mat-label>
-                                    <span matSuffix>ans</span>
+                                    <mat-label class="text-sm font-semibold">Durée (en mois)</mat-label>
+                                    <span matSuffix>mois</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('duree').hasError('required')">
                                         Durée obligatoire
                                     </mat-error>
@@ -447,15 +470,15 @@
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
                                 <button
-                                    class="px-8 mr-2 bg-default"
+                                    class="md:px-8 mr-2 bg-default"
                                     mat-stroked-button
                                     [color]="'primary'"
                                     type="reset"
-                                    (click)="reset()">
-                                    Nouvelle simulation
+                                    (click)="newSimulation()">
+                                    Refaire simulation
                                 </button>
                                 <button
-                                    class="px-8 mr-2"
+                                    class="md:px-8 mr-2"
                                     mat-flat-button
                                     [color]="'accent'"
                                     type="button"
@@ -463,7 +486,7 @@
                                     Précédent
                                 </button>
                                 <button
-                                    class="px-8"
+                                    class="md:px-8"
                                     [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid}"
                                     mat-flat-button
                                     [color]="'primary'"
@@ -477,7 +500,7 @@
 
                     </mat-horizontal-stepper>
 
-                    <div class="flex flex-row space-x-2 mx-6 mb-3 py-2 px-4 rounded-xl overflow-hidden shadow bg-amber-100">
+                    <div class="flex flex-row space-x-2 mx-6 mb-3 py-2 px-4 rounded-md shadow overflow-hidden bg-amber-100">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
                         <span class="text-xs font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et
@@ -487,384 +510,402 @@
                     </div>
                 </form>
 
-                <!-- Resultat -->
-                <fuse-card #resultat
+                <!-- Résultat -->
+                <mat-drawer-container
                     *ngIf="isVisible"
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 500}}"
-                    class="md:w-3/5 flex flex-col px-6 pb-8 pt-3 bg-default ring-2 ring-primary overflow-visible">
+                    class="bg-transparent md:w-3/5 rounded-md md:-mt-5"
+                    [ngClass]="{'h-[86vh]': isScreenSmall && drawerOpened}"
+                    [hasBackdrop]="true"
+                    #drawerContainerResult>
+
+                    <mat-drawer
+                        class="w-full sm:w-[95%] lg:border-r lg:shadow-none dark:bg-gray-900"
+                        [autoFocus]="false"
+                        [(opened)]="drawerOpened"
+                        #drawerTableauSD>
+                        <tableau-amortissement [dossierId]="simulationResultat.dossierId" [drawer]="drawerTableauSD"></tableau-amortissement>
+                    </mat-drawer>
+
+                    <mat-drawer-content class="px-1 pt-5 pb-1">
+
+                        <fuse-card #resultat
+                            class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-default rounded-md shadow overflow-visible">
+                            
+                            <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
+                                <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
+                                    Votre simulation
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col">
+                                <!-- bouton tableau amortissement -->
+                                <div class="ml-auto mt-3 mb-5">
+                                    <button
+                                        mat-flat-button
+                                        class="fuse-mat-button-small"
+                                        type="button" 
+                                        [color]="'accent'"
+                                        (click)="openTableauAmortissement()">
+                                        Tableau d'amortissement
+                                    </button>
+                                </div>
+                                
+                                <div class="flex flex-col md:flex-row max-md:space-y-10 md:space-x-4">
+
+                                    <!-- mensualité -->
+                                    <div class="md:w-2/3">
+                                        <!-- header -->
+                                        <div class="min-h-36 flex flex-col py-3 px-5 shadow rounded-md bg-primary-500 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+
+                                            <div class="flex flex-col md:flex-row md:items-end md:justify-between md:space-x-3 text-white">
+                                                <div class="flex flex-col md:w-[65%] md:border-r md:border-white md:pr-5">
+                                                    <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualités TTC</div>
+
+                                                    <div class="flex items-baseline whitespace-nowrap ml-auto mt-2">
+                                                        <div class="text-4xl font-bold leading-tight tracking-tight" #mensualiteId>
+                                                            {{simulationResultat.mensualite | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-col md:items-center md:w-[35%]">
+                                                    <div class="flex flex-row md:flex-col max-md:items-baseline max-md:space-x-3">
+                                                        <div class="text-lg md:text-xl font-semibold leading-none">Durée</div>
+                                                        <div class="flex flex-col md:flex-row mt-2">
+                                                            <div class="flex flex-row items-baseline">
+                                                                <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreAnneeId>
+                                                                    {{simulationResultat.nbreAnnee}}
+                                                                </div>
+                                                                <div class="ml-2 md:text-xl leading-none">ans</div>
+                                                            </div>
+                                                            <div class="flex flex-row items-baseline md:ml-2"
+                                                                [ngClass]="{'hidden' : simulationResultat.nbreMois === 0}">
+                                                                <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreMoisId>
+                                                                    {{simulationResultat.nbreMois}}
+                                                                </div>
+                                                                <div class="ml-2 md:text-xl leading-none">mois</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="w-8 h-1 rounded-2xl bg-second-500 mt-2"></div>
+
+                                            <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
+                                                Cette échéance n'inclut pas les frais d'assurance
+                                            </div>
+                                        </div>
+
+                                        <!-- details -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-7">
+                                            
+                                            <!-- Montant -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Montant crédit demandé
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #montantId>
+                                                            {{simulationResultat.montant | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Total des intérêts -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Total des intérêts
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #totalInteretsId>
+                                                            {{simulationResultat.totalInterets | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Coût total du crédit -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Coût total du crédit
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #coutTotalId>
+                                                            {{simulationResultat.coutTotal | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Assurances -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
                     
-                    <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
-                        <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
-                            Votre simulation
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <!-- bouton print -->
-                        <div class="ml-auto mb-3">
-                            <button class="bg-card" mat-icon-button [matMenuTriggerFor]="simulationMenu">
-                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'">
-                                </mat-icon>
-                            </button>
-                            <mat-menu #simulationMenu="matMenu">
-                                <button mat-menu-item>
-                                    <span class="flex items-center">
-                                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:printer'">
-                                        </mat-icon>
-                                        <span>Print simulation</span>
-                                    </span>
-                                </button>
-                                <button mat-menu-item>
-                                    <span class="flex items-center">
-                                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:mail'">
-                                        </mat-icon>
-                                        <span>Email simulation</span>
-                                    </span>
-                                </button>
-                            </mat-menu>
-                        </div>
-                        
-                        <div class="flex flex-col md:flex-row max-md:space-y-10 md:space-x-4">
-
-                            <!-- mensualité -->
-                            <div class="md:w-2/3">
-                                <!-- header -->
-                                <div class="min-h-36 flex flex-col py-3 px-5 shadow-md rounded-2xl bg-primary-500 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                    <div class="flex flex-row items-center md:items-end justify-between space-x-3 text-white">
-                                        <div class="flex flex-col w-3/5">
-                                            <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualités TTC</div>
-
-                                            <div class="flex items-baseline whitespace-nowrap md:ml-auto mt-2">
-                                                <div class="text-4xl font-bold leading-tight tracking-tight" #mensualiteId>
-                                                    {{simulationResultat.mensualite | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 md:text-xl leading-none">Dhs/Mois</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex flex-col w-fit">
-                                            <div class="text-lg md:text-xl font-semibold leading-none">Durée</div>
-                                            <div class="flex flex-col md:flex-row mt-2">
-                                                <div class="flex flex-row items-baseline">
-                                                    <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #dureeId>
-                                                        {{simulationResultat.duree}}
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Assurances
                                                     </div>
-                                                    <div class="ml-2 md:text-xl leading-none">ans</div>
-                                                </div>
-                                                <div class="flex flex-row items-baseline md:ml-2">
-                                                    <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreMoisId>
-                                                        {{simulationResultat.duree * 12}}
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #assurancesId>
+                                                            {{simulationResultat.totalInterets | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
                                                     </div>
-                                                    <div class="ml-2 md:text-xl leading-none">mois</div>
                                                 </div>
                                             </div>
+                    
+                                            <!-- Taux de participation -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Taux de participation
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #tauxParticipationId>
+                                                            {{simulationResultat.tauxParticipation | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <!-- TEG -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        TEG
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #tauxEffectifGlobalId>
+                                                            {{simulationResultat.tauxEffectifGlobal | number:'1.3-3'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Expertise immobilière -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-semibold leading-none text-secondary">
+                                                        Expertise immobilière
+                                                    </div>
+                                                    <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
+                                                        {{simulationResultat.expertiseImmobiliere}}
+                                                    </div> -->
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight"
+                                                            #expertiseImmobiliereId [ngClass]="{'text-green-600 ': !estExpImmoNum}">
+                                                            {{simulationResultat.expertiseImmobiliere | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <!-- Frais de dossier -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <span class="text-sm font-semibold leading-none text-secondary">
+                                                        Frais de dossier
+                                                    </span>
+                                                    <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
+                                                        {{simulationResultat.fraisDossier}}
+                                                    </div> -->
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDossierId
+                                                            [ngClass]="{'text-green-600 ': !estFraisDossNum}">
+                                                            {{simulationResultat.fraisDossier | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                    <div class="w-8 h-1 rounded-2xl bg-second-500 mt-2"></div>
+                                    <!-- frais annexes -->
+                                    <div class="w-full md:w-1/3">
 
-                                    <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
-                                        Cette échéance n'inclut pas les frais d'assurance
-                                    </div>
-                                </div>
+                                        <!-- header -->
+                                        <div class="min-h-36 flex flex-col py-3 px-5 rounded-md shadow bg-primary-150 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
 
-                                <!-- details -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-7">
-                                    
-                                    <!-- Montant -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Montant crédit demandé
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #montantId>
-                                                    {{simulationResultat.montant | number:'1.2-2'}}
+                                            <div class="flex flex-col text-primary-600">
+                                                <div class="text-2xl font-semibold leading-tight tracking-tight">
+                                                    Frais annexes
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
+
+                                                <div class="flex items-baseline whitespace-nowrap md:ml-auto mt-2">
+                                                    <div class="text-4xl font-bold leading-tight tracking-tight" #totalFraisId>
+                                                        {{simulationResultat.totalFrais | number:'1.2-2'}}
+                                                    </div>
+                                                    <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="w-8 h-1 rounded-2xl bg-amber-600 mt-2"></div>
+
+                                            <div class="text-sm font-semibold leading-none tracking-tight text-amber-600 mt-2">
+                                                Ces montants sont à titre indicatifs et ne sont aucunement contractuels
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Total des intérêts -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <!-- details -->
+                                        <div class="grid grid-cols-1 gap-y-5 mt-7">
 
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Total des intérêts
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #totalInteretsId>
-                                                    {{simulationResultat.totalInterets | number:'1.2-2'}}
+                                            <!-- Enregistrement hypothécaire -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-medium leading-none text-secondary">
+                                                        Enregistrement hypothécaire
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #droitsEnregistrementId>
+                                                            {{simulationResultat.droitsEnregistrement | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
                                             </div>
-                                        </div>
-                                    </div>
+                    
+                                            <!-- Conservation foncière -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-medium leading-none text-secondary">
+                                                        Conservation foncière
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #conservationFonciereId>
+                                                            {{simulationResultat.conservationFonciere | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <!-- Frais de dossier notaire -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-medium leading-none text-secondary">
+                                                        Frais de dossier notaire
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDiversId>
+                                                            {{simulationResultat.fraisDivers | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <!-- Honoraires de notaire -->
+                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                                <!-- Border -->
+                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                    
+                                                <!-- Content -->
+                                                <div class="flex flex-col">
+                                                    <div class="text-sm font-medium leading-none text-secondary">
+                                                        Honoraires de notaire
+                                                    </div>
+                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #honorairesNotaireId>
+                                                            {{simulationResultat.honorairesNotaire | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <!-- Coût total du crédit -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Coût total du crédit
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #coutTotalId>
-                                                    {{simulationResultat.coutTotal | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Assurances -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Assurances
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #assurancesId>
-                                                    {{simulationResultat.totalInterets | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- Taux de participation -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Taux de participation
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #tauxParticipationId>
-                                                    {{simulationResultat.tauxParticipation | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- TEG -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                TEG
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                    {{simulationResultat.tauxEffectifGlobal | number:'1.3-3'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Expertise immobilière -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-semibold leading-none text-secondary">
-                                                Expertise immobilière
-                                            </div>
-                                            <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
-                                                {{simulationResultat.expertiseImmobiliere}}
-                                            </div> -->
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight"
-                                                    #expertiseImmobiliereId [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                    {{simulationResultat.expertiseImmobiliere | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- Frais de dossier -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <span class="text-sm font-semibold leading-none text-secondary">
-                                                Frais de dossier
-                                            </span>
-                                            <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
-                                                {{simulationResultat.fraisDossier}}
-                                            </div> -->
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDossierId
-                                                    [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                    {{simulationResultat.fraisDossier | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
-                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
 
-                            <!-- frais annexes -->
-                            <div class="w-full md:w-1/3">
-
-                                <!-- header -->
-                                <div class="min-h-36 flex flex-col py-3 px-5 shadow-md rounded-2xl bg-primary-150 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                    <div class="flex flex-col text-primary-600">
-                                        <div class="text-2xl font-semibold leading-tight tracking-tight">
-                                            Frais annexes
-                                        </div>
-
-                                        <div class="flex items-baseline whitespace-nowrap md:ml-auto mt-2">
-                                            <div class="text-4xl font-bold leading-tight tracking-tight" #totalFraisId>
-                                                {{simulationResultat.totalFrais | number:'1.2-2'}}
-                                            </div>
-                                            <div class="ml-2 text-xl leading-none">Dhs</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="w-8 h-1 rounded-2xl bg-amber-600 mt-2"></div>
-
-                                    <div class="text-sm font-semibold leading-none tracking-tight text-amber-600 mt-2">
-                                        Ces montants sont à titre indicatifs et ne sont aucunement contractuels
-                                    </div>
-                                </div>
-
-                                <!-- details -->
-                                <div class="grid grid-cols-1 gap-y-5 mt-7">
-
-                                    <!-- Enregistrement hypothécaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-medium leading-none text-secondary">
-                                                Enregistrement hypothécaire
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #droitsEnregistrementId>
-                                                    {{simulationResultat.droitsEnregistrement | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- Conservation foncière -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-medium leading-none text-secondary">
-                                                Conservation foncière
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #conservationFonciereId>
-                                                    {{simulationResultat.conservationFonciere | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- Frais de dossier notaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-medium leading-none text-secondary">
-                                                Frais de dossier notaire
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDiversId>
-                                                    {{simulationResultat.fraisDivers | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <!-- Honoraires de notaire -->
-                                    <div class="relative p-3 bg-card shadow-md overflow-hidden rounded-md">
-                                        <!-- Border -->
-                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-            
-                                        <!-- Content -->
-                                        <div class="flex flex-col">
-                                            <div class="text-sm font-medium leading-none text-secondary">
-                                                Honoraires de notaire
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-medium text-3xl leading-tight tracking-tight" #honorairesNotaireId>
-                                                    {{simulationResultat.honorairesNotaire | number:'1.2-2'}}
-                                                </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                            <!-- Actions -->
+                            <div class="flex flex-col md:flex-row space-y-2 items-center justify-center mt-5">
+                                <button
+                                    class="max-md:w-full bg-gray-200"
+                                    mat-stroked-button
+                                    type="button" 
+                                    [routerLink]="['/espace-connected']">
+                                    Poursuivre plus tard
+                                </button>
+                                <button 
+                                    class="max-md:w-full md:ml-2 bg-gray-200"
+                                    mat-stroked-button
+                                    type="button"
+                                    [color]="'warn'">
+                                    J'abandonne ma simulation
+                                </button>
+                                <button 
+                                    class="max-md:w-full md:ml-2"
+                                    mat-flat-button
+                                    type="button"
+                                    [color]="'primary'"
+                                    (click)="navigateToDemandeCredit()">
+                                    Je demande un crédit
+                                </button>
                             </div>
 
-                        </div>
-                    </div>
+                        </fuse-card>
 
-                    <!-- Actions -->
-                    <div class="flex items-center justify-center mt-5">
-                        <button
-                            mat-flat-button
-                            type="button" 
-                            [color]="'primary'"
-                            [routerLink]="['/tableau-amortissement']">
-                            Tableau d'amortissement
-                        </button>
-                        <button 
-                            class="ml-2"
-                            mat-flat-button
-                            type="button"
-                            [color]="'primary'">
-                            Je demande un crédit
-                        </button>
-                    </div>
+                    </mat-drawer-content>
 
-                </fuse-card>
+                </mat-drawer-container>
 
             </div>
 

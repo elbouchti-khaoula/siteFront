@@ -3,6 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 
+
 @Component({
     selector        : 'nos-conventions',
     templateUrl     : './nos-conventions.component.html',
@@ -54,5 +55,52 @@ export class NosConventionsComponent implements OnInit, OnDestroy
     scrollToElement(el: HTMLElement) {
         el.scrollIntoView();
     }
+
+
+    isHovered = false;
+
+  onMouseEnter(): void {
+    this.isHovered = true;
+  }
+
+  onMouseLeave(): void {
+    this.isHovered = false;
+  }
+
+  hideImage = false;
+  toggleImage() {
+    this.hideImage = !this.hideImage;
+  }
+  
+  hideImage2 = false;
+  toggleImage2() {
+    this.hideImage2 = !this.hideImage2;
+  }
+
+  hideImage3 = false;
+  toggleImage3() {
+    this.hideImage3 = !this.hideImage3;
+  }
+
+  hideImage4 = false;
+  toggleImage4() {
+    this.hideImage4 = !this.hideImage4;
+  }
+
+  hideImage5 = false;
+  toggleImage5() {
+    this.hideImage5 = !this.hideImage5;
+  }
+
+  hideImage6 = false;
+  toggleImage6() {
+    this.hideImage6 = !this.hideImage6;
+  }
+
+  hideImage7 = false;
+  toggleImage7() {
+    this.hideImage7 = !this.hideImage7;
+  }
+ 
 
 }

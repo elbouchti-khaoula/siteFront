@@ -17,7 +17,6 @@ export class AgencesResultComponent implements OnInit, OnDestroy {
     agences$: Observable<Agence[]>;
     agences: Agence[];
     agencesCount: number = 0;
-    filteredAgences: Agence[];
     selectedAgence: Agence;
 
     @ViewChild('agencesList', { read: CdkScrollable }) public agencesList: CdkScrollable;
@@ -49,7 +48,7 @@ export class AgencesResultComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((response: Agence[]) => {
 
-                this.agences = this.filteredAgences = response;
+                this.agences = response;
 
                 // Update the counts
                 this.agencesCount = response?.length;

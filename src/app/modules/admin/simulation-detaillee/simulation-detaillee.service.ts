@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, map, Observable, switchMap } from 'rxjs';
 import { CritereDetaillee, SimulationDetaillee } from './simulation-detaillee.types';
+import { ProjectAuthService } from 'app/core/projects-auth/projects-auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,10 @@ export class SimulationDetailleeService {
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient) {
+    constructor(
+        private _httpClient: HttpClient,
+        private _projectAuthService: ProjectAuthService,
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -28,41 +32,17 @@ export class SimulationDetailleeService {
         return this._simulation.asObservable();
     }
 
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get token from salesForce
-     *
-     */
-    private getKeyClockToken(): Observable<string> {
-        return this._httpClient.post('api/projects/authentification/getToken',
-            {
-                userName: "siteweb",
-                password: "w@afa2022"
-            }
-        ).pipe(
-            switchMap((response: any) => {
-
-                // Return a new observable with the response
-                return of(response.accesToken.toString());
-            })
-        );
-    }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
     /**
-     * Simulation personnalisée with given query
+     * Simulation détaillée with given query
      *
      * @param queryParams
      */
     simuler(critere: CritereDetaillee): Observable<SimulationDetaillee[]> {
 
-        return this.getKeyClockToken()
+        return this._projectAuthService.getToken()
             .pipe(
                 switchMap((token: string) => {
 
@@ -75,26 +55,23 @@ export class SimulationDetailleeService {
 
                         return this._httpClient.post('api/projects/simulation', critere, { headers: headers })
                             .pipe(
-                                map((response1: any[]) => {
+                                switchMap((response1: any[]) => {
 
-                                    console.log("+-+-+- response1 service", response1);
+                                    const params = new HttpParams()
+                                        .set('montant', critere.montantProposition);
 
-                                    let convert = this.convertToSimulation(response1);
+                                    return this._httpClient.get('api/repositories/frais-annexes', { params: params })
+                                        .pipe(
+                                            map((response2: any) => {
 
-                                    console.log("+-+-+- s", convert);
+                                                let convert = this.convertToSimulation(response1, response2);
 
-                                    this._simulation.next(convert);
+                                                this._simulation.next(convert);
 
-                                    return convert;
-                                    // return this._httpClient.post('api/repositories/frais-annexes', {params: { montant :  critere.montantProposition} })
-                                    //     .pipe(
-                                    //         tap((response2 : any) => {
+                                                return convert;
 
-                                    //             console.log("+-+-+- response2", response2);
-
-                                    //             this._simulation.next(this.convertToSimulation(response1, response2));
-                                    //         })
-                                    //     );
+                                            })
+                                        );
                                 })
                             );
                     }
@@ -102,9 +79,7 @@ export class SimulationDetailleeService {
                 }));
     }
 
-    convertToSimulation(response1: any[]
-        // , response2: any
-    ): SimulationDetaillee[] {
+    convertToSimulation(response1: any[], response2: any): SimulationDetaillee[] {
         return response1.map(e => {
             return {
                 id: e.id,
@@ -128,19 +103,44 @@ export class SimulationDetailleeService {
                 expertiseImmobiliere: 0,
 
                 // frais
-                // droitsEnregistrement: response2.droitsEnregistrement,
-                // conservationFonciere: response2.conservationFonciere,
-                // honorairesNotaire   : response2.honorairesNotaire,
-                // fraisDivers         : response2.fraisDivers,
-                // totalFrais          : response2.totalFrais
-
-                droitsEnregistrement: 1,
-                conservationFonciere: 2,
-                honorairesNotaire: 3,
-                fraisDivers: 4,
-                totalFrais: 10
+                droitsEnregistrement: response2.droitsEnregistrement,
+                conservationFonciere: response2.conservationFonciere,
+                honorairesNotaire   : response2.honorairesNotaire,
+                fraisDivers         : response2.fraisDivers,
+                totalFrais          : response2.total
             }
         })
+    }
+
+    /**
+     * Abandonner une simulation
+     *
+     * @param queryParams
+     */
+    abandonner(projectId: number): Observable<SimulationDetaillee> {
+
+        return this._projectAuthService.getToken()
+            .pipe(
+                switchMap((token: string) => {
+
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.patch(`api/projects/${projectId}`, {codeStatut : "ANNU"}, { headers: headers })
+                            .pipe(
+                                map((updatedProject: any) => {
+                                    
+                                    // Return the updated tag
+                                    return updatedProject;
+                                })
+                            );
+                    }
+                    return EMPTY;
+                }));
     }
 
 }

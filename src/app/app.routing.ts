@@ -62,14 +62,14 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {
-                path: 'simulation-detaillee',
-                loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-            },
-            {
-                path: 'tableau-amortissement',
-                loadChildren: () => import('app/modules/admin/tableau-amortissement/tableau-amortissement.module').then(m => m.TableauAmortissementModule),
-            },
+            // {
+            //     path: 'simulation-detaillee',
+            //     loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
+            // },
+            // {
+            //     path: 'demande-credit',
+            //     loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
+            // },
         ]
     },
 
@@ -98,6 +98,14 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children   : [
+            {
+                path: 'simulation-detaillee',
+                loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
+            },
+            {
+                path: 'demande-credit',
+                loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
+            },
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),

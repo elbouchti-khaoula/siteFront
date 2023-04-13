@@ -1,0 +1,28 @@
+.amortissement-grid {
+    
+    // screen xs
+    grid-template-columns: 48px auto 112px;
+
+    // screen sm
+    @media (min-width: 600px) {
+        grid-template-columns: 48px auto 112px 72px;
+    }
+
+    // screen md
+    @media (min-width: 960px) {
+        grid-template-columns: 112px auto 112px 112px 112px;
+    }
+
+    // screen lg
+    // @media (min-width: 1280px) {
+    //     grid-template-columns: 112px auto auto auto auto;
+    // }
+}
+
+
+// screen xs
+@media (max-width: 599px) {
+    .mat-paginator .mat-paginator-container {
+        padding: 8px 14px !important;
+    }
+}
