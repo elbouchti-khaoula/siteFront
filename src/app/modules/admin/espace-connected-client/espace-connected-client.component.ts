@@ -5,13 +5,13 @@ import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
-    selector        : 'espace-connected',
-    templateUrl     : './espace-connected.component.html',
-    styleUrls       : ['./espace-connected.component.scss'],
+    selector        : 'espace-connected-client',
+    templateUrl     : './espace-connected-client.component.html',
+    styleUrls       : ['./espace-connected-client.component.scss'],
     encapsulation   : ViewEncapsulation.None,
     animations      : fuseAnimations
 })
-export class EspaceConnectedComponent implements OnInit, OnDestroy
+export class EspaceConnectedClientComponent implements OnInit, OnDestroy
 {
 
     isXsScreen: boolean;

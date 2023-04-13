@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EspaceConnectedComponent } from './espace-connected.component';
-import { EspaceConnectedRoutes } from './espace-connected.routing';
+import { EspaceConnectedClientComponent } from './espace-connected-client.component';
+import { EspaceConnectedRoutes } from './espace-connected-client.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { VosAvantagesModule } from '../../pages/landing/nos-avantages/vos-avantages.module';
@@ -13,7 +13,7 @@ import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-fi
 
 @NgModule({
     declarations: [
-        EspaceConnectedComponent,
+        EspaceConnectedClientComponent,
     ],
     imports     : [
         RouterModule.forChild(EspaceConnectedRoutes),
@@ -27,7 +27,7 @@ import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-fi
        MatButtonModule
     ]
 })
-export class EspaceConnectedModule
+export class EspaceConnectedClientModule
 {
 
 }

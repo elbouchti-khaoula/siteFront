@@ -1,260 +1,256 @@
+
+
 <div class="flex flex-col flex-auto min-w-0 ">
 
     <!-- Header -->
-    <div class="relative pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16 overflow-hidden espace-connected-bg-header-vice">
+    <div class="relative h-full pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16 overflow-hidden espace-connected-bg-header-vice">
         <!-- Background - @formatter:off -->
         <!-- Rings -->
-        <svg class="absolute inset-0 pointer-events-none"
-             viewBox="0 0 960 540" width="100%" height="100%" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-            <g class="text-gray-700 opacity-25" fill="none" stroke="currentColor" stroke-width="100">
-                <circle r="234" cx="196" cy="23"></circle>
-                <circle r="234" cx="790" cy="491"></circle>
-            </g>
-        </svg>
+      
         <!-- @formatter:on -->
         <div class="w-full max-w-400">
             <div class="max-w-xl text-2xl md:text-6xl font-bold uppercase tracking-tight leading-tight text-white">
-                Bienvenue Mr.OUADDI à votre espace abonné
+                Bienvenue Mr.OUADDI 
             </div>
 
             <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
                 Ne manquez pas l'opportunité de découvrir tout ce que notre site peut vous offrir !
             </div>
         </div>
- 
-        <div class="z-10 relative flex flex-col items-center">
-            
-            <div class="mt-3 sm:text-2xl text-center tracking-tight text-secondary">
-                -
-            </div>
-            <div class="mt-3 sm:text-2xl text-center tracking-tight text-secondary">
-                -
-            </div>
-            <div class="mt-3 sm:text-2xl text-center tracking-tight text-secondary">
-                -
-            </div>
-          
-        
-           
-         
+
+         <!-- Formulaire recherche md -->
+         <div class="hidden md:block w-1/2 max-w-md mx-auto mt-10" >
+            <projets-filter [parentComponent]="'landing'"></projets-filter>
         </div>
-    </div>
+
+            <!-- Parcours md -->
+
+        <div class="relative hidden md:flex flex-row justify-center space-x-16 text-white mt-40 ">
+            <a class="h-fit w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['/projets-search']">
+                <mat-icon class="icon-size-20 text-white" svgIcon="property">
+                </mat-icon>
+                <div class="flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 my-2">
+                    <span>Je trouve</span>
+                    <span>mon bien</span>
+                </div>
+            </a>
+            <a class="h-fit w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                    [routerLink]="['/projets-search']">
+                    <mat-icon class="icon-size-20 text-white" svgIcon="calculation">
+                    </mat-icon>
+                <div class="flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 my-2">
+                    <span>Je simule </span>
+                    <span>mon crédit</span>
+                </div>
+            </a>
+
+            <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                    href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne"
+                    target="blank">
+                    <div class="h-20 flex items-center">
+                        <img class="w-14" src="assets/images/logo/logo-awb.jpg">
+                    </div>
+                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
+                        <span>J'ouvre mon compte</span>
+                        <span>Attijariwafa bank</span>
+                    </div>
+                </a>
+
+            <a class="h-fit w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['./']">
+                <mat-icon class="icon-size-20 text-white" svgIcon="survey">
+                </mat-icon>
+                <div class="flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 my-2">
+                    <span>Je demande</span>
+                    <span>mon crédit</span>
+                </div>
+            </a>
+            <a class="h-fit w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['./']">
+                <mat-icon class="icon-size-20 text-white" svgIcon="timeline">
+                </mat-icon>
+                <div class="flex flex-col items-center text-sm md:text-base md:font-semibold md:max-w-30 my-2">
+                    <span>Je suis</span>
+                    <span>mon crédit</span>
+                </div>
+            </a>
+        </div>
+
+                  <!-- notification -->
+
+    
+        
+ 
+   </div>
 
     <!-- Medu --> 
-    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10 ">
-        <!-- Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0 md:gap-x-6 w-full max-w-sm md:max-w-7xl -mt-16 sm:-mt-24">
-            <!-- FAQs card -->
-            <div class="relative flex flex-col rounded-2xl border-2 border-primary-500 shadow hover:shadow-lg overflow-hidden bg-card transition-shadow ease-in-out duration-150">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-2xl font-semibold">Mes Simulations</div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/pages/landingBis/calc_red.PNG">
-                    </span>
-                    <div class="text-4xl font-semibold">2</div>
-                </div>
-                <div class="flex items-center justify-center py-4 px-8 text-primary-500 dark:text-primary-400 bg-gray-50 dark:bg-transparent dark:border-t">
-                    <a
-                        class="flex items-center"
-                        [routerLink]="['faqs']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Voir Details</span>
-                        <mat-icon
-                            class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-                 <!-- FAQs card -->
-                 <div class="relative flex flex-col rounded-2xl border-2 border-primary-500 shadow hover:shadow-lg overflow-hidden bg-card transition-shadow ease-in-out duration-150">
-                    <div class="flex flex-col flex-auto items-center p-8 text-center">
-                        <div class="text-2xl font-semibold">Mes Crédits en cours</div>
-                        <span class="flex items-center justify-center w-22 h-22 rounded ">
-                            <img class="max-w-20" src="assets/images/pages/landingBis/proj_red.PNG">
-                        </span>
-                        <div class="text-4xl font-semibold">3</div>
-                    </div>
-                    <div class="flex items-center justify-center py-4 px-8 text-primary-500 dark:text-primary-400 bg-gray-50 dark:bg-transparent dark:border-t">
-                        <a
-                            class="flex items-center"
-                            [routerLink]="['faqs']">
-                            <span class="absolute inset-0"></span>
-                            <span class="font-medium">Voir Details</span>
-                            <mat-icon
-                                class="ml-2 icon-size-5 text-current"
-                                [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                        </a>
-                    </div>
-                </div>
-            <!-- Guides card -->
-            <div class="relative flex flex-col rounded-2xl border-2 border-primary-500 shadow hover:shadow-lg overflow-hidden bg-card transition-shadow ease-in-out duration-150">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-2xl font-semibold">Mes Projets </div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                       
-                        <img class="max-w-20" src="assets/images/pages/landingBis/dem_red.PNG">
-                    </span>
-                    <div class="text-4xl font-semibold">6</div>
-                </div>
-                <div class="flex items-center justify-center py-4 px-8 text-primary-500 dark:text-primary-400 bg-gray-50 dark:bg-transparent dark:border-t">
-                    <a
-                        class="flex items-center"
-                        [routerLink]="['guides']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Voir Details</span>
-                        <mat-icon
-                            class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- Support card -->
-            <div class="relative flex flex-col rounded-2xl border-2 border-primary-500 shadow hover:shadow-lg overflow-hidden bg-card transition-shadow ease-in-out duration-150">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-2xl font-semibold">Mes Demandes</div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/pages/landingBis/cred_red_v.PNG">
-                    </span>
-                    <div class="text-4xl font-semibold">2</div>
-                </div>
-                <div class="flex items-center justify-center py-4 px-8 text-primary-500 dark:text-primary-400 bg-gray-50 dark:bg-transparent dark:border-t">
-                    <a
-                        class="flex items-center"
-                        [routerLink]="['support']">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Voir Details</span>
-                        <mat-icon
-                            class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- FAQs -->
-        <div class="mt-24 text-1xl sm:text-3xl font-extrabold leading-tight tracking-tight text-center">Un site tout en un pour chercher mon bien, simuler mon crédit, demander et obtenir mon financement en ligne sans me déplacer !</div>
+   
+   <!-- menu principale -->
+   <div class="flex flex-col items-center w-full px-6 bg-card md:bg-white-500 md:text-primary">
+    <div class="md:hidden relative mx-auto w-full   py-5 -mt-24">
+
         
-        <!-- Parcours -->
-        <div class="relative  md:flex flex-row justify-center space-x-16 text-white mt-20 mb-14 ">
-             <!-- Search card -->
-             <div class="translatetop w-40 relative rounded-2xl hover:shadow-lg overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700"
-                        [svgIcon]="'iconsmind:magnifi_glass2'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je trouve<br />mon bien</div>
+        <!-- Formulaire recherche sm -->
+        <projets-filter [parentComponent]="'landing'"></projets-filter>
+        <!-- Parcours xs,sm -->
+            <div class="grid grid-cols-5 gap-7 mt-7  sm:py-3">
+                <div class="carre flex flex-col items-center cursor-pointer ">
+                    <div style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                        [routerLink]="['/projets-search']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
+                        </mat-icon>
+                    </span>
+                    </div>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                        <span>Je trouve</span>
+                        <span>mon bien</span>
+                    </div>
                 </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="'/dashboards/project'">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Découvrir</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
+
+            
+                
+
+                
+
+                
+                <div class="carre flex flex-col items-center cursor-pointer ">
+                    <div style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    [routerLink]="['/projets-search']">
+                    <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
+                    </mat-icon>
+                    </span>
+                </div>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2 focus:text-primary">
+                        <span>Je simule </span>
+                        <span>mon crédit</span>
+                    </div>
+                </div>
+
+                <div class="carre flex flex-col items-center cursor-pointer ">
+                    <div style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne"
+                    target="blank">
+                    <div class="h-20 flex items-center">
+                        <img class="w-10" src="assets/images/logo/logo-awb.jpg">
+                    </div>
+                    </span>
+                    </div>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                        <span>J'ouvre</span>
+                        <span>mon compte</span>
+                    </div>
+                </div>
+
+
+                <div class="carre flex flex-col items-center cursor-pointer ">
+                    <div style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                        [routerLink]="['./']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
+                        </mat-icon>
+                    </span>
+                </div>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                        <span>Je demande</span>
+                        <span>mon crédit</span>
+                    </div>
+                </div>
+                <div class="carre flex flex-col items-center cursor-pointer ">
+                    <div style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                        [routerLink]="['./']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
+                        </mat-icon>
+                    </span>
+                </div>
+                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                        <span>Je suis</span>
+                        <span>mon crédit</span>
+                    </div>
                 </div>
             </div>
-            <!-- Simule card -->
-            <div class="translatetop w-40 relative rounded-2xl hover:shadow-lg overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700"
-                        [svgIcon]="'iconsmind:calculator_3'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je simule<br />mon crédit</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="'/dashboards/project'">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">En savoir plus</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- demande card -->
-            <div class="translatetop w-40 relative rounded-2xl hover:shadow-lg overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:notepad'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je demande<br />mon crédit</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="'/dashboards/project'">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Démarrer</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <!-- contact card -->
-            <div class="translatetop w-40 relative rounded-2xl hover:shadow-lg overflow-hidden bg-second-200">
-                <div class="flex flex-col flex-auto items-center p-6 text-center">
-                    <mat-icon class="icon-size-7 md:icon-size-10 text-primary-700" [svgIcon]="'iconsmind:support'">
-                    </mat-icon>
-                    <div class="mt-2 text-primary-700 font-semibold">Je contacte<br />un conseiller</div>
-                </div>
-                <div class="flex items-center justify-center py-3 text-primary-500 bg-second-150">
-                    <a class="flex items-center" [routerLink]="'/dashboards/project'">
-                        <span class="absolute inset-0"></span>
-                        <span class="font-medium">Contacter</span>
-                        <mat-icon class="ml-2 icon-size-5 text-current"
-                            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
+        
+    </div>
+    <div class="grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
 
      
 
-     
+        <div class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+            
+            
+            <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+            </mat-icon>
+
+            <div class="simulation hidden md:flex flex-row items-center  rounded-border">
+            
+            
+                <mat-icon class=" icon-size-14 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+                <a href="#" class="span-clicable">Mes Simulations</a>
+    
+            </div>
+
+            <a href="#" class=" md:hidden span-clicable">Mes Simulations</a>
+
+        </div>
+
+        <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+        <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+            
+            <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'survey'">
+            </mat-icon>
+
+            <div class="simulation hidden md:flex flex-row items-center  rounded-border">
+            
+            
+                <mat-icon class=" icon-size-14 text-primary" [svgIcon]="'survey'">
+                </mat-icon>
+
+                <a href="#" class="span-clicable">Mes Demandes</a>
+    
+            </div>
+
+            <a href="#" class=" md:hidden span-clicable">Mes Demandes</a>
+        </div>
+
+        <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+        <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+            
+            <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
+            </mat-icon>
+
+            <div class="simulation hidden md:flex flex-row items-center  rounded-border">
+            
+            
+                <mat-icon class=" icon-size-14 text-primary" [svgIcon]="'property'">
+                </mat-icon>
+
+                <a href="#" class="span-clicable">Mes Projets Favoris</a>
+    
+            </div>
+
+            <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris</a>
+        </div>
+
+
+      
+
+
+
 
     </div>
-   <!-- Vos avantages -->
-    <div class="flex flex-col items-center w-full px-6 bg-card md:bg-primary-500 md:text-white">
-        <span class="text-center text-2xl md:text-3xl uppercase font-bold max-md:text-primary pt-10 pb-8">
-            Vos avantages<br class="sm:hidden" /> de crédit en ligne :
-        </span>
-        <div class="grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10">
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
-                    <mat-icon class="icon-size-10 text-white" [svgIcon]="'mat_outline:money_off'">
-                    </mat-icon>
-                </span>
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'mat_outline:money_off'">
-                </mat-icon>
-                <span class="ml-3 text-sm font-bold sm:text-xl sm:font-semibold uppercase">
-                    Frais de dossier gratuits
-                </span>
-            </div>
-    
-            <span class="hidden md:block border-white border-l h-16 w-0.5 mx-10"></span>
-    
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
-                    <mat-icon class="icon-size-10 text-white" [svgIcon]="'heroicons_outline:color-swatch'">
-                    </mat-icon>
-                </span>
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'heroicons_solid:color-swatch'">
-                </mat-icon>
-                <span class="ml-3 text-sm font-bold sm:text-xl sm:font-semibold uppercase">
-                    Accompagnement personnalisé
-                </span>
-            </div>
-    
-            <span class="hidden md:block border-white border-l h-16 w-0.5 mx-10"></span>
-    
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
-                    <mat-icon class="icon-size-10 text-white" svgIcon="delivery-time">
-                    </mat-icon>
-                </span>
-                <mat-icon class="md:hidden icon-size-8 text-primary" svgIcon="delivery-time">
-                </mat-icon>
-                <span class="ml-3 text-sm font-bold sm:text-xl sm:font-semibold uppercase">Accord de principe
-                    immédiat
-                </span>
-            </div>
-        </div>
-    </div>
+</div>
+
 
 
 
