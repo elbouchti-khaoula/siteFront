@@ -32,7 +32,7 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                 </mat-icon>
                 <input matInput [formControlName]="'nom'">
-                <mat-label class="text-sm font-semibold">Nom</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
                 <mat-error *ngIf="faitesVousRappelerForm.get('nom').hasError('required')">
                     Nom obligatoire
                 </mat-error>
@@ -44,7 +44,7 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                 </mat-icon>
                 <input matInput [formControlName]="'prenom'">
-                <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
                 <mat-error *ngIf="faitesVousRappelerForm.get('prenom').hasError('required')">
                     Prénom obligatoire
                 </mat-error>
@@ -55,7 +55,7 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
                 <input matInput [formControlName]="'telephone'">
-                <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                 <mat-error *ngIf="faitesVousRappelerForm.get('telephone').hasError('required')">
                     Téléphone obligatoire
                 </mat-error>
@@ -66,7 +66,7 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
                 <input type="email" matInput [formControlName]="'email'">
-                <mat-label class="text-sm font-semibold">E-mail</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                 <mat-error *ngIf="faitesVousRappelerForm.get('email').hasError('email')">
                     Enter a valid email address
                 </mat-error>
@@ -82,7 +82,7 @@
                     [rows]="3"
                     matTextareaAutosize>
                 </textarea>
-                <mat-label class="text-sm font-semibold">Message</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
             </mat-form-field>
 
             <!-- Actions -->

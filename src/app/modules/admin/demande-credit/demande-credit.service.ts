@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 import { ProjectAuthService } from 'app/core/projects-auth/projects-auth.service';
 
 @Injectable({
@@ -60,6 +60,37 @@ export class DemandeCreditService {
                                 this._documents.next(response);
                             })
                         );
+                    }
+                    return EMPTY;
+                }));
+    }
+
+    /**
+     * Abandonner une simulation
+     *
+     * @param projectId
+     */
+    transformer(projectId: number): Observable<any> {
+
+        return this._projectAuthService.getToken()
+            .pipe(
+                switchMap((token: string) => {
+
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" }, { headers: headers })
+                            .pipe(
+                                map((updatedProject: any) => {
+
+                                    // Return the updated project
+                                    return updatedProject;
+                                })
+                            );
                     }
                     return EMPTY;
                 }));

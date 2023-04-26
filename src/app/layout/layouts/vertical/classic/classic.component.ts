@@ -1,21 +1,22 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
-    selector     : 'classic-layout',
-    templateUrl  : './classic.component.html',
+    selector: 'classic-layout',
+    templateUrl: './classic.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class ClassicLayoutComponent implements OnInit, OnDestroy
-{
+export class ClassicLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     navigation: Navigation;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    @ViewChild('content', { read: CdkScrollable }) public content: CdkScrollable;
 
     /**
      * Constructor
@@ -28,6 +29,12 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService
     )
     {
+        this._router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            this.content.getElementRef().nativeElement.scrollTop = 0;
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -61,7 +68,7 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
+            .subscribe(({ matchingAliases }) => {
 
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
@@ -92,7 +99,7 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy
         // Get the navigation
         const navigation = this._fuseNavigationService.getComponent<FuseVerticalNavigationComponent>(name);
 
-        if ( navigation )
+        if (navigation)
         {
             // Toggle the opened status
             navigation.toggle();

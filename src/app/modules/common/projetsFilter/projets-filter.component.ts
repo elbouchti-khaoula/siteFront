@@ -192,7 +192,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
             queryParams: {},
             relativeTo: this._activatedRoute
           });
+
           this._scrollResultIntoView();
+
         });
 
     }
@@ -233,7 +235,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
           queryParams: this.searchForm.value,
           relativeTo: this._activatedRoute
         });
+
         this._scrollResultIntoView();
+
       });
   }
 
@@ -244,7 +248,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
       // Get the result element and scroll it into view
       const projetsResultId = this._document.getElementById('projetsResultId');
       if (projetsResultId) {
-        projetsResultId.scrollIntoView();
+        projetsResultId.scrollIntoView({ behavior: "smooth" });
       }
     });
   }
@@ -253,7 +257,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * Perform the search and navigate
    */
   navigateToMarketPlace(): void {
+
     if (!(this.searchForm.pristine || this.searchForm.invalid)) {
+      
       // Add query params using the router
       this._router.navigate(
         ['/projets-search'],
@@ -262,6 +268,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
           queryParams: this.searchForm.value
         }
       );
+
     }
   }
 

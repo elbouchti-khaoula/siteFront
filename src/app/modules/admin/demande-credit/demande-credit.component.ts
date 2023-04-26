@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { SimulationDetaillee } from '../simulation-detaillee/simulation-detaillee.types';
 import { Piece } from 'app/core/common/common.types';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,20 +18,19 @@ import { TableauAmortissementService } from '../tableau-amortissement/tableau-am
 })
 export class DemandeCreditComponent implements OnInit, OnDestroy {
 
+  openedCard: number = 1;
   drawerOpened: boolean = false;
-
-  @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  demandeForm: UntypedFormGroup;
-  // simulationResultat: SimulationDetaillee;
-  recapitulatif : any;
+  simulationResultat: SimulationDetaillee;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
 
+  @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
   documents: any;
   pieceChanged: Subject<Piece> = new Subject<Piece>();
   pieces: Piece[] = [];
+  estRempli: boolean = false;
 
   /**
    * Constructor
@@ -40,23 +38,22 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _formBuilder: UntypedFormBuilder,
     private _matDialog: MatDialog,
     private _demandeCreditService: DemandeCreditService,
     private _tableauAmortissementService: TableauAmortissementService
   ) {
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
     if (data) {
-      this.recapitulatif = data;
+      this.simulationResultat = data;
     } else {
-      this.recapitulatif = {
+      this.simulationResultat = {
         "nom": "test1",
         "prenom": "test1",
         "telephone": "0522111111",
         "email": "test1@test1.com",
         "dateNaissance": "01/01/2000",
         "nationalite": "MA",
-        "residantMaroc": "true",
+        "residantMaroc": true,
         "categorieSocioProfessionnelle": "SALA",
         "nomEmployeur": "Employeur",
         "salaire": 500000,
@@ -90,33 +87,21 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         "totalFrais": 34200,
         "nbreAnnee": 20,
         "nbreMois": 0
+      }
     }
-      // this.simulationResultat = {
-      //   "id": 674266,
-      //   "montant": 500000,
-      //   "montantProposition": 500000,
-      //   "duree": 240,
-      //   "statut": "NPRO",
-      //   "dossierId": 803618,
-      //   "dossierMontant": 700000,
-      //   "dossierDuree": 240,
-      //   "mensualite": 5201.31,
-      //   "tauxNominal": 5.45,
-      //   "tauxEffectifGlobal": 6.457,
-      //   "tauxParticipation": 0,
-      //   "assurances": 39231.82,
-      //   "totalInterets": 509082.58,
-      //   "coutTotal": 587546.22,
-      //   "fraisDossier": 770,
-      //   "expertiseImmobiliere": 0,
-      //   "droitsEnregistrement": 20000,
-      //   "conservationFonciere": 7700,
-      //   "honorairesNotaire": 5000,
-      //   "fraisDivers": 1500,
-      //   "totalFrais": 34200,
-      //   "nbreAnnee": 20,
-      //   "nbreMois": 0
-      // }
+    if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
+      this.estExpImmoNum = true;
+    } else {
+      this.simulationResultat.expertiseImmobiliere = 0;
+      this.simulationResultat.expertiseImmobiliereStr = "GRATUIT";
+      this.estExpImmoNum = false;
+    }
+    if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
+      this.estFraisDossNum = true;
+    } else {
+      this.simulationResultat.fraisDossier = 0;
+      this.simulationResultat.fraisDossierStr = "GRATUIT";
+      this.estFraisDossNum = false;
     }
   }
 
@@ -153,11 +138,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       });
 
-    // Prepare the form
-    this.demandeForm = this._formBuilder.group({
-      files: [[], [Validators.required]]
-    });
-
   }
 
   /**
@@ -180,7 +160,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     this._matDialog.open(ChangerAgenceComponent, {
       autoFocus: false,
       data: {
-        simulationId: this.recapitulatif.id
+        simulationId: this.simulationResultat.id
       }
     });
   }
@@ -191,20 +171,10 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   openTableauAmortissement(): void {
     this.drawerOpened = true;
 
-    this._tableauAmortissementService.getTableauAmortissement(this.recapitulatif.dossierId).subscribe();
+    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
 
     // Mark for check
     this._changeDetectorRef.markForCheck();
-  }
-
-  /**
-   * Track by function for ngFor loops
-   *
-   * @param index
-   * @param item
-   */
-  trackByFn(index: number, item: any): any {
-    return item.id || index;
   }
 
   /**
@@ -238,6 +208,10 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       this.pieceChanged.next(piece);
     });
 
+    setTimeout(() => {
+      this.updatePiecesRempli();
+    }, 300);
+
   }
 
   deletePiece(piece: Piece, index: number): void {
@@ -254,6 +228,53 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         e.nativeElement.files = null;
       }
     });
+
+    setTimeout(() => {
+      this.updatePiecesRempli();
+    }, 300);
+
+  }
+
+  /**
+   * transformer en demande de crédit
+   */
+  transformer(): void {
+
+    this._demandeCreditService.transformer(this.simulationResultat.id)
+      .pipe(
+        // Error here means the requested is not available
+        catchError((error) => {
+
+          // Throw an error
+          return throwError(error);
+        })
+      )
+      .subscribe((response) => {
+        console.log("+-+-+- response", response);
+
+      });
+
+      setTimeout(() => {
+        this._router.navigate(['/espace-connecte']);
+      }, 300);
+  }
+
+  /**
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
+  
+  // -----------------------------------------------------------------------------------------------------
+  // @ Private methods
+  // -----------------------------------------------------------------------------------------------------
+
+  private updatePiecesRempli() {
+    this.estRempli = this.pieces.some(element => element.fileName !== undefined && element.fileName !== null && element.fileName !== '');
   }
 
   /**

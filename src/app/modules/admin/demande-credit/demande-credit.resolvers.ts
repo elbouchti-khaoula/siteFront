@@ -32,12 +32,12 @@ export class DemandeCreditResolver implements Resolve<any>
     {
         const navigation = this._router.getCurrentNavigation();
         const extrasState = navigation.extras.state;
-        let recapitulatif = extrasState;
+        let simulationResultat = extrasState;
 
-        console.log("+-+-+- recapitulatif", recapitulatif);
+        console.log("+-+-+- simulationResultat", simulationResultat);
 
-        if (recapitulatif?.id) {
-            return this._demandeCreditService.getDocuments(Number(recapitulatif.id));
+        if (simulationResultat?.id) {
+            return this._demandeCreditService.getDocuments(Number(simulationResultat.id));
         } else {
             return this._demandeCreditService.getDocuments(674266);
         }

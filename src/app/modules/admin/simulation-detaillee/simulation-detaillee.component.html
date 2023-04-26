@@ -1,19 +1,10 @@
-<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[30vh] simul-det-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[35vh] simul-det-bg-header">
         <div class="w-full max-w-400">
-            <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
-                Bienvenur Mr LAMDA Beta
-            </div>
-            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                Prenez quelques minutes pour décrire votre projet
-            </div>
-
-            <!-- <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                C'est simple, rapide et sans engagement. Plus vous serez complet dans la description de votre situation et plus notre comparaison des meilleurs taux pour vous sera précise !
-            </div> -->
+            <bienvenue></bienvenue>
         </div>
     </header>
 
@@ -22,7 +13,7 @@
         <div class="w-full max-w-400 mx-auto">
 
             <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Je simule mon crédit
+                Simuler mon crédit en ligne
             </span>
 
             <!-- matBadge="3" matBadgePosition="before" -->
@@ -42,27 +33,60 @@
                 </div>
             </div> -->
 
-            <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-12 h-24 shadow-md">
+            <!-- <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-8 h-18 shadow-md">
                 <div class="relative w-68 h-full flex items-center justify-center overflow-hidden">
-                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">01</div> -->
-                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">01</div> -->
+                    <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">01</div>
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">01</div>
                     <div class="absolute bottom-0 right-0 w-18 h-18 -m-5">
                         <mat-icon
                             class="icon-size-18 opacity-25 text-green-500 dark:text-green-400"
-                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                            [svgIcon]="'heroicons_outline:check-circle'">
+                        </mat-icon>
                     </div>
                     <span class="text-lg font-semibold">Je simule mon crédit</span>
                 </div>
-                <div class="w-88 h-full flex items-center justify-center bg-primary">
-                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">02</div> -->
-                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">02</div> -->
-                    <span class="text-lg font-semibold text-white">Je personnalise ma simulation</span>
+                <div class="w-88 h-full flex items-center justify-center bg-second-500">
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-white">02</div>
+                    <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-10 text-gray-700">02</div>
+                    <span class="text-lg font-semibold">Je personnalise ma simulation</span>
                 </div>
                 <div class="w-72 h-full flex items-center justify-center">
-                    <!-- <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-20 text-white">03</div> -->
-                    <!-- <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div> -->
-                    <!-- <span class="z-20 text-lg font-semibold ml-12 mt-2">Je demande mon crédit</span> -->
+                    <div class="z-10 absolute left-0 -top-12 text-10xl font-bold opacity-20 text-white">03</div>
+                    <div class="z-10 absolute left-3 top-1 text-3xl font-bold opacity-50 text-gray-500">03</div>
+                    <span class="z-20 text-lg font-semibold ml-12 mt-2">Je demande mon crédit</span>
                     <span class="text-lg font-semibold">Je demande mon crédit</span>
+                </div>
+            </fuse-card> -->
+
+            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl -mt-10 h-22 shadow-md">
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                        <span class="text-7xl font-bold text-gray-500">1</span>
+                    </div>
+                    <div class="flex flex-col items-start ml-5">
+                        <span class="text-lg">Simuler</span>
+                        <span class="text-lg">mon crédit</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden bg-primary-500">
+                        <span class="text-7xl font-bold text-white">2</span>
+                    </div>
+                    <div class="flex flex-col items-start ml-5 text-primary-500">
+                        <span class="text-lg font-semibold">Personnaliser</span>
+                        <span class="text-lg font-semibold">ma simulation</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                        <span class="text-7xl font-bold text-gray-500">3</span>
+                    </div>
+                    <div class="flex flex-col items-start ml-5">
+                        <span class="text-lg">Demander</span>
+                        <span class="text-lg">mon crédit</span>
+                    </div>
                 </div>
             </fuse-card>
 
@@ -112,7 +136,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'nom'">
-                                    <mat-label class="text-sm font-semibold">Nom</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('nom').hasError('required')">
                                         Nom obligatoire
                                     </mat-error>
@@ -124,7 +148,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'prenom'">
-                                    <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('prenom').hasError('required')">
                                         Prénom obligatoire
                                     </mat-error>
@@ -136,7 +160,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'telephone'">
-                                    <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('telephone').hasError('required')">
                                         Téléphone obligatoire
                                     </mat-error>
@@ -145,10 +169,10 @@
                                 <!-- Email -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'"
-                                        matPrefix></mat-icon>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix>
+                                    </mat-icon>
                                     <input type="email" matInput [formControlName]="'email'">
-                                    <mat-label class="text-sm font-semibold">E-mail</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('email').hasError('email')">
                                         Enter a valid email address
                                     </mat-error>
@@ -169,7 +193,7 @@
                                             </mat-option>
                                         </ng-container>
                                     </mat-select>
-                                    <mat-label class="text-sm font-semibold">Nationalité
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Nationalité
                                     </mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('nationalite').hasError('required')">
                                         Nationalité obligatoire
@@ -183,7 +207,8 @@
                                     <mat-icon
                                         matPrefix
                                         class="hidden sm:flex icon-size-5"
-                                        [svgIcon]="'heroicons_solid:cake'"></mat-icon>
+                                        [svgIcon]="'heroicons_solid:cake'">
+                                    </mat-icon>
                                     <input
                                         matInput
                                         [matDatepicker]="dateNaissancePicker"
@@ -216,7 +241,7 @@
                                 <mat-radio-group class="flex flex-col w-full"
                                     [color]="'primary'"
                                     [formControlName]="'residantMaroc'">
-                                    <mat-label class="text-sm font-semibold">Résident au Maroc ? *</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Résident au Maroc ? *</mat-label>
                                     <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'true'">
                                             Oui
@@ -257,7 +282,7 @@
                                     [color]="'primary'"
                                     [disabled]="simulationStepperStep1.stepControl.pristine || simulationStepperStep1.stepControl.invalid"
                                     type="button" matStepperNext>
-                                    Suivant
+                                    Suivre
                                 </button>
                             </div>
 
@@ -283,7 +308,7 @@
                                             </mat-option>
                                         </ng-container>
                                     </mat-select>
-                                    <mat-label class="text-sm font-semibold">Catégorie socio-professionnelle
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Socio-professionnelle
                                     </mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').hasError('required')">
                                         Catégorie socio-professionnelle obligatoire
@@ -296,7 +321,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'nomEmployeur'">
-                                    <mat-label class="text-sm font-semibold">Employeur</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('nomEmployeur').hasError('required')">
                                         Employeur obligatoire
                                     </mat-error>
@@ -306,7 +331,7 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'salaire'">
-                                    <mat-label class="text-sm font-semibold">Salaire annuel net</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel net</mat-label>
                                     <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('salaire').hasError('required')">
                                         Salaire annuel net obligatoire
@@ -317,18 +342,18 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'autresRevenus'">
-                                    <mat-label class="text-sm font-semibold">Autres revenus</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex loyer, primes, …</mat-label>
                                     <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('autresRevenus').hasError('required')">
                                         Autres revenus obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Mensualités de vos crédits en cours -->
+                                <!-- Mensualité de vos crédits en cours -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'creditsEnCours'">
-                                    <mat-label class="text-sm font-semibold">Mensualités de vos crédits en cours</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des mensualités</mat-label>
                                     <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
                                         Mensualités de vos crédits en cours obligatoire
@@ -344,7 +369,7 @@
                                     [color]="'accent'"
                                     type="button"
                                     matStepperPrevious>
-                                    Précédent
+                                    Retour
                                 </button>
                                 <button class="px-8"
                                     mat-flat-button
@@ -352,7 +377,7 @@
                                     [disabled]="simulationStepperStep2.stepControl.pristine || simulationStepperStep2.stepControl.invalid"
                                     type="button"
                                     matStepperNext>
-                                    Suivant
+                                    Suivre
                                 </button>
                             </div>
                         </mat-step>
@@ -369,7 +394,7 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'montant'">
-                                    <mat-label class="text-sm font-semibold">Prix du bien</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Prix du bien</mat-label>
                                     <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montant').hasError('required')">
                                         Prix du bien obligatoire
@@ -388,7 +413,7 @@
                                             </mat-option>
                                         </ng-container>
                                     </mat-select>
-                                    <mat-label class="text-sm font-semibold">Objet de financement
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Objet de financement
                                     </mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('objetFinancement').hasError('required')">
                                         Objet de financement obligatoire
@@ -399,7 +424,7 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'montantProposition'">
-                                    <mat-label class="text-sm font-semibold">Montant</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
                                     <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
                                         Montant obligatoire
@@ -410,7 +435,7 @@
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <input matInput [formControlName]="'duree'">
-                                    <mat-label class="text-sm font-semibold">Durée (en mois)</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Durée (en mois)</mat-label>
                                     <span matSuffix>mois</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('duree').hasError('required')">
                                         Durée obligatoire
@@ -423,10 +448,12 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'" matPrefix>
                                     </mat-icon>
                                     <mat-select [formControlName]="'statutProjet'">
-                                        <mat-option [value]="'active'">Recherche active</mat-option>
-                                        <mat-option [value]="'passive'">Recherche passive</mat-option>
+                                        <mat-option [value]="'statut1'">Recherche active</mat-option>
+                                        <mat-option [value]="'statut2'">Simple simulation</mat-option>
+                                        <mat-option [value]="'statut3'">Bien trouvé</mat-option>
+                                        <mat-option [value]="'statut4'">Compromis signé</mat-option>
                                     </mat-select>
-                                    <mat-label class="text-sm font-semibold">Statut du projet
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Statut du projet
                                     </mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('statutProjet').hasError('required')">
                                         Statut du projet obligatoire
@@ -439,10 +466,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:real_estate_agent'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'nomPromoteur'">
-                                    <mat-label class="text-sm font-semibold">Promoteur</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('nomPromoteur').hasError('required')">
-                                        Promoteur obligatoire
-                                    </mat-error>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Promoteur</mat-label>
                                 </mat-form-field>
 
                                 <!-- Type de taux -->
@@ -450,7 +474,7 @@
                                     class="flex flex-col col-span-2 w-full sm:w-fit"
                                     [color]="'primary'"
                                     [formControlName]="'typeTaux'">
-                                    <mat-label class="text-sm font-semibold">Type de taux *</mat-label>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Type de taux *</mat-label>
                                     <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'FIXE'">
                                             Valeur Fixe
@@ -470,20 +494,12 @@
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
                                 <button
-                                    class="md:px-8 mr-2 bg-default"
-                                    mat-stroked-button
-                                    [color]="'primary'"
-                                    type="reset"
-                                    (click)="newSimulation()">
-                                    Refaire simulation
-                                </button>
-                                <button
                                     class="md:px-8 mr-2"
                                     mat-flat-button
                                     [color]="'accent'"
                                     type="button"
                                     matStepperPrevious>
-                                    Précédent
+                                    Retour
                                 </button>
                                 <button
                                     class="md:px-8"
@@ -493,7 +509,7 @@
                                     type="button"
                                     [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid"
                                     (click)="simuler()">
-                                    Simuler
+                                    Valider
                                 </button>
                             </div>
                         </mat-step>
@@ -511,402 +527,12 @@
                 </form>
 
                 <!-- Résultat -->
-                <mat-drawer-container
+                <div class="md:w-3/5 md:-mt-5"
                     *ngIf="isVisible"
-                    [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 500}}"
-                    class="bg-transparent md:w-3/5 rounded-md md:-mt-5"
-                    [ngClass]="{'h-[86vh]': isScreenSmall && drawerOpened}"
-                    [hasBackdrop]="true"
-                    #drawerContainerResult>
+                    [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 300}}">
 
-                    <mat-drawer
-                        class="w-full sm:w-[95%] lg:border-r lg:shadow-none dark:bg-gray-900"
-                        [autoFocus]="false"
-                        [(opened)]="drawerOpened"
-                        #drawerTableauSD>
-                        <tableau-amortissement [dossierId]="simulationResultat.dossierId" [drawer]="drawerTableauSD"></tableau-amortissement>
-                    </mat-drawer>
-
-                    <mat-drawer-content class="px-1 pt-5 pb-1">
-
-                        <fuse-card #resultat
-                            class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-default rounded-md shadow overflow-visible">
-                            
-                            <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
-                                <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
-                                    Votre simulation
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col">
-                                <!-- bouton tableau amortissement -->
-                                <div class="ml-auto mt-3 mb-5">
-                                    <button
-                                        mat-flat-button
-                                        class="fuse-mat-button-small"
-                                        type="button" 
-                                        [color]="'accent'"
-                                        (click)="openTableauAmortissement()">
-                                        Tableau d'amortissement
-                                    </button>
-                                </div>
-                                
-                                <div class="flex flex-col md:flex-row max-md:space-y-10 md:space-x-4">
-
-                                    <!-- mensualité -->
-                                    <div class="md:w-2/3">
-                                        <!-- header -->
-                                        <div class="min-h-36 flex flex-col py-3 px-5 shadow rounded-md bg-primary-500 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                            <div class="flex flex-col md:flex-row md:items-end md:justify-between md:space-x-3 text-white">
-                                                <div class="flex flex-col md:w-[65%] md:border-r md:border-white md:pr-5">
-                                                    <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualités TTC</div>
-
-                                                    <div class="flex items-baseline whitespace-nowrap ml-auto mt-2">
-                                                        <div class="text-4xl font-bold leading-tight tracking-tight" #mensualiteId>
-                                                            {{simulationResultat.mensualite | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex flex-col md:items-center md:w-[35%]">
-                                                    <div class="flex flex-row md:flex-col max-md:items-baseline max-md:space-x-3">
-                                                        <div class="text-lg md:text-xl font-semibold leading-none">Durée</div>
-                                                        <div class="flex flex-col md:flex-row mt-2">
-                                                            <div class="flex flex-row items-baseline">
-                                                                <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreAnneeId>
-                                                                    {{simulationResultat.nbreAnnee}}
-                                                                </div>
-                                                                <div class="ml-2 md:text-xl leading-none">ans</div>
-                                                            </div>
-                                                            <div class="flex flex-row items-baseline md:ml-2"
-                                                                [ngClass]="{'hidden' : simulationResultat.nbreMois === 0}">
-                                                                <div class="font-medium text-2xl md:text-3xl leading-tight tracking-tight" #nbreMoisId>
-                                                                    {{simulationResultat.nbreMois}}
-                                                                </div>
-                                                                <div class="ml-2 md:text-xl leading-none">mois</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="w-8 h-1 rounded-2xl bg-second-500 mt-2"></div>
-
-                                            <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
-                                                Cette échéance n'inclut pas les frais d'assurance
-                                            </div>
-                                        </div>
-
-                                        <!-- details -->
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-7">
-                                            
-                                            <!-- Montant -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Montant crédit demandé
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #montantId>
-                                                            {{simulationResultat.montant | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Total des intérêts -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Total des intérêts
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #totalInteretsId>
-                                                            {{simulationResultat.totalInterets | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Coût total du crédit -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Coût total du crédit
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #coutTotalId>
-                                                            {{simulationResultat.coutTotal | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Assurances -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Assurances
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #assurancesId>
-                                                            {{simulationResultat.totalInterets | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- Taux de participation -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Taux de participation
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #tauxParticipationId>
-                                                            {{simulationResultat.tauxParticipation | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- TEG -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        TEG
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                            {{simulationResultat.tauxEffectifGlobal | number:'1.3-3'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Expertise immobilière -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-semibold leading-none text-secondary">
-                                                        Expertise immobilière
-                                                    </div>
-                                                    <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
-                                                        {{simulationResultat.expertiseImmobiliere}}
-                                                    </div> -->
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight"
-                                                            #expertiseImmobiliereId [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                            {{simulationResultat.expertiseImmobiliere | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- Frais de dossier -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <span class="text-sm font-semibold leading-none text-secondary">
-                                                        Frais de dossier
-                                                    </span>
-                                                    <!-- <div class="text-green-600 mt-2 uppercase font-medium text-3xl leading-none">
-                                                        {{simulationResultat.fraisDossier}}
-                                                    </div> -->
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDossierId
-                                                            [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                            {{simulationResultat.fraisDossier | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- frais annexes -->
-                                    <div class="w-full md:w-1/3">
-
-                                        <!-- header -->
-                                        <div class="min-h-36 flex flex-col py-3 px-5 rounded-md shadow bg-primary-150 dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                            <div class="flex flex-col text-primary-600">
-                                                <div class="text-2xl font-semibold leading-tight tracking-tight">
-                                                    Frais annexes
-                                                </div>
-
-                                                <div class="flex items-baseline whitespace-nowrap md:ml-auto mt-2">
-                                                    <div class="text-4xl font-bold leading-tight tracking-tight" #totalFraisId>
-                                                        {{simulationResultat.totalFrais | number:'1.2-2'}}
-                                                    </div>
-                                                    <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="w-8 h-1 rounded-2xl bg-amber-600 mt-2"></div>
-
-                                            <div class="text-sm font-semibold leading-none tracking-tight text-amber-600 mt-2">
-                                                Ces montants sont à titre indicatifs et ne sont aucunement contractuels
-                                            </div>
-                                        </div>
-
-                                        <!-- details -->
-                                        <div class="grid grid-cols-1 gap-y-5 mt-7">
-
-                                            <!-- Enregistrement hypothécaire -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-medium leading-none text-secondary">
-                                                        Enregistrement hypothécaire
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #droitsEnregistrementId>
-                                                            {{simulationResultat.droitsEnregistrement | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- Conservation foncière -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-medium leading-none text-secondary">
-                                                        Conservation foncière
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #conservationFonciereId>
-                                                            {{simulationResultat.conservationFonciere | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- Frais de dossier notaire -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-medium leading-none text-secondary">
-                                                        Frais de dossier notaire
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #fraisDiversId>
-                                                            {{simulationResultat.fraisDivers | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                            <!-- Honoraires de notaire -->
-                                            <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                                <!-- Border -->
-                                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                    
-                                                <!-- Content -->
-                                                <div class="flex flex-col">
-                                                    <div class="text-sm font-medium leading-none text-secondary">
-                                                        Honoraires de notaire
-                                                    </div>
-                                                    <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                        <div class="font-medium text-3xl leading-tight tracking-tight" #honorairesNotaireId>
-                                                            {{simulationResultat.honorairesNotaire | number:'1.2-2'}}
-                                                        </div>
-                                                        <div class="ml-2 text-xl leading-none">Dhs</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!-- Actions -->
-                            <div class="flex flex-col md:flex-row space-y-2 items-center justify-center mt-5">
-                                <button
-                                    class="max-md:w-full bg-gray-200"
-                                    mat-stroked-button
-                                    type="button" 
-                                    [routerLink]="['/espace-connected']">
-                                    Poursuivre plus tard
-                                </button>
-                                <button 
-                                    class="max-md:w-full md:ml-2 bg-gray-200"
-                                    mat-stroked-button
-                                    type="button"
-                                    [color]="'warn'">
-                                    J'abandonne ma simulation
-                                </button>
-                                <button 
-                                    class="max-md:w-full md:ml-2"
-                                    mat-flat-button
-                                    type="button"
-                                    [color]="'primary'"
-                                    (click)="navigateToDemandeCredit()">
-                                    Je demande un crédit
-                                </button>
-                            </div>
-
-                        </fuse-card>
-
-                    </mat-drawer-content>
-
-                </mat-drawer-container>
-
+                    <details-simulation [simulationResultat]="simulationResultat"></details-simulation>
+                </div>
             </div>
 
         </div>

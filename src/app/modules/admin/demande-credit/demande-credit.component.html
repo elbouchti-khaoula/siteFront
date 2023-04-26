@@ -1,49 +1,57 @@
-<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[30vh] simul-det-bg-header">
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[35vh] demande-bg-header">
         <div class="w-full max-w-400">
-            <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
-                Bienvenur Mr LAMDA Beta
-            </div>
+            <bienvenue></bienvenue>
             <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                Prenez quelques minutes pour décrire votre projet
+                Complétez votre demande avec les documents joints
             </div>
         </div>
     </header>
 
-    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
+    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 demande-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
 
             <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Je demande mon crédit
+                Demander mon crédit
             </span>
 
-            <fuse-card class="mx-auto hidden md:flex w-fit flex flex-row items-center -mt-12 h-24 shadow-md">
-                <div class="relative w-68 h-full flex items-center justify-center overflow-hidden">
-                    <div class="absolute bottom-0 right-0 w-18 h-18 -m-5">
-                        <mat-icon
-                            class="icon-size-18 opacity-25 text-green-500 dark:text-green-400"
-                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl -mt-10 h-22 shadow-md">
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                        <span class="text-7xl font-bold text-gray-500">1</span>
                     </div>
-                    <span class="text-lg font-semibold">Je simule mon crédit</span>
-                </div>
-                <div class="relative w-88 h-full flex items-center justify-center border-l overflow-hidden">
-                    <div class="absolute bottom-0 right-0 w-18 h-18 -m-5">
-                        <mat-icon
-                            class="icon-size-18 opacity-25 text-green-500 dark:text-green-400"
-                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                    <div class="flex flex-col items-start ml-5">
+                        <span class="text-lg">Simuler</span>
+                        <span class="text-lg">mon crédit</span>
                     </div>
-                    <span class="text-lg font-semibold">Je personnalise ma simulation</span>
                 </div>
-                <div class="w-72 h-full flex items-center justify-center bg-primary">
-                    <span class="text-lg font-semibold text-white">Je demande mon crédit</span>
+
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                        <span class="text-7xl font-bold text-gray-500">2</span>
+                    </div>
+                    <div class="flex flex-col items-start ml-5">
+                        <span class="text-lg">Personnaliser</span>
+                        <span class="text-lg">ma simulation</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-row items-center justify-start w-52">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden bg-primary-500">
+                        <span class="text-7xl font-bold text-white">3</span>
+                    </div>
+                    <div class="flex flex-col items-start ml-5 text-primary-500">
+                        <span class="text-lg font-semibold">Demander</span>
+                        <span class="text-lg font-semibold">mon crédit</span>
+                    </div>
                 </div>
             </fuse-card>
 
-            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-14">
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-16">
 
                 <!-- Résultat -->
                 <mat-drawer-container
@@ -56,7 +64,7 @@
                         [autoFocus]="false"
                         [(opened)]="drawerOpened"
                         #drawerTableauDC>
-                        <tableau-amortissement [dossierId]="recapitulatif.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
+                        <tableau-amortissement [dossierId]="simulationResultat.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
                     </mat-drawer>
 
                     <mat-drawer-content class="px-1 pt-5 pb-1">
@@ -85,12 +93,13 @@
 
                                 <fuse-card class="flex flex-col px-8 py-5 rounded-md shadow"
                                     #fuseCardProfil
-                                    [expanded]="true">
+                                    [expanded]="openedCard === 1">
                                     <div class="flex flex-row items-center">
+                                        <!-- (click)="fuseCardProfil.expanded = !fuseCardProfil.expanded" -->
                                         <button
                                             class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
-                                            (click)="fuseCardProfil.expanded = !fuseCardProfil.expanded">
+                                            (click)="openedCard === 1 ? openedCard = 0 : openedCard = 1">
                                             <mat-icon
                                                 class="icon-size-5 text-white"
                                                 *ngIf="!fuseCardProfil.expanded"
@@ -105,13 +114,13 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Nom
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nom}}
+                                                    {{simulationResultat?.nom}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -119,7 +128,7 @@
                                                     Prénom
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.prenom}}
+                                                    {{simulationResultat?.prenom}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -127,7 +136,7 @@
                                                     Téléphone
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.telephone}}
+                                                    {{simulationResultat?.telephone}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -135,7 +144,7 @@
                                                     Email
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.email}}
+                                                    {{simulationResultat?.email}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -143,15 +152,15 @@
                                                     Date de naissance
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.dateNaissance}}
+                                                    {{simulationResultat?.dateNaissance}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Nationalite
+                                                    Nationalité
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nationalite}}
+                                                    {{simulationResultat?.nationalite}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -159,7 +168,7 @@
                                                     Résidant au maroc
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.residantMaroc}}
+                                                    {{simulationResultat?.residantMaroc}}
                                                 </div>
                                             </div>
                                         </div>
@@ -167,12 +176,14 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardSituation>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                    [expanded]="openedCard === 2"
+                                    #fuseCardSituation>
                                     <div class="flex flex-row items-center">
                                         <button
                                             class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
-                                            (click)="fuseCardSituation.expanded = !fuseCardSituation.expanded">
+                                            (click)="openedCard === 2 ? openedCard = 0 : openedCard = 2">
                                             <mat-icon
                                                 class="icon-size-5 text-white"
                                                 *ngIf="!fuseCardSituation.expanded"
@@ -187,13 +198,13 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Categorie Socio Professionnelle
+                                                    Socio Professionnelle
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.categorieSocioProfessionnelle}}
+                                                    {{simulationResultat?.categorieSocioProfessionnelle}}
                                                 </div>
                                             </div>
                                              <div class="flex flex-col">
@@ -201,7 +212,7 @@
                                                     Employeur
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nomEmployeur}}
+                                                    {{simulationResultat?.nomEmployeur}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -209,7 +220,7 @@
                                                     Salaire
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.salaire}}
+                                                    {{simulationResultat?.salaire}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -217,7 +228,7 @@
                                                     Autres revenus
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.autresRevenus}}
+                                                    {{simulationResultat?.autresRevenus}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -225,19 +236,21 @@
                                                     Montant des crédits en cours
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.creditsEnCours}}
+                                                    {{simulationResultat?.creditsEnCours}}
                                                 </div>
                                             </div>
                                         </div>
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardProjet>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                    [expanded]="openedCard === 3"
+                                    #fuseCardProjet>
                                     <div class="flex flex-row items-center">
                                         <button
                                             class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
-                                            (click)="fuseCardProjet.expanded = !fuseCardProjet.expanded">
+                                            (click)="openedCard === 3 ? openedCard = 0 : openedCard = 3">
                                             <mat-icon
                                                 class="icon-size-5 text-white"
                                                 *ngIf="!fuseCardProjet.expanded"
@@ -252,13 +265,13 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Prix du bien
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.montant}}
+                                                    {{simulationResultat?.montant}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -266,7 +279,7 @@
                                                     Objet de financement
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.objetFinancement}}
+                                                    {{simulationResultat?.objetFinancement}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -274,15 +287,15 @@
                                                     Montant
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.montantProposition}}
+                                                    {{simulationResultat?.montantProposition}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    duree
+                                                    Durée
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.duree}}
+                                                    {{simulationResultat?.duree}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -290,7 +303,7 @@
                                                     Promoteur
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.nomPromoteur}}
+                                                    {{simulationResultat?.nomPromoteur}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -298,7 +311,7 @@
                                                     Statut du projet
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.statutProjet}}
+                                                    {{simulationResultat?.statutProjet}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -306,19 +319,21 @@
                                                     type de taux
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
-                                                    {{recapitulatif?.typeTaux}}
+                                                    {{simulationResultat?.typeTaux}}
                                                 </div>
                                             </div>
                                         </div>
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow" #fuseCardResultat>
+                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                    [expanded]="openedCard === 4"
+                                    #fuseCardResultat>
                                     <div class="flex flex-row items-center">
                                         <button
                                             class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
                                             mat-stroked-button
-                                            (click)="fuseCardResultat.expanded = !fuseCardResultat.expanded">
+                                            (click)="openedCard === 4 ? openedCard = 0 : openedCard = 4">
                                             <mat-icon
                                                 class="icon-size-5 text-white"
                                                 *ngIf="!fuseCardResultat.expanded"
@@ -333,15 +348,15 @@
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second rounded-md bg-second-50">
+                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
 
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Montant crédit demandé
+                                                    Montant de crédit
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
-                                                        {{recapitulatif?.montant | number:'1.2-2'}}
+                                                        {{simulationResultat?.montant | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -353,7 +368,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #totalInteretsId>
-                                                        {{recapitulatif?.totalInterets | number:'1.2-2'}}
+                                                        {{simulationResultat?.totalInterets | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -365,7 +380,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #coutTotalId>
-                                                        {{recapitulatif?.coutTotal | number:'1.2-2'}}
+                                                        {{simulationResultat?.coutTotal | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -377,7 +392,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #assurancesId>
-                                                        {{recapitulatif?.totalInterets | number:'1.2-2'}}
+                                                        {{simulationResultat?.assurances | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -389,7 +404,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxParticipationId>
-                                                        {{recapitulatif?.tauxParticipation | number:'1.2-2'}}
+                                                        {{simulationResultat?.tauxParticipation | number:'1.3-3'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -401,7 +416,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                        {{recapitulatif?.tauxEffectifGlobal | number:'1.3-3'}}
+                                                        {{simulationResultat?.tauxEffectifGlobal | number:'1.3-3'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -412,9 +427,13 @@
                                                     Expertise immobilière
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                    <div class="font-medium text-xl leading-tight tracking-tight text-green-600"
+                                                        *ngIf="!estExpImmoNum">
+                                                        {{simulationResultat?.expertiseImmobiliereStr}}
+                                                    </div>
                                                     <div class="font-medium text-xl leading-tight tracking-tight"
-                                                        #expertiseImmobiliereId [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                        {{recapitulatif?.expertiseImmobiliere | number:'1.2-2'}}
+                                                        *ngIf="estExpImmoNum">
+                                                        {{simulationResultat?.expertiseImmobiliere | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
                                                 </div>
@@ -425,9 +444,13 @@
                                                     Frais de dossier
                                                 </span>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #fraisDossierId
-                                                        [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                        {{recapitulatif?.fraisDossier | number:'1.2-2'}}
+                                                    <div class="font-medium text-xl leading-tight tracking-tight text-green-600"
+                                                        *ngIf="!estFraisDossNum">
+                                                        {{simulationResultat?.fraisDossierStr}}
+                                                    </div>
+                                                    <div class="font-medium text-xl leading-tight tracking-tight"
+                                                        *ngIf="estFraisDossNum">
+                                                        {{simulationResultat?.fraisDossier | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
                                                 </div>
@@ -435,11 +458,11 @@
 
                                             <div class="flex flex-row items-center col-span-2 border-t pt-3">
                                                 <span class="text-md font-bold leading-none">
-                                                    Mensualités
+                                                    Mensualité
                                                 </span>
                                                 <div class="ml-auto flex items-baseline whitespace-nowrap">
                                                     <div class="text-2xl font-bold leading-tight tracking-tight">
-                                                        {{recapitulatif?.mensualite | number:'1.2-2'}}
+                                                        {{simulationResultat?.mensualite | number:'1.2-2'}}
                                                     </div>
                                                     <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
                                                 </div>
@@ -455,46 +478,49 @@
 
                 </mat-drawer-container>
 
-
-                <form class="w-full md:w-[55%] bg-card shadow rounded-md overflow-hidden ring-1 ring-current p-6"
-                    [formGroup]="demandeForm">
+                <div class="w-full md:w-[55%] bg-card shadow rounded-md overflow-hidden ring-1 ring-current p-6">
 
                     <div class="text-2xl font-semibold mb-3">Veuillez charger les fichiers ci-dessous : </div>
 
                     <ng-container *ngIf="pieces && pieces.length > 0">
-                        <div class="flex flex-col col-span-2 mb-3 p-3 bg-gray-50 border border border-gray-300 shadow-sm rounded-md">
+                        <div class="flex flex-col space-y-1 p-3 bg-gray-50 border border border-gray-300 shadow rounded-md">
                             <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
-                                <div class="flex flex-row items-center justify-between">
-                                    <span class="font-medium w-1/2">
-                                        {{piece.libelle}} :
-                                    </span>
-                                    <span class="text-sm text-primary">
-                                        {{piece.fileName}}
-                                    </span>
-                                    <!-- file -->
-                                    <div>
-                                        <input
-                                            id="{{ 'file-input' + i }}"
-                                            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                            type="file"
-                                            [multiple]="false"
-                                            [accept]="'image/jpeg, image/png'"
-                                            (change)="uploadPiece(piece, $event.target.files)"
-                                            #fileInput>
-                                        <button
-                                            *ngIf="piece.file"
-                                            class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                            mat-icon-button
-                                            (click)="deletePiece(piece, i)">
-                                            <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
-                                        </button>
-                                        <label
-                                            *ngIf="!piece.file"
-                                            class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                            for="{{ 'file-input' + i }}"
-                                            matRipple>
-                                            <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                        </label>
+                                <div class="w-full grid grid-cols-9 items-center justify-between">
+                                    <div class="flex flex-row items-center justify-between col-span-5">
+                                        <span class="font-medium">
+                                            {{piece.libelle}}
+                                        </span>
+                                        <span class="font-bold">&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between col-span-4">
+                                        <span class="text-sm text-primary">
+                                            {{piece.fileName}}
+                                        </span>
+                                        <!-- file -->
+                                        <div>
+                                            <input
+                                                id="{{ 'file-input' + i }}"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                                type="file"
+                                                [multiple]="false"
+                                                [accept]="'image/jpeg, image/png'"
+                                                (change)="uploadPiece(piece, $event.target.files)"
+                                                #fileInput>
+                                            <button
+                                                *ngIf="piece.file"
+                                                class="hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                mat-icon-button
+                                                (click)="deletePiece(piece, i)">
+                                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                                            </button>
+                                            <label
+                                                *ngIf="!piece.file"
+                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                for="{{ 'file-input' + i }}"
+                                                matRipple>
+                                                <mat-icon [svgIcon]="'heroicons_outline:upload'"></mat-icon>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </ng-container>
@@ -502,37 +528,30 @@
                     </ng-container>
 
                     <!-- Actions -->
-                    <div class="flex items-center">
+                    <div class="flex items-center mt-3">
+                        <button
+                            mat-flat-button
+                            class="ml-auto px-8"
+                            [ngClass]="{'bg-primary-200' : !estRempli}"
+                            [color]="'primary'"
+                            type="button"
+                            [disabled]="!estRempli"
+                            (click)="transformer()">
+                            Valider
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-3">
+                        <div>Vous souhaitez poursuivre au niveau d'une agence ?</div>
                         <button
                             mat-flat-button
                             type="button" 
                             [color]="'primary'"
                             (click)="openChangerAgenceDialog()">
-                            Changer d'agence
-                        </button>
-                        <!-- (click)="clearForm()" -->
-                        <button mat-button
-                            class="ml-auto px-8 mr-2"
-                            [color]="'accent'"
-                            type="button"
-                            [disabled]="demandeForm.pristine || demandeForm.untouched"
-                            >
-                            Vider
-                        </button>
-                        <!-- (click)="sendForm()" -->
-                        <button
-                            mat-flat-button
-                            class="px-8"
-                            [ngClass]="{'bg-primary-200' : demandeForm.pristine || demandeForm.invalid}"
-                            [color]="'primary'"
-                            type="button"
-                            [disabled]="demandeForm.pristine || demandeForm.invalid"
-                            >
-                            Valider
+                            Sélectionner une agence
                         </button>
                     </div>
-
-                </form>
+                </div>
 
             </div>
 

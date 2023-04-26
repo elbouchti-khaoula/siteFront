@@ -17,7 +17,7 @@ export const appRoutes: Route[] = [
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'espace-connected' },
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'espace-connecte' },
 
     // Auth routes for guests
     {
@@ -62,14 +62,6 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            // {
-            //     path: 'simulation-detaillee',
-            //     loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-            // },
-            // {
-            //     path: 'demande-credit',
-            //     loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
-            // },
         ]
     },
 
@@ -99,14 +91,6 @@ export const appRoutes: Route[] = [
         },
         children   : [
             {
-                path: 'simulation-detaillee',
-                loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-            },
-            {
-                path: 'demande-credit',
-                loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
-            },
-            {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
             },
@@ -135,12 +119,31 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
 
-
             {
-                path: 'espace-connected',
-                loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                path: 'espace-connecte',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                    },
+                    {
+                        path: 'simulation-detaillee',
+                        loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
+                    },
+                    {
+                        path: 'demande-credit',
+                        loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
+                    },
+                    {
+                        path: 'mes-simulations',
+                        loadChildren: () => import('app/modules/admin/mes-simulations/mes-simulations.module').then(m => m.MesSimulationsModule)
+                    },
+                    {
+                        path: 'consulter-simulation',
+                        loadChildren: () => import('app/modules/admin/consulter-simulation/consulter-simulation.module').then(m => m.ConsulterSimulationModule)
+                    },
+                ]
             },
-
             {
                 path: 'espace-connected-client',
                 loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),

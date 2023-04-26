@@ -1,34 +1,80 @@
-<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}"> -->
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <div class="grid grid-cols-1 md:grid-cols-2 md:h-full">
         <div class="reclamation-bg-header h-[45vh] md:h-full w-full"></div>
 
-        <fuse-card class="flex flex-col bg-card py-6 sm:py-8 my-5 md:my-10 mx-3 sm:mx-20">
+        <fuse-card class="flex flex-col bg-card py-6 sm:py-8 my-5 md:my-10 mx-3 sm:mx-10">
 
             <!-- Header -->
             <div class="flex flex-0 items-center border-b px-6 sm:px-10 pb-3">
                 <div class="text-2xl font-semibold">Remplissez le formulaire sécurisé ci-dessous</div>
             </div>
 
-            <!-- Main Form -->
-            <div class="overflow-y-auto py-6">
-                <!-- Alert -->
-                <fuse-alert
-                    class="px-6 sm:px-10 w-120"
-                    *ngIf="alert"
-                    [appearance]="'outline'"
-                    [type]="alert.type">
-                    {{alert.message}}
-                </fuse-alert>
+            <!-- Alert -->
+            <fuse-alert class="px-6 sm:px-10 pt-6 w-120" *ngIf="alert" [appearance]="'outline'" [type]="alert.type">
+                {{alert.message}}
+            </fuse-alert>
 
-                <form class="w-full grid grid-cols-2 gap-x-2 gap-y-1 mt-5 px-6 sm:px-10"
-                    [formGroup]="reclamationForm"
-                    #reclamationNgForm="ngForm">
+            <!-- Main Form -->
+            <form class="flex flex-col overflow-hidden mt-5"
+                [formGroup]="reclamationForm"
+                #reclamationNgForm="ngForm">
+
+                <div class="w-full grid grid-cols-2 gap-x-2 gap-y-1 px-6 sm:px-10 overflow-y-auto">
+
+                    <!-- Objet réclamation -->
+                    <mat-form-field class="w-full col-span-2" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:information-circle'" matPrefix>
+                        </mat-icon>
+                        <mat-label class="max-md:text-sm max-md:font-semibold">Objet réclamation</mat-label>
+                        <mat-select [formControlName]="'motif'">
+                            <ng-container *ngFor="let motif of motifs">
+                                <mat-option [value]="motif.id">
+                                    {{motif.libelleselfcare}}
+                                </mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <ng-container *ngIf="(piecesByMotif$ | async) as pieces">
+                        <ng-container *ngIf="pieces.length > 0">
+                            <div
+                                class="flex flex-col col-span-2 mb-3 border border-gray-300 shadow-sm rounded-md p-3">
+                                <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
+                                    <div class="flex flex-row items-center justify-between">
+                                        <span class="font-medium w-44">
+                                            {{piece.libelle}} :
+                                        </span>
+                                        <span class="text-sm text-primary">
+                                            {{piece.fileName}}
+                                        </span>
+                                        <!-- file -->
+                                        <div>
+                                            <input id="{{ 'file-input' + i }}"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'"
+                                                (change)="uploadPiece(piece, $event.target.files)" #fileInput>
+                                            <button *ngIf="piece.file"
+                                                class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                mat-icon-button (click)="deletePiece(piece, i)">
+                                                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                                            </button>
+                                            <label
+                                                *ngIf="!piece.file"
+                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                for="{{ 'file-input' + i }}" matRipple>
+                                                <mat-icon [svgIcon]="'heroicons_outline:upload'"></mat-icon>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </ng-container>
 
                     <!-- Nom -->
-                    <mat-form-field class="w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'nom'" [required]="true">
@@ -39,8 +85,7 @@
                     </mat-form-field>
 
                     <!-- Prénom -->
-                    <mat-form-field class="w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'prenom'" [required]="true">
@@ -51,8 +96,7 @@
                     </mat-form-field>
 
                     <!-- CIN -->
-                    <mat-form-field class="w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'cin'" [required]="true">
@@ -73,8 +117,7 @@
                     </mat-form-field> -->
 
                     <!-- Téléphone -->
-                    <mat-form-field class="w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'telephone'" [required]="true">
@@ -85,10 +128,8 @@
                     </mat-form-field>
 
                     <!-- Email -->
-                    <mat-form-field class="w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'"
-                            matPrefix></mat-icon>
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
                         <input type="email" matInput [formControlName]="'email'" [required]="true">
                         <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                         <mat-error *ngIf="reclamationForm.get('email').hasError('email')">
@@ -124,76 +165,15 @@
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                         </mat-icon>
                         <input matInput [formControlName]="'adresse'" [required]="true">
-                        <mat-label>Adresse de correspondance</mat-label>
+                        <mat-label class="max-md:text-sm max-md:font-semibold">Adresse de correspondance</mat-label>
                         <mat-error *ngIf="reclamationForm.get('adresse').hasError('required')">
                             Adresse obligatoire
                         </mat-error>
                     </mat-form-field> -->
 
-                    <!-- Objet réclamation -->
-                    <mat-form-field class="w-full col-span-2"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:information-circle'" matPrefix>
-                        </mat-icon>
-                        <mat-label class="max-md:text-sm max-md:font-semibold">Objet réclamation</mat-label>
-                        <mat-select
-                            [formControlName]="'motif'">
-                            <ng-container *ngFor="let motif of motifs">
-                                <mat-option [value]="motif.id">
-                                    {{motif.libelleselfcare}}
-                                </mat-option>
-                            </ng-container>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <ng-container *ngIf="(piecesByMotif$ | async) as pieces">
-                        <ng-container *ngIf="pieces.length > 0">
-                            <div class="flex flex-col col-span-2 mb-3 border border-gray-300 shadow-sm rounded-md p-3">
-                                <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
-                                    <div class="flex flex-row items-center justify-between">
-                                        <span class="font-medium w-44">
-                                            {{piece.libelle}} :
-                                        </span>
-                                        <span class="text-sm text-primary">
-                                            {{piece.fileName}}
-                                        </span>
-                                        <!-- file -->
-                                        <div>
-                                            <input
-                                                id="{{ 'file-input' + i }}"
-                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file"
-                                                [multiple]="false"
-                                                [accept]="'image/jpeg, image/png'"
-                                                (change)="uploadPiece(piece, $event.target.files)"
-                                                #fileInput>
-                                            <button
-                                                *ngIf="piece.file"
-                                                class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                mat-icon-button
-                                                (click)="deletePiece(piece, i)">
-                                                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
-                                            </button>
-                                            <label
-                                                *ngIf="!piece.file"
-                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                for="{{ 'file-input' + i }}"
-                                                matRipple>
-                                                <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </ng-container>
-                            </div>
-                        </ng-container>
-                    </ng-container>
-
                     <!-- Message -->
                     <mat-form-field class="fuse-mat-textarea w-full col-span-2">
-                        <textarea matInput
-                            [formControlName]="'text'"
-                            [required]="true"
-                            [rows]="3"
+                        <textarea matInput [formControlName]="'text'" [required]="true" [rows]="3"
                             matTextareaAutosize></textarea>
                         <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
                         <mat-error *ngIf="reclamationForm.get('text').hasError('required')">
@@ -201,25 +181,21 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <!-- Actions -->
-                    <div class="flex items-center justify-end col-span-2">
-                        <button mat-stroked-button
-                            [color]="'accent'"
-                            [disabled]="reclamationForm.pristine || reclamationForm.untouched"
-                            (click)="clearForm()">
-                            Vider
-                        </button>
-                        <button class="ml-2"
-                            mat-flat-button
-                            [color]="'primary'"
-                            [disabled]="reclamationForm.pristine || reclamationForm.invalid"
-                            (click)="sendForm()">
-                            Envoyer
-                        </button>
-                    </div>
-                </form>
-            </div>
-            
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center justify-end px-6 sm:px-10 mt-3">
+                    <button mat-stroked-button [color]="'accent'"
+                        [disabled]="reclamationForm.pristine || reclamationForm.untouched" (click)="clearForm()">
+                        Vider
+                    </button>
+                    <button class="ml-2" mat-flat-button [color]="'primary'"
+                        [disabled]="reclamationForm.pristine || reclamationForm.invalid" (click)="sendForm()">
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+
         </fuse-card>
     </div>
 

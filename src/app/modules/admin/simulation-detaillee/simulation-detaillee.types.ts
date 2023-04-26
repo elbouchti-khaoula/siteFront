@@ -1,8 +1,8 @@
 export interface CritereDetaillee {
-    provenance: string; //"provenance": "SITE"
-    type: string; //"type": "personnePhysique"
-    codeApporteur: string; //"codeApporteur": "100"
-    codeUtilisateur: string; //"codeUtilisateur": "WEB"
+    provenance: string;         // provenance: "SITE"
+    type: string;               // type: "personnePhysique"
+    codeApporteur: string;      // codeApporteur: "100"
+    codeUtilisateur: string;    // codeUtilisateur: "WEB"
     objetFinancement: string;
     montant: number;
     montantProposition: number;
@@ -14,10 +14,10 @@ export interface CritereDetaillee {
         nom: string;
         prenom: string;
         categorieSocioProfessionnelle: string;
-        numIdentite?: string;
+        // numIdentite?: string;
         residantMaroc: boolean;
         nationalite: string;
-        segment: string; //"segment": "NV";
+        segment: string;        // segment: "NV";
         dateNaissance: string;
         salaire: string;
         autresRevenus: string;
@@ -29,32 +29,58 @@ export interface CritereDetaillee {
 }
 
 export interface SimulationDetaillee {
-    id: number;
-    montant?: number;
-    montantProposition: number;
-    duree: number;
-    nbreAnnee?: number;
-    nbreMois?: number;
-    statut?: string;
 
-    dossierId?: number;
-    dossierMontant?: number;
-    dossierDuree?: number;
+    // Mon profil
+    nom?                            : string;
+    prenom?                         : string;
+    telephone?                      : string;
+    email?                          : string;
+    dateNaissance?                  : string;
+    nationalite?                    : string;
+    residantMaroc?                  : boolean;
+    // ma situation
+    categorieSocioProfessionnelle?  : string;
+    nomEmployeur?                   : string;
+    salaire?                        : number;
+    autresRevenus?                  : number;
+    creditsEnCours?                 : number;
+    // Mon projet
+    objetFinancement?               : string;
+    nomPromoteur?                   : string;
+    statutProjet?                   : string;
+    typeTaux?                       : string;
 
-    mensualite: number;
-    tauxNominal?: number;
-    tauxEffectifGlobal: number;
-    tauxParticipation: number;
-    assurances: number;
-    totalInterets: number;
-    coutTotal: number;
-    fraisDossier: number;
-    expertiseImmobiliere: number;
+    // résultat
+    id                              : number;
+    montant?                        : number;
+    montantProposition              : number;
+    duree                           : number;
+    nbreAnnee?                      : number;
+    nbreMois?                       : number;
+    statut?                         : string;
+
+    dossierId?                      : number;
+    dossierMontant?                 : number;
+    dossierDuree?                   : number;
+
+    mensualite                      : number;
+    tauxNominal?                    : number;
+    tauxEffectifGlobal              : number;
+    tauxParticipation               : number;
+    assurances                      : number;
+    totalInterets                   : number;
+    coutTotal                       : number;
+    fraisDossier                    : number;
+    fraisDossierStr?                : string;
+    expertiseImmobiliere            : number;
+    expertiseImmobiliereStr?        : string;
 
     // frais
-    droitsEnregistrement: number;
-    conservationFonciere: number;
-    honorairesNotaire   : number;
-    fraisDivers         : number;
-    totalFrais?         : number;
+    droitsEnregistrement            : number;
+    conservationFonciere            : number;
+    honorairesNotaire               : number;
+    fraisDivers                     : number;
+    totalFrais?                     : number;
+
+    newSimulation?                  : boolean;
 }

@@ -107,7 +107,7 @@ export class AgencesComponent implements OnInit, OnDestroy {
         this.searchForm.reset();
         this._referentielService.getAgences().subscribe(() => {
 
-            this.agencesResult.nativeElement.scrollIntoView();
+            this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
         });
     }
 
@@ -118,7 +118,7 @@ export class AgencesComponent implements OnInit, OnDestroy {
         this._referentielService.getAgencesByVille(this.searchForm.get('codeVille').value)
             .subscribe(() => {
 
-                this.agencesResult.nativeElement.scrollIntoView();
+                this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

@@ -1,17 +1,17 @@
 <ng-container *transloco="let t">
 
-    <!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]> -->
-    <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis] cdkScrollable>
+    <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]="{value:'', params: {duration: 700}}">
+    <!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis] cdkScrollable> -->
 
         <div class="fixed flex items-center justify-center right-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
             <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/wimo.jpg">
         </div>
 
-        <!-- <div class="fixed flex items-center justify-center left-0 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-r-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
+        <div class="fixed flex items-center justify-center left-0 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-r-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
             <a href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne" target="blank">
                 <img class="rounded-r-lg opacity-60 hover:opacity-100" src="assets/images/open-awb.jpg">
             </a>
-        </div> -->
+        </div>
 
         <!-- Header -->
         <header class="relative w-full flex flex-col items-center justify-center md:justify-end min-h-[45vh] sm:min-h-[92vh] landing-bg-header md:bg-fixed">
@@ -36,75 +36,18 @@
             </div>
 
             <!-- Parcours md -->
-            <div class="hidden md:flex flex-row justify-center space-x-10 text-white mt-20 mb-14">
-                <a class="w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['/projets-search']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="property">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je trouve</span>
-                        <span>mon bien</span>
-                    </div>
-                </a>
-                <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']"
-                    (click)="scrollToSimulation()">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="calculation">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je simule </span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
-                <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne"
-                    target="blank">
-                    <div class="h-20 flex items-center">
-                        <img class="w-14" src="assets/images/logo/logo-awb.jpg">
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>J'ouvre mon compte</span>
-                        <span>Attijariwafa bank</span>
-                    </div>
-                </a>
-                <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="survey">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je demande</span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
-                <a class="h-fit w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="timeline">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je suis</span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
-            </div>
+            <parcours [inputMethod]="this.scrollToSimulation.bind(this)"></parcours>
 
         </header>
 
         <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
-        <div class="md:hidden relative w-full mx-auto p-5 -mt-20 sm:max-w-md">
+        <div class="md:hidden relative w-full p-5 -mt-20 sm:max-w-md sm:mx-auto">
             
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
-            <div class="grid grid-cols-5 gap-2 mt-7 sm:py-3">
+            <div class="mx-auto w-fit grid grid-cols-4 gap-2 mt-7 sm:py-3">
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['/projets-search']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
                         </mat-icon>
@@ -115,7 +58,7 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['./']"
                         (click)="scrollToSimulation()">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
@@ -127,18 +70,8 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center">
-                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
-                        [routerLink]="['./']">
-                        <img class="w-10" src="assets/images/logo/logo-awb.jpg">
-                    </span>
-                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
-                        <span>J'ouvre</span>
-                        <span>mon compte</span>
-                    </div>
-                </div>
-                <div class="carre flex flex-col items-center">
-                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
-                        [routerLink]="['./']">
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                        [routerLink]="['/espace-connecte/simulation-detaillee']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
                         </mat-icon>
                     </span>
@@ -148,7 +81,7 @@
                     </div>
                 </div>
                 <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                         [routerLink]="['./']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
                         </mat-icon>

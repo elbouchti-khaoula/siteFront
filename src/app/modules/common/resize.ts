@@ -50,7 +50,7 @@ const resize = trigger('resize', [
     state(
         'smallDesktop',
         style({
-            width: '40%',
+            width: '50%',
             transform: 'translateX(0%)'
         })
     ),

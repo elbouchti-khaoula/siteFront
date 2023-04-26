@@ -10,6 +10,7 @@ import { DemandeCreditComponent } from './demande-credit.component';
 import { demandeCreditRoutes } from './demande-credit.routing';
 import { ChangerAgenceModule } from './changer-agence/changer-agence.module';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
+import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amo
         FuseCardModule,
         MatSidenavModule,
         ChangerAgenceModule,
-        TableauAmortissementModule
+        TableauAmortissementModule,
+        BienvenueModule
     ],
     exports     : [
         DemandeCreditComponent
