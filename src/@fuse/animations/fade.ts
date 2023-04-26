@@ -161,18 +161,36 @@ const fadeInRight = trigger('fadeInRight',
 
 const fadeInRightBis = trigger('fadeInRightBis',
     [
-        transition(':enter', [
-            style({
-                opacity: 0, transform: 'translateX(100%)'
-            }),
-            animate('700ms ease-out', style({ opacity: 1, transform: 'translateX(0%)' }))
-        ]),
-        transition(':leave', [
-            style({
-                opacity: 1, transform: 'translateX(0%)'
-            }),
-            animate('700ms ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
-        ])
+        transition(':enter',
+            [
+                style({
+                    opacity: 0, 
+                    transform: 'translateX(100%)'
+                }),
+                animate(
+                    '{{duration}}ms {{delay}}ms {{curve}}',
+                    style({ opacity: 1, transform: 'translateX(0%)' })
+                )
+            ],
+            {
+                params: paramsIn
+            }
+        ),
+        transition(':leave',
+            [
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0%)'
+                }),
+                animate(
+                    '{{duration}}ms {{delay}}ms {{curve}}',
+                    style({ opacity: 0, transform: 'translateX(-100%)' })
+                )
+            ],
+            {
+                params: paramsOut
+            }
+        )
     ]
 );
 

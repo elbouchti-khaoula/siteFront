@@ -19,7 +19,7 @@
         <fuse-card
             *ngIf="visible"
             [@fadeInLeft]="{value:'', params: {duration: 700}}"
-            class="flex items-center justify-between max-w-120 w-full p-6 bg-second-50 mt-3">
+            class="flex items-center justify-between max-w-120 w-full p-6 mt-3 ring-1 ring-second-500 bg-second-100 rounded-md shadow">
             <div class="flex flex-col">
                 <div class="text-2xl font-semibold leading-tight">{{projet.contact}}</div>
                 <div class="text-md text-secondary">{{projet.telephone}}</div>
@@ -47,7 +47,7 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                 </mat-icon>
                 <input matInput [formControlName]="'nom'">
-                <mat-label class="text-sm font-semibold">Nom</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
                 <mat-error *ngIf="projetContactForm.get('nom').hasError('required')">
                     Nom obligatoire
                 </mat-error>
@@ -59,7 +59,7 @@
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                 </mat-icon>
                 <input matInput [formControlName]="'prenom'">
-                <mat-label class="text-sm font-semibold">Prénom</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
                 <mat-error *ngIf="projetContactForm.get('prenom').hasError('required')">
                     Prénom obligatoire
                 </mat-error>
@@ -70,7 +70,7 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
                 <input matInput [formControlName]="'telephone'">
-                <mat-label class="text-sm font-semibold">Téléphone</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                 <mat-error *ngIf="projetContactForm.get('telephone').hasError('required')">
                     Téléphone obligatoire
                 </mat-error>
@@ -81,7 +81,7 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
                 <input type="email" matInput [formControlName]="'email'">
-                <mat-label class="text-sm font-semibold">E-mail</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                 <mat-error *ngIf="projetContactForm.get('email').hasError('email')">
                     Enter a valid email address
                 </mat-error>
@@ -97,7 +97,7 @@
                     [rows]="3"
                     matTextareaAutosize>
                 </textarea>
-                <mat-label class="text-sm font-semibold">Message</mat-label>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
             </mat-form-field>
 
             <!-- Actions -->

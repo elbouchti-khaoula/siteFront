@@ -5,7 +5,7 @@
     <div class="w-full mb-5"
         [ngClass]="{'md:hidden': parentComponent === 'projets-search'}">
         <div class="text-lg font-bold text-primary">
-            Trouvez votre bien immobilier
+            Trouver mon bien
         </div>
         <div class="w-7 h-1 rounded-2xl mt-2 bg-second-500"></div>
     </div>
@@ -21,7 +21,6 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
                 </mat-icon>
-                <!-- <mat-label class="text-sm font-semibold">Ville</mat-label> -->
                 <mat-select
                     [formControlName]="'codeVille'"
                     [placeholder]="'Ville'">
@@ -38,7 +37,6 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
-                <!-- <mat-label class="text-sm font-semibold">Quartier</mat-label> -->
                 <mat-select
                     [formControlName]="'codeQuartier'"
                     [placeholder]="'Quartier'"
@@ -56,7 +54,6 @@
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
                 </mat-icon>
-                <!-- <mat-label class="text-sm font-semibold">Type de bien</mat-label> -->
                 <mat-select 
                     [formControlName]="'codeTypeBien'"
                     [placeholder]="'Type de bien'">
@@ -73,7 +70,6 @@
             <!-- Prix min -->
             <mat-form-field class="fuse-mat-no-subscript w-full"
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <!-- <mat-label class="text-sm font-semibold">Prix min</mat-label> -->
                 <input matInput [formControlName]="'prixMin'" [placeholder]="'Prix min'">
                 <span matSuffix>Dhs</span>
             </mat-form-field>
@@ -81,7 +77,6 @@
             <!-- Prix max -->
             <mat-form-field class="fuse-mat-no-subscript w-full"
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                <!-- <mat-label class="text-sm font-semibold">Prix max</mat-label> -->
                 <input matInput [formControlName]="'prixMax'" [placeholder]="'Prix max'">
                 <span matSuffix>Dhs</span>
             </mat-form-field>
@@ -92,6 +87,7 @@
             [ngClass]="{'max-md:mt-5 md:w-1/6 md:ml-10 md:mb-1': parentComponent === 'projets-search',
                         'mt-5': parentComponent === 'landing'}">
             <button
+                *ngIf="parentComponent === 'projets-search'"
                 mat-stroked-button
                 class="bg-default"
                 type="button" 
@@ -108,7 +104,7 @@
                 [color]="'primary'"
                 [disabled]="searchForm.pristine || searchForm.invalid"
                 (click)="parentComponent === 'projets-search' ? search() : navigateToMarketPlace()">
-                Voir les annonces
+                {{ parentComponent === 'projets-search' ? 'Valider' : 'Accéder'}}
             </button>
         </div>
 

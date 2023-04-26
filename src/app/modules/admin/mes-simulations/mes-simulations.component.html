@@ -1,0 +1,112 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+    <!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+
+    <!-- Header -->
+    <header
+        class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-[45vh] md:min-h-[35vh] messimul-bg-header">
+        <div class="w-full max-w-400">
+            <bienvenue></bienvenue>
+        </div>
+    </header>
+
+    <div class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+
+            <div class="flex flex-row">
+                <div>
+                    <span
+                        class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+                        Mes simulations
+                    </span>
+                    <div class="max-w-xl mt-2 text-xl text-secondary">
+                        Vous avez ({{simulations.length}}) simulations en cours
+                    </div>
+                </div>
+                <!-- Add simulation button -->
+                <button class="ml-auto" mat-flat-button [color]="'primary'" [routerLink]="['/espace-connecte/simulation-detaillee']">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2 mr-1">Nouvelle simulation</span>
+                </button>
+            </div>
+            
+            <!-- <ng-container *ngIf="simulations$ | async as simulations"> -->
+            <ng-container *ngIf="simulations && simulations.length > 0; else noSimulations">
+
+                <div class="mx-auto w-fit grid grid-cols-1 gap-y-14 md:grid-cols-2 md:gap-x-10 md:gap-y-16 mt-16"
+                    [ngClass]="{'md:grid-cols-3' : simulations.length > 4 || simulations.length === 3,
+                                    'md:grid-cols-1' : simulations.length === 1 }">
+
+                    <ng-container *ngFor="let simulation of simulations; let i = index; trackBy: trackByFn">
+                        <fuse-card class="flex flex-col items-center p-8 pb-6 overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
+
+                            <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 p-2 rounded-full font-medium text-center leading-none bg-primary-500">
+                                <mat-icon class="icon-size-12 text-on-primary" [svgIcon]="'heroicons_solid:calculator'">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-5" [routerLink]="['/espace-connecte/consulter-simulation']">
+                                <div class="text-2xl font-bold leading-tight uppercase">Simulation N° {{simulation.id}}
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-5 px-2 mt-10 mb-1">
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-medium uppercase">Mensualité</span>
+                                        <span class="text-xl font-semibold">{{simulation.mensualites |
+                                            number:'1.2-2'}}</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-medium uppercase">Montant</span>
+                                        <span class="text-xl font-semibold">{{simulation.montant |
+                                            number:'1.2-2'}}</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-medium uppercase">Durée</span>
+                                        <span class="text-xl font-semibold">{{simulation.duree}} mois</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-medium uppercase">TEG</span>
+                                        <span class="text-xl font-semibold">{{simulation.teg | number:'1.2-3'}} %</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="w-full border-t mb-5">
+
+                            <div class="flex items-center">
+                                <button
+                                    class="px-3"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [routerLink]="['/espace-connecte/demande-credit']">
+                                    Demander mon crédit
+                                </button>
+                                <button
+                                    class="px-3 ml-2"
+                                    mat-stroked-button
+                                    [matTooltip]="'J abandonne'">
+                                    Abandonner
+                                </button>
+                            </div>
+
+                        </fuse-card>
+                    </ng-container>
+
+                </div>
+            </ng-container>
+            <!-- </ng-container> -->
+
+            <!-- No simulation template -->
+            <ng-template #noSimulations>
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 dark:bg-transparent">
+                    <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
+                    <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
+                        Il n'y a pas de simulation!
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+    </div>
+
+</div>

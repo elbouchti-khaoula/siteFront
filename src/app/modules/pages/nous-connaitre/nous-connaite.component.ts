@@ -52,7 +52,7 @@ export class NousConnaiteComponent implements OnInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
     scrollToElement(el: HTMLElement) {
-        el.scrollIntoView();
+        el.scrollIntoView({ behavior: "smooth" });
     }
 
 }

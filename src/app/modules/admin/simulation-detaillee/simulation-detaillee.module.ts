@@ -18,6 +18,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
+import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amo
         MatDatepickerModule,
         MatMomentDateModule,
         MatSidenavModule,
-        TableauAmortissementModule
+        TableauAmortissementModule,
+        BienvenueModule,
+        DetailsSimulationModule
     ],
     providers   : [
         {

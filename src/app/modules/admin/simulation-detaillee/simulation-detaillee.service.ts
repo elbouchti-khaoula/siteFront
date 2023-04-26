@@ -115,9 +115,9 @@ export class SimulationDetailleeService {
     /**
      * Abandonner une simulation
      *
-     * @param queryParams
+     * @param projectId
      */
-    abandonner(projectId: number): Observable<SimulationDetaillee> {
+    abandonner(projectId: number): Observable<any> {
 
         return this._projectAuthService.getToken()
             .pipe(
@@ -130,11 +130,11 @@ export class SimulationDetailleeService {
                             'Authorization': `Bearer ${token}`
                         });
 
-                        return this._httpClient.patch(`api/projects/${projectId}`, {codeStatut : "ANNU"}, { headers: headers })
+                        return this._httpClient.patch(`api/projects/${projectId}`, {codeStatut : "PABA"}, { headers: headers })
                             .pipe(
                                 map((updatedProject: any) => {
                                     
-                                    // Return the updated tag
+                                    // Return the updated project
                                     return updatedProject;
                                 })
                             );

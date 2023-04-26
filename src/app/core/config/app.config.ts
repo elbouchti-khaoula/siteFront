@@ -48,40 +48,36 @@ export const appConfig: AppConfig = {
     themes : [
         {
             id  : 'theme-default',
-            name: 'WIMO'
+            name: 'WIMMO'
         },
         {
             id  : 'theme-agence',
             name: 'Agence'
         },
-        // {
-        //     id  : 'theme-brand',
-        //     name: 'Brand'
-        // },
-        {
-            id  : 'theme-teal',
-            name: 'Teal'
-        },
-        // {
-        //     id  : 'theme-wimmo',
-        //     name: 'WIMO'
-        // },
         {
             id  : 'theme-awb',
             name: 'AWB'
         },
-        {
-            id  : 'theme-rose',
-            name: 'rose'
-        },
+        // {
+        //     id  : 'theme-brand',
+        //     name: 'Brand'
+        // },
+        // {
+        //     id  : 'theme-teal',
+        //     name: 'Teal'
+        // },
+        // {
+        //     id  : 'theme-rose',
+        //     name: 'rose'
+        // },
         // {
         //     id  : 'theme-purple',
         //     name: 'Purple'
         // },
-        {
-            id  : 'theme-amber',
-            name: 'Amber'
-        }
+        // {
+        //     id  : 'theme-amber',
+        //     name: 'Amber'
+        // }
     ],
     direction: 'ltr',
     devise: 'Dhs'

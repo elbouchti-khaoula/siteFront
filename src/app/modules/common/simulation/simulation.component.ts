@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 @Component({
     selector       : 'simulation',
     templateUrl    : './simulation.component.html',
+    styleUrls      : ['./simulation.component.scss'],
     encapsulation  : ViewEncapsulation.None
 })
 export class SimulationComponent
@@ -47,7 +48,7 @@ export class SimulationComponent
         const duree = this.dureeValue * 12
         const taux = this.tauxValue / 100;
         var m = (montant * (taux / 12)) / (1 - Math.pow((1 + (taux / 12)), -duree));
-        return (Math.round(m * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return (Math.round(m * 100) / 100).toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     formatLabelMontant(value: number): string {

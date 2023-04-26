@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationExtras, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
@@ -11,7 +10,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from './simulation-detaillee.service';
 import * as moment from 'moment';
 import { resize } from 'app/modules/common/resize';
-import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
+import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -22,6 +21,8 @@ import { TableauAmortissementService } from '../tableau-amortissement/tableau-am
 })
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
+
+  @ViewChild(DetailsSimulationComponent) detailsSimulation;
 
   drawerOpened: boolean = false;
 
@@ -57,33 +58,12 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     montantProposition: 500000,
     duree: 240,
     typeTaux: null, // 'FIXE',
-    statutProjet: 'active',
+    statutProjet: 'statut1',
     nomPromoteur: 'Promoteur'
   };
   tab = ['step1', 'step2', 'step3'];
 
   simulationResultat: SimulationDetaillee;
-  estExpImmoNum: boolean = true;
-  estFraisDossNum: boolean = true;
-
-  @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
-  @ViewChild('mensualiteId') mensualiteId: any;
-  @ViewChild('nbreAnneeId') nbreAnneeId: any;
-  @ViewChild('nbreMoisId') nbreMoisId: any;
-  @ViewChild('montantId') montantId: any;
-  @ViewChild('totalInteretsId') totalInteretsId: any;
-  @ViewChild('coutTotalId') coutTotalId: any;
-  @ViewChild('assurancesId') assurancesId: any;
-  @ViewChild('tauxParticipationId') tauxParticipationId: any;
-  @ViewChild('tauxEffectifGlobalId') tauxEffectifGlobalId: any;
-  @ViewChild('expertiseImmobiliereId') expertiseImmobiliereId: any;
-  @ViewChild('fraisDossierId') fraisDossierId: any;
-  @ViewChild('totalFraisId') totalFraisId: any;
-  @ViewChild('droitsEnregistrementId') droitsEnregistrementId: any;
-  @ViewChild('conservationFonciereId') conservationFonciereId: any;
-  @ViewChild('fraisDiversId') fraisDiversId: any;
-  @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
-
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   /**
@@ -95,10 +75,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
-    private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
-    private _simulationService: SimulationDetailleeService,
-    private _tableauAmortissementService: TableauAmortissementService
+    private _simulationService: SimulationDetailleeService
   ) {
 
     this.simulationResultat = {
@@ -152,7 +130,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         duree: [this.simulationFormDefaults.duree, [Validators.required]],
         typeTaux: [this.simulationFormDefaults.typeTaux, [Validators.required]],
         statutProjet: [this.simulationFormDefaults.statutProjet, [Validators.required]],
-        nomPromoteur: [this.simulationFormDefaults.nomPromoteur, [Validators.required]]
+        nomPromoteur: [this.simulationFormDefaults.nomPromoteur]
       })
     });
   }
@@ -163,6 +141,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // this.isVisible = true;
+    
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
       .pipe(takeUntil(this._unsubscribeAll))
@@ -266,43 +246,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    * Reset the form using the default
    */
   newSimulation(): void {
-    // this.isVisible = false;
-    // this.simulationStepper.reset();
     // this.simulationStepperForm.reset(this.simulationFormDefaults);
     this.simulationStepperForm.get('step3').get('montant').reset();
-    this.simulationStepperForm.get('step3').reset();
+    this.simulationStepperForm.get('step3').get('duree').reset();
 
-    // Mensualité
-    this._animateCounterService.animateValue(this.mensualiteId, this.simulationResultat.mensualite, 0, 600);
-    this._animateCounterService.animateValue(this.nbreAnneeId, this.simulationResultat.nbreAnnee, 0, 600);
-    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.nbreMois, 0, 600);
-    this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
-    this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInterets, 0, 600);
-    this._animateCounterService.animateValue(this.coutTotalId, this.simulationResultat.coutTotal, 0, 600);
-    this._animateCounterService.animateValue(this.assurancesId, this.simulationResultat.assurances, 0, 600);
-    this._animateCounterService.animateValue(this.tauxParticipationId, this.simulationResultat.tauxParticipation, 0, 600);
-    this._animateCounterService.animateValue(this.tauxEffectifGlobalId, this.simulationResultat.tauxEffectifGlobal, 0, 600);
-
-    let nbExp = 0;
-    if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
-      nbExp = this.simulationResultat.expertiseImmobiliere;
-    }
-    this.estExpImmoNum = true;
-    this._animateCounterService.animateValue(this.expertiseImmobiliereId, nbExp, 0, 600);
-
-    let nbFrai = 0;
-    if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
-      nbFrai = this.simulationResultat.fraisDossier;
-    }
-    this.estFraisDossNum = true;
-    this._animateCounterService.animateValue(this.fraisDossierId, nbFrai, 0, 600);
-
-    // Frais
-    this._animateCounterService.animateValue(this.totalFraisId, this.simulationResultat.totalFrais, 0, 600);
-    this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulationResultat.droitsEnregistrement, 0, 600);
-    this._animateCounterService.animateValue(this.conservationFonciereId, this.simulationResultat.conservationFonciere, 0, 600);
-    this._animateCounterService.animateValue(this.fraisDiversId, this.simulationResultat.fraisDivers, 0, 600);
-    this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulationResultat.honorairesNotaire, 0, 600);
+    this.detailsSimulation.viderSimulation();
   }
 
   /**
@@ -348,22 +296,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       .pipe(
         // Error here means the requested is not available
         catchError((error) => {
-
-          //     // Log the error
-          //     console.error(error);
-
-          //     // if (error.status === 500) {
-          //     //   this._router.navigateByUrl('/500-server-error');
-          //     // } else if (error.status === 400) {
-          //     //   this._router.navigateByUrl('/404-not-found');
-          //     // } else {
-          //     //   // Get the parent url
-          //     //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
-
-          //     //   // Navigate to there
-          //     //   this._router.navigateByUrl(parentUrl);
-          //     // }
-
           // Throw an error
           return throwError(error);
         })
@@ -374,49 +306,66 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         simulation.nbreAnnee = Math.trunc(simulation.duree / 12);
         simulation.nbreMois = simulation.duree % 12;
 
-        // Mensualité
-        this.mensualiteId.nativeElement.textContent = simulation.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.nbreAnneeId.nativeElement.textContent = simulation.nbreAnnee;
-        this.nbreMoisId.nativeElement.textContent = simulation.nbreMois;
-        this.montantId.nativeElement.textContent = simulation.montantProposition.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.totalInteretsId.nativeElement.textContent = simulation.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.assurancesId.nativeElement.textContent = simulation.assurances.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.tauxParticipationId.nativeElement.textContent = simulation.tauxParticipation.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.tauxEffectifGlobalId.nativeElement.textContent = simulation.tauxEffectifGlobal.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.coutTotalId.nativeElement.textContent = simulation.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-        if (simulation.expertiseImmobiliere && simulation.expertiseImmobiliere > 0) {
-          this.expertiseImmobiliereId.nativeElement.textContent = Number(simulation.expertiseImmobiliere).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estExpImmoNum = true;
-        } else {
-          simulation.expertiseImmobiliere = 0;
-          this.expertiseImmobiliereId.nativeElement.textContent = "GRATUIT";
-          this.estExpImmoNum = false;
-        }
-
-        if (simulation.fraisDossier && simulation.fraisDossier > 0) {
-          this.fraisDossierId.nativeElement.textContent = Number(simulation.fraisDossier).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estFraisDossNum = true;
-        } else {
-          simulation.fraisDossier = 0;
-          this.fraisDossierId.nativeElement.textContent = "GRATUIT";
-          this.estFraisDossNum = false;
-        }
-
-        // Frais
-        this.totalFraisId.nativeElement.textContent = simulation.totalFrais.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.droitsEnregistrementId.nativeElement.textContent = simulation.droitsEnregistrement.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.conservationFonciereId.nativeElement.textContent = simulation.conservationFonciere.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.fraisDiversId.nativeElement.textContent = simulation.fraisDivers.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.honorairesNotaireId.nativeElement.textContent = simulation.honorairesNotaire.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
         // Set the selected simulation
-        this.simulationResultat = simulation;
+        this.simulationResultat = {
+          // Mon profil
+          nom: this.simulationStepperForm.get('step1').get('nom').value,
+          prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+          telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+          email: this.simulationStepperForm.get('step1').get('email').value,
+          dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+          nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
+          residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+          // ma situation
+          categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+          nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+          salaire: this.simulationStepperForm.get('step2').get('salaire').value,
+          autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+          creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+          // Mon projet
+          objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
+          nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+          statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+          typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+          newSimulation: true,
+          ...simulation
+        };
+
+        this.detailsSimulation.remplirSimulation(this.simulationResultat);
 
         if (this.isScreenSmall) {
-          // Scroll to result
-          this.resultat.nativeElement.scrollIntoView();
+          this.detailsSimulation.scrollToResultat();
         }
+
+        // Add query params using the router
+        this._router.navigate([], {
+          // fragment: '',
+          queryParams: {
+            // Mon profil
+            nom: this.simulationStepperForm.get('step1').get('nom').value,
+            prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+            telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+            email: this.simulationStepperForm.get('step1').get('email').value,
+            dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+            nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
+            residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+            // ma situation
+            categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+            nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+            salaire: this.simulationStepperForm.get('step2').get('salaire').value,
+            autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+            creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+            // Mon projet
+            montant: this.simulationStepperForm.get('step3').get('montant').value,
+            objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
+            montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
+            duree: this.simulationStepperForm.get('step3').get('duree').value,
+            nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+            statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+            typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+          },
+          relativeTo: this._activatedRoute
+        });
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -426,52 +375,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   formatMomentToString(date: moment.Moment): string {
     return date.format("DD/MM/YYYY");
-  }
-
-  /**
-   * Open tableau amortissement
-   */
-  openTableauAmortissement(): void {
-    this.drawerOpened = true;
-
-    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
-
-    // Mark for check
-    this._changeDetectorRef.markForCheck();
-  }
-
-  /**
-   * Perform navigate
-   */
-  navigateToDemandeCredit(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        // Mon profil
-        nom: this.simulationStepperForm.get('step1').get('nom').value,
-        prenom: this.simulationStepperForm.get('step1').get('prenom').value,
-        telephone: this.simulationStepperForm.get('step1').get('telephone').value,
-        email: this.simulationStepperForm.get('step1').get('email').value,
-        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-        nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
-        residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
-        // ma situation
-        categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
-        nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
-        salaire: this.simulationStepperForm.get('step2').get('salaire').value,
-        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
-        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
-        // Mon projet
-        montant: this.simulationStepperForm.get('step3').get('montant').value,
-        objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
-        montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
-        duree: this.simulationStepperForm.get('step3').get('duree').value,
-        nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
-        statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
-        typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
-        ...this.simulationResultat 
-      }
-    };
-    this._router.navigate(['/demande-credit'], navigationExtras);
   }
 
 }

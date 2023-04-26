@@ -4,21 +4,17 @@
     Je simule mon crédit
 </div>
 
-<!-- [animateAfterAppear]="'fadeInTop'"
-[animationOptions]="{params: {duration: 1000, delay: 100}}" -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-1 w-full mt-7"
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-1 w-full mt-7 items-center"
     [ngClass]="{'md:grid-cols-2': !isFull, 
                 'md:mt-16 md:grid-cols-4 md:gap-6': isFull}">
-    <div class="col-span-1 text-sm sm:text-base font-bold uppercase"
+    <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
         [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
-        Montant du crédit
+        Montant du crédit (Dhs)
     </div>
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 200}}" -->
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-3"
+    <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
         [ngClass]="{'md:mt-3': !isFull,
                     'md:col-span-3': isFull}">
-        <span class="absolute left-0 top-0 text-xs md:text-sm">0 dhs</span>
+        <span class="absolute left-0 top-0 text-xs md:text-sm">0</span>
         <mat-slider class="w-full" 
             [color]="'primary'"
             min="0"
@@ -30,21 +26,24 @@
             (change)="updateMontant($event)"
             (input)="updateMontant($event)">
         </mat-slider>
-        <span class="absolute right-0 top-0 text-xs md:text-sm">5 000 000,00 Dhs</span>
+        <span class="flex items-center justify-center w-fit h-fit rounded-full hover:bg-default hover:cursor-pointer"
+            [matTooltip]="'Précisez le montant de votre crédit'">
+            <mat-icon
+                class="icon-size-5 text-primary"
+                [svgIcon]="'heroicons_solid:information-circle'">
+            </mat-icon>
+        </span>
+        <span class="absolute right-8 -bottom-2 text-xs md:text-sm">5 000 000,00</span>
     </div>
 
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 300}}" -->
-    <div class="col-span-1 text-sm sm:text-base font-bold uppercase"
+    <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
         [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
-        Durée
+        Durée (ans)
     </div>
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 400}}" -->
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-3"
+    <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
         [ngClass]="{'md:mt-3': !isFull,
                     'md:col-span-3': isFull}">
-        <span class="absolute left-0 top-0 text-xs md:text-sm">1 an</span>
+        <span class="absolute left-0 top-0 text-xs md:text-sm">1</span>
         <mat-slider class="w-full" 
             [color]="'primary'"
             min="1"
@@ -56,21 +55,24 @@
             (change)="updateDuree($event)"
             (input)="updateDuree($event)">
         </mat-slider>
-        <span class="absolute right-0 top-0 text-xs md:text-sm">30 ans</span>
+        <span class="flex items-center justify-center w-fit h-fit rounded-full hover:bg-default hover:cursor-pointer"
+            [matTooltip]="'Précisez votre durée de remboursement'">
+            <mat-icon
+                class="icon-size-5 text-primary"
+                [svgIcon]="'heroicons_solid:information-circle'">
+            </mat-icon>
+        </span>
+        <span class="absolute right-8 -bottom-2 text-xs md:text-sm">30</span>
     </div>
 
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 500}}" -->
-    <div class="col-span-1 text-sm sm:text-base font-bold uppercase"
+    <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
         [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
-        Taux du crédit
+        Taux du crédit (%)
     </div>
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 600}}" -->
-    <div class="relative flex flex-col col-span-1 sm:col-span-2 max-md:mt-3"
+    <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
         [ngClass]="{'md:mt-3': !isFull,
                     'md:col-span-3': isFull}">
-        <span class="absolute left-0 top-0 text-xs md:text-sm">1 %</span>
+        <span class="absolute left-0 top-0 text-xs md:text-sm">1</span>
         <mat-slider class="w-full" 
             [color]="'primary'"
             min="1"
@@ -82,101 +84,49 @@
             (change)="updateTaux($event)"
             (input)="updateTaux($event)">
         </mat-slider>
-        <span class="absolute right-0 top-0 text-xs md:text-sm">10 %</span>
+        <span class="flex items-center justify-center w-fit h-fit rounded-full hover:bg-default hover:cursor-pointer"
+            [matTooltip]="'Choisissez votre taux d’intérêt pour effectuer vos différentes simulations'">
+            <mat-icon
+                class="icon-size-5 text-primary"
+                [svgIcon]="'heroicons_solid:information-circle'">
+            </mat-icon>
+        </span>
+        <span class="absolute right-8 -bottom-2 text-xs md:text-sm">10</span>
     </div>
 </div>
 
-<div class="grid grid-cols-2 gap-3 md:gap-6 w-full mt-5"
-    [ngClass]="{'md:mt-16 md:grid-cols-4': isFull}">
-
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 700}}" -->
-    <div class="flex flex-col flex-auto"
-        [ngClass]="{'md:p-3': isFull}">
-        <div class="flex items-start uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate">
-            Montant du crédit
-        </div>
-        <div class="flex items-baseline justify-center w-full bg-primary-150 shadow rounded-full p-2 mt-2"
-            [ngClass]="{'md:mt-5': isFull}">
-            <div class="sm:text-2xl font-bold tracking-tight leading-none text-primary truncate"
-                [ngClass]="{'md:text-3xl': isFull}">
-                <!-- {{montantValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}} -->
-                {{montantValue | number:'1.2-2'}}
-            </div>
-            <div class="ml-1.5 text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400"
-                [ngClass]="{'md:text-lg': isFull}">
-                Dhs
-            </div>
-        </div>
-    </div>
-
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 800}}" -->
-    <div class="flex flex-col flex-auto"
-        [ngClass]="{'md:p-3': isFull}">
-        <div class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate">
+<div class="flex flex-col w-full mt-7 p-3 pt-6 ring-1 ring-second-500 bg-second-100 rounded-md"
+    [ngClass]="{'hidden': isFull}">
+    <div class="flex flex-row">
+        <div class="uppercase text-sm sm:text-base md:text-lg font-bold tracking-tight leading-6 truncate">
             Mensualité HT
         </div>
-        <div class="flex items-baseline justify-center w-full bg-primary-150 shadow rounded-full p-2 mt-2"
-            [ngClass]="{'md:mt-5': isFull}">
-            <div class="sm:text-2xl font-bold tracking-tight leading-none text-primary truncate"
-                [ngClass]="{'md:text-3xl': isFull}">
-                {{mensualite}}</div>
-            <div class="ml-1.5 text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400"
-                [ngClass]="{'md:text-lg': isFull}">
+        <div class="flex items-baseline justify-center ml-auto">
+            <div class="sm:text-2xl md:text-3xl font-bold tracking-tight leading-none truncate">
+                {{mensualite}}
+            </div>
+            <div class="ml-1.5 text-sm sm:text-base md:text-lg font-semibold">
                 Dhs
             </div>
         </div>
     </div>
-
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 900}}" -->
-    <div class="flex flex-col flex-auto"
-        [ngClass]="{'md:p-3': isFull}">
-        <div class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate">
-            Taux
-        </div>
-        <div class="flex items-baseline justify-center w-full bg-primary-150 shadow rounded-full p-2 mt-2"
-            [ngClass]="{'md:mt-5': isFull}">
-            <div class="sm:text-2xl font-bold tracking-tight leading-none text-primary truncate"
-                [ngClass]="{'md:text-3xl': isFull}">
-                <!-- {{tauxValue.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}} -->
-                {{tauxValue | number:'1.1-1'}}
-            </div>
-            <div class="ml-1.5 text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400"
-                [ngClass]="{'md:text-lg': isFull}">
-                %
-            </div>
-        </div>
-    </div>
-
-    <!-- [animateAfterAppear]="'fadeInTop'" 
-    [animationOptions]="{params: {duration: 1000, delay: 1000}}" -->
-    <div class="flex flex-col flex-auto"
-        [ngClass]="{'md:p-3': isFull}">
-        <div class="uppercase text-sm sm:text-base font-bold tracking-tight leading-6 truncate">
-            Durée
-        </div>
-        <div class="flex items-baseline justify-center w-full bg-primary-150 shadow rounded-full p-2 mt-2"
-            [ngClass]="{'md:mt-5': isFull}">
-            <div class="sm:text-2xl font-bold tracking-tight leading-none text-primary truncate"
-                [ngClass]="{'md:text-3xl': isFull}">
-                {{dureeValue | number:'1.0-0'}}</div>
-            <div class="ml-1.5 text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400"
-                [ngClass]="{'md:text-lg': isFull}">
-                ans
-            </div>
-        </div>
+    <div class="flex flex-row space-x-2 mt-3">
+        <mat-icon
+            class="icon-size-4 text-secondary"
+            [svgIcon]="'heroicons_solid:information-circle'">
+        </mat-icon>
+        <span class="text-xs text-secondary">Le résultat de cette simulation est non contractuel et revêt un caractère strictement informatif</span>
     </div>
 </div>
 
-<!-- [animateAfterAppear]="'fadeInTop'" 
-[animationOptions]="{params: {duration: 1000, delay: 1100}}" -->
 <div class="flex flex-col items-center mt-7"
     [ngClass]="{'md:mt-10': isFull}">
+    <div class="font-semibold mb-5">
+        Besoin d’une simulation personnalisée ? Calculez la mensualité de votre crédit la plus adaptée à votre profil  !
+    </div>
     <button 
-        [ngClass]="{'fuse-mat-button-large': !isScreenSmall}"
         mat-flat-button
+        [ngClass]="{'fuse-mat-button-small': isScreenSmall}"
         [color]="'primary'"
         (click)="navigateToSimulationPersonnalisee()">
         Continuer

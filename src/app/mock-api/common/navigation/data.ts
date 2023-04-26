@@ -25,21 +25,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'simulation-detaillee',
-        title: 'Simulation détaillée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-detaillee'
-    },
-    {
-        id   : 'nousConnaitre',
+        id   : 'nous-connaitre',
         title: 'Nous connaitre',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
     {
-        id   : 'nosConventions',
+        id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
         icon : 'heroicons_outline:collection',
@@ -72,14 +65,34 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
-    }
-    ,
+    },
     {
-        id   : 'espace_connected',
+        id   : 'espace-connecte',
         title: 'Espace connecté',
-        type : 'basic',
+        type : 'collapsable',
         icon : 'heroicons_outline:user-group',
-        link : '/espace-connected'
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            }
+        ]
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
@@ -105,21 +118,14 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'simulation-detaillee',
-        title: 'Simulation détaillée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-detaillee'
-    },
-    {
-        id   : 'nousConnaitre',
+        id   : 'nous-connaitre',
         title: 'Nous connaitre',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
     {
-        id   : 'nosConventions',
+        id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
         icon : 'heroicons_outline:collection',
@@ -152,14 +158,34 @@ export const compactNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
-    }
-    ,
+    },
     {
-        id   : 'espace_connected',
+        id   : 'espace-connecte',
         title: 'Espace connecté',
-        type : 'basic',
+        type : 'collapsable',
         icon : 'heroicons_outline:user-group',
-        link : '/espace-connected'
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            }
+        ]
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -185,21 +211,14 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'simulation-detaillee',
-        title: 'Simulation détaillée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-detaillee'
-    },
-    {
-        id   : 'nousConnaitre',
+        id   : 'nous-connaitre',
         title: 'Nous connaitre',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
     {
-        id   : 'nosConventions',
+        id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
         icon : 'heroicons_outline:collection',
@@ -232,14 +251,34 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
-    }
-    ,
+    },
     {
-        id   : 'espace_connected',
+        id   : 'espace-connecte',
         title: 'Espace connecté',
-        type : 'basic',
+        type : 'collapsable',
         icon : 'heroicons_outline:user-group',
-        link : '/espace-connected'
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            }
+        ]
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -265,21 +304,14 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'simulation-detaillee',
-        title: 'Simulation détaillée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-detaillee'
-    },
-    {
-        id   : 'nousConnaitre',
+        id   : 'nous-connaitre',
         title: 'Nous connaitre',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
     {
-        id   : 'nosConventions',
+        id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
         icon : 'heroicons_outline:collection',
@@ -312,13 +344,33 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
-    }
-    ,
+    },
     {
-        id   : 'espace_connected',
+        id   : 'espace-connecte',
         title: 'Espace connecté',
-        type : 'basic',
+        type : 'collapsable',
         icon : 'heroicons_outline:user-group',
-        link : '/espace-connected'
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            }
+        ]
     }
 ];

@@ -15,7 +15,7 @@ const customPalettes = {
     beige: generatePalette('#f9bc85'),      // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
     rouge: generatePalette('#e86441'),       // #e86441 site, #f55b3b logo
     orange: generatePalette('#f5c000'),      //#f5c000 site, #fcbd00 logo
-    rougea: generatePalette('#d8473b'),
+    rougea: generatePalette('#D46A68'),     // #d8473b
     beigea: generatePalette('#D6B596'),
 };
 

@@ -1,0 +1,37 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+
+    <!-- Header -->
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[35vh] consul-simul-bg-header">
+        <div class="w-full max-w-400">
+            <bienvenue></bienvenue>
+        </div>
+    </header>
+
+    <div class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 consul-simul-bg-header-sm">
+
+        <div class="w-full max-w-400 mx-auto">
+
+            <div class="-ml-4 mb-2">
+                <a
+                    mat-button
+                    [routerLink]="['/espace-connecte/mes-simulations']"
+                    [color]="'primary'">
+                    <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
+                    <span class="ml-2">Retour mes simulations</span>
+                </a>
+            </div>
+
+            <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+                Ma simulation N° {{this.simulationResultat.id}}
+            </span>
+
+            <div class="mt-10 max-w-6xl mx-auto">
+                <details-simulation [simulationResultat]="simulationResultat"></details-simulation>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

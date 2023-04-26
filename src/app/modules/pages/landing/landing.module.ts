@@ -17,6 +17,7 @@ import { NousChoisirModule } from './nous-choisir/nous-choisir.module';
 import { CinqEtapesModule } from './cinq-etapes/cinq-etapes.module';
 import { ActualitesModule } from './actualites/actualites.module';
 import { ContactezNousModule } from './contactez-nous/contactez-nous.module';
+import { ParcoursModule } from 'app/modules/common/parcours/parcours.module';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { ContactezNousModule } from './contactez-nous/contactez-nous.module';
         TranslocoLocaleModule,
 
         ProjetsFilterModule,
+        ParcoursModule,
         VosAvantagesModule,
         RechercheVilleModule,
         SimulationModule,
