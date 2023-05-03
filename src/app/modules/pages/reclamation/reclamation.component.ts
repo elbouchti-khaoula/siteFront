@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -57,22 +57,34 @@ export class ReclamationComponent implements OnInit {
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
 
+    requiredIfValidator(predicate): ValidatorFn {
+        return (formControl => {
+            if (!formControl.parent) {
+                return null;
+            }
+            if (predicate()) {
+                return Validators.required(formControl);
+            }
+            return null;
+        })
+    }
+
     /**
      * On init
      */
     ngOnInit(): void {
         // Create the reclamation form
         this.reclamationForm = this._formBuilder.group({
-            nom: ['', Validators.required],
-            prenom: ['', Validators.required],
-            cin: ['', Validators.required],
-            numeroDossier: [''],
-            email: ['', [Validators.required, Validators.email]],
-            telephone: ['', Validators.required],
+            motif           : ['', Validators.required],
+            nom             : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            prenom          : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            cin             : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            numeroDossier   : [''],
+            email           : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
+            telephone       : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
             // codeVille    : ['', Validators.required],
             // adresse      : ['', Validators.required],
-            motif: ['', Validators.required],
-            text: ['', Validators.required]
+            text            : ['', Validators.required]
         });
 
         // // Get the villes
@@ -116,6 +128,11 @@ export class ReclamationComponent implements OnInit {
             )
             .subscribe((value) => {
                 this.piecesByMotif$ = of(this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, file: null, fileName: null } }));
+                this.reclamationForm.get('nom').updateValueAndValidity();
+                this.reclamationForm.get('prenom').updateValueAndValidity();
+                this.reclamationForm.get('cin').updateValueAndValidity();
+                this.reclamationForm.get('email').updateValueAndValidity();
+                this.reclamationForm.get('telephone').updateValueAndValidity();
             });
 
         this.pieceChanged
@@ -197,42 +214,46 @@ export class ReclamationComponent implements OnInit {
      * Send the form
      */
     sendForm(): void {
-        this._reclamationsService.createReclamationEtStatut({
-            nom: this.reclamationForm.get('nom').value,
-            prenom: this.reclamationForm.get('prenom').value,
-            cin: this.reclamationForm.get('cin').value,
-            numeroDossier: this.reclamationForm.get('numeroDossier').value,
-            email: this.reclamationForm.get('email').value,
-            telephone: this.reclamationForm.get('telephone').value,
-            motif: this.reclamationForm.get('motif').value,
-            // adresse: this.reclamationForm.get('adresse').value,
-            // ville: this.villes?.length > 0 ? this.villes?.find((e) => e.codeVille == this.reclamationForm.get('codeVille').value)?.description : "",
-            text: this.reclamationForm.get('text').value,
-            statut: 'publié',
-            canal: 7,
-            initiateur: 'siteweb',
-            dateReception: new Date()
-        })
-            .pipe(
-                // Error here means the requested is not available
-                catchError((error: HttpErrorResponse) => {
-                    // Log the error
-                    console.error(error);
+        this._reclamationsService.createReclamationEtStatut(
+            {
+                nom: this.reclamationForm.get('nom').value,
+                prenom: this.reclamationForm.get('prenom').value,
+                cin: this.reclamationForm.get('cin').value,
+                numeroDossier: this.reclamationForm.get('numeroDossier').value,
+                email: this.reclamationForm.get('email').value,
+                telephone: this.reclamationForm.get('telephone').value,
+                motif: this.reclamationForm.get('motif').value,
+                // adresse: this.reclamationForm.get('adresse').value,
+                // ville: this.villes?.length > 0 ? this.villes?.find((e) => e.codeVille == this.reclamationForm.get('codeVille').value)?.description : "",
+                text: this.reclamationForm.get('text').value,
+                statut: 'publié',
+                canal: 7,
+                initiateur: 'siteweb',
+                dateReception: new Date()
+            }
+        ).pipe(
+            // Error here means the requested is not available
+            catchError((error: HttpErrorResponse) => {
+                // Log the error
+                console.error(error);
 
-                    if (error.status === 500) {
-                        this._router.navigateByUrl('/500-server-error');
-                    } else if (error.status === 404) {
-                        this._router.navigateByUrl('/404-not-found');
-                    } else {
-                        // + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage
-                        this._showAlertMessage('error', 'Erreur champ de saisie');
-                    }
+                if (error.status === 500) {
+                    this._router.navigateByUrl('/500-server-error');
+                } else if (error.status === 404) {
+                    this._router.navigateByUrl('/404-not-found');
+                } else {
+                    // + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage
+                    this._showAlertMessage('error', 'Erreur champ de saisie');
+                }
 
-                    // Throw an error
-                    return throwError(error);
-                }))
+                // Throw an error
+                return throwError(error);
+            }))
             .subscribe((response) => {
-                this._showAlertMessage('success', 'Votre demande sera traitée et notre équipe vous reviendra dans les 24 heures');
+                this._showAlertMessage(
+                    'success', 
+                    'Nous avons bien reçu votre message. Nous le traiterons dans les plus bref délais'
+                );
             });
 
         // Clear the form

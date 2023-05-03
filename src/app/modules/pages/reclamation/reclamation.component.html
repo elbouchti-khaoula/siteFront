@@ -77,7 +77,7 @@
                     <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
-                        <input matInput [formControlName]="'nom'" [required]="true">
+                        <input matInput [formControlName]="'nom'">
                         <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
                         <mat-error *ngIf="reclamationForm.get('nom').hasError('required')">
                             Nom obligatoire
@@ -88,7 +88,7 @@
                     <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
-                        <input matInput [formControlName]="'prenom'" [required]="true">
+                        <input matInput [formControlName]="'prenom'">
                         <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
                         <mat-error *ngIf="reclamationForm.get('prenom').hasError('required')">
                             Prénom obligatoire
@@ -99,7 +99,7 @@
                     <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                         </mat-icon>
-                        <input matInput [formControlName]="'cin'" [required]="true">
+                        <input matInput [formControlName]="'cin'">
                         <mat-label class="max-md:text-sm max-md:font-semibold">CIN</mat-label>
                         <mat-error *ngIf="reclamationForm.get('cin').hasError('required')">
                             CIN obligatoire
@@ -120,7 +120,7 @@
                     <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
                         </mat-icon>
-                        <input matInput [formControlName]="'telephone'" [required]="true">
+                        <input matInput [formControlName]="'telephone'">
                         <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                         <mat-error *ngIf="reclamationForm.get('telephone').hasError('required')">
                             Téléphone obligatoire
@@ -130,7 +130,7 @@
                     <!-- Email -->
                     <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
-                        <input type="email" matInput [formControlName]="'email'" [required]="true">
+                        <input type="email" matInput [formControlName]="'email'">
                         <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                         <mat-error *ngIf="reclamationForm.get('email').hasError('email')">
                             Enter a valid email address
@@ -193,6 +193,14 @@
                         [disabled]="reclamationForm.pristine || reclamationForm.invalid" (click)="sendForm()">
                         Envoyer
                     </button>
+                </div>
+
+                <div *ngIf="reclamationForm.get('motif').value === -1"
+                    class="flex flex-row space-x-2 py-2 px-4 rounded-md overflow-hidden shadow bg-amber-100 mx-6 sm:mx-10 mt-5">
+                    <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
+                    </mat-icon>
+                    <span class="text-xs font-semibold">Les informations saisies sont confidentielles et accessibles uniquement par la Conformité Wafa Immobilier pour les besoins de la prise en charge de votre alerte éthique. La confidentialité de vos données personnelles est garantie par les conditions de sécurité de la plateforme. Ces informations ne peuvent être communiquées aux autorités judiciaires qu’avec votre consentement.
+                    </span>
                 </div>
             </form>
 

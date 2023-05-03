@@ -83,8 +83,8 @@ export const appRoutes: Route[] = [
     // Pages routes
     {
         path       : '',
-        // canActivate: [AuthGuard],
-        // canActivateChild: [AuthGuard],
+        canActivate: [NoAuthGuard],
+        canActivateChild: [NoAuthGuard],
         component  : LayoutComponent,
         resolve    : {
             initialData: InitialDataResolver,
@@ -142,6 +142,10 @@ export const appRoutes: Route[] = [
                         path: 'consulter-simulation',
                         loadChildren: () => import('app/modules/admin/consulter-simulation/consulter-simulation.module').then(m => m.ConsulterSimulationModule)
                     },
+                    {
+                        path: 'mes-demandes-credit',
+                        loadChildren: () => import('app/modules/admin/mes-demandes-credit/mes-demandes-credit.module').then(m => m.MesDemandesCreditModule)
+                    }
                 ]
             },
             {

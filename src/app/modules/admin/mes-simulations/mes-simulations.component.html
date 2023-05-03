@@ -30,7 +30,6 @@
                 </button>
             </div>
             
-            <!-- <ng-container *ngIf="simulations$ | async as simulations"> -->
             <ng-container *ngIf="simulations && simulations.length > 0; else noSimulations">
 
                 <div class="mx-auto w-fit grid grid-cols-1 gap-y-14 md:grid-cols-2 md:gap-x-10 md:gap-y-16 mt-16"
@@ -45,28 +44,27 @@
                                 </mat-icon>
                             </div>
 
-                            <div class="flex flex-col items-center mt-5" [routerLink]="['/espace-connecte/consulter-simulation']">
+                            <div class="flex flex-col items-center mt-5"
+                                (click)="navigateToConsulterSimulation(simulation)">
                                 <div class="text-2xl font-bold leading-tight uppercase">Simulation N° {{simulation.id}}
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-5 px-2 mt-10 mb-1">
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Mensualité</span>
-                                        <span class="text-xl font-semibold">{{simulation.mensualites |
-                                            number:'1.2-2'}}</span>
+                                        <span class="text-xl font-semibold">{{simulation?.mensualite}}</span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Montant</span>
-                                        <span class="text-xl font-semibold">{{simulation.montant |
-                                            number:'1.2-2'}}</span>
+                                        <span class="text-xl font-semibold">{{simulation?.montant}}</span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Durée</span>
-                                        <span class="text-xl font-semibold">{{simulation.duree}} mois</span>
+                                        <span class="text-xl font-semibold">{{simulation?.duree}} mois</span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">TEG</span>
-                                        <span class="text-xl font-semibold">{{simulation.teg | number:'1.2-3'}} %</span>
+                                        <span class="text-xl font-semibold">{{simulation?.tauxEffectifGlobal}} %</span>
                                     </div>
                                 </div>
                             </div>
@@ -78,13 +76,14 @@
                                     class="px-3"
                                     mat-flat-button
                                     [color]="'primary'"
-                                    [routerLink]="['/espace-connecte/demande-credit']">
+                                    (click)="navigateToDemandeCredit(simulation)">
                                     Demander mon crédit
                                 </button>
                                 <button
                                     class="px-3 ml-2"
                                     mat-stroked-button
-                                    [matTooltip]="'J abandonne'">
+                                    [matTooltip]="'J abandonne'"
+                                    (click)="abandonner(simulation)">
                                     Abandonner
                                 </button>
                             </div>
@@ -94,11 +93,10 @@
 
                 </div>
             </ng-container>
-            <!-- </ng-container> -->
 
             <!-- No simulation template -->
             <ng-template #noSimulations>
-                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 dark:bg-transparent">
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 dark:bg-transparent mt-10">
                     <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
                         Il n'y a pas de simulation!

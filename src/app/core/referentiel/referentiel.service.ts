@@ -146,7 +146,6 @@ export class ReferentielService {
     getQuartiersByVille(codeVille: number): Observable<Quartier[]> {
         return this._httpClient.get<Quartier[]>(
             `api/repositories/${codeVille}/quartiers`
-            // 'api/repositories/quartiers', { params: { codeVille } }
         ).pipe(
             tap((response: Quartier[]) => {
                 // Sort the quartiers by the libelle field by default

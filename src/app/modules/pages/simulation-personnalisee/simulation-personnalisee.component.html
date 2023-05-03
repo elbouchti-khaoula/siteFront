@@ -275,7 +275,7 @@
                                             <div class="flex flex-row items-baseline whitespace-nowrap ml-auto">
                                                 <span>de</span>
                                                 <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId>
-                                                    {{simulationResultat.mensualiteMin | number:'1.2-2'}}
+                                                    {{simulationResultat?.mensualiteMin}}
                                                 </span>
                                                 <span class="ml-2 md:text-xl leading-none">Dhs/mois</span>
                                             </div>
@@ -283,7 +283,7 @@
                                                 <span class="hidden md:block">jusqu'à</span>
                                                 <span class="md:hidden">à</span>
                                                 <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId>
-                                                    {{simulationResultat.mensualiteMax | number:'1.2-2'}}
+                                                    {{simulationResultat?.mensualiteMax}}
                                                 </span>
                                                 <span class="ml-2 md:text-xl leading-none">Dhs/mois</span>
                                             </div>
@@ -310,10 +310,10 @@
                                                 Montant de crédit
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-3xl leading-tight tracking-tight" #montantId>
-                                                    {{simulationResultat.montant | number:'1.2-2'}}
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #montantId>
+                                                    {{simulationResultat?.montant}}
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                <div class="ml-2 text-lg leading-none">Dhs</div>
                                             </div>
                                         </div>
                                     </div>
@@ -327,17 +327,17 @@
                                             </div>
                                             <div class="flex flex-row mt-2">
                                                 <div class="flex items-baseline whitespace-nowrap">
-                                                    <div class="font-semibold text-3xl leading-tight tracking-tight" #nbreAnneeId>
-                                                        {{simulationResultat.nbreAnnee}}
+                                                    <div class="font-semibold text-xl leading-tight tracking-tight" #nbreAnneeId>
+                                                        {{simulationResultat?.nbreAnnee}}
                                                     </div>
-                                                    <div class="ml-2 text-xl leading-none">ans</div>
+                                                    <div class="ml-2 text-lg leading-none">ans</div>
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap ml-2"
-                                                    [ngClass]="{'hidden' : simulationResultat.nbreMois === 0}">
-                                                    <div class="font-semibold text-3xl leading-tight tracking-tight" #nbreMoisId>
-                                                        {{simulationResultat.nbreMois}}
+                                                    [ngClass]="{'hidden' : simulationResultat?.nbreMois === 0}">
+                                                    <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
+                                                        {{simulationResultat?.nbreMois}}
                                                     </div>
-                                                    <div class="ml-2 text-xl leading-none">mois</div>
+                                                    <div class="ml-2 text-lg leading-none">mois</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,18 +353,18 @@
                                             <div class="flex flex-col md:flex-row md:items-center md:space-x-3 mt-2">
                                                 <div class="flex flex-row items-baseline whitespace-nowrap">
                                                     <span>de</span>
-                                                    <span class=" ml-2 font-semibold text-3xl leading-tight tracking-tight" #coutTotalMinId>
-                                                        {{simulationResultat.coutTotalMin | number:'1.2-2'}}
+                                                    <span class=" ml-2 font-semibold text-xl leading-tight tracking-tight" #coutTotalMinId>
+                                                        {{simulationResultat?.coutTotalMin | number:'1.2-2'}}
                                                     </span>
-                                                    <span class="ml-2 text-xl leading-none">Dhs</span>
+                                                    <span class="ml-2 text-lg leading-none">Dhs</span>
                                                 </div>
                                                 <div class="flex flex-row items-baseline whitespace-nowrap">
                                                     <span class="hidden md:block">jusqu'à</span>
                                                     <span class="md:hidden">à</span>
-                                                    <span class="font-semibold text-3xl leading-tight tracking-tight ml-2" #coutTotalMaxId>
-                                                        {{simulationResultat.coutTotalMax | number:'1.2-2'}}
+                                                    <span class="font-semibold text-xl leading-tight tracking-tight ml-2" #coutTotalMaxId>
+                                                        {{simulationResultat?.coutTotalMax | number:'1.2-2'}}
                                                     </span>
-                                                    <span class="ml-2 text-xl leading-none">Dhs</span>
+                                                    <span class="ml-2 text-lg leading-none">Dhs</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -378,12 +378,12 @@
                                                 Expertise immobilière
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-3xl leading-tight tracking-tight"
+                                                <div class="font-semibold text-xl leading-tight tracking-tight"
                                                     #expertiseImmobiliereId
                                                     [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                    {{simulationResultat.expertiseImmobiliere | number:'1.2-2'}}
+                                                    {{simulationResultat?.expertiseImmobiliere}}
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
+                                                <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
                                             </div>
                                         </div>
                                     </div>
@@ -396,11 +396,11 @@
                                                 Frais de dossier
                                             </span>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-3xl leading-tight tracking-tight" #fraisDossierId
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDossierId
                                                     [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                    {{simulationResultat.fraisDossier | number:'1.2-2'}}
+                                                    {{simulationResultat?.fraisDossier}}
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
+                                                <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
                                             </div>
                                         </div>
                                     </div>
@@ -426,10 +426,10 @@
                                                 Frais d'enregistrement
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-3xl leading-tight tracking-tight" #droitsEnregistrementId>
-                                                    {{simulationResultat.droitsEnregistrement | number:'1.2-2'}}
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId>
+                                                    {{simulationResultat?.droitsEnregistrement}}
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                <div class="ml-2 text-lg leading-none">Dhs</div>
                                             </div>
                                         </div>
                                     </div>
@@ -442,10 +442,10 @@
                                                 Frais de conservation financière
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-3xl leading-tight tracking-tight" #conservationFonciereId>
-                                                    {{simulationResultat.conservationFonciere | number:'1.2-2'}}
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId>
+                                                    {{simulationResultat?.conservationFonciere}}
                                                 </div>
-                                                <div class="ml-2 text-xl leading-none">Dhs</div>
+                                                <div class="ml-2 text-lg leading-none">Dhs</div>
                                             </div>
                                         </div>
                                     </div>

@@ -1,5 +1,5 @@
 .simul-det-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/no-image.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/simulation/header.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -15,10 +15,10 @@
     }
 }
 
-.mat-badge-content {
-    background: transparent !important;
-    color: black !important;
-}
+// .mat-badge-content {
+//     background: transparent !important;
+//     color: black !important;
+// }
 
 @media (min-width: 960px) {
     .mat-horizontal-stepper-header {
@@ -58,6 +58,14 @@
     }
 }
 
+.mat-step-header .mat-step-icon {
+    color: gray !important;
+}
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-edit {
+  color:#fff !important;
+}  
+
 
 
 // .mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
@@ -80,57 +88,4 @@
 //     border-top-color: blue !important;
 //     border-top-width: 2px !important;
 //     border-top-style: solid !important;
-// }
-
-
-
-
-
-// .mat-step-header .mat-step-icon-state-done, 
-// .mat-step-header .mat-step-icon-state-edit {
-//     background-color: transparent !important;
-//     color: $success;
-//     +.mat-step-label{
-//       color: $success !important;
-//     }
-//   }
-
-// .mat-horizontal-stepper
-//   @for $i from 1 through 42
-//     &.last-edited-step-#{$i}
-//      @for $j from 1 through $i
-//         .mat-stepper-horizontal-line:nth-of-type(#{$j})
-//           border-color: #00c190 !important
-
-
-
-
-
-// .mat-horizontal-stepper-header {
-//     height: 72px !important;
-//     padding: 0 10px !important;
-//     .mat-stepper-horizontal-line {
-//         top: 10px !important;
-//     }
-//     .mat-step-label {
-//         position: fixed;
-//         margin-top: 15px;
-//         width: 200px !important;
-//         white-space: pre-wrap;
-//         text-align: center;
-//     }
-//     &::before {
-//         width: 0;
-//     }
-// }
-// .selectedIndex0 {
-// }
-// @for $i from 1 through 10 {
-//     .selectedIndex#{$i} {
-//         @extend .selectedIndex#{$i - 1};
-//         ::ng-deep .mat-stepper-horizontal-line:nth-child(#{$i * 2}) {
-//             border-top-width: 4px !important;
-//             border-top-color: #3f51b5 !important;
-//         }
-//     }
 // }

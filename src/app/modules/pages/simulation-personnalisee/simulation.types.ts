@@ -10,32 +10,31 @@ export interface CriterePersonnalisee
 
 export interface SimulationPersonnalisee
 {
-    montant             : number;
-    duree               : number;
-    nbreAnnee?          : number;
-    nbreMois?           : number;
-    cspCode?            : string;
-    nationaliteCode?    : string;
-    residentMarocain?   : boolean;
+    montant                     : number;
+    duree                       : number;
+    nbreAnnee?                  : number;
+    nbreMois?                   : number;
+    cspCode?                    : string;
+    nationaliteCode?            : string;
+    residentMarocain?           : boolean;
 
     // Résultat
-    mensualiteMin       : number;
-    totalInteretsMin?   : number;
-    coutTotalMin?       : number;
-    tauxMin?            : number;
+    mensualiteMin               : number;
+    totalInteretsMin?           : number;
+    coutTotalMin?               : number;
+    tauxMin?                    : number;
 
-    mensualiteMax       : number;
-    totalInteretsMax?   : number;
-    coutTotalMax?       : number;
-    tauxMax?            : number;
+    mensualiteMax               : number;
+    totalInteretsMax?           : number;
+    coutTotalMax?               : number;
+    tauxMax?                    : number;
 
-    expertiseImmobiliere: number;
-    fraisDossier        : number;
+    expertiseImmobiliere        : number;
+    fraisDossier                : number;
 
-    droitsEnregistrement: number;
-    conservationFonciere: number;
-    honorairesNotaire?  : number;
-    fraisDivers?        : number;
-    totalFrais?         : number;
-	
+    droitsEnregistrement        : number;
+    conservationFonciere        : number;
+    honorairesNotaire?          : number;
+    fraisDivers?                : number;
+    totalFrais?                 : number;
 }

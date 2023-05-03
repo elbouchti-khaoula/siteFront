@@ -11,6 +11,8 @@ import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
 import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { resize } from 'app/modules/common/resize';
+import { UserService } from 'app/core/user/user.service';
+import { FuseUtilsService } from '@fuse/services/utils';
 
 @Component({
   selector: 'simulation-personnalisee',
@@ -43,7 +45,8 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     duree: null,
   };
 
-  simulationResultat: SimulationPersonnalisee;
+  simulation: SimulationPersonnalisee;
+  simulationResultat: any;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
@@ -75,10 +78,12 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
     private _simulationService: SimulationPersonaliseeService,
-    private _salesForceService: SalesForceService
-  ) {
-
-    this.simulationResultat = {
+    private _salesForceService: SalesForceService,
+    private _userService: UserService,
+    private _fuseUtilsService: FuseUtilsService
+  )
+  {
+    this.simulation = {
       montant: 0.00,
       duree: 0,
       mensualiteMin: 0.00,
@@ -121,8 +126,11 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
-
     // this.isVisible = true;
+
+    this._userService.user$.subscribe((user) => {
+        this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
+    });
 
     // Subscribe to query params change
     this._activatedRoute.queryParams
@@ -202,44 +210,38 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     this.simulationForm.get('montant').reset();
     this.simulationForm.get('duree').reset();
 
-    this._animateCounterService.animateValue(this.mensualiteMinId, this.simulationResultat.mensualiteMin, 0, 600);
-    this._animateCounterService.animateValue(this.mensualiteMaxId, this.simulationResultat.mensualiteMax, 0, 600);
-    this._animateCounterService.animateValue(this.nbreAnneeId, this.simulationResultat.nbreAnnee, 0, 600);
-    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.nbreMois, 0, 600);
-    this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
-    // this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInteretsMin, 0, 600);
-    // this._animateCounterService.animateValue(this.coutTotalMinId, this.simulationResultat.coutTotalMin, 0, 600);
-    // this._animateCounterService.animateValue(this.coutTotalMaxId, this.simulationResultat.coutTotalMax, 0, 600);
+    this._animateCounterService.animateValue(this.mensualiteMinId, this.simulation.mensualiteMin, 0, 600);
+    this._animateCounterService.animateValue(this.mensualiteMaxId, this.simulation.mensualiteMax, 0, 600);
+    this._animateCounterService.animateValue(this.nbreAnneeId, this.simulation.nbreAnnee, 0, 600);
+    this._animateCounterService.animateValue(this.nbreMoisId, this.simulation.nbreMois, 0, 600);
+    this._animateCounterService.animateValue(this.montantId, this.simulation.montant, 0, 600);
+    // this._animateCounterService.animateValue(this.totalInteretsId, this.simulation.totalInteretsMin, 0, 600);
+    // this._animateCounterService.animateValue(this.coutTotalMinId, this.simulation.coutTotalMin, 0, 600);
+    // this._animateCounterService.animateValue(this.coutTotalMaxId, this.simulation.coutTotalMax, 0, 600);
     
     let nbExp = 0;
-    if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
-      nbExp = this.simulationResultat.expertiseImmobiliere;
+    if (this.simulation.expertiseImmobiliere && this.simulation.expertiseImmobiliere > 0) {
+      nbExp = this.simulation.expertiseImmobiliere;
     } 
     this.estExpImmoNum = true;
     this._animateCounterService.animateValue(this.expertiseImmobiliereId, nbExp, 0, 600);
 
     let nbFrai = 0;
-    if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
-      nbFrai = this.simulationResultat.fraisDossier;
+    if (this.simulation.fraisDossier && this.simulation.fraisDossier > 0) {
+      nbFrai = this.simulation.fraisDossier;
     }
     this.estFraisDossNum = true;
     this._animateCounterService.animateValue(this.fraisDossierId, nbFrai, 0, 600);
 
     // Frais
-    // this._animateCounterService.animateValue(this.totalFraisId, this.simulationResultat.totalFrais, 0, 600);
-    this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulationResultat.droitsEnregistrement, 0, 600);
-    this._animateCounterService.animateValue(this.conservationFonciereId, this.simulationResultat.conservationFonciere, 0, 600);
-    // this._animateCounterService.animateValue(this.fraisDiversId, this.simulationResultat.fraisDivers, 0, 600);
-    // this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulationResultat.honorairesNotaire, 0, 600);
+    // this._animateCounterService.animateValue(this.totalFraisId, this.simulation.totalFrais, 0, 600);
+    this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulation.droitsEnregistrement, 0, 600);
+    this._animateCounterService.animateValue(this.conservationFonciereId, this.simulation.conservationFonciere, 0, 600);
+    // this._animateCounterService.animateValue(this.fraisDiversId, this.simulation.fraisDivers, 0, 600);
+    // this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulation.honorairesNotaire, 0, 600);
   }
 
   simuler(): void {
-
-    if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
-      this.animationState = 'smallDesktop';
-    }
-    
-    this.isVisible = true;
 
     const critere = {
       montant         : this.simulationForm.get('montant').value,
@@ -274,45 +276,18 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         })
       ).subscribe((response) => {
 
-        response.nbreAnnee = Math.trunc(response.duree / 12);
-        response.nbreMois = response.duree % 12;
+        this.simulation = response;
+        this.simulation.nbreAnnee = Math.trunc(this.simulation.duree / 12);
+        this.simulation.nbreMois = this.simulation.duree % 12;
 
-        this.mensualiteMinId.nativeElement.textContent = response.mensualiteMin.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.mensualiteMaxId.nativeElement.textContent = response.mensualiteMax.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.nbreAnneeId.nativeElement.textContent = response.nbreAnnee;
-        this.nbreMoisId.nativeElement.textContent = response.nbreMois;
-        this.montantId.nativeElement.textContent = response.montant.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        // this.totalInteretsId.nativeElement.textContent = response.totalInteretsMin.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        // this.coutTotalMinId.nativeElement.textContent = response.coutTotalMin.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        // this.coutTotalMaxId.nativeElement.textContent = response.coutTotalMax.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-        if (response.expertiseImmobiliere && response.expertiseImmobiliere > 0) {
-          this.expertiseImmobiliereId.nativeElement.textContent = Number(response.expertiseImmobiliere).toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estExpImmoNum = true;
-        } else {
-          response.expertiseImmobiliere = 0;
-          this.expertiseImmobiliereId.nativeElement.textContent = "GRATUIT";
-          this.estExpImmoNum = false;
+        if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
+          this.animationState = 'smallDesktop';
         }
+        this.isVisible = true;
 
-        if (response.fraisDossier && response.fraisDossier > 0) {
-          this.fraisDossierId.nativeElement.textContent = Number(response.fraisDossier).toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estFraisDossNum = true;
-        } else {
-          response.fraisDossier = 0;
-          this.fraisDossierId.nativeElement.textContent = "GRATUIT";
-          this.estFraisDossNum = false;
-        }
-
-        // Frais
-        // this.totalFraisId.nativeElement.textContent = response.totalFrais.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.droitsEnregistrementId.nativeElement.textContent = response.droitsEnregistrement.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.conservationFonciereId.nativeElement.textContent = response.conservationFonciere.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        // this.fraisDiversId.nativeElement.textContent = response.fraisDivers.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        // this.honorairesNotaireId.nativeElement.textContent = response.honorairesNotaire.toLocaleString('es-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-        // Set the selected simulation
-        this.simulationResultat = response;
+        setTimeout(() => {
+          this.convertSimulationPersonaliseeToString();
+        }, 200);
 
         if (this.isScreenSmall) {
           setTimeout(() => {
@@ -348,6 +323,55 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
       });
 
+  }
+
+  convertSimulationPersonaliseeToString(): void {
+    
+    let expertiseImmobiliereStr = "";
+    if (this.simulation.expertiseImmobiliere && this.simulation.expertiseImmobiliere > 0) {
+      expertiseImmobiliereStr = this._fuseUtilsService.numberFormat(this.simulation.expertiseImmobiliere, 2, ',', ' ');
+      this.estExpImmoNum = true;
+    } else {
+      expertiseImmobiliereStr = "GRATUIT";
+      this.estExpImmoNum = false;
+    }
+    let fraisDossierStr = "";
+    if (this.simulation.fraisDossier && this.simulation.fraisDossier > 0) {
+      fraisDossierStr = this._fuseUtilsService.numberFormat(this.simulation.fraisDossier, 2, ',', ' ');
+      this.estFraisDossNum = true;
+    } else {
+      fraisDossierStr = "GRATUIT";
+      this.estFraisDossNum = false;
+    }
+
+    this.simulationResultat = {
+      ...this.simulation,
+      mensualiteMin: this._fuseUtilsService.numberFormat(this.simulation.mensualiteMin, 2, '.', ' '),
+      mensualiteMax: this._fuseUtilsService.numberFormat(this.simulation.mensualiteMax, 2, '.', ' '),
+      montant: this._fuseUtilsService.numberFormat(this.simulation.montant, 2, '.', ' '),
+      expertiseImmobiliere: expertiseImmobiliereStr,
+      fraisDossier: fraisDossierStr,
+      droitsEnregistrement: this._fuseUtilsService.numberFormat(this.simulation.droitsEnregistrement, 2, '.', ' '),
+      conservationFonciere: this._fuseUtilsService.numberFormat(this.simulation.conservationFonciere, 2, '.', ' '),
+    }
+
+    this.mensualiteMinId.nativeElement.textContent = this.simulationResultat.mensualiteMin;
+    this.mensualiteMaxId.nativeElement.textContent = this.simulationResultat.mensualiteMax;
+    this.nbreAnneeId.nativeElement.textContent = this.simulationResultat.nbreAnnee;
+    this.nbreMoisId.nativeElement.textContent = this.simulationResultat.nbreMois;
+    this.montantId.nativeElement.textContent = this.simulationResultat.montant;
+    // this.totalInteretsId.nativeElement.textContent = response.totalInteretsMin;
+    // this.coutTotalMinId.nativeElement.textContent = response.coutTotalMin;
+    // this.coutTotalMaxId.nativeElement.textContent = response.coutTotalMax;
+    this.expertiseImmobiliereId.nativeElement.textContent = expertiseImmobiliereStr;
+    this.fraisDossierId.nativeElement.textContent = fraisDossierStr;
+
+    // Frais
+    // this.totalFraisId.nativeElement.textContent = response.totalFrais;
+    this.droitsEnregistrementId.nativeElement.textContent = this.simulationResultat.droitsEnregistrement;
+    this.conservationFonciereId.nativeElement.textContent = this.simulationResultat.conservationFonciere;
+    // this.fraisDiversId.nativeElement.textContent = response.fraisDivers;
+    // this.honorairesNotaireId.nativeElement.textContent = response.honorairesNotaire;
   }
 
   navigateToSimulationDetaillee(): void {

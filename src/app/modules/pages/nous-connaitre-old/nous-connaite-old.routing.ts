@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
-import { NousConnaitreComponent } from './nous-connaite.component';
+import { NousConnaiteOldComponent } from './nous-connaite-old.component';
 
 export const nousConnaiteRoutes: Route[] = [
     {
         path     : '',
-        component: NousConnaitreComponent
+        component: NousConnaiteOldComponent
     }
 ];

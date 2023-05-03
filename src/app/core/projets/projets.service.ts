@@ -53,13 +53,13 @@ export class ProjetsService
     {
         // const httpOptions = {
         //     headers: { 'Content-Type': 'application/json' },
-        //     params: { ...searchParams}
+        //     params: { ...queryParams}
         // };
         // return this._httpClient.get<Projet[]>('api/projets/search', httpOptions);
         // return this._httpClient.get<Projet[]>('api/projets/search', { params: queryParams }
         
-        return this._httpClient.post<Projet[]>('api/real-estate-projects/search', queryParams
-            ).pipe(
+        return this._httpClient.post<Projet[]>('api/real-estate-projects/search', queryParams)
+            .pipe(
                 tap((projets : Projet[]) => {
 
                     // Sort the projets by the name field by default

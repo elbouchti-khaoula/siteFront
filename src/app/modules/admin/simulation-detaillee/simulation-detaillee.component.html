@@ -100,20 +100,24 @@
                         [linear]="true"
                         labelPosition="bottom"
                         #simulationStepper
-                        class="mat-stepper-label-position-top bg-transparent">
-                        
-                        <!-- <ng-template matStepperIcon="edit" let-index="index">{{index + 1}}</ng-template>
-                        <ng-template matStepperIcon="done" let-index="index">{{index + 1}}</ng-template> -->
-                        <!-- <ng-template matStepperIcon="done">
-                            <mat-icon>account_circle</mat-icon>
+                        class="bg-transparent">
+
+                        <ng-template matStepperIcon="number" let-active="active">
+                            <ng-container [ngSwitch]="active">
+                                <mat-icon *ngSwitchCase="true" class="icon-size-6" [svgIcon]="'mat_solid:adjust'">
+                                </mat-icon>
+                                <mat-icon *ngSwitchCase="false" class="icon-size-6" [svgIcon]="'mat_solid:circle'">
+                                </mat-icon>
+                            </ng-container>
                         </ng-template>
-                        <ng-template matStepperIcon="active">
-                            <mat-icon>account_circle</mat-icon>
-                        </ng-template> -->
                         <ng-template matStepperIcon="edit">
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:check'">
                             </mat-icon>
                         </ng-template>
+                        <!-- <ng-template matStepperIcon="done">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:check'">
+                            </mat-icon>
+                        </ng-template> -->
                         <!-- <ng-template matStepperIcon="number" let-index="index">
                             <span *ngIf="simulationStepperForm.get(tab[index]).pristine || simulationStepperForm.get(tab[index]).invalid">{{index + 1}}</span>
                             <mat-icon 
@@ -324,6 +328,18 @@
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('nomEmployeur').hasError('required')">
                                         Employeur obligatoire
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <!-- Ancienneté -->
+                                <mat-form-field class="w-full"
+                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
+                                    </mat-icon>
+                                    <input matInput [formControlName]="'anciennete'">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Ancienneté (en mois)</mat-label>
+                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('anciennete').hasError('required')">
+                                        Ancienneté obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
