@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NousConnaiteComponent } from './nous-connaite.component';
-import { nousConnaiteRoutes } from './nous-connaite.routing';
+import { NousConnaiteOldComponent } from './nous-connaite-old.component';
+import { nousConnaiteRoutes } from './nous-connaite-old.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [
-        NousConnaiteComponent,
+        NousConnaiteOldComponent,
     ],
     imports     : [
         RouterModule.forChild(nousConnaiteRoutes),
@@ -15,6 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
         MatIconModule
     ]
 })
-export class NousConnaitreModule
+export class NousConnaitreOldModule
 {
 }

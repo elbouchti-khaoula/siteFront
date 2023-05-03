@@ -4,13 +4,13 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-    selector        : 'nous-connaite',
-    templateUrl     : './nous-connaite.component.html',
-    styleUrls       : ['./nous-connaite.component.scss'],
+    selector        : 'nous-connaite-old',
+    templateUrl     : './nous-connaite-old.component.html',
+    styleUrls       : ['./nous-connaite-old.component.scss'],
     encapsulation   : ViewEncapsulation.None,
     animations      : fuseAnimations
 })
-export class NousConnaiteComponent implements OnInit, OnDestroy
+export class NousConnaiteOldComponent implements OnInit, OnDestroy
 {
     isXsScreen: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();

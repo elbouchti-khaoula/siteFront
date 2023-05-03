@@ -112,7 +112,7 @@ export const appRoutes: Route[] = [
             },
             {
                 path: 'nous-connaitre',
-                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
+                // loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
             },
             {
                 path: 'nos-conventions',
