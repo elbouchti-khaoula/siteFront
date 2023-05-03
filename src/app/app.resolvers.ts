@@ -52,6 +52,9 @@ export class InitialDataResolver implements Resolve<any>
             this._referentielService.getVilles(),
             this._referentielService.getTypesBiens(),
             this._referentielService.getAgences(),
+            this._referentielService.getNationalites(),
+            this._referentielService.getCategories(),
+            this._referentielService.getObjetsFinancement()
         ]);
     }
 }

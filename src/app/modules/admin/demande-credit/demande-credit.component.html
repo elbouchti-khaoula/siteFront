@@ -64,7 +64,7 @@
                         [autoFocus]="false"
                         [(opened)]="drawerOpened"
                         #drawerTableauDC>
-                        <tableau-amortissement [dossierId]="simulationResultat.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
+                        <tableau-amortissement [dossierId]="simulationResultat?.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
                     </mat-drawer>
 
                     <mat-drawer-content class="px-1 pt-5 pb-1">
@@ -207,12 +207,21 @@
                                                     {{simulationResultat?.categorieSocioProfessionnelle}}
                                                 </div>
                                             </div>
-                                             <div class="flex flex-col">
+                                            <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Employeur
                                                 </div>
                                                 <div class="font-medium text-xl leading-tight tracking-tight mt-2">
                                                     {{simulationResultat?.nomEmployeur}}
+                                                </div>
+                                            </div>
+                                            <div *ngIf="simulationResultat?.anciennete" 
+                                                class="flex flex-col">
+                                                <div class="text-sm font-semibold leading-none text-secondary">
+                                                    Ancienneté
+                                                </div>
+                                                <div class="font-medium text-xl leading-tight tracking-tight mt-2">
+                                                    {{simulationResultat?.anciennete}}
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -356,7 +365,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
-                                                        {{simulationResultat?.montant | number:'1.2-2'}}
+                                                        {{simulationResultat?.montant}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -368,7 +377,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #totalInteretsId>
-                                                        {{simulationResultat?.totalInterets | number:'1.2-2'}}
+                                                        {{simulationResultat?.totalInterets}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -380,7 +389,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #coutTotalId>
-                                                        {{simulationResultat?.coutTotal | number:'1.2-2'}}
+                                                        {{simulationResultat?.coutTotal}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -392,7 +401,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #assurancesId>
-                                                        {{simulationResultat?.assurances | number:'1.2-2'}}
+                                                        {{simulationResultat?.assurances}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
@@ -404,7 +413,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxParticipationId>
-                                                        {{simulationResultat?.tauxParticipation | number:'1.3-3'}}
+                                                        {{simulationResultat?.tauxParticipation}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -416,7 +425,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                        {{simulationResultat?.tauxEffectifGlobal | number:'1.3-3'}}
+                                                        {{simulationResultat?.tauxEffectifGlobal}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">%</div>
                                                 </div>
@@ -427,15 +436,11 @@
                                                     Expertise immobilière
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight text-green-600"
-                                                        *ngIf="!estExpImmoNum">
-                                                        {{simulationResultat?.expertiseImmobiliereStr}}
-                                                    </div>
                                                     <div class="font-medium text-xl leading-tight tracking-tight"
-                                                        *ngIf="estExpImmoNum">
-                                                        {{simulationResultat?.expertiseImmobiliere | number:'1.2-2'}}
+                                                        [ngClass]="{'text-green-600 ': !simulationResultat?.estExpImmoNum}">
+                                                        {{simulationResultat?.expertiseImmobiliere}}
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
+                                                    <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !simulationResultat?.estExpImmoNum}">Dhs</div>
                                                 </div>
                                             </div>
 
@@ -444,15 +449,11 @@
                                                     Frais de dossier
                                                 </span>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight text-green-600"
-                                                        *ngIf="!estFraisDossNum">
-                                                        {{simulationResultat?.fraisDossierStr}}
-                                                    </div>
                                                     <div class="font-medium text-xl leading-tight tracking-tight"
-                                                        *ngIf="estFraisDossNum">
-                                                        {{simulationResultat?.fraisDossier | number:'1.2-2'}}
+                                                        [ngClass]="{'text-green-600 ': !simulationResultat?.estFraisDossNum}">
+                                                        {{simulationResultat?.fraisDossier}}
                                                     </div>
-                                                    <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
+                                                    <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !simulationResultat?.estFraisDossNum}">Dhs</div>
                                                 </div>
                                             </div>
 
@@ -462,7 +463,7 @@
                                                 </span>
                                                 <div class="ml-auto flex items-baseline whitespace-nowrap">
                                                     <div class="text-2xl font-bold leading-tight tracking-tight">
-                                                        {{simulationResultat?.mensualite | number:'1.2-2'}}
+                                                        {{simulationResultat?.mensualite}}
                                                     </div>
                                                     <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
                                                 </div>

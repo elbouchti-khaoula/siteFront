@@ -15,63 +15,75 @@
 
     <div class="px-5 sm:px-16 py-5 max-md:-mt-20">
         <div class="w-full max-w-md md:max-w-400 mx-auto">
-            <form [formGroup]="searchForm"
-                class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:py-5 md:px-7 md:w-5/12">
+            
+            <div class="flex flex-col max-md:space-y-5 md:flex-row md:items-baseline">
 
-                <div class="w-full mb-5 md:hidden">
-                    <div class="text-lg font-bold text-primary">
-                        Trouvez votre agence
-                    </div>
-                    <div class="w-7 h-1 rounded-2xl mt-2 bg-second-500"></div>
-                </div>
+                <form [formGroup]="searchForm"
+                    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:py-5 md:px-7 w-full md:w-5/12">
 
-                <div class="flex flex-col md:flex-row items-end">
-
-                    <!-- Ville -->
-                    <mat-form-field class="fuse-mat-no-subscript w-full"
-                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
-                        </mat-icon>
-                        <mat-select
-                            [formControlName]="'codeVille'"
-                            [placeholder]="'Ville'">
-                            <ng-container *ngFor="let ville of villes">
-                                <mat-option [value]="ville.codeVille">
-                                    {{ville.description}}
-                                </mat-option>
-                            </ng-container>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <!-- Actions -->
-                    <div class="flex items-center justify-center max-md:mt-5 md:ml-10 md:mb-1">
-                        <button
-                            mat-stroked-button
-                            class="bg-default"
-                            type="button" 
-                            [color]="'primary'"
-                            [disabled]="searchForm.pristine || searchForm.invalid"
-                            (click)="reset()">
-                            Vider
-                        </button>
-                        <button 
-                            class="ml-2"
-                            [ngClass]="{'bg-primary-200' : searchForm.pristine || searchForm.invalid}"
-                            mat-flat-button
-                            type="button"
-                            [color]="'primary'"
-                            [disabled]="searchForm.pristine || searchForm.invalid"
-                            (click)="search()">
-                            Chercher
-                        </button>
+                    <div class="w-full mb-5 md:hidden">
+                        <div class="text-lg font-bold text-primary">
+                            Trouver votre agence
+                        </div>
+                        <div class="w-7 h-1 rounded-2xl mt-2 bg-second-500"></div>
                     </div>
 
-                </div>
-            </form>
+                    <div class="flex flex-col md:flex-row items-end">
+
+                        <!-- Ville -->
+                        <mat-form-field class="fuse-mat-no-subscript w-full"
+                            [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
+                            </mat-icon>
+                            <mat-select
+                                [formControlName]="'codeVille'"
+                                [placeholder]="'Ville'">
+                                <ng-container *ngFor="let ville of villes">
+                                    <mat-option [value]="ville.codeVille">
+                                        {{ville.description}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <!-- Actions -->
+                        <div class="flex items-center justify-center max-md:mt-5 md:ml-10 md:mb-1">
+                            <button
+                                mat-stroked-button
+                                class="bg-default"
+                                type="button" 
+                                [color]="'primary'"
+                                [disabled]="searchForm.pristine || searchForm.invalid"
+                                (click)="reset()">
+                                Vider
+                            </button>
+                            <button 
+                                class="ml-2"
+                                [ngClass]="{'bg-primary-200' : searchForm.pristine || searchForm.invalid}"
+                                mat-flat-button
+                                type="button"
+                                [color]="'primary'"
+                                [disabled]="searchForm.pristine || searchForm.invalid"
+                                (click)="search()">
+                                Chercher
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <a href="https://www.attijariwafabank.com/fr" target="blank" class="ml-auto">
+                    <span
+                        class="font-medium tracking-wider pb-1 w-fit uppercase border-b border-primary-500 hover:border-black hover:text-primary-500">
+                        Réseaux attijari wafa bank
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div #agencesResult id="agencesResultId" class="flex flex-col items-center sm:px-16 md:pt-3 md:pb-10 min-h-screen w-full">
+    <div #agencesResult id="agencesResultId"
+        class="flex flex-col items-center sm:px-16 md:pt-3 md:pb-10 min-h-[86vh] md:min-h-screen w-full">
         <div class="relative flex flex-auto w-full max-w-400">
             <router-outlet></router-outlet>
         </div>

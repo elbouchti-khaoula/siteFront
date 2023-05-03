@@ -1,6 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { Observable, Subject } from 'rxjs';
+import { Subject, catchError, takeUntil, throwError } from 'rxjs';
+import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { CritereDetaillee, SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
+import { FuseUtilsService } from '@fuse/services/utils';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
   selector: 'mes-simulations',
@@ -10,23 +15,23 @@ import { Observable, Subject } from 'rxjs';
   animations: fuseAnimations
 })
 export class MesSimulationsComponent implements OnInit, OnDestroy {
-  
-  private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  simulations$: Observable<any[]>;
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
   simulations: any[] = [];
+  selectedSimulation: SimulationDetaillee;
+  simulationResultat: any;
 
   /**
    * Constructor
    */
-  constructor() {
-    this.simulations.push({id: 123, montant: 300000, mensualites: 3652, duree: 240, teg: 4.2});
-    this.simulations.push({id: 456, montant: 400000, mensualites: 5421, duree: 240, teg: 5.2});
-    this.simulations.push({id: 789, montant: 500000, mensualites: 9652, duree: 240, teg: 6.2});
-
-    this.simulations.push({id: 456, montant: 400000, mensualites: 5421, duree: 240, teg: 5.2});
-    this.simulations.push({id: 789, montant: 500000, mensualites: 9652, duree: 240, teg: 6.2});
-        
+  constructor(
+    private _router: Router,
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _simulationService: SimulationDetailleeService,
+    private _fuseUtilsService: FuseUtilsService,
+    private _fuseConfirmationService: FuseConfirmationService
+  )
+  {
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -35,6 +40,20 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // Get simulations
+    this._simulationService.simulations$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((response: SimulationDetaillee[]) => {
+
+        this.simulations = response.map(
+          e => {
+            return this._fuseUtilsService.convertSimulationToString(e)
+          }
+        );
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
   }
 
   /**
@@ -58,6 +77,140 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
    */
   trackByFn(index: number, item: any): any {
     return item.id || index;
+  }
+
+  /**
+   * Perform navigate
+   */
+  navigateToDemandeCredit(selectedSimulation: any): void {
+
+    this.addInfosClient(selectedSimulation);
+
+    setTimeout(() => {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          ...this.simulationResultat
+        }
+      };
+      this._router.navigate(['/espace-connecte/demande-credit'], navigationExtras);
+    }, 200);
+  }
+
+  /**
+   * Perform navigate
+   */
+  navigateToConsulterSimulation(selectedSimulation: any): void {
+
+    this.addInfosClient(selectedSimulation);
+
+    setTimeout(() => {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          ...this.simulationResultat
+        }
+      };
+      this._router.navigate(['/espace-connecte/consulter-simulation'], navigationExtras);
+    }, 300);
+  }
+
+  /**
+   * Abandonner une simulation
+   */
+  abandonner(selectedSimulation: any): void {
+
+    this._simulationService.abandonner(selectedSimulation.id)
+      .pipe(
+        // Error here means the requested is not available
+        catchError((error) => {
+
+          // Throw an error
+          return throwError(error);
+        })
+      )
+      .subscribe((response) => {
+
+        if (response.codeStatut === "PABA") {
+
+          // Open the confirmation dialog
+          const confirmation = this._fuseConfirmationService.open(
+            {
+              "title": "Abandonner simulation",
+              "message": "Votre simulation a été abaandonnée avec succès",
+              "icon": {
+                "show": true,
+                "name": "heroicons_outline:information-circle",
+                "color": "success"
+              },
+              "actions": {
+                "confirm": {
+                  "show": true,
+                  "label": "Ok",
+                  "color": "warn"
+                },
+                "cancel": {
+                  "show": false,
+                  "label": "Cancel"
+                }
+              },
+              "dismissible": false
+            }
+          );
+
+          confirmation.afterClosed().subscribe((result) => {
+
+            // If the confirm button pressed...
+            if (result === 'confirmed') {
+              setTimeout(() => {
+                this._router.navigate(['/espace-connecte']);
+              }, 200);
+            }
+          });
+        }
+
+      });
+  }
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+  private addInfosClient(selectedSimulation: any): any {
+
+    // Get the response of simulation by projectId
+    this._simulationService.getInfoClient(selectedSimulation.id)
+      .pipe(
+        catchError((error) => {
+          // Throw an error
+          return throwError(error);
+        })
+      )
+      .subscribe((response: CritereDetaillee) => {
+
+        this.simulationResultat = {
+          // Mon profil
+          nom: response.tiers.nom,
+          prenom: response.tiers.prenom,
+          telephone: response.tiers.telephone,
+          email: response.tiers.email,
+          dateNaissance: response.tiers.dateNaissance,
+          nationalite: response.tiers.nationalite,
+          residantMaroc: response.tiers.residantMaroc,
+          // ma situation
+          categorieSocioProfessionnelle: response.tiers.categorieSocioProfessionnelle,
+          nomEmployeur: response.tiers.nomEmployeur,
+          // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
+          salaire: response.tiers.salaireEtAutresRevenus,
+          // autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+          creditsEnCours: response.tiers.creditsEnCours,
+          // Mon projet
+          objetFinancement: response.objetFinancement,
+          nomPromoteur: response.nomPromoteur,
+          // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+          typeTaux: response.typeTaux,
+          newSimulation: false,
+          ...selectedSimulation
+        };
+
+      });
+
   }
 
 }

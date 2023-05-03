@@ -1,4 +1,5 @@
 export interface CritereDetaillee {
+    id?: number;
     provenance: string;         // provenance: "SITE"
     type: string;               // type: "personnePhysique"
     codeApporteur: string;      // codeApporteur: "100"
@@ -9,6 +10,7 @@ export interface CritereDetaillee {
     duree: number;
     typeTaux: string;
     nomPromoteur: string;
+    infine?: boolean;
     // statutProjet: string;
     tiers: {
         nom: string;
@@ -19,12 +21,15 @@ export interface CritereDetaillee {
         nationalite: string;
         segment: string;        // segment: "NV";
         dateNaissance: string;
-        salaire: string;
-        autresRevenus: string;
-        creditsEnCours: string;
+        salaire: number;
+        autresRevenus: number;
+        salaireEtAutresRevenus?: number;
+        creditsEnCours: number;
         telephone: string;
         email: string;
         nomEmployeur: string;
+        proprietaireMaroc?: boolean;
+        capital?: number;
     }
 }
 
@@ -71,9 +76,7 @@ export interface SimulationDetaillee {
     totalInterets                   : number;
     coutTotal                       : number;
     fraisDossier                    : number;
-    fraisDossierStr?                : string;
     expertiseImmobiliere            : number;
-    expertiseImmobiliereStr?        : string;
 
     // frais
     droitsEnregistrement            : number;
@@ -83,4 +86,41 @@ export interface SimulationDetaillee {
     totalFrais?                     : number;
 
     newSimulation?                  : boolean;
+}
+
+export interface Project
+{
+    id                          : number;
+    montant?                    : number;
+    montantProposition          : number;
+    duree                       : number;
+    statut?                     : string;
+    tauxNominalPondere?         : number;
+    tauxEffectifGlobalPondere   : number;
+    tauxAssurancePondere        : number;
+    tauxInteretsClientTtc       : number;
+    dossiers                    : Dossier[];
+    fraisAnnexes                : FraisAnnexes
+}
+
+export interface Dossier {
+    id                      : number;
+    montant                 : number;
+    echeance                : number;
+    duree                   : number;
+    tauxNominal             : number;
+    tauxEffectifGlobal      : number;
+    tauxParticipation       : number;
+    fraisDossier            : number;
+    assurances              : number;
+    totalInterets           : number;
+    coutTotal               : number;
+}
+
+export interface FraisAnnexes {
+    enregistrementHypothecaire  : number;
+    conservationFonciere        : number;
+    honorairesNotaire           : number;
+    fraisDossier                : number;
+    coutTotal?                  : number;
 }

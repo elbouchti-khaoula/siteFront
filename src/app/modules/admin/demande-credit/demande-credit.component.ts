@@ -2,12 +2,13 @@ import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList,
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { SimulationDetaillee } from '../simulation-detaillee/simulation-detaillee.types';
+import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 import { Piece } from 'app/core/common/common.types';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
-import { DemandeCreditService } from './demande-credit.service';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
 
 @Component({
   selector: 'demande-credit',
@@ -22,9 +23,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   drawerOpened: boolean = false;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  simulationResultat: SimulationDetaillee;
-  estExpImmoNum: boolean = true;
-  estFraisDossNum: boolean = true;
+  simulationResultat: any;
 
   @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
   documents: any;
@@ -39,70 +38,62 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _matDialog: MatDialog,
-    private _demandeCreditService: DemandeCreditService,
-    private _tableauAmortissementService: TableauAmortissementService
-  ) {
+    private _simulationDetailleeService: SimulationDetailleeService,
+    private _tableauAmortissementService: TableauAmortissementService,
+    private _fuseConfirmationService: FuseConfirmationService,
+  )
+  {
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
     if (data) {
       this.simulationResultat = data;
-    } else {
-      this.simulationResultat = {
-        "nom": "test1",
-        "prenom": "test1",
-        "telephone": "0522111111",
-        "email": "test1@test1.com",
-        "dateNaissance": "01/01/2000",
-        "nationalite": "MA",
-        "residantMaroc": true,
-        "categorieSocioProfessionnelle": "SALA",
-        "nomEmployeur": "Employeur",
-        "salaire": 500000,
-        "autresRevenus": 200000,
-        "creditsEnCours": 3000,
-        "montant": 500000,
-        "objetFinancement": "ACQU",
-        "montantProposition": 500000,
-        "duree": 240,
-        "nomPromoteur": "Promoteur",
-        "statutProjet": "active",
-        "typeTaux": "FIXE",
-        "id": 674335,
-        "statut": "NPRO",
-        "dossierId": 803757,
-        "dossierMontant": 700000,
-        "dossierDuree": 240,
-        "mensualite": 5201.31,
-        "tauxNominal": 5.45,
-        "tauxEffectifGlobal": 6.457,
-        "tauxParticipation": 0,
-        "assurances": 39231.82,
-        "totalInterets": 509082.58,
-        "coutTotal": 587546.22,
-        "fraisDossier": 770,
-        "expertiseImmobiliere": 0,
-        "droitsEnregistrement": 20000,
-        "conservationFonciere": 7700,
-        "honorairesNotaire": 5000,
-        "fraisDivers": 1500,
-        "totalFrais": 34200,
-        "nbreAnnee": 20,
-        "nbreMois": 0
-      }
     }
-    if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
-      this.estExpImmoNum = true;
-    } else {
-      this.simulationResultat.expertiseImmobiliere = 0;
-      this.simulationResultat.expertiseImmobiliereStr = "GRATUIT";
-      this.estExpImmoNum = false;
-    }
-    if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
-      this.estFraisDossNum = true;
-    } else {
-      this.simulationResultat.fraisDossier = 0;
-      this.simulationResultat.fraisDossierStr = "GRATUIT";
-      this.estFraisDossNum = false;
-    }
+    // else {
+    //   this.simulationResultat = {
+    //     "nom": "test1",
+    //     "prenom": "test1",
+    //     "telephone": "0522111111",
+    //     "email": "test1@test1.com",
+    //     "dateNaissance": "01/01/2000",
+    //     "nationalite": "MA",
+    //     "residantMaroc": true,
+    //     "categorieSocioProfessionnelle": "SALA",
+    //     "nomEmployeur": "Employeur",
+    //     "salaire": "500 000.00",
+    //     "autresRevenus": "200 000.00",
+    //     "creditsEnCours": "3 000.00",
+    //     "montant": "500 000.00",
+    //     "objetFinancement": "ACQU",
+    //     "montantProposition": "500 000.00",
+    //     "duree": 240,
+    //     "nomPromoteur": "Promoteur",
+    //     "statutProjet": "active",
+    //     "typeTaux": "FIXE",
+
+    //     "id": 674335,
+    //     "statut": "NPRO",
+    //     "dossierId": 803757,
+    //     "dossierMontant": "700 000.00",
+    //     "dossierDuree": 240,
+    //     "mensualite": "5 201.31",
+    //     "tauxNominal": "5.450",
+    //     "tauxEffectifGlobal": "6.457",
+    //     "tauxParticipation": "0.000",
+    //     "assurances": "39 231.82",
+    //     "totalInterets": "509 082.58",
+    //     "coutTotal": "587 546.22",
+    //     "expertiseImmobiliere": "GRATUIT",
+    //     "estExpImmoNum" : false,
+    //     "fraisDossier": "770.00",
+    //     "estFraisDossNum": true,
+    //     "droitsEnregistrement": "20 000.00",
+    //     "conservationFonciere": "7 700.00",
+    //     "honorairesNotaire": "5 000.00",
+    //     "fraisDivers": "1 500.00",
+    //     "totalFrais": "34 200.00",
+    //     "nbreAnnee": 20,
+    //     "nbreMois": 0
+    //   }
+    // }
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -112,13 +103,12 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     // Get the documents
-    this._demandeCreditService.documents$
+    this._simulationDetailleeService.documents$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: any) => {
 
         // Update the documents
         this.documents = response;
-        // console.log("+-+-+- documents", this.documents);
 
         Object.keys(this.documents).forEach(key => {
           // console.log(key);
@@ -171,7 +161,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   openTableauAmortissement(): void {
     this.drawerOpened = true;
 
-    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
+    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat?.dossierId).subscribe();
 
     // Mark for check
     this._changeDetectorRef.markForCheck();
@@ -240,9 +230,8 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
    */
   transformer(): void {
 
-    this._demandeCreditService.transformer(this.simulationResultat.id)
+    this._simulationDetailleeService.transformer(this.simulationResultat.id)
       .pipe(
-        // Error here means the requested is not available
         catchError((error) => {
 
           // Throw an error
@@ -250,13 +239,48 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((response) => {
-        console.log("+-+-+- response", response);
+
+        if (response.codeStatut === "DINS") {
+
+          // Open the confirmation dialog
+          const confirmation = this._fuseConfirmationService.open(
+            {
+              "title": "Demande de crédit",
+              "message": "Votre demande de crédit à été validée avec succès",
+              "icon": {
+                "show": true,
+                "name": "heroicons_outline:information-circle",
+                "color": "success"
+              },
+              "actions": {
+                "confirm": {
+                  "show": true,
+                  "label": "Ok",
+                  "color": "warn"
+                },
+                "cancel": {
+                  "show": false,
+                  "label": "Cancel"
+                }
+              },
+              "dismissible": false
+            }
+          );
+
+          confirmation.afterClosed().subscribe((result) => {
+
+            // If the confirm button pressed...
+            if (result === 'confirmed') {
+              setTimeout(() => {
+                this._router.navigate(['/espace-connecte']);
+              }, 200);
+            }
+          });
+        }
 
       });
 
-      setTimeout(() => {
-        this._router.navigate(['/espace-connecte']);
-      }, 300);
+
   }
 
   /**

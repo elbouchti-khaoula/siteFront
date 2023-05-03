@@ -91,6 +91,12 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Mes simulations',
                 type : 'basic',
                 link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
             }
         ]
     }
@@ -184,6 +190,12 @@ export const compactNavigation: FuseNavigationItem[] = [
                 title: 'Mes simulations',
                 type : 'basic',
                 link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
             }
         ]
     }
@@ -277,6 +289,12 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 title: 'Mes simulations',
                 type : 'basic',
                 link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
             }
         ]
     }
@@ -370,6 +388,12 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 title: 'Mes simulations',
                 type : 'basic',
                 link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
             }
         ]
     }
