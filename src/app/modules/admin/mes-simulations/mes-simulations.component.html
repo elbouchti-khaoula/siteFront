@@ -13,18 +13,22 @@
 
         <div class="w-full max-w-400 mx-auto">
 
-            <div class="flex flex-row">
-                <div>
-                    <span
-                        class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+            <div class="flex flex-col-reverse md:flex-row">
+                <div class="max-md:mt-5">
+                    <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                         Mes simulations
                     </span>
                     <div class="max-w-xl mt-2 text-xl text-secondary">
                         Vous avez ({{simulations.length}}) simulations en cours
                     </div>
                 </div>
+
                 <!-- Add simulation button -->
-                <button class="ml-auto" mat-flat-button [color]="'primary'" [routerLink]="['/espace-connecte/simulation-detaillee']">
+                <button
+                    class="ml-auto"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [routerLink]="['/espace-connecte/simulation-detaillee']">
                     <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
                     <span class="ml-2 mr-1">Nouvelle simulation</span>
                 </button>
@@ -34,10 +38,10 @@
 
                 <div class="mx-auto w-fit grid grid-cols-1 gap-y-14 md:grid-cols-2 md:gap-x-10 md:gap-y-16 mt-16"
                     [ngClass]="{'md:grid-cols-3' : simulations.length > 4 || simulations.length === 3,
-                                    'md:grid-cols-1' : simulations.length === 1 }">
+                                'md:grid-cols-1' : simulations.length === 1 }">
 
                     <ng-container *ngFor="let simulation of simulations; let i = index; trackBy: trackByFn">
-                        <fuse-card class="flex flex-col items-center p-8 pb-6 overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
+                        <fuse-card class="relative flex flex-col items-center px-5 pt-8 pb-6 bg-card overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
 
                             <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 p-2 rounded-full font-medium text-center leading-none bg-primary-500">
                                 <mat-icon class="icon-size-12 text-on-primary" [svgIcon]="'heroicons_solid:calculator'">
@@ -56,7 +60,7 @@
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Montant</span>
-                                        <span class="text-xl font-semibold">{{simulation?.montant}}</span>
+                                        <span class="text-xl font-semibold">{{simulation?.montantProposition}}</span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Durée</span>

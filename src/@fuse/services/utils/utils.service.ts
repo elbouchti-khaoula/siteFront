@@ -71,11 +71,11 @@ export class FuseUtilsService
    *
    * @param length
    */
-  numberFormat(number, decimals, dec_point, thousands_sep): string {
+  numberFormat(number, decimals, decPoint, thousandsSep): string {
     var n = !isFinite(+number) ? 0 : +number,
       prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-      sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-      dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+      sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep,
+      dec = (typeof decPoint === 'undefined') ? '.' : decPoint,
       toFixedFix = function (n, prec) {
         // Fix for IE parseFloat(0.55).toFixed(0) = 0;
         var k = Math.pow(10, prec);
@@ -94,45 +94,63 @@ export class FuseUtilsService
 
   convertSimulationToString(simulation: SimulationDetaillee): any {
 
-    let estExpImmoNum: boolean;
-    let expertiseImmobiliereStr = "";
-    if (simulation.expertiseImmobiliere && simulation.expertiseImmobiliere > 0) {
-      expertiseImmobiliereStr = this.numberFormat(simulation.expertiseImmobiliere, 2, ',', ' ');
-      estExpImmoNum = true;
-    } else {
-      expertiseImmobiliereStr = "GRATUIT";
-      estExpImmoNum = false;
-    }
-    let estFraisDossNum: boolean;
-    let fraisDossierStr = "";
-    if (simulation.fraisDossier && simulation.fraisDossier > 0) {
-      fraisDossierStr = this.numberFormat(simulation.fraisDossier, 2, ',', ' ');
-      estFraisDossNum = true;
-    } else {
-      fraisDossierStr = "GRATUIT";
-      estFraisDossNum = false;
-    }
+    let dossiersStr = simulation.dossiers.map(
+      doss => {
+
+        let estExpImmoNum: boolean;
+        let expertiseImmobiliereStr = "";
+
+        if (doss.expertiseImmobiliere && doss.expertiseImmobiliere > 0) {
+          expertiseImmobiliereStr = this.numberFormat(doss.expertiseImmobiliere, 2, '.', ' ');
+          estExpImmoNum = true;
+        } else {
+          expertiseImmobiliereStr = "GRATUIT";
+          estExpImmoNum = false;
+        }
+        let estFraisDossNum: boolean;
+        let fraisDossierStr = "";
+        if (doss.fraisDossier && doss.fraisDossier > 0) {
+          fraisDossierStr = this.numberFormat(doss.fraisDossier, 2, '.', ' ');
+          estFraisDossNum = true;
+        } else {
+          fraisDossierStr = "GRATUIT";
+          estFraisDossNum = false;
+        }
+
+        return {
+          ...doss,
+          mensualite: this.numberFormat(doss.echeance, 2, '.', ' '),
+          montant: this.numberFormat(doss.montant, 2, '.', ' '),
+          totalInterets: this.numberFormat(doss.totalInterets, 2, '.', ' '),
+          assurances: this.numberFormat(doss.assurances, 2, '.', ' '),
+          tauxParticipation: this.numberFormat(doss.tauxParticipation, 3, '.', ' '),
+          tauxEffectifGlobal: this.numberFormat(doss.tauxEffectifGlobal, 3, '.', ' '),
+          coutTotal: this.numberFormat(doss.coutTotal, 2, '.', ' '),
+          expertiseImmobiliere: expertiseImmobiliereStr,
+          estExpImmoNum: estExpImmoNum,
+          fraisDossier: fraisDossierStr,
+          estFraisDossNum: estFraisDossNum,
+          nbreAnnee: Math.trunc(doss.duree / 12),
+          nbreMois: doss.duree % 12
+        }
+      }
+    );
+
+    const echeanceGlobal = simulation.dossiers
+      .map(item => item.echeance)
+      .reduce((prev, curr) => prev + curr, 0);
 
     let simulationResultat = {
       ...simulation,
-      mensualite: this.numberFormat(simulation.mensualite, 2, '.', ' '),
-      montant: this.numberFormat(simulation.montant, 2, '.', ' '),
-      totalInterets: this.numberFormat(simulation.totalInterets, 2, '.', ' '),
-      assurances: this.numberFormat(simulation.assurances, 2, '.', ' '),
-      tauxParticipation: this.numberFormat(simulation.tauxParticipation, 3, '.', ' '),
-      tauxEffectifGlobal: this.numberFormat(simulation.tauxEffectifGlobal, 3, '.', ' '),
-      coutTotal: this.numberFormat(simulation.coutTotal, 2, '.', ' '),
-      expertiseImmobiliere: expertiseImmobiliereStr,
-      estExpImmoNum: estExpImmoNum,
-      fraisDossier: fraisDossierStr,
-      estFraisDossNum: estFraisDossNum,
+      dossiers: dossiersStr,
+      mensualite: this.numberFormat(echeanceGlobal, 2, '.', ' '),
+      montantProposition: this.numberFormat(simulation.montantProposition, 2, '.', ' '),
+      tauxEffectifGlobal: this.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
       totalFrais: this.numberFormat(simulation.totalFrais, 2, '.', ' '),
       droitsEnregistrement: this.numberFormat(simulation.droitsEnregistrement, 2, '.', ' '),
       conservationFonciere: this.numberFormat(simulation.conservationFonciere, 2, '.', ' '),
       fraisDivers: this.numberFormat(simulation.fraisDivers, 2, '.', ' '),
       honorairesNotaire: this.numberFormat(simulation.honorairesNotaire, 2, '.', ' '),
-      nbreAnnee: Math.trunc(simulation.duree / 12),
-      nbreMois: simulation.duree % 12
     }
 
     return simulationResultat;

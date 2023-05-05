@@ -25,11 +25,11 @@ export class MesDemandesCreditComponent implements OnInit, OnDestroy {
     this.statuts.push({id: 2, libelle: 'Autorisation'});
     this.statuts.push({id: 3, libelle: 'Déblocage'});
 
-    this.demandes.push({id: 123, montant: 300000, mensualites: 3652, duree: 240, teg: 4.2, statut: 1});
-    this.demandes.push({id: 456, montant: 400000, mensualites: 5421, duree: 240, teg: 5.2, statut: 2});
-    this.demandes.push({id: 789, montant: 500000, mensualites: 9652, duree: 240, teg: 6.2, statut: 3});
-    this.demandes.push({id: 987, montant: 400000, mensualites: 4564, duree: 240, teg: 5.0, statut: 1});
-    // this.demandes.push({id: 789, montant: 500000, mensualites: 9652, duree: 240, teg: 6.2, statut: 2});
+    this.demandes.push({id: 123, montant: "300 000.00", mensualites: 3652, duree: 240, teg: 4.2, statut: 1});
+    this.demandes.push({id: 456, montant: "400 000.00", mensualites: 5421, duree: 240, teg: 5.2, statut: 2});
+    this.demandes.push({id: 789, montant: "500 000.00", mensualites: 9652, duree: 240, teg: 6.2, statut: 3});
+    this.demandes.push({id: 987, montant: "400 000.00", mensualites: 4564, duree: 240, teg: 5.0, statut: 1});
+    // this.demandes.push({id: 789, montant: "500000.00", mensualites: 9652, duree: 240, teg: 6.2, statut: 2});
         
   }
 

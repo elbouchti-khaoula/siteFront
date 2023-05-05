@@ -296,21 +296,11 @@ export class SimulationDetailleeService {
             montantProposition: response.montantProposition,
             duree: response.duree,
             statut: response.statut,
-
-            dossierId: response.dossiers?.[0].id,
-            dossierMontant: response.dossiers?.[0].montant,
-            dossierDuree: response.dossiers?.[0].duree,
-
-            mensualite: response.dossiers?.[0].echeance,
-            tauxNominal: response.dossiers?.[0].tauxNominal,
-            tauxEffectifGlobal: response.dossiers?.[0].tauxEffectifGlobal,
-            tauxParticipation: response.dossiers?.[0].tauxParticipation,
-            assurances: response.dossiers?.[0].assurances,
-            totalInterets: response.dossiers?.[0].totalInterets,
-            coutTotal: response.dossiers?.[0].coutTotal,
-            fraisDossier: response.dossiers?.[0].fraisDossier,
-            expertiseImmobiliere: 0,
-
+            tauxNominalPondere: response.tauxNominalPondere,
+            tauxEffectifGlobalPondere: response.tauxEffectifGlobalPondere,
+            tauxAssurancePondere: response.tauxAssurancePondere,
+            tauxInteretsClientTtc: response.tauxInteretsClientTtc,
+            dossiers: response.dossiers,
             // frais
             droitsEnregistrement: response.fraisAnnexes.enregistrementHypothecaire,
             conservationFonciere: response.fraisAnnexes.conservationFonciere,
@@ -328,21 +318,11 @@ export class SimulationDetailleeService {
                 montantProposition: element.montantProposition,
                 duree: element.duree,
                 statut: element.statut,
-
-                dossierId: element.dossiers?.[0].id,
-                dossierMontant: element.dossiers?.[0].montant,
-                dossierDuree: element.dossiers?.[0].duree,
-
-                mensualite: element.dossiers?.[0].echeance,
-                tauxNominal: element.dossiers?.[0].tauxNominal,
-                tauxEffectifGlobal: element.dossiers?.[0].tauxEffectifGlobal,
-                tauxParticipation: element.dossiers?.[0].tauxParticipation,
-                assurances: element.dossiers?.[0].assurances,
-                totalInterets: element.dossiers?.[0].totalInterets,
-                coutTotal: element.dossiers?.[0].coutTotal,
-                fraisDossier: element.dossiers?.[0].fraisDossier,
-                expertiseImmobiliere: 0,
-
+                tauxNominalPondere: element.tauxNominalPondere,
+                tauxEffectifGlobalPondere: element.tauxEffectifGlobalPondere,
+                tauxAssurancePondere: element.tauxAssurancePondere,
+                tauxInteretsClientTtc: element.tauxInteretsClientTtc,
+                dossiers: element.dossiers,
                 // frais
                 droitsEnregistrement: element.fraisAnnexes.enregistrementHypothecaire,
                 conservationFonciere: element.fraisAnnexes.conservationFonciere,

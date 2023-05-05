@@ -60,23 +60,12 @@ export interface SimulationDetaillee {
     montant?                        : number;
     montantProposition              : number;
     duree                           : number;
-    nbreAnnee?                      : number;
-    nbreMois?                       : number;
+    tauxNominalPondere              : number;
+    tauxEffectifGlobalPondere       : number;
+    tauxAssurancePondere            : number;
+    tauxInteretsClientTtc           : number;
     statut?                         : string;
-
-    dossierId?                      : number;
-    dossierMontant?                 : number;
-    dossierDuree?                   : number;
-
-    mensualite                      : number;
-    tauxNominal?                    : number;
-    tauxEffectifGlobal              : number;
-    tauxParticipation               : number;
-    assurances                      : number;
-    totalInterets                   : number;
-    coutTotal                       : number;
-    fraisDossier                    : number;
-    expertiseImmobiliere            : number;
+    dossiers                        : Dossier[];
 
     // frais
     droitsEnregistrement            : number;
@@ -106,15 +95,18 @@ export interface Project
 export interface Dossier {
     id                      : number;
     montant                 : number;
-    echeance                : number;
     duree                   : number;
+    echeance                : number;
     tauxNominal             : number;
     tauxEffectifGlobal      : number;
     tauxParticipation       : number;
-    fraisDossier            : number;
     assurances              : number;
     totalInterets           : number;
     coutTotal               : number;
+    fraisDossier            : number;
+    expertiseImmobiliere    : number;
+    nbreAnnee?              : number;
+    nbreMois?               : number;
 }
 
 export interface FraisAnnexes {

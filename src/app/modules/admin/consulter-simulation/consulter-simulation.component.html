@@ -13,20 +13,19 @@
         <div class="w-full max-w-400 mx-auto">
 
             <div class="-ml-4 mb-2">
-                <a
-                    mat-button
+                <a mat-button
                     [routerLink]="['/espace-connecte/mes-simulations']"
                     [color]="'primary'">
                     <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-left'"></mat-icon>
-                    <span class="ml-2">Retour mes simulations</span>
+                    <span class="ml-2">Retour à mes simulations</span>
                 </a>
             </div>
 
             <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Ma simulation N° {{this.simulationResultat.id}}
+                Simulation N° {{simulationResultat?.id}}
             </span>
 
-            <div class="mt-10 max-w-6xl mx-auto">
+            <div class="mt-5 md:mt-10 max-w-6xl mx-auto">
                 <details-simulation [simulationResultat]="simulationResultat"></details-simulation>
             </div>
 

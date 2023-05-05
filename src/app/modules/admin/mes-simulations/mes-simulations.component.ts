@@ -70,30 +70,12 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Track by function for ngFor loops
-   *
-   * @param index
-   * @param item
-   */
-  trackByFn(index: number, item: any): any {
-    return item.id || index;
-  }
-
-  /**
    * Perform navigate
    */
   navigateToDemandeCredit(selectedSimulation: any): void {
 
-    this.addInfosClient(selectedSimulation);
+    this.addInfosClient(selectedSimulation, '/espace-connecte/demande-credit');
 
-    setTimeout(() => {
-      const navigationExtras: NavigationExtras = {
-        state: {
-          ...this.simulationResultat
-        }
-      };
-      this._router.navigate(['/espace-connecte/demande-credit'], navigationExtras);
-    }, 200);
   }
 
   /**
@@ -101,16 +83,8 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
    */
   navigateToConsulterSimulation(selectedSimulation: any): void {
 
-    this.addInfosClient(selectedSimulation);
+    this.addInfosClient(selectedSimulation, '/espace-connecte/consulter-simulation');
 
-    setTimeout(() => {
-      const navigationExtras: NavigationExtras = {
-        state: {
-          ...this.simulationResultat
-        }
-      };
-      this._router.navigate(['/espace-connecte/consulter-simulation'], navigationExtras);
-    }, 300);
   }
 
   /**
@@ -169,10 +143,21 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
 
       });
   }
+
+  /**
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
+
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
-  private addInfosClient(selectedSimulation: any): any {
+  private addInfosClient(selectedSimulation: any, routeLink: string): any {
 
     // Get the response of simulation by projectId
     this._simulationService.getInfoClient(selectedSimulation.id)
@@ -208,6 +193,15 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
           newSimulation: false,
           ...selectedSimulation
         };
+
+        setTimeout(() => {
+          const navigationExtras: NavigationExtras = {
+            state: {
+              ...this.simulationResultat
+            }
+          };
+          this._router.navigate([routeLink], navigationExtras);
+        }, 300);
 
       });
 

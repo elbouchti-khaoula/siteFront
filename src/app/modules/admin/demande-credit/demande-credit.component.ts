@@ -158,10 +158,10 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   /**
    * Open tableau amortissement
    */
-  openTableauAmortissement(): void {
+  openTableauAmortissement(dossierId: number): void {
     this.drawerOpened = true;
 
-    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat?.dossierId).subscribe();
+    this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe();
 
     // Mark for check
     this._changeDetectorRef.markForCheck();
