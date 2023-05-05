@@ -543,7 +543,8 @@
                 </form>
 
                 <!-- Résultat -->
-                <div class="md:w-3/5 md:-mt-5"
+                <div #resultat 
+                    class="md:w-3/5 md:-mt-5"
                     *ngIf="isVisible"
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 300}}">
 

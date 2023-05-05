@@ -19,7 +19,6 @@ export class TableauAmortissementComponent implements OnInit, OnDestroy
     // @ViewChild(MatSort) private _sort: MatSort;
     // @ViewChild(MatPaginator) private _paginator: MatPaginator;
     // pagination: TableauAmortissementPagination;
-    @Input() dossierId : number;
     @Input() drawer: MatDrawer;
     isLoading: boolean = false;
 

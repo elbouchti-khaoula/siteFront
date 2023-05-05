@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
 import { TableauAmortissementService } from '../../admin/tableau-amortissement/tableau-amortissement.service';
-// import { AnimateCounterService } from '@fuse/services/animate-counter';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
@@ -17,28 +16,10 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 export class DetailsSimulationComponent implements OnInit, OnDestroy {
 
-  drawerOpened: boolean = false;
-  isScreenSmall: boolean;
-
   @Input() simulationResultat: any;
 
-  @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
-  // @ViewChild('mensualiteId') mensualiteId: any;
-  // @ViewChild('nbreAnneeId') nbreAnneeId: any;
-  // @ViewChild('nbreMoisId') nbreMoisId: any;
-  // @ViewChild('montantId') montantId: any;
-  // @ViewChild('totalInteretsId') totalInteretsId: any;
-  // @ViewChild('coutTotalId') coutTotalId: any;
-  // @ViewChild('assurancesId') assurancesId: any;
-  // @ViewChild('tauxParticipationId') tauxParticipationId: any;
-  // @ViewChild('tauxEffectifGlobalId') tauxEffectifGlobalId: any;
-  // @ViewChild('expertiseImmobiliereId') expertiseImmobiliereId: any;
-  // @ViewChild('fraisDossierId') fraisDossierId: any;
-  // @ViewChild('totalFraisId') totalFraisId: any;
-  // @ViewChild('droitsEnregistrementId') droitsEnregistrementId: any;
-  // @ViewChild('conservationFonciereId') conservationFonciereId: any;
-  // @ViewChild('fraisDiversId') fraisDiversId: any;
-  // @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
+  drawerOpened: boolean = false;
+  isScreenSmall: boolean;
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -49,7 +30,6 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
-    // private _animateCounterService: AnimateCounterService,
     private _simulationService: SimulationDetailleeService,
     private _tableauAmortissementService: TableauAmortissementService,
     private _fuseConfirmationService: FuseConfirmationService
@@ -73,6 +53,74 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
 
       });
 
+      // this.simulationResultat = {
+      //   "nom": "test1",
+      //   "prenom": "test1",
+      //   "telephone": "0522111111",
+      //   "email": "test1@test1.com",
+      //   "dateNaissance": "01/01/2000",
+      //   "nationalite": "MA",
+      //   "residantMaroc": true,
+      //   "categorieSocioProfessionnelle": "SALA",
+      //   "nomEmployeur": "Employeur",
+      //   "salaire": "500 000.00",
+      //   "autresRevenus": "200 000.00",
+      //   "creditsEnCours": "3 000.00",
+      //   "montant": "500 000.00",
+      //   "objetFinancement": "ACQU",
+      //   "montantProposition": "500 000.00",
+      //   "duree": 240,
+      //   "nomPromoteur": "Promoteur",
+      //   "statutProjet": "active",
+      //   "typeTaux": "FIXE",
+
+      //   "id": 674335,
+      //   "statut": "NPRO",
+      //   dossiers: [
+      //     {
+      //       "id": 803757,
+      //       "montant": "700 000.00",
+      //       "duree": 240,
+      //       "mensualite": "5 201.31",
+      //       "tauxNominal": "5.450",
+      //       "tauxEffectifGlobal": "6.457",
+      //       "tauxParticipation": "0.000",
+      //       "assurances": "39 231.82",
+      //       "totalInterets": "509 082.58",
+      //       "coutTotal": "587 546.22",
+      //       "expertiseImmobiliere": "GRATUIT",
+      //       "estExpImmoNum" : false,
+      //       "fraisDossier": "770.00",
+      //       "estFraisDossNum": true,
+      //       "nbreAnnee": 20,
+      //       "nbreMois": 0,
+      //     },
+      //     {
+      //       "id": 803757,
+      //       "montant": "700 000.00",
+      //       "duree": 240,
+      //       "mensualite": "5 201.31",
+      //       "tauxNominal": "5.450",
+      //       "tauxEffectifGlobal": "6.457",
+      //       "tauxParticipation": "0.000",
+      //       "assurances": "39 231.82",
+      //       "totalInterets": "509 082.58",
+      //       "coutTotal": "587 546.22",
+      //       "expertiseImmobiliere": "GRATUIT",
+      //       "estExpImmoNum" : false,
+      //       "fraisDossier": "770.00",
+      //       "estFraisDossNum": true,
+      //       "nbreAnnee": 20,
+      //       "nbreMois": 0,
+      //     }
+      //   ],
+      //   "droitsEnregistrement": "20 000.00",
+      //   "conservationFonciere": "7 700.00",
+      //   "honorairesNotaire": "5 000.00",
+      //   "fraisDivers": "1 500.00",
+      //   "totalFrais": "34 200.00",
+      //   newSimulation: true
+      // }
   }
 
   /**
@@ -88,68 +136,8 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  // viderSimulation(): void {
-
-  //   this._animateCounterService.animateValue(this.mensualiteId, this.simulation.mensualite, 0, 600);
-  //   this._animateCounterService.animateValue(this.nbreAnneeId, this.simulation.nbreAnnee, 0, 600);
-  //   this._animateCounterService.animateValue(this.nbreMoisId, this.simulation.nbreMois, 0, 600);
-  //   this._animateCounterService.animateValue(this.montantId, this.simulation.montant, 0, 600);
-  //   this._animateCounterService.animateValue(this.totalInteretsId, this.simulation.totalInterets, 0, 600);
-  //   this._animateCounterService.animateValue(this.coutTotalId, this.simulation.coutTotal, 0, 600);
-  //   this._animateCounterService.animateValue(this.assurancesId, this.simulation.assurances, 0, 600);
-  //   this._animateCounterService.animateValue(this.tauxParticipationId, this.simulation.tauxParticipation, 0, 600);
-  //   this._animateCounterService.animateValue(this.tauxEffectifGlobalId, this.simulation.tauxEffectifGlobal, 0, 600);
-
-  //   let nbExp = 0;
-  //   if (this.simulation.expertiseImmobiliere && this.simulation.expertiseImmobiliere > 0) {
-  //     nbExp = this.simulation.expertiseImmobiliere;
-  //   }
-  //   this.estExpImmoNum = true;
-  //   this._animateCounterService.animateValue(this.expertiseImmobiliereId, nbExp, 0, 600);
-
-  //   let nbFrai = 0;
-  //   if (this.simulation.fraisDossier && this.simulation.fraisDossier > 0) {
-  //     nbFrai = this.simulation.fraisDossier;
-  //   }
-  //   this.estFraisDossNum = true;
-  //   this._animateCounterService.animateValue(this.fraisDossierId, nbFrai, 0, 600);
-
-  //   // Frais
-  //   this._animateCounterService.animateValue(this.totalFraisId, this.simulation.totalFrais, 0, 600);
-  //   this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulation.droitsEnregistrement, 0, 600);
-  //   this._animateCounterService.animateValue(this.conservationFonciereId, this.simulation.conservationFonciere, 0, 600);
-  //   this._animateCounterService.animateValue(this.fraisDiversId, this.simulation.fraisDivers, 0, 600);
-  //   this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulation.honorairesNotaire, 0, 600);
-  
-  // }
-
   getSimulation(simulation: any): void {
     this.simulationResultat = simulation;
-
-    // this.mensualiteId.nativeElement.textContent = this.simulationResultat.mensualite;
-    // this.nbreAnneeId.nativeElement.textContent = this.simulationResultat.nbreAnnee;
-    // this.nbreMoisId.nativeElement.textContent = this.simulationResultat.nbreMois;
-    // this.montantId.nativeElement.textContent = this.simulationResultat.montantProposition;
-    // this.totalInteretsId.nativeElement.textContent = this.simulationResultat.totalInterets;
-    // this.assurancesId.nativeElement.textContent = this.simulationResultat.assurances;
-    // this.tauxParticipationId.nativeElement.textContent = this.simulationResultat.tauxParticipation;
-    // this.tauxEffectifGlobalId.nativeElement.textContent = this.simulationResultat.tauxEffectifGlobal;
-    // this.coutTotalId.nativeElement.textContent = this.simulationResultat.coutTotal;
-    // this.expertiseImmobiliereId.nativeElement.textContent = expertiseImmobiliereStr;
-    // this.fraisDossierId.nativeElement.textContent = fraisDossierStr;
-    // // Frais
-    // this.totalFraisId.nativeElement.textContent = this.simulationResultat.totalFrais;
-    // this.droitsEnregistrementId.nativeElement.textContent = this.simulationResultat.droitsEnregistrement;
-    // this.conservationFonciereId.nativeElement.textContent = this.simulationResultat.conservationFonciere;
-    // this.fraisDiversId.nativeElement.textContent = this.simulationResultat.fraisDivers;
-    // this.honorairesNotaireId.nativeElement.textContent = this.simulationResultat.honorairesNotaire;
-  }
-
-  scrollToResultat() : void {
-    setTimeout(() => {
-      // Scroll to result
-      this.resultat.nativeElement.scrollIntoView({ behavior: "smooth" });
-    }, 200);
   }
 
   /**
@@ -213,10 +201,10 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
   /**
    * Open tableau amortissement
    */
-  openTableauAmortissement(): void {
+  openTableauAmortissement(dossierId: number): void {
     this.drawerOpened = true;
 
-    this._tableauAmortissementService.getTableauAmortissement(this.simulationResultat.dossierId).subscribe();
+    this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe();
 
     // Mark for check
     this._changeDetectorRef.markForCheck();
@@ -232,6 +220,16 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
       }
     };
     this._router.navigate(['/espace-connecte/demande-credit'], navigationExtras);
+  }
+
+  /**
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
   }
 
 }

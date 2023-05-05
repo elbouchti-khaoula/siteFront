@@ -64,7 +64,7 @@
                         [autoFocus]="false"
                         [(opened)]="drawerOpened"
                         #drawerTableauDC>
-                        <tableau-amortissement [dossierId]="simulationResultat?.dossierId" [drawer]="drawerTableauDC"></tableau-amortissement>
+                        <tableau-amortissement [drawer]="drawerTableauDC"></tableau-amortissement>
                     </mat-drawer>
 
                     <mat-drawer-content class="px-1 pt-5 pb-1">
@@ -86,7 +86,7 @@
                                         class="fuse-mat-button-small"
                                         type="button" 
                                         [color]="'accent'"
-                                        (click)="openTableauAmortissement()">
+                                        (click)="openTableauAmortissement(1)">
                                         Tableau d'amortissement
                                     </button>
                                 </div>
@@ -365,7 +365,7 @@
                                                 </div>
                                                 <div class="flex items-baseline whitespace-nowrap mt-2">
                                                     <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
-                                                        {{simulationResultat?.montant}}
+                                                        {{simulationResultat?.montantProposition}}
                                                     </div>
                                                     <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>

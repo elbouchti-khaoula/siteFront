@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -66,6 +66,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   };
   tab = ['step1', 'step2', 'step3'];
 
+  @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   simulationResultat: any;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -112,6 +113,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomPromoteur: [this.simulationFormDefaults.nomPromoteur]
       })
     });
+
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -335,7 +337,10 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         }, 200);
 
         if (this.isScreenSmall) {
-          this.detailsSimulation.scrollToResultat();
+          setTimeout(() => {
+            // Scroll to result
+            this.resultat.nativeElement.scrollIntoView({ behavior: "smooth" });
+          }, 200);
         }
 
         // Add query params using the router
