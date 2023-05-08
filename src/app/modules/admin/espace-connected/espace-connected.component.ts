@@ -1,22 +1,21 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
-    selector        : 'espace-connected',
-    templateUrl     : './espace-connected.component.html',
-    styleUrls       : ['./espace-connected.component.scss'],
-    encapsulation   : ViewEncapsulation.None,
-    animations      : fuseAnimations
+    selector: 'landing',
+    templateUrl: './espace-connected.component.html',
+    styleUrls: ['./espace-connected.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations: fuseAnimations
 })
-export class EspaceConnectedComponent implements OnInit, OnDestroy
-{
 
-    isXsScreen: boolean;
+export class EspaceConnectedComponent implements OnInit {
+    isScreenSmall: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-   
+    @ViewChild('simulationId', { read: ElementRef }) public simulationId: ElementRef<any>;
+
     /**
      * Constructor
      */
@@ -32,30 +31,21 @@ export class EspaceConnectedComponent implements OnInit, OnDestroy
      * On init
      */
     ngOnInit(): void {
+        // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({ matchingAliases }) => {
 
-                // Check if the screen is xsSmall
-                this.isXsScreen = !matchingAliases.includes('sm');
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    scrollToElement(el: HTMLElement) {
-        el.scrollIntoView();
+    scrollToSimulation() {
+        this.simulationId.nativeElement.scrollIntoView();
     }
 
-    panelOpenState = false;
 }
