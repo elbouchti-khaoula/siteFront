@@ -10,14 +10,7 @@
   position: fixed;
   bottom: 0;
 }
-.ul {
-  list-style-type: none;
-}
 
-.li:before {
-  content: "\2192";
-  margin-right: 0.5em;
-}
 
 .chiffre-bg {
   background-color: #fff;
@@ -48,8 +41,16 @@
   max-width: 100%;
 }
 
+
 // .u-section-2 .u-layout-wrap-1 {
   // width: 1029px;
   // margin: -758px auto 0;
   // background-color: yellow;
 // }
+
+// amine
+
+.btn {
+  border: 1px solid white;
+  border-radius: 5px;
+}
