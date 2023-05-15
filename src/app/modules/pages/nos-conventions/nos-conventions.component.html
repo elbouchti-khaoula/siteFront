@@ -1,458 +1,462 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]> -->
+    <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis] cdkScrollable>
 
-    <!-- Header -->
-    <header
-        class="flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[45vh] sm:min-h-[35vh] nos-conventions-bg-header">
-        <div class="w-full max-w-400">
-            <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
-                Nos Conventions
+        <!-- Header -->
+        <header
+            class="flex flex-col items-center justify-center px-6 sm:px-16 w-full min-h-[45vh] sm:min-h-[30vh] nos-conventions-bg-header">
+            <div class="w-full max-w-400">
+                <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-white">
+                    Nos Conventions
+                </div>
+    
+                
+    
             </div>
-        </div>
-    </header>
-
-    <div class="px-6 sm:px-16 py-10 md:pt-18 md:pb-20">
-        <div class="w-full max-w-400 mx-auto">
-            <div class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
-                WAFA IMMOBILIER EST AU COEUR DES CONVENTIONS
-              </div>
-              <p class="mt-10 " style="font-size: 20px;">
-                Engagée à faciliter l'accès à l'immobilier pour tous, Wafa Immobilier a été en mesure de développer des conventions et des partenariats privilégiés, avec de nombreuses institutions publiques et privées.  
-            </p>
-
-            <p class="mt-10" style="font-size: 20px;">
-                Nous proposons, ainsi, selon le besoin de nos clients et de nos partenaires, une gamme complète de services et de produits pour les aider à concrétiser leurs projets immobiliers. Et ce, à chaque étape de leur processus d’acquisition, afin de toujours mieux les accompagner et les satisfaire.             </p>
-
-            <hr class="my-6">
-        
-
-            <mat-accordion class="max-w-4xl my-12">
-               
-
-                <mat-expansion-panel >
-
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage2()" >
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i7.png" alt="" style="padding-right:30px; " [ngClass]="{'hidden': hideImage2}"/>
+        </header>
+    
+        <div class="px-6 sm:px-16 py-10 md:pt-18 md:pb-20">
+            <div class="w-full max-w-400 mx-auto">
+                <div class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+                    WAFA IMMOBILIER EST AU COEUR DES CONVENTIONS
+                  </div>
+                  <p class="mt-10 " style="font-size: 20px;">
+                    Engagée à faciliter l'accès à l'immobilier pour tous, Wafa Immobilier a été en mesure de développer des conventions et des partenariats privilégiés, avec de nombreuses institutions publiques et privées.  
+                </p>
+    
+                <p class="mt-10" style="font-size: 20px;">
+                    Nous proposons, ainsi, selon le besoin de nos clients et de nos partenaires, une gamme complète de services et de produits pour les aider à concrétiser leurs projets immobiliers. Et ce, à chaque étape de leur processus d’acquisition, afin de toujours mieux les accompagner et les satisfaire.             </p>
+    
+                <hr class="my-6">
+            
+    
+                <mat-accordion class="max-w-4xl my-12">
+                   
+    
+                    <mat-expansion-panel >
+    
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage2()" >
+                            <mat-panel-title  style="color: white;font-weight: bold;">
                                 
-                            Fondation Mohammed VI de Promotion des Œuvres Sociales de l'Education - Formation
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
- 
-                    <div class="flex flex-col mt-10">
-                    
-
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i7.png" alt="" style="padding-right:30px; "/>
+                                <img class=" max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i7.png" alt="" style="padding-right:30px; " [ngClass]="{'hidden': hideImage2}"/>
+                                    
+                                Fondation Mohammed VI de Promotion des Œuvres Sociales de l'Education - Formation
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+     
+                        <div class="flex flex-col mt-10">
+                        
+    
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
                                 
-                                Le programme de financement de logement dédié au corps enseignant
-                        </mat-panel-title>
-
+                                <img class=" max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i7.png" alt="" style="padding-right:30px; "/>
+                                    
+                                    Le programme de financement de logement dédié au corps enseignant
+                            </mat-panel-title>
+    
+                                <div class="flex flex-row flex-wrap"> 
+    
+                                    <div class="flex col mt-10 order-2 order-md-1">
+                                        
+            
+                                        <p class="mt-5" style="font-size: 18px;">
+                                
+            
+                                            Avec l’appui de ses banques partenaires, la Fondation Mohammed VI de Promotion des Œuvres
+                                            Sociales
+                                            de l'Éducation – Formation a mis en place, Imtilak. Un nouveau programme d'aide au logement au
+                                            profit de la famille de l’enseignement, proposant une offre de financement diversifiée.
+                
+                                            Pensé et conçu pour les adhérents de la Fondation, Imtilak vise à faciliter l'accès à la
+                                            propriété,
+                                            à travers des crédits immobiliers subventionnés pour l'acquisition ou la construction d'un
+                                            logement
+                                            principal, l'achat d'un terrain, ou l'achat d'un terrain et sa construction.
+                
+                                            A travers ce programme, les adhérents pourront, ainsi, bénéficier de trois mécanismes d'aide au
+                                            logement, non cumulables, comprenant des crédits subventionnés, bonifiés ou conventionnés.
+                                        </p>
+                                  
+                                  
+                                    </div>
+    
+                               
+                                   
+    
+                                  
+                                </div>
+    
+                                <div class="flex flex-row flex-wrap"> 
+    
+                                
+                                <img class="mx-auto h-52 w-fit object-cover mt-5  "
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_IMTILAK (1).jpg"
+                                alt=""  />
+                           
+                                
+    
+                               </div>
+    
+                            <button
+                                class="w-fit mt-3 mx-auto" 
+                                mat-flat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']">
+                                
+                                <span class="ml-2">Accéder à l'offre </span>
+                            </button>
+    
+                        </div>
+                        
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel >
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage3()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i3.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage3}"/>
+                                Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i3.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit immobilier sur mesure qui vous simplifie la vie
+                            </mat-panel-title>
                             <div class="flex flex-row flex-wrap"> 
-
+    
                                 <div class="flex col mt-10 order-2 order-md-1">
                                     
         
                                     <p class="mt-5" style="font-size: 18px;">
                             
         
-                                        Avec l’appui de ses banques partenaires, la Fondation Mohammed VI de Promotion des Œuvres
-                                        Sociales
-                                        de l'Éducation – Formation a mis en place, Imtilak. Un nouveau programme d'aide au logement au
-                                        profit de la famille de l’enseignement, proposant une offre de financement diversifiée.
+                                        La Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice offre
+                                        à ses adhérents des crédits logement personnalisables, avec des conditions exceptionnelles.
             
-                                        Pensé et conçu pour les adhérents de la Fondation, Imtilak vise à faciliter l'accès à la
-                                        propriété,
-                                        à travers des crédits immobiliers subventionnés pour l'acquisition ou la construction d'un
-                                        logement
-                                        principal, l'achat d'un terrain, ou l'achat d'un terrain et sa construction.
-            
-                                        A travers ce programme, les adhérents pourront, ainsi, bénéficier de trois mécanismes d'aide au
-                                        logement, non cumulables, comprenant des crédits subventionnés, bonifiés ou conventionnés.
+                                        Les adhérents pourront, ainsi, bénéficier d'un financement intégral de leur projet avec des taux
+                                        avantageux, fixes ou variables, qui comprend, notamment, un taux d'endettement intéressant, en
+                                        conformité avec les termes de la convention.
                                     </p>
                               
                               
                                 </div>
-
-                           
-                               
-
-                              
-                            </div>
-
-                            <div class="flex flex-row flex-wrap"> 
-
-                            
-                            <img class="mx-auto h-52 w-fit object-cover mt-5  "
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_IMTILAK (1).jpg"
-                            alt=""  />
-                       
-                            
-
-                           </div>
-
-                        <button
-                            class="w-fit mt-3 mx-auto" 
-                            mat-flat-button
-                            [color]="'primary'"
-                            [routerLink]="['./']">
-                            
-                            <span class="ml-2">Accéder à l'offre </span>
-                        </button>
-
-                    </div>
-                    
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage3()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i3.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage3}"/>
-                            Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i3.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit immobilier sur mesure qui vous simplifie la vie
-                        </mat-panel-title>
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
-    
-                                <p class="mt-5" style="font-size: 18px;">
-                        
-    
-                                    La Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice offre
-                                    à ses adhérents des crédits logement personnalisables, avec des conditions exceptionnelles.
-        
-                                    Les adhérents pourront, ainsi, bénéficier d'un financement intégral de leur projet avec des taux
-                                    avantageux, fixes ou variables, qui comprend, notamment, un taux d'endettement intéressant, en
-                                    conformité avec les termes de la convention.
-                                </p>
-                          
-                          
-                            </div>
-                     
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 "
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Justice.jpg"
-                            alt="" />
-
-                           
-
-                           </div>
-
-                          <button
-                          class="w-fit mt-3 mx-auto"
-                          mat-flat-button
-                          [color]="'primary'"
-                          [routerLink]="['./']">
-                          
-                          <span class="ml-2">Accéder à l'offre </span>
-                      </button>
-                        
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage4()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i5.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage4}"/>
-                            Fondation Des Œuvres Sociales du Personnel du Ministère de l'Economie et des Finances
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i5.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit immobilier à la hauteur de vos ambitions
-                        </mat-panel-title>
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
-    
-                                <p class="mt-5" style="font-size: 18px;">
-                        
-    
-                                    La Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice offre
-                            à ses adhérents des crédits logement personnalisables, avec des conditions exceptionnelles.
-
-                            Les adhérents pourront, ainsi, bénéficier d'un financement intégral de leur projet avec des taux
-                            avantageux, fixes ou variables, qui comprend, notamment, un taux d'endettement intéressant, en
-                            conformité avec les termes de la convention.
-                                </p>
-                          
-                          
-                            </div>
-                           
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Finance_16032023.jpg"
-                            alt="" />
-                           
-                           </div>
-
-                        <button
-                            class="w-fit mt-3 mx-auto"
-                            mat-flat-button
-                            [color]="'primary'"
-                            [routerLink]="['./']">
-                            
-                            <span class="ml-2">Accéder à l'offre </span>
-                        </button>
-                       
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i2.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage}"/>
-                            Fondation Hassan II pour la Promotion des Œuvres Sociales du Personnel du Ministère de la Santé
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i2.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit simplifié pour acquérir votre logement avec sérénité
-                        </mat-panel-title>
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
-    
-                                <p class="mt-5" style="font-size: 18px;">
-                        
-    
-                                    La Fondation Hassan II pour la Promotion des Ouvres Sociales du Personnel du Ministère de la Santé propose des crédits logements aux avantages exclusifs, à leurs adhérents en activité et retraités.
-
-                                    Selon votre éligibilité, vous pourrez ainsi concrétiser vos projets immobiliers en toute simplicité et avec sérénité.
-                          
-                                </p>
-                          
-                          
-                            </div>
-                          
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Santé_16032023.jpg"
-                            alt="" />
-                          
-                           </div>
-                          <button
-                          class="w-fit mt-3 mx-auto"
-                          mat-flat-button
-                          [color]="'primary'"
-                          [routerLink]="['./']">
-                          
-                          <span class="ml-2">Accéder à l'offre </span>
-                      </button>
-                       
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage5()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i1.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage5}"/>
-                            Fondation Des Œuvres Sociales du Personnel du Ministère de l'Agriculture et de la pêche Maritime
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i1.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit pensé et adapté selon vos projets immobiliers
-                        </mat-panel-title>
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
-    
-                                <p class="mt-5" style="font-size: 18px;">
-                                    Adhérents de la Fondation des Œuvres Sociales du Personnel du Ministère de l'Agriculture et de la pêche Maritime, 
-                                    bénéficiez d’une offre de financement complète pour votre projet immobilier.
-                                    Les clients de Wafa Immobilier et d’Attijariwafa Bank, déclarés éligibles à cette prestation, pourront, entre autre, 
-                                    bénéficier de ristournes mensuelles sur les intérêts de leur prêt, de taux fixes ou variables avantageux, ou bien d’un report 
-                                    sur le paiement de leur première échéance pour l’acquisition et/ou la construction de leur logement. 
-                        
-                                </p>
-                          
-                          
-                            </div>
                          
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Agriculteur_16032023.jpg"
-                            alt="" />
-                          
-                           </div>
-                          <button
-                          class="w-fit mt-3 mx-auto"
-                          mat-flat-button
-                          [color]="'primary'"
-                          [routerLink]="['./']">
-                          
-                          <span class="ml-2">Accéder à l'offre </span>
-                      </button>
-                       
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage6()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i4.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage6}"/>
-                                Fondation Mohammed VI des Œuvres Sociales des Fonctionnaires de la Sûreté Nationale
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i4.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit sur mesure pour le bien-être de votre famille 
-                        </mat-panel-title>
-
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
+                              
+                              </div>
     
-                                <p class="mt-5" style="font-size: 18px;">
-                                    Pour contribuer à leur bien-être, la Fondation Mohammed VI des Œuvres Sociales des Fonctionnaires de la Sûreté Nationale propose 
-                            des crédits logement exclusivement réservés à ses adhérents éligibles, avec des avantages qui sauront satisfaire toute la famille. 
-                
-                                </p>
-                          
-                          
-                            </div>
-                          
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_DGSN_16032023_2.jpg"
-                            alt="" />
-                        
-
-                           </div>
-
-                          <button
-                          class="w-fit mt-3 mx-auto"
-                          mat-flat-button
-                          [color]="'primary'"
-                          [routerLink]="['./']">
-                          
-                          <span class="ml-2">Accéder à l'offre </span>
-                      </button>
-                    </div>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage7()">
-                        <mat-panel-title  style="color: white;font-weight: bold;">
-                            <img class="max auto h-22 w-fit object-cover"
-                                src="assets/images/pages/nos-conventions/logos/i6.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage7}"/>
-                                Direction Générale des Services Sociaux des Forces Armées Royales
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="flex flex-col mt-10">
-                        <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
-                            
-                            <img class=" max auto h-22 w-fit object-cover"
-                            src="assets/images/pages/nos-conventions/logos/i6.png" alt="" style="padding-right:30px;"/>
-                                
-                            Un crédit pensé pour l’épanouissement de toute la famille
-                        </mat-panel-title>
-                        <div class="flex flex-row flex-wrap"> 
-
-                            <div class="flex col mt-10 order-2 order-md-1">
-                                
+                              <div class="flex flex-row flex-wrap"> 
     
-                                <p class="mt-5" style="font-size: 18px;">
-                                    La Direction Générale des Services Sociaux des Forces Armées Royales propose à ses adhérents des crédits 
-                            logement exclusifs, avec des avantages pensés pour réjouir toute la famille. 
-
-                            Les clients adhérents, déclarés éligibles, pourront ainsi bénéficier de taux imbattables, reporter le paiement de 
-                            leur première échéance, mais aussi choisir la durée de leur prêt, selon l'âge et la capacité de remboursement de chacun. 
-                          
-                                </p>
-                          
-                          
-                            </div>
-                          
-                          
-                          </div>
-
-                          <div class="flex flex-row flex-wrap"> 
-
-                            <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
-                            src="assets/images/pages/nos-conventions/photos/WFI_Convention site_FAR_16032023_2.jpg"
-                            alt="" />
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 "
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Justice.jpg"
+                                alt="" />
+    
+                               
+    
+                               </div>
+    
+                              <button
+                              class="w-fit mt-3 mx-auto"
+                              mat-flat-button
+                              [color]="'primary'"
+                              [routerLink]="['./']">
+                              
+                              <span class="ml-2">Accéder à l'offre </span>
+                          </button>
                             
-                           </div>
-
-                          <button
-                          class="w-fit mt-3 mx-auto"
-                          mat-flat-button
-                          [color]="'primary'"
-                          [routerLink]="['./']">
-                          
-                          <span class="ml-2">Accéder à l'offre </span>
-                      </button>
-                    </div>
-                </mat-expansion-panel>
-
-            </mat-accordion>
+                        </div>
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage4()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i5.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage4}"/>
+                                Fondation Des Œuvres Sociales du Personnel du Ministère de l'Economie et des Finances
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i5.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit immobilier à la hauteur de vos ambitions
+                            </mat-panel-title>
+                            <div class="flex flex-row flex-wrap"> 
+    
+                                <div class="flex col mt-10 order-2 order-md-1">
+                                    
+        
+                                    <p class="mt-5" style="font-size: 18px;">
+                            
+        
+                                        La Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la Justice offre
+                                à ses adhérents des crédits logement personnalisables, avec des conditions exceptionnelles.
+    
+                                Les adhérents pourront, ainsi, bénéficier d'un financement intégral de leur projet avec des taux
+                                avantageux, fixes ou variables, qui comprend, notamment, un taux d'endettement intéressant, en
+                                conformité avec les termes de la convention.
+                                    </p>
+                              
+                              
+                                </div>
+                               
+                              
+                              </div>
+    
+                              <div class="flex flex-row flex-wrap"> 
+    
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Finance_16032023.jpg"
+                                alt="" />
+                               
+                               </div>
+    
+                            <button
+                                class="w-fit mt-3 mx-auto"
+                                mat-flat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']">
+                                
+                                <span class="ml-2">Accéder à l'offre </span>
+                            </button>
+                           
+                        </div>
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i2.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage}"/>
+                                Fondation Hassan II pour la Promotion des Œuvres Sociales du Personnel du Ministère de la Santé
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i2.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit simplifié pour acquérir votre logement avec sérénité
+                            </mat-panel-title>
+                            <div class="flex flex-row flex-wrap"> 
+    
+                                <div class="flex col mt-10 order-2 order-md-1">
+                                    
+        
+                                    <p class="mt-5" style="font-size: 18px;">
+                            
+        
+                                        La Fondation Hassan II pour la Promotion des Ouvres Sociales du Personnel du Ministère de la Santé propose des crédits logements aux avantages exclusifs, à leurs adhérents en activité et retraités.
+    
+                                        Selon votre éligibilité, vous pourrez ainsi concrétiser vos projets immobiliers en toute simplicité et avec sérénité.
+                              
+                                    </p>
+                              
+                              
+                                </div>
+                              
+                              
+                              </div>
+    
+                              <div class="flex flex-row flex-wrap"> 
+    
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Santé_16032023.jpg"
+                                alt="" />
+                              
+                               </div>
+                              <button
+                              class="w-fit mt-3 mx-auto"
+                              mat-flat-button
+                              [color]="'primary'"
+                              [routerLink]="['./']">
+                              
+                              <span class="ml-2">Accéder à l'offre </span>
+                          </button>
+                           
+                        </div>
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage5()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i1.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage5}"/>
+                                Fondation Des Œuvres Sociales du Personnel du Ministère de l'Agriculture et de la pêche Maritime
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i1.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit pensé et adapté selon vos projets immobiliers
+                            </mat-panel-title>
+                            <div class="flex flex-row flex-wrap"> 
+    
+                                <div class="flex col mt-10 order-2 order-md-1">
+                                    
+        
+                                    <p class="mt-5" style="font-size: 18px;">
+                                        Adhérents de la Fondation des Œuvres Sociales du Personnel du Ministère de l'Agriculture et de la pêche Maritime, 
+                                        bénéficiez d’une offre de financement complète pour votre projet immobilier.
+                                        Les clients de Wafa Immobilier et d’Attijariwafa Bank, déclarés éligibles à cette prestation, pourront, entre autre, 
+                                        bénéficier de ristournes mensuelles sur les intérêts de leur prêt, de taux fixes ou variables avantageux, ou bien d’un report 
+                                        sur le paiement de leur première échéance pour l’acquisition et/ou la construction de leur logement. 
+                            
+                                    </p>
+                              
+                              
+                                </div>
+                             
+                              
+                              </div>
+    
+                              <div class="flex flex-row flex-wrap"> 
+    
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_Agriculteur_16032023.jpg"
+                                alt="" />
+                              
+                               </div>
+                              <button
+                              class="w-fit mt-3 mx-auto"
+                              mat-flat-button
+                              [color]="'primary'"
+                              [routerLink]="['./']">
+                              
+                              <span class="ml-2">Accéder à l'offre </span>
+                          </button>
+                           
+                        </div>
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage6()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i4.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage6}"/>
+                                    Fondation Mohammed VI des Œuvres Sociales des Fonctionnaires de la Sûreté Nationale
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+    
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i4.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit sur mesure pour le bien-être de votre famille 
+                            </mat-panel-title>
+    
+                            <div class="flex flex-row flex-wrap"> 
+    
+                                <div class="flex col mt-10 order-2 order-md-1">
+                                    
+        
+                                    <p class="mt-5" style="font-size: 18px;">
+                                        Pour contribuer à leur bien-être, la Fondation Mohammed VI des Œuvres Sociales des Fonctionnaires de la Sûreté Nationale propose 
+                                des crédits logement exclusivement réservés à ses adhérents éligibles, avec des avantages qui sauront satisfaire toute la famille. 
+                    
+                                    </p>
+                              
+                              
+                                </div>
+                              
+                              
+                              </div>
+    
+                              <div class="flex flex-row flex-wrap"> 
+    
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_DGSN_16032023_2.jpg"
+                                alt="" />
+                            
+    
+                               </div>
+    
+                              <button
+                              class="w-fit mt-3 mx-auto"
+                              mat-flat-button
+                              [color]="'primary'"
+                              [routerLink]="['./']">
+                              
+                              <span class="ml-2">Accéder à l'offre </span>
+                          </button>
+                        </div>
+                    </mat-expansion-panel>
+    
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header [collapsedHeight]="'100px'" (click)="toggleImage7()">
+                            <mat-panel-title  style="color: white;font-weight: bold;">
+                                <img class="max auto h-22 w-fit object-cover"
+                                    src="assets/images/pages/nos-conventions/logos/i6.png" alt="" style="padding-right:30px;" [ngClass]="{'hidden': hideImage7}"/>
+                                    Direction Générale des Services Sociaux des Forces Armées Royales
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <div class="flex flex-col mt-10">
+                            <mat-panel-title  style="color: #b4272f;;font-weight: bold;">
+                                
+                                <img class=" max auto h-22 w-fit object-cover"
+                                src="assets/images/pages/nos-conventions/logos/i6.png" alt="" style="padding-right:30px;"/>
+                                    
+                                Un crédit pensé pour l’épanouissement de toute la famille
+                            </mat-panel-title>
+                            <div class="flex flex-row flex-wrap"> 
+    
+                                <div class="flex col mt-10 order-2 order-md-1">
+                                    
+        
+                                    <p class="mt-5" style="font-size: 18px;">
+                                        La Direction Générale des Services Sociaux des Forces Armées Royales propose à ses adhérents des crédits 
+                                logement exclusifs, avec des avantages pensés pour réjouir toute la famille. 
+    
+                                Les clients adhérents, déclarés éligibles, pourront ainsi bénéficier de taux imbattables, reporter le paiement de 
+                                leur première échéance, mais aussi choisir la durée de leur prêt, selon l'âge et la capacité de remboursement de chacun. 
+                              
+                                    </p>
+                              
+                              
+                                </div>
+                              
+                              
+                              </div>
+    
+                              <div class="flex flex-row flex-wrap"> 
+    
+                                <img class="mx-auto h-52 w-fit object-cover mt-5 order-1 order-md-2"
+                                src="assets/images/pages/nos-conventions/photos/WFI_Convention site_FAR_16032023_2.jpg"
+                                alt="" />
+                                
+                               </div>
+    
+                              <button
+                              class="w-fit mt-3 mx-auto"
+                              mat-flat-button
+                              [color]="'primary'"
+                              [routerLink]="['./']">
+                              
+                              <span class="ml-2">Accéder à l'offre </span>
+                          </button>
+                        </div>
+                    </mat-expansion-panel>
+    
+                </mat-accordion>
+            </div>
         </div>
+    
     </div>
-
-</div>

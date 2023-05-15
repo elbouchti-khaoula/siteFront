@@ -1,0 +1,830 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+  <!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
+
+  <!-- Header -->
+  <header
+    class=" hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[45vh] nous-connaitre-bg-header">
+
+  </header>
+
+  <!-- Header version sm-->
+  <header class=" md:hidden flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
+  </header>
+
+  <!-- version md -->
+  <div class="hidden md:flex flex-col">
+
+    <fuse-card class="mx-auto flex flex-row items-center justify-evenly -mt-10 h-22 shadow-md px-10">
+
+      <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
+        <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+          <div class="flex items-center justify-center w-full h-full">
+            <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+          </div>
+        </div>
+
+        <div class="div-1 flex flex-col items-start ml-5">
+          <span class="text-lg">QUI SOMMES</span>
+          <span class="text-lg">NOUS</span>
+        </div>
+      </div>
+
+      <span class="hidden md:block border-gray-500 border-l h-22 w-0 mx-10"></span>
+
+      <div class="div-2 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick2($event)">
+        <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+
+          <div
+            class="div-2 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+            <div class="flex items-center justify-center w-full h-full">
+              <img class="h-8 w-auto object-cover" [src]="imageSrc2" alt="" />
+            </div>
+          </div>
+
+        </div>
+        <div class=" div-2 flex flex-col items-start ml-5">
+          <span class="text-lg">MISSION</span>
+          <span class="text-lg">VISION</span>
+        </div>
+      </div>
+
+      <span class="hidden md:block border-gray-500 border-l h-22 w-0 mx-10"></span>
+
+      <div class="div-3 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick3($event)">
+        <div class="div-3 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+          <img class="h-8 w-full object-contain" [src]="imageSrc3" alt="" />
+        </div>
+        <div class="div-3 flex flex-col items-start ml-5">
+          <span class="text-lg">LE GROUPE</span>
+        </div>
+      </div>
+
+    </fuse-card>
+
+    <div *ngIf="showDiv" class="flex flex-col">
+
+      <!-- section 1 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            QUI SOMMES-NOUS ?
+          </div>
+          <p class="mt-15 " style="font-size: 20px;">
+            Wafa Immobilier, filiale du Groupe Attijariwafa Bank, s’érige en véritable spécialiste de l'immobilier afin
+            d’accompagner
+            particuliers, professionnels, promoteurs, lotisseurs et investisseurs dans le financement de projets
+            immobiliers.
+          </p>
+
+          <div class="flex flex-row items-center mt-10">
+            <div class="w-1/3">
+              <img class="mx-auto h-52 w-fit object-cover mt-5" src="assets/images/pages/nous-connaitre/qui-nous.png"
+                alt="" />
+            </div>
+            <div class=" ml-10">
+              <p class="mt-5" style="font-size: 18px;">
+                Depuis sa création, en 1991, Wafa Immobilier a su développer son offre pour accompagner ses clients,
+                quels
+                que soient les types et phases de leurs projets immobiliers,
+                grâce à ses équipes, spécialistes de l’immobilier.
+              </p>
+
+              <p class="mt-5" style="font-size: 18px;">
+                A travers sa politique de proximité, garante du conseil et de l’accompagnement de ses clients à chaque
+                phase de leurs projets, l’expertise pointue de ses conseillers et
+                la richesse de son offre, Wafa Immobilier est aujourd’hui leader du financement des projets immobiliers
+                :
+              </p>
+
+            </div>
+          </div>
+
+          <div class="">
+            <img class="mx-auto W-75 h-25 w-fit object-cover mt-5" src="assets/images/pages/nous-connaitre/MODELv.PNG"
+              alt="" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- section 2 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20 bg-card">
+
+        <div class="w-full max-w-400 mx-auto">
+
+          
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            NOTRE EXPERTISE
+          </div>
+
+          <div class="flex flex-row items-center mt-10">
+            <div class="w-1/2">
+              <img class="mx-auto h-52 w-fit object-cover mt-5"
+                src="assets/images/pages/nous-connaitre/notre-expertise.png" alt="" />
+            </div>
+            <div class=" ml-10">
+              <p class="mt-5" style="font-size: 18px;">
+                Wafa Immobilier offre des prêts sur-mesure à ses clients et développe, en fil rouge, de nombreuses
+                conventions avec diverses institutions, ainsi que des partenariats renforcés avec les professionnels de
+                la
+                promotion immobilière, afin de faciliter l’accès à la propriété à tous ses clients, qu’ils soient
+                particuliers,
+                professionnels, promoteurs, lotisseurs ou investisseurs.
+              </p>
+
+              <p class="mt-5" style="font-size: 18px;">
+                Choisir Wafa Immobilier, c’est être accompagné par une équipe d’experts avec une offre innovante
+                enrichie
+                pour un accès généralisé à la propriété : conditions de financement avantageuses,
+                souples et sur-mesure, parcours digital et omnicanal,...
+              </p>
+
+            </div>
+          </div>
+
+          <p class="mt-5" style="font-size: 18px;">
+            Wafa Immobilier a, de ce fait, pu développer, au fil des années, son réseau de distribution afin de garantir
+            une forte proximité avec s
+            es clients, ainsi que la fluidité de l’ensemble des circuits de distribution.
+          </p>
+        </div>
+      </div>
+
+      <!-- section 3 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+          
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            CHIFFRES CLES
+          </div>
+
+
+
+
+          <div class="">
+            <img class="mx-auto W-75 h-25 w-fit object-cover mt-5" src="assets/images/pages/nous-connaitre/chiffre.PNG"
+              alt="" />
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="showDiv2" class="flex flex-col">
+
+      <!-- section 1 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            NOTRE VISION
+          </div>
+
+          <p class="mt-15 " style="font-size: 20px;">
+            Wafa Immobilier met un point d’honneur à
+            accompagner durablement et de la meilleure manière qui soit, ses collaborateurs, ses clients et ses partenaires.
+          </p>
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Pour y parvenir, elle s’engage à viser encore plus d’excellence, de performance et d’engagement afin d’offrir un
+            accompagnement
+            personnalisé à ses
+            clients acquéreurs et promoteurs, tout en s’alignant aux standards internationaux.
+          </p>
+    
+          <p class="mt-15" style="font-size: 20px;">
+            Une vision nouvelle qui permet à Wafa Immobilier de confirmer sa position de leader sur le marché marocain, dans chacune de ses activités :
+          </p>
+          
+          <div style="margin-top: 15px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">PERFORMANCES COMMERCIALES ET FINANCIERES</span>
+          </div>
+          
+          <div style="margin-top: 10px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">EXPERIENCE CLIENTS</span>
+          </div>
+
+          <div style="margin-top: 10px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">DIGITALISATION DU PARCOURS DE CREDIT ACQUEREUR ET
+              PROMOTEUR</span>
+          </div>
+
+          <div style="margin-top: 10px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">SATISFACTION CLIENT</span>
+          </div>
+
+          <div style="margin-top: 10px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">CAPACITE D’EXECUTION</span>
+          </div>
+          
+          <div style="margin-top: 10px; background-color: transparent; border: 2px solid rgb(235, 126, 36); border-radius: 10px; text-align: center; padding: 10px;">
+            <span style="color: rgb(235, 126, 36);font-weight: bold; font-size: 24px;">PARCOURS D'ACHAT IMMOBILIER OMNICANAL</span>
+          </div>
+          
+  
+
+          <p class="mt-15 " style="font-size: 20px;">
+            Une trajectoire qui s’aligne sur les synergies du Groupe Attijariwafa Bank et qui permet, in fine, à Wafa
+            Immobilier, de répondre, dans les meilleurs délais,
+            aux attentes et besoins actuels de ses clients et partenaires, tout en anticipant ceux de demain.
+          </p>
+
+          
+        </div>
+
+      </div>
+
+      <!-- section 2 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20 bg-card">
+
+        <div class="w-full max-w-400 mx-auto">
+
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            NOTRE MISSION
+          </div>
+
+          <p class="mt-15" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
+            L’expertise immobilière au service de votre projet immobilier
+          </p>
+    
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Afin de garantir le meilleur accompagnement à ses clients, Wafa immobilier s’attache à développer des liens
+            privilégiés et une connaissance accrue du marché de l’immobilier, grâce à une collaboration étroite avec les
+            différents acteurs du secteur : administrations, associations professionnelles du bâtiment,
+            promoteurs immobiliers, notaires, architectes, etc…
+          </p>
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Ainsi, la nature et la valeur des biens sont appréciées à leur juste valeur,
+            garantissant une transparence totale sur les actions entreprises et instaurant une relation de confiance sur la
+            durée avec ses clients.
+          </p>
+    
+          <p class="mt-15" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
+            La rigueur professionnelle pour vous garantir le meilleur accompagnement
+          </p>
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Un engagement continu qui lui a valu la certification ISO 9001 Version 2015 pour l’ensemble de ses activités,
+            attribuée par le Bureau Veritas.
+          </p>
+          <p class="mt-15 " style="font-size: 20px;">
+            Wafa Immobilier est, ainsi, la première société de financement de la place à introduire de nouvelles exigences
+            en matière
+            d’information des clients et des partenaires, ainsi que de gestion des risques.
+          </p>
+          <p class="mt-15 " style="font-size: 20px;">
+            Cette certification permet à Wafa Immobilier, engagée dans une démarche de qualité totale, de bâtir
+            une organisation encore plus fiable et d’augmenter la satisfaction de ses clients.
+          </p>
+        </div>
+      </div>
+
+      <!-- section 3 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            NOS VALEURS
+
+          </div>
+
+
+
+          <img class="mx-auto h-58 w-100 object-cover mt-5" src="assets/images/pages/nous-connaitre/Vis_1.png" alt="" />
+  
+        <p class="mt-5" style="font-size: 18px;">
+          Bien plus que des mots, les valeurs représentent de véritables r
+          epères à suivre pour donner de la cohérence, en interne comme en externe.
+        </p>
+  
+        <p class="mt-5" style="font-size: 18px;">
+          Dans cette optique, Wafa Immobilier oriente sa culture d’entreprise autour de 5
+          nouvelles valeurs, qui se dévoilent à travers l'acronyme “ EEESI” :
+        </p>
+  
+  
+        <div class="flex justify-center mt-10">
+          <div class="flex items-center justify-between">
+            <span class="text-orange font-bold text-3xl mr-8">Engagement</span>
+            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+  
+            <span class="text-orange font-bold text-3xl mr-8">Excellence</span>
+            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+  
+            <span class="text-orange font-bold text-3xl mr-8">Expertise</span>
+            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+  
+            <span class="text-orange font-bold text-3xl mr-8">Solidarité</span>
+            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+  
+            <span class="text-orange font-bold text-3xl">Innovation</span>
+          </div>
+        </div>
+  
+  
+  
+        <p class="mt-15 " style="font-size: 20px;">
+          Ces valeurs porteront notre vision, traduiront nos engagements et devront, in fine, être incarné au quotidien,
+          au sein de nos agences et de notre Siège,
+          afin que Wafa Immobilier évolue sereinement et puisse prendre les meilleures orientations stratégiques à
+          l’avenir.
+        </p>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="showDiv3" class="flex flex-col">
+
+      <!-- section 1 -->
+      <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+
+          <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+            NOTRE GROUPE
+          </div>
+
+          <p class="mt-15 " style="font-size: 20px;">
+            Le Groupe Attijariwafa Bank, premier groupe bancaire et financier du Maghreb, est une multinationale
+            panafricaine qui accompagne aujourd’hui 10,8 millions de clients particuliers, professionnels, entreprises et
+            institutionnels, et mobilise 20 590 collaborateurs,
+            dans 26 pays en Afrique, en Europe et au Moyen-Orient.
+          </p>
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Le groupe Attijariwafa Bank se concentre sur 4 piliers fondamentaux pour poursuivre sa mission :
+          </p>
+          
+          <div class="flex justify-center mt-10">
+            <div class="flex items-center justify-between">
+              <span class="text-orange font-bold text-3xl mr-8">Expérience-Client</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+    
+              <span class="text-orange font-bold text-3xl mr-8">Innovation</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+    
+              <span class="text-orange font-bold text-3xl mr-8">Dynamique Africaine</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+    
+              <span class="text-orange font-bold text-3xl mr-8">Responsabilités</span>
+    
+            </div>
+          </div>
+    
+    
+          <p class="mt-15 " style="font-size: 20px;">
+            Pour plus d’information, accédez au site web d’Attijariwafa Bank :
+          </p>
+    
+          <p class="mt-15" style="font-size: 20px;">
+            <a href="https://www.attijariwafabank.com"
+              style="color: #5bc0de; text-decoration: underline;">www.attijariwafabank.com</a>
+          </p>
+          
+  
+
+         
+
+          
+        </div>
+
+      </div>
+
+     
+
+    </div>
+
+ 
+    <!-- </div> -->
+
+  </div>
+
+  <!-- version sm -->
+  <div class="md:hidden relative mx-auto w-full py-5 -mt-24">
+
+    <!-- Parcours xs,sm -->
+    <div class="grid grid-cols-3 gap-7 mt-7 sm:py-1">
+      <div class=" div-1 carre flex flex-col items-center cursor-pointer " (click)="onDivClick($event)">
+
+
+        <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500 "
+          style="background-color: white">
+          <div class="flex items-center justify-center w-full h-full">
+            <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+          </div>
+        </div>
+        <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+          <span>QUI SOMMES-</span>
+          <span>NOUS ?</span>
+        </div>
+      </div>
+
+
+
+      <div class=" div-2 carre flex flex-col items-center cursor-pointer " (click)="onDivClick2($event)">
+
+        <div class="div-2 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500 "
+          style="background-color: white">
+          <div class="flex items-center justify-center w-full h-full">
+            <img class="h-8 w-auto object-cover" [src]="imageSrc2" alt="" />
+          </div>
+        </div>
+
+        <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+          <span>NOTRE</span>
+          <span>VISION</span>
+        </div>
+      </div>
+      <div class="div-3 carre flex flex-col items-center cursor-pointer " (click)="onDivClick3($event)">
+        <div class="div-3 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500 "
+          style="background-color: white">
+          <img class="h-8 w-full object-contain" [src]="imageSrc3" alt="" />
+        </div>
+        <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+          <span>NOTRE</span>
+          <span> GROUPE</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showDiv"
+      class="flex flex-col items-center space-y-5 px-6 pt-7 pb-3 bg-gray rounded-md overflow-hidden mt-5">
+
+      <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+        QUI SOMMES-NOUS ?
+      </div>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Wafa Immobilier, filiale du Groupe Attijariwafa Bank, s’érige en véritable spécialiste de l'immobilier afin
+        d’accompagner
+        particuliers, professionnels, promoteurs, lotisseurs et investisseurs dans le financement de projets
+        immobiliers.
+      </p>
+
+      <p class="mt-5" style="font-size: 18px;">
+        Depuis sa création, en 1991, Wafa Immobilier a su développer son offre pour accompagner ses clients, quels que
+        soient les types et phases de leurs projets immobiliers,
+        grâce à ses équipes, spécialistes de l’immobilier.
+      </p>
+
+      <img class="mx-auto h-58 w-full object-cover mt-5" src="assets/images/pages/nous-connaitre/qui-nous.png" alt="" />
+
+      <p class="mt-5" style="font-size: 18px;">
+        A travers sa politique de proximité, garante du conseil et de l’accompagnement de ses clients à chaque phase de
+        leurs projets, l’expertise pointue de ses conseillers et
+        la richesse de son offre, Wafa Immobilier est aujourd’hui leader du financement des projets immobiliers :
+      </p>
+
+      <div class="">
+        <img class="mx-auto W-75 h-25 w-fit object-cover mt-5" src="assets/images/pages/nous-connaitre/mod23.PNG"
+          alt="" />
+      </div>
+
+      <p class="mt-15" style="font-size: 20px; font-weight: bold; text-align: left; ">
+        NOTRE EXPERTISE
+      </p>
+
+      <p class="mt-5" style="font-size: 18px;">
+        Wafa Immobilier offre des prêts sur-mesure à ses clients et développe, en fil rouge, de nombreuses conventions
+        avec diverses institutions, ainsi que des partenariats renforcés avec les professionnels de la promotion
+        immobilière, afin de faciliter l’accès à la propriété à tous ses clients, qu’ils soient particuliers,
+        professionnels, promoteurs, lotisseurs ou investisseurs.
+      </p>
+
+
+
+
+      <img class="mx-auto h-58 w-100 object-cover mt-5" src="assets/images/pages/nous-connaitre/notre-expertise.png"
+        alt="" />
+
+
+
+      <p class="mt-5" style="font-size: 18px;">
+        Choisir Wafa Immobilier, c’est être accompagné par une équipe d’experts avec une offre innovante enrichie pour
+        un accès généralisé à la propriété : conditions de financement avantageuses,
+        souples et sur-mesure, parcours digital et omnicanal,...
+      </p>
+
+
+      <p class="mt-5" style="font-size: 18px;">
+        Wafa Immobilier a, de ce fait, pu développer, au fil des années, son réseau de distribution afin de garantir une
+        forte proximité avec s
+        es clients, ainsi que la fluidité de l’ensemble des circuits de distribution.
+      </p>
+
+      <p class="mt-15" style="font-size: 20px; font-weight: bold; text-align: left;">
+        CHIFFRES CLES
+      </p>
+
+
+
+
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid rgb(223, 77, 19); text-align: center; padding: 10px; display: flex; flex-direction: column;">
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 24px; margin-right: 5px;">60</span>
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 16px;">AGENCE</span>
+      </div>
+
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid rgb(223, 77, 19); text-align: center; padding: 10px; display: flex; flex-direction: column;">
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 24px; margin-right: 5px;">420</span>
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 16px;">COLLABORATEURS</span>
+      </div>
+
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid rgb(223, 77, 19); text-align: center; padding: 10px; display: flex; flex-direction: column;">
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 24px; margin-right: 5px;">****</span>
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 16px;">MILLIONS MAD DE CREDITS ACQEREURS
+          DISTRIBUE EN 2022</span>
+      </div>
+
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid rgb(223, 77, 19); text-align: center; padding: 10px; display: flex; flex-direction: column;">
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 24px; margin-right: 5px;">****</span>
+        <span style="color: rgb(223, 77, 19); font-weight: bold; font-size: 16px;">MILLIONS MAD DE CREDITS PROMOTEURS
+          DISTRIBUE EN 2022</span>
+      </div>
+
+
+
+
+
+
+
+    </div>
+
+    <div *ngIf="showDiv2"
+      class="flex flex-col items-center space-y-5 px-6 pt-7 pb-3 bg-gray rounded-md overflow-hidden mt-5">
+
+      <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+        NOTRE VISION
+      </div>
+      <p class="mt-15 " style="font-size: 20px;">
+        Wafa Immobilier met un point d’honneur à
+        accompagner durablement et de la meilleure manière qui soit, ses collaborateurs, ses clients et ses partenaires.
+      </p>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Pour y parvenir, elle s’engage à viser encore plus d’excellence, de performance et d’engagement afin d’offrir un
+        accompagnement
+        personnalisé à ses
+        clients acquéreurs et promoteurs, tout en s’alignant aux standards internationaux.
+      </p>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Une vision nouvelle qui permet à Wafa Immobilier de confirmer sa position de leader sur le marché marocain,
+        dans chacune de ses activités :
+      </p>
+
+
+      <div style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color: rgb(243, 129, 22);font-weight: bold; font-size: 16px;">PERFORMANCES COMMERCIALES ET
+          FINANCIERES</span>
+      </div>
+
+
+
+
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color: rgb(243, 129, 22); font-weight: bold; font-size: 16px;">EXPERIENCE CLIENTS</span>
+      </div>
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color: rgb(243, 129, 22); font-weight: bold; font-size: 16px;">DIGITALISATION DU PARCOURS DE CREDIT
+          ACQUEREUR ET PROMOTEUR</span>
+      </div>
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color: rgb(243, 129, 22); font-weight: bold; font-size: 16px;">SATISFACTION CLIENT </span>
+      </div>
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color:rgb(243, 129, 22); font-weight: bold; font-size: 16px;">CAPACITE D’EXECUTION </span>
+      </div>
+
+      <div class="mobile-full-width"
+        style="background-color: transparent; border: 2px solid orange; text-align: center; padding: 10px;">
+        <span style="color: rgb(243, 129, 22); font-weight: bold; font-size: 16px;">PARCOURS D'ACHAT IMMOBILIER
+          OMNICANAL </span>
+      </div>
+
+
+
+
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Une trajectoire qui s’aligne sur les synergies du Groupe Attijariwafa Bank et qui permet, in fine, à Wafa
+        Immobilier, de répondre, dans les meilleurs délais,
+        aux attentes et besoins actuels de ses clients et partenaires, tout en anticipant ceux de demain.
+      </p>
+
+      <p class="mt-15" style="font-size: 20px; font-weight: bold; text-align: left; border-bottom: 2px solid orange;">
+        NOTRE MISSION
+      </p>
+
+      <p class="mt-15" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
+        L’expertise immobilière au service de votre projet immobilier
+      </p>
+
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Afin de garantir le meilleur accompagnement à ses clients, Wafa immobilier s’attache à développer des liens
+        privilégiés et une connaissance accrue du marché de l’immobilier, grâce à une collaboration étroite avec les
+        différents acteurs du secteur : administrations, associations professionnelles du bâtiment,
+        promoteurs immobiliers, notaires, architectes, etc…
+      </p>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Ainsi, la nature et la valeur des biens sont appréciées à leur juste valeur,
+        garantissant une transparence totale sur les actions entreprises et instaurant une relation de confiance sur la
+        durée avec ses clients.
+      </p>
+
+      <p class="mt-15" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
+        La rigueur professionnelle pour vous garantir le meilleur accompagnement
+      </p>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Un engagement continu qui lui a valu la certification ISO 9001 Version 2015 pour l’ensemble de ses activités,
+        attribuée par le Bureau Veritas.
+      </p>
+      <p class="mt-15 " style="font-size: 20px;">
+        Wafa Immobilier est, ainsi, la première société de financement de la place à introduire de nouvelles exigences
+        en matière
+        d’information des clients et des partenaires, ainsi que de gestion des risques.
+      </p>
+      <p class="mt-15 " style="font-size: 20px;">
+        Cette certification permet à Wafa Immobilier, engagée dans une démarche de qualité totale, de bâtir
+        une organisation encore plus fiable et d’augmenter la satisfaction de ses clients.
+      </p>
+
+
+      <p class="mt-15" style="font-size: 20px; font-weight: bold; text-align: left; border-bottom: 2px solid orange;">
+        NOS VALEURS
+      </p>
+
+
+      <img class="mx-auto h-58 w-100 object-cover mt-5" src="assets/images/pages/nous-connaitre/Vis_1.png" alt="" />
+
+      <p class="mt-5" style="font-size: 18px;">
+        Bien plus que des mots, les valeurs représentent de véritables r
+        epères à suivre pour donner de la cohérence, en interne comme en externe.
+      </p>
+
+      <p class="mt-5" style="font-size: 18px;">
+        Dans cette optique, Wafa Immobilier oriente sa culture d’entreprise autour de 5
+        nouvelles valeurs, qui se dévoilent à travers l'acronyme “ EEESI” :
+      </p>
+
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Engagement</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Excellence</span>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Expertise</span>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Solidarité</span>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Innovation</span>
+
+        </div>
+      </div>
+
+
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Ces valeurs porteront notre vision, traduiront nos engagements et devront, in fine, être incarné au quotidien,
+        au sein de nos agences et de notre Siège,
+        afin que Wafa Immobilier évolue sereinement et puisse prendre les meilleures orientations stratégiques à
+        l’avenir.
+      </p>
+
+
+
+
+
+
+
+    </div>
+
+    <div *ngIf="showDiv3"
+      class="flex flex-col items-center space-y-5 px-6 pt-7 pb-3 bg-gray rounded-md overflow-hidden mt-5">
+
+      <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+        NOTRE GROUPE
+      </div>
+      <p class="mt-15 " style="font-size: 20px;">
+        Le Groupe Attijariwafa Bank, premier groupe bancaire et financier du Maghreb, est une multinationale
+        panafricaine qui accompagne aujourd’hui 10,8 millions de clients particuliers, professionnels, entreprises et
+        institutionnels, et mobilise 20 590 collaborateurs,
+        dans 26 pays en Afrique, en Europe et au Moyen-Orient.
+      </p>
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Le groupe Attijariwafa Bank se concentre sur 4 piliers fondamentaux pour poursuivre sa mission :
+      </p>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Expérience-Client</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Innovation</span>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">
+            Dynamique Africaine</span>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <div class="flex items-center justify-between">
+          <span class="text-orange font-bold text-3xl mr-8">Responsabilités</span>
+
+        </div>
+      </div>
+
+
+
+
+      <p class="mt-15 " style="font-size: 20px;">
+        Pour plus d’information, accédez au site web d’Attijariwafa Bank :
+      </p>
+
+      <p class="mt-15" style="font-size: 20px;">
+        <a href="https://www.attijariwafabank.com"
+          style="color: #5bc0de; text-decoration: underline;">www.attijariwafabank.com</a>
+      </p>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</div>

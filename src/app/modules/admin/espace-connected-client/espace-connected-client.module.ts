@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
+import { FuseCardModule } from '@fuse/components/card';
+
 
 @NgModule({
     declarations: [
@@ -24,7 +26,8 @@ import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-fi
         ProjetsFilterModule,
         MatCardModule,
         MatExpansionModule,
-       MatButtonModule
+       MatButtonModule,
+       FuseCardModule
     ]
 })
 export class EspaceConnectedClientModule
