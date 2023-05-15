@@ -11,6 +11,47 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
+        id   : 'espace-connecte',
+        title: 'Espace connecté',
+        type : 'collapsable',
+        icon : 'heroicons_outline:user-group',
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connected-client',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
+            }
+
+        ]
+    },
+    {
         id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
@@ -46,19 +87,21 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
-    {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
+    
     {
         id   : 'support',
         title: 'Contactez-nous',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
+    },
+    
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
     },
     {
         id   : 'reclamation',
@@ -68,46 +111,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/reclamation'
     },
     {
-        id   : 'agences',
-        title: 'Localiser une agence',
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
         type : 'basic',
-        icon : 'heroicons_outline:map',
-        link : '/agences'
-    },
-    {
-        id   : 'espace-connecte',
-        title: 'Espace connecté',
-        type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
-        link : '/espace-connecte',
-        children: [
-            {
-                id        : 'espace-connecte.home',
-                title     : 'Home',
-                type      : 'basic',
-                link      : '/espace-connected-client',
-                exactMatch: true
-            },
-            {
-                id   : 'espace-connecte.simulation-detaillee',
-                title: 'Simulation détaillée',
-                type : 'basic',
-                link : '/espace-connecte/simulation-detaillee'
-            },
-            {
-                id   : 'espace-connecte.mes-simulations',
-                title: 'Mes simulations',
-                type : 'basic',
-                link : '/espace-connecte/mes-simulations'
-            },
-            {
-                id   : 'espace-connecte.mes-demandes-credit',
-                title: 'Mes demandes',
-                type : 'basic',
-                link : '/espace-connecte/mes-demandes-credit'
-            }
-        ]
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
+  
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
@@ -118,69 +128,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
-        id   : 'projets-search',
-        title: 'Recherche de bien',
-        type : 'basic',
-        icon : 'heroicons_outline:search-circle',
-        link : '/projets-search'
-    },
-    {
-        id   : 'simulation-personnalisee',
-        title: 'Simulation personnalisée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-personnalisee'
-    },
-    {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-    {
-        id   : 'nos-offres-de-financement-miftah',
-        title: 'Nos offres de financement « MIFTAH »   ',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nos-offres-miftah'
-    },
-    {
-        id   : 'nos-conventions',
-        title: 'Nos conventions',
-        type : 'basic',
-        icon : 'heroicons_outline:collection',
-        link : '/nos-conventions'
-    },
-    {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
-        id   : 'support',
-        title: 'Contactez-nous',
-        type : 'basic',
-        icon : 'heroicons_outline:support',
-        link : '/nous-contacter'
-    },
-    {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
-        id   : 'agences',
-        title: 'Localiser une agence',
-        type : 'basic',
-        icon : 'heroicons_outline:map',
-        link : '/agences'
-    },
-    {
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
@@ -211,9 +158,83 @@ export const compactNavigation: FuseNavigationItem[] = [
                 title: 'Mes demandes',
                 type : 'basic',
                 link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
             }
+
         ]
+    },
+    {
+        id   : 'projets-search',
+        title: 'Recherche de bien',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/projets-search'
+    },
+    {
+        id   : 'simulation-personnalisee',
+        title: 'Simulation personnalisée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-personnalisee'
+    },
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
+        id   : 'nos-conventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
+    },
+    
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
+   
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
@@ -224,69 +245,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
-        id   : 'projets-search',
-        title: 'Recherche de bien',
-        type : 'basic',
-        icon : 'heroicons_outline:search-circle',
-        link : '/projets-search'
-    },
-    {
-        id   : 'simulation-personnalisee',
-        title: 'Simulation personnalisée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-personnalisee'
-    },
-    {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-    {
-        id   : 'nos-offres-de-financement-miftah',
-        title: 'Nos offres de financement « MIFTAH »   ',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nos-offres-miftah'
-    },
-    {
-        id   : 'nos-conventions',
-        title: 'Nos conventions',
-        type : 'basic',
-        icon : 'heroicons_outline:collection',
-        link : '/nos-conventions'
-    },
-    {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
-        id   : 'support',
-        title: 'Contactez-nous',
-        type : 'basic',
-        icon : 'heroicons_outline:support',
-        link : '/nous-contacter'
-    },
-    {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
-        id   : 'agences',
-        title: 'Localiser une agence',
-        type : 'basic',
-        icon : 'heroicons_outline:map',
-        link : '/agences'
-    },
-    {
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
@@ -317,8 +275,81 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 title: 'Mes demandes',
                 type : 'basic',
                 link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
             }
+
         ]
+    },
+    {
+        id   : 'projets-search',
+        title: 'Recherche de bien',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/projets-search'
+    },
+    {
+        id   : 'simulation-personnalisee',
+        title: 'Simulation personnalisée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-personnalisee'
+    },
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
+        id   : 'nos-conventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
+    },
+    
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -330,69 +361,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
-        id   : 'projets-search',
-        title: 'Recherche de bien',
-        type : 'basic',
-        icon : 'heroicons_outline:search-circle',
-        link : '/projets-search'
-    },
-    {
-        id   : 'simulation-personnalisee',
-        title: 'Simulation personnalisée',
-        type : 'basic',
-        icon : 'heroicons_outline:calculator',
-        link : '/simulation-personnalisee'
-    },
-    {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-    {
-        id   : 'nos-offres-de-financement-miftah',
-        title: 'Nos offres de financement « MIFTAH »   ',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nos-offres-miftah'
-    },
-    {
-        id   : 'nos-conventions',
-        title: 'Nos conventions',
-        type : 'basic',
-        icon : 'heroicons_outline:collection',
-        link : '/nos-conventions'
-    },
-    {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
-        id   : 'support',
-        title: 'Contactez-nous',
-        type : 'basic',
-        icon : 'heroicons_outline:support',
-        link : '/nous-contacter'
-    },
-    {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
-        id   : 'agences',
-        title: 'Localiser une agence',
-        type : 'basic',
-        icon : 'heroicons_outline:map',
-        link : '/agences'
-    },
-    {
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
@@ -423,7 +391,80 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 title: 'Mes demandes',
                 type : 'basic',
                 link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
             }
+
         ]
+    },
+    {
+        id   : 'projets-search',
+        title: 'Recherche de bien',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/projets-search'
+    },
+    {
+        id   : 'simulation-personnalisee',
+        title: 'Simulation personnalisée',
+        type : 'basic',
+        icon : 'heroicons_outline:calculator',
+        link : '/simulation-personnalisee'
+    },
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
+        id   : 'nos-conventions',
+        title: 'Nos conventions',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/nos-conventions'
+    },
+    
+    {
+        id   : 'support',
+        title: 'Contactez-nous',
+        type : 'basic',
+        icon : 'heroicons_outline:support',
+        link : '/nous-contacter'
+    },
+    
+    {
+        id   : 'agences',
+        title: 'Localiser une agence',
+        type : 'basic',
+        icon : 'heroicons_outline:map',
+        link : '/agences'
+    },
+    {
+        id   : 'reclamation',
+        title: 'Reclamation en ligne',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];
