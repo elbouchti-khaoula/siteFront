@@ -11,6 +11,46 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
+        id   : 'espace-connecte',
+        title: 'Espace connecté',
+        type : 'collapsable',
+        icon : 'heroicons_outline:user-circle',
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
+            }
+        ]
+    },
+    {
         id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
@@ -39,66 +79,32 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/nos-conventions'
     },
     {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
     {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
-        id   : 'espace-connecte',
-        title: 'Espace connecté',
-        type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
-        link : '/espace-connecte',
-        children: [
-            {
-                id        : 'espace-connecte.home',
-                title     : 'Home',
-                type      : 'basic',
-                link      : '/espace-connecte',
-                exactMatch: true
-            },
-            {
-                id   : 'espace-connecte.simulation-detaillee',
-                title: 'Simulation détaillée',
-                type : 'basic',
-                link : '/espace-connecte/simulation-detaillee'
-            },
-            {
-                id   : 'espace-connecte.mes-simulations',
-                title: 'Mes simulations',
-                type : 'basic',
-                link : '/espace-connecte/mes-simulations'
-            },
-            {
-                id   : 'espace-connecte.mes-demandes-credit',
-                title: 'Mes demandes',
-                type : 'basic',
-                link : '/espace-connecte/mes-demandes-credit'
-            }
-        ]
+        id   : 'reclamation',
+        title: 'Reclamation',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
@@ -110,6 +116,46 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
+        id   : 'espace-connecte',
+        title: 'Espace connecté',
+        type : 'collapsable',
+        icon : 'heroicons_outline:user-circle',
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
+            }
+        ]
+    },
+    {
         id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
@@ -138,66 +184,32 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/nos-conventions'
     },
     {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
     {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
-        id   : 'espace-connecte',
-        title: 'Espace connecté',
-        type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
-        link : '/espace-connecte',
-        children: [
-            {
-                id        : 'espace-connecte.home',
-                title     : 'Home',
-                type      : 'basic',
-                link      : '/espace-connecte',
-                exactMatch: true
-            },
-            {
-                id   : 'espace-connecte.simulation-detaillee',
-                title: 'Simulation détaillée',
-                type : 'basic',
-                link : '/espace-connecte/simulation-detaillee'
-            },
-            {
-                id   : 'espace-connecte.mes-simulations',
-                title: 'Mes simulations',
-                type : 'basic',
-                link : '/espace-connecte/mes-simulations'
-            },
-            {
-                id   : 'espace-connecte.mes-demandes-credit',
-                title: 'Mes demandes',
-                type : 'basic',
-                link : '/espace-connecte/mes-demandes-credit'
-            }
-        ]
+        id   : 'reclamation',
+        title: 'Reclamation',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -209,6 +221,46 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
+        id   : 'espace-connecte',
+        title: 'Espace connecté',
+        type : 'collapsable',
+        icon : 'heroicons_outline:user-circle',
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
+            }
+        ]
+    },
+    {
         id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
@@ -237,66 +289,32 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/nos-conventions'
     },
     {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
     {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
-        id   : 'espace-connecte',
-        title: 'Espace connecté',
-        type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
-        link : '/espace-connecte',
-        children: [
-            {
-                id        : 'espace-connecte.home',
-                title     : 'Home',
-                type      : 'basic',
-                link      : '/espace-connecte',
-                exactMatch: true
-            },
-            {
-                id   : 'espace-connecte.simulation-detaillee',
-                title: 'Simulation détaillée',
-                type : 'basic',
-                link : '/espace-connecte/simulation-detaillee'
-            },
-            {
-                id   : 'espace-connecte.mes-simulations',
-                title: 'Mes simulations',
-                type : 'basic',
-                link : '/espace-connecte/mes-simulations'
-            },
-            {
-                id   : 'espace-connecte.mes-demandes-credit',
-                title: 'Mes demandes',
-                type : 'basic',
-                link : '/espace-connecte/mes-demandes-credit'
-            }
-        ]
+        id   : 'reclamation',
+        title: 'Reclamation',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -308,6 +326,46 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/landing'
     },
     {
+        id   : 'espace-connecte',
+        title: 'Espace connecté',
+        type : 'collapsable',
+        icon : 'heroicons_outline:user-circle',
+        link : '/espace-connecte',
+        children: [
+            {
+                id        : 'espace-connecte.home',
+                title     : 'Home',
+                type      : 'basic',
+                link      : '/espace-connecte',
+                exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.simulation-detaillee',
+                title: 'Simulation détaillée',
+                type : 'basic',
+                link : '/espace-connecte/simulation-detaillee'
+            },
+            {
+                id   : 'espace-connecte.mes-simulations',
+                title: 'Mes simulations',
+                type : 'basic',
+                link : '/espace-connecte/mes-simulations'
+            },
+            {
+                id   : 'espace-connecte.mes-demandes-credit',
+                title: 'Mes demandes',
+                type : 'basic',
+                link : '/espace-connecte/mes-demandes-credit'
+            },
+            {
+                id   : 'espace-connecte.mes-credits',
+                title: 'Mes crédits',
+                type : 'basic',
+                link : '/espace-connecte/mes-credits'
+            }
+        ]
+    },
+    {
         id   : 'projets-search',
         title: 'Recherche de bien',
         type : 'basic',
@@ -336,65 +394,31 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/nos-conventions'
     },
     {
-        id   : 'darrahetbal',
-        title: 'Multimédia',
-        type : 'basic',
-        icon : 'heroicons_outline:film',
-        link : '/darrahetbal'
-    },
-    {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
     {
-        id   : 'reclamation',
-        title: 'Reclamation en ligne',
-        type : 'basic',
-        icon : 'heroicons_outline:information-circle',
-        link : '/reclamation'
-    },
-    {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
-        id   : 'espace-connecte',
-        title: 'Espace connecté',
-        type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
-        link : '/espace-connecte',
-        children: [
-            {
-                id        : 'espace-connecte.home',
-                title     : 'Home',
-                type      : 'basic',
-                link      : '/espace-connecte',
-                exactMatch: true
-            },
-            {
-                id   : 'espace-connecte.simulation-detaillee',
-                title: 'Simulation détaillée',
-                type : 'basic',
-                link : '/espace-connecte/simulation-detaillee'
-            },
-            {
-                id   : 'espace-connecte.mes-simulations',
-                title: 'Mes simulations',
-                type : 'basic',
-                link : '/espace-connecte/mes-simulations'
-            },
-            {
-                id   : 'espace-connecte.mes-demandes-credit',
-                title: 'Mes demandes',
-                type : 'basic',
-                link : '/espace-connecte/mes-demandes-credit'
-            }
-        ]
+        id   : 'reclamation',
+        title: 'Reclamation',
+        type : 'basic',
+        icon : 'heroicons_outline:information-circle',
+        link : '/reclamation'
+    },
+    {
+        id   : 'darrahetbal',
+        title: 'Espace multimédia',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/darrahetbal'
     }
 ];

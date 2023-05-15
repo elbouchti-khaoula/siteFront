@@ -3,7 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
-import { CritereDetaillee, SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
+import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
@@ -74,7 +74,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
    */
   navigateToDemandeCredit(selectedSimulation: any): void {
 
-    this.addInfosClient(selectedSimulation, '/espace-connecte/demande-credit');
+    this.addInfosTiers(selectedSimulation, '/espace-connecte/demande-credit');
 
   }
 
@@ -83,7 +83,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
    */
   navigateToConsulterSimulation(selectedSimulation: any): void {
 
-    this.addInfosClient(selectedSimulation, '/espace-connecte/consulter-simulation');
+    this.addInfosTiers(selectedSimulation, '/espace-connecte/consulter-simulation');
 
   }
 
@@ -157,47 +157,22 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
-  private addInfosClient(selectedSimulation: any, routeLink: string): any {
+  private addInfosTiers(selectedSimulation: any, routeLink: string): any {
 
-    // Get the response of simulation by projectId
-    this._simulationService.getInfoClient(selectedSimulation.id)
+    // Get the information of tiers by simulation
+    this._simulationService.getInfoTiers(selectedSimulation)
       .pipe(
         catchError((error) => {
           // Throw an error
           return throwError(error);
         })
       )
-      .subscribe((response: CritereDetaillee) => {
-
-        this.simulationResultat = {
-          // Mon profil
-          nom: response.tiers.nom,
-          prenom: response.tiers.prenom,
-          telephone: response.tiers.telephone,
-          email: response.tiers.email,
-          dateNaissance: response.tiers.dateNaissance,
-          nationalite: response.tiers.nationalite,
-          residantMaroc: response.tiers.residantMaroc,
-          // ma situation
-          categorieSocioProfessionnelle: response.tiers.categorieSocioProfessionnelle,
-          nomEmployeur: response.tiers.nomEmployeur,
-          // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
-          salaire: response.tiers.salaireEtAutresRevenus,
-          // autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
-          creditsEnCours: response.tiers.creditsEnCours,
-          // Mon projet
-          objetFinancement: response.objetFinancement,
-          nomPromoteur: response.nomPromoteur,
-          // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
-          typeTaux: response.typeTaux,
-          newSimulation: false,
-          ...selectedSimulation
-        };
+      .subscribe((response: any) => {
 
         setTimeout(() => {
           const navigationExtras: NavigationExtras = {
             state: {
-              ...this.simulationResultat
+              ...response
             }
           };
           this._router.navigate([routeLink], navigationExtras);

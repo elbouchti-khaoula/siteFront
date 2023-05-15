@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { FuseCardModule } from '@fuse/components/card';
 import { MesDemandesCreditComponent } from './mes-demandes-credit.component';
 import { mesDemandesCreditRoutes } from './mes-demandes-credit.routing';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
@@ -16,6 +17,7 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         SharedModule,
         MatButtonModule,
         MatIconModule,
+        FuseCardModule,
         BienvenueModule
     ],
     exports     : [

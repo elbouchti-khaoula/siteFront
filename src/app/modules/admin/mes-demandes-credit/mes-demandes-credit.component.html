@@ -1,5 +1,4 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-    <!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
     <header class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-[45vh] md:min-h-[35vh] mesdemandes-bg-header">
@@ -17,7 +16,7 @@
                     <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                         Mes demandes de crédit
                     </span>
-                    <div class="max-w-xl mt-2 text-xl text-secondary">
+                    <div class="max-w-xl mt-2 md:text-xl text-secondary">
                         Vous avez ({{demandes.length}}) demandes de crédit en cours
                     </div>
                 </div>
@@ -31,14 +30,14 @@
 
                     <ng-container *ngFor="let demande of demandes; let i = index; trackBy: trackByFn">
                         
-                        <fuse-card class="relative flex flex-col items-center px-5 pt-8 pb-6 bg-card overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
+                        <fuse-card class="relative flex flex-col items-center space-y-5 px-5 pt-8 pb-6 overflow-visible ring-1 ring-primary-500 rounded-md">
 
-                            <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 p-2 rounded-full font-medium text-center leading-none bg-primary-500">
-                                <mat-icon class="icon-size-12 text-on-primary" [svgIcon]="'mat_solid:real_estate_agent'">
+                            <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
+                                <mat-icon class="icon-size-14 text-on-primary ml-2" svgIcon="survey">
                                 </mat-icon>
                             </div>
 
-                            <div class="flex flex-col items-center mt-5">
+                            <div class="flex flex-col items-center">
                                 <div class="text-2xl font-bold leading-tight uppercase">Demande N° {{demande.id}}
                                 </div>
 
@@ -48,71 +47,72 @@
                                 </div>
                             </div>
 
-                            <hr class="w-full border-t mb-5">
+                            <hr class="w-full border-t">
 
-                            <div class="flex flex-col items-center space-y-5">
-                                <span>Statut de ma demande</span>
-                                <ol class="block whitespace-nowrap">
-                                    <!-- time line -->
-                                    <ng-container *ngFor="let statut of statuts; let i = index; let first = first; let last = last; trackBy: trackByFn">
-        
-                                        <li class="relative inline-block px-3">
-                                            <!-- Line -->
-                                            <ng-container *ngIf="!last">
-                                                <ng-container *ngIf="demande.statut > statut.id">
-                                                    <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-green-500"></div>
-                                                </ng-container>
-                                                <ng-container *ngIf="statut.id >= demande.statut">
-                                                    <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-gray-300 dark:bg-gray-600"></div>
-                                                </ng-container>
-                                                <!-- <ng-container *ngIf="statut.id === demande.statut">
-                                                    <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-primary-500 dark:bg-gray-600"></div>
-                                                </ng-container> -->
+                            <span>Statut de ma demande</span>
+
+                            <ol class="whitespace-nowrap">
+                                <!-- time line -->
+                                <ng-container *ngFor="let statut of statuts; let i = index; let first = first; let last = last; trackBy: trackByFn">
+    
+                                    <li class="relative inline-block px-3">
+                                        <!-- Line -->
+                                        <ng-container *ngIf="!last">
+                                            <ng-container *ngIf="demande.statut > statut.id">
+                                                <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-green-500"></div>
                                             </ng-container>
-        
-                                            <div class="relative flex flex-col items-center">
-                                                <!-- Icon -->
-                                                <ng-container *ngIf="demande.statut > statut.id">
-                                                    <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
-                                                        <mat-icon class="icon-size-7 text-green-500"
-                                                            [svgIcon]="'heroicons_solid:check-circle'">
-                                                        </mat-icon>
-                                                    </div>
-                                                </ng-container>
-                                                <ng-container *ngIf="statut.id === demande.statut">
-                                                    <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
-                                                        <!-- album adjust pending -->
-                                                        <mat-icon class="icon-size-7 text-primary"
-                                                            [svgIcon]="'mat_solid:radio_button_checked'">
-                                                        </mat-icon>
-                                                    </div>
-                                                </ng-container>
-                                                <ng-container *ngIf="statut.id > demande.statut">
-                                                    <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
-                                                        <mat-icon class="icon-size-7"
-                                                            [svgIcon]="'mat_solid:circle'">
-                                                        </mat-icon>
-                                                    </div>
-                                                </ng-container>
-                                                <!-- Libelle -->
-                                                <div class="mt-4" [innerHTML]="statut.libelle"></div>
-                                            </div>
-                                        </li>
-                                    </ng-container>
-                                </ol>
-                                <span class="max-w-80">Votre demande de crédit est autorisée, merci de contacter votre agence</span>
-                            </div>
+                                            <ng-container *ngIf="statut.id >= demande.statut">
+                                                <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-gray-300 dark:bg-gray-600"></div>
+                                            </ng-container>
+                                            <!-- <ng-container *ngIf="statut.id === demande.statut">
+                                                <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-primary-500 dark:bg-gray-600"></div>
+                                            </ng-container> -->
+                                        </ng-container>
+    
+                                        <div class="relative flex flex-col items-center">
+                                            <!-- Icon -->
+                                            <ng-container *ngIf="demande.statut > statut.id">
+                                                <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
+                                                    <mat-icon class="icon-size-7 text-green-500"
+                                                        [svgIcon]="'heroicons_solid:check-circle'">
+                                                    </mat-icon>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="statut.id === demande.statut">
+                                                <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
+                                                    <!-- album adjust pending -->
+                                                    <mat-icon class="icon-size-7 text-primary"
+                                                        [svgIcon]="'mat_solid:radio_button_checked'">
+                                                    </mat-icon>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="statut.id > demande.statut">
+                                                <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
+                                                    <mat-icon class="icon-size-7"
+                                                        [svgIcon]="'mat_solid:circle'">
+                                                    </mat-icon>
+                                                </div>
+                                            </ng-container>
+                                            <!-- Libelle -->
+                                            <div class="mt-4" [innerHTML]="statut.libelle"></div>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                            </ol>
+
+                            <span class="max-w-80">Votre demande de crédit est autorisée, merci de contacter votre agence</span>
 
                         </fuse-card>
+
                     </ng-container>
 
                 </div>
+
             </ng-container>
-            <!-- </ng-container> -->
 
             <!-- No demande template -->
             <ng-template #noDemandes>
-                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 dark:bg-transparent">
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md mt-10">
                     <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
                         Il n'y a pas de demande de crédit!

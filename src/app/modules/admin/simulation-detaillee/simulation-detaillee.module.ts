@@ -15,9 +15,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import * as moment from 'moment';
 import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
-import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
 
@@ -40,7 +40,6 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
         MatDatepickerModule,
         MatMomentDateModule,
         MatSidenavModule,
-        TableauAmortissementModule,
         BienvenueModule,
         DetailsSimulationModule
     ],

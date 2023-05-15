@@ -9,13 +9,3 @@ export interface TableauAmortissement
     echeanceParticipant: number;
     crd?: number;
 }
-
-export interface TableauAmortissementPagination
-{
-    length: number;
-    size: number;
-    page: number;
-    lastPage: number;
-    startIndex: number;
-    endIndex: number;
-}

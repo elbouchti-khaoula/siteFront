@@ -1,5 +1,4 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[35vh] simul-det-bg-header">
@@ -126,13 +125,14 @@
                             </mat-icon>
                         </ng-template> -->
                         
+                        <!-- step 1 -->
                         <mat-step 
                             [formGroupName]="'step1'"
                             [stepControl]="simulationStepperForm.get('step1')"
                             [label]="isXsScreen ? '' : 'Mon profil'"
                             #simulationStepperStep1>
 
-                            <div class="w-full grid grid-cols-2 gap-x-2 md:mt-5">
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Nom -->
                                 <mat-form-field class="w-full"
@@ -261,7 +261,7 @@
                                 </mat-radio-group>
 
                                 <!-- Agreements -->
-                                <mat-checkbox class="col-span-2 text-sm mt-7 font-medium"
+                                <mat-checkbox class="md:col-span-2 text-sm mt-7 font-medium"
                                     [color]="'primary'"
                                     [formControlName]="'agreements'">
                                     <span>Je déclare avoir lu et accepter les </span>
@@ -292,13 +292,14 @@
 
                         </mat-step>
 
+                        <!-- step 2 -->
                         <mat-step
                             [formGroupName]="'step2'"
                             [stepControl]="simulationStepperForm.get('step2')"
                             #simulationStepperStep2>
                             <ng-template matStepLabel *ngIf="!isXsScreen">Ma situation</ng-template>
 
-                            <div class="w-full grid grid-cols-2 gap-x-2 md:mt-5">
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Catégorie socio professionnelle -->
                                 <mat-form-field class="w-full"
@@ -346,6 +347,8 @@
                                 <!-- Salaire annuel net -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'salaire'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel net</mat-label>
                                     <span matSuffix>Dhs</span>
@@ -357,6 +360,8 @@
                                 <!-- Autres revenus -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'autresRevenus'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex loyer, primes, …</mat-label>
                                     <span matSuffix>Dhs</span>
@@ -368,6 +373,8 @@
                                 <!-- Mensualité de vos crédits en cours -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'creditsEnCours'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des mensualités</mat-label>
                                     <span matSuffix>Dhs</span>
@@ -398,17 +405,20 @@
                             </div>
                         </mat-step>
 
+                        <!-- step 3 -->
                         <mat-step
                             [formGroupName]="'step3'"
                             [stepControl]="simulationStepperForm.get('step3')"
                             #simulationStepperStep3>
                             <ng-template matStepLabel *ngIf="!isXsScreen">Mon projet</ng-template>
 
-                            <div class="w-full grid grid-cols-2 gap-x-2 md:mt-5">
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Prix du bien -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'montant'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Prix du bien</mat-label>
                                     <span matSuffix>Dhs</span>
@@ -439,6 +449,8 @@
                                 <!-- Montant -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'montantProposition'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
                                     <span matSuffix>Dhs</span>
@@ -450,6 +462,8 @@
                                 <!-- Durée -->
                                 <mat-form-field class="w-full"
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:timelapse'" matPrefix>
+                                    </mat-icon>
                                     <input matInput [formControlName]="'duree'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Durée (en mois)</mat-label>
                                     <span matSuffix>mois</span>
@@ -463,7 +477,7 @@
                                     [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'" matPrefix>
                                     </mat-icon>
-                                    <mat-select [formControlName]="'statutProjet'">
+                                    <mat-select [formControlName]="'statutProjet'" (selectionChange)="selectedStatutProjet($event)">
                                         <mat-option [value]="'statut1'">Recherche active</mat-option>
                                         <mat-option [value]="'statut2'">Simple simulation</mat-option>
                                         <mat-option [value]="'statut3'">Bien trouvé</mat-option>
@@ -487,7 +501,7 @@
 
                                 <!-- Type de taux -->
                                 <mat-radio-group
-                                    class="flex flex-col col-span-2 w-full sm:w-fit"
+                                    class="flex flex-col w-full"
                                     [color]="'primary'"
                                     [formControlName]="'typeTaux'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Type de taux *</mat-label>
@@ -495,7 +509,7 @@
                                         <mat-radio-button [value]="'FIXE'">
                                             Valeur Fixe
                                         </mat-radio-button>
-                                        <mat-radio-button class="ml-9 md:ml-7 mr-5" [value]="'VARI'">
+                                        <mat-radio-button class="ml-3 md:ml-7" [value]="'VARI'">
                                             Valeur variable
                                         </mat-radio-button>
                                     </div>
@@ -532,10 +546,10 @@
 
                     </mat-horizontal-stepper>
 
-                    <div class="flex flex-row space-x-2 mx-6 mb-3 py-2 px-4 rounded-md shadow overflow-hidden bg-amber-100">
+                    <div class="flex flex-row bg-amber-100 rounded-md shadow mx-6 mb-5 py-2 px-3">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
-                        <span class="text-xs font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et
+                        <span class="ml-2 text-sm font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et
                             d'opposition au traitement de vos données personnelles. Ce traitement est opéré
                             conformément aux autorisations obtenues par Wafa Immobilier auprès de la CNDP »
                         </span>

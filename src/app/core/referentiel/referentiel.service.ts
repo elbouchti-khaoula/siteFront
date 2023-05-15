@@ -92,6 +92,11 @@ export class ReferentielService {
         return this._httpClient.get<CategorieSocioProfessionnelle[]>('api/repositories/categories-socio-professionelles')
             .pipe(
                 tap((response: CategorieSocioProfessionnelle[]) => {
+                    // Sort the Catégories Socio-Professionnelle by the libelle field by default
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    localStorage.setItem('categoriesSocioProfessionnelle', JSON.stringify(response));
+
                     this._categoriesSocioProf.next(response);
                 })
             );
@@ -104,6 +109,11 @@ export class ReferentielService {
         return this._httpClient.get<Nationalite[]>('api/repositories/nationalites')
             .pipe(
                 tap((response: Nationalite[]) => {
+                    // Sort the Nationalités by the libelle field by default
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    localStorage.setItem('nationalites', JSON.stringify(response));
+
                     this._nationalites.next(response);
                 })
             );
@@ -116,6 +126,11 @@ export class ReferentielService {
         return this._httpClient.get<ObjetFinancement[]>('api/repositories/objets-financement')
             .pipe(
                 tap((response: ObjetFinancement[]) => {
+                    // Sort the ObjetsFinancement by the libelle field by default
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    localStorage.setItem('objetsFinancement', JSON.stringify(response));
+
                     this._objetsFinancement.next(response);
                 })
             );

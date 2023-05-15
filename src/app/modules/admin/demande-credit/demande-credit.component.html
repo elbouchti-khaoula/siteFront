@@ -1,5 +1,4 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[35vh] demande-bg-header">
@@ -51,11 +50,11 @@
                 </div>
             </fuse-card>
 
-            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-10 md:mt-16">
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-16">
 
                 <!-- Résultat -->
                 <mat-drawer-container
-                    class="bg-transparent md:w-[45%] rounded-md md:-mt-5"
+                    class="bg-transparent md:w-9/20 rounded-md md:-mt-5"
                     [hasBackdrop]="true"
                     #drawerContainerResult>
 
@@ -70,7 +69,7 @@
                     <mat-drawer-content class="px-1 pt-5 pb-1">
 
                         <fuse-card #resultat
-                            class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-default rounded-md shadow overflow-visible md:min-h-[75vh]">
+                            class="flex flex-col px-6 pb-8 pt-7 ring-1 ring-primary bg-default rounded-md shadow overflow-visible md:min-h-[75vh]">
                             
                             <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
                                 <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
@@ -80,24 +79,26 @@
 
                             <div class="flex flex-col space-y-5">
                                 <!-- bouton tableau amortissement -->
-                                <div class="ml-auto mt-3">
+                                <div *ngIf="simulationResultat?.dossiers?.length === 1" 
+                                    class="ml-auto mt-3">
                                     <button
                                         mat-flat-button
-                                        class="fuse-mat-button-small"
+                                        class="text-sm fuse-mat-button-small"
                                         type="button" 
                                         [color]="'accent'"
-                                        (click)="openTableauAmortissement(1)">
-                                        Tableau d'amortissement
+                                        (click)="openTableauAmortissement(simulationResultat?.dossiers[0].id)">
+                                        Ouvrir tableau d'amortissement
                                     </button>
                                 </div>
 
-                                <fuse-card class="flex flex-col px-8 py-5 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
                                     #fuseCardProfil
                                     [expanded]="openedCard === 1">
+                                    
+                                    <!-- header -->
                                     <div class="flex flex-row items-center">
-                                        <!-- (click)="fuseCardProfil.expanded = !fuseCardProfil.expanded" -->
-                                        <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
+                                        <div class="text-lg font-bold">Mon profil</div>
+                                        <button class="ml-auto min-w-9 min-h-7 h-7 px-2 bg-primary-500"
                                             mat-stroked-button
                                             (click)="openedCard === 1 ? openedCard = 0 : openedCard = 1">
                                             <mat-icon
@@ -109,12 +110,11 @@
                                                 *ngIf="fuseCardProfil.expanded"
                                                 [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
                                         </button>
-                                        <div class="ml-5 text-lg font-bold">Mon profil</div>
                                     </div>
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Nom
@@ -172,16 +172,17 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
                                     [expanded]="openedCard === 2"
                                     #fuseCardSituation>
+                                    
+                                    <!-- header -->
                                     <div class="flex flex-row items-center">
-                                        <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
+                                        <div class="text-lg font-bold">Ma situation</div>
+                                        <button class="ml-auto min-w-9 min-h-7 h-7 px-2 bg-primary-500"
                                             mat-stroked-button
                                             (click)="openedCard === 2 ? openedCard = 0 : openedCard = 2">
                                             <mat-icon
@@ -193,12 +194,11 @@
                                                 *ngIf="fuseCardSituation.expanded"
                                                 [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
                                         </button>
-                                        <div class="ml-5 text-lg font-bold">Ma situation</div>
                                     </div>
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Socio Professionnelle
@@ -252,12 +252,14 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
                                     [expanded]="openedCard === 3"
                                     #fuseCardProjet>
+
+                                    <!-- header -->
                                     <div class="flex flex-row items-center">
-                                        <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
+                                        <div class="text-lg font-bold">Mon projet</div>
+                                        <button class="ml-auto min-w-9 min-h-7 h-7 px-2 bg-primary-500"
                                             mat-stroked-button
                                             (click)="openedCard === 3 ? openedCard = 0 : openedCard = 3">
                                             <mat-icon
@@ -269,12 +271,11 @@
                                                 *ngIf="fuseCardProjet.expanded"
                                                 [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
                                         </button>
-                                        <div class="ml-5 text-lg font-bold">Mon projet</div>
                                     </div>
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Prix du bien
@@ -335,12 +336,14 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
                                     [expanded]="openedCard === 4"
                                     #fuseCardResultat>
+
+                                    <!-- header -->
                                     <div class="flex flex-row items-center">
-                                        <button
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 bg-primary-500"
+                                        <div class="text-lg font-bold">Ma simulation</div>
+                                        <button class="ml-auto min-w-9 min-h-7 h-7 px-2 bg-primary-500"
                                             mat-stroked-button
                                             (click)="openedCard === 4 ? openedCard = 0 : openedCard = 4">
                                             <mat-icon
@@ -352,122 +355,152 @@
                                                 *ngIf="fuseCardResultat.expanded"
                                                 [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
                                         </button>
-                                        <div class="ml-5 text-lg font-bold">Ma simulation</div>
                                     </div>
 
                                     <!-- Expansion -->
                                     <ng-container fuseCardExpansion>
-                                        <div class="grid grid-cols-2 gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Montant de crédit
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
-                                                        {{simulationResultat?.montantProposition}}
-                                                    </div>
-                                                    <div class="ml-2 text-md leading-none">Dhs</div>
-                                                </div>
-                                            </div>
+                                        <div class="mt-5">
+                                            <ng-container *ngFor="let dossier of simulationResultat?.dossiers; let i = index; let last = last; trackBy: trackByFn">
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Total des intérêts
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #totalInteretsId>
-                                                        {{simulationResultat?.totalInterets}}
+                                                <!-- header -->
+                                                <div *ngIf="simulationResultat?.dossiers?.length > 1"
+                                                    class="flex flex-col-reverse md:flex-row">
+                                                    <div class="text-2xl font-semibold text-primary max-md:mt-3">
+                                                        Dossier N° {{dossier?.id}}
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none">Dhs</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Coût total du crédit
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #coutTotalId>
-                                                        {{simulationResultat?.coutTotal}}
+                                                    <!-- bouton tableau amortissement -->
+                                                    <div class="ml-auto">
+                                                        <button mat-flat-button 
+                                                            class="text-sm fuse-mat-button-small"
+                                                            type="button"
+                                                            [color]="'accent'"
+                                                            (click)="openTableauAmortissement(dossier.id)">
+                                                            Ouvrir tableau d'amortissement
+                                                        </button>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none">Dhs</div>
                                                 </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Assurances
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #assurancesId>
-                                                        {{simulationResultat?.assurances}}
+                                                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Montant de crédit
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #montantId>
+                                                                {{dossier?.montant}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">Dhs</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none">Dhs</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Taux de participation
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #tauxParticipationId>
-                                                        {{simulationResultat?.tauxParticipation}}
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Total des intérêts
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #totalInteretsId>
+                                                                {{dossier?.totalInterets}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">Dhs</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none">%</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    TEG
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight" #tauxEffectifGlobalId>
-                                                        {{simulationResultat?.tauxEffectifGlobal}}
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Coût total du crédit
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #coutTotalId>
+                                                                {{dossier?.coutTotal}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">Dhs</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none">%</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Expertise immobilière
-                                                </div>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight"
-                                                        [ngClass]="{'text-green-600 ': !simulationResultat?.estExpImmoNum}">
-                                                        {{simulationResultat?.expertiseImmobiliere}}
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Assurances
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #assurancesId>
+                                                                {{dossier?.assurances}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">Dhs</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !simulationResultat?.estExpImmoNum}">Dhs</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-col">
-                                                <span class="text-sm font-semibold leading-none text-secondary">
-                                                    Frais de dossier
-                                                </span>
-                                                <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                    <div class="font-medium text-xl leading-tight tracking-tight"
-                                                        [ngClass]="{'text-green-600 ': !simulationResultat?.estFraisDossNum}">
-                                                        {{simulationResultat?.fraisDossier}}
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Taux de participation
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #tauxParticipationId>
+                                                                {{dossier?.tauxParticipation}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">%</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 text-md leading-none" [ngClass]="{'hidden': !simulationResultat?.estFraisDossNum}">Dhs</div>
-                                                </div>
-                                            </div>
 
-                                            <div class="flex flex-row items-center col-span-2 border-t pt-3">
-                                                <span class="text-md font-bold leading-none">
-                                                    Mensualité
-                                                </span>
-                                                <div class="ml-auto flex items-baseline whitespace-nowrap">
-                                                    <div class="text-2xl font-bold leading-tight tracking-tight">
-                                                        {{simulationResultat?.mensualite}}
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            TEG
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight" #tauxEffectifGlobalId>
+                                                                {{dossier?.tauxEffectifGlobal}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none">%</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm font-semibold leading-none text-secondary">
+                                                            Expertise immobilière
+                                                        </div>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight"
+                                                                [ngClass]="{'text-green-600 ': !simulationResultat?.estExpImmoNum}">
+                                                                {{dossier?.expertiseImmobiliere}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none"
+                                                                [ngClass]="{'hidden': !simulationResultat?.estExpImmoNum}">
+                                                                Dhs</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <span class="text-sm font-semibold leading-none text-secondary">
+                                                            Frais de dossier
+                                                        </span>
+                                                        <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                            <div class="font-medium text-xl leading-tight tracking-tight"
+                                                                [ngClass]="{'text-green-600 ': !simulationResultat?.estFraisDossNum}">
+                                                                {{dossier?.fraisDossier}}
+                                                            </div>
+                                                            <div class="ml-2 text-md leading-none"
+                                                                [ngClass]="{'hidden': !simulationResultat?.estFraisDossNum}">
+                                                                Dhs</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex flex-col md:flex-row md:items-center md:col-span-2 border-t pt-3">
+                                                        <span class="text-md font-bold leading-none">
+                                                            Mensualité
+                                                        </span>
+                                                        <div class="max-md:mt-2 ml-auto flex items-baseline whitespace-nowrap">
+                                                            <div class="text-2xl font-bold leading-tight tracking-tight">
+                                                                {{dossier?.mensualite}}
+                                                            </div>
+                                                            <div class="ml-2 md:text-xl leading-none">Dhs/mois</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <hr *ngIf="!last" class="w-full border-t">
+
+                                            </ng-container>
                                         </div>
 
                                     </ng-container>
@@ -479,76 +512,135 @@
 
                 </mat-drawer-container>
 
-                <div class="w-full md:w-[55%] bg-card shadow rounded-md overflow-hidden ring-1 ring-current p-6">
+                <div class="w-full md:w-11/20">
+                    <div class="bg-card shadow rounded-md overflow-hidden ring-1 ring-current p-6">
 
-                    <div class="text-2xl font-semibold mb-3">Veuillez charger les fichiers ci-dessous : </div>
+                        <div class="text-2xl font-semibold">Veuillez charger les fichiers ci-dessous : </div>
+                        <div class="flex flex-row space-x-2 py-2 px-4 rounded-md shadow bg-amber-100 mt-2">
+                            <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
+                            </mat-icon>
+                            <span class="text-sm font-semibold">
+                                la taille des fichiers est limitée à 5 Mo
+                            </span>
+                        </div>
 
-                    <ng-container *ngIf="pieces && pieces.length > 0">
-                        <div class="flex flex-col space-y-1 p-3 bg-gray-50 border border border-gray-300 shadow rounded-md">
-                            <ng-container *ngFor="let piece of pieces; let i = index; trackBy: trackByFn">
-                                <div class="w-full grid grid-cols-9 items-center justify-between">
-                                    <div class="flex flex-row items-center justify-between col-span-5">
+                        <div class="flex flex-col space-y-3 mt-5">
+
+                            <ng-container *ngFor="let piece of pieces; let i = index; let last = last; trackBy: trackByFn">
+                                
+                                <div class="hidden md:grid grid-cols-9 items-start">
+                                    <!-- libelle document -->
+                                    <div class="flex flex-row items-center justify-between col-span-5 mt-1">
                                         <span class="font-medium">
                                             {{piece.libelle}}
                                         </span>
                                         <span class="font-bold">&nbsp;:&nbsp;&nbsp;&nbsp;</span>
                                     </div>
-                                    <div class="flex flex-row items-center justify-between col-span-4">
-                                        <span class="text-sm text-primary">
-                                            {{piece.fileName}}
-                                        </span>
-                                        <!-- file -->
-                                        <div>
-                                            <input
-                                                id="{{ 'file-input' + i }}"
-                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file"
+
+                                    <!-- liste fichier joint par document -->
+                                    <div class="flex flex-row items-start col-span-4">
+                                        <!-- liste -->
+                                        <div class="w-4/5 flex flex-col space-y-2 mt-1.5">
+                                            <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
+                                                <div class="flex flex-row justify-between">
+                                                    <div class="text-md text-primary whitespace-nowrap truncate">
+                                                        {{fich.fileName}}
+                                                    </div>
+                                                    <button *ngIf="fich.fileName"
+                                                        class="ml-2 w-6 h-6 min-h-6 hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                        mat-icon-button (click)="deleteFileFromPiece(fich, i)">
+                                                        <mat-icon class="icon-size-4 text-warn"
+                                                            [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                                    </button>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+
+                                        <!-- bouton upload file -->
+                                        <div class="ml-auto">
+                                            <input id="fileInput_{{i}}"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
                                                 [multiple]="false"
-                                                [accept]="'image/jpeg, image/png'"
-                                                (change)="uploadPiece(piece, $event.target.files)"
+                                                [accept]="'image/jpeg, image/png, text/plain, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                (change)="uploadPiece(i, $event)"
                                                 #fileInput>
-                                            <button
-                                                *ngIf="piece.file"
-                                                class="hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                mat-icon-button
-                                                (click)="deletePiece(piece, i)">
-                                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:x'"></mat-icon>
-                                            </button>
                                             <label
-                                                *ngIf="!piece.file"
-                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                for="{{ 'file-input' + i }}"
-                                                matRipple>
-                                                <mat-icon [svgIcon]="'heroicons_outline:upload'"></mat-icon>
+                                                class="flex items-center justify-center w-9 h-9 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                for="fileInput_{{i}}" matRipple>
+                                                <mat-icon [svgIcon]="'mat_outline:attach_file'"></mat-icon>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- libelle document -->
+                                <div class="md:hidden flex flex-row">
+                                    <span class="font-medium mr-5 mt-1">
+                                        {{piece.libelle}}
+                                    </span>
+
+                                    <!-- bouton upload file -->
+                                    <div class="ml-auto">
+                                        <input id="fileInput_{{i}}"
+                                            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
+                                            [multiple]="false"
+                                            [accept]="'image/jpeg, image/png, text/plain, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                            (change)="uploadPiece(i, $event)"
+                                            #fileInput>
+                                        <label
+                                            class="flex items-center justify-center w-9 h-9 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                            for="fileInput_{{i}}" matRipple>
+                                            <mat-icon [svgIcon]="'mat_outline:attach_file'"></mat-icon>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- liste fichier joint par document -->
+                                <div class="md:hidden flex flex-row items-start">
+                                    <!-- list -->
+                                    <div class="flex flex-col space-y-2 mt-1.5">
+                                        <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
+                                            <div class="flex flex-row justify-between">
+                                                <div class="text-primary whitespace-nowrap truncate">
+                                                    {{fich.fileName}}
+                                                </div>
+                                                <button *ngIf="fich.fileName"
+                                                    class="ml-2 w-6 h-6 min-h-6 hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
+                                                    mat-icon-button (click)="deleteFileFromPiece(fich, i)">
+                                                    <mat-icon class="icon-size-4 text-warn"
+                                                        [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                                </button>
+                                            </div>
+                                            <!-- <img [src]="fich.fileContent"> -->
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="mx-auto max-w-120 grid grid-cols-2 md:grid-cols-4 gap-2">
+                                    <ng-container *ngFor="let fich of piece.files">
+                                        <img *ngIf="fich.isImage"
+                                            class="h-20 rounded object-cover"
+                                            [src]="fich.fileContent"/>
+                                    </ng-container>
+                                </div>
+
+                                <hr *ngIf="!last" class="w-full border-t">
                             </ng-container>
                         </div>
-                    </ng-container>
 
-                    <!-- Actions -->
-                    <div class="flex items-center mt-3">
-                        <button
-                            mat-flat-button
-                            class="ml-auto px-8"
-                            [ngClass]="{'bg-primary-200' : !estRempli}"
-                            [color]="'primary'"
-                            type="button"
-                            [disabled]="!estRempli"
-                            (click)="transformer()">
-                            Valider
-                        </button>
+                        <!-- Actions -->
+                        <div class="flex items-center mt-3">
+                            <button mat-flat-button class="ml-auto px-8"
+                                [ngClass]="{'bg-primary-200' : !existePieceAttachee}" [color]="'primary'" type="button"
+                                [disabled]="!existePieceAttachee" (click)="transformer()">
+                                Valider
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="flex items-center justify-between mt-3">
+                    <div class="flex flex-col max-md:space-y-2 md:flex-row items-center md:justify-between mt-5 p-3 bg-gray-50 shadow rounded-md ring-1 ring-current">
                         <div>Vous souhaitez poursuivre au niveau d'une agence ?</div>
-                        <button
-                            mat-flat-button
-                            type="button" 
-                            [color]="'primary'"
-                            (click)="openChangerAgenceDialog()">
+                        <button mat-flat-button type="button" [color]="'primary'" (click)="openChangerAgenceDialog()">
                             Sélectionner une agence
                         </button>
                     </div>

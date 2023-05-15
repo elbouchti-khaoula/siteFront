@@ -95,10 +95,6 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
             },
             {
-                path: 'landingBis',
-                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
-            },
-            {
                 path: 'darrahetbal',
                 loadChildren: () => import('app/modules/pages/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
             },
@@ -118,7 +114,30 @@ export const appRoutes: Route[] = [
                 path: 'nos-conventions',
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
+            {
+                path: 'nous-contacter',
+                loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
+            },
+            {
+                path: 'agences',
+                loadChildren: () => import('app/modules/pages/agences/agences.module').then(m => m.AgencesModule),
+            },
+            {
+                path: 'reclamation',
+                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
+            },
 
+            // not used
+            {
+                path: 'landingBis',
+                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
+            },
+            {
+                path: 'nous-connaitre-old',
+                loadChildren: () => import('app/modules/pages/nous-connaitre-old/nous-connaitre-old.module').then(m => m.NousConnaitreOldModule),
+            },
+
+            // espace connecté
             {
                 path: 'espace-connecte',
                 children: [
@@ -145,25 +164,16 @@ export const appRoutes: Route[] = [
                     {
                         path: 'mes-demandes-credit',
                         loadChildren: () => import('app/modules/admin/mes-demandes-credit/mes-demandes-credit.module').then(m => m.MesDemandesCreditModule)
+                    },
+                    {
+                        path: 'mes-credits',
+                        loadChildren: () => import('app/modules/admin/mes-credits/mes-credits.module').then(m => m.MesCreditsModule)
                     }
                 ]
             },
             {
                 path: 'espace-connected-client',
                 loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
-            },
-
-            {
-                path: 'nous-contacter',
-                loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
-            },
-            {
-                path: 'agences',
-                loadChildren: () => import('app/modules/pages/agences/agences.module').then(m => m.AgencesModule),
-            },
-            {
-                path: 'reclamation',
-                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
             },
 
             // Maintenance
