@@ -114,6 +114,12 @@ export const appRoutes: Route[] = [
                 path: 'nous-connaitre',
                 loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
             },
+
+            {
+                path: 'nos-offres-miftah',
+                loadChildren: () => import('app/modules/pages/nos-offres-miftah/nos-offres-miftah.module').then(m => m.NosOffresMiftahModule),
+            },
+
             {
                 path: 'nos-conventions',
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),

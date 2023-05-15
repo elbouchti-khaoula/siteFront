@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NousConnaitreComponent } from './nous-connaite.component';
-import { nousConnaiteRoutes } from './nous-connaite.routing';
+import { NosOffresMiftahComponent } from './nos-offres-miftah.component';
+import { NosOffresMiftahRoutes } from './nos-offres-miftah.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
 @NgModule({
     declarations: [
-        NousConnaitreComponent,
+        NosOffresMiftahComponent,
     ],
     imports     : [
-        RouterModule.forChild(nousConnaiteRoutes),
+        RouterModule.forChild(NosOffresMiftahRoutes),
         FuseCardModule,
         SharedModule,
+        MatButtonModule,
         MatIconModule
     ]
 })
-export class NousConnaitreModule
+export class NosOffresMiftahModule
 {
 }

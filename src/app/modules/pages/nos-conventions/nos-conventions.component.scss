@@ -1,59 +1,59 @@
 .nos-conventions-bg-header {
-    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nos-conventions/Vis.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-     background-size: cover;
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nos-conventions/Vis.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-size: cover;
 }
 
 
 .mat-expansion-panel-header {
-    background-color:  #b4272f;
+  background-color:  #b4272f;
+}
+
+.mat-expansion-panel-header:hover {
+  background-color:  #b4272f !important;
+  cursor: pointer;
+}
+
+.my-header-class:hover {
+  background-color: green;
+  cursor: pointer;
+}
+
+.h-18:hover {
+  transform: scale(1.5);
+  transition: transform 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.no-hover:hover {
+  pointer-events: none;
+}  
+
+@media only screen and (min-width: 600px) {
+  mat-panel-title {
+    font-size: 20px;
   }
+}
 
-  .mat-expansion-panel-header:hover {
-    background-color:  #b4272f !important;
-    cursor: pointer;
+@media only screen and (max-width: 600px) {
+  mat-panel-title {
+    font-size: 11px;
   }
+}
 
-  .my-header-class:hover {
-    background-color: green;
-    cursor: pointer;
+@media (min-width: 768px) {
+  .h-md {
+      height: 48px;
   }
-
-  .h-18:hover {
-    transform: scale(1.5);
-    transition: transform 0.3s ease;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-
-  .no-hover:hover {
-    pointer-events: none;
-  }  
-
-  @media only screen and (min-width: 600px) {
-    mat-panel-title {
-      font-size: 20px;
-    }
-  }
-  
-  @media only screen and (max-width: 600px) {
-    mat-panel-title {
-      font-size: 11px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .h-md {
-        height: 48px;
-    }
 }
 
 @media (max-width: 767px) {
-    .h-md {
-        height: 22px;
-    }
+  .h-md {
+      height: 22px;
+  }
 }

@@ -31,6 +31,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
+
+    {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -77,7 +85,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Home',
                 type      : 'basic',
-                link      : '/espace-connecte',
+                link      : '/espace-connected-client',
                 exactMatch: true
             },
             {
@@ -131,6 +139,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
     {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
         id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
@@ -176,7 +191,7 @@ export const compactNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Home',
                 type      : 'basic',
-                link      : '/espace-connecte',
+                link      : '/espace-connected-client',
                 exactMatch: true
             },
             {
@@ -230,6 +245,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
     {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
         id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
@@ -275,7 +297,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Home',
                 type      : 'basic',
-                link      : '/espace-connecte',
+                link      : '/espace-connected-client',
                 exactMatch: true
             },
             {
@@ -329,6 +351,13 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
     {
+        id   : 'nos-offres-de-financement-miftah',
+        title: 'Nos offres de financement « MIFTAH »   ',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nos-offres-miftah'
+    },
+    {
         id   : 'nos-conventions',
         title: 'Nos conventions',
         type : 'basic',
@@ -374,7 +403,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Home',
                 type      : 'basic',
-                link      : '/espace-connecte',
+                link      : '/espace-connected-client',
                 exactMatch: true
             },
             {

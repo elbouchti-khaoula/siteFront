@@ -64,6 +64,11 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/map-location.svg")
         );
 
+        this.matIconRegistry.addSvgIcon(
+            "arrow-right",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/angle-circle-arrow-right-icon.svg")
+        );
+
         
     }
 }

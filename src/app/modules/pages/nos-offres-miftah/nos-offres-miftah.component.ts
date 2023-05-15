@@ -4,13 +4,13 @@ import { fuseAnimations } from '@fuse/animations';
 
 
 @Component({
-    selector     : 'nous-connaite',
-    templateUrl  : './nous-connaite.component.html',
-    styleUrls       : ['./nous-connaite.component.scss'],
+    selector     : 'nos-offres-miftah',
+    templateUrl  : './nos-offres-miftah.component.html',
+    styleUrls       : ['./nos-offres-miftah.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations
 })
-export class NousConnaitreComponent
+export class NosOffresMiftahComponent
 {
     
     /**
@@ -25,7 +25,13 @@ export class NousConnaitreComponent
     showDiv3 = false;
 
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
-    imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
+    imageSrc2 = 'assets/images/pages/nos-offres-miftah/Vis_2.png';
+
+
+
+
+
+
     imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
 
 
@@ -33,13 +39,12 @@ export class NousConnaitreComponent
     onDivClick(event) {
         console.log("Div clicked!");
         if (event.target.classList.contains('div-1')) {
-            this.showDiv2 = false;
-            this.showDiv = true;
-            this.showDiv3 = false;
+
+          this.showDiv = true;
+          this.showDiv2 = false;
+          this.showDiv3 = false;
 
             this.imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
-            this.imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
-            this.imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
 
            
 
