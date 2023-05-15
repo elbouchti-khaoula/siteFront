@@ -101,7 +101,7 @@
 
                     <span
                         class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
-                        [routerLink]="['/projets-search']">
+                        [routerLink]="['/espace-connecte/simulation-detaillee']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
                         </mat-icon>
                     </span>
@@ -122,7 +122,7 @@
 
                     <span
                         class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
-                        [routerLink]="['./']">
+                        [routerLink]="['/espace-connecte/simulation-detaillee']">
                         <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
                         </mat-icon>
                     </span>
@@ -157,6 +157,18 @@
         <div
             class=" grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
 
+            <div
+            class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+            <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
+            </mat-icon>
+
+
+
+            <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
+        </div>
+
+        <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
 
 
             <div
@@ -168,7 +180,23 @@
 
 
 
-                <a href="#" class=" md:hidden span-clicable">Mes Simulations ( 2 )</a>
+                <a href="/espace-connecte/mes-simulations" class=" md:hidden span-clicable">Mes Simulations ( 2 )</a>
+
+            </div>
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+            
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+
+
+                <a href="/espace-connecte/mes-demandes-credit" class=" md:hidden span-clicable">Mes Demandes de crédit ( 2 )</a>
 
             </div>
 
@@ -180,24 +208,14 @@
                 <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'survey'">
                 </mat-icon>
 
-                <a href="#" class=" md:hidden span-clicable">Mes crédits en cours ( 4 )</a>
+                <a href="/espace-connecte/mes-credits" class=" md:hidden span-clicable">Mes crédits en cours ( 4 )</a>
             </div>
 
 
 
             <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
 
-            <div
-                class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
-                </mat-icon>
-
-
-
-                <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 5 )</a>
-            </div>
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+           
 
             <div
                 class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
@@ -212,20 +230,7 @@
 
             </div>
 
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
 
-            <div
-                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
-                </mat-icon>
-
-
-
-                <a href="#" class=" md:hidden span-clicable">Mes Demandes de crédit ( 2 )</a>
-
-            </div>
 
 
 
@@ -255,7 +260,7 @@
             <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
                 onclick="window.location.href='/espace-connecte/mes-simulations'">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-xl font-semibold">Mes Simulations réalisés</div>
+                    <div class="text-xl font-semibold">Mes Simulations réalisées</div>
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
                         <img class="max-w-20" src="assets/images/pages/landingBis/calc_red.PNG">
                     </span>
@@ -276,7 +281,7 @@
             </button>
 
             <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
-                onclick="window.location.href='/'">
+                onclick="window.location.href='/espace-connecte/mes-credits'">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
                     <div class="text-xl font-semibold">Mes crédits en cours </div>
                     <span class="flex items-center justify-center w-22 h-22 rounded">
@@ -329,7 +334,7 @@
             <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
             </mat-icon>
 
-            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/simulation-detaillee'">
+            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/simulation-personnalisee'">
                 <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary">je simule mon crédit</span>
             </button>
@@ -341,7 +346,7 @@
 
          
 
-            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/simulation-detaillee'">
+            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/espace-connecte/simulation-detaillee'">
                 <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary">je demande mon crédit</span>
             </button>
