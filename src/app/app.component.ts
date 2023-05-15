@@ -64,6 +64,11 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/map-location.svg")
         );
 
+        this.matIconRegistry.addSvgIcon(
+            "home-repair",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/HOME-REPAIR.svg")
+        );
+
         
     }
 }

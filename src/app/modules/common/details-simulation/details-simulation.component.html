@@ -1,8 +1,8 @@
 <mat-drawer-container
     class="bg-transparent rounded-md"
-    [ngClass]="{'h-[86vh]': isScreenSmall && drawerOpened}"
-    [hasBackdrop]="true"
-    #drawerContainerResult>
+    [ngClass]="{'h-[95vh]': isScreenSmall && drawerOpened,
+                'min-h-172': !isScreenSmall}"
+    [hasBackdrop]="true">
 
     <mat-drawer
         class="w-full sm:w-[95%] lg:border-r lg:shadow-none dark:bg-gray-900"
@@ -33,7 +33,11 @@
 
                         <!-- bouton tableau amortissement -->
                         <div class="ml-auto">
-                            <button mat-flat-button class="fuse-mat-button-small" type="button" [color]="'accent'"
+                            <button
+                                mat-flat-button
+                                class="text-sm fuse-mat-button-small"
+                                type="button"
+                                [color]="'accent'"
                                 (click)="openTableauAmortissement(dossier.id)">
                                 Ouvrir tableau d'amortissement
                             </button>
@@ -44,25 +48,22 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 max-md:gap-y-5 md:gap-3 mt-6">
 
                         <!-- mensualité -->                                    
-                        <div class="md:col-span-2">
-                            <div class="flex flex-col justify-between pt-1 pb-3 px-5 shadow rounded-md bg-primary dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                <div class="flex flex-row items-baseline text-white">
-                                    <div class="text-xl font-semibold leading-tight tracking-tight">
-                                        Mensualité
-                                    </div>
-                                    <div class="flex items-baseline whitespace-nowrap ml-auto mt-2">
-                                        <div class="text-3xl font-bold leading-tight tracking-tight" #mensualiteId>
-                                            {{dossier?.mensualite}}
-                                        </div>
-                                        <div class="ml-2 md:text-lg leading-none">Dhs/mois</div>
-                                    </div>
+                        <div class="md:col-span-2 flex flex-col justify-between pt-2 pb-3 px-5 shadow rounded-md bg-primary dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+                            <div class="flex flex-col md:flex-row md:items-baseline text-white">
+                                <div class="text-xl font-semibold leading-tight tracking-tight">
+                                    Mensualité
                                 </div>
-                                <div class="flex flex-col mt-3">
-                                    <div class="w-8 h-1 rounded-2xl bg-second-500"></div>
-                                    <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
-                                        Cette échéance inclut les intérêts et frais d’assurance
+                                <div class="flex items-baseline whitespace-nowrap ml-auto">
+                                    <div class="text-3xl font-bold leading-tight tracking-tight" #mensualiteId>
+                                        {{dossier?.mensualite}}
                                     </div>
+                                    <div class="ml-2 md:text-lg leading-none">Dhs/mois</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                <div class="w-8 h-1 rounded-2xl bg-second-500"></div>
+                                <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
+                                    Cette échéance inclut les intérêts et frais d’assurance
                                 </div>
                             </div>
                         </div>
@@ -361,16 +362,16 @@
             </div>
 
             <!-- Actions -->
-            <div class="flex flex-col max-md:space-y-2 md:flex-row items-center justify-center mt-5">
+            <div class="mx-auto flex flex-col md:flex-row max-md:space-y-2 max-md:max-w-max mt-7">
                 <button class="max-md:w-full" mat-flat-button type="button" [color]="'primary'"
                     (click)="navigateToDemandeCredit()">
                     Demander mon crédit
                 </button>
-                <button *ngIf="simulationResultat?.newSimulation" class="max-md:w-full md:ml-2 bg-gray-200"
+                <button *ngIf="simulationResultat?.newSimulation" class="md:ml-2 bg-gray-200"
                     mat-stroked-button type="button" [routerLink]="['/espace-connecte']">
                     Enregistrer ma simulation
                 </button>
-                <button class="max-md:w-full md:ml-2 bg-gray-200" mat-stroked-button type="button" [color]="'warn'"
+                <button class="md:ml-2 bg-gray-200" mat-stroked-button type="button" [color]="'warn'"
                     (click)="abandonner()">
                     Abandonner
                 </button>

@@ -1,5 +1,4 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-    <!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
 
     <!-- Header -->
     <header
@@ -13,13 +12,13 @@
 
         <div class="w-full max-w-400 mx-auto">
 
-            <div class="flex flex-col-reverse md:flex-row">
-                <div class="max-md:mt-5">
+            <div class="flex flex-row">
+                <div>
                     <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                         Mes simulations
                     </span>
-                    <div class="max-w-xl mt-2 text-xl text-secondary">
-                        Vous avez ({{simulations.length}}) simulations en cours
+                    <div class="mt-2 md:text-xl text-secondary">
+                        Vous avez ({{simulations.length}}) simulations <br class="md:hidden"/> en cours
                     </div>
                 </div>
 
@@ -30,7 +29,8 @@
                     [color]="'primary'"
                     [routerLink]="['/espace-connecte/simulation-detaillee']">
                     <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
-                    <span class="ml-2 mr-1">Nouvelle simulation</span>
+                    <span class="hidden md:block ml-2 mr-1">Nouvelle simulation</span>
+                    <span class="md:hidden ml-2 mr-1">Créer</span>
                 </button>
             </div>
             
@@ -41,16 +41,18 @@
                                 'md:grid-cols-1' : simulations.length === 1 }">
 
                     <ng-container *ngFor="let simulation of simulations; let i = index; trackBy: trackByFn">
-                        <fuse-card class="relative flex flex-col items-center px-5 pt-8 pb-6 bg-card overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
+                        <fuse-card class="relative flex flex-col items-center px-5 pt-8 pb-6 overflow-visible ring-1 ring-primary-500 rounded-md cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
 
-                            <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 p-2 rounded-full font-medium text-center leading-none bg-primary-500">
-                                <mat-icon class="icon-size-12 text-on-primary" [svgIcon]="'heroicons_solid:calculator'">
+                            <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
+                                <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
                                 </mat-icon>
                             </div>
 
                             <div class="flex flex-col items-center mt-5"
                                 (click)="navigateToConsulterSimulation(simulation)">
                                 <div class="text-2xl font-bold leading-tight uppercase">Simulation N° {{simulation.id}}
+                                </div>
+                                <div *ngIf="simulation.dossiers?.length > 1" class="text-secondary">{{simulation.dossiers.length}} dossiers
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-5 px-2 mt-10 mb-1">
@@ -100,7 +102,7 @@
 
             <!-- No simulation template -->
             <ng-template #noSimulations>
-                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 dark:bg-transparent mt-10">
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md mt-10">
                     <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
                         Il n'y a pas de simulation!

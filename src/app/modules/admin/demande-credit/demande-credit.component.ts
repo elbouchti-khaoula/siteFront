@@ -1,14 +1,16 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { Subject, catchError, takeUntil, throwError } from 'rxjs';
+import { Subject, catchError, take, takeUntil, throwError } from 'rxjs';
 import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
-import { Piece } from 'app/core/common/common.types';
+import { Fichier, Piece } from 'app/core/common/common.types';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { CompressImageService } from 'app/core/compress-image/compress-image.service';
+import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
 
 @Component({
   selector: 'demande-credit',
@@ -19,17 +21,17 @@ import { SimulationDetailleeService } from 'app/core/projects/simulation-detaill
 })
 export class DemandeCreditComponent implements OnInit, OnDestroy {
 
+  @ViewChild(TableauAmortissementComponent) tableauAmortissementComponent;
   openedCard: number = 1;
   drawerOpened: boolean = false;
-  private _unsubscribeAll: Subject<any> = new Subject<any>();
-
   simulationResultat: any;
 
   @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
   documents: any;
-  pieceChanged: Subject<Piece> = new Subject<Piece>();
   pieces: Piece[] = [];
-  estRempli: boolean = false;
+  existePieceAttachee: boolean = false;
+
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   /**
    * Constructor
@@ -41,6 +43,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     private _simulationDetailleeService: SimulationDetailleeService,
     private _tableauAmortissementService: TableauAmortissementService,
     private _fuseConfirmationService: FuseConfirmationService,
+    private _compressImageService: CompressImageService
   )
   {
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
@@ -49,49 +52,81 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     }
     // else {
     //   this.simulationResultat = {
-    //     "nom": "test1",
-    //     "prenom": "test1",
-    //     "telephone": "0522111111",
-    //     "email": "test1@test1.com",
-    //     "dateNaissance": "01/01/2000",
-    //     "nationalite": "MA",
-    //     "residantMaroc": true,
-    //     "categorieSocioProfessionnelle": "SALA",
-    //     "nomEmployeur": "Employeur",
-    //     "salaire": "500 000.00",
-    //     "autresRevenus": "200 000.00",
-    //     "creditsEnCours": "3 000.00",
-    //     "montant": "500 000.00",
-    //     "objetFinancement": "ACQU",
-    //     "montantProposition": "500 000.00",
+    //     "nom": "TEST",
+    //     "prenom": "TEST",
+    //     "dateNaissance": "02/01/1990",
+    //     "nationalite": "MAROCAINE",
+    //     "residantMaroc": "Oui",
+    //     "salaire": "300 000.00",
+    //     "autresRevenus": 0,
+    //     "salaireEtAutresRevenus": 300000,
+    //     "segment": "NV",
+    //     "creditsEnCours": "0.00",
+    //     "nomEmployeur": "WAFA immobilier",
+    //     "email": "a.kadmiri@outlook.fr",
+    //     "telephone": "0612345678",
+    //     "proprietaireMaroc": false,
+    //     "capital": 0,
+    //     "objetFinancement": "ACQUISITION",
+    //     "nomPromoteur": "KETTANI IMMO",
+    //     "typeTaux": "Valeur Fixe",
+    //     "newSimulation": false,
+    //     "id": 675141,
+    //     "montant": "2 500 000.00",
+    //     "montantProposition": "2 000 000.00",
     //     "duree": 240,
-    //     "nomPromoteur": "Promoteur",
-    //     "statutProjet": "active",
-    //     "typeTaux": "FIXE",
-
-    //     "id": 674335,
     //     "statut": "NPRO",
-    //     "dossierId": 803757,
-    //     "dossierMontant": "700 000.00",
-    //     "dossierDuree": 240,
-    //     "mensualite": "5 201.31",
-    //     "tauxNominal": "5.450",
-    //     "tauxEffectifGlobal": "6.457",
-    //     "tauxParticipation": "0.000",
-    //     "assurances": "39 231.82",
-    //     "totalInterets": "509 082.58",
-    //     "coutTotal": "587 546.22",
-    //     "expertiseImmobiliere": "GRATUIT",
-    //     "estExpImmoNum" : false,
-    //     "fraisDossier": "770.00",
-    //     "estFraisDossNum": true,
-    //     "droitsEnregistrement": "20 000.00",
-    //     "conservationFonciere": "7 700.00",
-    //     "honorairesNotaire": "5 000.00",
+    //     "tauxNominalPondere": 2.409015,
+    //     "tauxEffectifGlobalPondere": 3.0459165,
+    //     "tauxAssurancePondere": 0.3959999999999999,
+    //     "tauxInteretsClientTtc": 2.6499165,
+    //     "dossiers": [
+    //         {
+    //             "id": 805628,
+    //             "montant": "1 300 000.00",
+    //             "duree": 240,
+    //             "echeance": 7470.13,
+    //             "tauxNominal": 2.7272,
+    //             "tauxEffectifGlobal": "3.396",
+    //             "tauxParticipation": "0.000",
+    //             "fraisDossier": "GRATUIT",
+    //             "assurances": "57 469.46",
+    //             "totalInterets": "435 361.74",
+    //             "coutTotal": "1 792 831.20",
+    //             "mensualite": "7 470.13",
+    //             "expertiseImmobiliere": "GRATUIT",
+    //             "estExpImmoNum": false,
+    //             "estFraisDossNum": false,
+    //             "nbreAnnee": 20,
+    //             "nbreMois": 0
+    //         },
+    //         {
+    //             "id": 805627,
+    //             "montant": "700 000.00",
+    //             "duree": 240,
+    //             "echeance": 3673.93,
+    //             "tauxNominal": 1.8181,
+    //             "tauxEffectifGlobal": "2.396",
+    //             "tauxParticipation": "0.000",
+    //             "fraisDossier": "GRATUIT",
+    //             "assurances": "30 038.67",
+    //             "totalInterets": "151 704.53",
+    //             "coutTotal": "881 743.20",
+    //             "mensualite": "3 673.93",
+    //             "expertiseImmobiliere": "GRATUIT",
+    //             "estExpImmoNum": false,
+    //             "estFraisDossNum": false,
+    //             "nbreAnnee": 20,
+    //             "nbreMois": 0
+    //         }
+    //     ],
+    //     "droitsEnregistrement": "100 000.00",
+    //     "conservationFonciere": "37 500.00",
+    //     "honorairesNotaire": "25 000.00",
     //     "fraisDivers": "1 500.00",
-    //     "totalFrais": "34 200.00",
-    //     "nbreAnnee": 20,
-    //     "nbreMois": 0
+    //     "totalFrais": "164 000.00",
+    //     "mensualite": "11 144.06",
+    //     "tauxEffectifGlobal": "3.046"
     //   }
     // }
   }
@@ -114,18 +149,18 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           // console.log(key);
           // console.log(this.documents[key]);
           for (var i = 0; i < this.documents[key].length; i++) {
-            this.pieces.push({
-              id: i + 1,
-              libelle: this.documents[key][i],
-              parent: 0,
-              file: null,
-              fileName: null
-            })
+            if (this.documents[key][i] !=='PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
+              this.pieces.push({
+                id: i + 1,
+                libelle: this.documents[key][i],
+                parent: 0,
+                files: []
+              })
+            }
           }
         });
 
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
+        this._changeDetectorRef.detectChanges();
       });
 
   }
@@ -159,70 +194,165 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
    * Open tableau amortissement
    */
   openTableauAmortissement(dossierId: number): void {
-    this.drawerOpened = true;
+    this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe((result) => {
 
-    this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe();
+      if (result) {
+        // console.log("+-+-+- result tableau", result);
+        this.tableauAmortissementComponent.setTableauAmortissementData(result);
 
-    // Mark for check
-    this._changeDetectorRef.markForCheck();
+        setTimeout(() => {
+          this.drawerOpened = true;
+        }, 200);
+      }
+
+      // Mark for check
+      this._changeDetectorRef.markForCheck();
+
+    });
   }
 
   /**
    * Upload file to given piece
    *
    * @param piece
-   * @param fileList
+   * @param event
    */
-  uploadPiece(piece: Piece, fileList: FileList): void {
+  uploadPiece(pieceIndex: number, event: any): void {
 
+    var fileList: FileList = event.target.files;
     // Return if canceled
     if (!fileList.length) {
       return;
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png'];
+    const allowedTypesImg = ['image/jpeg', 'image/png'];
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'text/plain', 'application/pdf',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     const file = fileList[0];
 
     // Return if the file is not allowed
     if (!allowedTypes.includes(file.type)) {
+
+      // Open the dialog
+      this._fuseConfirmationService.open(
+        {
+          "title": "Joindre fichier",
+          "message": "Le type de fichier est incorrect",
+          "icon": {
+            "show": true,
+            "name": "heroicons_outline:information-circle",
+            "color": "warn"
+          },
+          "actions": {
+            "confirm": {
+              "show": true,
+              "label": "Ok",
+              "color": "warn"
+            },
+            "cancel": {
+              "show": false,
+              "label": "Cancel"
+            }
+          },
+          "dismissible": false
+        }
+      );
+
       return;
     }
 
-    this._readAsDataURL(file).then((data) => {
+    // Return if the file is big
+    if (file.size > 5242880) {
 
-      // Update the file
-      piece.fileName = file.name;
-      piece.file = data;
+      // Open the dialog
+      this._fuseConfirmationService.open(
+        {
+          "title": "Joindre fichier",
+          "message": "Le fichier est volumineux",
+          "icon": {
+            "show": true,
+            "name": "heroicons_outline:information-circle",
+            "color": "warn"
+          },
+          "actions": {
+            "confirm": {
+              "show": true,
+              "label": "Ok",
+              "color": "warn"
+            },
+            "cancel": {
+              "show": false,
+              "label": "Cancel"
+            }
+          },
+          "dismissible": false
+        }
+      );
 
-      // Update the piece
-      this.pieceChanged.next(piece);
-    });
+      return;
+    }
 
-    setTimeout(() => {
-      this.updatePiecesRempli();
-    }, 300);
+    if (allowedTypesImg.includes(file.type) && file.size > 1048576) {
+      console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
+
+      this._compressImageService.compress(file)
+        .pipe(take(1))
+        .subscribe((compressedImageFile: File) => {
+          console.log(`Image size after compressed: ${compressedImageFile.size} bytes.`);
+
+          // upload the compressed image
+          this.addFileToPiece(compressedImageFile, pieceIndex, true);
+
+        });
+
+    } else {
+      // upload the file
+      this.addFileToPiece(file, pieceIndex, false);
+    }
 
   }
 
-  deletePiece(piece: Piece, index: number): void {
-    piece.fileName = null;
-    piece.file = null;
+  addFileToPiece(file: File, pieceIndex: number, estImage: boolean) {
 
-    // Update the piece
-    this.pieceChanged.next(piece);
+    this._readAsDataURL(file).then((data) => {
 
-    const id = 'file-input' + index;
-    this.inputFiles.map(e => {
-      if (e.nativeElement.id === id) {
-        e.nativeElement.value = null;
-        e.nativeElement.files = null;
-      }
+      // Add the file to piece
+      this.pieces[pieceIndex].files.push({
+        fileIndex: this.pieces[pieceIndex].files.length,
+        fileName: file.name,
+        fileExtension: file.name,
+        isImage: estImage,
+        fileContent: data,
+        size: file.size
+      });
+
+      this.updatePiecesAttachees();
+
+      // console.log("+-+-+- file", file);
+      // console.log("+-+-+- this.pieces[pieceIndex].files", this.pieces[pieceIndex].files);
+
+      this._changeDetectorRef.detectChanges();
     });
 
-    setTimeout(() => {
-      this.updatePiecesRempli();
-    }, 300);
+  }
 
+  deleteFileFromPiece(fichier: Fichier, pieceIndex: number): void {
+    this.pieces[pieceIndex].files = this.pieces[pieceIndex].files.filter((x) => x != fichier);
+
+    const id = 'fileInput_' + pieceIndex;
+    for (const element of this.inputFiles) {
+      if (element.nativeElement.id === id) {
+        element.nativeElement.value = null;
+        element.nativeElement.files = null;
+        break;
+      }
+    }
+
+    this.updatePiecesAttachees();
+
+    this._changeDetectorRef.detectChanges();
   }
 
   /**
@@ -292,13 +422,18 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   trackByFn(index: number, item: any): any {
     return item.id || index;
   }
-  
+
   // -----------------------------------------------------------------------------------------------------
   // @ Private methods
   // -----------------------------------------------------------------------------------------------------
 
-  private updatePiecesRempli() {
-    this.estRempli = this.pieces.some(element => element.fileName !== undefined && element.fileName !== null && element.fileName !== '');
+  private updatePiecesAttachees() {
+    for (const piece of this.pieces) {
+      this.existePieceAttachee = piece.files.some(fichier => fichier.fileName !== undefined && fichier.fileName !== null && fichier.fileName !== '');
+      if (this.existePieceAttachee) {
+        break;
+      }
+    }
   }
 
   /**

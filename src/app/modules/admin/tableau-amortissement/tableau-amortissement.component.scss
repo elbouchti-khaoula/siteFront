@@ -1,16 +1,18 @@
 .amortissement-grid {
     
     // screen xs
-    grid-template-columns: 48px auto 112px;
+    // grid-template-columns: 48px auto 112px;
 
     // screen sm
-    @media (min-width: 600px) {
-        grid-template-columns: 48px auto 112px 72px;
-    }
+    // @media (min-width: 600px) {
+    //     grid-template-columns: 48px auto 112px 112px;
+    // }
+
+    grid-template-columns: 120px 160px 160px 160px 160px;
 
     // screen md
     @media (min-width: 960px) {
-        grid-template-columns: 120px auto 120px 120px 120px;
+        grid-template-columns: 120px 160px auto 160px 160px;
     }
 
     // screen lg
@@ -24,5 +26,8 @@
 @media (max-width: 599px) {
     .mat-paginator .mat-paginator-container {
         padding: 8px 14px !important;
+    }
+    .mat-paginator .mat-paginator-container .mat-paginator-page-size {
+        margin: 0px 16px 8px 16px;
     }
 }

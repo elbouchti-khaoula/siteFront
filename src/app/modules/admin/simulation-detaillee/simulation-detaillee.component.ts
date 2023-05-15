@@ -13,6 +13,8 @@ import { resize } from 'app/modules/common/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
 import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.component';
 import { FuseUtilsService } from '@fuse/services/utils';
+import { MatSelectChange } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -113,6 +115,84 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomPromoteur: [this.simulationFormDefaults.nomPromoteur]
       })
     });
+
+    // this.simulationResultat = {
+    //   "nom": "TEST",
+    //   "prenom": "TEST",
+    //   "dateNaissance": "02/01/1990",
+    //   "nationalite": "MAROCAINE",
+    //   "residantMaroc": "Oui",
+    //   "salaire": "300 000.00",
+    //   "autresRevenus": 0,
+    //   "salaireEtAutresRevenus": 300000,
+    //   "segment": "NV",
+    //   "creditsEnCours": "0.00",
+    //   "nomEmployeur": "WAFA immobilier",
+    //   "email": "a.kadmiri@outlook.fr",
+    //   "telephone": "0612345678",
+    //   "proprietaireMaroc": false,
+    //   "capital": 0,
+    //   "objetFinancement": "ACQUISITION",
+    //   "nomPromoteur": "KETTANI IMMO",
+    //   "typeTaux": "Valeur Fixe",
+    //   "newSimulation": false,
+    //   "id": 675141,
+    //   "montant": "2 500 000.00",
+    //   "montantProposition": "2 000 000.00",
+    //   "duree": 240,
+    //   "statut": "NPRO",
+    //   "tauxNominalPondere": 2.409015,
+    //   "tauxEffectifGlobalPondere": 3.0459165,
+    //   "tauxAssurancePondere": 0.3959999999999999,
+    //   "tauxInteretsClientTtc": 2.6499165,
+    //   "dossiers": [
+    //       {
+    //           "id": 805628,
+    //           "montant": "1 300 000.00",
+    //           "duree": 240,
+    //           "echeance": 7470.13,
+    //           "tauxNominal": 2.7272,
+    //           "tauxEffectifGlobal": "3.396",
+    //           "tauxParticipation": "0.000",
+    //           "fraisDossier": "GRATUIT",
+    //           "assurances": "57 469.46",
+    //           "totalInterets": "435 361.74",
+    //           "coutTotal": "1 792 831.20",
+    //           "mensualite": "7 470.13",
+    //           "expertiseImmobiliere": "GRATUIT",
+    //           "estExpImmoNum": false,
+    //           "estFraisDossNum": false,
+    //           "nbreAnnee": 20,
+    //           "nbreMois": 0
+    //       },
+    //       {
+    //           "id": 805627,
+    //           "montant": "700 000.00",
+    //           "duree": 240,
+    //           "echeance": 3673.93,
+    //           "tauxNominal": 1.8181,
+    //           "tauxEffectifGlobal": "2.396",
+    //           "tauxParticipation": "0.000",
+    //           "fraisDossier": "GRATUIT",
+    //           "assurances": "30 038.67",
+    //           "totalInterets": "151 704.53",
+    //           "coutTotal": "881 743.20",
+    //           "mensualite": "3 673.93",
+    //           "expertiseImmobiliere": "GRATUIT",
+    //           "estExpImmoNum": false,
+    //           "estFraisDossNum": false,
+    //           "nbreAnnee": 20,
+    //           "nbreMois": 0
+    //       }
+    //   ],
+    //   "droitsEnregistrement": "100 000.00",
+    //   "conservationFonciere": "37 500.00",
+    //   "honorairesNotaire": "25 000.00",
+    //   "fraisDivers": "1 500.00",
+    //   "totalFrais": "164 000.00",
+    //   "mensualite": "11 144.06",
+    //   "tauxEffectifGlobal": "3.046"
+    // }
 
   }
 
@@ -235,6 +315,18 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
+  statutProjetLabel: string;
+
+  selectedStatutProjet(event: MatSelectChange) {
+    // const selectedData = {
+    //   text: (event.source.selected as MatOption).viewValue,
+    //   value: event.source.value
+    // };
+
+    this.statutProjetLabel = (event.source.selected as MatOption).viewValue;
+    // console.log("+-+-+- this.statutProjetLabel", this.statutProjetLabel);
+  }
+
   /**
    * Check if the task is overdue or not
    */
@@ -309,20 +401,20 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           telephone: this.simulationStepperForm.get('step1').get('telephone').value,
           email: this.simulationStepperForm.get('step1').get('email').value,
           dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-          nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
-          residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+          nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
+          residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
           // ma situation
-          categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+          categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.libelle,
           nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
           anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
-          salaire: this.simulationStepperForm.get('step2').get('salaire').value,
-          autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
-          creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+          salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value, 2, '.', ' '),
+          autresRevenus: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
+          creditsEnCours: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('creditsEnCours').value, 2, '.', ' '),
           // Mon projet
-          objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
+          objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
-          statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
-          typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+          statutProjet: this.statutProjetLabel,
+          typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
           newSimulation: true,
           ...this._fuseUtilsService.convertSimulationToString(simulation)
         };
@@ -332,9 +424,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         }
         this.isVisible = true;
 
-        setTimeout(() => {
-          this.detailsSimulation.getSimulation(this.simulationResultat);
-        }, 200);
+        // setTimeout(() => {
+        //   this.detailsSimulation.setSimulation(this.simulationResultat);
+        // }, 200);
 
         if (this.isScreenSmall) {
           setTimeout(() => {

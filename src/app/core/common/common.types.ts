@@ -2,6 +2,14 @@ export interface Piece {
 	id              : number;
 	libelle         : string;
 	parent			: number;
-	file			: string | null;
+	files			: Fichier[];
+}
+
+export interface Fichier {
+	fileIndex		: number;
 	fileName		: string | null;
+	fileExtension	: string | null;
+	fileContent		: string | null;
+	isImage			: boolean;
+	size			: number;
 }

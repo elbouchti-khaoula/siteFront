@@ -144,6 +144,7 @@ export class FuseUtilsService
       ...simulation,
       dossiers: dossiersStr,
       mensualite: this.numberFormat(echeanceGlobal, 2, '.', ' '),
+      montant: this.numberFormat(simulation.montant, 2, '.', ' '),
       montantProposition: this.numberFormat(simulation.montantProposition, 2, '.', ' '),
       tauxEffectifGlobal: this.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
       totalFrais: this.numberFormat(simulation.totalFrais, 2, '.', ' '),

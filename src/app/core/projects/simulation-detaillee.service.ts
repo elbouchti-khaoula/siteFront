@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, switchMap, tap } from 'rxjs';
 import { CritereDetaillee, Project, SimulationDetaillee } from './simulation-detaillee.types';
 import { ProjectAuthService } from 'app/core/projects-auth/projects-auth.service';
+import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
+import { FuseUtilsService } from '@fuse/services/utils';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,7 @@ export class SimulationDetailleeService {
     private _simulation: BehaviorSubject<SimulationDetaillee | null> = new BehaviorSubject(null);
     private _critereSimulation: BehaviorSubject<CritereDetaillee | null> = new BehaviorSubject(null);
     private _documents: BehaviorSubject<any | null> = new BehaviorSubject(null);
+    private _simulationResultat: BehaviorSubject<any | null> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -21,6 +24,7 @@ export class SimulationDetailleeService {
     constructor(
         private _httpClient: HttpClient,
         private _projectAuthService: ProjectAuthService,
+        private _fuseUtilsService: FuseUtilsService
     )
     {
     }
@@ -30,7 +34,7 @@ export class SimulationDetailleeService {
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Getter for simulation
+     * Getter for simulations
      */
     get simulations$(): Observable<SimulationDetaillee[]> {
         return this._simulations.asObservable();
@@ -48,6 +52,13 @@ export class SimulationDetailleeService {
      */
     get critereSimulation$(): Observable<CritereDetaillee> {
         return this._critereSimulation.asObservable();
+    }
+
+    /**
+     * Getter for simulation resultat
+     */
+    get simulationResultat$(): Observable<any> {
+        return this._simulationResultat.asObservable();
     }
 
     /**
@@ -161,7 +172,7 @@ export class SimulationDetailleeService {
      *
      * @param projectId
      */
-    getInfoClient(projectId: number): Observable<CritereDetaillee> {
+    getInfoTiers(simulation: any): Observable<any> {
 
         return this._projectAuthService.getToken()
             .pipe(
@@ -174,12 +185,45 @@ export class SimulationDetailleeService {
                             'Authorization': `Bearer ${token}`
                         });
 
-                        return this._httpClient.get(`api/projects/${projectId}/infos-client`, { headers: headers })
+                        return this._httpClient.get(`api/projects/${simulation.id}/infos-client`, { headers: headers })
                             .pipe(
                                 map((response: CritereDetaillee[]) => {
 
-                                    this._critereSimulation.next(response[0]);
-                                    return response[0];
+                                    let nationalites: Nationalite[] = JSON.parse(localStorage.getItem('nationalites'));
+                                    let categories: CategorieSocioProfessionnelle[] = JSON.parse(localStorage.getItem('categoriesSocioProfessionnelle'));
+                                    let objetsFinancement: ObjetFinancement[] = JSON.parse(localStorage.getItem('objetsFinancement'));
+
+                                    var simulationResult = {
+                                        ...response[0].tiers,
+                                        // Mon profil
+                                        // nom: response[0].tiers.nom,
+                                        // prenom: response[0].tiers.prenom,
+                                        // telephone: response[0].tiers.telephone,
+                                        // email: response[0].tiers.email,
+                                        // dateNaissance: response[0].tiers.dateNaissance,
+                                        nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
+                                        residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
+                                        // ma situation
+                                        categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
+                                        // nomEmployeur: response[0].tiers.nomEmployeur,
+                                        // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
+                                        salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
+                                        // autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+                                        creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
+                                        // Mon projet
+                                        objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
+                                        nomPromoteur: response[0].nomPromoteur,
+                                        // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+                                        typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
+                                        newSimulation: false,
+                                        ...simulation
+                                    };
+
+                                    this._simulationResultat.next(simulationResult);
+                                    return simulationResult;
+
+                                    // this._critereSimulation.next(response[0]);
+                                    // return response[0];
                                 })
                             );
                     }
@@ -207,7 +251,7 @@ export class SimulationDetailleeService {
 
                         const httpOptions = {
                             headers: headers,
-                            params: { email: emailP}
+                            params: { email: emailP }
                         };
 
                         return this._httpClient.get('api/projects/search', httpOptions)
