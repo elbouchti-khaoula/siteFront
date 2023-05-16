@@ -65,9 +65,15 @@ export class AppComponent
         );
 
         this.matIconRegistry.addSvgIcon(
+            "arrow-right",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/angle-circle-arrow-right-icon.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
             "home-repair",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/HOME-REPAIR.svg")
         );
+
+
 
         
     }

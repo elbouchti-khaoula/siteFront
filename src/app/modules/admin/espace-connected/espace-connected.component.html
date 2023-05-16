@@ -1,157 +1,156 @@
+<!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]> -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis]>
 
-    <!-- <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]> -->
-    <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRightBis] cdkScrollable>
+    <div class="fixed flex items-center justify-center right-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
+        <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/wimo.jpg">
+    </div>
 
-        <div class="fixed flex items-center justify-center right-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
-            <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/wimo.jpg">
+    <div class="fixed flex items-center justify-center lefth-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
+        <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/logo/logo-awb.jpg">
+    </div>
+
+
+
+    <!-- Header -->
+    <header
+        class="relative w-full flex flex-col items-center justify-center md:justify-end min-h-[45vh] sm:min-h-[92vh] landing-bg-header md:bg-fixed">
+
+        <div class="relative w-full max-w-6xl flex flex-row justify-center  md:items-end md:justify-between">
+            <!-- Titre -->
+            <div class="md:w-1/2 text-white max-md:mt-12 md:mb-10">
+                <div class="hidden md:flex text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
+                    Bienvenue Mr.OUADDI MOHAMED AMINE
+                </div>
+
+
+            </div>
+
+            <!-- Formulaire recherche md -->
+            <div class="hidden md:block w-1/2 max-w-md">
+                <projets-filter [parentComponent]="'landing'"></projets-filter>
+            </div>
         </div>
-""
-        <div class="fixed flex items-center justify-center lefth-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
-           
-             <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/logo/logo-awb.jpg">
-        </div>
 
-        <!-- <div class="fixed flex items-center justify-center left-0 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-r-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
-            <a href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne" target="blank">
-                <img class="rounded-r-lg opacity-60 hover:opacity-100" src="assets/images/open-awb.jpg">
+        <!-- Parcours md -->
+        <div class="hidden md:flex flex-row justify-center space-x-10 text-white mt-20 mb-14">
+            <a class="w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['/projets-search']">
+                <div class="h-20">
+                    <mat-icon class="icon-size-20 text-white" svgIcon="property">
+                    </mat-icon>
+                </div>
+                <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
+                    <span>Je trouve</span>
+                    <span>mon bien</span>
+                </div>
             </a>
-        </div> -->
-
-        <!-- Header -->
-        <header class="relative w-full flex flex-col items-center justify-center md:justify-end min-h-[45vh] sm:min-h-[92vh] landing-bg-header md:bg-fixed">
-
-            <div class="relative w-full max-w-6xl flex flex-row justify-center  md:items-end md:justify-between">
-                <!-- Titre -->
-                <div class="md:w-1/2 text-white max-md:mt-12 md:mb-10">
-                    <div class="text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
-                        Bienvenue Mr.OUADDI MOHAMED AMINE
-                    </div>
-
-                  
+            <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['./']" (click)="scrollToSimulation()">
+                <div class="h-20">
+                    <mat-icon class="icon-size-20 text-white" svgIcon="calculation">
+                    </mat-icon>
                 </div>
-
-                <!-- Formulaire recherche md -->
-                <div class="hidden md:block w-1/2 max-w-md">
-                    <projets-filter [parentComponent]="'landing'"></projets-filter>
+                <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
+                    <span>Je simule </span>
+                    <span>mon crédit</span>
                 </div>
-            </div>
+            </a>
 
-            <!-- Parcours md -->
-            <div class="hidden md:flex flex-row justify-center space-x-10 text-white mt-20 mb-14">
-                <a class="w-40 py-2 flex flex-col items-center rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+            <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['./']">
+                <div class="h-20">
+                    <mat-icon class="icon-size-20 text-white" svgIcon="survey">
+                    </mat-icon>
+                </div>
+                <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
+                    <span>Je demande</span>
+                    <span>mon crédit</span>
+                </div>
+            </a>
+            <a class="h-fit w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+                [routerLink]="['./']">
+                <div class="h-20">
+                    <mat-icon class="icon-size-20 text-white" svgIcon="timeline">
+                    </mat-icon>
+                </div>
+                <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
+                    <span>Je suis</span>
+                    <span>mon crédit</span>
+                </div>
+            </a>
+        </div>
+
+    </header>
+
+    <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
+    <div class="md:hidden relative w-full mx-auto px-6 py-5 -mt-40 sm:max-w-md">
+
+        <projets-filter [parentComponent]="'landing'"></projets-filter>
+
+        <div class="grid grid-cols-4 gap-2 mt-7 sm:py-3">
+            <div class="carre flex flex-col items-center cursor-pointer">
+                <span
+                    class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
                     [routerLink]="['/projets-search']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="property">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je trouve</span>
-                        <span>mon bien</span>
-                    </div>
-                </a>
-                <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']"
-                    (click)="scrollToSimulation()">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="calculation">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je simule </span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
-            
-                <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="survey">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je demande</span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
-                <a class="h-fit w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
-                    [routerLink]="['./']">
-                    <div class="h-20">
-                        <mat-icon class="icon-size-20 text-white" svgIcon="timeline">
-                        </mat-icon>
-                    </div>
-                    <div class="flex flex-col items-center text-sm text-base font-semibold my-2">
-                        <span>Je suis</span>
-                        <span>mon crédit</span>
-                    </div>
-                </a>
+                    <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
+                    </mat-icon>
+                </span>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je trouve</span>
+                    <span>mon bien</span>
+                </div>
             </div>
-
-        </header>
-
-        <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
-        <div class="md:hidden relative w-full mx-auto px-6 py-5 -mt-20 sm:max-w-md">
-            
-            <projets-filter [parentComponent]="'landing'"></projets-filter>
-
-            <div class="grid grid-cols-4 gap-2 mt-7 sm:py-3">
-                <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
-                        [routerLink]="['/projets-search']">
-                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
-                        </mat-icon>
-                    </span>
-                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
-                        <span>Je trouve</span>
-                        <span>mon bien</span>
-                    </div>
+            <div class="carre flex flex-col items-center cursor-pointer">
+                <span
+                    class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    [routerLink]="['./']" (click)="scrollToSimulation()">
+                    <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
+                    </mat-icon>
+                </span>
+                <div
+                    class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2 focus:text-primary">
+                    <span>Je simule </span>
+                    <span>mon crédit</span>
                 </div>
-                <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
-                        [routerLink]="['./']"
-                        (click)="scrollToSimulation()">
-                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
-                        </mat-icon>
-                    </span>
-                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2 focus:text-primary">
-                        <span>Je simule </span>
-                        <span>mon crédit</span>
-                    </div>
+            </div>
+            <div class="carre flex flex-col items-center">
+                <span
+                    class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                    [routerLink]="['./']">
+                    <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
+                    </mat-icon>
+                </span>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je demande</span>
+                    <span>mon crédit</span>
                 </div>
-                <div class="carre flex flex-col items-center">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
-                        [routerLink]="['./']">
-                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
-                        </mat-icon>
-                    </span>
-                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
-                        <span>Je demande</span>
-                        <span>mon crédit</span>
-                    </div>
-                </div>
-                <div class="carre flex flex-col items-center cursor-pointer">
-                    <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
-                        [routerLink]="['./']">
-                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
-                        </mat-icon>
-                    </span>
-                    <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
-                        <span>Je suis</span>
-                        <span>mon crédit</span>
-                    </div>
+            </div>
+            <div class="carre flex flex-col items-center cursor-pointer">
+                <span
+                    class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                    [routerLink]="['./']">
+                    <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
+                    </mat-icon>
+                </span>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je suis</span>
+                    <span>mon crédit</span>
                 </div>
             </div>
         </div>
+    </div>
 
-         <!-- reubrique MD -->
+    <!-- reubrique MD -->
     <div class="hidden md:flex flex-col items-center w-full px-6 bg-card md:bg-primary-500 md:text-white">
         <span class="text-center text-xl md:text-xl uppercase font-bold max-md:text-primary pt-10 pb-8">
             Je réalise mon projet immobilier <br class="sm:hidden" /> avec un parcours simplifié 100% digital :
         </span>
 
-        
+
         <div class="grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10">
-            <button class="btn flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
+            <button
+                class="btn flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105">
+                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary-2">
                     <mat-icon class="icon-size-10 text-white" [svgIcon]="'calculation'">
                     </mat-icon>
                 </span>
@@ -166,7 +165,7 @@
 
             <button
                 class=" btn flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
+                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary-2">
                     <mat-icon class="icon-size-10 text-white" [svgIcon]="'property'">
                     </mat-icon>
                 </span>
@@ -181,7 +180,7 @@
 
             <button
                 class="btn flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105">
-                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary">
+                <span class="hidden md:flex items-center justify-center w-14 h-14 rounded bg-primary-2">
                     <mat-icon class="icon-size-10 text-white" [svgIcon]="'survey'">
                     </mat-icon>
                 </span>
@@ -192,66 +191,69 @@
                 </span>
             </button>
 
-          
+
 
         </div>
     </div>
 
-     <!-- rubrique xs,sm -->
-     <div class="md:hidden flex flex-col items-center w-full px-6 bg-card md:bg-white-500 md:text-primary"> 
-        <div class=" grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
-   
-        
-   
-           <div class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-               
-               
-               <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
-               </mat-icon>
-   
-               
-   
-               <a href="#" class=" md:hidden span-clicable">Mes Simulations réalisés ( 0 )</a>
-   
-           </div>
-   
-         
-   
-           <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-   
-           <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-               
-               <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
-               </mat-icon>
-   
-               
-   
-               <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
-           </div>
-          
-   
-           <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-           
-           <div class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-               
-               
-               <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
-               </mat-icon>
-   
-           
-   
-               <a href="#" class=" md:hidden span-clicable">Mes Demandes effectués ( 0 )</a>
-   
-           </div>
-   
-         
-   
-   
-   
-   
-       </div>
-       </div>
+    <!-- rubrique xs,sm -->
+    <div class="md:hidden flex flex-col items-center w-full px-6 bg-card md:bg-white-500 md:text-primary">
+        <div
+            class=" grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
 
 
+
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+
+
+                <a href="#" class=" md:hidden span-clicable">Mes Simulations réalisés ( 0 )</a>
+
+            </div>
+
+
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+            <div
+                class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
+                </mat-icon>
+
+
+
+                <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
+            </div>
+
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+
+
+                <a href="#" class=" md:hidden span-clicable">Mes Demandes effectués ( 0 )</a>
+
+            </div>
+
+
+
+
+
+
+        </div>
     </div>
 
+
+</div>
