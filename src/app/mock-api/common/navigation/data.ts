@@ -14,7 +14,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
+        icon : 'heroicons_outline:user-circle',
         link : '/espace-connecte',
         children: [
             {
@@ -133,7 +133,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
+        icon : 'heroicons_outline:user-circle',
         link : '/espace-connecte',
         children: [
             {
@@ -253,7 +253,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
+        icon : 'heroicons_outline:user-circle',
         link : '/espace-connecte',
         children: [
             {
@@ -370,7 +370,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         id   : 'espace-connecte',
         title: 'Espace connecté',
         type : 'collapsable',
-        icon : 'heroicons_outline:user-group',
+        icon : 'heroicons_outline:user-circle',
         link : '/espace-connecte',
         children: [
             {
