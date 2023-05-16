@@ -45,7 +45,7 @@ export class LandingComponent implements OnInit {
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
     scrollToSimulation() {
-        this.simulationId.nativeElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        this.simulationId.nativeElement.scrollIntoView({ behavior: "smooth" });
     }
 
 }
