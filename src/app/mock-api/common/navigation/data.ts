@@ -73,6 +73,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
 
+    /*
     {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
@@ -80,6 +81,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
+
+    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -189,7 +192,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
+/*
     {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
@@ -197,6 +200,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
+    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -306,7 +310,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
+/*
     {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
@@ -314,6 +318,8 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
+
+    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -422,7 +428,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
+/*
     {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
@@ -430,6 +436,8 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
+
+    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
