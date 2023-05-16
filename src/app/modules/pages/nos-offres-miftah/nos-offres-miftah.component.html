@@ -52,7 +52,7 @@
 
           <!-- menu -->
           <div class="flex-shrink-0 w-64 overflow-y-auto">
-            <ul class="flex flex-col space-y-2">
+            <ul class="flex flex-col space-y-2 max-h-96 overflow-y-scroll">
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
                   <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
@@ -84,64 +84,200 @@
               </li>
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
-                <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
-                  <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                <div class="div-3 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick3($event)">
+                  <div class="div-3 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                     <div class="flex items-center justify-center w-full h-full">
                       <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
                     </div>
                   </div>
           
-                  <div class="div-1 flex flex-col items-start ml-5">
-                    <span class="text-lg">QUI SOMMES</span>
-                    <span class="text-lg">NOUS</span>
+                  <div class="div-3 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">TERRAIN</span>
                   </div>
                 </div>
               </li>
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
-                <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
-                  <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                <div class="div-4 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick4($event)">
+                  <div class="div-4 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                     <div class="flex items-center justify-center w-full h-full">
                       <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
                     </div>
                   </div>
           
-                  <div class="div-1 flex flex-col items-start ml-5">
-                    <span class="text-lg">QUI SOMMES</span>
-                    <span class="text-lg">NOUS</span>
+                  <div class="div-4 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">Terrain + </span>
+                    <span class="text-lg">Construction</span>
                   </div>
                 </div>
               </li>
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
-                <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
-                  <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                <div class="div-5 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick5($event)">
+                  <div class="div-5 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                     <div class="flex items-center justify-center w-full h-full">
                       <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
                     </div>
                   </div>
           
-                  <div class="div-1 flex flex-col items-start ml-5">
-                    <span class="text-lg">QUI SOMMES</span>
-                    <span class="text-lg">NOUS</span>
+                  <div class="div-5 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">Professionnel</span>
                   </div>
                 </div>
               </li>
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
-                <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
-                  <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                <div class="div-6 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick6($event)">
+                  <div class="div-6 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                     <div class="flex items-center justify-center w-full h-full">
                       <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
                     </div>
                   </div>
           
-                  <div class="div-1 flex flex-col items-start ml-5">
-                    <span class="text-lg">QUI SOMMES</span>
-                    <span class="text-lg">NOUS</span>
+                  <div class="div-6 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">ASSAAD </span>
+                    <span class="text-lg">FOGALOGE</span>
                   </div>
                 </div>
               </li>
+
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-7 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick7($event)">
+                  <div class="div-7 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-7 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">Bila  </span>
+                    <span class="text-lg">Houdoud </span>
+                  </div>
+                </div>
+              </li>
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-8 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick8($event)">
+                  <div class="div-8 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-8 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">ÉTRANGERS</span>
+                    <span class="text-lg">NON-RÉSIDENTS</span>
+                  </div>
+                </div>
+              </li>
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-9 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick9($event)">
+                  <div class="div-9 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-9 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">AL HANA</span>
+                    <span class="text-lg">FOGARIM</span>
+                  </div>
+                </div>
+              </li>
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-10 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick10($event)">
+                  <div class="div-10 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-10 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">SANTÉ  </span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-11 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick11($event)">
+                  <div class="div-11 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-11 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">Relais</span>
+                  </div>
+                </div>
+              </li>
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-12 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick12($event)">
+                  <div class="div-12 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-12 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">CRÉDIT</span>
+                    <span class="text-lg">INFINE</span>
+                  </div>
+                </div>
+              </li>
+
+              
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-13 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick13($event)">
+                  <div class="div-13 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-13 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">ADL</span>
+                    <span class="text-lg">SAKANE</span>
+
+                  </div>
+                </div>
+              </li>
+
+              <li class="py-2 pl-4 pr-2 bg-gray-100">
+                <div class="div-14 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick14($event)">
+                  <div class="div-14 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="div-14 flex flex-col items-start ml-5">
+                    <span class="text-lg">MIFTAH</span>
+                    <span class="text-lg">Attaalim </span>
+                  </div>
+                </div>
+              </li>
+
             </ul>
           </div>
 
@@ -281,6 +417,412 @@
             </div>
 
          
+            <div *ngIf="showDiv3" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Une solution pour acquérir votre terrain dans la joie et la sérénité              
+              </div>
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Vous souhaitez acquérir un terrain afin de construire votre logement principal ou secondaire ? 
+                Miftah Terrain de Wafa Immobilier est la solution de financement adaptée à votre besoin. 
+
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Que vous soyez salariés, fonctionnaires, professionnels ou commerçants, avec Miftah Terrain vous pourrez bénéficier d’une offre flexible avec des modalités de remboursement avantageuses, 
+                qui tiennent compte de votre capacité financière et de vos objectifs personnels, pour que vos projets deviennent réalité. 
+
+              <p class="mt-5 " style="font-size: 20px;">
+                En choisissant Miftah Terrain, vous bénéficierez également de l'expertise et de l’accompagnement de notre équipe, 
+                tout au long de votre processus d'acquisition du terrain. 
+              </p>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Construction / Rénovation ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv4" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Obtenir son terrain et construire son logement n’a jamais été aussi simple !             
+              </div>
+
+              <div class="text-xl md:text-xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Miftah Terrain + Construction est notre solution !          
+              </div>
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Que vous soyez salarié, fonctionnaire, professionnel ou commerçant, avec Miftah Terrain + Construction vous pourrez financer conjointement l’acquisition de votre terrain et la construction
+                 de votre maison individuelle de type R+1 et R+2, ainsi que d'autres options de logements secondaires. 
+
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Nos conseillers se tiendront à vos côtés pour vous apporter soutien et conseil, 
+                afin de définir un plan de financement qui répondra à vos besoins spécifiques. 
+
+             
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Construction / Rénovation ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv5" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Une solution de financement à la hauteur de vos ambitions             
+              </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Vous êtes salarié, fonctionnaire, professionnel ou commerçant ? Et, vous cherchez à financer l'acquisition ou la construction de votre local professionnel ?  
+                Miftah Professionnel est la solution de financement adaptée à votre besoin et à la hauteur de vos ambitions
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Avec Miftah Professionnel de Wafa Immobilier, que vous cherchiez à acquérir un local professionnel 
+                existant ou à construire un nouveau bien, vous pourrez bénéficier d’un financement flexible, mais aussi d’un accompagnement personnalisé et d’excellence, afin que vous puissiez concrétiser votre projet de la meilleure manière qui soit. 
+
+
+
+             
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Construction / Rénovation ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv6" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Financez l’acquisition, la construction et la rénovation de votre logement en toute tranquillité             
+              </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Miftah Assaad est une solution de financement, pensée et conçue pour offrir des  avantages aux fonctionnaires, aux employés du secteur privé affiliés à 
+                la CNSS et aux personnes exerçant pour leur propre compte (Professionnels).
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Miftah Assaad entre, ainsi, dans le cadre de la convention signée par Attijariwafa Bank et la CCG représentant le fond de 
+                garantie "Damane Assakane", pour que vous puissiez acquérir ou construire votre logement en toute sérénité.
+              </p>
+
+                <p class="mt-5 " style="font-size: 20px;">
+                  Pour toujours plus de satisfaction, nos équipes mettent à votre disposition leur expertise en matière de financement immobilier pour toujours mieux vous accompagner, tout au long de votre projet. 
+
+
+                </p>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Construction / Rénovation ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv7" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Une solution pour concrétiser les projets immobilier des Marocains du Monde              </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Si vous êtes un Marocain résidant à l'étranger et que vous cherchez à financer l'achat d’un logement ou d’un terrain, 
+                et/ou la construction ou la rénovation de votre bien (maximum R+3), Wafa Immobilier a la solution qu'il vous faut : Miftah Bila Houdoud. 
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Quel que soit votre statut professionnel - salarié, commerçant, professionnel, retraité ou même rentier -, avec Miftah Bila Houdoud vous avez désormais la possibilité de réaliser 
+                votre projet immobilier, en toute simplicité. 
+              </p>
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Construction / Rénovation ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv8" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Une solution pour acquérir votre logement au Maroc en toute sérénité
+              </div>
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Wafa Immobilier vous propose l'offre Miftah Étrangers Non-Résidents pour vous aider à financer l'achat de votre bien immobilier au Maroc, indépendamment de votre nationalité. 
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Cette solution de financement, adaptée aux salariés, commerçants et professionnels, a été créée tout spécialement pour vous permettre d'acquérir ou de construire votre propre résidence au Maroc.
+
+
+              </p>
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur MIFTAH ÉTRANGERS NON-RÉSIDENTS ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
             
 
           
@@ -297,11 +839,406 @@
 
 
           
-        </div>
+            </div>
 
-        
-      </div>
+            
+            <div *ngIf="showDiv9" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Tout le monde a la possibilité de concrétiser ses projets immobiliers             </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Obtenez un financement adapté pour acquérir votre propre logement grâce à Miftah Al Hana. 
+
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Ce crédit logement s’inscrit dans le cadre d'une convention signée entre Attijariwafa Bank et la CCG représentant le fonds de Garantie des prêts au 
+                logement en faveur des populations à revenus modestes et/ou irréguliers, appelé "FOGARIM".  
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Avec Miftah Al Hana, profitez d’avantages exclusifs et d’un accompagnement personnalisé pour trouver et 
+                financer votre futur logement, à proximité de votre lieu de travail, pour votre épanouissement et celui de votre famille.  
+              </p>
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur MIFTAH AL HANA (FOGARIM) ?
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv10" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Professionnels de la Santé, financez votre projet immobilier en toute simplicité
+              </div>
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Vous travaillez dans le secteur de la santé et êtes adhérent à la Fondation Hassan II 
+                pour la Promotion des Œuvres Sociales du Personnel du Secteur Public de la Santé ? 
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Miftah Santé de Wafa Immobilier est la solution conçue pour vous aider à financer l'acquisition, la construction, l'aménagement ou l'extension de votre logement.  
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Spécialement conçue pour les adhérents de la Hassan II qui n'ont pas de logement individuel à usage d'habitation, Miftah Santé vous permet de bénéficier de plusieurs options de financement qui incluent l'acquisition de terrains nus en zone urbaine pour construire un bien immobilier, l'acquisition de biens immobiliers à usage d'habitation, la construction de logements individuels, l'aménagement ou l'extension de logements existants et 
+                le rachat de prêts immobiliers contractés auprès d'autres banques si cela est bénéfique pour l'emprunteur. 
+              </p>
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur MIFTAH SANTÉ 
+              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+            <div *ngIf="showDiv11" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Financez votre prochain logement en toute sérénité, c’est possible !            </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Avec Miftah Relais de Wafa Immobilier, bénéficiez d’une solution de financement qui vous permettra d’acquérir ou de construire 
+                votre nouveau logement, sans avoir à attendre la vente effective de votre première propriété. 
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Une solution ouverte aux salariés, professionnels et commerçants pour leur simplifier la vie.  
+              </p>
+
+              
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Relais ?              </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
       
+            <div *ngIf="showDiv12" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Concrétisez le financement de votre habitation principale  en toute simplicité, en se basant sur votre épargne retraite.            </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Miftah Crédit Infine est une solution de financement sur mesure conçue qui saura répondre à vos besoins et à vos attentes, 
+                que vous soyez salarié, fonctionnaire ou professionnel. 
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Vous pourrez ainsi financer votre projet immobilier en toute sérénité, avec la possibilité de rembourser le capital en une seule fois à la fin de votre crédit, (dernière échéance) grâce à la constitution d’une épargne 
+                retraite dont les cotisations se basent en fonction de la durée, du montant emprunté et du taux minimum garanti réglementaire.              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Dans le cadre de Miftah Crédit Infine, vos échéances se composeront des intérêts TTC, de la TVA et de la cotisation retraite.               </p>
+              
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Crédit Infine ?             </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv13" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Il est encore temps de concrétiser vos projets immobilier           </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Si vous êtes adhérent à la Fondation Mohammedia des Œuvres Sociales des Magistrats et Fonctionnaires de la justice, et que vous ne possédez pas encore de logement 
+                individuel à usage d'habitation, Miftah Adl Sakane a donc spécifiquement été conçue pour vous.
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Cette offre de financement couvre différents besoins, tels que : l'acquisition de terrain et la construction de votre logement principal, l'achat d'un logement principal dans une localité de votre choix, ou encore la construction
+                 d'un logement sur un terrain que vous aurez vous-même financé.              </p>
+
+            
+              
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah ADL SAKANE ?             </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div *ngIf="showDiv14" class="flex-shrink-0 w-200 ml-8">
+              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageSrc2" alt="Header Image">
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Personnel de l’enseignement concrétisez vos envies d’immobilier en toute sérénité           </div>
+
+            
+
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Wafa Immobilier a développé une solution de financement appelée Miftah Attaalim, basée sur l’offre Imtilak,  pour aider les adhérents de la Fondation Mohammed VI de Promotion des Oeuvres Sociales de 
+                l’Education - formation, à financer l'acquisition ou la construction de leur logement. 
+              </p>
+
+              <p class="mt-5 " style="font-size: 20px;">
+                Cette offre qui est exclusivement réservée aux enseignants qui ne possèdent pas de logement individuel à usage d'habitation, est le fruit d'une convention entre Attijariwafa 
+                Bank et la CCG représentant le Fonds de Garantie Logement Éducation - Formation (FOGALEF).               </p>
+
+                <p class="mt-5 " style="font-size: 20px;">
+                  Miftah Attaalim couvre, ainsi, l'acquisition du terrain et/ou la construction de votre logement principal, 
+                  ainsi que l'achat de votre logement principal dans la localité de votre choix.              </p>
+            
+              
+
+    
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Des avantages pensés pour vous satisfaire :
+              </div>
+
+
+              <ul class="mt-3 " style="font-size: 20px;">
+                <li>&bull; Taux fixes ou variables</li>
+                <li>&bull; Remboursement anticipé possible (partiel ou total)</li>
+                <li>&bull; Financement intégral selon âge et capacité de remboursement</li>
+                <li>&bull; Report de la 1ère échéance</li>
+                <li>&bull; Conseil et accompagnement sur mesure</li>
+                <li>&bull; Suivi et gestion en ligne</li>
+                <li>&bull; Accès espace abonné</li>
+              </ul>
+
+              <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
+                Vous êtes intéressé et souhaitez obtenir plus d'informations sur Miftah Attaalim ?            </div>
+
+              <div class="flex justify-center space-x-4 mt-10">
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Rendez-vous sur WIMO </span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je cherche mon logement</span>
+                </button>
+              
+                <button class="w-fit mt-3" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                  <span class="ml-2">Je souhaite être rappelé</span>
+                </button>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+            </div>
       
       
 
