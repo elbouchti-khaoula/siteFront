@@ -73,15 +73,16 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/nous-connaitre'
     },
 
-   /* {
+    /*
+    {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
-    },*/
+    },
 
-
+    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -199,9 +200,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-
     */
-
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -319,6 +318,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
+
     */
     {
         id   : 'nos-conventions',
