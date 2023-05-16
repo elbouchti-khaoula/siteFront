@@ -146,6 +146,15 @@ export class ReferentielService {
                     // Sort the villes by the description field by default
                     response.sort((a, b) => a.description.localeCompare(b.description));
 
+                    response.some((item, idx) =>
+                        item.description == 'CASABLANCA' &&
+                        response.unshift(
+                            // remove the found item, in-place (by index with splice), 
+                            // returns an array of a single item removed
+                            response.splice(idx, 1)[0]
+                        )
+                    )
+
                     localStorage.setItem('villes', JSON.stringify(response));
 
                     this._villes.next(response);
