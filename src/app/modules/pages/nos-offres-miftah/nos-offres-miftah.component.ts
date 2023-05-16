@@ -65,9 +65,7 @@ export class NosOffresMiftahComponent
             this.showDiv2 = true;
             this.showDiv = false;
             this.showDiv3 = false;
-            this.imageSrc = 'assets/images/pages/nous-connaitre/Icon 1.svg';
-            this.imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2_2.svg';
-            this.imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
+        
           
             
           } else {
