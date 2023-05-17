@@ -1,4 +1,4 @@
-<div class="flex flex-col flex-auto md:w-160 md:min-w-160 max-h-160 -m-6 overflow-y-auto">
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 max-h-160 -m-6">
 
     <!-- Header -->
     <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
@@ -47,7 +47,8 @@
 
             <!-- Agences list -->
             <ng-container *ngIf="agences && agencesCount > 0; else noAgences">
-                <div class="relative grid grid-cols-2 gap-5 overflow-y-auto p-5 bg-default border border border-gray-300 shadow-sm rounded-md">
+                <!-- overflow-y-auto -->
+                <div class="relative grid grid-cols-2 gap-5 p-5 bg-default border border border-gray-300 shadow-sm rounded-md">
                     <mat-radio-group
                         class="invisible absolute w-0 h-0 pointer-events-none"
                         [formControlName]="'agenceCode'"
@@ -80,7 +81,7 @@
 
             <!-- No agences template -->
             <ng-template #noAgences>
-                <div class="flex flex-col flex-auto items-center justify-center bg-second-50 border border border-gray-300 shadow-sm rounded-md dark:bg-transparent">
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md">
                     <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
                         Il n'y a pas d'agence!
