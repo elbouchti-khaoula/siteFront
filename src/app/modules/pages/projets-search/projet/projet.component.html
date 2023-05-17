@@ -96,7 +96,10 @@
                 <div class="py-0.5 px-3 rounded-full text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                 </div>
-                <button class="fuse-mat-button-large mt-5 uppercase" mat-flat-button [color]="'primary'">
+                <button class="fuse-mat-button-large mt-5 uppercase"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [routerLink]="'/espace-connecte/simulation-detaillee'">
                     Obtenir votre financement
                 </button>
             </div>
@@ -131,7 +134,10 @@
                     class="w-fit py-0.5 px-3 rounded-full md:text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                 </div>
-                <button class="fuse-mat-button-small mt-3 w-fit uppercase" mat-flat-button [color]="'primary'">
+                <button class="fuse-mat-button-small mt-3 w-fit uppercase"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [routerLink]="'/espace-connecte/simulation-detaillee'">
                     Obtenir votre financement
                 </button>
             </div>
