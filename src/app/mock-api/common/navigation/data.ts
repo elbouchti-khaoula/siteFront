@@ -66,15 +66,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-
-    /*
-    {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
         type : 'basic',
@@ -82,7 +73,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/nos-offres-miftah'
     },
 
-    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -90,10 +80,48 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
+
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'notre-politique-RSE',
+        title: 'Notre politique RSE',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+    
+
+    
+
+    {
+        id   : 'Nos-etats-financiers',
+        title: 'Nos états financiers',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    {
+        id   : 'nos-guides-conseils',
+        title: 'Nos Guides & Conseils',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    
+   
     
     {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
@@ -101,14 +129,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
     
     {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
         id   : 'reclamation',
-        title: 'Reclamation en ligne',
+        title: 'Réclamation ',
         type : 'basic',
         icon : 'heroicons_outline:information-circle',
         link : '/reclamation'
@@ -186,21 +214,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-/*
-    {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-    */
+
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -208,10 +228,48 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
+
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'notre-politique-RSE',
+        title: 'Notre politique RSE',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+    
+
+    
+
+    {
+        id   : 'Nos-etats-financiers',
+        title: 'Nos états financiers',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    {
+        id   : 'nos-guides-conseils',
+        title: 'Nos Guides & Conseils',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    
+   
     
     {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
@@ -219,14 +277,14 @@ export const compactNavigation: FuseNavigationItem[] = [
     
     {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
         id   : 'reclamation',
-        title: 'Reclamation en ligne',
+        title: 'Réclamation ',
         type : 'basic',
         icon : 'heroicons_outline:information-circle',
         link : '/reclamation'
@@ -304,14 +362,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-/*
-    {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
         type : 'basic',
@@ -319,7 +369,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/nos-offres-miftah'
     },
 
-    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -327,10 +376,48 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
+
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'notre-politique-RSE',
+        title: 'Notre politique RSE',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+    
+
+    
+
+    {
+        id   : 'Nos-etats-financiers',
+        title: 'Nos états financiers',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    {
+        id   : 'nos-guides-conseils',
+        title: 'Nos Guides & Conseils',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    
+   
     
     {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
@@ -338,14 +425,14 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     
     {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
         id   : 'reclamation',
-        title: 'Reclamation en ligne',
+        title: 'Réclamation ',
         type : 'basic',
         icon : 'heroicons_outline:information-circle',
         link : '/reclamation'
@@ -422,14 +509,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/simulation-personnalisee'
     },
     {
-        id   : 'nous-connaitre',
-        title: 'Nous connaitre',
-        type : 'basic',
-        icon : 'heroicons_outline:globe-alt',
-        link : '/nous-connaitre'
-    },
-/*
-    {
         id   : 'nos-offres-de-financement-miftah',
         title: 'Nos offres de financement « MIFTAH »   ',
         type : 'basic',
@@ -437,7 +516,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link : '/nos-offres-miftah'
     },
 
-    */
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -445,10 +523,46 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
+
+    {
+        id   : 'nous-connaitre',
+        title: 'Nous connaitre',
+        type : 'basic',
+        icon : 'heroicons_outline:globe-alt',
+        link : '/nous-connaitre'
+    },
+
+    {
+        id   : 'notre-politique-RSE',
+        title: 'Notre politique RSE',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+    
+
+    
+
+    {
+        id   : 'Nos-etats-financiers',
+        title: 'Nos états financiers',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
+    {
+        id   : 'nos-guides-conseils',
+        title: 'Nos Guides & Conseils',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : ''
+    },
+
     
     {
         id   : 'support',
-        title: 'Contactez-nous',
+        title: 'Nous contacter',
         type : 'basic',
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
@@ -456,14 +570,14 @@ export const horizontalNavigation: FuseNavigationItem[] = [
     
     {
         id   : 'agences',
-        title: 'Localiser une agence',
+        title: 'Nos agences',
         type : 'basic',
         icon : 'heroicons_outline:map',
         link : '/agences'
     },
     {
         id   : 'reclamation',
-        title: 'Reclamation en ligne',
+        title: 'Réclamation ',
         type : 'basic',
         icon : 'heroicons_outline:information-circle',
         link : '/reclamation'

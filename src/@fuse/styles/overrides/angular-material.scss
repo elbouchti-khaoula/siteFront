@@ -35,17 +35,7 @@
 
         &:not(.mat-expanded) {
 
-            .mat-expansion-panel-header {
-
-                &:not([aria-disabled=true]) {
-
-                    &.cdk-keyboard-focused,
-                    &.cdk-program-focused,
-                    &:hover {
-                        background: transparent !important;
-                    }
-                }
-            }
+            
         }
 
         .mat-expansion-panel-header {
