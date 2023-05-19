@@ -24,45 +24,42 @@
                 </fuse-alert>
 
                 <!-- Sign Up form -->
-                <form class="grid grid-cols-2 gap-3 mt-8"
-                    [formGroup]="signUpForm"
-                    #signUpNgForm="ngForm">
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm" #signUpNgForm="ngForm">
 
-                    <mat-radio-group class="flex flex-col md:col-span-2 w-full" [formControlName]="'client'">
+                    <mat-radio-group class="flex flex-col md:col-span-2 w-full" [formControlName]="'clientAWB'">
                         <mat-label>Etes-vous client Wafaimmobilier ? </mat-label>
-                        <div
-                            class="flex flex-row mt-3 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
-                            <mat-radio-button [value]="'true'">Oui</mat-radio-button>
-                            <mat-radio-button class="ml-5" [value]="'false'">Non</mat-radio-button>
+                        <div class="flex flex-row mt-3 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
+                            <mat-radio-button [value]="true">Oui</mat-radio-button>
+                            <mat-radio-button class="ml-5" [value]="false">Non</mat-radio-button>
                         </div>
                     </mat-radio-group>
 
                     <mat-form-field>
                         <mat-label>Nom</mat-label>
-                        <input id="name" matInput [formControlName]="'name'">
-                        <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        <input id="lastName" matInput [formControlName]="'lastName'">
+                        <mat-error *ngIf="signUpForm.get('lastName').hasError('required')">
                             champs requis
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>Prenom</mat-label>
-                        <input id="prenom" matInput [formControlName]="'prenom'">
-                        <mat-error *ngIf="signUpForm.get('prenom').hasError('required')">
+                        <mat-label>Prénom</mat-label>
+                        <input id="firstName" matInput [formControlName]="'firstName'">
+                        <mat-error *ngIf="signUpForm.get('firstName').hasError('required')">
                             Champs requis
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field *ngIf="connecte">
+                    <mat-form-field *ngIf="signUpForm.get('clientAWB').value">
                         <mat-label>CIN</mat-label>
-                        <input id="CIN" matInput [formControlName]="'CIN'">
-                        <mat-error *ngIf="signUpForm.get('CIN').hasError('required')">
+                        <input id="cin" matInput [formControlName]="'cin'">
+                        <mat-error *ngIf="signUpForm.get('cin').hasError('required')">
                             Champs requis
                         </mat-error>
                     </mat-form-field>
-                    <mat-form-field *ngIf="connecte">
-                        <mat-label>Date naissance</mat-label>
-                        <input id="datenaissance" matInput [formControlName]="'datenaissance'">
-                        <mat-error *ngIf="signUpForm.get('datenaissance').hasError('required')">
+                    <mat-form-field *ngIf="signUpForm.get('clientAWB').value">
+                        <mat-label>Date de naissance</mat-label>
+                        <input id="dateNaissance" matInput [formControlName]="'dateNaissance'">
+                        <mat-error *ngIf="signUpForm.get('dateNaissance').hasError('required')">
                             Champs requis
                         </mat-error>
                     </mat-form-field>
@@ -89,8 +86,9 @@
                             Champs requis
                         </mat-error>
                     </mat-form-field>
+
                     <mat-form-field>
-                        <mat-label>Confirmer le mdp</mat-label>
+                        <mat-label>Confirmer le mot de passe</mat-label>
                         <input id="pass2" matInput [formControlName]="'pass2'" type="password">
                         <mat-error *ngIf="signUpForm.get('pass2').hasError('required')">
                             Champs requis
@@ -101,35 +99,28 @@
                     <div class="inline-flex items-end w-full mt-1.5 col-span-2">
                         <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">
                             <span>I agree to the</span>
-                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Terms of Service
-                            </a>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Terms of Service</a>
                             <span>and</span>
-                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Privacy Policy
-                            </a>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Privacy Policy</a>
                         </mat-checkbox>
                     </div>
                     <!-- Submit button -->
-                    <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2" mat-flat-button [color]="'primary'"
-                        [disabled]="signUpForm.disabled" (click)="signUp()">
+                    <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [disabled]="signUpForm.disabled"
+                        (click)="signUp()">
                         <span *ngIf="!signUpForm.disabled">
                             Inscription
                         </span>
-                        <mat-progress-spinner *ngIf="signUpForm.disabled" [diameter]="24"
-                            [mode]="'indeterminate'"></mat-progress-spinner>
+                        <mat-progress-spinner
+                            *ngIf="signUpForm.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'">
+                        </mat-progress-spinner>
                     </button>
-
-                    <!-- <div *ngIf="abonne">
-                        <div class="form-row">
-                            
-                        </div>
-                        <div class="form-row">
-                            
-                        </div>
-                        
-                    </div> -->
-                    
-
                 </form>
+
             </div>
 
         </div>

@@ -69,7 +69,7 @@
                     <mat-drawer-content class="px-1 pt-5 pb-1">
 
                         <fuse-card #resultat
-                            class="flex flex-col px-6 pb-8 pt-7 ring-1 ring-primary bg-default rounded-md shadow overflow-visible md:min-h-[75vh]">
+                            class="flex flex-col px-6 pb-8 pt-7 ring-1 ring-primary bg-default rounded-md shadow overflow-visible">
                             
                             <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
                                 <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
@@ -524,7 +524,7 @@
                             </span>
                         </div>
 
-                        <div class="flex flex-col space-y-3 mt-5">
+                        <div class="flex flex-col space-y-5 mt-5">
 
                             <ng-container *ngFor="let piece of pieces; let i = index; let last = last; trackBy: trackByFn">
                                 
@@ -542,7 +542,7 @@
                                         <!-- liste -->
                                         <div class="w-4/5 flex flex-col space-y-2 mt-1.5">
                                             <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
-                                                <div class="flex flex-row justify-between">
+                                                <div class="flex flex-row items-center justify-between">
                                                     <div class="text-md text-primary whitespace-nowrap truncate">
                                                         {{fich.fileName}}
                                                     </div>
@@ -598,9 +598,9 @@
                                 <!-- liste fichier joint par document -->
                                 <div class="md:hidden flex flex-row items-start">
                                     <!-- list -->
-                                    <div class="flex flex-col space-y-2 mt-1.5">
+                                    <div class="w-full flex flex-col space-y-2 mt-1.5">
                                         <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
-                                            <div class="flex flex-row justify-between">
+                                            <div class="flex flex-row items-center justify-between">
                                                 <div class="text-primary whitespace-nowrap truncate">
                                                     {{fich.fileName}}
                                                 </div>
@@ -611,16 +611,17 @@
                                                         [svgIcon]="'heroicons_solid:x'"></mat-icon>
                                                 </button>
                                             </div>
-                                            <!-- <img [src]="fich.fileContent"> -->
                                         </ng-container>
                                     </div>
                                 </div>
 
-                                <div class="mx-auto max-w-120 grid grid-cols-2 md:grid-cols-4 gap-2">
+                                <div class="mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
                                     <ng-container *ngFor="let fich of piece.files">
-                                        <img *ngIf="fich.isImage"
-                                            class="h-20 rounded object-cover"
-                                            [src]="fich.fileContent"/>
+                                        <ng-container *ngIf="fich.isImage">
+                                            <figure class="flex items-center justify-center h-28 sm:h-32">
+                                                <img class="max-h-32 max-w-32" [src]="fich.fileContent"/>
+                                            </figure>
+                                        </ng-container>
                                     </ng-container>
                                 </div>
 

@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
     selector     : 'sign-up',
@@ -19,10 +17,6 @@ export class AuthSignUpComponent implements OnInit
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    choix: boolean;
-    abonne: boolean;
-    connecte: boolean;
-
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',
         message: ''
@@ -35,9 +29,7 @@ export class AuthSignUpComponent implements OnInit
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder,
-        private _router: Router,
-        private _matDialog: MatDialog
+        private _formBuilder: UntypedFormBuilder
     )
     {
     }
@@ -53,43 +45,18 @@ export class AuthSignUpComponent implements OnInit
     {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                client    : ['false'],
-                name      : ['', Validators.required],
-                prenom    : ['', [Validators.required]],
-                email     : ['', [Validators.required, Validators.email]],
-                CIN       : [''],
-                telephone    : ['', [Validators.required]],
-                datenaissance    : [''],
-                pass1    : ['', [Validators.required]],
-                pass2    : ['', [Validators.required]],
-                agreements: ['']
-            }
-        );
-
-        this.choix = true;
-        this.abonne = false;
-        this.connecte = false;
-
-        this.signUpForm.get('client').valueChanges
-        .pipe(
-          debounceTime(100),
-          takeUntil(this._unsubscribeAll)
-        )
-        .subscribe((value) => {
-
-           if(this.signUpForm.get('client').value == 'false'){
-
-                this.choix = false;
-                this.abonne = true;
-                this.connecte = false;
-           }
-           if(this.signUpForm.get('client').value == 'true'){
-
-                this.choix = false;
-                this.abonne = false;
-                this.connecte = true;
-           }
+            clientAWB       : [false],
+            lastName        : ['', Validators.required],
+            firstName       : ['', [Validators.required]],
+            email           : ['', [Validators.required, Validators.email]],
+            cin             : [''],
+            telephone       : ['', [Validators.required]],
+            dateNaissance   : [''],
+            pass1           : ['', [Validators.required]],
+            pass2           : ['', [Validators.required]],
+            agreements      : ['']
         });
+
     }
 
     /**
@@ -136,31 +103,31 @@ export class AuthSignUpComponent implements OnInit
                     this.showAlert = true;
                     
                     // send mail
-                     this._authService.sendMail()
+                    this._authService.sendMail()
                         .subscribe(
-                        () => {
-                            console.log('success');
-                        },
-                        (response) => {
-                            console.log(response);
-                        }
-                    );
+                            () => {
+                                console.log('success');
+                            },
+                            (response) => {
+                                console.log(response);
+                            }
+                        );
                 },
                 (response) => {
 
                     console.log(response);
 
-                    if(response.status == 409){
+                    if (response.status == 409) {
                         // Set the alert
                         this.alert = {
-                            type   : 'warning',
+                            type: 'warning',
                             message: 'Compte existant.'
                         };
                     }
-                    else{
+                    else {
                         // Set the alert
                         this.alert = {
-                            type   : 'error',
+                            type: 'error',
                             message: 'Une erreur s\'est produite.'
                         };
                     }
@@ -176,5 +143,5 @@ export class AuthSignUpComponent implements OnInit
                 }
             );
     }
-    
+
 }

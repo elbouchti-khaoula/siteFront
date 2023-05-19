@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, switchMap, tap } from 'rxjs';
 import { TableauAmortissement } from './tableau-amortissement.types';
-import { ProjectAuthService } from 'app/core/projects-auth/projects-auth.service';
+import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
 
 @Injectable({
     providedIn: 'root'
