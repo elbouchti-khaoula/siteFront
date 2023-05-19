@@ -42,6 +42,16 @@
                                 alt="Logo image">
                         </a>
                     </div>
+                    <div class="ml-3 mr-7 my-auto border-gray-400 border-l-2 h-10"></div>
+                    <!-- Logo AWB -->
+                    <div class="flex items-center mr-2">
+                        <a href="https://www.attijariwafabank.com/fr" target="blank">
+                            <img
+                                class="w-40"
+                                src="assets/images/logo/logo-awb-text-on-dark.png"
+                                alt="Logo image">
+                        </a>
+                    </div>
                 </ng-container>
                 <!-- Navigation toggle button -->
                 <ng-container *ngIf="isScreenSmall">
@@ -52,30 +62,23 @@
                     </button>
                     <a [routerLink]="'/landing'">
                         <img
-                            class="mx-2 w-8"
-                            src="assets/images/logo/logo.png"
+                            class="mx-2 h-10"
+                            src="assets/images/logo/logo-text-on-dark.png"
                             alt="Logo image">
                     </a>
+                    <div class="mx-3 my-auto border-gray-400 border-l-2 h-10"></div>
+                    <a href="https://www.attijariwafabank.com/fr" target="blank">
+                        <img
+                            class="h-10"
+                            src="assets/images/logo/logo-awb-text-on-dark.png">
+                    </a>
                 </ng-container>
+
                 <!-- Components -->
                 <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
-                    <!-- Logo AWB -->
-                    <div class="flex items-center mr-2">
-                        <a href="https://www.attijariwafabank.com/fr" target="blank">
-                            <img
-                                class="hidden lg:flex w-40"
-                                src="assets/images/logo/logo-awb-text-on-dark.png"
-                                alt="Logo image">
-                        </a>
-                        <a href="https://www.attijariwafabank.com/fr" target="blank">
-                            <img
-                                class="flex lg:hidden w-8"
-                                src="assets/images/logo/logo-awb.png">
-                        </a>
-                    </div>
-                    <languages></languages>
+                    <!-- <languages></languages> -->
                     <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
-                    <search [appearance]="'bar'"></search>
+                    <search [appearance]="'bar'" class="hidden md:block"></search>
                     <!-- <shortcuts></shortcuts> -->
                     <!-- <messages></messages> -->
                     <!-- <notifications></notifications> -->

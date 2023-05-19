@@ -1,0 +1,384 @@
+<mat-drawer-container
+    class="bg-transparent rounded-md"
+    [ngClass]="{'h-[95vh]': isScreenSmall && drawerOpened,
+                'min-h-172': !isScreenSmall}"
+    [hasBackdrop]="true">
+
+    <mat-drawer
+        class="w-full sm:w-[95%] lg:border-r lg:shadow-none dark:bg-gray-900"
+        [autoFocus]="false"
+        [(opened)]="drawerOpened"
+        #drawerTableauSD>
+        <tableau-amortissement [drawer]="drawerTableauSD"></tableau-amortissement>
+    </mat-drawer>
+
+    <mat-drawer-content class="px-1 pt-5 pb-1">
+
+        <fuse-card class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-card rounded-md shadow overflow-visible">
+
+            <div *ngIf="simulationResultat?.newSimulation"
+                class="absolute inset-x-0 -top-4 flex items-center justify-center">
+                <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
+                    Votre simulation personnalisée
+                </div>
+            </div>
+
+            <div class="flex flex-col space-y-7 mt-7">
+
+                <ng-container *ngFor="let dossier of simulationResultat?.dossiers; let i = index; trackBy: trackByFn">
+
+                    <!-- header -->
+                    <div class="flex flex-col-reverse md:flex-row">
+                        <div class="text-2xl font-semibold text-primary max-md:mt-3">Dossier N° {{dossier?.id}}</div>
+
+                        <!-- bouton tableau amortissement -->
+                        <div class="ml-auto">
+                            <button
+                                mat-flat-button
+                                class="text-sm fuse-mat-button-small"
+                                type="button"
+                                [color]="'accent'"
+                                (click)="openTableauAmortissement(dossier.id)">
+                                Ouvrir tableau d'amortissement
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- details -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 max-md:gap-y-5 md:gap-3 mt-6">
+
+                        <!-- mensualité -->                                    
+                        <div class="md:col-span-2 flex flex-col justify-between pt-2 pb-3 px-5 shadow rounded-md bg-primary dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+                            <div class="flex flex-col md:flex-row md:items-baseline text-white">
+                                <div class="text-xl font-semibold leading-tight tracking-tight">
+                                    Mensualité
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap ml-auto">
+                                    <div class="text-3xl font-bold leading-tight tracking-tight" #mensualiteId>
+                                        {{dossier?.mensualite}}
+                                    </div>
+                                    <div class="ml-2 md:text-lg leading-none">Dhs/mois</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                <div class="w-8 h-1 rounded-2xl bg-second-500"></div>
+                                <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
+                                    Cette échéance inclut les intérêts et frais d’assurance
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Durée -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                            
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Durée
+                                </div>
+                                <div class="flex flex-row mt-2 ml-auto">
+                                    <div class="flex items-baseline whitespace-nowrap">
+                                        <div class="font-semibold text-xl leading-tight tracking-tight" #nbreAnneeId>
+                                            {{dossier?.nbreAnnee}}
+                                        </div>
+                                        <div class="ml-1 leading-none">ans</div>
+                                    </div>
+                                    <div class="flex items-baseline whitespace-nowrap ml-2"
+                                        [ngClass]="{'hidden' : dossier?.nbreMois === 0}">
+                                        <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
+                                            {{dossier?.nbreMois}}
+                                        </div>
+                                        <div class="ml-1 leading-none">mois</div>
+                                    </div>
+                                    <div class="flex items-baseline whitespace-nowrap">
+                                        <div class="ml-1 leading-none">(</div>
+                                        <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
+                                            {{dossier?.duree}}
+                                        </div>
+                                        <div class="ml-1 leading-none"> mois)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Montant -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Montant de crédit
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight" #montantId>
+                                        {{dossier?.montant}}
+                                    </div>
+                                    <div class="ml-2 leading-none">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total des intérêts -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Total des intérêts
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight" #totalInteretsId>
+                                        {{dossier?.totalInterets}}
+                                    </div>
+                                    <div class="ml-2 leading-none">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assurances -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Assurances
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight" #assurancesId>
+                                        {{dossier?.assurances}}
+                                    </div>
+                                    <div class="ml-2 leading-none">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coût total du crédit -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Coût total du crédit
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight" #coutTotalId>
+                                        {{dossier?.coutTotal}}
+                                    </div>
+                                    <div class="ml-2 leading-none">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Taux de participation -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Taux de participation
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight"
+                                        #tauxParticipationId>
+                                        {{dossier?.tauxParticipation}}
+                                    </div>
+                                    <div class="ml-2 leading-none">%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TEG -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    TEG
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight"
+                                        #tauxEffectifGlobalId>
+                                        {{dossier?.tauxEffectifGlobal}}
+                                    </div>
+                                    <div class="ml-2 leading-none">%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expertise immobilière -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <div class="font-semibold tracking-tight leading-none text-secondary">
+                                    Expertise immobilière
+                                </div>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight"
+                                        #expertiseImmobiliereId
+                                        [ngClass]="{'text-green-600 ': !dossier?.estExpImmoNum}">
+                                        {{dossier?.expertiseImmobiliere}}
+                                    </div>
+                                    <div class="ml-2 leading-none"
+                                        [ngClass]="{'hidden': !dossier?.estExpImmoNum}">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frais de dossier -->
+                        <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                            <!-- Border -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                            <!-- Content -->
+                            <div class="h-full flex flex-col justify-between">
+                                <span class="font-semibold tracking-tight leading-none text-secondary">
+                                    Frais de dossier
+                                </span>
+                                <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                    <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDossierId
+                                        [ngClass]="{'text-green-600 ': !dossier?.estFraisDossNum}">
+                                        {{dossier?.fraisDossier}}
+                                    </div>
+                                    <div class="ml-2 leading-none"
+                                        [ngClass]="{'hidden': !dossier?.estFraisDossNum}">Dhs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="w-full border-t">
+
+                </ng-container>
+
+            </div>
+
+            <!-- frais annexes -->
+            <div class="w-full mt-5">
+                <div class="text-2xl font-semibold leading-tight tracking-tight">
+                    Frais annexes *
+                </div>
+
+                <!-- details -->
+                <div class="grid grid-cols-1 max-md:gap-y-5 md:grid-cols-4 md:gap-3 mt-3">
+
+                    <!-- Frais d'enregistrement -->
+                    <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                        <!-- Border -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                        <!-- Content -->
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="font-semibold tracking-tight leading-none text-secondary">
+                                Frais d'enregistrement
+                            </div>
+                            <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId>
+                                    {{simulationResultat?.droitsEnregistrement}}
+                                </div>
+                                <div class="ml-2 leading-none">Dhs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frais de conservation financière -->
+                    <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                        <!-- Border -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                        <!-- Content -->
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="font-semibold tracking-tight leading-none text-secondary">
+                                Frais de conservation financière
+                            </div>
+                            <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId>
+                                    {{simulationResultat?.conservationFonciere}}
+                                </div>
+                                <div class="ml-2 leading-none">Dhs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frais de dossier notaire -->
+                    <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                        <!-- Border -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                        <!-- Content -->
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="font-semibold tracking-tight leading-none text-secondary">
+                                Frais de dossier notaire
+                            </div>
+                            <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDiversId>
+                                    {{simulationResultat?.fraisDivers}}
+                                </div>
+                                <div class="ml-2 leading-none">Dhs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Honoraires de notaire -->
+                    <div class="relative p-3 bg-gray-50 border rounded-md shadow overflow-hidden">
+                        <!-- Border -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+
+                        <!-- Content -->
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="font-semibold tracking-tight leading-none text-secondary">
+                                Honoraires de notaire
+                            </div>
+                            <div class="flex items-baseline whitespace-nowrap mt-2 ml-auto">
+                                <div class="font-semibold text-xl leading-tight tracking-tight" #honorairesNotaireId>
+                                    {{simulationResultat?.honorairesNotaire}}
+                                </div>
+                                <div class="ml-2 leading-none">Dhs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="italic text-sm leading-none tracking-tight text-secondary mt-2">
+                    * Ces montants sont affichés à titre indicatif et ne sont aucunement contractuels
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="mx-auto flex flex-col md:flex-row max-md:space-y-2 max-md:max-w-max mt-7">
+                <button class="max-md:w-full" mat-flat-button type="button" [color]="'primary'"
+                    (click)="navigateToDemandeCredit()">
+                    Demander mon crédit
+                </button>
+                <button *ngIf="simulationResultat?.newSimulation" class="md:ml-2 bg-gray-200"
+                    mat-stroked-button type="button" [routerLink]="['/espace-connecte']">
+                    Enregistrer ma simulation
+                </button>
+                <button class="md:ml-2 bg-gray-200" mat-stroked-button type="button" [color]="'warn'"
+                    (click)="abandonner()">
+                    Abandonner
+                </button>
+            </div>
+
+        </fuse-card>
+
+    </mat-drawer-content>
+
+</mat-drawer-container>

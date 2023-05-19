@@ -1,0 +1,110 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 max-h-160 -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
+        <div class="text-lg font-medium">Changer votre agence</div>
+        <button
+            mat-icon-button
+            (click)="matDialogRef.close()"
+            [tabIndex]="-1">
+            <mat-icon
+                class="text-current"
+                [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <!-- Main Form -->
+    <div class="px-10 py-6 overflow-y-auto">
+        <!-- Alert -->
+        <fuse-alert *ngIf="alert"
+            [type]="alert.type"
+            [showIcon]="false">
+            {{alert.message}}
+        </fuse-alert>
+
+        <form class="space-y-3"
+            [formGroup]="changerAgenceForm"
+            #changerAgenceNgForm="ngForm">
+            
+            <mat-form-field class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
+                </mat-icon>
+                <mat-select
+                    [formControlName]="'codeVille'"
+                    [placeholder]="'Ville'">
+                    <ng-container *ngFor="let ville of villes">
+                        <mat-option [value]="ville.codeVille">
+                            {{ville.description}}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Ville</mat-label>
+                <mat-error *ngIf="changerAgenceForm.get('codeVille').hasError('required')">
+                    Ville obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Agences list -->
+            <ng-container *ngIf="agences && agencesCount > 0; else noAgences">
+                <!-- overflow-y-auto -->
+                <div class="relative grid grid-cols-2 gap-5 p-5 bg-default border border border-gray-300 shadow-sm rounded-md">
+                    <mat-radio-group
+                        class="invisible absolute w-0 h-0 pointer-events-none"
+                        [formControlName]="'agenceCode'"
+                        #agenceRadioGroup="matRadioGroup">
+                        <ng-container *ngFor="let agence of agences; trackBy: trackByFn">
+                            <mat-radio-button [value]="agence.code"></mat-radio-button>
+                        </ng-container>
+                    </mat-radio-group>
+                    <ng-container *ngFor="let agen of agences; trackBy: trackByFn">
+                        <div class="relative flex flex-col items-start justify-start p-6 rounded-md shadow cursor-pointer bg-card"
+                            [ngClass]="{'ring ring-inset ring-primary': agenceRadioGroup.value === agen.code}"
+                            (click)="agenceRadioGroup.value = agen.code; selectAgence(agen)">
+                            <ng-container *ngIf="agenceRadioGroup.value === agen.code">
+                                <mat-icon
+                                    class="absolute top-0 right-0 mt-3 mr-3 icon-size-7 text-primary"
+                                    [svgIcon]="'heroicons_solid:check-circle'">
+                                </mat-icon>
+                            </ng-container>
+                            <div class="font-medium">{{agen.nom}}</div>
+                            <div class="mt-1 text-md whitespace-normal text-secondary">{{agen.adresse}}</div>
+                            <div class="flex-auto"></div>
+                            <div class="flex flex-col mt-5">
+                                <span>{{agen.telephone}}</span>
+                                <span class="text-sm text-secondary">Code agence : {{agen.code}}</span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <!-- No agences template -->
+            <ng-template #noAgences>
+                <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md">
+                    <mat-icon class="icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
+                    <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">
+                        Il n'y a pas d'agence!
+                    </div>
+                </div>
+            </ng-template>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end">
+                <button mat-button
+                    [color]="'accent'"
+                    [disabled]="changerAgenceForm.pristine || changerAgenceForm.untouched"
+                    (click)="clearForm()">
+                    Vider
+                </button>
+                <button class="ml-2" 
+                    mat-flat-button
+                    [color]="'primary'"
+                    [disabled]="changerAgenceForm.pristine || changerAgenceForm.invalid"
+                    (click)="sendForm()">
+                    Valider
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

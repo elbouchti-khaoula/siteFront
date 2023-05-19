@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { SalesForceService } from '../common/salesforce.service';
+import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 
 @Component({
     selector: 'support',

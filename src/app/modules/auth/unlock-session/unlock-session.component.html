@@ -1,4 +1,4 @@
-<div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/auth/cle-maison.jpg');" 
+<div style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('assets/images/pages/landing/header.jpg');" 
     class="flex flex-col flex-auto items-center sm:justify-center min-w-0 bg-center bg-cover">
     <div class="w-full sm:w-auto py-8 px-4 sm:p-12 sm:rounded-2xl sm:shadow sm:bg-card">
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
@@ -28,13 +28,22 @@
                 [formGroup]="unlockSessionForm"
                 #unlockSessionNgForm="ngForm">
 
-                <!-- Name field -->
+                <!-- First Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>First name</mat-label>
                     <input
-                        id="name"
+                        id="firstname"
                         matInput
-                        [formControlName]="'name'">
+                        [formControlName]="'firstName'">
+                </mat-form-field>
+
+                <!-- Last Name field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Last name</mat-label>
+                    <input
+                        id="lastname"
+                        matInput
+                        [formControlName]="'lastName'">
                 </mat-form-field>
 
                 <!-- Password field -->
@@ -86,7 +95,7 @@
                     <span>I'm not</span>
                     <a
                         class="ml-1 text-primary-500 hover:underline"
-                        [routerLink]="['/sign-out']">{{name}}</a>
+                        [routerLink]="['/sign-out']">{{firstName}} {{lastName}}</a>
                 </div>
 
             </form>

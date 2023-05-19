@@ -1,8 +1,7 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
-<!-- <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto scroll-smooth" [@fadeInRight]="{value:'', params: {duration: 700}}" cdkScrollable> -->
     
     <!-- Header -->
-    <header class="flex flex-col w-full h-[60vh] sm:h-[80vh] bg-second-250">
+    <header class="flex flex-col w-full h-[60vh] sm:h-[80vh] bg-second-200">
         <!-- back button -->
         <div class="flex flex-0 items-center h-14 px-6 border-b bg-gray-50 w-full dark:bg-transparent">
             <a mat-button
@@ -47,7 +46,7 @@
         </swiper>
     </header>
 
-    <div class="z-20 px-6 pb-10">
+    <div class="z-20 px-5 sm:px-16 pb-10">
         <div class="hidden md:flex flex-row justify-center mx-auto w-full max-w-360 h-40 shadow-lg rounded-3xl bg-card -mt-20">
             <div class="flex flex-row items-center justify-between w-[30%]">
                 <div class="flex items-center justify-center border-primary border p-1 h-32 w-1/4">
@@ -97,8 +96,11 @@
                 <div class="py-0.5 px-3 rounded-full text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                 </div>
-                <button class="fuse-mat-button-large mt-5 uppercase" mat-flat-button [color]="'primary'">
-                    Obtenez votre financement
+                <button class="fuse-mat-button-large mt-5 uppercase"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [routerLink]="'/espace-connecte/simulation-detaillee'">
+                    Obtenir votre financement
                 </button>
             </div>
         </div>
@@ -132,8 +134,11 @@
                     class="w-fit py-0.5 px-3 rounded-full md:text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                 </div>
-                <button class="fuse-mat-button-small mt-3 w-fit uppercase" mat-flat-button [color]="'primary'">
-                    Obtenez votre financement
+                <button class="fuse-mat-button-small mt-3 w-fit uppercase"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [routerLink]="'/espace-connecte/simulation-detaillee'">
+                    Obtenir votre financement
                 </button>
             </div>
     
@@ -159,11 +164,11 @@
         </div>
     </div>
 
-    <section class="flex flex-col items-center px-6 pb-10 sm:pb-18">
+    <section class="flex flex-col items-center px-5 sm:px-16 pb-10 sm:pb-18">
         <div class="flex flex-row w-full md:max-w-400">
-            <div class="h-fit w-full md:w-2/3 rounded-2xl overflow-hidden">
+            <div class="h-fit w-full md:w-3/5 rounded-2xl overflow-hidden">
                 <iframe
-                    src="http://www.youtube.com/embed/OQL6KiB10bA?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=OQL6KiB10bA"
+                    src="https://www.youtube.com/embed/OQL6KiB10bA?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=OQL6KiB10bA"
                     frameborder="0">
                 </iframe>
             </div>
@@ -177,14 +182,15 @@
                 </div>
             </div> -->
 
-            <div class="hidden md:inline-flex w-1/3 ml-7">
+            <div class="hidden md:inline-flex w-2/5 ml-7">
                 <div class="w-full p-7 shadow-lg rounded-2xl bg-card">
                     <simulation></simulation>
                 </div>
             </div>
         </div>
 
-        <div class="w-full md:max-w-360 mt-5 sm:px-10">
+        <div class="w-full md:max-w-360 mt-5">
+
             <div class="flex flex-col md:flex-row max-md:space-y-2 md:space-x-6 max-w-4xl">
                 <div class="flex flex-row items-center md:w-1/4">
                     <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:close_fullscreen'">
@@ -212,16 +218,16 @@
 
             <hr class="w-full border-t my-7">
 
-            <div class="grid grid-cols-1 gap-2 md:grid-cols-3 max-w-max">
-                <button class="w-fit uppercase" mat-flat-button [color]="'primary'">
+            <div class="mx-auto grid grid-cols-1 md:grid-cols-3 md:max-w-max md:gap-x-7 max-md:gap-y-2">
+                <button class="uppercase" mat-flat-button [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
                     Téléchargez la brochure
                 </button>
-                <button class="w-fit uppercase" mat-flat-button [color]="'primary'">
+                <button class="uppercase" mat-flat-button [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
                     Téléchargez la maquette
                 </button>
-                <button class="w-fit uppercase" mat-flat-button [color]="'primary'">
+                <button class="uppercase" mat-flat-button [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
                     Téléchargez le plan du site
                 </button>

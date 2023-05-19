@@ -7,7 +7,7 @@ import { NavigationService } from 'app/core/navigation/navigation.service';
 // import { QuickChatService } from 'app/layout/common/quick-chat/quick-chat.service';
 // import { ShortcutsService } from 'app/layout/common/shortcuts/shortcuts.service';
 import { UserService } from 'app/core/user/user.service';
-import { ReferentielService } from './modules/pages/common/referentiel.service';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 
 @Injectable({
     providedIn: 'root'
@@ -52,6 +52,9 @@ export class InitialDataResolver implements Resolve<any>
             this._referentielService.getVilles(),
             this._referentielService.getTypesBiens(),
             this._referentielService.getAgences(),
+            this._referentielService.getNationalites(),
+            this._referentielService.getCategories(),
+            this._referentielService.getObjetsFinancement()
         ]);
     }
 }

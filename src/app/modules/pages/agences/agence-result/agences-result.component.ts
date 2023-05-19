@@ -2,8 +2,8 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { ReferentielService } from '../../common/referentiel.service';
-import { Agence } from '../../common/referentiel.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { Agence } from 'app/core/referentiel/referentiel.types';
 
 @Component({
     selector: 'agences-result',
@@ -17,7 +17,6 @@ export class AgencesResultComponent implements OnInit, OnDestroy {
     agences$: Observable<Agence[]>;
     agences: Agence[];
     agencesCount: number = 0;
-    filteredAgences: Agence[];
     selectedAgence: Agence;
 
     @ViewChild('agencesList', { read: CdkScrollable }) public agencesList: CdkScrollable;
@@ -49,7 +48,7 @@ export class AgencesResultComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((response: Agence[]) => {
 
-                this.agences = this.filteredAgences = response;
+                this.agences = response;
 
                 // Update the counts
                 this.agencesCount = response?.length;

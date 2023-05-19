@@ -15,8 +15,8 @@ import { ProjetsResultComponent } from './projets-result/projets-result.componen
 import { ProjetContactComponent } from './projets-result/contact/contact.component';
 
 import { ProjetModule } from './projet/projet.module';
-import { ProjetsFilterModule } from '../common/projetsFilter/projets-filter.module';
-import { LocalisationModule } from '../common/localisation/localisation.module';
+import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
+import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
 
 @NgModule({
     declarations: [

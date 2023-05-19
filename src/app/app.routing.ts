@@ -17,7 +17,7 @@ export const appRoutes: Route[] = [
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'landing' },
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'espace-connecte' },
 
     // Auth routes for guests
     {
@@ -62,14 +62,6 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {
-                path: 'simulation-detaillee',
-                loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-            },
-            {
-                path: 'tableau-amortissement',
-                loadChildren: () => import('app/modules/admin/tableau-amortissement/tableau-amortissement.module').then(m => m.TableauAmortissementModule),
-            },
         ]
     },
 
@@ -91,8 +83,8 @@ export const appRoutes: Route[] = [
     // Pages routes
     {
         path       : '',
-        // canActivate: [AuthGuard],
-        // canActivateChild: [AuthGuard],
+        canActivate: [NoAuthGuard],
+        canActivateChild: [NoAuthGuard],
         component  : LayoutComponent,
         resolve    : {
             initialData: InitialDataResolver,
@@ -101,10 +93,6 @@ export const appRoutes: Route[] = [
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
-            },
-            {
-                path: 'landingBis',
-                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
             },
             {
                 path: 'darrahetbal',
@@ -122,17 +110,16 @@ export const appRoutes: Route[] = [
                 path: 'nous-connaitre',
                 loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
             },
+
+            {
+                path: 'nos-offres-miftah',
+                loadChildren: () => import('app/modules/pages/nos-offres-miftah/nos-offres-miftah.module').then(m => m.NosOffresMiftahModule),
+            },
+
             {
                 path: 'nos-conventions',
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
-
-
-            {
-                path: 'espace-connected',
-                loadChildren: () => import('app/modules/pages/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
-            },
-
             {
                 path: 'nous-contacter',
                 loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
@@ -144,6 +131,59 @@ export const appRoutes: Route[] = [
             {
                 path: 'reclamation',
                 loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
+            },
+
+            // not used
+            {
+                path: 'landingBis',
+                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
+            },
+            {
+                path: 'nous-connaitre-old',
+                loadChildren: () => import('app/modules/pages/nous-connaitre-old/nous-connaitre-old.module').then(m => m.NousConnaitreOldModule),
+            },
+
+            // espace connecté
+            {
+                path: 'espace-connecte',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                    },
+                    {
+                        path: 'simulation-detaillee',
+                        loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
+                    },
+                    {
+                        path: 'demande-credit',
+                        loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
+                    },
+                    {
+                        path: 'mes-simulations',
+                        loadChildren: () => import('app/modules/admin/mes-simulations/mes-simulations.module').then(m => m.MesSimulationsModule)
+                    },
+                    {
+                        path: 'consulter-simulation',
+                        loadChildren: () => import('app/modules/admin/consulter-simulation/consulter-simulation.module').then(m => m.ConsulterSimulationModule)
+                    },
+                    {
+                        path: 'mes-demandes-credit',
+                        loadChildren: () => import('app/modules/admin/mes-demandes-credit/mes-demandes-credit.module').then(m => m.MesDemandesCreditModule)
+                    },
+                    {
+                        path: 'mes-credits',
+                        loadChildren: () => import('app/modules/admin/mes-credits/mes-credits.module').then(m => m.MesCreditsModule)
+                    },
+                    {
+                        path: 'mes-projets-favoris',
+                        loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
+                    }
+                ]
+            },
+            {
+                path: 'espace-connected-client',
+                loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
             },
 
             // Maintenance

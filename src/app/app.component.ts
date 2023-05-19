@@ -64,6 +64,22 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/map-location.svg")
         );
 
+        this.matIconRegistry.addSvgIcon(
+            "arrow-right",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/angle-circle-arrow-right-icon.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "home-repair",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/HOME-REPAIR.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "user-cercle",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/user-cercle.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "home-heart",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/home-heart.svg")
+        );
         
     }
 }

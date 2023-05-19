@@ -4,8 +4,7 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
-import { MatDialog } from '@angular/material/dialog';
-import { AuthSignInPopupComponent } from 'app/modules/auth/sign-in-popup/sign-in-popup.component';
+import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
     selector       : 'user',
@@ -22,6 +21,8 @@ export class UserComponent implements OnInit, OnDestroy
 
     @Input() showAvatar: boolean = true;
     user: User;
+    authentified: boolean = false;
+    email: string;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -32,7 +33,7 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        private _matDialog: MatDialog
+        private _authService: AuthService,
     )
     {
     }
@@ -55,6 +56,14 @@ export class UserComponent implements OnInit, OnDestroy
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
+
+        this._authService.check()
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((authentified: boolean) => {
+                this.authentified = authentified;
+            });
+        
+        this.email = localStorage.getItem('email');
     }
 
     /**
@@ -101,10 +110,11 @@ export class UserComponent implements OnInit, OnDestroy
 
     signIn(): void
     {
-        console.log('sign in');
-        this._matDialog.open(AuthSignInPopupComponent, {
-            autoFocus: false,
-            backdropClass: 'bdrop'
-        });
+        this._router.navigate(['/sign-in']);
+    }
+
+    signUp(): void
+    {
+        this._router.navigate(['/sign-up']);
     }
 }

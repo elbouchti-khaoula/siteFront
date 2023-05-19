@@ -15,7 +15,7 @@ const customPalettes = {
     beige: generatePalette('#f9bc85'),      // (#f9bc85/#ffbe85/#ffe3ca/#ffe8cf/#fee8d0 du foncé au clair)
     rouge: generatePalette('#e86441'),       // #e86441 site, #f55b3b logo
     orange: generatePalette('#f5c000'),      //#f5c000 site, #fcbd00 logo
-    rougea: generatePalette('#d8473b'),
+    rougea: generatePalette('#d8473b'),     // #d8473b #D46A68
     beigea: generatePalette('#D6B596'),
 };
 
@@ -86,7 +86,12 @@ const themes = {
  */
 const config = {
     darkMode   : 'class',
-    content    : ['./src/**/*.{html,scss,ts}'],
+    // content    : ['./src/**/*.{html,scss,ts}'],
+    content: [
+        './src/@fuse/**/*.{html,scss,ts}',
+        './src/app/**/*.{html,scss,ts}',
+        './src/index.html',
+    ],
     important  : true,
     theme      : {
         fontSize: {
@@ -163,6 +168,9 @@ const config = {
                 '30': '7.5rem',
                 '50': '12.5rem',
                 '68': '17rem',
+                '70': '17.5rem',
+                '80': '20rem',
+                '88': '22rem',
                 '90': '22.5rem',
 
                 // Bigger values
@@ -171,7 +179,9 @@ const config = {
                 '128': '32rem',
                 '140': '35rem',
                 '160': '40rem',
+                '172': '43rem',
                 '180': '45rem',
+                '184': '46rem',
                 '192': '48rem',
                 '200': '50rem',
                 '240': '60rem',
@@ -330,7 +340,7 @@ const config = {
 
         // Other third party and/or custom plugins
         require('@tailwindcss/typography')({modifiers: ['sm', 'lg']}),
-        // require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/line-clamp')
     ]
 };

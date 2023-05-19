@@ -1,0 +1,45 @@
+// css parcours
+.carre:focus-within>span {
+  background: var(--fuse-primary);
+}
+
+.carre:focus-within .libelle {
+  color: var(--fuse-primary);
+}
+
+.carre:focus-within>span>mat-icon {
+  color: white !important;
+}
+
+
+
+// css simulation
+.bg-simul {
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/landing/bg-simul.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.landing-bg-header {
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/landing/header.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-position-y: 1rem;
+  background-size: cover;
+}
+@media (max-width: 767px) {
+  .landing-bg-header {
+      background-position-y: 0rem;
+  }
+}
+
+
+.btn {
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: rgb(231, 76, 76);
+}
+.bg-primary-2 {
+  background-color:rgb(231, 76, 76);
+}

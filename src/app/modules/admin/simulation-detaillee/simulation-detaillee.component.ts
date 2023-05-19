@@ -1,28 +1,39 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/modules/pages/common/referentiel.types';
-import { SimulationDetaillee } from './simulation-detaillee.types';
-import { ReferentielService } from 'app/modules/pages/common/referentiel.service';
-import { SimulationDetailleeService } from './simulation-detaillee.service';
+import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
+import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
 import * as moment from 'moment';
+import { resize } from 'app/modules/common/resize';
+import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
+import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.component';
+import { FuseUtilsService } from '@fuse/services/utils';
+import { MatSelectChange } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'simulation-detaillee',
   templateUrl: './simulation-detaillee.component.html',
   styleUrls: ['./simulation-detaillee.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations
+  animations: [fuseAnimations, resize]
 })
+
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
+  @ViewChild(DetailsSimulationComponent) detailsSimulation;
+  @ViewChild(BienvenueComponent) bienvenueComponent;
+
+  drawerOpened: boolean = false;
   isScreenSmall: boolean;
   isXsScreen: boolean;
-  private _unsubscribeAll: Subject<any> = new Subject<any>();
+  animationState: string;
+  isVisible: boolean = false;
 
   categories: CategorieSocioProfessionnelle[];
   nationalites: Nationalite[];
@@ -31,88 +42,48 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   simulationStepperForm: UntypedFormGroup;
   simulationFormDefaults: any = {
     // profil
-    nom: null,
-    prenom: null,
-    telephone: null,
-    email: null,
+    nom: 'test1',
+    prenom: 'test1',
+    telephone: '0522111111',
+    email: 'test1@test1.com',
     dateNaissance: null,
-    nationalite: null,
-    residantMaroc: null,
-    agreements: null,
+    nationalite: 'MA',
+    residantMaroc: 'true',
+    agreements: true,
     // situation
-    categorieSocioProfessionnelle: null,
-    nomEmployeur: null,
-    salaire: null,
-    autresRevenus: null,
-    creditsEnCours: null,
+    categorieSocioProfessionnelle: null, // 'SASP',
+    nomEmployeur: 'WAFA SALAF',
+    anciennete: 12,
+    salaire: 500000,
+    autresRevenus: 200000,
+    creditsEnCours: 3000,
     // projet
-    objetFinancement: null,
-    montant: null,
-    montantProposition: null,
-    duree: null,
-    typeTaux: null,
-    statutProjet: null,
-    nomPromoteur: null
+    objetFinancement: 'ACQU',
+    montant: 500000,
+    montantProposition: 500000,
+    duree: 240,
+    typeTaux: null, // 'FIXE',
+    statutProjet: 'statut1',
+    nomPromoteur: 'Promoteur'
   };
+  tab = ['step1', 'step2', 'step3'];
 
-  simulationResultat: SimulationDetaillee;
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
-  isVisible: boolean = false;
-  estExpImmoNum: boolean = true;
-  estFraisDossNum: boolean = true;
-  @ViewChild('mensualiteId') mensualiteId: any;
-  @ViewChild('dureeId') dureeId: any;
-  @ViewChild('nbreMoisId') nbreMoisId: any;
-  @ViewChild('montantId') montantId: any;
-  @ViewChild('totalInteretsId') totalInteretsId: any;
-  @ViewChild('coutTotalId') coutTotalId: any;
-  @ViewChild('assurancesId') assurancesId: any;
-  @ViewChild('tauxParticipationId') tauxParticipationId: any;
-  @ViewChild('tauxEffectifGlobalId') tauxEffectifGlobalId: any;
-  @ViewChild('expertiseImmobiliereId') expertiseImmobiliereId: any;
-  @ViewChild('fraisDossierId') fraisDossierId: any;
-  @ViewChild('totalFraisId') totalFraisId: any;
-  @ViewChild('droitsEnregistrementId') droitsEnregistrementId: any;
-  @ViewChild('conservationFonciereId') conservationFonciereId: any;
-  @ViewChild('fraisDiversId') fraisDiversId: any;
-  @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
+  simulationResultat: any;
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   /**
    * Constructor
    */
   constructor(
-    private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
-    private _animateCounterService: AnimateCounterService,
     private _referentielService: ReferentielService,
-    private _simulationService: SimulationDetailleeService
+    private _simulationService: SimulationDetailleeService,
+    private _fuseUtilsService: FuseUtilsService
   ) {
-
-    this.simulationResultat = {
-      id: null,
-      montantProposition: 0.00,
-      duree: 0,
-      mensualite: 0.00,
-      tauxEffectifGlobal: 0,
-      tauxParticipation: 0,
-      assurances: 0,
-      totalInterets: 0.00,
-      coutTotal: 0.00,
-      fraisDossier: 0.00,
-      expertiseImmobiliere: 0.00,
-
-      droitsEnregistrement: 0.00,
-      conservationFonciere: 0.00,
-      fraisDivers: 0.00,
-      honorairesNotaire: 0.00,
-
-      get totalFrais() {
-        return this.droitsEnregistrement + this.conservationFonciere + this.fraisDivers + this.honorairesNotaire
-      }
-    }
 
     // Horizontal stepper form
     this.simulationStepperForm = this._formBuilder.group({
@@ -129,6 +100,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       step2: this._formBuilder.group({
         categorieSocioProfessionnelle: [this.simulationFormDefaults.categorieSocioProfessionnelle, [Validators.required]],
         nomEmployeur: [this.simulationFormDefaults.nomEmployeur, [Validators.required]],
+        anciennete: [this.simulationFormDefaults.anciennete, [Validators.required]],
         salaire: [this.simulationFormDefaults.salaire, [Validators.required]],
         autresRevenus: [this.simulationFormDefaults.autresRevenus, [Validators.required]],
         creditsEnCours: [this.simulationFormDefaults.creditsEnCours, [Validators.required]]
@@ -140,9 +112,87 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         duree: [this.simulationFormDefaults.duree, [Validators.required]],
         typeTaux: [this.simulationFormDefaults.typeTaux, [Validators.required]],
         statutProjet: [this.simulationFormDefaults.statutProjet, [Validators.required]],
-        nomPromoteur: [this.simulationFormDefaults.nomPromoteur, [Validators.required]]
+        nomPromoteur: [this.simulationFormDefaults.nomPromoteur]
       })
     });
+
+    // this.simulationResultat = {
+    //   "nom": "TEST",
+    //   "prenom": "TEST",
+    //   "dateNaissance": "02/01/1990",
+    //   "nationalite": "MAROCAINE",
+    //   "residantMaroc": "Oui",
+    //   "salaire": "300 000.00",
+    //   "autresRevenus": 0,
+    //   "salaireEtAutresRevenus": 300000,
+    //   "segment": "NV",
+    //   "creditsEnCours": "0.00",
+    //   "nomEmployeur": "WAFA immobilier",
+    //   "email": "a.kadmiri@outlook.fr",
+    //   "telephone": "0612345678",
+    //   "proprietaireMaroc": false,
+    //   "capital": 0,
+    //   "objetFinancement": "ACQUISITION",
+    //   "nomPromoteur": "KETTANI IMMO",
+    //   "typeTaux": "Valeur Fixe",
+    //   "newSimulation": false,
+    //   "id": 675141,
+    //   "montant": "2 500 000.00",
+    //   "montantProposition": "2 000 000.00",
+    //   "duree": 240,
+    //   "statut": "NPRO",
+    //   "tauxNominalPondere": 2.409015,
+    //   "tauxEffectifGlobalPondere": 3.0459165,
+    //   "tauxAssurancePondere": 0.3959999999999999,
+    //   "tauxInteretsClientTtc": 2.6499165,
+    //   "dossiers": [
+    //       {
+    //           "id": 805628,
+    //           "montant": "1 300 000.00",
+    //           "duree": 240,
+    //           "echeance": 7470.13,
+    //           "tauxNominal": 2.7272,
+    //           "tauxEffectifGlobal": "3.396",
+    //           "tauxParticipation": "0.000",
+    //           "fraisDossier": "GRATUIT",
+    //           "assurances": "57 469.46",
+    //           "totalInterets": "435 361.74",
+    //           "coutTotal": "1 792 831.20",
+    //           "mensualite": "7 470.13",
+    //           "expertiseImmobiliere": "GRATUIT",
+    //           "estExpImmoNum": false,
+    //           "estFraisDossNum": false,
+    //           "nbreAnnee": 20,
+    //           "nbreMois": 0
+    //       },
+    //       {
+    //           "id": 805627,
+    //           "montant": "700 000.00",
+    //           "duree": 240,
+    //           "echeance": 3673.93,
+    //           "tauxNominal": 1.8181,
+    //           "tauxEffectifGlobal": "2.396",
+    //           "tauxParticipation": "0.000",
+    //           "fraisDossier": "GRATUIT",
+    //           "assurances": "30 038.67",
+    //           "totalInterets": "151 704.53",
+    //           "coutTotal": "881 743.20",
+    //           "mensualite": "3 673.93",
+    //           "expertiseImmobiliere": "GRATUIT",
+    //           "estExpImmoNum": false,
+    //           "estFraisDossNum": false,
+    //           "nbreAnnee": 20,
+    //           "nbreMois": 0
+    //       }
+    //   ],
+    //   "droitsEnregistrement": "100 000.00",
+    //   "conservationFonciere": "37 500.00",
+    //   "honorairesNotaire": "25 000.00",
+    //   "fraisDivers": "1 500.00",
+    //   "totalFrais": "164 000.00",
+    //   "mensualite": "11 144.06",
+    //   "tauxEffectifGlobal": "3.046"
+    // }
 
   }
 
@@ -151,6 +201,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+    // this.isVisible = true;
     
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
@@ -162,6 +213,13 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Check if the screen is xsSmall
         this.isXsScreen = !matchingAliases.includes('sm');
+
+        if (this.isScreenSmall) {
+          this.animationState = 'largeMobile'
+        }
+        else {
+          this.animationState = this.isVisible ? 'smallDesktop' : 'largeDesktop'
+        }
       });
 
     // Subscribe to query params change
@@ -177,13 +235,25 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
         this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
         this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
-        this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
+        // this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
+        this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
         this.simulationStepperForm.get('step1').get('nationalite').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationalite);
         this.simulationStepperForm.get('step1').get('residantMaroc').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residantMaroc);
         this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
+        // ma situation
         this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.categorieSocioProfessionnelle);
+        this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(queryParams?.nomEmployeur ?? this.simulationFormDefaults.nomEmployeur);
+        this.simulationStepperForm.get('step2').get('anciennete').setValue(queryParams?.anciennete ?? this.simulationFormDefaults.anciennete);
+        this.simulationStepperForm.get('step2').get('salaire').setValue(queryParams?.salaire ?? this.simulationFormDefaults.salaire);
+        this.simulationStepperForm.get('step2').get('autresRevenus').setValue(queryParams?.autresRevenus ?? this.simulationFormDefaults.autresRevenus);
+        this.simulationStepperForm.get('step2').get('creditsEnCours').setValue(queryParams?.creditsEnCours ?? this.simulationFormDefaults.creditsEnCours);
+        // Mon projet
         this.simulationStepperForm.get('step3').get('montantProposition').setValue(queryParams?.montant ?? this.simulationFormDefaults.montantProposition);
         this.simulationStepperForm.get('step3').get('duree').setValue(queryParams?.duree ?? this.simulationFormDefaults.duree);
+        this.simulationStepperForm.get('step3').get('objetFinancement').setValue(queryParams?.objetFinancement ?? this.simulationFormDefaults.objetFinancement);
+        this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(queryParams?.nomPromoteur ?? this.simulationFormDefaults.nomPromoteur);
+        this.simulationStepperForm.get('step3').get('statutProjet').setValue(queryParams?.statutProjet ?? this.simulationFormDefaults.statutProjet);
+        this.simulationStepperForm.get('step3').get('typeTaux').setValue(queryParams?.typeTaux ?? this.simulationFormDefaults.typeTaux);
       });
 
     // Get the categories
@@ -224,6 +294,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   }
 
+  ngAfterViewInit(): void {
+    if (this.queryParams?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
+    } else if (this.bienvenueComponent.user?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(this.bienvenueComponent.user?.email);
+    }
+  }
+
   /**
    * On destroy
    */
@@ -237,61 +315,40 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
+  statutProjetLabel: string;
+
+  selectedStatutProjet(event: MatSelectChange) {
+    // const selectedData = {
+    //   text: (event.source.selected as MatOption).viewValue,
+    //   value: event.source.value
+    // };
+
+    this.statutProjetLabel = (event.source.selected as MatOption).viewValue;
+    // console.log("+-+-+- this.statutProjetLabel", this.statutProjetLabel);
+  }
+
   /**
    * Check if the task is overdue or not
    */
-  isOverdue(): boolean
-  {
-      return moment(this.simulationStepperForm.get('step1').get('dateNaissance').value, moment.ISO_8601).isAfter(moment(), 'days');
+  isOverdue(): boolean {
+    return moment(this.simulationStepperForm.get('step1').get('dateNaissance').value, moment.ISO_8601).isAfter(moment(), 'days');
   }
 
   /**
    * Reset the form using the default
    */
-  reset(): void {
-    // this.isVisible = false;
-    // this.simulationStepper.reset();
-    this.simulationStepperForm.reset(this.simulationFormDefaults);
+  // newSimulation(): void {
+  //   // this.simulationStepperForm.reset(this.simulationFormDefaults);
+  //   this.simulationStepperForm.get('step3').get('montant').reset();
+  //   this.simulationStepperForm.get('step3').get('duree').reset();
 
-    // Mensualité
-    this._animateCounterService.animateValue(this.mensualiteId, this.simulationResultat.mensualite, 0, 600);
-    this._animateCounterService.animateValue(this.dureeId, this.simulationResultat.duree, 0, 600);
-    this._animateCounterService.animateValue(this.nbreMoisId, this.simulationResultat.duree * 12, 0, 600);
-    this._animateCounterService.animateValue(this.montantId, this.simulationResultat.montant, 0, 600);
-    this._animateCounterService.animateValue(this.totalInteretsId, this.simulationResultat.totalInterets, 0, 600);
-    this._animateCounterService.animateValue(this.coutTotalId, this.simulationResultat.coutTotal, 0, 600);
-    this._animateCounterService.animateValue(this.assurancesId, this.simulationResultat.assurances, 0, 600);
-    this._animateCounterService.animateValue(this.tauxParticipationId, this.simulationResultat.tauxParticipation, 0, 600);
-    this._animateCounterService.animateValue(this.tauxEffectifGlobalId, this.simulationResultat.tauxEffectifGlobal, 0, 600);
-
-    let nbExp = 0;
-    if (this.simulationResultat.expertiseImmobiliere && this.simulationResultat.expertiseImmobiliere > 0) {
-      nbExp = this.simulationResultat.expertiseImmobiliere;
-    }
-    this.estExpImmoNum = true;
-    this._animateCounterService.animateValue(this.expertiseImmobiliereId, nbExp, 0, 600);
-
-    let nbFrai = 0;
-    if (this.simulationResultat.fraisDossier && this.simulationResultat.fraisDossier > 0) {
-      nbFrai = this.simulationResultat.fraisDossier;
-    }
-    this.estFraisDossNum = true;
-    this._animateCounterService.animateValue(this.fraisDossierId, nbFrai, 0, 600);
-
-    // Frais
-    this._animateCounterService.animateValue(this.totalFraisId, this.simulationResultat.totalFrais, 0, 600);
-    this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulationResultat.droitsEnregistrement, 0, 600);
-    this._animateCounterService.animateValue(this.conservationFonciereId, this.simulationResultat.conservationFonciere, 0, 600);
-    this._animateCounterService.animateValue(this.fraisDiversId, this.simulationResultat.fraisDivers, 0, 600);
-    this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulationResultat.honorairesNotaire, 0, 600);
-  }
+  //   this.detailsSimulation.viderSimulation();
+  // }
 
   /**
    * Simuler le crédit
    */
   simuler(): void {
-
-    this.isVisible = true;
 
     const critere = {
       provenance: "SITE",
@@ -323,79 +380,90 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       }
     }
 
-    // Get the product by id
+    // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
         // Error here means the requested is not available
         catchError((error) => {
-
-          // Log the error
-          console.error(error);
-
-          // if (error.status === 500) {
-          //   this._router.navigateByUrl('/500-server-error');
-          // } else if (error.status === 400) {
-          //   this._router.navigateByUrl('/404-not-found');
-          // } else {
-          //   // Get the parent url
-          //   const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
-
-          //   // Navigate to there
-          //   this._router.navigateByUrl(parentUrl);
-          // }
-
           // Throw an error
           return throwError(error);
         })
-      ).subscribe((response: SimulationDetaillee[]) => {
+      )
+      .subscribe((response: SimulationDetaillee) => {
 
-        console.log("+-+-+- response component", response);
-
-        let simulation = response[0];
-
-        // Mensualité
-        this.mensualiteId.nativeElement.textContent = simulation.mensualite.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.dureeId.nativeElement.textContent = simulation.duree;
-        this.nbreMoisId.nativeElement.textContent = simulation.duree * 12;
-        this.montantId.nativeElement.textContent = simulation.montantProposition.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.totalInteretsId.nativeElement.textContent = simulation.totalInterets.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.assurancesId.nativeElement.textContent = simulation.assurances.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.tauxParticipationId.nativeElement.textContent = simulation.tauxParticipation.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.tauxEffectifGlobalId.nativeElement.textContent = simulation.tauxEffectifGlobal.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-        this.coutTotalId.nativeElement.textContent = simulation.coutTotal.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-        if (simulation.expertiseImmobiliere && simulation.expertiseImmobiliere > 0) {
-          this.expertiseImmobiliereId.nativeElement.textContent = Number(simulation.expertiseImmobiliere).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estExpImmoNum = true;
-        } else {
-          simulation.expertiseImmobiliere = 0;
-          this.expertiseImmobiliereId.nativeElement.textContent = "GRATUIT";
-          this.estExpImmoNum = false;
-        }
-
-        if (simulation.fraisDossier && simulation.fraisDossier > 0) {
-          this.fraisDossierId.nativeElement.textContent = Number(simulation.fraisDossier).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          this.estFraisDossNum = true;
-        } else {
-          simulation.fraisDossier = 0;
-          this.fraisDossierId.nativeElement.textContent = "GRATUIT";
-          this.estFraisDossNum = false;
-        }
-
-        // Frais
-        this.totalFraisId.nativeElement.textContent = simulation.totalFrais.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.droitsEnregistrementId.nativeElement.textContent = simulation.droitsEnregistrement.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.conservationFonciereId.nativeElement.textContent = simulation.conservationFonciere.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.fraisDiversId.nativeElement.textContent = simulation.fraisDivers.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        this.honorairesNotaireId.nativeElement.textContent = simulation.honorairesNotaire.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        let simulation = response;
 
         // Set the selected simulation
-        this.simulationResultat = simulation;
+        this.simulationResultat = {
+          // Mon profil
+          nom: this.simulationStepperForm.get('step1').get('nom').value,
+          prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+          telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+          email: this.simulationStepperForm.get('step1').get('email').value,
+          dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+          nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
+          residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
+          // ma situation
+          categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.libelle,
+          nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+          anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
+          salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value, 2, '.', ' '),
+          autresRevenus: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
+          creditsEnCours: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('creditsEnCours').value, 2, '.', ' '),
+          // Mon projet
+          objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
+          nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+          statutProjet: this.statutProjetLabel,
+          typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
+          newSimulation: true,
+          ...this._fuseUtilsService.convertSimulationToString(simulation)
+        };
+
+        if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
+          this.animationState = 'smallDesktop';
+        }
+        this.isVisible = true;
+
+        // setTimeout(() => {
+        //   this.detailsSimulation.setSimulation(this.simulationResultat);
+        // }, 200);
 
         if (this.isScreenSmall) {
-          // Scroll to result
-          this.resultat.nativeElement.scrollIntoView();
+          setTimeout(() => {
+            // Scroll to result
+            this.resultat.nativeElement.scrollIntoView({ behavior: "smooth" });
+          }, 200);
         }
+
+        // Add query params using the router
+        // this._router.navigate([], {
+        //   // fragment: '',
+        //   queryParams: {
+        //     // Mon profil
+        //     nom: this.simulationStepperForm.get('step1').get('nom').value,
+        //     prenom: this.simulationStepperForm.get('step1').get('prenom').value,
+        //     telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+        //     email: this.simulationStepperForm.get('step1').get('email').value,
+        //     dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        //     nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
+        //     residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
+        //     // ma situation
+        //     categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
+        //     nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
+        //     salaire: this.simulationStepperForm.get('step2').get('salaire').value,
+        //     autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
+        //     creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+        //     // Mon projet
+        //     montant: this.simulationStepperForm.get('step3').get('montant').value,
+        //     objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
+        //     montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
+        //     duree: this.simulationStepperForm.get('step3').get('duree').value,
+        //     nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
+        //     statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
+        //     typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
+        //   },
+        //   relativeTo: this._activatedRoute
+        // });
 
         // Mark for check
         this._changeDetectorRef.markForCheck();

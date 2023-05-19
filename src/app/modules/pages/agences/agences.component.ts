@@ -4,8 +4,8 @@ import { Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-import { ReferentielService } from '../common/referentiel.service';
-import { Ville } from '../common/referentiel.types';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { Ville } from 'app/core/referentiel/referentiel.types';
 
 @Component({
     selector: 'agences',
@@ -33,13 +33,8 @@ export class AgencesComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _formBuilder: UntypedFormBuilder
-    ) {
-        // Prepare the search form with defaults
-        this.searchForm = this._formBuilder.group(
-            {
-                codeVille: [null]
-            }
-        );
+    ) 
+    {
     }
 
     refineURL(currURL: string): string {
@@ -60,6 +55,13 @@ export class AgencesComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+        // Prepare the search form with defaults
+        this.searchForm = this._formBuilder.group(
+            {
+                codeVille: [null]
+            }
+        );
+
         // Get the villes
         this._referentielService.villes$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -105,7 +107,7 @@ export class AgencesComponent implements OnInit, OnDestroy {
         this.searchForm.reset();
         this._referentielService.getAgences().subscribe(() => {
 
-            this.agencesResult.nativeElement.scrollIntoView();
+            this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
         });
     }
 
@@ -116,7 +118,7 @@ export class AgencesComponent implements OnInit, OnDestroy {
         this._referentielService.getAgencesByVille(this.searchForm.get('codeVille').value)
             .subscribe(() => {
 
-                this.agencesResult.nativeElement.scrollIntoView();
+                this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

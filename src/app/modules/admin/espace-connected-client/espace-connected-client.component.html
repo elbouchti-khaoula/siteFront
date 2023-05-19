@@ -1,0 +1,377 @@
+<div class="flex flex-col flex-auto min-w-0 min-h-[85vh]" [@fadeInRight]="{value:'', params: {duration: 700}}">
+
+
+    <!-- Header MD -->
+    <div class="relative hidden md:flex pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16  espace-connected-bg-header-vice">
+        <div class="w-full max-w-400">
+            <div class="max-w-xl text-xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white">
+                Bienvenue Mr.OUADDI MOHAMED AMINE
+            </div>
+        </div>
+
+        <!-- notification -->
+        <mat-card class="absolute top-0 right-0"
+            style="max-width: 600px; margin: 20px auto 0; background-color: transparent;">
+
+            <mat-accordion>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="font-size: 17px;">
+                            Impayé<span style="color: rgb(177, 12, 12);"> (0)</span>
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p>Vous n'avez pas de nouveaux impayés</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </mat-card>
+    </div>
+
+    <!-- Header sm -->
+    <div class="md:hidden relative h-full pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16 overflow-hidden espace-connected-bg-header-vice">
+        <!-- Background - @formatter:off -->
+        <!-- Rings -->
+
+        <!-- @formatter:on -->
+        <div class="w-full max-w-400">
+            <div class="max-w-xl text-2xl md:text-6xl font-bold uppercase tracking-tight leading-tight text-white">
+                Bienvenue Mr.OUADDI MOHAMED AMINE
+            </div>
+
+            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
+                Ne manquez pas l'opportunité de découvrir tout ce que notre site peut vous offrir !
+            </div>
+        </div>
+
+        <!-- notification -->
+
+        <mat-card style="max-width: 600px; margin: 20px auto 0; background-color: transparent;">
+
+            <mat-accordion>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="font-size: 17px;">
+                            Impayé<span style="color: rgb(177, 12, 12);"> (0)</span>
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p>Vous n'avez pas de nouveaux impayés</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </mat-card>
+
+
+
+
+    </div>
+
+    <div class="md:hidden relative mx-auto w-full   py-5 -mt-24">
+
+        <!-- Parcours xs,sm -->
+        <div class="grid grid-cols-4 gap-7 mt-7  sm:py-1">
+            <div class="carre flex flex-col items-center cursor-pointer ">
+                <div
+                    style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                    <span
+                        class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                        [routerLink]="['/projets-search']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
+                        </mat-icon>
+                    </span>
+                </div>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je trouve</span>
+                    <span>mon bien</span>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="carre flex flex-col items-center cursor-pointer ">
+                <div
+                    style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span
+                        class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                        [routerLink]="['/espace-connecte/simulation-detaillee']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="calculation">
+                        </mat-icon>
+                    </span>
+                </div>
+                <div
+                    class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2 focus:text-primary">
+                    <span>Je simule </span>
+                    <span>mon crédit</span>
+                </div>
+            </div>
+
+
+
+
+            <div class="carre flex flex-col items-center cursor-pointer ">
+                <div
+                    style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span
+                        class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
+                        [routerLink]="['/espace-connecte/simulation-detaillee']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
+                        </mat-icon>
+                    </span>
+                </div>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je demande</span>
+                    <span>mon crédit</span>
+                </div>
+            </div>
+            <div class="carre flex flex-col items-center cursor-pointer ">
+                <div
+                    style="background-color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+
+                    <span
+                        class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+                        [routerLink]="['./']">
+                        <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
+                        </mat-icon>
+                    </span>
+                </div>
+                <div class="libelle flex flex-col items-center text-xs sm:text-sm font-semibold mt-2">
+                    <span>Je suis</span>
+                    <span>mon crédit</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- la barre xs,sm -->
+    <div class="md:hidden flex flex-col items-center w-full px-6 bg-card md:bg-white-500 md:text-primary">
+        <div
+            class=" grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
+
+            <div
+            class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+            <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
+            </mat-icon>
+
+
+
+            <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
+        </div>
+
+        <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+
+
+                <a href="/espace-connecte/mes-simulations" class=" md:hidden span-clicable">Mes Simulations réalisées ( 4 )</a>
+
+            </div>
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+            
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+
+
+
+                <a href="/espace-connecte/mes-demandes-credit" class=" md:hidden span-clicable">Mes Demandes de crédit ( 2 )</a>
+
+            </div>
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+            <div
+                class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'survey'">
+                </mat-icon>
+
+                <a href="/espace-connecte/mes-credits" class=" md:hidden span-clicable">Mes crédits en cours ( 2 )</a>
+            </div>
+
+
+
+            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
+
+           
+
+            <div
+                class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+
+
+                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'timeline'">
+                </mat-icon>
+
+
+
+                <a href="#" class=" md:hidden span-clicable">Mes opérations SAV ( 2 )</a>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Menu principale md -->
+    <div class="flex-auto relative hidden md:flex flex-col items-center pb-6 px-8 sm:pb-10 sm:px-10 ">
+        <!-- Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-y-8 md:gap-y-0 md:gap-x-8 w-full max-w-sm md:max-w-7xl -mt-16 sm:-mt-24">
+
+            <!-- border-2 border-primary-500  -->
+            <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
+                onclick="window.location.href='/'">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes Projets Favoris </div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded ">
+                        <img class="max-w-20" src="assets/images/pages/landingBis/dem_red.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 0 )</div>
+                </div>
+            </button>
+
+            <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
+                onclick="window.location.href='/espace-connecte/mes-simulations'">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes Simulations réalisées</div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded ">
+                        <img class="max-w-20" src="assets/images/pages/landingBis/calc_red.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 4 )</div>
+                </div>
+
+            </button>
+
+            <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
+                onclick="window.location.href='/espace-connecte/mes-demandes-credit'">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes Demandes de crédit </div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded ">
+                        <img class="max-w-20" src="assets/images/pages/landingBis/cred_red_v.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 2 )</div>
+                </div>
+            </button>
+
+            <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
+                onclick="window.location.href='/espace-connecte/mes-credits'">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes crédits en cours </div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded">
+                        <img class="max-w-20" src="assets/images/pages/landingBis/proj_red.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 2 )</div>
+                </div>
+            </button>
+
+            <button class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05]"
+                onclick="window.location.href='/'">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes opérations SAV</div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded ">
+                        <img class="max-w-20" src="assets/images/pages/landingBis/sav.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 2 )</div>
+                </div>
+
+            </button>
+        </div>
+        <!-- FAQs -->
+
+
+
+
+
+
+
+
+    </div>
+
+    <!-- parcours MD -->
+    <div class="flex-auto relative hidden md:flex flex-col items-center pb-6 px-8 sm:pb-10 sm:px-10 bg-card max-h-50">
+
+        <span class="text-center text-xl md:text-xl uppercase font-bold text-primary md:text-primary-700 pt-10 pb-8">
+            Je réalise mon projet immobilier <br class="sm:hidden" /> avec un parcours simplifié 100% digital :
+        </span>
+
+        <div class="grid grid-cols-1 gap-y-2 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10">
+
+            <button class="bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/projets-search'">
+                <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
+                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je trouve mon bien</span>
+            </button>
+            
+
+         
+
+            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
+            </mat-icon>
+
+            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/simulation-personnalisee'">
+                <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
+                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je simule mon crédit</span>
+            </button>
+
+           
+
+            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
+            </mat-icon>
+
+         
+
+            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/espace-connecte/simulation-detaillee'">
+                <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
+                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je demande mon crédit</span>
+            </button>
+
+            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
+            </mat-icon>
+
+         
+
+            <button class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105" onclick="window.location.href = '/projets-search'">
+                <mat-icon class="icon-size-12 text-primary" [svgIcon]="'property'"></mat-icon>
+                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">  Je suis mon crédit</span>
+            </button>
+
+          
+
+        </div>
+    </div>
+
+
+
+    <!-- parcours MD -->
+
+
+
+
+
+</div>

@@ -34,18 +34,18 @@ export class SimulationPersonaliseeService {
     /**
      * Simulation personnalisée with given query
      *
-     * @param queryParams
+     * @param critere
      */
     simuler(critere: CriterePersonnalisee): Observable<SimulationPersonnalisee> {
 
-        return this._httpClient.get<SimulationPersonnalisee>('api/repositories/simulation-personnalisee', {
-            params: new HttpParams({ fromObject: critere })
-        })
-            .pipe(
-                tap((response: SimulationPersonnalisee) => {
-                    this._simulation.next(response);
-                })
-            );
+        return this._httpClient.post<SimulationPersonnalisee>('api/repositories/simulation-personnalisee',
+            // { params: new HttpParams({ fromObject: critere })}
+            critere
+        ).pipe(
+            tap((response: SimulationPersonnalisee) => {
+                this._simulation.next(response);
+            })
+        );
     }
 
 }
