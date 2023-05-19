@@ -92,6 +92,8 @@
     <!-- Content -->
     <div class="relative flex flex-col flex-auto max-md:mb-12">
         <div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto" cdkScrollable #content>
+            <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                Otherwise, layout changes won't be registered and the view won't be updated! -->
             <router-outlet *ngIf="true"></router-outlet>
 
             <div class="relative hidden md:flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-gray-900 dark:bg-transparent print:hidden">

@@ -174,6 +174,10 @@ export const appRoutes: Route[] = [
                     {
                         path: 'mes-credits',
                         loadChildren: () => import('app/modules/admin/mes-credits/mes-credits.module').then(m => m.MesCreditsModule)
+                    },
+                    {
+                        path: 'mes-projets-favoris',
+                        loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
                     }
                 ]
             },

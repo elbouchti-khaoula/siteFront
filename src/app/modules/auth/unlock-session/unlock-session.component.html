@@ -28,13 +28,22 @@
                 [formGroup]="unlockSessionForm"
                 #unlockSessionNgForm="ngForm">
 
-                <!-- Name field -->
+                <!-- First Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>First name</mat-label>
                     <input
-                        id="name"
+                        id="firstname"
                         matInput
-                        [formControlName]="'name'">
+                        [formControlName]="'firstName'">
+                </mat-form-field>
+
+                <!-- Last Name field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Last name</mat-label>
+                    <input
+                        id="lastname"
+                        matInput
+                        [formControlName]="'lastName'">
                 </mat-form-field>
 
                 <!-- Password field -->
@@ -86,7 +95,7 @@
                     <span>I'm not</span>
                     <a
                         class="ml-1 text-primary-500 hover:underline"
-                        [routerLink]="['/sign-out']">{{name}}</a>
+                        [routerLink]="['/sign-out']">{{firstName}} {{lastName}}</a>
                 </div>
 
             </form>

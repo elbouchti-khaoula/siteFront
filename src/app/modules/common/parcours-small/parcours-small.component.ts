@@ -1,11 +1,12 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector       : 'parcours',
-    templateUrl    : './parcours.component.html',
+    selector       : 'parcours-small',
+    templateUrl    : './parcours-small.component.html',
+    styleUrls       : ['./parcours-small.component.scss'],
     encapsulation  : ViewEncapsulation.None
 })
-export class ParcoursComponent
+export class ParcoursSmallComponent
 {
 
     @Input() inputMethod: () => void

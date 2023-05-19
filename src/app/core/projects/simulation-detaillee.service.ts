@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, switchMap, tap } from 'rxjs';
 import { CritereDetaillee, Project, SimulationDetaillee } from './simulation-detaillee.types';
-import { ProjectAuthService } from 'app/core/projects-auth/projects-auth.service';
+import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
 import { FuseUtilsService } from '@fuse/services/utils';
 
@@ -221,9 +221,6 @@ export class SimulationDetailleeService {
 
                                     this._simulationResultat.next(simulationResult);
                                     return simulationResult;
-
-                                    // this._critereSimulation.next(response[0]);
-                                    // return response[0];
                                 })
                             );
                     }
@@ -258,7 +255,16 @@ export class SimulationDetailleeService {
                             .pipe(
                                 map((response: Project[]) => {
 
-                                    let result = this.convertToSimulations(response);
+                                    let list1 = response.filter(e => e.dossiers.length > 1);
+                                    let list2 = response.filter(e => e.dossiers.length === 1);
+                                    let list3 = [];
+                                    list3.push(list1[0]);
+                                    list3.push(list1[1]);
+                                    list3.push(list2[0]);
+                                    list3.push(list2[1]);
+                                    list3.push(list2[2]);
+                                    
+                                    let result = this.convertToSimulations(list3);
                                     this._simulations.next(result);
                                     return result;
 

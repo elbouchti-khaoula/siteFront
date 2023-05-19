@@ -18,6 +18,7 @@ import { CinqEtapesModule } from './cinq-etapes/cinq-etapes.module';
 import { ActualitesModule } from './actualites/actualites.module';
 import { ContactezNousModule } from './contactez-nous/contactez-nous.module';
 import { ParcoursModule } from 'app/modules/common/parcours/parcours.module';
+import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-small.module';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { ParcoursModule } from 'app/modules/common/parcours/parcours.module';
 
         ProjetsFilterModule,
         ParcoursModule,
+        ParcoursSmallModule,
         VosAvantagesModule,
         RechercheVilleModule,
         SimulationModule,

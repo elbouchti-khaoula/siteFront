@@ -92,13 +92,13 @@
                                                         'bg-second-100 dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
                                         (click)="selectProjet(projet)">
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+                                        <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-2">
                                             <!-- carousel projet images -->
                                             <div class="flex flex-0 items-center justify-center">
                                                 <ng-container *ngIf="projet.images && projet.images.length > 0">
-                                                    <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-50 md:h-60 overflow-hidden">
+                                                    <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
                                                         <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
-                                                            <div *angularCarouselSlide class="h-50 md:h-60">
+                                                            <div *angularCarouselSlide class="h-50 md:h-68">
                                                                 <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
                                                                 <img [src]="image.chemin" class="object-cover h-full" />
                                                             </div>
@@ -112,54 +112,59 @@
                                                 </ng-container>
                                             </div>
                                             <!-- projet description -->
-                                            <div class="md:ml-4 flex flex-col">
-                                                <div class="flex flex-row justify-between">
-                                                    <div class="flex flex-col">
-                                                        <span class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                            <div class="md:ml-4 flex flex-col justify-between">
+                                                <div class="grid grid-cols-3">
+                                                    <div class="col-span-2 flex flex-col justify-between">
+                                                        <div class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                                                             à partir de 
                                                             <strong>{{projet.prixMin}} {{projet.devise}}</strong>
-                                                        </span>
-                                                        <span class="mt-5 font-extrabold text-xl uppercase text-primary">
-                                                            {{projet.nom}}
-                                                        </span>
-                                                        <div class="flex items-center text-center">
-                                                            <mat-icon class="icon-size-5 text-primary-700"
-                                                                [svgIcon]="'heroicons_outline:location-marker'">
-                                                            </mat-icon>
-                                                            <span class="ml-1 text-md">{{projet.libelleVille}}</span>
                                                         </div>
-                                                        <span class="text-md font-medium text-second-550">{{projet.statut}}</span>
+                                                        <div class="flex flex-col space-y-0.5">
+                                                            <span class="font-extrabold text-xl uppercase text-primary">
+                                                                {{projet.nom}}
+                                                            </span>
+                                                            <div class="-ml-1 flex items-center text-center">
+                                                                <mat-icon class="icon-size-5 text-primary-700"
+                                                                    [svgIcon]="'heroicons_outline:location-marker'">
+                                                                </mat-icon>
+                                                                <span class="ml-1 text-md">{{projet.libelleVille}}</span>
+                                                            </div>
+                                                            <span class="font-medium text-second-600">{{projet.statut}}</span>
+                                                            <span class="font-medium">{{projet.libelleTypeBien}}</span>
+                                                        </div>
                                                     </div>
                                                     
                                                     <ng-container *ngIf="projet.promoter.logoPath">
-                                                        <figure class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 bg-card">
+                                                        <figure class="ml-auto flex items-center justify-center h-32 sm:h-36 p-2 rounded overflow-hidden bg-card ring-1 ring-gray-900">
                                                             <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
                                                         </figure>
                                                     </ng-container>
                                                     <ng-container *ngIf="!projet.promoter.logoPath">
-                                                        <span class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                        <span class="ml-auto flex items-center justify-center h-32 h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                             No Logo
                                                         </span>
                                                     </ng-container>
                                                 </div>
 
-                                                <div class="prose prose-sm my-3 md:mt-4 overflow-hidden"
-                                                    [innerHTML]="projet.descriptionSmall"></div>
+                                                <div class="max-md:mt-5">
+                                                    <div class="prose prose-sm overflow-hidden"
+                                                        [innerHTML]="projet.descriptionSmall"></div>
 
-                                                <div class="grid grid-cols-2 gap-4 mx-auto w-full">
-                                                    <button class="flex-auto"
-                                                        mat-flat-button 
-                                                        [color]="'primary'"
-                                                        [routerLink]="['/projets-search/projet-details']"
-                                                        [queryParams]="{id: projet.id}">
-                                                        En savoir plus
-                                                    </button>
-                                                    <button class="flex-auto"
-                                                        mat-stroked-button 
-                                                        [color]="'primary'"
-                                                        (click)="openContact(projet)">
-                                                        Contacter
-                                                    </button>
+                                                    <div class="grid grid-cols-2 gap-4 mx-auto w-full mt-3">
+                                                        <button class="flex-auto"
+                                                            mat-flat-button 
+                                                            [color]="'primary'"
+                                                            [routerLink]="['/projets-search/projet-details']"
+                                                            [queryParams]="{id: projet.id}">
+                                                            En savoir plus
+                                                        </button>
+                                                        <button class="flex-auto"
+                                                            mat-stroked-button 
+                                                            [color]="'primary'"
+                                                            (click)="openContact(projet)">
+                                                            Contacter
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

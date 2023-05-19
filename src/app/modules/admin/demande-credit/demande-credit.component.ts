@@ -33,6 +33,11 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  allowedTypesImg = ['image/jpeg', 'image/png'];
+  allowedTypes = ['image/jpeg', 'image/png', 'text/plain', 'application/pdf',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
   /**
    * Constructor
    */
@@ -44,8 +49,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     private _tableauAmortissementService: TableauAmortissementService,
     private _fuseConfirmationService: FuseConfirmationService,
     private _compressImageService: CompressImageService
-  )
-  {
+  ) {
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
     if (data) {
       this.simulationResultat = data;
@@ -149,7 +153,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           // console.log(key);
           // console.log(this.documents[key]);
           for (var i = 0; i < this.documents[key].length; i++) {
-            if (this.documents[key][i] !=='PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
+            if (this.documents[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
               this.pieces.push({
                 id: i + 1,
                 libelle: this.documents[key][i],
@@ -225,15 +229,10 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const allowedTypesImg = ['image/jpeg', 'image/png'];
-
-    const allowedTypes = ['image/jpeg', 'image/png', 'text/plain', 'application/pdf',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     const file = fileList[0];
 
     // Return if the file is not allowed
-    if (!allowedTypes.includes(file.type)) {
+    if (!this.allowedTypes.includes(file.type)) {
 
       // Open the dialog
       this._fuseConfirmationService.open(
@@ -294,24 +293,34 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (allowedTypesImg.includes(file.type) && file.size > 1048576) {
-      console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
+    if (this.allowedTypesImg.includes(file.type)) {
+      
+      if (file.size > 1048576) {
+        console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
 
-      this._compressImageService.compress(file)
-        .pipe(take(1))
-        .subscribe((compressedImageFile: File) => {
-          console.log(`Image size after compressed: ${compressedImageFile.size} bytes.`);
+        this._compressImageService.compress(file)
+          .pipe(take(1))
+          .subscribe((compressedImageFile: File) => {
+            console.log(`Image size after compressed: ${compressedImageFile.size} bytes.`);
 
-          // upload the compressed image
-          this.addFileToPiece(compressedImageFile, pieceIndex, true);
+            // upload the compressed image
+            this.addFileToPiece(compressedImageFile, pieceIndex, true);
 
-        });
+          });
+      } else {
+        // upload the image without compressing
+        this.addFileToPiece(file, pieceIndex, true);
+      }
 
     } else {
       // upload the file
       this.addFileToPiece(file, pieceIndex, false);
     }
 
+  }
+
+  containsImage(pieceIndex: number) : boolean {
+    return this.pieces[pieceIndex].files.some(fich => fich.isImage);
   }
 
   addFileToPiece(file: File, pieceIndex: number, estImage: boolean) {
