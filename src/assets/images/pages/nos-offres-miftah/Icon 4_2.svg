@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68">
+  <g id="Groupe_1010" data-name="Groupe 1010" transform="translate(-289 -772.416)">
+    <g id="Groupe_670" data-name="Groupe 670" transform="translate(87 236.416)">
+      <rect id="Rectangle_259" data-name="Rectangle 259" width="68" height="68" rx="34" transform="translate(202 536)" fill="#d8473b"/>
+    </g>
+    <g id="Tracé_238" data-name="Tracé 238" transform="translate(302.121 813.969)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8.7,5H33.059l8.7,10.76H0Z" stroke="none"/>
+      <path d="M 9.17718505859375 6.000001907348633 L 2.094524383544922 14.75976181030273 L 39.66425323486328 14.75976181030273 L 32.58159637451172 6.000001907348633 L 9.17718505859375 6.000001907348633 M 8.699745178222656 5.000001907348633 L 33.05903625488281 5.000001907348633 L 41.75878524780273 15.75976181030273 L -3.814697265625e-06 15.75976181030273 L 8.699745178222656 5.000001907348633 Z" stroke="none" fill="#fff"/>
+    </g>
+    <path id="Tracé_235" data-name="Tracé 235" d="M44,40V24.35a8.012,8.012,0,0,0-2.51-5.82L26.75,4.6a4,4,0,0,0-5.5,0L6.51,18.53A8.012,8.012,0,0,0,4,24.35V40a4,4,0,0,0,4,4H40A4,4,0,0,0,44,40Z" transform="translate(299 780)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Tracé_236" data-name="Tracé 236" d="M20.445,20.445a7.222,7.222,0,1,0-6.915-5.122l-.307.307L6.355,22.5A1.207,1.207,0,0,0,6,23.352v3.112a1.207,1.207,0,0,0,1.2,1.2H9.611a1.207,1.207,0,0,0,1.2-1.2,1.207,1.207,0,0,1,1.2-1.2,1.207,1.207,0,0,0,1.2-1.2,1.207,1.207,0,0,1,1.2-1.2h.7a1.207,1.207,0,0,0,.855-.355l2.052-2.052.307-.307A7.3,7.3,0,0,0,20.445,20.445Zm2.407-7.222a2.407,2.407,0,0,0-2.407-2.407" transform="translate(306.167 786.873)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
