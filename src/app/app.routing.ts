@@ -120,6 +120,9 @@ export const appRoutes: Route[] = [
                 path: 'nos-conventions',
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
+
+         
+
             {
                 path: 'nous-contacter',
                 loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),

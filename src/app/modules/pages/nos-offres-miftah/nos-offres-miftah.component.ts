@@ -35,15 +35,62 @@ export class NosOffresMiftahComponent
     showDiv13 = false;
     showDiv14 = false;
 
+    /* l image du visuel */
+    imageVisDet = 'assets/images/pages/nos-offres-miftah/Vis_2.png';
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
-    imageSrc2 = 'assets/images/pages/nos-offres-miftah/Vis_2.png';
+
+    imageVisDet2 = 'assets/images/pages/nos-offres-miftah/Construction_243297886.jpg';
+    imageVisDet3 = 'assets/images/pages/nos-offres-miftah/Terrain_2193549151.jpg';
+
+    imageVisDet4 = 'assets/images/pages/nos-offres-miftah/Terrain et construction_1247187910(2).jpg';
+
+    imageVisDet5 = 'assets/images/pages/nos-offres-miftah/Professionel 2_284936198.jpg';
+
+
+
+
+    imageVisDet7 = 'assets/images/pages/nos-offres-miftah/MRE-BILA HOUDOUD_2042991488.jpg';
+
+    imageVisDet8 = 'assets/images/pages/nos-offres-miftah/Etrangers non residents_1660072789.jpg';
+
+
+
+
+    imageVisDet10 = 'assets/images/pages/nos-offres-miftah/Santé_1946243179.jpg';
+
+    imageVisDet14= 'assets/images/pages/nos-offres-miftah/Attaalim_2007116861.jpg';
 
 
 
 
 
 
-    imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
+
+
+
+
+
+
+
+
+
+
+
+
+    /* les icone  */
+    imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1_2.svg';
+    imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+    
+
+
+
+
+
+
+
+    imageS = 'assets/images/pages/nous-connaitre/Icon 3.svg';
 
 
 
@@ -66,7 +113,12 @@ export class NosOffresMiftahComponent
           this.showDiv13 = false;
           this.showDiv14 = false;
 
-            this.imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
+          this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1_2.svg';
+          this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+          this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+          this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+
 
            
 
@@ -99,8 +151,14 @@ export class NosOffresMiftahComponent
           this.showDiv13 = false;
           this.showDiv14 = false;
         
-          
-            
+          this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2_2.svg';
+          this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+          this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+          this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+
+
+
           } else {
             this.showDiv2 = false;
           
@@ -128,7 +186,10 @@ export class NosOffresMiftahComponent
           this.showDiv13 = false;
           this.showDiv14 = false;
 
-            
+          this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+          this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+          this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+          this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
 
 
           } else {
@@ -154,7 +215,10 @@ export class NosOffresMiftahComponent
         this.showDiv13 = false;
         this.showDiv14 = false;
 
-      
+        this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+        this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+        this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+        this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4_2.svg';
         
           
         } else {
