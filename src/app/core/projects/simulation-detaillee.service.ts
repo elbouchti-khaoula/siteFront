@@ -255,18 +255,14 @@ export class SimulationDetailleeService {
                             .pipe(
                                 map((response: Project[]) => {
 
-                                    let list1 = response.filter(e => e.dossiers.length > 1);
-                                    let list2 = response.filter(e => e.dossiers.length === 1);
-                                    let list3 = [];
-                                    list3.push(list1[0]);
-                                    list3.push(list1[1]);
-                                    list3.push(list2[0]);
-                                    list3.push(list2[1]);
-                                    list3.push(list2[2]);
-                                    
-                                    let result = this.convertToSimulations(list3);
-                                    this._simulations.next(result);
-                                    return result;
+                                    if (response && response.length > 0) {
+                                        let result = this.convertToSimulations(response);
+                                        this._simulations.next(result);
+                                        return result;
+                                    }
+                                    else {
+                                        return null;
+                                    }
 
                                 })
                             );

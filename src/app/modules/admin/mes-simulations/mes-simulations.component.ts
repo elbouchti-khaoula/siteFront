@@ -45,11 +45,15 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: SimulationDetaillee[]) => {
 
-        this.simulations = response.map(
-          e => {
-            return this._fuseUtilsService.convertSimulationToString(e)
-          }
-        );
+        let res = [];
+        if (response && response.length > 0) {
+          res = response.map(
+            e => {
+              return this._fuseUtilsService.convertSimulationToString(e)
+            }
+          );
+        }
+        this.simulations = res;
 
         // Mark for check
         this._changeDetectorRef.markForCheck();

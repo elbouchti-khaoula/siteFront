@@ -146,23 +146,29 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: any) => {
 
-        // Update the documents
-        this.documents = response;
+        let res = [];
 
-        Object.keys(this.documents).forEach(key => {
-          // console.log(key);
-          // console.log(this.documents[key]);
-          for (var i = 0; i < this.documents[key].length; i++) {
-            if (this.documents[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
-              this.pieces.push({
-                id: i + 1,
-                libelle: this.documents[key][i],
-                parent: 0,
-                files: []
-              })
+        if (response && response.length > 0) {
+          // Update the documents
+          res = response;
+
+          Object.keys(res).forEach(key => {
+            // console.log(key);
+            // console.log(res[key]);
+            for (var i = 0; i < res[key].length; i++) {
+              if (res[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === res[key][i])) {
+                this.pieces.push({
+                  id: i + 1,
+                  libelle: res[key][i],
+                  parent: 0,
+                  files: []
+                })
+              }
             }
-          }
-        });
+          });
+        }
+
+        this.documents = res;
 
         this._changeDetectorRef.detectChanges();
       });
