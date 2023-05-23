@@ -1,0 +1,40 @@
+.nous-connaitre-bg-header {
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/Nous connaître.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.text-orange {
+    color: rgb(238, 125, 33);
+}
+
+.orange-circle {
+    background-color: orange;
+  }
+
+  .selected {
+    border: 2px solid blue;
+  }
+
+
+  @media (max-width: 767px) {
+    .mobile-full-width {
+      width: 100%;
+    }
+  }
+
+
+.guide-immobilier-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre-old/backgd.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}  
+
+.contacter-expert-bg{
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/landingBis/header_vice.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+} 
+  

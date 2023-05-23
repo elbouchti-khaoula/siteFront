@@ -40,7 +40,7 @@
         </header>
 
         <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
-        <div class="md:hidden relative w-full p-5 -mt-20 sm:max-w-md sm:mx-auto">
+        <div class="md:hidden relative w-full p-5 -mt-16 sm:max-w-md sm:mx-auto">
             
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
@@ -72,7 +72,7 @@
         <nous-choisir></nous-choisir>
         <cinq-etapes></cinq-etapes>
         <actualites [isScreenSmall]="isScreenSmall"></actualites>
-        <contactez-nous></contactez-nous>
+        <contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
 
     </div>
 

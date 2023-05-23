@@ -196,19 +196,12 @@ export class SimulationDetailleeService {
                                     var simulationResult = {
                                         ...response[0].tiers,
                                         // Mon profil
-                                        // nom: response[0].tiers.nom,
-                                        // prenom: response[0].tiers.prenom,
-                                        // telephone: response[0].tiers.telephone,
-                                        // email: response[0].tiers.email,
-                                        // dateNaissance: response[0].tiers.dateNaissance,
                                         nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
                                         residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
                                         // ma situation
                                         categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
-                                        // nomEmployeur: response[0].tiers.nomEmployeur,
                                         // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
                                         salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
-                                        // autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
                                         creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
                                         // Mon projet
                                         objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
@@ -255,18 +248,14 @@ export class SimulationDetailleeService {
                             .pipe(
                                 map((response: Project[]) => {
 
-                                    let list1 = response.filter(e => e.dossiers.length > 1);
-                                    let list2 = response.filter(e => e.dossiers.length === 1);
-                                    let list3 = [];
-                                    list3.push(list1[0]);
-                                    list3.push(list1[1]);
-                                    list3.push(list2[0]);
-                                    list3.push(list2[1]);
-                                    list3.push(list2[2]);
-                                    
-                                    let result = this.convertToSimulations(list3);
-                                    this._simulations.next(result);
-                                    return result;
+                                    if (response && response.length > 0) {
+                                        let result = this.convertToSimulations(response);
+                                        this._simulations.next(result);
+                                        return result;
+                                    }
+                                    else {
+                                        return null;
+                                    }
 
                                 })
                             );
