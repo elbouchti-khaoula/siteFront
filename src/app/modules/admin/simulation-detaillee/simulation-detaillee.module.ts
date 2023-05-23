@@ -20,6 +20,8 @@ import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
+import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 
 @NgModule({
     declarations: [
@@ -41,8 +43,10 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
         MatMomentDateModule,
         MatSidenavModule,
         BienvenueModule,
-        DetailsSimulationModule
+        DetailsSimulationModule,
+        MatAutocompleteModule
     ],
+    
     providers   : [
         {
             provide : MAT_DATE_FORMATS,
@@ -57,6 +61,11 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
                     monthYearA11yLabel: 'MMMM YYYY'
                 }
             }
+        },
+        {
+            provide   : MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
+            useFactory: (overlay: Overlay) => (): BlockScrollStrategy => overlay.scrollStrategies.block(),
+            deps      : [Overlay]
         }
     ],
     exports     : [

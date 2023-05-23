@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence } from './referentiel.types';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EmployeursConventionnes, PromoteursConventionnes } from './referentiel.types';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +17,8 @@ export class ReferentielService {
     private _typesBiens: BehaviorSubject<TypeBien[] | null> = new BehaviorSubject(null);
     private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
     private _agence: BehaviorSubject<Agence | null> = new BehaviorSubject(null);
+    private _employeurs: BehaviorSubject<EmployeursConventionnes[] | null> = new BehaviorSubject(null);
+    private _promoteurs: BehaviorSubject<PromoteursConventionnes[] | null> = new BehaviorSubject(null);
     /**
      * Constructor
      */
@@ -80,6 +82,19 @@ export class ReferentielService {
      */
     get agence$(): Observable<Agence> {
         return this._agence.asObservable();
+    }
+    /**
+      * Getter for employeurs
+       */
+    get employeurs$(): Observable<EmployeursConventionnes[]> {
+        return this._employeurs.asObservable();
+    }
+
+    /**
+     * Getter for promoteurs
+      */
+    get promoteurs$(): Observable<PromoteursConventionnes[]> {
+        return this._promoteurs.asObservable();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -270,5 +285,75 @@ export class ReferentielService {
             })
         );
     }
+    /**
+    * Get employeurs 
+    */
+    getEmployeursConventionnes(): Observable<any> {
+        return this._httpClient.post<any>(
+            `api/projects/authentification/getToken`,
+            {
+                userName: "siteweb",
+                password: "w@afa2022"
+            }
+        ).pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
+
+                        'Authorization': `Bearer ${token.accesToken}`
+                    });
+
+                    return this._httpClient.post<EmployeursConventionnes[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "employeursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: EmployeursConventionnes[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            localStorage.setItem('employeurs', JSON.stringify(response));
+                            this._employeurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
+    }
+
+    /**
+      * Get promoteurs
+      */
+    getPromoteursConventionnes(): Observable<any> {
+        return this._httpClient.post<any>(
+            `api/projects/authentification/getToken`,
+            {
+                userName: "siteweb",
+                password: "w@afa2022"
+            }
+        ).pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
+
+                        'Authorization': `Bearer ${token.accesToken}`
+                    });
+
+                    return this._httpClient.post<PromoteursConventionnes[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "promoteursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: PromoteursConventionnes[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            localStorage.setItem('promoteurs', JSON.stringify(response));
+                            this._promoteurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
+    }
 
 }
+

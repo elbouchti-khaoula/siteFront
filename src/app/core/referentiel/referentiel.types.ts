@@ -45,3 +45,14 @@ export interface Agence {
     libelleVille?: string | null;
     image: string | null;
 }
+export interface EmployeursConventionnes
+{
+    code?       : string;
+    libelle?    : string;
+}
+export interface PromoteursConventionnes
+{
+    code?       : string;
+    libelle?    : string;
+}
+
