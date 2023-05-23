@@ -1,6 +1,6 @@
 export interface Projet {
     id: number;
-    nom: string;
+    nom?: string;
     description?: string | null;
     descriptionSmall?: string | null;
     adresse?: string | null;
@@ -20,9 +20,9 @@ export interface Projet {
     prixMax?: number;
     superficieMin?: number;
     superficieMax?: number;
-    nombreChambresMin: number;
-    nombreChambresMax: number;
-    nombreBiens: number;
+    nombreChambresMin?: number;
+    nombreChambresMax?: number;
+    nombreBiens?: number;
     classement?: number;
 
     codeTypeBien?: string | null;
@@ -49,5 +49,15 @@ export interface Projet {
         logoPath: string | null;
         extensionLogo: string | null;
     }
+}
+
+export interface ProjetFavori {
+    id?: number;
+    userName?: string;
+    userEmail: string | null;
+    statutFavorite?: string;  // 'ENCOURS' ou 'PURGE'
+    realEstateProject?: Projet;
+    dateCreation?: Date | null;
+    datePurge?: Date | null;
 }
 

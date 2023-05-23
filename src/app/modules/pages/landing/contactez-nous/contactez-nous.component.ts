@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector       : 'contactez-nous',
@@ -7,6 +7,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class ContactezNousComponent
 {
+    @Input() isScreenSmall: boolean;
+    
     /**
      * Constructor
      */

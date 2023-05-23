@@ -1,8 +1,7 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header
-        class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-80 md:min-h-76 messimul-bg-header">
+    <header class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-80 md:min-h-76 messimul-bg-header">
         <div class="w-full max-w-400">
             <bienvenue></bienvenue>
         </div>
@@ -21,51 +20,82 @@
                 </div>
             </div>
 
-            <ng-container *ngIf="projetsFavoris && projetsFavoris.length > 0; else noSimulations">
+            <ng-container *ngIf="projetsFavoris && projetsFavoris.length > 0; else noProjetsFavoris">
 
-                <div class="mx-auto md:w-fit grid grid-cols-1 gap-y-14 md:grid-cols-2 md:gap-x-10 md:gap-y-16 mt-16"
+                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-16"
                     [ngClass]="{'md:grid-cols-3' : projetsFavoris.length > 4 || projetsFavoris.length === 3,
-                                'md:grid-cols-1' : projetsFavoris.length === 1 }">
+                                'md:grid-cols-1' : projetsFavoris.length === 1,
+                                'md:grid-cols-2' : projetsFavoris.length === 4 || projetsFavoris.length === 2}">
 
-                    <ng-container *ngFor="let projet of projetsFavoris; let i = index; trackBy: trackByFn">
+                    <ng-container *ngFor="let projetFav of projetsFavoris; let i = index; trackBy: trackByFn">
 
-                        <fuse-card class="relative flex flex-col pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
+                        <fuse-card class="sm:max-w-90 relative flex flex-col pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-second-100">
 
-                            <div
-                                class="z-20 mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
+                            <div class="z-20 mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
                                 <mat-icon class="icon-size-12 text-on-primary -mt-1" svgIcon="home-heart">
                                 </mat-icon>
                             </div>
 
                             <!-- Header -->
                             <div class="w-full h-40 sm:h-48 bg-accent-100 dark:bg-accent-700 rounded-t-2xl overflow-hidden">
-                                <img class="object-cover w-full h-full" [src]="projet.image">
+                                <img class="object-cover w-full h-full" [src]="projetFav.realEstateProject.images[1].chemin">
                             </div>
 
                             <div class="flex flex-col items-center mt-5">
 
-                                <!-- Name -->
-                                <div class="ml-5 text-xl font-bold truncate">{{projet.name}}</div>
+                                <div class="grid grid-cols-3 gap-x-3 px-3 sm:px-6">
 
-                                <!-- Address -->
-                                <ng-container *ngIf="projet.address">
-                                    <div class="flex sm:items-center mt-5">
-                                        <mat-icon [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
-                                        <div class="ml-3 leading-6">{{projet.address}}</div>
+                                    <!-- projet description -->
+                                    <div class="col-span-2 flex flex-col justify-between">
+                                        <div class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                            à partir de 
+                                            <strong>{{projetFav.realEstateProject.prixMin}} {{projetFav.realEstateProject.devise}}</strong>
+                                        </div>
+                                        <div class="flex flex-col space-y-0.5">
+                                            <span class="font-extrabold text-xl uppercase text-primary">
+                                                {{projetFav.realEstateProject.nom}}
+                                            </span>
+                                            <div class="-ml-1 flex items-center text-center">
+                                                <mat-icon class="icon-size-5 text-primary-700"
+                                                    [svgIcon]="'heroicons_outline:location-marker'">
+                                                </mat-icon>
+                                                <span class="ml-1 text-md">{{projetFav.realEstateProject.libelleVille}}</span>
+                                            </div>
+                                            <span class="font-medium text-second-600">{{projetFav.realEstateProject.statut}}</span>
+                                            <span class="font-medium">{{projetFav.realEstateProject.libelleTypeBien}}</span>
+                                        </div>
                                     </div>
-                                </ng-container>
 
-                                <div class="text-md font-semibold text-primary mt-2">à partir de 1 400 000,00 Dhs</div>
+                                    <!-- logo promoteur -->
+                                    <ng-container *ngIf="projetFav.realEstateProject.promoter.logoPath">
+                                        <figure class="w-full ml-auto flex items-center justify-center h-32 md:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
+                                            <img class="h-24 md:h-28" [src]="projetFav.realEstateProject.promoter.logoPath" class="object-cover w-full" />
+                                        </figure>
+                                    </ng-container>
+                                    <ng-container *ngIf="!projetFav.realEstateProject.promoter.logoPath">
+                                        <span class="w-full ml-auto flex items-center justify-center h-32 h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                            No Logo
+                                        </span>
+                                    </ng-container>
+                                </div>
 
+                                <!-- Actions -->
                                 <div class="flex justify-center border-t pt-5 px-5 mt-5">
-                                    <button class="px-5" mat-flat-button [color]="'primary'">
-                                        Voir plus
+                                    <button class="px-5"
+                                        mat-flat-button 
+                                        [color]="'primary'"
+                                        [routerLink]="['/projets-search/projet-details']"
+                                        [queryParams]="{id: projetFav.realEstateProject.id}">
+                                        En savoir plus
                                     </button>
-                                    <button class="px-5 ml-2" mat-stroked-button
+                                    <!-- <button class="px-5 ml-2" mat-stroked-button
                                         [matTooltip]="'Je contacte le promoteur'">
                                         Contacter
-                                    </button>
-                                    <button class="px-5 ml-2" mat-stroked-button [matTooltip]="'Je simule mon crédit'">
+                                    </button> -->
+                                    <button class="px-5 ml-2"
+                                        mat-stroked-button
+                                        [matTooltip]="'Je simule mon crédit'"
+                                        [routerLink]="['/espace-connecte/simulation-detaillee']">
                                         Simuler
                                     </button>
                                 </div>
@@ -80,8 +110,8 @@
 
             </ng-container>
 
-            <!-- No simulation template -->
-            <ng-template #noSimulations>
+            <!-- No projet favori template -->
+            <ng-template #noProjetsFavoris>
                 <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md mt-10">
                     <mat-icon class="icon-size-20 md:icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-secondary">
