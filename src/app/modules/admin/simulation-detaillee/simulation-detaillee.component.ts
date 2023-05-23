@@ -14,6 +14,9 @@ import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.compo
 import { FuseUtilsService } from '@fuse/services/utils';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import { DecimalPipe, CurrencyPipe } from '@angular/common';
+
+
 
 import { BehaviorSubject, Observable, of, tap, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
@@ -98,7 +101,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _referentielService: ReferentielService,
     private _simulationService: SimulationDetailleeService,
-    private _fuseUtilsService: FuseUtilsService
+    private _fuseUtilsService: FuseUtilsService,
+    private decimalPipe: DecimalPipe,
+    private currencyPipe: CurrencyPipe
   ) {
 
     // Horizontal stepper form
@@ -376,6 +381,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   statutProjetLabel: string;
+ /* formatMontant(montant: number): string {
+    const montantFormate = this.decimalPipe.transform(montant, '1.2-2', 'fr-FR');
+    const montantAvecEspaces = montantFormate.replace('.', ' ');
+    const montantAvecDecimales = this.currencyPipe.transform(montant, 'Dhs', 'symbol', '1.2-2', 'fr-FR');
+    return montantAvecEspaces + montantAvecDecimales.substring(montantAvecEspaces.length);
+}*/
+
+
   getEmployeurs(
     search: string = ''
   ): Observable<EmployeursConventionnes[]> {

@@ -383,43 +383,42 @@
                                 </mat-form-field> -->
 
                                 <!-- Salaire annuel net -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'salaire'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'salaire'" [appFormatMontant]="simulationStepperForm.get('step2').get('salaire').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel net</mat-label>
-                                    <span matSuffix>Dhs</span>
+                                    <!--span matSuffix>Dhs</span-->
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('salaire').hasError('required')">
                                         Salaire annuel net obligatoire
                                     </mat-error>
                                 </mat-form-field>
+                                
+                                
+                                
 
                                 <!-- Autres revenus -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'autresRevenus'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'autresRevenus'" [appFormatMontant]="simulationStepperForm.get('step2').get('autresRevenus').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex loyer, primes, …</mat-label>
-                                    <span matSuffix>Dhs</span>
+                                    <!--span matSuffix>Dhs</span-->
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('autresRevenus').hasError('required')">
                                         Autres revenus obligatoire
                                     </mat-error>
                                 </mat-form-field>
+                                
 
                                 <!-- Mensualité de vos crédits en cours -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'creditsEnCours'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'creditsEnCours'" [appFormatMontant]="simulationStepperForm.get('step2').get('creditsEnCours').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des mensualités</mat-label>
-                                    <span matSuffix>Dhs</span>
+                                    <!--span matSuffix>Dhs</span-->
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
                                         Mensualités de vos crédits en cours obligatoire
                                     </mat-error>
                                 </mat-form-field>
+                                
 
                             </div>
 
@@ -453,17 +452,16 @@
                             <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Prix du bien -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'montant'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationStepperForm.get('step3').get('montant').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Prix du bien</mat-label>
-                                    <span matSuffix>Dhs</span>
+                                    <!--span matSuffix>Dhs</span-->
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montant').hasError('required')">
                                         Prix du bien obligatoire
                                     </mat-error>
                                 </mat-form-field>
+                                
 
                                 <!-- Objet de financement -->
                                 <mat-form-field class="w-full"
@@ -485,17 +483,16 @@
                                 </mat-form-field>
 
                                 <!-- Montant -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'montantProposition'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'montantProposition'" [appFormatMontant]="simulationStepperForm.get('step3').get('montantProposition').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
-                                    <span matSuffix>Dhs</span>
+                                    <!--span matSuffix>Dhs</span-->
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
                                         Montant obligatoire
                                     </mat-error>
                                 </mat-form-field>
+                                
 
                                 <!-- Durée -->
                                 <mat-form-field class="w-full"

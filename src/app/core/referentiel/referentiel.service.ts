@@ -310,7 +310,6 @@ export class ReferentielService {
                     ).pipe(
                         tap((response: EmployeursConventionnes[]) => {
                             response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                            localStorage.setItem('employeurs', JSON.stringify(response));
                             this._employeurs.next(response);
                         })
                     );
@@ -345,7 +344,6 @@ export class ReferentielService {
                     ).pipe(
                         tap((response: PromoteursConventionnes[]) => {
                             response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                            localStorage.setItem('promoteurs', JSON.stringify(response));
                             this._promoteurs.next(response);
                         })
                     );
