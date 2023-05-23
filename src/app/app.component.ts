@@ -17,7 +17,6 @@ export class AppComponent
         private domSanitizer: DomSanitizer,
     )
     {
-        // used in landing
         this.matIconRegistry.addSvgIcon(
             "property",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/PROPERTY.svg")
@@ -40,10 +39,10 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/DELIVERY-TIME.svg")
         );
 
-        this.matIconRegistry.addSvgIcon(
-            "checklist",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CHECKLIST.svg")
-        );
+        // this.matIconRegistry.addSvgIcon(
+        //     "checklist",
+        //     this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CHECKLIST.svg")
+        // );
         this.matIconRegistry.addSvgIcon(
             "finance",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/FINANCE.svg")
@@ -54,7 +53,6 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/clock.svg")
         );
 
-        // used in projet
         this.matIconRegistry.addSvgIcon(
             "underconstruct",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/under-construction.svg")
@@ -79,6 +77,10 @@ export class AppComponent
         this.matIconRegistry.addSvgIcon(
             "home-heart",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/home-heart.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "fork",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/fork.svg")
         );
         
     }

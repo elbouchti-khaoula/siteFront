@@ -63,7 +63,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     //     "residantMaroc": "Oui",
     //     "salaire": "300 000.00",
     //     "autresRevenus": 0,
-    //     "salaireEtAutresRevenus": 300000,
     //     "segment": "NV",
     //     "creditsEnCours": "0.00",
     //     "nomEmployeur": "WAFA immobilier",
@@ -153,8 +152,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           res = response;
 
           Object.keys(res).forEach(key => {
-            // console.log(key);
-            // console.log(res[key]);
             for (var i = 0; i < res[key].length; i++) {
               if (res[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === res[key][i])) {
                 this.pieces.push({
@@ -394,14 +391,14 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
               "message": "Votre demande de crédit à été validée avec succès",
               "icon": {
                 "show": true,
-                "name": "heroicons_outline:information-circle",
+                "name": "heroicons_outline:check-circle",
                 "color": "success"
               },
               "actions": {
                 "confirm": {
                   "show": true,
                   "label": "Ok",
-                  "color": "warn"
+                  "color": "primary"
                 },
                 "cancel": {
                   "show": false,

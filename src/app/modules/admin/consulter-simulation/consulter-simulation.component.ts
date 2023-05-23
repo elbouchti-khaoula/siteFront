@@ -35,7 +35,6 @@ export class ConsulterSimulationComponent {
     //     "residantMaroc": "Oui",
     //     "salaire": "300 000.00",
     //     "autresRevenus": 0,
-    //     "salaireEtAutresRevenus": 300000,
     //     "segment": "NV",
     //     "creditsEnCours": "0.00",
     //     "nomEmployeur": "WAFA immobilier",

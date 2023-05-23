@@ -19,10 +19,16 @@ export const defaultNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id        : 'espace-connecte.home',
-                title     : 'Home',
+                title     : 'Mon espace',
                 type      : 'basic',
                 link      : '/espace-connected-client',
                 exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.mes-projets-favoris',
+                title: 'Mes projets favoris',
+                type : 'basic',
+                link : '/espace-connecte/mes-projets-favoris'
             },
             {
                 id   : 'espace-connecte.simulation-detaillee',
@@ -72,7 +78,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -80,7 +85,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
-
     {
         id   : 'nous-connaitre',
         title: 'Nous connaitre',
@@ -88,7 +92,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
     {
         id   : 'notre-politique-RSE',
         title: 'Notre politique RSE',
@@ -96,10 +99,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-    
-
-    
-
     {
         id   : 'Nos-etats-financiers',
         title: 'Nos états financiers',
@@ -107,7 +106,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
@@ -115,10 +113,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
-    
-   
-    
     {
         id   : 'support',
         title: 'Nous contacter',
@@ -126,7 +120,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
-    
     {
         id   : 'agences',
         title: 'Nos agences',
@@ -148,8 +141,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     }
-  
 ];
+
 export const compactNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
@@ -167,10 +160,16 @@ export const compactNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id        : 'espace-connecte.home',
-                title     : 'Home',
+                title     : 'Mon espace',
                 type      : 'basic',
                 link      : '/espace-connected-client',
                 exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.mes-projets-favoris',
+                title: 'Mes projets favoris',
+                type : 'basic',
+                link : '/espace-connecte/mes-projets-favoris'
             },
             {
                 id   : 'espace-connecte.simulation-detaillee',
@@ -220,7 +219,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -228,7 +226,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
-
     {
         id   : 'nous-connaitre',
         title: 'Nous connaitre',
@@ -236,7 +233,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
     {
         id   : 'notre-politique-RSE',
         title: 'Notre politique RSE',
@@ -244,10 +240,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-    
-
-    
-
     {
         id   : 'Nos-etats-financiers',
         title: 'Nos états financiers',
@@ -255,7 +247,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
@@ -263,10 +254,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
-    
-   
-    
     {
         id   : 'support',
         title: 'Nous contacter',
@@ -274,7 +261,6 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
-    
     {
         id   : 'agences',
         title: 'Nos agences',
@@ -296,8 +282,8 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     }
-   
 ];
+
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
@@ -315,10 +301,16 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id        : 'espace-connecte.home',
-                title     : 'Home',
+                title     : 'Mon espace',
                 type      : 'basic',
                 link      : '/espace-connected-client',
                 exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.mes-projets-favoris',
+                title: 'Mes projets favoris',
+                type : 'basic',
+                link : '/espace-connecte/mes-projets-favoris'
             },
             {
                 id   : 'espace-connecte.simulation-detaillee',
@@ -368,7 +360,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -376,7 +367,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
-
     {
         id   : 'nous-connaitre',
         title: 'Nous connaitre',
@@ -384,7 +374,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
     {
         id   : 'notre-politique-RSE',
         title: 'Notre politique RSE',
@@ -392,10 +381,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-    
-
-    
-
     {
         id   : 'Nos-etats-financiers',
         title: 'Nos états financiers',
@@ -403,7 +388,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
@@ -411,10 +395,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
-    
-   
-    
     {
         id   : 'support',
         title: 'Nous contacter',
@@ -422,7 +402,6 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
-    
     {
         id   : 'agences',
         title: 'Nos agences',
@@ -445,6 +424,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/darrahetbal'
     }
 ];
+
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
         id   : 'landing',
@@ -462,10 +442,16 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id        : 'espace-connecte.home',
-                title     : 'Home',
+                title     : 'Mon espace',
                 type      : 'basic',
                 link      : '/espace-connected-client',
                 exactMatch: true
+            },
+            {
+                id   : 'espace-connecte.mes-projets-favoris',
+                title: 'Mes projets favoris',
+                type : 'basic',
+                link : '/espace-connecte/mes-projets-favoris'
             },
             {
                 id   : 'espace-connecte.simulation-detaillee',
@@ -515,7 +501,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nos-offres-miftah'
     },
-
     {
         id   : 'nos-conventions',
         title: 'Nos conventions',
@@ -523,7 +508,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : '/nos-conventions'
     },
-
     {
         id   : 'nous-connaitre',
         title: 'Nous connaitre',
@@ -531,7 +515,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
-
     {
         id   : 'notre-politique-RSE',
         title: 'Notre politique RSE',
@@ -539,10 +522,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-    
-
-    
-
     {
         id   : 'Nos-etats-financiers',
         title: 'Nos états financiers',
@@ -550,7 +529,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
@@ -558,8 +536,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:collection',
         link : ''
     },
-
-    
     {
         id   : 'support',
         title: 'Nous contacter',
@@ -567,7 +543,6 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:support',
         link : '/nous-contacter'
     },
-    
     {
         id   : 'agences',
         title: 'Nos agences',
