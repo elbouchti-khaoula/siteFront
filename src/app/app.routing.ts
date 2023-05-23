@@ -121,6 +121,26 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
             },
 
+            {
+                path: 'nos-etats-financiers',
+                loadChildren: () => import('app/modules/pages/nos-etats-financiers/nos-etats-financiers.module').then(m => m.NosEtatsFinanciersModule),
+            },
+
+            {
+                path: 'nos-lettres-wi',
+                loadChildren: () => import('app/modules/pages/nos-lettres-wi/nos-lettres-wi.module').then(m => m.NosLettresWiModule),
+            },
+
+            {
+                path: 'nos-guides-conseils',
+                loadChildren: () => import('app/modules/pages/nos-guides-conseils/nos-guides-conseils.module').then(m => m.NosGidesConseilsModule),
+            },
+
+            {
+                path: 'notre-politique-rse',
+                loadChildren: () => import('app/modules/pages/notre-politique-rse/notre-politique-rse.module').then(m => m.NotrePolitiqueRseModule),
+            },
+
          
 
             {

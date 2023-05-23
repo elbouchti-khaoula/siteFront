@@ -94,7 +94,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Notre politique RSE',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/notre-politique-rse'
     },
     
 
@@ -105,7 +105,15 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Nos états financiers',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-etats-financiers'
+    },
+
+    {
+        id   : 'nos-lettres-wi',
+        title: 'Nos lettres wi',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/nos-lettres-wi'
     },
 
     {
@@ -113,7 +121,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Nos Guides & Conseils',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-guides-conseils'
     },
 
     
@@ -242,7 +250,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Notre politique RSE',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/notre-politique-rse'
     },
     
 
@@ -253,7 +261,15 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Nos états financiers',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-etats-financiers'
+    },
+
+    {
+        id   : 'nos-lettres-wi',
+        title: 'nos lettres wi',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/nos-lettres-wi'
     },
 
     {
@@ -261,7 +277,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Nos Guides & Conseils',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-guides-conseils'
     },
 
     
@@ -390,7 +406,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         title: 'Notre politique RSE',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/notre-politique-rse'
     },
     
 
@@ -401,15 +417,21 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         title: 'Nos états financiers',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-etats-financiers'
     },
-
+    {
+        id   : 'nos-lettres-wi',
+        title: 'nos lettres wi',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/nos-lettres-wi'
+    },
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-guides-conseils'
     },
 
     
@@ -537,7 +559,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         title: 'Notre politique RSE',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/notre-politique-rse'
     },
     
 
@@ -548,15 +570,21 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         title: 'Nos états financiers',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-etats-financiers'
     },
-
+    {
+        id   : 'nos-lettres-wi',
+        title: 'nos lettres wi',
+        type : 'basic',
+        icon : 'heroicons_outline:search-circle',
+        link : '/nos-lettres-wi'
+    },
     {
         id   : 'nos-guides-conseils',
         title: 'Nos Guides & Conseils',
         type : 'basic',
         icon : 'heroicons_outline:collection',
-        link : ''
+        link : '/nos-guides-conseils'
     },
 
     
