@@ -58,6 +58,8 @@ export class NosOffresMiftahComponent
 
     imageVisDet10 = 'assets/images/pages/nos-offres-miftah/Santé_1946243179.jpg';
 
+
+    
     imageVisDet14= 'assets/images/pages/nos-offres-miftah/Attaalim_2007116861.jpg';
 
 
@@ -82,6 +84,11 @@ export class NosOffresMiftahComponent
     imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
     imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
     imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+    imageSrc13= 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
+
+    imageSrc12= 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    imageSrc11= 'assets/images/pages/nos-offres-miftah/MIFTAH  RELAIS 1.svg';
+
     
 
 
@@ -473,6 +480,8 @@ onDivClick13(event) {
     this.showDiv14 = false;
   
     
+    this.imageSrc13= 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 2.svg';
+
       
     } else {
       this.showDiv13 = false;
