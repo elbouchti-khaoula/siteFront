@@ -1,21 +1,30 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header
-    class=" hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
+  <header class=" hidden md:flex flex-col  items-start justify-start  w-full min-h-[50vh] b1-bg-header">
+    <div class="text-6xl mt-30  ml-8 uppercase font-bold tracking-tight leading-tight text-red-700 ">
+      Conseils, GUIDES
+    </div>
+    <div class="text-start ml-8 text-3xl font-medium text-black">
+      <p class="w-2/3 mt-4 ">Investir dans l'immobilier est l'un des moyens les plus sûrs pour se constituer un
+        patrimoine.</p>
+      <p class="w-2/3 mt-4">Encore faut-il connaître toutes les ficelles pour mener à bien un projet immobilier.</p>
+
+    </div>
+
 
   </header>
 
   <!-- Header version sm-->
-  <header class=" md:hidden flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
+  <header class=" md:hidden flex-col items-center justify-center px-16 w-full min-h-[50vh] b1-bg-header">
   </header>
 
   <!-- version md -->
 
 
 
-  <div class="hidden md:flex flex-col items-center justify-start px-16 w-full min-h-[68vh] bg-red-500">
-    <div class="text-2xl md:text-3xl uppercase font-medium tracking-tight leading-tight text-white mt-10">
+  <div class="hidden md:flex flex-col items-center justify-start px-16 w-full min-h-[68vh] bg-primary-500">
+    <div class="text-6xl md:text-3xl uppercase font-large tracking-tight leading-tight text-white mt-10">
       NOS CONSEILS D'EXPERTS
     </div>
     <!-- Autre contenu ici -->
@@ -30,7 +39,7 @@
           <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
             <div class="p-4">
               <h2 class="font-bold text-red-500">ACHAT IMMOBILIER : </h2>
-              <h2 class="font-bold text-red-500">10 REGLES A RESPECTER </h2>
+              <h2 class="font-bold uppercase text-red-500">10 Règles à réspecter </h2>
             </div>
             <div class="p-4">
               <p>Votre paragraphe ici...</p>
@@ -56,8 +65,8 @@
         <div>
           <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
             <div class="p-4">
-              <h2 class="font-bold text-red-500">COPROPRIETE : </h2>
-              <h2 class="font-bold text-red-500">BON A SAVOIR </h2>
+              <h2 class="font-bold uppercase text-red-500">copropriété : </h2>
+              <h2 class="font-bold uppercase text-red-500">bon à savoir </h2>
             </div>
             <div class="p-4">
               <p>Votre paragraphe ici...</p>
@@ -84,7 +93,7 @@
         <div>
           <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
             <div class="p-4">
-              <h2 class="font-bold text-red-500  ">3 REGLES PRATIQUES POUR TROUVER LE BON LOGEMENT</h2>
+              <h2 class="font-bold uppercase text-red-500  ">3 règles pratiques pour trouver le bon logement</h2>
             </div>
             <div class="p-4">
               <p>Votre paragraphe ici...</p>
@@ -109,7 +118,7 @@
         <div>
           <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
             <div class="p-4">
-              <h2 class="font-bold text-red-500">COMMENT ELABORER VOTRE PLAN DE FINANCEMENT</h2>
+              <h2 class="font-bold uppercase text-red-500">COMMENT élaborer VOTRE PLAN DE FINANCEMENT</h2>
             </div>
             <div class="p-4">
               <p>Votre paragraphe ici...</p>
@@ -130,8 +139,8 @@
 
 
 
-    <button class="w-fit mx-auto mt-10" mat-flat-button [color]="'primary'" [routerLink]="['./']">
-      <span class="ml-2">Accéder à l'offre</span>
+    <button class="w-fit mx-auto mt-10 bg-gray-800" mat-flat-button [routerLink]="['./']">
+      <span class="ml-2 text-white text-2xl mx-4 my-2">Tous les articles</span>
     </button>
 
   </div>
@@ -139,7 +148,7 @@
 
 
 
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[52vh] guide-immobilier-bg">
+  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[80vh] b3-bg">
     <div class="text-6xl  uppercase font-bold tracking-tight leading-tight text-red-500 mt-20">
       GUIDE IMMOBILIER :
     </div>
@@ -148,58 +157,148 @@
     </div>
     <!--button-->
     <div
-      class=" group  w-fit  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500">
-      <label class="m-2 ml-4 h-center text-4xl font-medium text-white m-2 group-hover:text-red-500 ">Acheter ou louer ?
+      class=" group  w-fit  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500"
+      (click)="toggle1()">
+      <label
+        class="m-2 ml-4 h-center text-4xl font-medium text-white m-2 group-hover:text-red-500 group-hover:cursor-pointer">Acheter
+        ou louer ?
         Faites le bon choix!
-        <label class="ml-2 text-4xl font-bold text-white m-2  ml-72 group-hover:text-red-500 ">+</label></label>
+        <label
+          class="ml-2 text-4xl font-bold text-white m-2  ml-72 group-hover:text-red-500 group-hover:cursor-pointer">+</label></label>
 
+    </div>
+    <div *ngIf="desc1" class="text-start text-2xl font-medium text-white">
+      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
+        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
+        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
+        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
+        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
+        page de texte, comme Aldus PageMaker.</p>
     </div>
 
     <div
-      class=" group w-fit rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7] cursor-pointer transition-transform hover:text-red-500 duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500">
-      <label class="ml-4 text-4xl font-medium text-white m-2 group-hover:text-red-500">Définissez votre budget: les
+      class=" group w-fit rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7] cursor-pointer transition-transform hover:text-red-500 duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500 "
+      (click)="toggle2()">
+      <label
+        class="ml-4 text-4xl font-medium text-white m-2 group-hover:text-red-500 group-hover:cursor-pointer ">Définissez
+        votre budget: les
         frais à prendre en compte
-        <span class=" text-4xl font-bold text-white m-2 group-hover:text-red-500 ml-8">+</span>
+        <span
+          class=" text-4xl font-bold text-white m-2 group-hover:text-red-500 ml-8 group-hover:cursor-pointer">+</span>
 
       </label>
     </div>
+    <div *ngIf="desc2" class="text-start text-2xl font-medium text-white">
+      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
+        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
+        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
+        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
+        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
+        page de texte, comme Aldus PageMaker.</p>
+    </div>
 
     <div
-      class=" group w-fit rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500">
-      <label class="ml-4 text-4xl font-medium text-white m-2 group-hover:text-red-500">Les différentes formes de
+      class=" group w-fit rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-500"
+      (click)="toggle3()">
+      <label class="ml-4  text-4xl font-medium text-white m-2 group-hover:text-red-500 group-hover:cursor-pointer">Les
+        différentes formes de
         transactions
-        <span class=" text-4xl font-bold text-white m-2 group-hover:text-red-500 ml-72">+</span>
+        <span
+          class=" text-4xl font-bold text-white m-2 group-hover:text-red-500 ml-72 group-hover:cursor-pointer">+</span>
       </label>
+    </div>
+    <div *ngIf="desc3" class="text-start text-2xl font-medium text-white">
+      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
+        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
+        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
+        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
+        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
+        page de texte, comme Aldus PageMaker.</p>
     </div>
 
 
 
   </div>
 
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[32vh] contacter-expert-bg">
+  <div class="grid grid-cols-2  content-center place-items-center w-full min-h-[50vh] b4-bg">
+    <div></div>
 
-    <div class="flex justify-end">
+    <div class="text-6xl  uppercase font-medium tracking-tight leading-tight text-black mt-20">
+      POUR PLUS D'INFORMATION
+    </div>
+    <div></div>
+    <div class="text-8xl  uppercase font-bold tracking-tight leading-tight text-black ">
+      CONTACTER NOS EXPERT
+    </div>
+    <div></div>
 
-      <div class=" w-1/2 text-6xl   font-medium tracking-tight leading-tight text-gray-900 mt-20">
-        POUR PLUS D'INFORMATION
-        <h1 class="text-6xl   font-bold tracking-tight leading-tight text-black ">
-          CONTACTER NOS EXPERT
-        </h1>
+    <!--button-->
+    <div
+      class="group    w-fit items-center justify-center rounded-3xl  cursor-pointer bg-primary  transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-200">
+      <label class=" ml-8 mr-8 h-center text-4xl font-medium text-white  group-hover:cursor-pointer">Nous Contacter
+      </label>
 
-        <button
-        class="btn flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105">
-        <span class="ml-3 text-sm font-bold sm:text-xl sm:font-semibold ">
-          Nous Contacter
-        </span>
-      </button>
+    </div>
+
+
+
+
+
+  </div>
+
+
+  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[52vh] bg-gray-800">
+    <div class="grid grid-cols-1 gap-y-15 content-center place-items-center w-full min-h-[32vh]">
+      <img class="w-30 h-auto  " src="assets/images/logo/logo.png" alt="Header Image">
+      <div
+        class=" group rounded-3xl   bg-gray-900  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary">
+        <label
+          class=" ml-4 h-10 mr-auto flex items-center text-md font-medium text-gray-200  group-hover:text-primary group-hover:cursor-pointer">
+          <span class="mr-auto"> Je veux être contacté </span>
+          <mat-icon class="ml-20 mx-4 icon-size-5 text-gray-200  group-hover:text-primary group-hover:cursor-pointer "
+            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+
+        </label>
+
+
+
+
       </div>
     </div>
 
+
+
+
+
+
   </div>
+  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[30vh] bg-gray-900">
+    <div class=" grid grid-cols-3  overflow-hidden  divide-x-2 divide-gray-800 mt-5 flex-left   ">
+
+      <div class=""></div>
+      <div class=" mx-4 grid grid-cols-1  content-center place-items-center    ">
+        <div class="p-4 text-2xl text-white capitalize underline cursor-pointer " [routerLink]="''"> Nous contacter
+        </div>
+        <div class="p-4 capitalize text-lg  text-gray-500 mt-6">
+          Adresse : 112,Angle bd Abdelmoumen et rue rembrandt-CASABLANCA
+        </div>
+        <div class="p-4 capitalize text-lg  text-gray-500 ">
+          Tel : 0529 02 45 01/03/05
+        </div>
+
+
+
+      </div>
+      <div class=""></div>
 
 
 
 
+    </div>
+  </div>
 
 
 

@@ -25,6 +25,48 @@ export class NosGuidesConseilsComponent
     imageVisDet5 = 'assets/images/pages/nos-offres-miftah/Professionel 2_284936198.jpg';
     imageVisDet7 = 'assets/images/pages/nos-offres-miftah/MRE-BILA HOUDOUD_2042991488.jpg';
 
+    desc1 : boolean ;
+    desc2 : boolean ;
+    desc3 : boolean ;
+
+
+    toggle1(){
+        if (this.desc1) {
+            this.desc1 = false;
+        }
+        else {
+            this.desc1 = true; // sinon, on l'affiche
+            this.desc2 = false;
+            this.desc3 = false;
+
+          }
+         
+    }
+    toggle2(){
+        if (this.desc2) {
+            this.desc2 = false;
+        }
+        else {
+            this.desc2 = true; // sinon, on l'affiche
+            this.desc1 = false;
+            this.desc3 = false;
+
+          }
+         
+    }
+    toggle3(){
+        if (this.desc3) {
+            this.desc3 = false;
+        }
+        else {
+            this.desc3 = true; // sinon, on l'affiche
+            this.desc2 = false;
+            this.desc1 = false;
+
+          }
+         
+    }
+
 
     
 }
