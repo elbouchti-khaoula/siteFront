@@ -44,7 +44,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   searchPromoteurControl: UntypedFormControl = new UntypedFormControl();
 
   employeurs: EmployeursConventionnes[];
+  employeurs$: Observable<EmployeursConventionnes[]>;
   promoteurs: PromoteursConventionnes[];
+  promoteurs$: Observable<PromoteursConventionnes[]>;
+  listEmployeurs: EmployeursConventionnes[];
+  listPromoteurs: PromoteursConventionnes[];
 
 
   @ViewChild(DetailsSimulationComponent) detailsSimulation;
@@ -222,6 +226,28 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    this._referentielService.getEmployeursConventionnes().pipe(
+      takeUntil(this._unsubscribeAll))
+      .subscribe((employeur: EmployeursConventionnes[]) => {
+          this.listEmployeurs = employeur;
+
+          this._changeDetectorRef.markForCheck();
+      });
+
+
+  this.employeurs$ = this._referentielService.employeurs$;
+
+    this._referentielService.getPromoteursConventionnes().pipe(
+      takeUntil(this._unsubscribeAll))
+      .subscribe((promoteur: PromoteursConventionnes[]) => {
+          this.listPromoteurs = promoteur;
+
+          this._changeDetectorRef.markForCheck();
+      });
+
+
+  this.promoteurs$ = this._referentielService.promoteurs$;
+
     this.searchEmployeurControl.valueChanges
       .pipe(
         debounceTime(this.debounce),
@@ -389,10 +415,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 }*/
 
 
+
   getEmployeurs(
     search: string = ''
   ): Observable<EmployeursConventionnes[]> {
-    return this._referentielService.getEmployeursConventionnes().pipe(
+      return this.employeurs$.pipe(
       map((response) => {
         console.log(response);
         let employeurs = response;
@@ -408,7 +435,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   getPromoteurs(
     search: string = ''
   ): Observable<PromoteursConventionnes[]> {
-    return this._referentielService.getPromoteursConventionnes().pipe(
+      return this.promoteurs$.pipe(
       map((response) => {
         console.log(response);
         let promoteurs = response;
@@ -420,6 +447,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       })
     );
   }
+
   selectedStatutProjet(event: MatSelectChange) {
     // const selectedData = {
     //   text: (event.source.selected as MatOption).viewValue,

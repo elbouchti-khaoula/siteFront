@@ -23,8 +23,8 @@ export class FormatMontantDirective {
 
 
     const value = this.elementRef.nativeElement.value;
-    const montantSansEspaces = value.replace(/\s/g, ''); // Supprimer les espaces
-    const montantNumerique = parseFloat(montantSansEspaces); // Convertir en nombre
+    const montantSansEspaces = value.replace(/\s/g, '');
+    const montantNumerique = parseFloat(montantSansEspaces);
 
     if (!isNaN(montantNumerique)) {
       const montantFormate = montantNumerique.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -34,7 +34,7 @@ export class FormatMontantDirective {
 
   private removeFormatting() {
     const value = this.elementRef.nativeElement.value;
-    const montantSansSeparateurs = value.replace(/\s/g, ''); // Supprimer les espaces
+    const montantSansSeparateurs = value.replace(/\s/g, '');
     this.renderer.setProperty(this.elementRef.nativeElement, 'value', montantSansSeparateurs);
   }
 }
