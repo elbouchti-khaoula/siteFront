@@ -387,7 +387,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'salaire'" [appFormatMontant]="simulationStepperForm.get('step2').get('salaire').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel net</mat-label>
-                                    <!--span matSuffix>Dhs</span-->
+                                    <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('salaire').hasError('required')">
                                         Salaire annuel net obligatoire
                                     </mat-error>
@@ -401,7 +401,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'autresRevenus'" [appFormatMontant]="simulationStepperForm.get('step2').get('autresRevenus').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex loyer, primes, …</mat-label>
-                                    <!--span matSuffix>Dhs</span-->
+                                    <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('autresRevenus').hasError('required')">
                                         Autres revenus obligatoire
                                     </mat-error>
@@ -413,7 +413,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'creditsEnCours'" [appFormatMontant]="simulationStepperForm.get('step2').get('creditsEnCours').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des mensualités</mat-label>
-                                    <!--span matSuffix>Dhs</span-->
+                                    <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
                                         Mensualités de vos crédits en cours obligatoire
                                     </mat-error>
@@ -456,7 +456,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationStepperForm.get('step3').get('montant').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Prix du bien</mat-label>
-                                    <!--span matSuffix>Dhs</span-->
+                                    <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montant').hasError('required')">
                                         Prix du bien obligatoire
                                     </mat-error>
@@ -487,7 +487,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'montantProposition'" [appFormatMontant]="simulationStepperForm.get('step3').get('montantProposition').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
-                                    <!--span matSuffix>Dhs</span-->
+                                    <span matSuffix>Dhs</span>
                                     <mat-error *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
                                         Montant obligatoire
                                     </mat-error>

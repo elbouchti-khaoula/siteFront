@@ -11,10 +11,13 @@ import { simulationPersonaliseeRoutes } from './simulation-personnalisee.routing
 import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { MatCommonModule } from '@angular/material/core';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
+import { FormatMontantDirective } from './format-montant.directive';
 @NgModule({
     declarations: [
-        SimulationPersonaliseeComponent
+        SimulationPersonaliseeComponent,
+        FormatMontantDirective
     ],
     imports     : [
         RouterModule.forChild(simulationPersonaliseeRoutes),
@@ -26,11 +29,15 @@ import { MatRadioModule } from '@angular/material/radio';
         MatSelectModule,
         MatCheckboxModule,
         MatRadioModule,
-        FuseCardModule
+        FuseCardModule,
+        MatCommonModule
     ],
     exports     : [
         SimulationPersonaliseeComponent
-    ]
+    ],
+    providers   : [
+        DecimalPipe,
+        CurrencyPipe]
 })
 export class SimulationPersonaliseeModule
 {

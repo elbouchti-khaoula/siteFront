@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation,HostListener } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
