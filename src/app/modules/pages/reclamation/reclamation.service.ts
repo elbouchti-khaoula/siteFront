@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, EMPTY, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { Motif, Reclamation } from './reclamation.types';
 
 @Injectable({
@@ -67,13 +67,13 @@ export class ReclamationsService {
             initiateur: string;
             dateReception: Date | null;
         }
-    ): Observable<any> {
+    ): Observable<Reclamation> {
         return this._httpClient.post('api/reclamations', reclamation)
             .pipe(
-                switchMap((response: Reclamation) => {
+                map((newReclamation: Reclamation) => {
 
-                    // Return a new observable with the response
-                    return of(response);
+                    // Return the response
+                    return newReclamation;
                 })
             );
     }
@@ -95,10 +95,10 @@ export class ReclamationsService {
     ): Observable<any> {
         return this._httpClient.post('api/reclamations/statuts', statut)
             .pipe(
-                switchMap((response: any) => {
+                map((newStatut: any) => {
 
-                    // Return a new observable with the response
-                    return of(response);
+                    // Return the response
+                    return newStatut;
                 })
             );
     }

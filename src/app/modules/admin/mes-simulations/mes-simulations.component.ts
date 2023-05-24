@@ -116,14 +116,14 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
               "message": "Votre simulation a été abaandonnée avec succès",
               "icon": {
                 "show": true,
-                "name": "heroicons_outline:information-circle",
+                "name": "heroicons_outline:check-circle",
                 "color": "success"
               },
               "actions": {
                 "confirm": {
                   "show": true,
                   "label": "Ok",
-                  "color": "warn"
+                  "color": "primary"
                 },
                 "cancel": {
                   "show": false,

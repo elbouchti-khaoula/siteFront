@@ -63,7 +63,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     //     "residantMaroc": "Oui",
     //     "salaire": "300 000.00",
     //     "autresRevenus": 0,
-    //     "salaireEtAutresRevenus": 300000,
     //     "segment": "NV",
     //     "creditsEnCours": "0.00",
     //     "nomEmployeur": "WAFA immobilier",
@@ -146,20 +145,16 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: any) => {
 
-        let res = [];
-
-        if (response && response.length > 0) {
+        if (response) {
           // Update the documents
-          res = response;
+          this.documents = response;
 
-          Object.keys(res).forEach(key => {
-            // console.log(key);
-            // console.log(res[key]);
-            for (var i = 0; i < res[key].length; i++) {
-              if (res[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === res[key][i])) {
+          Object.keys(this.documents).forEach(key => {
+            for (var i = 0; i < this.documents[key].length; i++) {
+              if (this.documents[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
                 this.pieces.push({
                   id: i + 1,
-                  libelle: res[key][i],
+                  libelle: this.documents[key][i],
                   parent: 0,
                   files: []
                 })
@@ -167,8 +162,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
             }
           });
         }
-
-        this.documents = res;
 
         this._changeDetectorRef.detectChanges();
       });
@@ -394,14 +387,14 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
               "message": "Votre demande de crédit à été validée avec succès",
               "icon": {
                 "show": true,
-                "name": "heroicons_outline:information-circle",
+                "name": "heroicons_outline:check-circle",
                 "color": "success"
               },
               "actions": {
                 "confirm": {
                   "show": true,
                   "label": "Ok",
-                  "color": "warn"
+                  "color": "primary"
                 },
                 "cancel": {
                   "show": false,

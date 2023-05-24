@@ -1,11 +1,10 @@
-<div class="mx-auto w-fit grid grid-cols-4 gap-x-3 mt-5 sm:py-3">
+<div class="mx-auto w-fit grid grid-cols-3 gap-3 mt-5 sm:py-3">
     <div class="carre flex flex-col items-center cursor-pointer">
         <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
             [routerLink]="['/projets-search']">
             <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="property">
             </mat-icon>
         </span>
-        <!-- text-xs sm: -->
         <div class="libelle flex flex-col items-center text-sm font-semibold mt-2 whitespace-nowrap">
             <span>Je recherche</span>
             <span>mon bien</span>
@@ -26,7 +25,7 @@
     <div class="carre flex flex-col items-center">
         <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 cursor-pointer rounded-full border border-primary text-primary-700"
             [routerLink]="['/espace-connecte/simulation-detaillee']">
-            <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
+            <mat-icon class="ml-2 icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="survey">
             </mat-icon>
         </span>
         <div class="libelle flex flex-col items-center text-sm font-semibold mt-2 whitespace-nowrap">
@@ -36,12 +35,35 @@
     </div>
     <div class="carre flex flex-col items-center cursor-pointer">
         <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
+            [routerLink]="['/espace-connecte/mes-demandes-credit']">
+            <mat-icon class="-mt-0.5 icon-size-16 sm:icon-size-18 text-primary-700" svgIcon="fork">
+            </mat-icon>
+        </span>
+        <div class="libelle flex flex-col items-center text-sm font-semibold mt-2 whitespace-nowrap">
+            <span>Je suis</span>
+            <span>ma demande</span>
+        </div>
+    </div>
+    <a class="carre flex flex-col items-center cursor-pointer"
+        href="https://www.attijariwafabank.com/fr" target="blank">
+        <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500">
+            <img class="w-10"
+                src="assets/images/logo/logo-awb.jpg"
+                alt="Logo image">
+        </span>
+        <div class="libelle flex flex-col items-center text-sm font-semibold mt-2 whitespace-nowrap">
+            <span>J'ouvre</span>
+            <span>mon compte</span>
+        </div>
+    </a>
+    <div class="carre flex flex-col items-center cursor-pointer">
+        <span class="flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 rounded-full border border-primary focus:bg-primary-500"
             [routerLink]="['/espace-connecte/mes-credits']">
             <mat-icon class="icon-size-14 sm:icon-size-16 text-primary-700" svgIcon="timeline">
             </mat-icon>
         </span>
         <div class="libelle flex flex-col items-center text-sm font-semibold mt-2 whitespace-nowrap">
-            <span>Je suis</span>
+            <span>Je gère</span>
             <span>mon crédit</span>
         </div>
     </div>

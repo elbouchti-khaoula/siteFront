@@ -53,7 +53,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     // situation
     categorieSocioProfessionnelle: null, // 'SASP',
     nomEmployeur: 'WAFA SALAF',
-    anciennete: 12,
+    // anciennete: 12,
     salaire: 500000,
     autresRevenus: 200000,
     creditsEnCours: 3000,
@@ -100,7 +100,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       step2: this._formBuilder.group({
         categorieSocioProfessionnelle: [this.simulationFormDefaults.categorieSocioProfessionnelle, [Validators.required]],
         nomEmployeur: [this.simulationFormDefaults.nomEmployeur, [Validators.required]],
-        anciennete: [this.simulationFormDefaults.anciennete, [Validators.required]],
+        // anciennete: [this.simulationFormDefaults.anciennete, [Validators.required]],
         salaire: [this.simulationFormDefaults.salaire, [Validators.required]],
         autresRevenus: [this.simulationFormDefaults.autresRevenus, [Validators.required]],
         creditsEnCours: [this.simulationFormDefaults.creditsEnCours, [Validators.required]]
@@ -124,7 +124,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     //   "residantMaroc": "Oui",
     //   "salaire": "300 000.00",
     //   "autresRevenus": 0,
-    //   "salaireEtAutresRevenus": 300000,
     //   "segment": "NV",
     //   "creditsEnCours": "0.00",
     //   "nomEmployeur": "WAFA immobilier",
@@ -243,7 +242,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // ma situation
         this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.categorieSocioProfessionnelle);
         this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(queryParams?.nomEmployeur ?? this.simulationFormDefaults.nomEmployeur);
-        this.simulationStepperForm.get('step2').get('anciennete').setValue(queryParams?.anciennete ?? this.simulationFormDefaults.anciennete);
+        // this.simulationStepperForm.get('step2').get('anciennete').setValue(queryParams?.anciennete ?? this.simulationFormDefaults.anciennete);
         this.simulationStepperForm.get('step2').get('salaire').setValue(queryParams?.salaire ?? this.simulationFormDefaults.salaire);
         this.simulationStepperForm.get('step2').get('autresRevenus').setValue(queryParams?.autresRevenus ?? this.simulationFormDefaults.autresRevenus);
         this.simulationStepperForm.get('step2').get('creditsEnCours').setValue(queryParams?.creditsEnCours ?? this.simulationFormDefaults.creditsEnCours);
@@ -406,9 +405,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           // ma situation
           categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.libelle,
           nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
-          anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
-          salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value, 2, '.', ' '),
-          autresRevenus: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
+          // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
+          salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value + this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
+          // autresRevenus: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
           creditsEnCours: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('creditsEnCours').value, 2, '.', ' '),
           // Mon projet
           objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,

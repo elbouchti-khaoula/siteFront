@@ -196,19 +196,12 @@ export class SimulationDetailleeService {
                                     var simulationResult = {
                                         ...response[0].tiers,
                                         // Mon profil
-                                        // nom: response[0].tiers.nom,
-                                        // prenom: response[0].tiers.prenom,
-                                        // telephone: response[0].tiers.telephone,
-                                        // email: response[0].tiers.email,
-                                        // dateNaissance: response[0].tiers.dateNaissance,
                                         nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
                                         residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
                                         // ma situation
                                         categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
-                                        // nomEmployeur: response[0].tiers.nomEmployeur,
                                         // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
                                         salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
-                                        // autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
                                         creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
                                         // Mon projet
                                         objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",

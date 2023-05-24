@@ -61,7 +61,6 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
     //   "residantMaroc": "Oui",
     //   "salaire": "300 000.00",
     //   "autresRevenus": 0,
-    //   "salaireEtAutresRevenus": 300000,
     //   "segment": "NV",
     //   "creditsEnCours": "0.00",
     //   "nomEmployeur": "WAFA immobilier",
@@ -175,14 +174,14 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
               "message": "Votre simulation a été abaandonnée avec succès",
               "icon": {
                 "show": true,
-                "name": "heroicons_outline:information-circle",
+                "name": "heroicons_outline:check-circle",
                 "color": "success"
               },
               "actions": {
                 "confirm": {
                   "show": true,
                   "label": "Ok",
-                  "color": "warn"
+                  "color": "primary"
                 },
                 "cancel": {
                   "show": false,

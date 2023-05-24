@@ -24,13 +24,14 @@
             
             <ng-container *ngIf="demandes && demandes.length > 0; else noDemandes">
 
-                <div class="mx-auto w-fit grid grid-cols-1 gap-y-14 md:grid-cols-2 md:gap-x-10 md:gap-y-16 mt-16"
+                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-16"
                     [ngClass]="{'md:grid-cols-3' : demandes.length > 4 || demandes.length === 3,
-                                 'md:grid-cols-1' : demandes.length === 1 }">
+                                 'md:grid-cols-1' : demandes.length === 1,
+                                 'md:grid-cols-2' : demandes.length === 4 || demandes.length === 2}">
 
                     <ng-container *ngFor="let demande of demandes; let i = index; trackBy: trackByFn">
                         
-                        <fuse-card class="relative flex flex-col items-center px-5 pb-6 overflow-visible ring-1 ring-primary-500">
+                        <fuse-card class="sm:max-w-90 relative flex flex-col items-center px-5 pb-6 overflow-visible ring-1 ring-primary-500">
 
                             <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
                                 <mat-icon class="icon-size-14 text-on-primary ml-2" svgIcon="survey">
