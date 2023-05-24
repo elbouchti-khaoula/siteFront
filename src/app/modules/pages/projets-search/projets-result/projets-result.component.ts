@@ -26,7 +26,6 @@ export class ProjetsResultComponent implements
     projets$: Observable<Projet[]>;
     projets: Projet[];
     projetsCount: number = 0;
-    filteredProjets: Projet[];
     selectedProjet: Projet;
 
     private previousUrl: string;
@@ -86,7 +85,7 @@ export class ProjetsResultComponent implements
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((response: Projet[]) => {
 
-                this.projets = this.filteredProjets = response;
+                this.projets = response;
 
                 // Update the counts
                 this.projetsCount = response?.length;

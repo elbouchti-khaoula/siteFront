@@ -9,8 +9,8 @@
 
         <div class="flex flex-col max-md:space-y-20 md:flex-row md:items-start md:justify-between mt-8 md:mt-10">
             
-            <div class="flex flex-col space-y-8 md:space-y-20 md:w-3/5">
-                <div class="max-w-60 flex items-center space-x-3">
+            <div class="flex flex-col space-y-5 md:space-y-20 md:w-3/5">
+                <div class="max-w-60 flex items-center space-x-2 md:space-x-3">
                     <button class="flex-auto" type="button" mat-icon-button mat-stroked-button>
                         <mat-icon class="icon-size-5 text-white" [svgIcon]="'feather:linkedin'"></mat-icon>
                     </button>
@@ -28,23 +28,26 @@
                     </button>
                 </div>
 
-                <div class="max-w-120 grid grid-cols-3 gap-2">
-                    <button
+                <div class="flex flex-row flex-wrap max-w-max">
+                    <button class="px-5 mt-2"
                         mat-flat-button
+                        [ngClass]="{'fuse-mat-button-small': isScreenSmall}"
                         [color]="'white'"
                         [routerLink]="'/agences'">
                         Nos agences
                     </button>
-                    <button class="md:ml-3 bg-gray-500 bg-opacity-70" 
-                        mat-stroked-button
-                        [routerLink]="'/nous-contacter'">
-                        Nous contacter
-                    </button>
-                    <button class="md:ml-3"
+                    <button class="ml-2 md:ml-3 px-5 mt-2"
                         mat-flat-button
+                        [ngClass]="{'fuse-mat-button-small': isScreenSmall}"
                         [color]="'primary'"
                         [routerLink]="'/reclamation'">
                         Réclamation
+                    </button>
+                    <button class="ml-2 md:ml-3 px-5 mt-2 bg-gray-500 bg-opacity-70"
+                        [ngClass]="{'fuse-mat-button-small': isScreenSmall}"
+                        mat-stroked-button
+                        [routerLink]="'/nous-contacter'">
+                        Nous contacter
                     </button>
                 </div>
             </div>

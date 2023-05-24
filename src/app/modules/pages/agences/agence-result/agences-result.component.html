@@ -46,8 +46,7 @@
                         </div>
 
                         <!-- Open localisation -->
-                        <button
-                            class="ml-auto lg:hidden rounded-full bg-second-100"
+                        <button class="ml-auto lg:hidden rounded-full bg-[#f8dedf]"
                             mat-icon-button
                             (click)="toggleMain()">
                             <mat-icon
@@ -74,7 +73,7 @@
                                     <!-- Agence -->
                                     <a class="z-20 flex items-center px-6 py-4 cursor-pointer border-b"
                                         [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedAgence || selectedAgence.id !== agence.id,
-                                                        'bg-second-100 dark:bg-hover': selectedAgence && selectedAgence.id === agence.id}"
+                                                    'bg-[#f8dedf] dark:bg-hover': selectedAgence && selectedAgence.id === agence.id}"
                                         (click)="selectAgence(agence)">
 
                                         <!-- agence description -->
