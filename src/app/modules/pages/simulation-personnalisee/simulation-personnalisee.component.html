@@ -138,7 +138,7 @@
                             [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
                             </mat-icon>
-                            <input matInput [formControlName]="'telephone'">
+                            <input matInput [formControlName]="'telephone'" appFormatTelephone>
                             <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                             <mat-error *ngIf="simulationForm.get('telephone').hasError('required')">
                                 Téléphone obligatoire

@@ -14,10 +14,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCommonModule } from '@angular/material/core';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { FormatMontantDirective } from './format-montant.directive';
+import { FormatTelephoneDirective } from './format-tele.directive';
 @NgModule({
     declarations: [
         SimulationPersonaliseeComponent,
-        FormatMontantDirective
+        FormatMontantDirective,
+        FormatTelephoneDirective
     ],
     imports     : [
         RouterModule.forChild(simulationPersonaliseeRoutes),
