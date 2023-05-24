@@ -24,11 +24,13 @@ import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angula
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { FormatMontantDirective } from './format-montant.directive';
+import { FormatTelephoneDirective } from './format-tele.directive';
 
 @NgModule({
     declarations: [
         SimulationDetailleeComponent,
-        FormatMontantDirective
+        FormatMontantDirective,
+        FormatTelephoneDirective
     ],
     imports     : [
         RouterModule.forChild(simulationDetailleeRoutes),

@@ -159,16 +159,15 @@
                                 </mat-form-field>
 
                                 <!-- Téléphone -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'telephone'">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                                    <input matInput [formControlName]="'telephone'" appFormatTelephone>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step1').get('telephone').hasError('required')">
-                                        Téléphone obligatoire
+                                      Téléphone obligatoire
                                     </mat-error>
-                                </mat-form-field>
+                                  </mat-form-field>
+                                  
 
                                 <!-- Email -->
                                 <mat-form-field class="w-full"
