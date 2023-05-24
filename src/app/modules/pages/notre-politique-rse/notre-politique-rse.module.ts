@@ -7,6 +7,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { ContactezNousModule } from '../landing/contactez-nous/contactez-nous.module';
 
 
 
@@ -20,7 +21,8 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        BienvenueModule
+        BienvenueModule,
+        ContactezNousModule
     ]
 })
 export class NotrePolitiqueRseModule
