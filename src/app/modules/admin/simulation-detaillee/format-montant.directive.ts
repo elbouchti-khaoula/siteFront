@@ -13,20 +13,23 @@ export class FormatMontantDirective {
   }
 
   @HostListener('change')
-  onBlur() {
+  onInput() {
     this.formatMontant();
   }
 
   private formatMontant() {
     const value = this.elementRef.nativeElement.value;
-    const montantSansEspaces = value.replace(/\s/g, ''); // pour supprimer les espaces
-    const montantNumerique = parseFloat(montantSansEspaces); // pour convertir en nombre
+    const montantSansEspaces = value.replace(/\s/g, ''); // supprimer les espaces
+    const montantNumerique = parseFloat(montantSansEspaces); // convertir en nombre
 
     if (!isNaN(montantNumerique)) {
+      const montantValide = montantSansEspaces.replace(/[^\d.,]/g, ''); // supprimer les caractères non autorisés
       const options = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
-      const montantFormate = montantNumerique.toLocaleString('fr-FR', options);
-      const montantModifie = montantFormate.replace(',', '.'); // pour remplacer la virgule par un point
+      const montantFormate = parseFloat(montantValide).toLocaleString('fr-FR', options);
+      const montantModifie = montantFormate.replace(',', '.'); // remplacer la virgule par un point
       this.renderer.setProperty(this.elementRef.nativeElement, 'value', montantModifie);
+    } else {
+      this.renderer.setProperty(this.elementRef.nativeElement, 'value', '');
     }
   }
 }
