@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation,HostListener } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
+import { CategorieSocioProfessionnelle, EmployeursConventionnes, Nationalite, ObjetFinancement, PromoteursConventionnes } from 'app/core/referentiel/referentiel.types';
 import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
@@ -15,6 +14,12 @@ import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.compo
 import { FuseUtilsService } from '@fuse/services/utils';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import { DecimalPipe, CurrencyPipe } from '@angular/common';
+
+
+
+import { BehaviorSubject, Observable, of, tap, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -26,10 +31,28 @@ import { MatOption } from '@angular/material/core';
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
+  @Input() debounce: number = 300;
+  @Input() minLength: number = 3;
+  @Output() search: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('matAutocompletePromoteur') matAutocompletePromoteur: MatAutocomplete;
+  @ViewChild('matAutocompleteEmployeur') matAutocompleteEmployeur: MatAutocomplete;
+
+  resultEmployeurs: any[];
+  searchEmployeurControl: UntypedFormControl = new UntypedFormControl();
+
+  resultPromoteurs: any[];
+  searchPromoteurControl: UntypedFormControl = new UntypedFormControl();
+
+  employeurs: EmployeursConventionnes[];
+  employeurs$: Observable<EmployeursConventionnes[]>;
+  promoteurs: PromoteursConventionnes[];
+  promoteurs$: Observable<PromoteursConventionnes[]>;
+  listEmployeurs: EmployeursConventionnes[];
+  listPromoteurs: PromoteursConventionnes[];
+
+
   @ViewChild(DetailsSimulationComponent) detailsSimulation;
   @ViewChild(BienvenueComponent) bienvenueComponent;
-
-  drawerOpened: boolean = false;
   isScreenSmall: boolean;
   isXsScreen: boolean;
   animationState: string;
@@ -82,7 +105,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _referentielService: ReferentielService,
     private _simulationService: SimulationDetailleeService,
-    private _fuseUtilsService: FuseUtilsService
+    private _fuseUtilsService: FuseUtilsService,
+    private decimalPipe: DecimalPipe,
+    private currencyPipe: CurrencyPipe
   ) {
 
     // Horizontal stepper form
@@ -200,8 +225,75 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+
+    this._referentielService.getEmployeursConventionnes().pipe(
+      takeUntil(this._unsubscribeAll))
+      .subscribe((employeur: EmployeursConventionnes[]) => {
+          this.listEmployeurs = employeur;
+
+          this._changeDetectorRef.markForCheck();
+      });
+
+
+  this.employeurs$ = this._referentielService.employeurs$;
+
+    this._referentielService.getPromoteursConventionnes().pipe(
+      takeUntil(this._unsubscribeAll))
+      .subscribe((promoteur: PromoteursConventionnes[]) => {
+          this.listPromoteurs = promoteur;
+
+          this._changeDetectorRef.markForCheck();
+      });
+
+
+  this.promoteurs$ = this._referentielService.promoteurs$;
+
+    this.searchEmployeurControl.valueChanges
+      .pipe(
+        debounceTime(this.debounce),
+        takeUntil(this._unsubscribeAll),
+        map((value) => {
+          if (!value || value.length < this.minLength) {
+            this.resultEmployeurs = null;
+          }
+          return value;
+        }),
+        filter(value => value && value.length >= this.minLength)
+      ).subscribe((value) => {
+        this.getEmployeurs(value).subscribe((employeurs) => {
+          console.log(employeurs);
+          this.employeurs = employeurs;
+
+          this.resultEmployeurs = [...employeurs];
+          this._changeDetectorRef.markForCheck();
+          this.search.next(this.resultEmployeurs);
+        });
+      });
+
+
+    this.searchPromoteurControl.valueChanges
+      .pipe(
+        debounceTime(this.debounce),
+        takeUntil(this._unsubscribeAll),
+        map((value) => {
+          if (!value || value.length < this.minLength) {
+            this.resultPromoteurs = null;
+          }
+          return value;
+        }),
+        filter(value => value && value.length >= this.minLength)
+      ).subscribe((value) => {
+        this.getPromoteurs(value).subscribe((promoteurs) => {
+          console.log(promoteurs);
+          this.promoteurs = promoteurs;
+
+          this.resultPromoteurs = [...promoteurs];
+          this._changeDetectorRef.markForCheck();
+          this.search.next(this.resultPromoteurs);
+        });
+      });
     // this.isVisible = true;
-    
+
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
       .pipe(takeUntil(this._unsubscribeAll))
@@ -315,6 +407,46 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   statutProjetLabel: string;
+ /* formatMontant(montant: number): string {
+    const montantFormate = this.decimalPipe.transform(montant, '1.2-2', 'fr-FR');
+    const montantAvecEspaces = montantFormate.replace('.', ' ');
+    const montantAvecDecimales = this.currencyPipe.transform(montant, 'Dhs', 'symbol', '1.2-2', 'fr-FR');
+    return montantAvecEspaces + montantAvecDecimales.substring(montantAvecEspaces.length);
+}*/
+
+
+
+  getEmployeurs(
+    search: string = ''
+  ): Observable<EmployeursConventionnes[]> {
+      return this.employeurs$.pipe(
+      map((response) => {
+        console.log(response);
+        let employeurs = response;
+        if (search) {
+          employeurs = employeurs.filter(employeur => employeur.libelle && employeur.libelle.toLowerCase().includes(search.toLowerCase()));
+
+        }
+        return employeurs;
+      })
+    );
+  }
+
+  getPromoteurs(
+    search: string = ''
+  ): Observable<PromoteursConventionnes[]> {
+      return this.promoteurs$.pipe(
+      map((response) => {
+        console.log(response);
+        let promoteurs = response;
+        if (search) {
+          promoteurs = promoteurs.filter(promoteur => promoteur.libelle && promoteur.libelle.toLowerCase().includes(search.toLowerCase()));
+
+        }
+        return promoteurs;
+      })
+    );
+  }
 
   selectedStatutProjet(event: MatSelectChange) {
     // const selectedData = {
@@ -474,4 +606,28 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     return date.format("DD/MM/YYYY");
   }
 
+  /**
+ * Track by function for ngFor loops
+ *
+ * @param index
+ * @param item
+ */
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
+
+  /**
+ * Setter for bar search input
+ *
+ * @param value
+ */
+  @ViewChild('barSearchInput')
+  set barSearchInput(value: ElementRef) {
+    if (value) {
+      setTimeout(() => {
+
+        value.nativeElement.focus();
+      });
+    }
+  }
 }

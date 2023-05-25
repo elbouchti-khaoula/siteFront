@@ -15,15 +15,22 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import * as moment from 'moment';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
+import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { FormatMontantDirective } from './format-montant.directive';
+import { FormatTelephoneDirective } from './format-tele.directive';
 
 @NgModule({
     declarations: [
-        SimulationDetailleeComponent
+        SimulationDetailleeComponent,
+        FormatMontantDirective,
+        FormatTelephoneDirective
     ],
     imports     : [
         RouterModule.forChild(simulationDetailleeRoutes),
@@ -41,9 +48,14 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
         MatMomentDateModule,
         MatSidenavModule,
         BienvenueModule,
-        DetailsSimulationModule
+        DetailsSimulationModule,
+        MatAutocompleteModule,
+        CommonModule
     ],
+    
     providers   : [
+        DecimalPipe,
+        CurrencyPipe,
         {
             provide : MAT_DATE_FORMATS,
             useValue: {
@@ -57,6 +69,11 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
                     monthYearA11yLabel: 'MMMM YYYY'
                 }
             }
+        },
+        {
+            provide   : MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
+            useFactory: (overlay: Overlay) => (): BlockScrollStrategy => overlay.scrollStrategies.block(),
+            deps      : [Overlay]
         }
     ],
     exports     : [
