@@ -6,6 +6,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ContactezNousModule } from '../landing/contactez-nous/contactez-nous.module';
 
 
 
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
         FuseCardModule,
         SharedModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        ContactezNousModule
     ]
 })
 export class NosGidesConseilsModule

@@ -1,14 +1,13 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<div class=" flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
   <header class=" hidden md:flex flex-col  items-start justify-start  w-full min-h-[50vh] b1-bg-header">
-    <div class="text-6xl mt-30  ml-8 uppercase font-bold tracking-tight leading-tight text-red-700 ">
+    <div class="w-full max-w-400 mx-auto text-6xl mt-30  ml-8 uppercase font-bold tracking-tight leading-tight text-red-700 ">
       Conseils, GUIDES
     </div>
-    <div class="text-start ml-8 text-3xl font-medium text-black">
-      <p class="w-2/3 mt-4 ">Investir dans l'immobilier est l'un des moyens les plus sûrs pour se constituer un
-        patrimoine.</p>
-      <p class="w-2/3 mt-4">Encore faut-il connaître toutes les ficelles pour mener à bien un projet immobilier.</p>
+    <div class="w-full max-w-400 mx-auto text-start ml-8 text-3xl font-medium text-black">
+      <p class="w-3/5 mt-4 ">Investir dans un projet immobilier n’est jamais facile, que ce soit pour l’acquisition de votre premier bien, pour l’achat de votre terrain ou la construction de votre logement, de nombreux points sont à prendre en considération. </p>
+      <p class="w-3/5 mt-4">En qualité de spécialiste l’immobilier et avec la volonté de vous apporter aide et conseil dans vos projets immobiliers, Wafa Immobilier vous propose ces guides et conseils pratiques pour vous faciliter l’accès au logement.</p>
 
     </div>
 
@@ -24,11 +23,11 @@
 
 
   <div class="hidden md:flex flex-col items-center justify-start px-16 w-full min-h-[68vh] bg-primary-500">
-    <div class="text-6xl md:text-3xl uppercase font-large tracking-tight leading-tight text-white mt-10">
+    <div class="w-full max-w-400 mx-auto text-6xl md:text-3xl uppercase font-large tracking-tight leading-tight text-white mt-10">
       NOS CONSEILS D'EXPERTS
     </div>
     <!-- Autre contenu ici -->
-    <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-8 gap-x-15 md:gap-x-15 w-full ">
+    <div class="w-full max-w-400 mx-auto grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-8 gap-x-15 md:gap-x-15 w-full ">
 
       <div
         class="rounded-xl  overflow-hidden shadow-md bg-white mt-5 flex-left grid grid-cols-1 divide-y-4 divide-red-500 ">
@@ -42,7 +41,9 @@
               <h2 class="font-bold uppercase text-red-500">10 Règles à réspecter </h2>
             </div>
             <div class="p-4">
-              <p>Votre paragraphe ici...</p>
+              <p>Investir dans l’immobilier est l’un des moyens sûrs pour se constituer un patrimoine.
+                Voici quelques règles à respecter pour réussir ...
+              </p>
               <ng-container class="">
                 <button>
                   <span class="font-medium text-red-500 underline ">Lire la suite > </span>
@@ -69,7 +70,7 @@
               <h2 class="font-bold uppercase text-red-500">bon à savoir </h2>
             </div>
             <div class="p-4">
-              <p>Votre paragraphe ici...</p>
+              <p>Être copropriétaire, c'est être propriétaire collectivement d'un bien divisé en lots à l’instar d’un immeuble, propriété collective ...</p>
               <ng-container class="">
                 <button>
                   <span class="font-medium text-red-500 underline ">Lire la suite > </span>
@@ -96,7 +97,7 @@
               <h2 class="font-bold uppercase text-red-500  ">3 règles pratiques pour trouver le bon logement</h2>
             </div>
             <div class="p-4">
-              <p>Votre paragraphe ici...</p>
+              <p>Trouver le logement idéal pour s’y installer peut s’avérer long et fastidieux. Qu’il s’agisse de la phase de recherche de biens répondant à ...</p>
               <ng-container class="">
                 <button>
                   <span class="font-medium text-red-500 underline ">Lire la suite > </span>
@@ -121,7 +122,7 @@
               <h2 class="font-bold uppercase text-red-500">COMMENT élaborer VOTRE PLAN DE FINANCEMENT</h2>
             </div>
             <div class="p-4">
-              <p>Votre paragraphe ici...</p>
+              <p>En pratique, le capital nécessaire pour acheter étant difficile à mobiliser, le financement à crédit est particulièrement répandu.</p>
               <ng-container class="">
                 <button>
                   <span class="font-medium text-red-500 underline ">Lire la suite > </span>
@@ -149,10 +150,10 @@
 
 
   <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[80vh] b3-bg">
-    <div class="text-6xl  uppercase font-bold tracking-tight leading-tight text-red-500 mt-20">
+    <div class="w-full max-w-400 mx-auto text-6xl  uppercase font-bold tracking-tight leading-tight text-red-500 mt-20">
       GUIDE IMMOBILIER :
     </div>
-    <div class="text-6xl  uppercase font-medium tracking-tight leading-tight text-red-500 ">
+    <div class="w-full max-w-400 mx-auto text-6xl  uppercase font-medium tracking-tight leading-tight text-red-500 ">
       MENER BIEN VOTRE PROJET
     </div>
     <!--button-->
@@ -168,13 +169,16 @@
 
     </div>
     <div *ngIf="desc1" class="text-start text-2xl font-medium text-white">
-      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
-        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
-        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
-        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
-        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
-        page de texte, comme Aldus PageMaker.</p>
+      <p class="w-1/2 m-2 ">L'achat est un engagement sur le long terme qui demande une étude approfondie de votre situation professionnelle et familiale. La location est plus souple mais, à terme, moins avantageuse.</p>
+      <p class="w-1/2 m-2 ">Trouvez le logement idéal ! Qu'il s'agisse d'une maison ou d'un appartement, d'un habitat neuf ou ancien, posez-vous les bonnes questions afin de trouver le logement idéal.</p>
+    
+      <div class="bullet-points grid grid-cols-1 ml-6 text-xl ">
+        <div class="bullet-point ">●	Acheter un bien neuf : comparé à un bien ancien, un logement neuf devrait logiquement offrir un nombre d'avantages et de garanties non négligeables, à condition toutefois de le vérifier auprès du promoteur du bien.</div>
+        <div class="bullet-point mt-2 ">●	Un logement à construire : si vous envisagez de construire votre logement, pensez à faire appel à des experts pour bien estimer le coût de votre projet et vous garantir la bonne livraison de votre bien.</div>
+        <div class="bullet-point mt-2 ">●	Le cachet de l'ancien : si vous êtes attiré par "les pierres", sachez qu'il existe de belles demeures, totalement rénovées, en parfait état de fonctionnement. Lors de la deuxième ou troisième visite, faites-vous toutefois assister d'un professionnel de la construction, qui saura véritablement évaluer le bien. 
+          S’il s’agit d’un bien en collectif, demandez au syndic le compte-rendu des dernières assemblées générales pour avoir une vue précise des travaux effectués et de ceux à venir.
+          </div>
+      </div>
     </div>
 
     <div
@@ -190,13 +194,12 @@
       </label>
     </div>
     <div *ngIf="desc2" class="text-start text-2xl font-medium text-white">
-      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
-        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
-        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
-        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
-        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
-        page de texte, comme Aldus PageMaker.</p>
+      <p class="w-1/2 m-2 ">Acheter un logement implique l'addition d'un ensemble de coûts :</p>
+      <div class="bullet-points grid grid-cols-1 ml-6 text-xl ">
+        <div class="bullet-point ">●	Le coût réel de l'achat : le prix de vente d'un logement neuf est annoncé TTC. Il peut être ferme et définitif à la réservation ou révisable. Viennent s'y ajouter les frais annexes : frais d’enregistrement et d’hypothèque, frais de notaire et frais d’assurance,…</div>
+        <div class="bullet-point mt-2 ">●	Évaluer le coût des travaux : si vous envisagez de réaliser des travaux dans votre futur logement, prévoyez un budget par avance.</div>
+        
+      </div>
     </div>
 
     <div
@@ -210,13 +213,14 @@
       </label>
     </div>
     <div *ngIf="desc3" class="text-start text-2xl font-medium text-white">
-      <p class="w-1/2 m-2 ">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
-        avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
-        imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-        Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
-        contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
-        contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en
-        page de texte, comme Aldus PageMaker.</p>
+      <p class="w-1/2 m-2 ">Vous pouvez négocier directement avec le vendeur du bien. Mais, dès qu'il s'agit de finaliser une affaire, recourir à une tierce personne est une garantie nécessaire</p>
+    
+      <h2 class="w-1/2 m-2 text-gray-500">En direct avec le particulier </h2>
+      <p class="w-1/2 ml-2 mt-1">Certes, rien ne vous empêche de négocier directement avec le vendeur du bien. Mais, faîtes appel à un notaire pour établir l'acte de vente. Il vérifiera les droits de propriété du vendeur et réunira toutes les pièces nécessaires à la rédaction de l'acte définitif. </p>
+      <h2 class="w-1/2 m-2 text-gray-500">L'agent immobilier </h2>
+      <p class="w-1/2 ml-2 mt-1">Prix du marché, montant des charges, taxe d'habitation et taxe foncière. l'agent immobilier saura négocier avec le vendeur. Par contre, n'oubliez pas de demander les tarifs pratiqués par l'agent, les frais de commission étant fixés librement d'une agence à une autre. </p>
+      <h2 class="w-1/2 m-2 text-gray-500">Le notaire  </h2>
+      <p class="w-1/2 ml-2 mt-1">Vous pouvez aussi vous adresser directement à un notaire qui se charge de conclure la transaction d’achat. Il doit aussi vous mettre en rapport avec le vendeur et s'engager à rédiger l'acte de vente.</p>
     </div>
 
 
@@ -237,8 +241,8 @@
 
     <!--button-->
     <div
-      class="group    w-fit items-center justify-center rounded-3xl  cursor-pointer bg-primary  transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-200">
-      <label class=" ml-8 mr-8 h-center text-4xl font-medium text-white  group-hover:cursor-pointer">Nous Contacter
+      class="group    w-fit items-center justify-center rounded-3xl  cursor-pointer bg-primary  transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-red-200" [routerLink]="'/contactez-nous'">
+      <label class=" ml-8 mr-8 h-center text-4xl font-medium text-white  group-hover:cursor-pointer" >Nous Contacter
       </label>
 
     </div>
@@ -249,56 +253,9 @@
 
   </div>
 
+  <contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
 
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[52vh] bg-gray-800">
-    <div class="grid grid-cols-1 gap-y-15 content-center place-items-center w-full min-h-[32vh]">
-      <img class="w-30 h-auto  " src="assets/images/logo/logo.png" alt="Header Image">
-      <div
-        class=" group rounded-3xl   bg-gray-900  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary">
-        <label
-          class=" ml-4 h-10 mr-auto flex items-center text-md font-medium text-gray-200  group-hover:text-primary group-hover:cursor-pointer">
-          <span class="mr-auto"> Je veux être contacté </span>
-          <mat-icon class="ml-20 mx-4 icon-size-5 text-gray-200  group-hover:text-primary group-hover:cursor-pointer "
-            [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-
-        </label>
-
-
-
-
-      </div>
-    </div>
-
-
-
-
-
-
-  </div>
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[30vh] bg-gray-900">
-    <div class=" grid grid-cols-3  overflow-hidden  divide-x-2 divide-gray-800 mt-5 flex-left   ">
-
-      <div class=""></div>
-      <div class=" mx-4 grid grid-cols-1  content-center place-items-center    ">
-        <div class="p-4 text-2xl text-white capitalize underline cursor-pointer " [routerLink]="''"> Nous contacter
-        </div>
-        <div class="p-4 capitalize text-lg  text-gray-500 mt-6">
-          Adresse : 112,Angle bd Abdelmoumen et rue rembrandt-CASABLANCA
-        </div>
-        <div class="p-4 capitalize text-lg  text-gray-500 ">
-          Tel : 0529 02 45 01/03/05
-        </div>
-
-
-
-      </div>
-      <div class=""></div>
-
-
-
-
-    </div>
-  </div>
+  
 
 
 
