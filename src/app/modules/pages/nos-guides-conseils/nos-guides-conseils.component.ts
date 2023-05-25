@@ -28,6 +28,7 @@ export class NosGuidesConseilsComponent
     desc1 : boolean ;
     desc2 : boolean ;
     desc3 : boolean ;
+    desc4 : boolean ;
 
 
     toggle1(){
@@ -38,6 +39,7 @@ export class NosGuidesConseilsComponent
             this.desc1 = true; // sinon, on l'affiche
             this.desc2 = false;
             this.desc3 = false;
+            this.desc4 = false;
 
           }
          
@@ -50,6 +52,8 @@ export class NosGuidesConseilsComponent
             this.desc2 = true; // sinon, on l'affiche
             this.desc1 = false;
             this.desc3 = false;
+            this.desc4 = false;
+
 
           }
          
@@ -61,6 +65,21 @@ export class NosGuidesConseilsComponent
         else {
             this.desc3 = true; // sinon, on l'affiche
             this.desc2 = false;
+            this.desc1 = false;
+            this.desc4 = false;
+
+
+          }
+         
+    }
+    toggle4(){
+        if (this.desc4) {
+            this.desc4 = false;
+        }
+        else {
+            this.desc4 = true; // sinon, on l'affiche
+            this.desc2 = false;
+            this.desc3 = false;
             this.desc1 = false;
 
           }
