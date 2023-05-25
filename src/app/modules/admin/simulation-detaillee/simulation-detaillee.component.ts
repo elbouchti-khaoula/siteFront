@@ -225,7 +225,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
-
     this._referentielService.getEmployeursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeursConventionnes[]) => {
@@ -488,8 +487,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       codeUtilisateur: "WEB",
       // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
       objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
-      montant: this.simulationStepperForm.get('step3').get('montant').value,
-      montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
+      montant: Number(this.simulationStepperForm.get('step3').get('montant').value.toString().replace(/\D/g, '')),
+      montantProposition: Number(this.simulationStepperForm.get('step3').get('montantProposition').value.toString().replace(/\D/g, '')),
       duree: this.simulationStepperForm.get('step3').get('duree').value,
       typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
@@ -502,9 +501,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
         segment: "NV",
         dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-        salaire: this.simulationStepperForm.get('step2').get('salaire').value,
-        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
-        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
+        salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
+        autresRevenus: Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')),
+        creditsEnCours: Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')),
         telephone: this.simulationStepperForm.get('step1').get('telephone').value,
         email: this.simulationStepperForm.get('step1').get('email').value,
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
