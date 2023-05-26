@@ -1,102 +1,332 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<div class=" flex flex-col flex-auto min-w-0 overflow-hidden bg-primary "
+  [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header
-    class=" hidden md:flex flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
-
-  </header>
-
-  <!-- Header version sm-->
-  <header class=" md:hidden flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
-  </header>
-
-  <!-- version md -->
-  
-
-
-  <div class="hidden md:flex flex-col items-center justify-start px-16 w-full min-h-[68vh] bg-red-500">
-    <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-white mt-10">
-      NOS CONSEILS D'EXPERTS
-    </div>
-    <!-- Autre contenu ici -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0 md:gap-x-6 w-full max-w-sm md:max-w-6xl  sm:-mt-0">
-
-    <div class="rounded-lg overflow-hidden shadow-md bg-white mt-5 flex-left">
-      <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet10" alt="Header Image">
-      <div class="p-4">
-        <p>Votre paragraphe ici...</p>
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-80 md:min-h-76 b1-bg-header">
+    <div class="w-full max-w-400 mx-auto flex flex-col items-start justify-start">
+      <div class=" text-2xl sm:text-3xl md:text-4xl uppercase font-bold tracking-tight leading-tight text-primary-700 ">
+        Conseils, GUIDES
       </div>
-    
-      
-    </div>
 
-    <div class="rounded-lg overflow-hidden shadow-md bg-white mt-5 flex-left">
-      <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet14" alt="Header Image">
-      <div class="p-4">
-        <p>Votre paragraphe ici...</p>
+      <div class="md:max-w-2xl md:text-2xl font-medium flex flex-col space-y-5 mt-5">
+        <span>Investir dans un projet immobilier n’est jamais facile, que ce soit pour l’acquisition de
+          votre premier bien, pour l’achat de votre terrain ou la construction de votre logement, de nombreux points
+          sont à prendre en considération.
+        </span>
+        <span>En qualité de spécialiste l’immobilier et avec la volonté de vous apporter aide et conseil
+          dans vos projets immobiliers, Wafa Immobilier vous propose ces guides et conseils pratiques pour vous
+          faciliter l’accès au logement.
+        </span>
       </div>
-    
-      
     </div>
+  </section>
 
-    <div class="rounded-lg overflow-hidden shadow-md bg-white mt-5 flex-left">
-      <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet5" alt="Header Image">
-      <div class="p-4">
-        <p>Votre paragraphe ici...</p>
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 bg-primary">
+    <div class="w-full max-w-400 mx-auto flex flex-col items-center justify-center">
+      <div class="text-2xl md:text-4xl items-center uppercase font-large tracking-tight leading-tight text-white ">
+        NOS CONSEILS D'EXPERTS
       </div>
-    
-      
-    </div>
 
-    <div class="rounded-lg overflow-hidden shadow-md bg-white mt-5 flex-left">
-      <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet7" alt="Header Image">
-      <div class="p-4">
-        <p>Votre paragraphe ici...</p>
+      <div
+        class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-y-4 sm:gap-y-6 md:gap-y-8 gap-x-8 sm:gap-x-12 md:gap-x-15  ">
+
+        <div
+          class="rounded-xl  overflow-hidden shadow-md bg-white mt-5 flex-left grid grid-cols-1 divide-y-4 divide-primary-500 ">
+          <div>
+            <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet10" alt="Header Image">
+          </div>
+          <div>
+            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
+              <div class="p-4">
+                <h2 class="font-bold text-primary-500">ACHAT IMMOBILIER : </h2>
+                <h2 class="font-bold uppercase text-primary-500">10 Règles à réspecter </h2>
+              </div>
+              <div class="p-4">
+                <p>Investir dans l’immobilier est l’un des moyens sûrs pour se constituer un patrimoine.
+                  Voici quelques règles à respecter pour réussir ...
+                </p>
+                <ng-container class="">
+                  <button>
+                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
+                  </button>
+                </ng-container>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div
+          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left grid grid-cols-1 divide-y-4 divide-primary-500 ">
+          <div>
+            <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet14" alt="Header Image">
+          </div>
+          <div>
+            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
+              <div class="p-4">
+                <h2 class="font-bold uppercase text-primary-500">copropriété : </h2>
+                <h2 class="font-bold uppercase text-primary-500">bon à savoir </h2>
+              </div>
+              <div class="p-4">
+                <p>Être copropriétaire, c'est être propriétaire collectivement d'un bien divisé en lots à l’instar d’un
+                  immeuble, propriété collective ...</p>
+                <ng-container class="">
+                  <button>
+                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+        <div
+          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left grid grid-cols-1 divide-y-4 divide-primary-500 ">
+          <div>
+            <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet7" alt="Header Image">
+          </div>
+          <div>
+            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
+              <div class="p-4">
+                <h2 class="font-bold uppercase text-primary-500  ">3 règles pratiques pour trouver le bon logement</h2>
+              </div>
+              <div class="p-4">
+                <p>Trouver le logement idéal pour s’y installer peut s’avérer long et fastidieux. Qu’il s’agisse de la
+                  phase de recherche de biens répondant à ...</p>
+                <ng-container class="">
+                  <button>
+                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div
+          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left grid grid-cols-1 divide-y-4 divide-primary-500 ">
+          <div>
+            <img class="w-full h-auto md:w-full md:h-72 " [src]="imageVisDet5" alt="Header Image">
+          </div>
+          <div>
+            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
+              <div class="p-4">
+                <h2 class="font-bold uppercase text-primary-500">COMMENT élaborer VOTRE PLAN DE FINANCEMENT</h2>
+              </div>
+              <div class="p-4">
+                <p>En pratique, le capital nécessaire pour acheter étant difficile à mobiliser, le financement à crédit
+                  est particulièrement répandu.</p>
+                <ng-container class="">
+                  <button>
+                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
       </div>
-    
-      
+    </div>
+  </section>
+
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 b3-bg">
+    <div class="w-full  max-w-400 mx-auto md:flex flex-col flex-wrap  justify-start  ">
+      <div
+        class="text-2xl sm:text-3xl md:text-4xl  items-center sm:items-start uppercase font-bold tracking-tight leading-tight text-primary ">
+        GUIDE IMMOBILIER :
+      </div>
+      <div
+        class="text-2xl sm:text-3xl md:text-4xl   items-center sm:items-start uppercase font-medium tracking-tight leading-tight text-primary ">
+        MENER BIEN VOTRE PROJET
+      </div>
+      <!--button-->
+      <div  class=" group w-full  sm:w-1/2  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-500"
+        (click)="toggle1()">
+        <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+          <span class="sm:text-xl md:text-2xl font-medium ml-2 ">Acheter ou louer? Faites le bon choix!</span>
+          <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+          </button>
+        </div>
+
+
+
+
+      </div>
+
+      <div *ngIf="desc1" class="text-start  sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1">
+        <p class=" m-2 ">L'achat est un engagement sur le long terme qui demande une étude approfondie de votre
+          situation professionnelle et familiale. La location est plus souple mais, à terme, moins avantageuse.</p>
+        <p class=" m-2 ">Trouvez le logement idéal ! Qu'il s'agisse d'une maison ou d'un appartement, d'un habitat
+          neuf ou ancien, posez-vous les bonnes questions afin de trouver le logement idéal.</p>
+
+        <div class="bullet-points grid grid-cols-1 sm:ml-6   my-2 sm:my-1 ">
+          <div class="bullet-point  ">● Acheter un bien neuf : comparé à un bien ancien, un logement neuf devrait
+            logiquement offrir un nombre d'avantages et de garanties non négligeables, à condition toutefois de le
+            vérifier auprès du promoteur du bien.</div>
+          <div class="bullet-point  ">● Un logement à construire : si vous envisagez de construire votre logement,
+            pensez à faire appel à des experts pour bien estimer le coût de votre projet et vous garantir la bonne
+            livraison de votre bien.</div>
+          <div class="bullet-point  ">● Le cachet de l'ancien : si vous êtes attiré par "les pierres", sachez qu'il
+            existe de belles demeures, totalement rénovées, en parfait état de fonctionnement. Lors de la deuxième ou
+            troisième visite, faites-vous toutefois assister d'un professionnel de la construction, qui saura
+            véritablement évaluer le bien.
+            S’il s’agit d’un bien en collectif, demandez au syndic le compte-rendu des dernières assemblées générales
+            pour avoir une vue précise des travaux effectués et de ceux à venir.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class=" group w-full  sm:w-1/2  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-500"
+        (click)="toggle2()">
+        <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+          <span
+          class="sm:text-xl md:text-2xl font-medium ml-2 ">Définissez
+            votre budget: les frais à prendre en compte </span>
+          <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+          </button>
+        </div>
+        
+      </div>
+      <div *ngIf="desc2" class="text-start  sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1">
+        <p class="sm:m-2 ">Acheter un logement implique l'addition d'un ensemble de coûts :</p>
+        <div class="bullet-points grid grid-cols-1 sm:ml-6  my-2 sm:my-1 ">
+          <div class="bullet-point ">● Le coût réel de l'achat : le prix de vente d'un logement neuf est annoncé TTC. Il
+            peut être ferme et définitif à la réservation ou révisable. Viennent s'y ajouter les frais annexes : frais
+            d’enregistrement et d’hypothèque, frais de notaire et frais d’assurance,…</div>
+          <div class="bullet-point  ">● Évaluer le coût des travaux : si vous envisagez de réaliser des travaux dans
+            votre futur logement, prévoyez un budget par avance.</div>
+
+        </div>
+      </div>
+
+      <div  class=" group w-full  sm:w-1/2  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-500"
+      (click)="toggle3()">
+      <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+        <span class="sm:text-xl md:text-2xl font-medium ml-2 ">Les différentes formes de transactions</span>
+        <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+          <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+        </button>
+      </div>
+
+      </div>
+      <div *ngIf="desc3" class="text-start  sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1">
+        <p class="  sm:m-2 ">Vous pouvez négocier directement avec le vendeur du bien. Mais, dès qu'il s'agit de
+          finaliser une affaire, recourir à une tierce personne est une garantie nécessaire</p>
+
+        <h2 class=" sm:m-2 text-primary">En direct avec le particulier </h2>
+        <p class=" sm:ml-2 mt-1">Certes, rien ne vous empêche de négocier directement avec le vendeur du bien. Mais,
+          faîtes appel à un notaire pour établir l'acte de vente. Il vérifiera les droits de propriété du vendeur et
+          réunira toutes les pièces nécessaires à la rédaction de l'acte définitif. </p>
+        <h2 class=" sm:m-2 text-primary">L'agent immobilier </h2>
+        <p class=" sm:ml-2 mt-1">Prix du marché, montant des charges, taxe d'habitation et taxe foncière. l'agent
+          immobilier saura négocier avec le vendeur. Par contre, n'oubliez pas de demander les tarifs pratiqués par
+          l'agent, les frais de commission étant fixés librement d'une agence à une autre. </p>
+        <h2 class=" sm:m-2 text-primary">Le notaire </h2>
+        <p class=" sm:ml-2 mt-1">Vous pouvez aussi vous adresser directement à un notaire qui se charge de conclure la
+          transaction d’achat. Il doit aussi vous mettre en rapport avec le vendeur et s'engager à rédiger l'acte de
+          vente.</p>
+      </div>
+      <div  class=" group w-full  sm:w-1/2  rounded-3xl mt-5 border-2 border-white-500 bg-gray-900/[.7]  cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-500"
+      (click)="toggle4()">
+      <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+        <span class="sm:text-xl md:text-2xl font-medium ml-2 ">Conclure la transaction</span>
+        <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+          <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+        </button>
+      </div>
+      </div>
+      <div *ngIf="desc4" class="text-start  sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1">
+        <h1 class="text-primary sm:text-xl mt-2">Le contrat de vente </h1>
+        <span class="text-white w-full sm:w-1/2 ">Pour vous assurer qu'il ne s'exécutera pas dans le vide, pensez à vérifier
+          quelques points avant de signer: </span>
+        <h2 class="text-gray-400 mt-1">● Logement déjà construit </h2>
+        <p>Veillez à ce que le contrat comporte :</p>
+        <div class="m-2 w-full sm:w-1/2">
+          <p>L'adresse du logement </p>
+          <p>La superficie, la description de toutes les pièces </p>
+          <p>La présence ou l'absence de servitudes </p>
+          <p>La présence ou l'absence d'hypothèque sur le bien vendu </p>
+          <p>Votre état civil complet et celui du vendeur </p>
+          <p>La date prévue pour l'entrée dans les lieux </p>
+          <p>Le prix et les modalités de paiement </p>
+          <p>En cas de compromis de vente : le montant des sommes versées d'avance </p>
+          <p>...</p>
+
+
+        </div>
+
+        <h2 class="text-gray-400 mt-1">● Logement à construire </h2>
+        <p>Veillez à ce que le contrat comporte :</p>
+        <div class="m-2 w-full sm:w-1/2">
+          <p>L' adresse du terrain </p>
+          <p>Les justificatifs du droit de construire (affirmation de la conformité du projet aux règles de Construction
+            et d'urbanisme, mention du titre de propriété...) </p>
+          <p>La description précise du logement à réaliser et les modalités de construction </p>
+          <p>Le prix et les modalités de paiement </p>
+          <p>Le montant du prêt que vous devez éventuellement obtenir </p>
+          <p>...</p>
+
+
+        </div>
+
+      </div>
     </div>
 
-  </div>
-
-
-  
-  <button class="w-fit mx-auto mt-10" mat-flat-button [color]="'primary'" [routerLink]="['./']">
-    <span class="ml-2">Accéder à l'offre</span>
-  </button>
-
-  </div>
-  
-  
-
-
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[52vh] guide-immobilier-bg">
 
 
 
+  </section>
 
-    
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 b4-bg">
+    <div class="w-full  max-w-400 mx-auto my-auto text-2xl sm:text-3xl md:text-4xl   sm:grid sm:grid-cols-2  items-center justify-center sm:place-items-center">
+      <div class="hidden sm:block"></div>
 
-  </div>
+      <div class=" uppercase font-medium tracking-tight justify-center leading-tight text-black mt-20">
+        POUR PLUS D'INFORMATION
+      </div>
+      <div class="hidden sm:block"></div>
+      <div class="  uppercase font-bold tracking-tight justify-center leading-tight text-black ">
+        CONTACTER NOS EXPERT
+      </div>
+      <div class="hidden sm:block"></div>
 
-  <div class="hidden md:flex flex-col items-start justify-start px-16 w-full min-h-[32vh] contacter-expert-bg">
+      <!--button-->
+      <div
+        class="group    w-fit items-center justify-center rounded-3xl justify-center cursor-pointer bg-primary  transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-200"
+        [routerLink]="'/nous-contacter'">
+        <label class=" ml-8 mr-8 h-center  font-medium text-white  group-hover:cursor-pointer">Nous Contacter
+        </label>
 
+      </div>
 
-
-
-   
-
-  </div>
-
+    </div>
 
 
 
 
 
 
+  </section>
 
-
-
+  <contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
 
 
 
@@ -122,4 +352,12 @@
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+</div>

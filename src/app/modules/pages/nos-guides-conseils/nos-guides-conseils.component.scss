@@ -1,40 +1,31 @@
-.nous-connaitre-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/Nous connaître.jpg');
+.b1-bg-header {
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)), url('/assets/images/pages/nos-guides-et-conseils/header.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-}
-.text-orange {
-    color: rgb(238, 125, 33);
-}
 
-.orange-circle {
-    background-color: orange;
-  }
-
-  .selected {
-    border: 2px solid blue;
-  }
-
-
-  @media (max-width: 767px) {
-    .mobile-full-width {
-      width: 100%;
+    @media (max-width: 959px) {
+      background-image:  linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('/assets/images/pages/nos-guides-et-conseils/header-sm.png');
     }
-  }
+}
 
-
-.guide-immobilier-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre-old/backgd.jpg');
+.b3-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)), url('/assets/images/pages/nos-guides-et-conseils/Bannière 3.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  @media (max-width: 959px) {
+    background-image:  linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)), url('/assets/images/pages/nos-guides-et-conseils/Bannière 3-sm.png');
+  }
 }  
 
-.contacter-expert-bg{
-  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/landingBis/header_vice.jpg');
+.b4-bg{
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)), url('/assets/images/pages/nos-guides-et-conseils/Bannière 4.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  @media (max-width: 959px) {
+    background-image:  linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)), url('/assets/images/pages/nos-guides-et-conseils/Bannière 4-sm.png');
+  }
 } 
   

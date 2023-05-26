@@ -12,14 +12,17 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class NotrePolitiqueRseComponent
 {
-    
-    /**
+    isScreenSmall: boolean;
+     /**
      * Constructor
      */
-    constructor()
-    {
-    }
-
+     constructor()
+     {
+     }
+ 
+    
+ 
+ 
     
 
     

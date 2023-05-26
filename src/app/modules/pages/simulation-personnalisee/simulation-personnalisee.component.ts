@@ -244,7 +244,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   simuler(): void {
 
     const critere = {
-      montant         : this.simulationForm.get('montant').value,
+      montant         : Number(this.simulationForm.get('montant').value.toString().replace(/\D/g, '')),
       duree           : this.simulationForm.get('duree').value,
       cspCode         : this.simulationForm.get('cspCode').value,
       nationaliteCode : this.simulationForm.get('nationaliteCode').value,
