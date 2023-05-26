@@ -24,7 +24,7 @@
 
                 <!-- Add simulation button -->
                 <button
-                    class="ml-auto"
+                    class="ml-auto px-5"
                     mat-flat-button
                     [color]="'primary'"
                     [routerLink]="['/espace-connecte/simulation-detaillee']">
@@ -43,7 +43,7 @@
 
                     <ng-container *ngFor="let simulation of simulations; let i = index; trackBy: trackByFn">
                         
-                        <fuse-card class="sm:max-w-90 relative flex flex-col items-center px-5 pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#f8dedf]">
+                        <fuse-card class="sm:max-w-90 relative flex flex-col items-center px-5 pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]">
 
                             <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
                                 <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
@@ -79,16 +79,16 @@
                                 </div>
                             </div>
 
-                            <div class="mt-auto flex items-center border-t pt-5">
+                            <div class="flex items-center border-t pt-5">
                                 <button
-                                    class="px-3"
+                                    class="px-5"
                                     mat-flat-button
                                     [color]="'primary'"
                                     (click)="navigateToDemandeCredit(simulation)">
                                     Demander mon crédit
                                 </button>
                                 <button
-                                    class="px-3 ml-2"
+                                    class="px-5 ml-2"
                                     mat-stroked-button
                                     [matTooltip]="'J abandonne'"
                                     (click)="abandonner(simulation)">

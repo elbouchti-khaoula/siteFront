@@ -272,7 +272,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           }
 
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       ).subscribe((response) => {
 
@@ -317,7 +317,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           // Log the error
           console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         }))
       .subscribe((response) => {
         console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);

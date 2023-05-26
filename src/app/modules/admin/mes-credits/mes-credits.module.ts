@@ -9,6 +9,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MesCreditsComponent } from './mes-credits.component';
 import { mesCreditsRoutes } from './mes-credits.routing';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { OperationsSAVRefModule } from './opeartion-sav-ref/operations-sav-ref.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         MatIconModule,
         FuseCardModule,
         MatProgressBarModule,
-        BienvenueModule
+        BienvenueModule,
+        OperationsSAVRefModule
     ],
     exports     : [
         MesCreditsComponent

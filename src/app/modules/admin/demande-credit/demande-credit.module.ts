@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { DemandeCreditComponent } from './demande-credit.component';
 import { demandeCreditRoutes } from './demande-credit.routing';
@@ -21,6 +22,7 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         SharedModule,
         MatButtonModule,
         MatIconModule,
+        MatCheckboxModule,
         FuseCardModule,
         MatSidenavModule,
         ChangerAgenceModule,

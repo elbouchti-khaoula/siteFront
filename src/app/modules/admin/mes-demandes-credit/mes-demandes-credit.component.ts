@@ -1,6 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { Observable, Subject } from 'rxjs';
+import { FuseUtilsService } from '@fuse/services/utils';
+import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { DemandeCredit } from 'app/core/records-in-progress/records-in-progress.types';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mes-demandes-credit',
@@ -10,27 +13,24 @@ import { Observable, Subject } from 'rxjs';
   animations: fuseAnimations
 })
 export class MesDemandesCreditComponent implements OnInit, OnDestroy {
-  
+
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  demandes$: Observable<any[]>;
-  demandes: any[] = [];
-  statuts: any[] = [];
+  demandes: DemandeCredit[] = [];
+  steps: any[] = [];
 
   /**
    * Constructor
    */
-  constructor() {
-    this.statuts.push({id: 1, libelle: 'Instruction'});
-    this.statuts.push({id: 2, libelle: 'Autorisation'});
-    this.statuts.push({id: 3, libelle: 'Déblocage'});
-
-    this.demandes.push({id: 123, montant: "300 000.00", mensualites: 3652, duree: 240, teg: 4.2, statut: 1});
-    this.demandes.push({id: 456, montant: "400 000.00", mensualites: 5421, duree: 240, teg: 5.2, statut: 2});
-    this.demandes.push({id: 789, montant: "500 000.00", mensualites: 9652, duree: 240, teg: 6.2, statut: 3});
-    this.demandes.push({id: 987, montant: "400 000.00", mensualites: 4564, duree: 240, teg: 5.0, statut: 1});
-    // this.demandes.push({id: 789, montant: "500000.00", mensualites: 9652, duree: 240, teg: 6.2, statut: 2});
-        
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _fuseUtilsService: FuseUtilsService,
+    private _recordsInProgressService: RecordsInProgressService
+  )
+  {
+    this.steps.push({ id: 1, libelle: 'Instruction' });
+    this.steps.push({ id: 2, libelle: 'Autorisation' });
+    this.steps.push({ id: 3, libelle: 'Déblocage' });
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -38,7 +38,26 @@ export class MesDemandesCreditComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+    this._recordsInProgressService.demandesCredit$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((response: DemandeCredit[]) => {
 
+        let res = [];
+        if (response && response.length > 0) {
+          res = response.map(
+            e => {
+              return {
+                ...e,
+                mtProjet: this._fuseUtilsService.numberFormat(e.mtProjet, 2, '.', ' '), 
+                phaseId: this.steps.find(step => step.libelle == e.phase).id}
+            }
+          );
+        }
+        this.demandes = res;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
   }
 
   /**

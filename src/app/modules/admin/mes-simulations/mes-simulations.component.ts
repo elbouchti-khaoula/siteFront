@@ -4,7 +4,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
 import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
-import { FuseUtilsService } from '@fuse/services/utils';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
@@ -28,7 +27,6 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _simulationService: SimulationDetailleeService,
-    private _fuseUtilsService: FuseUtilsService,
     private _fuseConfirmationService: FuseConfirmationService
   )
   {
@@ -49,7 +47,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
         if (response && response.length > 0) {
           res = response.map(
             e => {
-              return this._fuseUtilsService.convertSimulationToString(e)
+              return this._simulationService.convertSimulationToString(e)
             }
           );
         }
@@ -102,7 +100,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
         catchError((error) => {
 
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response) => {
@@ -167,8 +165,9 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
     this._simulationService.getInfoTiers(selectedSimulation)
       .pipe(
         catchError((error) => {
+          
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response: any) => {

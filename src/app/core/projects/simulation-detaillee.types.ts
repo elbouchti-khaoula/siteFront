@@ -11,7 +11,6 @@ export interface CritereDetaillee {
     typeTaux: string;
     nomPromoteur: string;
     infine?: boolean;
-    // statutProjet: string;
     tiers: {
         nom: string;
         prenom: string;
@@ -28,12 +27,15 @@ export interface CritereDetaillee {
         telephone: string;
         email: string;
         nomEmployeur: string;
-        proprietaireMaroc?: boolean;
-        capital?: number;
+        // proprietaireMaroc?: boolean;
+        // capital?: number;
     }
 }
 
 export interface SimulationDetaillee {
+
+    codeApporteur?                  : string;
+    codeUtilisateur?                : string;
 
     // Mon profil
     nom?                            : string;

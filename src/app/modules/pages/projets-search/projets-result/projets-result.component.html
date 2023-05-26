@@ -61,7 +61,7 @@
                         </div>
 
                         <!-- Open localisation -->
-                        <button class="ml-auto lg:hidden rounded-full bg-[#f8dedf]"
+                        <button class="ml-auto lg:hidden rounded-full bg-[#fae7e8]"
                             mat-icon-button
                             (click)="toggleMain()">
                             <mat-icon
@@ -88,7 +88,7 @@
                                     <!-- Projet -->
                                     <a class="z-20 flex items-center px-3 md:px-6 py-5 cursor-pointer border-b"
                                         [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedProjet || selectedProjet.id !== projet.id,
-                                                    'bg-[#f8dedf] dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
+                                                    'bg-[#fae7e8] dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
                                         (click)="selectProjet(projet)">
 
                                         <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-5">

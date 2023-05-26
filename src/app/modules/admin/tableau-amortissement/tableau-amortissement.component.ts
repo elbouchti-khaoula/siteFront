@@ -52,8 +52,6 @@ export class TableauAmortissementComponent implements OnInit, AfterViewInit, OnD
         this.dataSource.paginator = this._paginator;
         this.dataSource.sort = this._sort;
 
-        // console.log("+-+-+- tableauAmortissement ngAfterViewInit set paginator this.dataSource", this.dataSource);
-
         if (this._sort) {
             // Set the initial sort
             this._sort.sort({

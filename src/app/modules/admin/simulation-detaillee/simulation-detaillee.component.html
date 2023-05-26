@@ -89,7 +89,15 @@
                 </div>
             </fuse-card>
 
-            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-14">
+            <!-- *ngIf="user.cin !== null" -->
+            <div class="mx-auto md:max-w-184 flex flex-row py-2 px-3 rounded-md shadow bg-gray-300 mt-7 md:mt-10">
+                <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
+                </mat-icon>
+                <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à l'application Attijari Mobile pour avoir de meilleurs résultats.
+                </span>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10">
 
                 <form class="ring-1 ring-current bg-card rounded-md shadow overflow-hidden"
                     [formGroup]="simulationStepperForm"
@@ -230,7 +238,6 @@
                                                 Clear
                                             </button>
                                             <button 
-                                                class=""
                                                 mat-flat-button
                                                 [color]="'primary'"
                                                 matDatepickerApply>
@@ -280,7 +287,7 @@
                             <!-- Actions -->
                             <div class="flex justify-end mt-7">
                                 <button 
-                                    class="px-8"
+                                    class="md:px-5"
                                     mat-flat-button
                                     [color]="'primary'"
                                     [disabled]="simulationStepperStep1.stepControl.pristine || simulationStepperStep1.stepControl.invalid"
@@ -423,14 +430,14 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-5">
-                                <button class="px-8 mr-2" 
+                                <button class="md:px-5 mr-2" 
                                     mat-flat-button
                                     [color]="'accent'"
                                     type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button class="px-8"
+                                <button class="md:px-5"
                                     mat-flat-button
                                     [color]="'primary'"
                                     [disabled]="simulationStepperStep2.stepControl.pristine || simulationStepperStep2.stepControl.invalid"
@@ -594,7 +601,7 @@
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
                                 <button
-                                    class="md:px-8 mr-2"
+                                    class="md:px-5 mr-2"
                                     mat-flat-button
                                     [color]="'accent'"
                                     type="button"
@@ -602,7 +609,7 @@
                                     Retour
                                 </button>
                                 <button
-                                    class="md:px-8"
+                                    class="md:px-5"
                                     [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid}"
                                     mat-flat-button
                                     [color]="'primary'"
