@@ -509,7 +509,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-
+console.log(critere);
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(

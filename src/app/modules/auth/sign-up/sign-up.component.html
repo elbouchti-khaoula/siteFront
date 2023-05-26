@@ -73,7 +73,7 @@
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Téléphone</mat-label>
-                        <input id="telephone" matInput [formControlName]="'telephone'">
+                        <input id="telephone" matInput [formControlName]="'telephone'" appFormatTelephone>
                         <mat-error *ngIf="signUpForm.get('telephone').hasError('required')">
                             Champs requis
                         </mat-error>

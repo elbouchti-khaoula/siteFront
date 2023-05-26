@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FuseCardModule } from '@fuse/components/card';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { FuseCardModule } from '@fuse/components/card';
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
-        FuseCardModule
+        FuseCardModule,
+        FormatTelephoneModule
     ]
 })
 export class SupportModule

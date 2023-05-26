@@ -23,14 +23,13 @@ import { DetailsSimulationModule } from 'app/modules/common/details-simulation/d
 import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { FormatMontantDirective } from './format-montant.directive';
-import { FormatTelephoneDirective } from './format-tele.directive';
+import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
 
 @NgModule({
     declarations: [
-        SimulationDetailleeComponent,
-        FormatMontantDirective,
-        FormatTelephoneDirective
+        SimulationDetailleeComponent
     ],
     imports     : [
         RouterModule.forChild(simulationDetailleeRoutes),
@@ -50,7 +49,10 @@ import { FormatTelephoneDirective } from './format-tele.directive';
         BienvenueModule,
         DetailsSimulationModule,
         MatAutocompleteModule,
-        CommonModule
+        CommonModule,
+        FormatMontantModule,
+        FormatTelephoneModule,
+        FormatEntierModule
     ],
     
     providers   : [

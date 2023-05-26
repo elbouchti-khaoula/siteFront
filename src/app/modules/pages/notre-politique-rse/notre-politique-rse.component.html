@@ -1,191 +1,170 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
-  <header class="hidden md:flex flex-col  px-16 w-full min-h-[32vh] notre-demarage-rse-bg-header">
-    <div class="flex items-center">
+  <header class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 notre-demarage-rse-bg-header">
+    <div class="w-full max-w-400 mx-auto flex items-center">
       <!--button class="w-fit mx-auto absolute top-0 left-1/2 transform -translate-x-1/2" mat-flat-button [color]="'primary'" [routerLink]="['./']">
         <span class="ml-2">Accéder à l'offre</span>
       </button-->
-      <div class="item-start text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-white mt-30 ml-2">
-        Notre Démarche RSE
-      </div>
-    </div>
-  </header>
-  
-  <!-- Header version sm-->
-  <header class="md:hidden flex-col items-center justify-center px-16 w-full min-h-[32vh] notre-demarage-rse-bg-header">
-    <div class="flex items-center">
-      <!--button class="w-fit mx-auto absolute top-0 left-1/2 transform -translate-x-1/2" mat-flat-button [color]="'primary'" [routerLink]="['./']">
-        <span class="ml-2">Accéder à l'offre</span>
-      </button-->
-      <div class="item-start text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-white mt-30 ml-2">
+      <div
+        class="item-start text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-white mt-30 ml-2">
         Notre Démarche RSE
       </div>
     </div>
   </header>
 
+  <!-- version md -->
+  <section class="py-10 sm:pt-18 sm:pb-20 bg-card">
 
-  
-<!-- version md -->
-<div class="hidden md:flex flex-col  w-full min-h-[64vh] bg-card">
-  <div class="flex flex-row w-full gap-x-5">
-    <div class="grid-col-1 w-2/3 item-start flex flex-col justify-between px-16">
-  
-        <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-10 w-1/2">
+    <div class="w-full grid grid-cols-3">
+      <!-- left -->
+      <div class="pl-5 sm:pl-16 col-span-2 flex flex-col item-start justify-between">
+        <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-10">
           Introduction
         </div>
+
         <div class="text-xl md:text-2xl font-medium tracking-tight leading-tight text-gray-700 mt-10 grid-col-1">
           <div>
-            Au fil des années, Wafa Immobilier a pris conscience de l'importance de développer des offres et services innovants pour encourager et aider ses clients dans la réalisation de leurs projets.
+            Au fil des années, Wafa Immobilier a pris conscience de l'importance de développer des offres et services
+            innovants pour encourager et aider ses clients dans la réalisation de leurs projets.
           </div>
           <div class="mt-10">
-            Nous visons ainsi à nous positionner comme un acteur responsable et engagé envers l'ensemble de nos parties prenantes.
+            Nous visons ainsi à nous positionner comme un acteur responsable et engagé envers l'ensemble de nos parties
+            prenantes.
           </div>
           <div class="mt-10">
             Découvrez nos axes d'engagements pour mieux vous accompagner.
           </div>
         </div>
 
-      <div class="justify-center items-center mt-10">
-        <div class="flex flex-row gap-x-5 justify-center items-center">
-          <div class="flex rounded-xl">
-            <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche1.png" alt="Affiche 1">
-          </div>
-          <div class="flex rounded-xl">
-            <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche2.png" alt="Affiche 2">
-          </div>
-          <div class="flex rounded-xl">
-            <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche3.png" alt="Affiche 3">
-          </div>
-        </div>
-        <div class="flex justify-center items-center mt-5 mb-5">
-          <div class="flex">
-            <img class="object-cover" src="assets/images/pages/rse/rse-niv1/Scroll.png" alt="Scroll">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Autre contenu ici min-w-0 -->
-    <div class="grid grid-cols-1 h-full w-1/3 nos-rectangle-noire-bg mt-10 px-6 ">
-
-      <div class="text-white mt-8 h-1/2">
-        <div class="grid grid-col-1">
-          <div class="text-3xl md:text-4xl uppercase font-semibold tracking-tight leading-tight text-white ">
-            Découvrez
-          </div>
-          <div class="text-3xl md:text-4xl uppercase font-semibold tracking-tight leading-tight text-white border-b-2 border-primary mb-2 w-2/3">
-            notre charte RSE
-          </div>
-                    
-          <div class="flex flex-row items-center justify-center mt-15 space-x-5 w-full" >
-            <div class="w-1/3 flex items-start justify-center">
-              <div class="charte-bg">
-                <img class="h-40 object-cover" src="assets/images/pages/rse/rse-niv1/CharteRse.png">
-              </div>
+        <div class="flex flex-row justify-center items-center mt-10">
+          <div class="flex flex-row gap-x-5 justify-center items-center">
+            <div class="flex rounded-xl">
+              <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche1.png"
+                alt="Affiche 1">
             </div>
-            <div class="w-1/2 flex items-end justify-center">
-              <div class="telecharger-charte text-white text-center ml-4 mr-4 p-2 rounded-xl">
-                Télécharger la charte
-              </div>
+            <div class="flex rounded-xl">
+              <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche2.png"
+                alt="Affiche 2">
+            </div>
+            <div class="flex rounded-xl">
+              <img class="w-full h-full object-cover" src="assets/images/pages/rse/rse-niv1/Affiche3.png"
+                alt="Affiche 3">
             </div>
           </div>
-          
-          
-          
+
         </div>
       </div>
-      
 
-        <div class=" text-white mt-5 h-1/2">
-          <div class="grid grid-col-1">
+      <!-- right -->
+      <div class="h-full mt-10 px-6  nos-rectangle-noire-bg">
+
+        <div class="text-white mt-8  bg-yellow ">
+          <div class="flex flex-col">
+
             <div class="text-3xl md:text-4xl uppercase font-semibold tracking-tight leading-tight text-white border-b-2 border-primary mb-2 w-2/3">
-              Vidéo Démarche RSE
+              Découvrez notre charte RSE
             </div>
-            
-            
-          <div class="flex item-center justify-center w-2/3 p-4 ">
-            <img class="w-full h-full object-cover"  src="assets/images/pages/rse/rse-niv1/Vidéo.png">
-          </div>
-        </div>
-        </div>
 
-    </div>
+            <div class="flex flex-row items-center justify-center space-x-5 h-full w-full mt-30">
 
+              <div class="w-1/2 ">
+                <div class="charte-bg">
+                  <img class=" object-cover" src="assets/images/pages/rse/rse-niv1/CharteRse.png">
+                </div>
+              </div>
 
-  </div>
-</div>
+              <div class="w-1/2 ">
+                <div class="telecharger-charte text-white text-center ml-4 mr-4 p-2 rounded-xl">
+                  Télécharger la charte
+                </div>
+              </div>
 
-
-
-
-  <div class="hidden md:flex flex-col px-16 w-full min-h-[50vh] nos-initiative-bg">
-   <div class="flex flex-row w-full space-x-8  items-center justify-center">
-
-    <div class=" w-1/3 mt-28 text-3xl md:text-4xl uppercase font-medium tracking-tight leading-tight text-white ">
-      Nos initiatives rse
-    </div>
-    <div class="flex flex-row  w-2/3  space-x-5 items-center justify-center">
-      <div class="flex justify-start">
-      <img  src="assets/images/pages/rse/rse-niv3/Flèche gauche.png">
-    </div>
-    <div class="grid grid-cols-2 gap-x-5 items-center justify-center ">
-     
-      <div class=" item-end  rounded-xl w-70  overflow-hidden shadow-md bg-white mt-8 mb-8 flex-left grid grid-cols-1 divide-y-4 divide-red-500 ">
-        <div>
-          <img class="w-full h-30 md:w-full md:h-40 " src="assets/images/pages/rse/rse-niv2/Image 1.png" >
-        </div>
-        <div>
-          <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
-            <div class="p-4">
-              <h2 class="font-bold uppercase text-red-500">WAFA IMMOBILIER concrétise sa démarche RSE en lançant la charte RSE</h2>
             </div>
-            <div class="p-4">
-              <p>Investir dans l'immobilier est l'un des moyens les plus sûrs pour se constituer un patrimoine.
-                Encore faut-il connaître toutes les ficelles pour mener</p>
-              <ng-container class="">
-                <button>
-                  <span class="font-medium text-red-500 underline ">Lire la suite > </span>
-                </button>
-              </ng-container>
-            </div>
+
+
 
           </div>
         </div>
-      
+
       </div>
 
-      <div class=" item-end  rounded-xl w-70  overflow-hidden shadow-md bg-white mt-8 mb-8 flex-left grid grid-cols-1 divide-y-4 divide-red-500 ">
+    </div>
+
+  </section>
+
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 nos-initiative-bg">
+    <div class="w-full max-w-400 mx-auto flex flex-row items-center">
+
+      <div class="w-1/2 text-3xl md:text-4xl uppercase font-medium tracking-tight leading-tight text-white">
+        Nos initiatives rse
+      </div>
+
+      <div class="w-1/2 flex flex flex-row justify-center">
+        <!--div class="flex justify-start">
+          <img  src="assets/images/pages/rse/rse-niv3/Flèche gauche.png">
+        </div-->
+        <div class="grid grid-cols-1 w-fit">
+
+          <!-- divide-y-4 divide-primary-500 -->
+          <div class="max-w-80 rounded-xl overflow-hidden shadow-md bg-card flex flex-col">
+
+            <div class="overflow-hidden w-80">
+              <img class="object-cover h-72" src="assets/images/pages/rse/rse-niv2/Image 1.png">
+            </div>
+
+            <div class="flex flex-col space-y-5 p-5 mt-5">
+
+              <h2 class="font-bold uppercase text-primary-500">
+                WAFA IMMOBILIER concrétise sa démarche RSE en lançant la charte RSE
+              </h2>
+
+              <div class="h-0.5 rounded-2xl w-full bg-primary-500"></div>
+
+              <span>Investir dans l'immobilier est l'un des moyens les plus sûrs pour se constituer un patrimoine.
+                Encore faut-il connaître toutes les ficelles pour mener
+              </span>
+
+              <button>
+                <span class="font-medium text-primary-500 underline ">Lire la suite</span>
+              </button>
+
+            </div>
+
+          </div>
+
+          <!--div class=" item-end  rounded-xl w-70  overflow-hidden shadow-md bg-white mt-8 mb-8 flex-left grid grid-cols-1 divide-y-4 divide-primary-500 ">
         <div>
           <img class="w-full h-30 md:w-full md:h-40 " src="assets/images/pages/rse/rse-niv2/Image 2.png" >
         </div>
         <div>
-          <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-red-400   ">
+          <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
             <div class="p-4">
-              <h2 class="font-bold uppercase text-red-500">WAFA IMMOBILIER sensibilise ses collaborateurs quant à l'utilisation raisonné du papier</h2>
+              <h2 class="font-bold uppercase text-primary-500">WAFA IMMOBILIER sensibilise ses collaborateurs quant à l'utilisation raisonné du papier</h2>
             </div>
             <div class="p-4">
               <p>Investir dans l'immobilier est l'un des moyens les plus sûrs pour se constituer un patrimoine.
                 Encore faut-il connaître toutes les ficelles pour mener</p>
               <ng-container class="">
                 <button>
-                  <span class="font-medium text-red-500 underline ">Lire la suite > </span>
+                  <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
                 </button>
               </ng-container>
             </div>
 
           </div>
         </div>
+      </div-->
+        </div>
+
+        <!--div class="flex justify-end w-4">
+          <img  src="assets/images/pages/rse/rse-niv3/Flèche droite.png">
+        </div-->
       </div>
     </div>
-    
-    <div class="flex justify-end w-4">
-      <img  src="assets/images/pages/rse/rse-niv3/Flèche droite.png">
-    </div>
-  </div>
-   </div>
-  
-  </div>
+
+  </section>
+
   <contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
 
-  
+
 </div>

@@ -1,0 +1,57 @@
+
+.notre-demarage-rse-bg-header {
+  background-image: url('/assets/images/pages/rse/rse-niv1/Bannière1.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+
+.nos-initiative-bg {
+  background-image: url('/assets/images/pages/rse/rse-niv1/Bannière2.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.nos-rectangle-noire-bg {
+  background-image: url('/assets/images/pages/rse/rse-niv1/RectangleNoir.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.telecharger-charte {
+  background-image: url('/assets/images/pages/rse/rse-niv1/RectangleArrondiRouge.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.charte-bg {
+  background-image: url('/assets/images/pages/rse/rse-niv1/CharteRse.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+
+.text-orange {
+    color: rgb(238, 125, 33);
+}
+
+.orange-circle {
+    background-color: orange;
+  }
+
+  .selected {
+    border: 2px solid blue;
+  }
+
+
+  @media (max-width: 767px) {
+    .mobile-full-width {
+      width: 100%;
+    }
+  }
+  

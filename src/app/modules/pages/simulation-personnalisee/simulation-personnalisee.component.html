@@ -94,7 +94,7 @@
                             [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:timelapse'" matPrefix>
                             </mat-icon>
-                            <input matInput [formControlName]="'duree'">
+                            <input matInput [formControlName]="'duree'" [appFormatEntier]="simulationForm.get('duree').value">
                             <mat-label class="max-md:text-sm max-md:font-semibold">Durée (en mois)</mat-label>
                             <span matSuffix>mois</span>
                             <mat-error *ngIf="simulationForm.get('duree').hasError('required')">

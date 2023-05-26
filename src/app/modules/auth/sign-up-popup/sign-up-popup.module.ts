@@ -11,6 +11,7 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthSignUpPopupComponent } from './sign-up-popup.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {MatRadioModule} from '@angular/material/radio';
         FuseCardModule,
         FuseAlertModule,
         SharedModule,
-        MatRadioModule
+        MatRadioModule,
+        FormatTelephoneModule
     ]
 })
 export class AuthSignUpPopupModule
