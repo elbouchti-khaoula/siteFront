@@ -39,12 +39,12 @@
                             </div>
 
                             <div class="flex flex-col items-center mt-14">
-                                <div class="text-2xl font-bold leading-tight uppercase">Demande N° {{demande.id}}
+                                <div class="text-2xl font-bold leading-tight uppercase">Demande N° {{demande.nprojet}}
                                 </div>
 
                                 <div class="flex flex-col items-center mt-7">
                                     <span class="font-medium">Montant demandé</span>
-                                    <span class="text-3xl font-semibold">{{demande.montant}}</span>
+                                    <span class="text-3xl font-semibold">{{demande.mtProjet}}</span>
                                 </div>
                             </div>
 
@@ -54,32 +54,32 @@
 
                             <ol class="whitespace-nowrap mt-3">
                                 <!-- time line -->
-                                <ng-container *ngFor="let statut of statuts; let i = index; let first = first; let last = last; trackBy: trackByFn">
+                                <ng-container *ngFor="let step of steps; let i = index; let first = first; let last = last; trackBy: trackByFn">
     
                                     <li class="relative inline-block px-3">
                                         <!-- Line -->
                                         <ng-container *ngIf="!last">
-                                            <ng-container *ngIf="demande.statut > statut.id">
+                                            <ng-container *ngIf="demande.phaseId > step.id">
                                                 <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-green-500"></div>
                                             </ng-container>
-                                            <ng-container *ngIf="statut.id >= demande.statut">
+                                            <ng-container *ngIf="step.id >= demande.phaseId">
                                                 <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-gray-300 dark:bg-gray-600"></div>
                                             </ng-container>
-                                            <!-- <ng-container *ngIf="statut.id === demande.statut">
+                                            <!-- <ng-container *ngIf="step.id === demande.phaseId">
                                                 <div class="absolute top-[10px] left-[60px] w-full h-0.5 bg-primary-500 dark:bg-gray-600"></div>
                                             </ng-container> -->
                                         </ng-container>
     
                                         <div class="relative flex flex-col items-center">
                                             <!-- Icon -->
-                                            <ng-container *ngIf="demande.statut > statut.id">
+                                            <ng-container *ngIf="demande.phaseId > step.id">
                                                 <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
                                                     <mat-icon class="icon-size-7 text-green-500"
                                                         [svgIcon]="'heroicons_solid:check-circle'">
                                                     </mat-icon>
                                                 </div>
                                             </ng-container>
-                                            <ng-container *ngIf="statut.id === demande.statut">
+                                            <ng-container *ngIf="step.id === demande.phaseId">
                                                 <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
                                                     <!-- album adjust pending -->
                                                     <mat-icon class="icon-size-7 text-primary"
@@ -87,7 +87,7 @@
                                                     </mat-icon>
                                                 </div>
                                             </ng-container>
-                                            <ng-container *ngIf="statut.id > demande.statut">
+                                            <ng-container *ngIf="step.id > demande.phaseId">
                                                 <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
                                                     <mat-icon class="icon-size-7"
                                                         [svgIcon]="'mat_solid:circle'">
@@ -95,13 +95,13 @@
                                                 </div>
                                             </ng-container>
                                             <!-- Libelle -->
-                                            <div class="mt-4" [innerHTML]="statut.libelle"></div>
+                                            <div class="mt-4" [innerHTML]="step.libelle"></div>
                                         </div>
                                     </li>
                                 </ng-container>
                             </ol>
 
-                            <span class="max-w-80 mt-7">Votre demande de crédit est autorisée, merci de contacter votre agence</span>
+                            <span class="max-w-80 mt-7">{{demande.statut}}</span>
 
                         </fuse-card>
 

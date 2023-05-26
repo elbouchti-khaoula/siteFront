@@ -225,7 +225,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         }
 
         // Throw an error
-        return throwError(error);
+        return throwError(() => error);
       }))
       .subscribe(() => {
 

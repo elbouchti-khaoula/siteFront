@@ -265,7 +265,7 @@ export class ProjetsService
             .pipe(
                 catchError(err1 => {
                     // console.log("Error from first call: ", err1);
-                    return throwError(err1);
+                    return throwError(() => err1);
                 }),
                 switchMap((response: ProjetFavori[]) => {
                     if (response && response.length > 0) {
@@ -275,7 +275,7 @@ export class ProjetsService
                             .pipe(
                                 catchError(err2 => {
                                     // console.log("Error from second call: ", err2);
-                                    return throwError(err2);
+                                    return throwError(() => err2);
                                 })
                             );
                     }
@@ -289,7 +289,7 @@ export class ProjetsService
      */
     searchProjetsFavoris(projetFavori: ProjetFavori): Observable<ProjetFavori[]> {
 
-        return this._httpClient.post<ProjetFavori[]>('api/real-estate-projects/favoris/search', projetFavori)
+        return this._httpClient.post<ProjetFavori[]>('api/real-estate-projects/favoris/searchLastSix', projetFavori)
             .pipe(
                 tap((projetsFavoris: ProjetFavori[]) => {
 

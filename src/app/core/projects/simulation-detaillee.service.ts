@@ -170,7 +170,7 @@ export class SimulationDetailleeService {
     /**
      * récupérer information du tiers d'une simulation
      *
-     * @param projectId
+     * @param simulation
      */
     getInfoTiers(simulation: any): Observable<any> {
 
@@ -195,6 +195,8 @@ export class SimulationDetailleeService {
 
                                     var simulationResult = {
                                         ...response[0].tiers,
+                                        codeApporteur: response[0].codeApporteur,  
+                                        codeUtilisateur: response[0].codeUtilisateur,
                                         // Mon profil
                                         nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
                                         residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
@@ -241,10 +243,9 @@ export class SimulationDetailleeService {
 
                         const httpOptions = {
                             headers: headers,
-                            params: { email: emailP }
                         };
 
-                        return this._httpClient.get('api/projects/search', httpOptions)
+                        return this._httpClient.post('api/projects/search', { email: emailP }, httpOptions)
                             .pipe(
                                 map((response: Project[]) => {
 
@@ -265,9 +266,9 @@ export class SimulationDetailleeService {
     }
 
     /**
-     * get documents joint pour demande de crédit
+     * get documents checkList pour demande de crédit
      *
-     * @param queryParams
+     * @param simulationId
      */
     getDocuments(simulationId: number): Observable<any> {
 
@@ -323,6 +324,106 @@ export class SimulationDetailleeService {
                     }
                     return EMPTY;
                 }));
+    }
+
+    /**
+     * transformer une simulation en demande de crédit
+     *
+     * @param projectId
+     * @param codeAgence
+     */
+    changerAgence(projectId: number, codeAgence: string, dagAgence: string): Observable<any> {
+
+        return this._projectAuthService.getToken()
+            .pipe(
+                switchMap((token: string) => {
+
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.patch(`api/projects/${projectId}/affectation`, { codeApporteur: codeAgence, codeUtilisateur: dagAgence }, { headers: headers })
+                            .pipe(
+                                map((updatedProject: any) => {
+
+                                    // Return the updated project
+                                    return updatedProject;
+                                })
+                            );
+                    }
+                    return EMPTY;
+                }));
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ utils methods
+    // -----------------------------------------------------------------------------------------------------
+    convertSimulationToString(simulation: SimulationDetaillee): any {
+
+        let dossiersStr = simulation.dossiers.map(
+            doss => {
+
+                let estExpImmoNum: boolean;
+                let expertiseImmobiliereStr = "";
+
+                if (doss.expertiseImmobiliere && doss.expertiseImmobiliere > 0) {
+                    expertiseImmobiliereStr = this._fuseUtilsService.numberFormat(doss.expertiseImmobiliere, 2, '.', ' ');
+                    estExpImmoNum = true;
+                } else {
+                    expertiseImmobiliereStr = "GRATUIT";
+                    estExpImmoNum = false;
+                }
+                let estFraisDossNum: boolean;
+                let fraisDossierStr = "";
+                if (doss.fraisDossier && doss.fraisDossier > 0) {
+                    fraisDossierStr = this._fuseUtilsService.numberFormat(doss.fraisDossier, 2, '.', ' ');
+                    estFraisDossNum = true;
+                } else {
+                    fraisDossierStr = "GRATUIT";
+                    estFraisDossNum = false;
+                }
+
+                return {
+                    ...doss,
+                    mensualite: this._fuseUtilsService.numberFormat(doss.echeance, 2, '.', ' '),
+                    montant: this._fuseUtilsService.numberFormat(doss.montant, 2, '.', ' '),
+                    totalInterets: this._fuseUtilsService.numberFormat(doss.totalInterets, 2, '.', ' '),
+                    assurances: this._fuseUtilsService.numberFormat(doss.assurances, 2, '.', ' '),
+                    tauxParticipation: this._fuseUtilsService.numberFormat(doss.tauxParticipation, 3, '.', ' '),
+                    tauxEffectifGlobal: this._fuseUtilsService.numberFormat(doss.tauxEffectifGlobal, 3, '.', ' '),
+                    coutTotal: this._fuseUtilsService.numberFormat(doss.coutTotal, 2, '.', ' '),
+                    expertiseImmobiliere: expertiseImmobiliereStr,
+                    estExpImmoNum: estExpImmoNum,
+                    fraisDossier: fraisDossierStr,
+                    estFraisDossNum: estFraisDossNum,
+                    nbreAnnee: Math.trunc(doss.duree / 12),
+                    nbreMois: doss.duree % 12
+                }
+            }
+        );
+
+        const echeanceGlobal = simulation.dossiers
+            .map(item => item.echeance)
+            .reduce((prev, curr) => prev + curr, 0);
+
+        let simulationResultat = {
+            ...simulation,
+            dossiers: dossiersStr,
+            mensualite: this._fuseUtilsService.numberFormat(echeanceGlobal, 2, '.', ' '),
+            montant: this._fuseUtilsService.numberFormat(simulation.montant, 2, '.', ' '),
+            montantProposition: this._fuseUtilsService.numberFormat(simulation.montantProposition, 2, '.', ' '),
+            tauxEffectifGlobal: this._fuseUtilsService.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
+            totalFrais: this._fuseUtilsService.numberFormat(simulation.totalFrais, 2, '.', ' '),
+            droitsEnregistrement: this._fuseUtilsService.numberFormat(simulation.droitsEnregistrement, 2, '.', ' '),
+            conservationFonciere: this._fuseUtilsService.numberFormat(simulation.conservationFonciere, 2, '.', ' '),
+            fraisDivers: this._fuseUtilsService.numberFormat(simulation.fraisDivers, 2, '.', ' '),
+            honorairesNotaire: this._fuseUtilsService.numberFormat(simulation.honorairesNotaire, 2, '.', ' '),
+        }
+
+        return simulationResultat;
     }
 
     // -----------------------------------------------------------------------------------------------------

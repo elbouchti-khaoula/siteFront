@@ -32,14 +32,14 @@ export class MesProjetsFavorisComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._projetsService.projetsFavoris$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((response: ProjetFavori[]) => {
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((response: ProjetFavori[]) => {
 
-                this.projetsFavoris = response;
+        this.projetsFavoris = response;
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
   }
 
   /**

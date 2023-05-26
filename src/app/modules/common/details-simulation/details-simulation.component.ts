@@ -160,7 +160,7 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
         catchError((error) => {
 
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response) => {
@@ -214,7 +214,6 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
     this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe((result) => {
 
       if (result) {
-        // console.log("+-+-+- result tableau", result);
         this.tableauAmortissementComponent.setTableauAmortissementData(result);
 
         setTimeout(() => {

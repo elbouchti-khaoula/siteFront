@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { catchError, debounceTime, Subject, takeUntil, throwError } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Agence, Ville } from 'app/core/referentiel/referentiel.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
     selector: 'changer-agence',
@@ -22,7 +24,7 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
     agencesCount: number = 0;
     agences: Agence[];
     selectedAgence: Agence;
-    simulationId: number;
+    projectId: number;
 
     // Private
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -31,14 +33,15 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
-        @Inject(MAT_DIALOG_DATA) private _data: { simulationId: number },
+        @Inject(MAT_DIALOG_DATA) private _data: { projectId: number },
         public matDialogRef: MatDialogRef<ChangerAgenceComponent>,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _formBuilder: FormBuilder,
         private _referentielService: ReferentielService,
-    )
-    {
+        private _simulationDetailleeService: SimulationDetailleeService,
+        private _fuseConfirmationService: FuseConfirmationService
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -50,16 +53,14 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
 
-        if ( this._data.simulationId )
-        {
-            this.simulationId = this._data.simulationId;
+        if (this._data.projectId) {
+            this.projectId = this._data.projectId;
         }
 
         // Prepare the form
         this.changerAgenceForm = this._formBuilder.group({
-            // typeAgence: [null, [Validators.required]],
-            codeVille   : [null, [Validators.required]],
-            agenceCode  : ['', [Validators.required]]
+            codeVille: [null, [Validators.required]],
+            agenceCode: ['', [Validators.required]]
         });
 
         // Get the villes
@@ -90,7 +91,7 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
             )
             .subscribe((value) => {
                 this.changerAgenceForm.get('agenceCode').setValue(null);
-                
+
                 if (value) {
                     this._referentielService.getAgencesByVille(value)
                         .subscribe((response) => {
@@ -105,12 +106,6 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
                 }
             });
 
-        // this.changerAgenceForm.get('typeAgence').valueChanges.subscribe((value) => {
-        //     if (value === 'digital') {
-        //         this.changerAgenceForm.get('codeVille').setValue(null);
-        //         this.changerAgenceForm.get('agenceCode').setValue(null);
-        //     }
-        // });
     }
 
     /**
@@ -135,12 +130,57 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
     }
 
     /**
-    /**
-     * Send the form
+     * changer d'agance
      */
-    sendForm(): void {
-        // Clear the form
-        this.clearForm();
+    changerAgence(): void {
+
+        this._simulationDetailleeService.changerAgence(this.projectId, this.selectedAgence.code, this.selectedAgence.dagAgence)
+            .pipe(
+                catchError((error) => {
+
+                    // Throw an error
+                    return throwError(() => error);
+                })
+            )
+            .subscribe((response) => {
+
+                console.log("+-+-+- changer agence response", response);
+
+                // Open the confirmation dialog
+                const confirmation = this._fuseConfirmationService.open(
+                    {
+                        "title": "Changer d'agence",
+                        "message": "Votre demande de changement d'agence a été effectuée avec succès",
+                        "icon": {
+                            "show": true,
+                            "name": "heroicons_outline:check-circle",
+                            "color": "success"
+                        },
+                        "actions": {
+                            "confirm": {
+                                "show": true,
+                                "label": "Ok",
+                                "color": "primary"
+                            },
+                            "cancel": {
+                                "show": false,
+                                "label": "Cancel"
+                            }
+                        },
+                        "dismissible": false
+                    }
+                );
+
+                confirmation.afterClosed().subscribe((result) => {
+
+                    // If the confirm button pressed...
+                    if (result === 'confirmed') {
+                        this.matDialogRef.close(this.selectedAgence);
+                    }
+                });
+
+            });
+
     }
 
     /**
@@ -177,6 +217,5 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
             }, 7000);
         }
     }
-    
 
 }

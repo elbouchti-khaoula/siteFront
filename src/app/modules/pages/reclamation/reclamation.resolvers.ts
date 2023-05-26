@@ -50,7 +50,7 @@ export class MotifsResolver implements Resolve<any>
                 }
 
                 // Throw an error
-                return throwError(error);
+                return throwError(() => error);
             })
         );
     }

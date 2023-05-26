@@ -72,6 +72,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   simulationResultat: any;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  selectedStatutProjetLabel: string;
+
   /**
    * Constructor
    */
@@ -314,16 +316,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  statutProjetLabel: string;
-
   selectedStatutProjet(event: MatSelectChange) {
-    // const selectedData = {
-    //   text: (event.source.selected as MatOption).viewValue,
-    //   value: event.source.value
-    // };
-
-    this.statutProjetLabel = (event.source.selected as MatOption).viewValue;
-    // console.log("+-+-+- this.statutProjetLabel", this.statutProjetLabel);
+    this.selectedStatutProjetLabel = (event.source.selected as MatOption).viewValue;
   }
 
   /**
@@ -354,7 +348,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       type: "personnePhysique",
       codeApporteur: "100",
       codeUtilisateur: "WEB",
-      // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
       objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
       montant: this.simulationStepperForm.get('step3').get('montant').value,
       montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
@@ -369,7 +362,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
         nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
         segment: "NV",
-        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
         salaire: this.simulationStepperForm.get('step2').get('salaire').value,
         autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
         creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
@@ -384,8 +377,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       .pipe(
         // Error here means the requested is not available
         catchError((error) => {
+
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response: SimulationDetaillee) => {
@@ -394,12 +388,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Set the selected simulation
         this.simulationResultat = {
+          codeApporteur: "100",
+          codeUtilisateur: "WEB",
           // Mon profil
           nom: this.simulationStepperForm.get('step1').get('nom').value,
           prenom: this.simulationStepperForm.get('step1').get('prenom').value,
           telephone: this.simulationStepperForm.get('step1').get('telephone').value,
           email: this.simulationStepperForm.get('step1').get('email').value,
-          dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+          dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
           nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
           residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
           // ma situation
@@ -412,10 +408,10 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           // Mon projet
           objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
-          statutProjet: this.statutProjetLabel,
+          statutProjet: this.selectedStatutProjetLabel,
           typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
           newSimulation: true,
-          ...this._fuseUtilsService.convertSimulationToString(simulation)
+          ...this._simulationService.convertSimulationToString(simulation)
         };
 
         if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
@@ -468,10 +464,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       });
 
-  }
-
-  formatMomentToString(date: moment.Moment): string {
-    return date.format("DD/MM/YYYY");
   }
 
 }

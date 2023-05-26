@@ -4,13 +4,14 @@ import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, take, takeUntil, throwError } from 'rxjs';
 import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 import { Fichier, Piece } from 'app/core/common/common.types';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
 import { CompressImageService } from 'app/core/compress-image/compress-image.service';
 import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
+import { Agence } from 'app/core/referentiel/referentiel.types';
 
 @Component({
   selector: 'demande-credit',
@@ -27,9 +28,10 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   simulationResultat: any;
 
   @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
-  documents: any;
+  documents: [] = [];
   pieces: Piece[] = [];
   existePieceAttachee: boolean = false;
+  agreements: boolean;
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -50,9 +52,13 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     private _fuseConfirmationService: FuseConfirmationService,
     private _compressImageService: CompressImageService
   ) {
+    let agences: Agence[] = JSON.parse(localStorage.getItem('agences'));
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
     if (data) {
-      this.simulationResultat = data;
+      this.simulationResultat = {
+        ...data,
+        nomAgence: agences?.find(e => e.code == data.codeApporteur)?.nom
+      };
     }
     // else {
     //   this.simulationResultat = {
@@ -149,18 +155,14 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           // Update the documents
           this.documents = response;
 
-          Object.keys(this.documents).forEach(key => {
-            for (var i = 0; i < this.documents[key].length; i++) {
-              if (this.documents[key][i] !== 'PV de montage Agence' && !this.pieces.some(piece => piece.libelle === this.documents[key][i])) {
-                this.pieces.push({
-                  id: i + 1,
-                  libelle: this.documents[key][i],
-                  parent: 0,
-                  files: []
-                })
-              }
-            }
-          });
+          for (var i = 0; i < this.documents.length; i++) {
+            this.pieces.push({
+              id: i + 1,
+              libelle: this.documents[i],
+              parent: 0,
+              files: []
+            })
+          }
         }
 
         this._changeDetectorRef.detectChanges();
@@ -185,12 +187,21 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
    * Open agence dialog
    */
   openChangerAgenceDialog(): void {
-    this._matDialog.open(ChangerAgenceComponent, {
+    let changerAgenceDialogRef: MatDialogRef<ChangerAgenceComponent> = this._matDialog.open(ChangerAgenceComponent, {
       autoFocus: false,
       data: {
-        simulationId: this.simulationResultat.id
+        projectId: this.simulationResultat.id
       }
     });
+
+    changerAgenceDialogRef.afterClosed()
+      .subscribe((response: Agence) => {
+        this.simulationResultat = {
+          ...this.simulationResultat,
+          codeApporteur: response?.code,
+          nomAgence: response?.nom
+        };
+      })
   }
 
   /**
@@ -200,7 +211,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe((result) => {
 
       if (result) {
-        // console.log("+-+-+- result tableau", result);
         this.tableauAmortissementComponent.setTableauAmortissementData(result);
 
         setTimeout(() => {
@@ -293,7 +303,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     }
 
     if (this.allowedTypesImg.includes(file.type)) {
-      
+
       if (file.size > 1048576) {
         console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
 
@@ -318,7 +328,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
 
   }
 
-  containsImage(pieceIndex: number) : boolean {
+  containsImage(pieceIndex: number): boolean {
     return this.pieces[pieceIndex].files.some(fich => fich.isImage);
   }
 
@@ -373,7 +383,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         catchError((error) => {
 
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response) => {
@@ -417,7 +427,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
         }
 
       });
-
 
   }
 

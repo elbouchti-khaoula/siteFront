@@ -121,7 +121,7 @@ export class ProjetContactComponent implements OnInit {
                     }
 
                     // Throw an error
-                    return throwError(error);
+                    return throwError(() => error);
                 }))
             .subscribe((response: string) => {
                 this.visible = true;

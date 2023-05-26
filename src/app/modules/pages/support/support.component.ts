@@ -103,7 +103,7 @@ export class SupportComponent implements OnInit {
                     }
 
                     // Throw an error
-                    return throwError(error);
+                    return throwError(() => error);
                 }))
             .subscribe((response: string) => {
                 this._showAlertMessage('success', 'Votre message est envoyé.', false);

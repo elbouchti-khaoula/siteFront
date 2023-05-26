@@ -8,6 +8,7 @@ import { AuthService } from 'app/core/auth/auth.service';
 @Component({
     selector     : 'auth-forgot-password',
     templateUrl  : './forgot-password.component.html',
+    styleUrls    : ['../common/auth.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
