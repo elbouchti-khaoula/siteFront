@@ -9,6 +9,7 @@ import { FuseAlertType } from '@fuse/components/alert';
 @Component({
     selector     : 'auth-unlock-session',
     templateUrl  : './unlock-session.component.html',
+    styleUrls    : ['../common/auth.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })

@@ -7,8 +7,8 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, debounceTime, Subject, take, takeUntil, throwError } from 'rxjs';
 import { ReclamationsService } from './reclamation.service';
 import { Motif } from './reclamation.types';
-import { Fichier, Piece } from 'app/core/common/common.types';
-import { CompressImageService } from 'app/core/compress-image/compress-image.service';
+import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
+import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
@@ -27,7 +27,8 @@ export class ReclamationComponent implements OnInit {
     reclamationForm: FormGroup;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    isAsterixVisible: boolean = true;
+    notAlerteEthique: boolean = true;
+    selectedMotifLabel: string;
     motifs: Motif[];
     piecesRef: any[] = [
         { id: 1, libelle: "Justificatif de règlement de mainlevée", parent: 226 },
@@ -73,14 +74,15 @@ export class ReclamationComponent implements OnInit {
     ngOnInit(): void {
         // Create the reclamation form
         this.reclamationForm = this._formBuilder.group({
-            motif           : ['', Validators.required],
-            nom             : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            prenom          : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            cin             : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            numeroDossier   : [''],
-            email           : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
-            telephone       : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            text            : ['', Validators.required]
+            motif: ['', Validators.required],
+            nom: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            prenom: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            cin: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            // numeroDossier   : [''],
+            email: ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
+            telephone: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            text: ['', Validators.required],
+            bonneFoi: ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value == -1)]],
         });
 
         // Get the motifs
@@ -111,20 +113,23 @@ export class ReclamationComponent implements OnInit {
                 takeUntil(this._unsubscribeAll)
             )
             .subscribe((value) => {
+                this.selectedMotifLabel = this.motifs.find(e => e.id === value).libelleselfcare;
                 this.pieces = [...this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, files: [] } })];
                 this.reclamationForm.get('nom').updateValueAndValidity();
                 this.reclamationForm.get('prenom').updateValueAndValidity();
                 this.reclamationForm.get('cin').updateValueAndValidity();
                 this.reclamationForm.get('email').updateValueAndValidity();
                 this.reclamationForm.get('telephone').updateValueAndValidity();
+                this.reclamationForm.get('bonneFoi').updateValueAndValidity();
 
-                this.isAsterixVisible = value !== -1;
+                this.notAlerteEthique = value !== -1;
             });
     }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+
     /**
      * Upload file to given piece
      *
@@ -134,7 +139,7 @@ export class ReclamationComponent implements OnInit {
     uploadPiece(pieceIndex: number, event: any): void {
 
         var fileList: FileList = event.target.files;
-        
+
         // Return if canceled
         if (!fileList.length) {
             return;
@@ -276,22 +281,35 @@ export class ReclamationComponent implements OnInit {
      */
     sendForm(): void {
         this._reclamationsService.createReclamationEtStatut(
-            {
-                nom: this.reclamationForm.get('nom').value,
-                prenom: this.reclamationForm.get('prenom').value,
-                cin: this.reclamationForm.get('cin').value,
-                numeroDossier: this.reclamationForm.get('numeroDossier').value,
-                email: this.reclamationForm.get('email').value,
-                telephone: this.reclamationForm.get('telephone').value,
-                motif: this.reclamationForm.get('motif').value,
-                // adresse: this.reclamationForm.get('adresse').value,
-                // ville: this.villes?.length > 0 ? this.villes?.find((e) => e.codeVille == this.reclamationForm.get('codeVille').value)?.description : "",
-                text: this.reclamationForm.get('text').value,
-                statut: 'publié',
-                canal: 7,
-                initiateur: 'siteweb',
-                dateReception: new Date()
-            }
+            this.notAlerteEthique ?
+                {
+                    nom: this.reclamationForm.get('nom').value,
+                    prenom: this.reclamationForm.get('prenom').value,
+                    cin: this.reclamationForm.get('cin').value,
+                    // numeroDossier: this.reclamationForm.get('numeroDossier').value,
+                    email: this.reclamationForm.get('email').value,
+                    telephone: this.reclamationForm.get('telephone').value,
+                    motif: this.reclamationForm.get('motif').value,
+                    motifLibelle: this.selectedMotifLabel,
+                    // adresse: this.reclamationForm.get('adresse').value,
+                    // ville: this.villes?.length > 0 ? this.villes?.find((e) => e.codeVille == this.reclamationForm.get('codeVille').value)?.description : "",
+                    text: this.reclamationForm.get('text').value,
+                    statut: 'publié',
+                    canal: 7,
+                    initiateur: 'siteweb',
+                    dateReception: new Date(),
+                    type: "Reclamation"
+                }
+                : {
+                    nom: this.reclamationForm.get('nom').value,
+                    prenom: this.reclamationForm.get('prenom').value,
+                    cin: this.reclamationForm.get('cin').value,
+                    email: this.reclamationForm.get('email').value,
+                    telephone: this.reclamationForm.get('telephone').value,
+                    text: this.reclamationForm.get('text').value,
+                    dateReception: new Date(),
+                    type: "AlerteEthique"
+                }
         ).pipe(
             // Error here means the requested is not available
             catchError((error: HttpErrorResponse) => {
@@ -308,17 +326,17 @@ export class ReclamationComponent implements OnInit {
                 }
 
                 // Throw an error
-                return throwError(error);
+                return throwError(() => error);
             }))
             .subscribe((response) => {
                 this._showAlertMessage(
                     'success',
                     'Nous avons bien reçu votre message. Nous le traiterons dans les plus bref délais'
                 );
-            });
 
-        // Clear the form
-        this.clearForm();
+                // Clear the form
+                this.clearForm();
+            });
     }
 
     /**

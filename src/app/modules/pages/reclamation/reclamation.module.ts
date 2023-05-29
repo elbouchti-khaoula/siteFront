@@ -15,6 +15,8 @@ import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/form
 import { ReactiveFormsModule } from '@angular/forms';
 import { CaptchaModule } from '@fuse/captcha/captcha.module';
 import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
     declarations: [
         ReclamationComponent,
@@ -29,6 +31,8 @@ import { CommonModule } from '@angular/common';
         MatSelectModule,
         MatRippleModule,
         FuseCardModule,
+        FuseAlertModule,
+        MatCheckboxModule,
         FuseAlertModule,
         FormatTelephoneModule,
         ReactiveFormsModule,

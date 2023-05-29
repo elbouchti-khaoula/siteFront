@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, View
 import { NavigationExtras, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import { TableauAmortissementService } from '../../admin/tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableauAmortissementComponent } from 'app/modules/admin/tableau-amortissement/tableau-amortissement.component';
@@ -160,7 +160,7 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
         catchError((error) => {
 
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response) => {
@@ -214,7 +214,6 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
     this._tableauAmortissementService.getTableauAmortissement(dossierId).subscribe((result) => {
 
       if (result) {
-        // console.log("+-+-+- result tableau", result);
         this.tableauAmortissementComponent.setTableauAmortissementData(result);
 
         setTimeout(() => {

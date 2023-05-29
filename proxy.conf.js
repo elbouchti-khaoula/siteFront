@@ -12,7 +12,8 @@ const PROXY_CONFIG = [
             "/api/repositories"
         ],
         // target: "http://localhost:8888",
-        target: "http://10.10.1.187:8082",
+        // target: "http://10.10.1.187:8082",
+        target: "http://10.10.1.245:8888",
         secure: false,
         logLevel: "debug"
     },
@@ -31,6 +32,14 @@ const PROXY_CONFIG = [
         ],
         // target: "http://localhost:8882",
         target: "http://10.10.1.187:8085",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
+            "/api/records-in-progress"
+        ],
+        target: "http://10.10.1.187:8965",
         secure: false,
         logLevel: "debug"
     },

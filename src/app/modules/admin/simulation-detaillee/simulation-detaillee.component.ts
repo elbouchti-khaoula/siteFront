@@ -1,12 +1,12 @@
-import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation,HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { CategorieSocioProfessionnelle, EmployeursConventionnes, Nationalite, ObjetFinancement, PromoteursConventionnes } from 'app/core/referentiel/referentiel.types';
-import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
+import { SimulationDetaillee } from 'app/core/projects/projects.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import * as moment from 'moment';
 import { resize } from 'app/modules/common/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
@@ -16,9 +16,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
-
-
-import { BehaviorSubject, Observable, of, tap, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
+import { Observable, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
@@ -95,6 +93,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   @ViewChild('resultat', { read: ElementRef }) public resultat: ElementRef<any>;
   simulationResultat: any;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
+
+  selectedStatutProjetLabel: string;
 
   /**
    * Constructor
@@ -229,24 +229,24 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     this._referentielService.getEmployeursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeursConventionnes[]) => {
-          this.listEmployeurs = employeur;
+        this.listEmployeurs = employeur;
 
-          this._changeDetectorRef.markForCheck();
+        this._changeDetectorRef.markForCheck();
       });
 
 
-  this.employeurs$ = this._referentielService.employeurs$;
+    this.employeurs$ = this._referentielService.employeurs$;
 
     this._referentielService.getPromoteursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((promoteur: PromoteursConventionnes[]) => {
-          this.listPromoteurs = promoteur;
+        this.listPromoteurs = promoteur;
 
-          this._changeDetectorRef.markForCheck();
+        this._changeDetectorRef.markForCheck();
       });
 
 
-  this.promoteurs$ = this._referentielService.promoteurs$;
+    this.promoteurs$ = this._referentielService.promoteurs$;
 
     this.searchEmployeurControl.valueChanges
       .pipe(
@@ -406,20 +406,16 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  statutProjetLabel: string;
- /* formatMontant(montant: number): string {
-    const montantFormate = this.decimalPipe.transform(montant, '1.2-2', 'fr-FR');
-    const montantAvecEspaces = montantFormate.replace('.', ' ');
-    const montantAvecDecimales = this.currencyPipe.transform(montant, 'Dhs', 'symbol', '1.2-2', 'fr-FR');
-    return montantAvecEspaces + montantAvecDecimales.substring(montantAvecEspaces.length);
-}*/
-
-
-
+  /* formatMontant(montant: number): string {
+     const montantFormate = this.decimalPipe.transform(montant, '1.2-2', 'fr-FR');
+     const montantAvecEspaces = montantFormate.replace('.', ' ');
+     const montantAvecDecimales = this.currencyPipe.transform(montant, 'Dhs', 'symbol', '1.2-2', 'fr-FR');
+     return montantAvecEspaces + montantAvecDecimales.substring(montantAvecEspaces.length);
+ }*/
   getEmployeurs(
     search: string = ''
   ): Observable<EmployeursConventionnes[]> {
-      return this.employeurs$.pipe(
+    return this.employeurs$.pipe(
       map((response) => {
         console.log(response);
         let employeurs = response;
@@ -435,7 +431,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   getPromoteurs(
     search: string = ''
   ): Observable<PromoteursConventionnes[]> {
-      return this.promoteurs$.pipe(
+    return this.promoteurs$.pipe(
       map((response) => {
         console.log(response);
         let promoteurs = response;
@@ -449,13 +445,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   }
 
   selectedStatutProjet(event: MatSelectChange) {
-    // const selectedData = {
-    //   text: (event.source.selected as MatOption).viewValue,
-    //   value: event.source.value
-    // };
-
-    this.statutProjetLabel = (event.source.selected as MatOption).viewValue;
-    // console.log("+-+-+- this.statutProjetLabel", this.statutProjetLabel);
+    this.selectedStatutProjetLabel = (event.source.selected as MatOption).viewValue;
   }
 
   /**
@@ -486,7 +476,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       type: "personnePhysique",
       codeApporteur: "100",
       codeUtilisateur: "WEB",
-      // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
       objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
       montant: Number(this.simulationStepperForm.get('step3').get('montant').value.toString().replace(/\D/g, '')),
       montantProposition: Number(this.simulationStepperForm.get('step3').get('montantProposition').value.toString().replace(/\D/g, '')),
@@ -501,7 +490,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
         nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
         segment: "NV",
-        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
         salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
         autresRevenus: Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')),
         creditsEnCours: Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')),
@@ -516,8 +505,9 @@ console.log(critere);
       .pipe(
         // Error here means the requested is not available
         catchError((error) => {
+
           // Throw an error
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe((response: SimulationDetaillee) => {
@@ -526,12 +516,14 @@ console.log(critere);
 
         // Set the selected simulation
         this.simulationResultat = {
+          codeApporteur: "100",
+          codeUtilisateur: "WEB",
           // Mon profil
           nom: this.simulationStepperForm.get('step1').get('nom').value,
           prenom: this.simulationStepperForm.get('step1').get('prenom').value,
           telephone: this.simulationStepperForm.get('step1').get('telephone').value,
           email: this.simulationStepperForm.get('step1').get('email').value,
-          dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+          dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
           nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
           residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
           // ma situation
@@ -544,10 +536,10 @@ console.log(critere);
           // Mon projet
           objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
-          statutProjet: this.statutProjetLabel,
+          statutProjet: this.selectedStatutProjetLabel,
           typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
           newSimulation: true,
-          ...this._fuseUtilsService.convertSimulationToString(simulation)
+          ...this._simulationService.convertSimulationToString(simulation)
         };
 
         if (!this.isScreenSmall && this.animationState !== 'smallDesktop') {
@@ -602,16 +594,12 @@ console.log(critere);
 
   }
 
-  formatMomentToString(date: moment.Moment): string {
-    return date.format("DD/MM/YYYY");
-  }
-
   /**
- * Track by function for ngFor loops
- *
- * @param index
- * @param item
- */
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
   trackByFn(index: number, item: any): any {
     return item.id || index;
   }

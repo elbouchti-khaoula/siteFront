@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IsActiveMatchOptions } from '@angular/router';
-import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 
 @Injectable({
     providedIn: 'root'
@@ -92,69 +91,8 @@ export class FuseUtilsService
     return s.join(dec);
   }
 
-  convertSimulationToString(simulation: SimulationDetaillee): any {
-
-    let dossiersStr = simulation.dossiers.map(
-      doss => {
-
-        let estExpImmoNum: boolean;
-        let expertiseImmobiliereStr = "";
-
-        if (doss.expertiseImmobiliere && doss.expertiseImmobiliere > 0) {
-          expertiseImmobiliereStr = this.numberFormat(doss.expertiseImmobiliere, 2, '.', ' ');
-          estExpImmoNum = true;
-        } else {
-          expertiseImmobiliereStr = "GRATUIT";
-          estExpImmoNum = false;
-        }
-        let estFraisDossNum: boolean;
-        let fraisDossierStr = "";
-        if (doss.fraisDossier && doss.fraisDossier > 0) {
-          fraisDossierStr = this.numberFormat(doss.fraisDossier, 2, '.', ' ');
-          estFraisDossNum = true;
-        } else {
-          fraisDossierStr = "GRATUIT";
-          estFraisDossNum = false;
-        }
-
-        return {
-          ...doss,
-          mensualite: this.numberFormat(doss.echeance, 2, '.', ' '),
-          montant: this.numberFormat(doss.montant, 2, '.', ' '),
-          totalInterets: this.numberFormat(doss.totalInterets, 2, '.', ' '),
-          assurances: this.numberFormat(doss.assurances, 2, '.', ' '),
-          tauxParticipation: this.numberFormat(doss.tauxParticipation, 3, '.', ' '),
-          tauxEffectifGlobal: this.numberFormat(doss.tauxEffectifGlobal, 3, '.', ' '),
-          coutTotal: this.numberFormat(doss.coutTotal, 2, '.', ' '),
-          expertiseImmobiliere: expertiseImmobiliereStr,
-          estExpImmoNum: estExpImmoNum,
-          fraisDossier: fraisDossierStr,
-          estFraisDossNum: estFraisDossNum,
-          nbreAnnee: Math.trunc(doss.duree / 12),
-          nbreMois: doss.duree % 12
-        }
-      }
-    );
-
-    const echeanceGlobal = simulation.dossiers
-      .map(item => item.echeance)
-      .reduce((prev, curr) => prev + curr, 0);
-
-    let simulationResultat = {
-      ...simulation,
-      dossiers: dossiersStr,
-      mensualite: this.numberFormat(echeanceGlobal, 2, '.', ' '),
-      montant: this.numberFormat(simulation.montant, 2, '.', ' '),
-      montantProposition: this.numberFormat(simulation.montantProposition, 2, '.', ' '),
-      tauxEffectifGlobal: this.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
-      totalFrais: this.numberFormat(simulation.totalFrais, 2, '.', ' '),
-      droitsEnregistrement: this.numberFormat(simulation.droitsEnregistrement, 2, '.', ' '),
-      conservationFonciere: this.numberFormat(simulation.conservationFonciere, 2, '.', ' '),
-      fraisDivers: this.numberFormat(simulation.fraisDivers, 2, '.', ' '),
-      honorairesNotaire: this.numberFormat(simulation.honorairesNotaire, 2, '.', ' '),
-    }
-
-    return simulationResultat;
+  formatMomentToString(date: moment.Moment): string {
+    return date.format("DD/MM/YYYY");
   }
 
 }

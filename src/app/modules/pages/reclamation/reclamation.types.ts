@@ -1,27 +1,29 @@
-import { Piece } from "app/core/common/common.types";
+import { Piece } from "app/core/upload-document/upload-document.types";
 
 export interface Reclamation {
-	id              	: number;
-	nom             	: string;
-	prenom          	: string;
+	id?              	: number;
+	nom?             	: string;
+	prenom?          	: string;
 	cin?            	: string;
-    numeroDossier?  	: string;
+    // numeroDossier?  	: string;
     email?          	: string;
     telephone?      	: string | null;
+	motif?          	: number;
+	motifLibelle?      	: string;
+	text	           	: string | null;
+    statut?         	: string;
+	canal?          	: number;
+	initiateur?      	: string;
+    dateReception  		: Date | null;
 	// adresse?     	: string;
     // codeVille?   	: number | null;
 	// ville?       	: string;
-	motif?          	: number;
-	text?           	: string | null;
-    statut?         	: string;
-	canal?          	: number;
-	initiateur      	: string;
-    dateReception?  	: Date | null;
     // adressePostale?		: string;
     // telephoneDomicile?   : string | null;
 	// telephoneBureau?     : string;
     // telephoneAutre?     	: string;
-	pieces				: Piece[];
+	pieces?				: Piece[];
+	type				: string; // 'Reclamation' ou 'AlerteEthique'
 }
 
 export interface Motif {

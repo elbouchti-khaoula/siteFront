@@ -50,7 +50,7 @@ export class ProjetsResolver implements Resolve<any>
                 }
 
                 // Throw an error
-                return throwError(error);
+                return throwError(() => error);
             })
         );
     }
@@ -102,7 +102,7 @@ export class ProjetsProjetResolver implements Resolve<any>
                 }
 
                 // Throw an error
-                return throwError(error);
+                return throwError(() => error);
             })
         );
     }

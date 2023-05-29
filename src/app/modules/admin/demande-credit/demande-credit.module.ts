@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { DemandeCreditComponent } from './demande-credit.component';
 import { demandeCreditRoutes } from './demande-credit.routing';
@@ -23,6 +24,7 @@ import { FormatTelephonePipeModule } from '@fuse/pipes/format-telephone-pipe/for
         SharedModule,
         MatButtonModule,
         MatIconModule,
+        MatCheckboxModule,
         FuseCardModule,
         MatSidenavModule,
         ChangerAgenceModule,

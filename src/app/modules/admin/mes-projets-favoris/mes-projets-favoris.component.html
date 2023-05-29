@@ -28,10 +28,11 @@
                                 'md:grid-cols-2' : projetsFavoris.length === 4 || projetsFavoris.length === 2}">
 
                     <ng-container *ngFor="let projetFav of projetsFavoris; let i = index; trackBy: trackByFn">
+                        <!-- #fae7e8 rgb(250, 231, 232) -->
                         <!-- #f8dedf rgb(248, 222, 223) -->
                         <!-- #f4ced0 rgb(244, 206, 208) -->
                         <!-- #efb6b9 rgb(239, 182, 185) -->
-                        <fuse-card class="sm:max-w-90 relative flex flex-col pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#f8dedf]">
+                        <fuse-card class="sm:max-w-90 relative flex flex-col pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]">
 
                             <div class="z-20 mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
                                 <mat-icon class="icon-size-12 text-on-primary -mt-1" svgIcon="home-heart">

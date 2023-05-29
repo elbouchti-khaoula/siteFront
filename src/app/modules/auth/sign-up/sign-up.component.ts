@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 @Component({
     selector     : 'sign-up',
     templateUrl  : './sign-up.component.html',
+    styleUrls    : ['../common/auth.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })

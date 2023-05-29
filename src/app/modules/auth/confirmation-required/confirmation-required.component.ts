@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
     selector     : 'auth-confirmation-required',
     templateUrl  : './confirmation-required.component.html',
+    styleUrls    : ['../common/auth.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })

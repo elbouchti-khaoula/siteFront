@@ -44,6 +44,24 @@ export interface Agence {
 	codeVille?: number | null;
     libelleVille?: string | null;
     image: string | null;
+    dagAgence: string | null;
+}
+
+export interface EnvoiMail {
+    id?: number;
+    type: string;
+    destination: string | null;
+    titre?: string | null;
+    message: string | null;
+    dateEnvoi?: Date | null;
+    flagEnvoi?: number;
+    erreur?: string | null;
+}
+
+export interface OperationSAVRef {
+    operationId?: number;
+    nomOperation?: string;
+    codeOperation: string | null;
 }
 export interface EmployeursConventionnes
 {
@@ -54,5 +72,15 @@ export interface PromoteursConventionnes
 {
     code?       : string;
     libelle?    : string;
+}
+
+export interface DocumentInstitutionnel {
+    id?: number;
+    periode?: string;
+    type: string | null;
+    titre?: string | null;
+    chemin?: string | null;
+    nom?: string | null;
+   // dateCreation?: Date | null;
 }
 
