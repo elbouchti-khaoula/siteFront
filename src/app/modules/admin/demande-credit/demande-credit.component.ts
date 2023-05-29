@@ -2,14 +2,14 @@ import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList,
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, take, takeUntil, throwError } from 'rxjs';
-import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
-import { Fichier, Piece } from 'app/core/common/common.types';
+import { SimulationDetaillee } from 'app/core/projects/projects.types';
+import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
-import { CompressImageService } from 'app/core/compress-image/compress-image.service';
+import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
 import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
 import { Agence } from 'app/core/referentiel/referentiel.types';
 
