@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IsActiveMatchOptions } from '@angular/router';
-import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
 
 @Injectable({
     providedIn: 'root'

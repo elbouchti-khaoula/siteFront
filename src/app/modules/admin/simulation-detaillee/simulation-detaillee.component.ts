@@ -1,12 +1,12 @@
-import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { CategorieSocioProfessionnelle, EmployeursConventionnes, Nationalite, ObjetFinancement, PromoteursConventionnes } from 'app/core/referentiel/referentiel.types';
-import { SimulationDetaillee } from 'app/core/projects/simulation-detaillee.types';
+import { SimulationDetaillee } from 'app/core/projects/projects.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import * as moment from 'moment';
 import { resize } from 'app/modules/common/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
@@ -16,9 +16,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
-
-
-import { BehaviorSubject, Observable, of, tap, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
+import { Observable, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({

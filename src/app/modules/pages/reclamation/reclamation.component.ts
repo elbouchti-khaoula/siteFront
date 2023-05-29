@@ -7,8 +7,8 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, debounceTime, Subject, take, takeUntil, throwError } from 'rxjs';
 import { ReclamationsService } from './reclamation.service';
 import { Motif } from './reclamation.types';
-import { Fichier, Piece } from 'app/core/common/common.types';
-import { CompressImageService } from 'app/core/compress-image/compress-image.service';
+import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
+import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({

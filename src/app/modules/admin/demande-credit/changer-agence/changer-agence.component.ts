@@ -5,7 +5,7 @@ import { catchError, debounceTime, Subject, takeUntil, throwError } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Agence, Ville } from 'app/core/referentiel/referentiel.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { SimulationDetailleeService } from 'app/core/projects/simulation-detaillee.service';
+import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({

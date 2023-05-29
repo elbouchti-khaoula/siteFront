@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, switchMap, tap } from 'rxjs';
-import { CritereDetaillee, Project, SimulationDetaillee } from './simulation-detaillee.types';
+import { CritereDetaillee, Project, SimulationDetaillee } from './projects.types';
 import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
 import { FuseUtilsService } from '@fuse/services/utils';
