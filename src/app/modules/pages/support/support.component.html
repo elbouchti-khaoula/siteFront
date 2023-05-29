@@ -183,7 +183,8 @@
                         </textarea>
                         <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
                     </mat-form-field>
-
+                    <div class="flex justify-center mt-9">
+                        <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
                     <!-- Actions -->
                     <div class="flex items-center justify-end">
                         <button mat-stroked-button
@@ -195,7 +196,7 @@
                         <button class="ml-2"
                             mat-flat-button
                             [color]="'primary'"
-                            [disabled]="supportForm.pristine || supportForm.invalid"
+                            [disabled]="supportForm.pristine || supportForm.invalid || !isCaptchaValid"
                             (click)="sendForm()">
                             Envoyer
                         </button>

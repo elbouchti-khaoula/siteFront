@@ -210,7 +210,8 @@
                     </mat-form-field>
 
                 </div>
-
+                <div class="flex justify-center mt-9">
+                    <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
                 <!-- Actions -->
                 <div class="flex items-center justify-end px-6 sm:px-10 mt-3">
                     <button mat-stroked-button [color]="'accent'"
@@ -218,7 +219,7 @@
                         Vider
                     </button>
                     <button class="ml-2" mat-flat-button [color]="'primary'"
-                        [disabled]="reclamationForm.pristine || reclamationForm.invalid" (click)="sendForm()">
+                        [disabled]="reclamationForm.pristine || reclamationForm.invalid || !isCaptchaValid" (click)="sendForm()">
                         Envoyer
                     </button>
                 </div>

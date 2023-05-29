@@ -12,7 +12,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CommonModule } from '@angular/common';
 @NgModule({
     declarations: [
         ReclamationComponent,
@@ -28,7 +30,10 @@ import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/form
         MatRippleModule,
         FuseCardModule,
         FuseAlertModule,
-        FormatTelephoneModule
+        FormatTelephoneModule,
+        ReactiveFormsModule,
+        CommonModule,
+        CaptchaModule
     ]
 })
 export class ReclamationModule
