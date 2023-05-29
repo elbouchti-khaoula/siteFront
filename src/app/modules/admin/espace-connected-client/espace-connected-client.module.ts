@@ -11,13 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { FuseCardModule } from '@fuse/components/card';
-
+import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-small.module';
+import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 
 @NgModule({
     declarations: [
         EspaceConnectedClientComponent,
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(EspaceConnectedRoutes),
         SharedModule,
         VosAvantagesModule,
@@ -26,11 +27,12 @@ import { FuseCardModule } from '@fuse/components/card';
         ProjetsFilterModule,
         MatCardModule,
         MatExpansionModule,
-       MatButtonModule,
-       FuseCardModule
+        MatButtonModule,
+        ParcoursSmallModule,
+        BienvenueModule,
+        FuseCardModule
     ]
 })
-export class EspaceConnectedClientModule
-{
+export class EspaceConnectedClientModule {
 
 }
