@@ -74,3 +74,13 @@ export interface PromoteursConventionnes
     libelle?    : string;
 }
 
+export interface DocumentInstitutionnel {
+    id?: number;
+    periode?: string;
+    type: string | null;
+    titre?: string | null;
+    chemin?: string | null;
+    nom?: string | null;
+   // dateCreation?: Date | null;
+}
+

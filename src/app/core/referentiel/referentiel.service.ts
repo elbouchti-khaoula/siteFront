@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, EmployeursConventionnes, PromoteursConventionnes } from './referentiel.types';
+import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, EmployeursConventionnes, PromoteursConventionnes, DocumentInstitutionnel } from './referentiel.types';
+import {saveAs} from "file-saver";
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,9 @@ export class ReferentielService {
     private _operationsSAVRef: BehaviorSubject<OperationSAVRef[] | null> = new BehaviorSubject(null);
     private _employeurs: BehaviorSubject<EmployeursConventionnes[] | null> = new BehaviorSubject(null);
     private _promoteurs: BehaviorSubject<PromoteursConventionnes[] | null> = new BehaviorSubject(null);
+    
+    private _documents: BehaviorSubject<DocumentInstitutionnel[] | null> = new BehaviorSubject(null);
+    
     /**
      * Constructor
      */
@@ -103,6 +107,13 @@ export class ReferentielService {
      */
     get operationsSAVRef$(): Observable<OperationSAVRef[]> {
         return this._operationsSAVRef.asObservable();
+    }
+
+  /**
+     * Getter for documents
+     */
+    get documents$(): Observable<DocumentInstitutionnel[]> {
+        return this._documents.asObservable();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -395,6 +406,40 @@ export class ReferentielService {
                 })
             );
     }
+    
+     /**
+     * Search documents institutionnels with given query
+     *
+     * @param document
+     */
+    searchDocuments(document: DocumentInstitutionnel): Observable<DocumentInstitutionnel[]> {
+
+        return this._httpClient.post<DocumentInstitutionnel[]>('/api/repositories/documents/search', document)
+            .pipe(
+                tap((documents: DocumentInstitutionnel[]) => {
+
+                    // Sort the documents institutionneles by the dateCreation field by default
+                    //documents.sort((a, b) => +a.dateCreation - +b.dateCreation);
+
+                    // Sort the agences by the libelle field by default
+                    documents.sort((a, b) => a.nom.localeCompare(b.nom));
+
+
+                    this._documents.next(documents);
+                })
+            );
+    }
+
+
+
+    downloadPDF(id:number) {
+        this._httpClient.get('/api/repositories/document/'+id, { responseType: 'blob' })
+            .subscribe((blob: any) => {
+                //const blob = new Blob([response.body], { type: 'application/pdf' });
+                // const filename = 'Demande Client Financier.pdf';
+                saveAs(blob, "test.pdf");
+            });
+        }
 
 }
 

@@ -1,47 +1,99 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header
-    class="  md:flex flex-col  px-16 w-full min-h-[32vh] bg-gray-300">
+  <header class=" hidden md:flex flex-col  px-16 w-full min-h-[36vh] nos-lettre-bg-header">
 
-    <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-primary mt-5">
-      NOS ÉTATS FINANCIERS
+    <div class="max-w-xl text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white mt-16">
+      S’informer en un seul clic ! 
   </div>
 
-  <div class="max-w-xl  md:block text-2xl text-black mt-3"> 
-      Plus de 1000 biens immobiliers à découvrir sur notre plateforme aujourd'hui Plus de 1000 biens immobiliers à découvrir sur notre plateforme aujourd'hui Plus de 1000 biens immobiliers à découvrir sur notre plateforme aujourd'hui
-  </div>
+      <div class="max-w-xl  md:block text-xl text-white mt-3"> 
+          La lettre wafa immobilier vous facilite d’avoir toutes les actualités de l’immobilier ! 
+
+      </div>
+
+      <div class="max-w-xl  md:block text-xl text-white mt-3"> 
+    
+        Découvrez dans chaque numéro, toutes les nouveautés du secteur, ses chiffres clés, des dossiers immobiliers et bien plus encore. 
+          </div>
 
   </header>
 
   <!-- Header version sm-->
 
+  <header class="  md:hidden flex-col  px-16 w-full min-h-[36vh] nos-lettre-bg-header">
 
-  <!-- version md -->
-  <div class=" md:flex flex-col items-start justify-start px-16 w-full h-full etat-financier-bg-body">
-
-
-
-
-    <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-10">
-      ACCÉDER A NOS ÉTATS FINANCIERS
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    <div class="max-w-xl text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white mt-16">
+      S’informer en un seul clic ! 
   </div>
+
+      <div class="max-w-xl  md:block text-l text-white mt-3"> 
+          La lettre wafa immobilier vous facilite d’avoir toutes les actualités de l’immobilier ! 
+
+      </div>
+
+      <div class="max-w-xl  md:block text-l text-white mt-3"> 
+    
+        Découvrez dans chaque numéro, toutes les nouveautés du secteur, ses chiffres clés, des dossiers immobiliers et bien plus encore. 
+          </div>
+
+  </header> 
+  <!-- version md -->
+  <div class="hidden grid  md:flex flex-col items-start justify-start  w-full h-full bg-gray-100 mt-2">
+         
+            
+          
+
+    <ng-container *ngFor="let lettre of lettres; let even = even; trackBy:">
+      <div class="inventory-grid grid items-center w-full gap-4 py-3 px-6 md:px-8 border-b"
+           [ngClass]="{'even-bg': even, 'odd-bg': !even}">
+        <!-- Image -->
+        <div class="flex items-center ml-10">
+          <div class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
+            <a (click)="telechargerLettre(lettre.id)" style="cursor: pointer;">
+              <img class="w-8" [alt]="' image'" src="/assets/images/pages/lettre/Icône PDF.png">
+            </a>
+          </div>
+          <!-- Name -->
+          <div class="truncate ml-10">
+            <h2 class="text-l font-bold">{{ lettre.titre }}</h2>
+            <p>{{ lettre.periode }}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    
+    
+
+
+
+
+          </div>
+
+
+
+           <!-- version sm -->
+           <div class="md:hidden flex-col items-start justify-start w-full h-full bg-gray-100 mt-2">
+            <ng-container *ngFor="let lettre of lettres; let even = even; trackBy:">
+              <div class="inventory-grid grid items-center w-full gap-2 py-3 px-4 md:px-6 border-b"
+                   [ngClass]="{'even-bg': even, 'odd-bg': !even}">
+                <!-- Image -->
+                <div class="flex items-center">
+                  <div class="relative flex flex-0 items-center justify-center w-10 h-10 mr-4 rounded overflow-hidden border">
+                    <a (click)="telechargerLettre(lettre.id)" style="cursor: pointer;">
+                      <img class="w-8" [alt]="' image'" src="/assets/images/pages/lettre/Icône PDF.png">
+                    </a>                  </div>
+                  <!-- Name -->
+                  <div class="truncate whitespace-normal">
+                    <h2 class="text-base font-bold">{{ lettre.titre }}</h2>
+                    <p class="text-sm">{{ lettre.periode }}</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          
+          
 
 
 
