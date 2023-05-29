@@ -36,7 +36,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('matAutocompletePromoteur') matAutocompletePromoteur: MatAutocomplete;
   @ViewChild('matAutocompleteEmployeur') matAutocompleteEmployeur: MatAutocomplete;
-
+  isCaptchaValid: boolean = false;
+  
   resultEmployeurs: any[];
   searchEmployeurControl: UntypedFormControl = new UntypedFormControl();
 
@@ -489,7 +490,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
       montant: Number(this.simulationStepperForm.get('step3').get('montant').value.toString().replace(/\D/g, '')),
       montantProposition: Number(this.simulationStepperForm.get('step3').get('montantProposition').value.toString().replace(/\D/g, '')),
-      duree: this.simulationStepperForm.get('step3').get('duree').value,
+      duree: Number(this.simulationStepperForm.get('step3').get('duree').value),
       typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
       tiers: {

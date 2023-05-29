@@ -591,6 +591,8 @@
 
                             </div>
 
+                            <div class="flex justify-center mt-9">
+                            <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
                                 <button
@@ -607,7 +609,7 @@
                                     mat-flat-button
                                     [color]="'primary'"
                                     type="button"
-                                    [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid"
+                                    [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid || !isCaptchaValid"
                                     (click)="simuler()">
                                     Valider
                                 </button>

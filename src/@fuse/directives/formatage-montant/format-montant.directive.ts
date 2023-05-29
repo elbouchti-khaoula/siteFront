@@ -50,22 +50,24 @@ export class FormatMontantDirective {
   }
 
   private formatMontant(value: number, includeDecimal: boolean = true) {
-    let montantFormate = value.toLocaleString('fr-FR', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: includeDecimal ? 2 : 0
-    }).replace(',', '.');
+    if (value !== null && value !== undefined) {
+      let montantFormate = value.toLocaleString('fr-FR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: includeDecimal ? 2 : 0
+      }).replace(',', '.');
 
-    if (includeDecimal) {
-      if (!montantFormate.includes('.')) {
-        montantFormate += '.00';
-      } else if (montantFormate.endsWith('.')) {
-        montantFormate += '00';
-      } else if (montantFormate.endsWith('.0')) {
-        montantFormate += '0';
+      if (includeDecimal) {
+        if (!montantFormate.includes('.')) {
+          montantFormate += '.00';
+        } else if (montantFormate.endsWith('.')) {
+          montantFormate += '00';
+        } else if (montantFormate.endsWith('.0')) {
+          montantFormate += '0';
+        }
       }
-    }
 
-    this.renderer.setProperty(this.elementRef.nativeElement, 'value', montantFormate);
+      this.renderer.setProperty(this.elementRef.nativeElement, 'value', montantFormate);
+    }
   }
 
   private clearInput() {
