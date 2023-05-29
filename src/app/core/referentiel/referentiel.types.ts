@@ -45,3 +45,13 @@ export interface Agence {
     libelleVille?: string | null;
     image: string | null;
 }
+
+export interface DocumentInstitutionnel {
+    id?: number;
+    periode?: string;
+    type: string | null;
+    titre?: string | null;
+    chemin?: string | null;
+    nom?: string | null;
+   // dateCreation?: Date | null;
+}

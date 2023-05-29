@@ -45,6 +45,7 @@ export class NosOffresMiftahComponent
     imageVisDet4 = 'assets/images/pages/nos-offres-miftah/Terrain et construction_1247187910(2).jpg';
 
     imageVisDet5 = 'assets/images/pages/nos-offres-miftah/Professionel 2_284936198.jpg';
+    imageVisDet6 = 'assets/images/pages/nos-offres-miftah/FOGALOGE_300650120.jpg';
 
 
 
@@ -52,11 +53,16 @@ export class NosOffresMiftahComponent
     imageVisDet7 = 'assets/images/pages/nos-offres-miftah/MRE-BILA HOUDOUD_2042991488.jpg';
 
     imageVisDet8 = 'assets/images/pages/nos-offres-miftah/Etrangers non residents_1660072789.jpg';
+    imageVisDet9 = 'assets/images/pages/nos-offres-miftah/FOGARIM_2110260368 (1).jpg';
 
 
 
 
     imageVisDet10 = 'assets/images/pages/nos-offres-miftah/Santé_1946243179.jpg';
+
+    imageVisDet11 = 'assets/images/pages/nos-offres-miftah/RELAIS_1564624228.jpg';
+    imageVisDet12 = 'assets/images/pages/nos-offres-miftah/INFINE_1810820284.jpg';
+    imageVisDet13 = 'assets/images/pages/nos-offres-miftah/ADL SAKANE_1948582576 (1).jpg';
 
 
     
@@ -84,10 +90,16 @@ export class NosOffresMiftahComponent
     imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
     imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
     imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+    imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+
+    imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+
+
     imageSrc13= 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
 
     imageSrc12= 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
-    imageSrc11= 'assets/images/pages/nos-offres-miftah/MIFTAH  RELAIS 1.svg';
+    imageSrc11= 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
 
     
 
@@ -124,6 +136,16 @@ export class NosOffresMiftahComponent
           this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
           this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
           this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+          this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+          this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+          this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+          this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+          this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+          this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
+
+       
+
 
 
 
@@ -163,6 +185,13 @@ export class NosOffresMiftahComponent
           this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
           this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
 
+          this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+          this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+          this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+          this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+          this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+          this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
+
 
 
 
@@ -198,6 +227,13 @@ export class NosOffresMiftahComponent
           this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
           this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
 
+          this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+          this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+          this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+          this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+          this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+          this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
+
 
           } else {
             this.showDiv3 = false;
@@ -226,6 +262,13 @@ export class NosOffresMiftahComponent
         this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
         this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
         this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4_2.svg';
+
+        this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+        this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+        this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+        this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+        this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+        this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
         
           
         } else {
@@ -254,6 +297,18 @@ export class NosOffresMiftahComponent
       this.showDiv12 = false;
       this.showDiv13 = false;
       this.showDiv14 = false;
+
+      this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+      this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+      this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+      this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+      this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 2.svg';
+      this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+      this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+      this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+      this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+      this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
     
       
         
@@ -282,6 +337,18 @@ onDivClick6(event) {
     this.showDiv12 = false;
     this.showDiv13 = false;
     this.showDiv14 = false;
+
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 2.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
   
     
       
@@ -309,7 +376,17 @@ onDivClick7(event) {
     this.showDiv13 = false;
     this.showDiv14 = false;
   
-    
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
       
     } else {
       this.showDiv6 = false;
@@ -338,6 +415,17 @@ onDivClick8(event) {
     this.showDiv14 = false;
   
     
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
       
     } else {
       this.showDiv8 = false;
@@ -364,6 +452,18 @@ onDivClick9(event) {
     this.showDiv12 = false;
     this.showDiv13 = false;
     this.showDiv14 = false;
+
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 2.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
   
     
       
@@ -394,6 +494,18 @@ onDivClick10(event) {
     this.showDiv14 = false;
   
     
+
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
       
     } else {
       this.showDiv10 = false;
@@ -421,6 +533,18 @@ onDivClick11(event) {
     this.showDiv13 = false;
     this.showDiv14 = false;
   
+
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 2.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
     
       
     } else {
@@ -449,6 +573,18 @@ onDivClick12(event) {
     this.showDiv12 = true;
     this.showDiv13 = false;
     this.showDiv14 = false;
+
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 2.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
   
     
       
@@ -480,7 +616,17 @@ onDivClick13(event) {
     this.showDiv14 = false;
   
     
-    this.imageSrc13= 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 2.svg';
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 2.svg';
 
       
     } else {
@@ -511,6 +657,17 @@ onDivClick14(event) {
     this.showDiv14 = true;
   
     
+    this.imageSrc2 = 'assets/images/pages/nos-offres-miftah/Icon 2.svg';
+    this.imageSrc1 = 'assets/images/pages/nos-offres-miftah/Icon 1.svg';
+    this.imageSrc3 = 'assets/images/pages/nos-offres-miftah/Icon 3_2.svg';
+    this.imageSrc4 = 'assets/images/pages/nos-offres-miftah/Icon 4.svg';
+
+    this.imageSrc5 = 'assets/images/pages/nos-offres-miftah/MIFTAH PRO 1.svg';
+    this.imageSrc6 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGALOGE 1.svg';
+    this.imageSrc9 = 'assets/images/pages/nos-offres-miftah/MIFTAH FOGARIM 1.svg';
+    this.imageSrc11 = 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    this.imageSrc12 = 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
+    this.imageSrc13 = 'assets/images/pages/nos-offres-miftah/MIFTAH ADL SAKAN 1.svg';
       
     } else {
       this.showDiv14 = false;

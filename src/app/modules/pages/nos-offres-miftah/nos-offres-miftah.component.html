@@ -57,7 +57,7 @@
 
           <!-- menu -->
           <div class="flex-shrink-0 w-64 overflow-y-auto">
-            <ul class="flex flex-col space-y-2 max-h-96 overflow-y-scroll">
+            <ul class="flex flex-col space-y-2 h-180 overflow-y-scroll">
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class=" flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
                       <img class=" div-1 h-20 w-auto object-cover" [src]="imageSrc1" alt="" />
@@ -82,9 +82,15 @@
               </li>
               
             
+           
+
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-3 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick3($event)">
-                      <img class="div-3 h-20 w-auto object-cover" [src]="imageSrc2" alt="" />
+                  <div class="div-3 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-full h-full">
+                      <img class="div-3 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
+                    </div>
+                  </div>
           
                   <div class="div-3 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -109,11 +115,7 @@
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-5 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick5($event)">
-                  <div class="div-5 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class="div-5 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-5 h-20 w-auto object-cover" [src]="imageSrc5" alt="" />
           
                   <div class="div-5 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -124,11 +126,7 @@
 
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-6 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick6($event)">
-                  <div class="div-6 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class="div-6 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-6 h-20 w-auto object-cover" [src]="imageSrc6" alt="" />
           
                   <div class="div-6 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -137,7 +135,6 @@
                   </div>
                 </div>
               </li>
-
 
               
               <li class="py-2 pl-4 pr-2 bg-gray-100">
@@ -173,14 +170,12 @@
                 </div>
               </li>
 
-              
+
+
+
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-9 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick9($event)">
-                  <div class="div-9 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class="div-9 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-9 h-20 w-auto object-cover" [src]="imageSrc9" alt="" />
           
                   <div class="div-9 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -189,6 +184,8 @@
                   </div>
                 </div>
               </li>
+              
+          
 
               
               <li class="py-2 pl-4 pr-2 bg-gray-100">
@@ -206,13 +203,11 @@
                 </div>
               </li>
 
+
+
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-11 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick11($event)">
-                  <div class="div-11 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class="div-11 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-11 h-20 w-auto object-cover" [src]="imageSrc11" alt="" />
           
                   <div class="div-11 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -221,14 +216,11 @@
                 </div>
               </li>
 
-              
+            
+
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-12 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick12($event)">
-                  <div class="div-12 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class="div-12 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-12 h-20 w-auto object-cover" [src]="imageSrc12" alt="" />
           
                   <div class="div-12 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
@@ -238,24 +230,21 @@
                 </div>
               </li>
 
-              
+             
+
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-13 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick13($event)">
-                  <div class="div-13 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <img class=" div-1 h-20 w-auto object-cover" [src]="imageSrc13" alt="" />
-                    </div>
-                  </div>
+                      <img class="div-13 h-20 w-auto object-cover" [src]="imageSrc13" alt="" />
           
                   <div class="div-13 flex flex-col items-start ml-5">
                     <span class="text-lg">MIFTAH</span>
                     <span class="text-lg">ADL</span>
                     <span class="text-lg">SAKANE</span>
-
                   </div>
                 </div>
               </li>
 
+            
               <li class="py-2 pl-4 pr-2 bg-gray-100">
                 <div class="div-14 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick14($event)">
                   <div class="div-14 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
@@ -276,7 +265,7 @@
 
             <!-- details -->
             <div *ngIf="showDiv" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 La solution qui facilite votre accès à la propriété
@@ -343,7 +332,7 @@
             </div>
 
             <div *ngIf="showDiv2" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet2" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet2" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Construisez ou rénovez votre logement en toute simplicité
@@ -411,7 +400,7 @@
 
          
             <div *ngIf="showDiv3" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet3" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet3" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Une solution pour acquérir votre terrain dans la joie et la sérénité              
@@ -479,7 +468,7 @@
             </div>
 
             <div *ngIf="showDiv4" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet4" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet4" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Obtenir son terrain et construire son logement n’a jamais été aussi simple !             
@@ -547,7 +536,7 @@
             </div>
 
             <div *ngIf="showDiv5" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet5" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet5" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Une solution de financement à la hauteur de vos ambitions             
@@ -614,7 +603,7 @@
             </div>
 
             <div *ngIf="showDiv6" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet6" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Financez l’acquisition, la construction et la rénovation de votre logement en toute tranquillité             
@@ -684,7 +673,7 @@
             </div>
 
             <div *ngIf="showDiv7" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet7" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet7" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Une solution pour concrétiser les projets immobilier des Marocains du Monde              </div>
@@ -749,7 +738,7 @@
             </div>
 
             <div *ngIf="showDiv8" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet8" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet8" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Une solution pour acquérir votre logement au Maroc en toute sérénité
@@ -814,7 +803,7 @@
 
              
             <div *ngIf="showDiv9" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet9" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Tout le monde a la possibilité de concrétiser ses projets immobiliers             </div>
@@ -884,7 +873,7 @@
             </div>
 
             <div *ngIf="showDiv10" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet10" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet10" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Professionnels de la Santé, financez votre projet immobilier en toute simplicité
@@ -953,7 +942,7 @@
 
 
             <div *ngIf="showDiv11" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet11" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Financez votre prochain logement en toute sérénité, c’est possible !            </div>
@@ -1014,7 +1003,7 @@
             </div>
       
             <div *ngIf="showDiv12" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet12" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Concrétisez le financement de votre habitation principale  en toute simplicité, en se basant sur votre épargne retraite.            </div>
@@ -1077,7 +1066,7 @@
             </div>
 
             <div *ngIf="showDiv13" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet13" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Il est encore temps de concrétiser vos projets immobilier           </div>
@@ -1143,7 +1132,7 @@
             </div>
 
             <div *ngIf="showDiv14" class="flex-shrink-0 w-200 ml-8">
-              <img class="w-full h-72 rounded-lg shadow-md" [src]="imageVisDet14" alt="Header Image">
+              <img class="w-full h-78 rounded-lg shadow-md" [src]="imageVisDet14" alt="Header Image">
 
               <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
                 Personnel de l’enseignement concrétisez vos envies d’immobilier en toute sérénité           </div>
@@ -1341,13 +1330,10 @@
         </li>
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
+
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-5 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick5($event)">
-            <div class="div-5 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-5 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-5 h-20 w-auto object-cover" [src]="imageSrc5" alt="" />
 
             <div class="div-5 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
@@ -1355,15 +1341,15 @@
             </div>
           </div>
         </li>
+
+
+        
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
+
 
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-6 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick6($event)">
-            <div class="div-6 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-6 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-6 h-20 w-auto object-cover" [src]="imageSrc6" alt="" />
 
             <div class="div-6 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
@@ -1372,6 +1358,8 @@
             </div>
           </div>
         </li>
+
+       
 
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
@@ -1412,13 +1400,11 @@
 
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
+       
+
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-9 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick9($event)">
-            <div class="div-9 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-9 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-9 h-20 w-auto object-cover" [src]="imageSrc9" alt="" />
 
             <div class="div-9 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
@@ -1427,6 +1413,8 @@
             </div>
           </div>
         </li>
+
+
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
         
@@ -1446,13 +1434,12 @@
         </li>
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
+
+
+        
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-11 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick11($event)">
-            <div class="div-11 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-11 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-11 h-20 w-auto object-cover" [src]="imageSrc11" alt="" />
 
             <div class="div-11 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
@@ -1460,16 +1447,16 @@
             </div>
           </div>
         </li>
+
+
+      
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
         
+
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-12 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick12($event)">
-            <div class="div-12 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-12 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-12 h-20 w-auto object-cover" [src]="imageSrc12" alt="" />
 
             <div class="div-12 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
@@ -1479,24 +1466,26 @@
           </div>
         </li>
 
+
+
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
+
+
 
         <li class="py-2 pl-4 pr-2 ">
           <div class="div-13 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick13($event)">
-            <div class="div-13 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
-              <div class="flex items-center justify-center w-full h-full">
-                <img class="div-13 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
-              </div>
-            </div>
+                <img class="div-13 h-20 w-auto object-cover" [src]="imageSrc13" alt="" />
 
             <div class="div-13 flex flex-col items-start ml-5">
               <span class="text-lg">MIFTAH</span>
               <span class="text-lg">ADL</span>
               <span class="text-lg">SAKANE</span>
-
             </div>
           </div>
         </li>
+
+
+  
         <span class=" md:block border-gray-500 border-l h-28 w-0 mx-7"></span>
 
         <li class="py-2 pl-4 pr-2 ">
@@ -1821,7 +1810,7 @@
 
     <div *ngIf="showDiv6" class="md:hidden mobile-container p-4  mt-7">
 
-      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet6" alt="Header Image">
 
       <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
         Financez l’acquisition, la construction et la rénovation de votre logement en toute tranquillité             
@@ -2000,7 +1989,7 @@
 
     <div *ngIf="showDiv9" class="md:hidden mobile-container p-4 mt-7">
 
-      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet9" alt="Header Image">
 
       <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
         Tout le monde a la possibilité de concrétiser ses projets immobiliers             </div>
@@ -2126,7 +2115,7 @@
     </div>
     <div *ngIf="showDiv11" class="md:hidden mobile-container p-4 mt-7">
 
-      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet11" alt="Header Image">
 
       <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
         Financez votre prochain logement en toute sérénité, c’est possible !            </div>
@@ -2179,7 +2168,7 @@
     </div>
     <div *ngIf="showDiv12" class="md:hidden mobile-container p-4 mt-7">
 
-      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet12" alt="Header Image">
 
       <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
         Concrétisez le financement de votre habitation principale  en toute simplicité, en se basant sur votre épargne retraite.            </div>
@@ -2234,7 +2223,7 @@
     </div>
     <div *ngIf="showDiv13" class="md:hidden mobile-container p-4 mt-7">
 
-      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet" alt="Header Image">
+      <img class="w-full h-auto md:w-full md:h-72 rounded-lg shadow-md" [src]="imageVisDet13" alt="Header Image">
 
       <div class="text-xl md:text-2xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
         Il est encore temps de concrétiser vos projets immobilier           </div>
