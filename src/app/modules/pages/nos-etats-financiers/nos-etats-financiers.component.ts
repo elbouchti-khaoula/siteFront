@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { fuseAnimations } from '@fuse/animations';
 import { DocumentInstitutionnel } from 'app/core/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import {saveAs} from "file-saver";
 
 @Component({
     selector     : 'nos-etats-financiers',

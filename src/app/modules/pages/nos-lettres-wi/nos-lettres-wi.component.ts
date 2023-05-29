@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
 import { DocumentInstitutionnel } from 'app/core/referentiel/referentiel.types';
