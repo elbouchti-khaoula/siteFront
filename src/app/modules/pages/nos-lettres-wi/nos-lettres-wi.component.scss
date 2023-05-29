@@ -1,5 +1,5 @@
-.nous-connaitre-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/Nous connaître.jpg');
+.nos-lettre-bg-header {
+    background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .3)), url('/assets/images/pages/lettre/Bannièrelettre.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -30,5 +30,14 @@
     .mobile-full-width {
       width: 100%;
     }
+  }
+
+  
+  .even-bg {
+    background-color: #F2F2F2; /* Couleur de fond pour les éléments pairs */
+  }
+  
+  .odd-bg {
+    background-color: #EAEAEA; /* Couleur de fond pour les éléments impairs */
   }
   
