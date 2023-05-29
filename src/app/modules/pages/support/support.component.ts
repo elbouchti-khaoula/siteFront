@@ -17,6 +17,7 @@ import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 })
 export class SupportComponent implements OnInit {
     isScreenSmall: boolean;
+    isCaptchaValid: boolean = false;
     @Input() drawer: MatDrawer;
     @ViewChild('supportNgForm') supportNgForm: NgForm;
     supportForm: FormGroup;

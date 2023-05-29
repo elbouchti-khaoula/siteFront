@@ -11,6 +11,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRippleModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
@@ -28,7 +32,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatRippleModule,
         FuseCardModule,
         FuseAlertModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        FuseAlertModule,
+        FormatTelephoneModule,
+        ReactiveFormsModule,
+        CommonModule,
+        CaptchaModule
     ]
 })
 export class ReclamationModule

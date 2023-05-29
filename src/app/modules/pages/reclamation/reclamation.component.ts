@@ -21,7 +21,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 export class ReclamationComponent implements OnInit {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
     @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
-
+    isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
     alert: any;
     reclamationForm: FormGroup;

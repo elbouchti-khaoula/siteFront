@@ -1,5 +1,7 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
+   
+
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 simul-bg-header">
         <div class="w-full max-w-400">
@@ -101,7 +103,7 @@
                             [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                             <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:timelapse'" matPrefix>
                             </mat-icon>
-                            <input matInput [formControlName]="'duree'">
+                            <input matInput [formControlName]="'duree'" [appFormatEntier]="simulationForm.get('duree').value">
                             <mat-label class="max-md:text-sm max-md:font-semibold">Durée (en mois)</mat-label>
                             <span matSuffix>mois</span>
                             <mat-error *ngIf="simulationForm.get('duree').hasError('required')">
@@ -234,28 +236,31 @@
                                 personnelles</span>
                         </mat-checkbox>
                     </div>
-
+                    <div class="flex justify-center mt-9">
+                    <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
+                    
                     <!-- Actions -->
                     <div class="w-full flex justify-end">
                         <button 
-                            mat-stroked-button
-                            class="bg-default"
-                            type="button"
-                            [color]="'primary'"
-                            [disabled]="simulationForm.pristine"
-                            (click)="newSimulation()">
-                            Refaire ma simulation
+                          mat-stroked-button
+                          class="bg-default"
+                          type="button"
+                          [color]="'primary'"
+                          [disabled]="simulationForm.pristine"
+                          (click)="newSimulation()">
+                          Refaire ma simulation
                         </button>
+                        
                         <button
-                            mat-flat-button    
-                            class="ml-2 md:px-12"
-                            [ngClass]="{'bg-primary-200' : simulationForm.pristine || simulationForm.invalid}"
-                            type="button"
-                            [color]="'primary'"
-                            [disabled]="simulationForm.pristine || simulationForm.invalid"
-                            (click)="simuler()">
-                            Valider
+                          mat-flat-button    
+                          class="ml-2 md:px-12"
+                          [color]="'primary'"
+                          [disabled]="simulationForm.pristine || simulationForm.invalid || !isCaptchaValid"
+                          (click)="simuler()">
+                          Valider
                         </button>
+                        
+                        
                     </div>
 
                     <div class="flex flex-row bg-amber-100 rounded-md shadow py-2 px-3">

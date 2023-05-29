@@ -12,6 +12,8 @@ import { demandeCreditRoutes } from './demande-credit.routing';
 import { ChangerAgenceModule } from './changer-agence/changer-agence.module';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatTelephonePipeModule } from '@fuse/pipes/format-telephone-pipe/format-telephone-pipe.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,10 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         MatSidenavModule,
         ChangerAgenceModule,
         TableauAmortissementModule,
-        BienvenueModule
+        BienvenueModule,
+        FormatTelephoneModule,
+        FormatTelephonePipeModule
+        
     ],
     exports     : [
         DemandeCreditComponent

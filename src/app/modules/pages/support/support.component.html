@@ -82,8 +82,8 @@
                             alt="Card cover image">
                     </div>
                     <div class="flex flex-col flex-auto m-8 mb-4">
-                        <div class="text-3xl font-semibold leading-tight">Nous suivre</div>
-                        <div class="mt-4">
+                        <div class="text-3xl font-semibold leading-tight"></div>
+                        <div class="mt-4">Nous suivre
                             Nous vous invitons à suivre nos offres et actualités sur les réseaux sociaux. 
                             <br/>
                             Suivez-nous sur :
@@ -153,7 +153,7 @@
                     <mat-form-field class="w-full"
                         [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                         <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
-                        <input matInput [formControlName]="'telephone'" [required]="true">
+                        <input matInput [formControlName]="'telephone'" appFormatTelephone [required]="true">
                         <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
                         <mat-error *ngIf="supportForm.get('telephone').hasError('required')">
                             Téléphone obligatoire
@@ -183,7 +183,8 @@
                         </textarea>
                         <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
                     </mat-form-field>
-
+                    <div class="flex justify-center mt-9">
+                        <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
                     <!-- Actions -->
                     <div class="flex items-center justify-end">
                         <button mat-stroked-button
@@ -195,7 +196,7 @@
                         <button class="ml-2"
                             mat-flat-button
                             [color]="'primary'"
-                            [disabled]="supportForm.pristine || supportForm.invalid"
+                            [disabled]="supportForm.pristine || supportForm.invalid || !isCaptchaValid"
                             (click)="sendForm()">
                             Envoyer
                         </button>
