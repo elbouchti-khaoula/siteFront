@@ -97,7 +97,7 @@
                             <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix>
                                 </mat-icon>
-                                <input matInput [formControlName]="'telephone'">
+                                <input matInput [formControlName]="'telephone'" appFormatTelephone >
                                 <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone<span
                                         *ngIf="notAlerteEthique">&nbsp;*</span></mat-label>
                                 <mat-error *ngIf="reclamationForm.get('telephone').hasError('required')">
@@ -137,6 +137,10 @@
 
                         </div>
 
+                        <div class="flex justify-center mt-9">
+                            <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
+                        </div>
+                        
                         <!-- Actions -->
                         <div class="flex items-center justify-end px-6 sm:px-10 mt-3">
                             <button mat-stroked-button
@@ -148,7 +152,7 @@
                             <button class="ml-2"
                                 mat-flat-button
                                 [color]="'primary'"
-                                [disabled]="reclamationForm.pristine || reclamationForm.invalid"
+                                [disabled]="reclamationForm.pristine || reclamationForm.invalid || !isCaptchaValid"
                                 (click)="sendForm()">
                                 Envoyer
                             </button>

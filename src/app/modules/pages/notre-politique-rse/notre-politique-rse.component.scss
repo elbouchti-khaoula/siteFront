@@ -8,7 +8,7 @@
 
 
 .nos-initiative-bg {
-  background-image: url('/assets/images/pages/rse/rse-niv1/Bannière2.png');
+  background-image:linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/rse/rse-niv1/Bannière2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -21,12 +21,6 @@
   background-size: cover;
 }
 
-.telecharger-charte {
-  background-image: url('/assets/images/pages/rse/rse-niv1/RectangleArrondiRouge.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
 
 .charte-bg {
   background-image: url('/assets/images/pages/rse/rse-niv1/CharteRse.png');

@@ -19,6 +19,7 @@ import { UploadDocumentService } from 'app/core/upload-document/upload-document.
 })
 export class ReclamationComponent implements OnInit {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
+    isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
     alert: any;
     reclamationForm: FormGroup;

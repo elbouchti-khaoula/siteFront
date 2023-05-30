@@ -13,6 +13,8 @@ import { ChangerAgenceModule } from './changer-agence/changer-agence.module';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatTelephonePipeModule } from '@fuse/pipes/format-telephone-pipe/format-telephone-pipe.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,9 @@ import { CheckListModule } from 'app/modules/common/check-list/check-list.module
         ChangerAgenceModule,
         TableauAmortissementModule,
         BienvenueModule,
-        CheckListModule
+        CheckListModule,
+        FormatTelephoneModule,
+        FormatTelephonePipeModule
     ],
     exports     : [
         DemandeCreditComponent

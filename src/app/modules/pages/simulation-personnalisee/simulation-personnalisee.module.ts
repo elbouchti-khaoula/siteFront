@@ -12,14 +12,16 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCommonModule } from '@angular/material/core';
-import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import { FormatMontantDirective } from './format-montant.directive';
-import { FormatTelephoneDirective } from './format-tele.directive';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
+import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CaptchaModule } from '@fuse/captcha/captcha.module';
+
 @NgModule({
     declarations: [
-        SimulationPersonaliseeComponent,
-        FormatMontantDirective,
-        FormatTelephoneDirective
+        SimulationPersonaliseeComponent
     ],
     imports     : [
         RouterModule.forChild(simulationPersonaliseeRoutes),
@@ -32,7 +34,13 @@ import { FormatTelephoneDirective } from './format-tele.directive';
         MatCheckboxModule,
         MatRadioModule,
         FuseCardModule,
-        MatCommonModule
+        MatCommonModule,
+        FormatMontantModule,
+        FormatTelephoneModule,
+        FormatEntierModule,
+        ReactiveFormsModule,
+        CommonModule,
+        CaptchaModule
     ],
     exports     : [
         SimulationPersonaliseeComponent

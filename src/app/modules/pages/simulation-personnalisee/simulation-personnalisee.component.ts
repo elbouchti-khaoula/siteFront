@@ -22,7 +22,7 @@ import { FuseUtilsService } from '@fuse/services/utils';
   animations: [fuseAnimations, resize]
 })
 export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
-
+  isCaptchaValid: boolean = false;
   isScreenSmall: boolean;
   isVisible: boolean = false;
   animationState: string;
@@ -245,7 +245,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
     const critere = {
       montant         : Number(this.simulationForm.get('montant').value.toString().replace(/\D/g, '')),
-      duree           : this.simulationForm.get('duree').value,
+      duree           : Number(this.simulationForm.get('duree').value),
       cspCode         : this.simulationForm.get('cspCode').value,
       nationaliteCode : this.simulationForm.get('nationaliteCode').value,
       residentMarocain: this.simulationForm.get('residentMarocain').value,

@@ -13,6 +13,7 @@ import { SimulationModule } from 'app/modules/common/simulation/simulation.modul
 import { ProjetComponent } from './projet.component';
 import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDividerModule,
         SwiperModule,
         GoogleMapsModule,
-        MatDialogModule
+        MatDialogModule,
+        FormatTelephoneModule
     ],
     exports     : [
         ProjetComponent
