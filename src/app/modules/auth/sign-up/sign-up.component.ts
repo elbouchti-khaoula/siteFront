@@ -94,39 +94,38 @@ export class AuthSignUpComponent implements OnInit
         this._authService.signUp(this.signUpForm.value)
             .subscribe(
                 () => {
-                    
-                    // Set the alert
-                    this.alert = {
-                        type   : 'success',
-                        message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
-                    };
-                    // Show the alert
-                    this.showAlert = true;
-                    
+
                     // send mail
                     this._authService.sendMail()
                         .subscribe(
                             () => {
-                                console.log('success');
+                                this.alert = {
+                                    type   : 'success',
+                                    message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
+                                };
                             },
                             (response) => {
-                                console.log(response);
+
+                                this.alert = {
+                                    type   : 'error',
+                                    message: 'Erreur lors de l\'envoi du lien d\'activation par email.'
+                                };
                             }
                         );
+                    
+                    // Show the alert
+                    this.showAlert = true;
                 },
                 (response) => {
 
-                    console.log(response);
 
                     if (response.status == 409) {
-                        // Set the alert
                         this.alert = {
                             type: 'warning',
                             message: 'Compte existant.'
                         };
                     }
                     else {
-                        // Set the alert
                         this.alert = {
                             type: 'error',
                             message: 'Une erreur s\'est produite.'

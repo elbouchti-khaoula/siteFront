@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable, ReplaySubject, tap } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, Observable, ReplaySubject, switchMap, tap } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 
 @Injectable({
@@ -44,13 +44,75 @@ export class UserService
     /**
      * Get the current logged in user data
      */
-    get(): Observable<User>
+    get(username: string): Observable<User>
     {
-        return this._httpClient.get<User>('api/common/user').pipe(
-            tap((user) => {
-                this._user.next(user);
+        console.log("get user")
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("accessTokenAdmin")
+        });
+
+        return this._httpClient.get<User>('auth/admin/realms/wafaimmo-siteweb/users?username='+username, { headers: headers }).pipe(
+            tap((response) => {
+
+                console.log(response[0]);
+               
+                let attrib = response[0].attributes;
+
+                let user = {
+                    id:response[0].id,
+                    userName        : response[0].username,
+                    firstName       : response[0].firstName, 
+                    lastName        : response[0].lastName,
+                    email           : response[0].email,
+                    clientAWB      : false,
+                    telephone      : attrib!= undefined && attrib.telephone != undefined?response[0].attributes.telephone[0]:null,
+                    cin            : attrib!= undefined && attrib.cin != undefined?response[0].attributes.cin[0]:null,
+                    dateNaissance : attrib!= undefined && attrib.dateNaissance!= undefined ?response[0].attributes.dateNaissance[0]:null,
+                    statut        : null, 
+                    avatar        : null,
+                    status        : null
+                }
+               this._user.next(user);
             })
         );
+    }
+
+    getAdminToken(): Observable<any> {
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        let body = 'grant_type=client_credentials&client_id=admin-cli&client_secret=0b4a269a-7076-4c4b-8729-4b6d0e7f6548'
+
+        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, { headers: headers })
+            .pipe(
+                tap((response: any) => {
+                    localStorage.setItem('accessTokenAdmin', response.access_token);
+                    console.log("success accessTokenAdmin");
+                    console.log(response);
+                })
+            );
+    }
+    
+    getGenericToken(): Observable<any> {
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+
+        let body = '{"userName" : "siteweb","password" : "w@afa2022"}'
+
+        return this._httpClient.post('/api/projects/authentification/getToken', body, { headers: headers })
+            .pipe(
+                tap((response: any) => {
+                    localStorage.setItem('accessTokenGeneric', response.access_token);
+                    console.log("success accessTokenGeneric");
+                    console.log(response);
+                })
+            );
     }
 
     /**

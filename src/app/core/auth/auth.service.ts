@@ -10,6 +10,8 @@ export class AuthService
 {
     private _authenticated: boolean = false;
 
+    private userCreated: string;
+
     /**
      * Constructor
      */
@@ -27,15 +29,44 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    set accessToken(token: string)
+
+    // Admin token
+
+    set accessTokenAdmin(token: string)
     {
-        localStorage.setItem('accessToken', token);
+        localStorage.setItem('accessTokenAdmin', token);
     }
 
-    get accessToken(): string
+    get accessTokenAdmin(): string
     {
-        return localStorage.getItem('accessToken') ?? '';
+        return localStorage.getItem('accessTokenAdmin') ?? '';
     }
+
+    // Generic token
+
+    set accessTokenGeneric(token: string)
+    {
+        localStorage.setItem('accessTokenGeneric', token);
+    }
+
+    get accessTokenGeneric(): string
+    {
+        return localStorage.getItem('accessTokenGeneric') ?? '';
+    }
+
+    // User token
+
+    set accessTokenUser(token: string)
+    {
+        localStorage.setItem('accessTokenUser', token);
+    }
+
+    get accessTokenUser(): string
+    {
+        return localStorage.getItem('accessTokenUser') ?? '';
+    }
+
+    //
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -68,12 +99,15 @@ export class AuthService
      */
     signIn(credentials: { email: string; password: string }): Observable<any>
     {
+
+        console.log("signIn")
+
         // Throw error, if the user is already logged in
         if ( this._authenticated )
         {
             return throwError('User is already logged in.');
         }
-
+        
         const headers = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
@@ -84,20 +118,14 @@ export class AuthService
                 switchMap((response: any) => {
 
                     // Store the access token in the local storage
-                    this.accessToken = response.access_token;
+                    localStorage.setItem('accessTokenUser', response.access_token);
+
+                    console.log("accessTokenUser : "+response.access_token)
 
                     // Set the authenticated flag to true
                     this._authenticated = true;
 
-                    // Store the user on the user service
-                    const userLog: User = {
-                        id: '1test23',
-                        userName: 'test',
-                        firstName: 'test',
-                        lastName: 'test',
-                        email: credentials.email,
-                    }
-                    this._userService.user = userLog;
+                    this._userService.get(credentials.email).subscribe();
 
                     // Return a new observable with the response
                     return of(response);
@@ -112,7 +140,7 @@ export class AuthService
     {
         // Renew token
         return this._httpClient.post('api/auth/refresh-access-token', {
-            accessToken: this.accessToken
+            accessToken: this.accessTokenUser
         }).pipe(
             catchError(() =>
 
@@ -122,7 +150,7 @@ export class AuthService
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.accessToken;
+                this.accessTokenUser = response.accessToken;
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
@@ -142,7 +170,7 @@ export class AuthService
     signOut(): Observable<any>
     {
         // Remove the access token from the local storage
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('accessTokenUser');
 
         // Set the authenticated flag to false
         this._authenticated = false;
@@ -158,86 +186,68 @@ export class AuthService
      */
     signUp(user: { firstName: string; lastName: string; email: string; cin: string; telephone: string; dateNaissance: string; agreements: any; pass1: string }): Observable<any>
     {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded'
-        });
-        let body = 'grant_type=client_credentials&client_id=admin-cli&client_secret=0b4a269a-7076-4c4b-8729-4b6d0e7f6548'
+            console.log("signUp")
+            console.log(this.accessTokenAdmin)
 
-        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, { headers: headers })
-            .pipe(
-                switchMap((response: any) => {
+            const headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.accessTokenAdmin
+            });
 
-                    console.log(response);
-                    // Return a new observable with the response
-
-                    const headers = new HttpHeaders({
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + response.access_token
-                    });
-
-                    console.log(response.access_token);
-
-                    let body = {
-                        "firstName": user.firstName,
-                        "lastName": user.lastName,
-                        "email": user.email,
-                        "enabled": "true",
-                        "username": user.firstName + '-' + user.lastName,
-                        "credentials": [
-                            {
-                                "type": "password",
-                                "value": user.pass1,
-                                "temporary": false
-                            }
-                        ]
+            let body = {
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "email": user.email,
+                "enabled": "true",
+                "username": user.email,
+                "credentials": [
+                    {
+                        "type": "password",
+                        "value": user.pass1,
+                        "temporary": false
                     }
+                ],
+                "attributes": {
+                    "cin": [user.cin],
+                    "telephone":[user.telephone],
+                    "dateNaissance":[user.dateNaissance]
+                }
+            }
 
-                    return this._httpClient.post('/auth/admin/realms/wafaimmo-siteweb/users', body, { headers: headers })
+            return this._httpClient.post('/auth/admin/realms/wafaimmo-siteweb/users', body, { headers: headers })
+                .pipe(
+                    switchMap((response: any) => {
+
+                        return this._httpClient.get('auth/admin/realms/wafaimmo-siteweb/users?username='+user.email, { headers: headers })
                         .pipe(
                             switchMap((response: any) => {
-
-                                // Return a new observable with the response
+                                this.userCreated = response[0].id
                                 return of(response);
                             })
-                        );
-                })
+                    );
+                    })
             );
     }
 
     sendMail(): Observable<any>
     {
         const headers = new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.accessTokenAdmin
         });
-        let body = 'grant_type=client_credentials&client_id=admin-cli&client_secret=0b4a269a-7076-4c4b-8729-4b6d0e7f6548'
 
-        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, { headers: headers })
+        let idCli = this.userCreated;
+
+        let body = {
+            "id": idCli,
+            "realm": "wafaimmo-siteweb"
+        }
+
+        return this._httpClient.put('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli+'/send-verify-email', body, { headers: headers })
             .pipe(
                 switchMap((response: any) => {
 
-                    console.log(response);
-                    // Return a new observable with the response
-
-                    const headers = new HttpHeaders({
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + response.access_token
-                    });
-
-                    console.log(response.access_token);
-
-                    let body = {
-                        "id": "22546a45-d824-49a3-afba-716a05d773da",
-                        "realm": "wafaimmo-siteweb"
-                    }
-
-                    return this._httpClient.put('/auth/admin/realms/wafaimmo-siteweb/users/22546a45-d824-49a3-afba-716a05d773da/send-verify-email', body, { headers: headers })
-                        .pipe(
-                            switchMap((response: any) => {
-
-                                // Return a new observable with the response
-                                return of(response);
-                            })
-                        );
+                    return of(response);
                 })
             );
     }
@@ -264,13 +274,13 @@ export class AuthService
         }
 
         // Check the access token availability
-        if ( !this.accessToken )
+        if ( !this.accessTokenUser )
         {
             return of(false);
         }
 
         // Check the access token expire date
-        if ( AuthUtils.isTokenExpired(this.accessToken) )
+        if ( AuthUtils.isTokenExpired(this.accessTokenUser) )
         {
             return of(false);
         }
