@@ -244,7 +244,7 @@ export class SimulationDetailleeService {
                             headers: headers,
                         };
 
-                        return this._httpClient.post('api/projects/search', { email: emailP }, httpOptions)
+                        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 }, httpOptions)
                             .pipe(
                                 map((response: Project[]) => {
 
