@@ -9,3 +9,16 @@ export interface DemandeCredit {
     nprojet?            : number;
     ndossier?           : string;
 }
+
+export interface CreditEnCours {
+    id              : number;
+    montant         : number;
+    mensuaite       : number;
+    crd             : number;
+    dureeRestante   : number;
+    duree           : number;
+    impayes         : number;
+    statut          : string;
+    dateCredit      : Date;
+    statutAS        : number;
+}
