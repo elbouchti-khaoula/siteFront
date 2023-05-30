@@ -12,6 +12,7 @@ import { demandeCreditRoutes } from './demande-credit.routing';
 import { ChangerAgenceModule } from './changer-agence/changer-agence.module';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         MatSidenavModule,
         ChangerAgenceModule,
         TableauAmortissementModule,
-        BienvenueModule
+        BienvenueModule,
+        CheckListModule
     ],
     exports     : [
         DemandeCreditComponent

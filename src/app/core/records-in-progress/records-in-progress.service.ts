@@ -34,7 +34,6 @@ export class RecordsInProgressService {
      * Get demande de crédit
      */
     getDemandesCredit(email: string): Observable<DemandeCredit[]> {
-        console.log("+-+-+- email", email);
 
         return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: email, mail: email })
             .pipe(

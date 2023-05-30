@@ -12,7 +12,6 @@ export class ProjetsService
     // Private
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
-    // private _projetFavori: BehaviorSubject<ProjetFavori | null> = new BehaviorSubject(null);
     private _projetsFavoris: BehaviorSubject<ProjetFavori[] | null> = new BehaviorSubject(null);
 
     /**
@@ -43,14 +42,6 @@ export class ProjetsService
     }
 
     /**
-     * Getter for projet favori
-     */
-    // get projetFavori$(): Observable<ProjetFavori>
-    // {
-    //     return this._projetFavori.asObservable();
-    // }
-
-    /**
      * Getter for projets favoris
      */
     get projetsFavoris$(): Observable<ProjetFavori[]>
@@ -69,13 +60,6 @@ export class ProjetsService
      */
     searchProjets(queryParams: { codeVille?: string; codeQuartier?: string; codeTypeBien?: string; prixMin?: number; prixMax?: number }): Observable<Projet[]>
     {
-        // const httpOptions = {
-        //     headers: { 'Content-Type': 'application/json' },
-        //     params: { ...queryParams}
-        // };
-        // return this._httpClient.get<Projet[]>('api/projets/search', httpOptions);
-        // return this._httpClient.get<Projet[]>('api/projets/search', { params: queryParams }
-        
         return this._httpClient.post<Projet[]>('api/real-estate-projects/search', queryParams)
             .pipe(
                 tap((projets: Projet[]) => {
@@ -264,7 +248,7 @@ export class ProjetsService
         })
             .pipe(
                 catchError(err1 => {
-                    // console.log("Error from first call: ", err1);
+                    console.log("Error from first call: ");
                     return throwError(() => err1);
                 }),
                 switchMap((response: ProjetFavori[]) => {
@@ -274,7 +258,7 @@ export class ProjetsService
                         return this.createProjetFavori(projetFavori)
                             .pipe(
                                 catchError(err2 => {
-                                    // console.log("Error from second call: ", err2);
+                                    console.log("Error from second call: ");
                                     return throwError(() => err2);
                                 })
                             );

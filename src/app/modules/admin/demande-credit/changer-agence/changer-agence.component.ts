@@ -144,8 +144,6 @@ export class ChangerAgenceComponent implements OnInit, OnDestroy {
             )
             .subscribe((response) => {
 
-                console.log("+-+-+- changer agence response", response);
-
                 // Open the confirmation dialog
                 const confirmation = this._fuseConfirmationService.open(
                     {

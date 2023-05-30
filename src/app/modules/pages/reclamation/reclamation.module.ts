@@ -12,6 +12,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatRippleModule,
         FuseCardModule,
         FuseAlertModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        CheckListModule
     ]
 })
 export class ReclamationModule

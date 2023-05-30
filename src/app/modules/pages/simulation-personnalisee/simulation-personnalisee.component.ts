@@ -10,7 +10,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
 import { SalesForceService } from 'app/core/salesforce/salesforce.service';
-import { resize } from 'app/modules/common/resize';
+import { resize } from '@fuse/animations/resize';
 import { UserService } from 'app/core/user/user.service';
 import { FuseUtilsService } from '@fuse/services/utils';
 
