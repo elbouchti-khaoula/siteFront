@@ -1,5 +1,4 @@
 import { RecaptchaFormsModule, RecaptchaModule } from "ng-recaptcha";
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { CaptchaComponent } from "./captcha.component";
 
@@ -15,4 +14,6 @@ import { CaptchaComponent } from "./captcha.component";
         CaptchaComponent
       ]
 })
-export class CaptchaModule {}
+export class CaptchaModule
+{
+}

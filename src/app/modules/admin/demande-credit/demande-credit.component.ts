@@ -1,17 +1,18 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { Subject, catchError, take, takeUntil, throwError } from 'rxjs';
+import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { SimulationDetaillee } from 'app/core/projects/projects.types';
-import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
+import { Piece } from 'app/core/upload-document/upload-document.types';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { SimulationDetailleeService } from 'app/core/projects/projects.service';
-import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
 import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
 import { Agence } from 'app/core/referentiel/referentiel.types';
+import { CheckListComponent } from 'app/modules/common/check-list/check-list.component';
+import { UploadDocumentService } from 'app/core/upload-document/upload-document.service';
 
 @Component({
   selector: 'demande-credit',
@@ -22,23 +23,17 @@ import { Agence } from 'app/core/referentiel/referentiel.types';
 })
 export class DemandeCreditComponent implements OnInit, OnDestroy {
 
-  @ViewChild(TableauAmortissementComponent) tableauAmortissementComponent;
+  @ViewChild(TableauAmortissementComponent) tableauAmortissementComponent: TableauAmortissementComponent;
+  @ViewChild(CheckListComponent) checkList: CheckListComponent;
   openedCard: number = 1;
   drawerOpened: boolean = false;
   simulationResultat: any;
 
-  @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
   documents: [] = [];
   pieces: Piece[] = [];
-  existePieceAttachee: boolean = false;
   agreements: boolean;
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
-
-  allowedTypesImg = ['image/jpeg', 'image/png'];
-  allowedTypes = ['image/jpeg', 'image/png', 'text/plain', 'application/pdf',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
   /**
    * Constructor
@@ -50,7 +45,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     private _simulationDetailleeService: SimulationDetailleeService,
     private _tableauAmortissementService: TableauAmortissementService,
     private _fuseConfirmationService: FuseConfirmationService,
-    private _compressImageService: CompressImageService
+    private _uploadDocumentService: UploadDocumentService
   ) {
     let agences: Agence[] = JSON.parse(localStorage.getItem('agences'));
     let data = this._router.getCurrentNavigation()?.extras?.state as SimulationDetaillee;
@@ -157,10 +152,8 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
 
           for (var i = 0; i < this.documents.length; i++) {
             this.pieces.push({
-              id: i + 1,
-              libelle: this.documents[i],
-              parent: 0,
-              files: []
+              libelleDocument: this.documents[i],
+              listFilesArray: []
             })
           }
         }
@@ -225,155 +218,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Upload file to given piece
-   *
-   * @param piece
-   * @param event
-   */
-  uploadPiece(pieceIndex: number, event: any): void {
-
-    var fileList: FileList = event.target.files;
-    // Return if canceled
-    if (!fileList.length) {
-      return;
-    }
-
-    const file = fileList[0];
-
-    // Return if the file is not allowed
-    if (!this.allowedTypes.includes(file.type)) {
-
-      // Open the dialog
-      this._fuseConfirmationService.open(
-        {
-          "title": "Joindre fichier",
-          "message": "Le type de fichier est incorrect",
-          "icon": {
-            "show": true,
-            "name": "heroicons_outline:information-circle",
-            "color": "warn"
-          },
-          "actions": {
-            "confirm": {
-              "show": true,
-              "label": "Ok",
-              "color": "warn"
-            },
-            "cancel": {
-              "show": false,
-              "label": "Cancel"
-            }
-          },
-          "dismissible": false
-        }
-      );
-
-      return;
-    }
-
-    // Return if the file is big
-    if (file.size > 5242880) {
-
-      // Open the dialog
-      this._fuseConfirmationService.open(
-        {
-          "title": "Joindre fichier",
-          "message": "Le fichier est volumineux",
-          "icon": {
-            "show": true,
-            "name": "heroicons_outline:information-circle",
-            "color": "warn"
-          },
-          "actions": {
-            "confirm": {
-              "show": true,
-              "label": "Ok",
-              "color": "warn"
-            },
-            "cancel": {
-              "show": false,
-              "label": "Cancel"
-            }
-          },
-          "dismissible": false
-        }
-      );
-
-      return;
-    }
-
-    if (this.allowedTypesImg.includes(file.type)) {
-
-      if (file.size > 1048576) {
-        console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
-
-        this._compressImageService.compress(file)
-          .pipe(take(1))
-          .subscribe((compressedImageFile: File) => {
-            console.log(`Image size after compressed: ${compressedImageFile.size} bytes.`);
-
-            // upload the compressed image
-            this.addFileToPiece(compressedImageFile, pieceIndex, true);
-
-          });
-      } else {
-        // upload the image without compressing
-        this.addFileToPiece(file, pieceIndex, true);
-      }
-
-    } else {
-      // upload the file
-      this.addFileToPiece(file, pieceIndex, false);
-    }
-
-  }
-
-  containsImage(pieceIndex: number): boolean {
-    return this.pieces[pieceIndex].files.some(fich => fich.isImage);
-  }
-
-  addFileToPiece(file: File, pieceIndex: number, estImage: boolean) {
-
-    this._readAsDataURL(file).then((data) => {
-
-      // Add the file to piece
-      this.pieces[pieceIndex].files.push({
-        fileIndex: this.pieces[pieceIndex].files.length,
-        fileName: file.name,
-        fileExtension: file.name,
-        isImage: estImage,
-        fileContent: data,
-        size: file.size
-      });
-
-      this.updatePiecesAttachees();
-
-      // console.log("+-+-+- file", file);
-      // console.log("+-+-+- this.pieces[pieceIndex].files", this.pieces[pieceIndex].files);
-
-      this._changeDetectorRef.detectChanges();
-    });
-
-  }
-
-  deleteFileFromPiece(fichier: Fichier, pieceIndex: number): void {
-    this.pieces[pieceIndex].files = this.pieces[pieceIndex].files.filter((x) => x != fichier);
-
-    const id = 'fileInput_' + pieceIndex;
-    for (const element of this.inputFiles) {
-      if (element.nativeElement.id === id) {
-        element.nativeElement.value = null;
-        element.nativeElement.files = null;
-        break;
-      }
-    }
-
-    this.updatePiecesAttachees();
-
-    this._changeDetectorRef.detectChanges();
-  }
-
-  /**
    * transformer en demande de crédit
    */
   transformer(): void {
@@ -389,6 +233,8 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
 
         if (response.codeStatut === "DINS") {
+
+          this.uploadCheckList();
 
           // Open the confirmation dialog
           const confirmation = this._fuseConfirmationService.open(
@@ -420,7 +266,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
             // If the confirm button pressed...
             if (result === 'confirmed') {
               setTimeout(() => {
-                this._router.navigate(['/espace-connecte']);
+                this._router.navigate(['/espace-connected-client']);
               }, 200);
             }
           });
@@ -428,6 +274,73 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
 
       });
 
+  }
+
+  uploadCheckList() {
+    // if (this.checkList.existePieceVide()) {
+
+    //   // Open the dialog
+    //   this._fuseConfirmationService.open(
+    //     {
+    //       "title": "Joindre fichier",
+    //       "message": "Veuillez joindre toutes les pièces",
+    //       "icon": {
+    //         "show": true,
+    //         "name": "heroicons_outline:information-circle",
+    //         "color": "warn"
+    //       },
+    //       "actions": {
+    //         "confirm": {
+    //           "show": true,
+    //           "label": "Ok",
+    //           "color": "warn"
+    //         },
+    //         "cancel": {
+    //           "show": false,
+    //           "label": "Cancel"
+    //         }
+    //       },
+    //       "dismissible": false
+    //     }
+    //   );
+
+    //   return;
+    // }
+
+    this.pieces.forEach((piece, index) => {
+      piece = {
+        id_projet: this.simulationResultat.id,
+        libelleDocument: piece.libelleDocument,
+        listFilesArray:
+          [...piece.listFilesArray.map(e => {
+            return {
+              nom: e.nom,
+              extension: e.extension,
+              binaire: e.binaire,
+              ordre: e.ordre
+            }
+          })]
+      }
+
+      console.log("+-+-+- piece index", piece, index);
+
+      if (piece.listFilesArray.length > 0) {
+
+        this._uploadDocumentService.uploadPiecesDemandesCredit(piece)
+          .pipe(
+            catchError((error) => {
+              // Log the error
+              console.error("+-+-+-+ demande crédit document error", error);
+              // Throw an error
+              return throwError(() => error);
+            }))
+          .subscribe((response) => {
+            console.log("+-+-+- demande crédit document success", response);
+          });
+
+      }
+
+    });
   }
 
   /**
@@ -438,46 +351,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
    */
   trackByFn(index: number, item: any): any {
     return item.id || index;
-  }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Private methods
-  // -----------------------------------------------------------------------------------------------------
-
-  private updatePiecesAttachees() {
-    for (const piece of this.pieces) {
-      this.existePieceAttachee = piece.files.some(fichier => fichier.fileName !== undefined && fichier.fileName !== null && fichier.fileName !== '');
-      if (this.existePieceAttachee) {
-        break;
-      }
-    }
-  }
-
-  /**
-   * Read the given file for demonstration purposes
-   *
-   * @param file
-   */
-  private _readAsDataURL(file: File): Promise<any> {
-    // Return a new promise
-    return new Promise((resolve, reject) => {
-
-      // Create a new reader
-      const reader = new FileReader();
-
-      // Resolve the promise on success
-      reader.onload = (): void => {
-        resolve(reader.result);
-      };
-
-      // Reject the promise on error
-      reader.onerror = (e): void => {
-        reject(e);
-      };
-
-      // Read the file as the
-      reader.readAsDataURL(file);
-    });
   }
 
 }

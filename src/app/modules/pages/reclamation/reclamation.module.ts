@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CaptchaModule } from '@fuse/captcha/captcha.module';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         FuseCardModule,
         FuseAlertModule,
         MatCheckboxModule,
-        FuseAlertModule,
+        CheckListModule,
         FormatTelephoneModule,
         ReactiveFormsModule,
         CommonModule,

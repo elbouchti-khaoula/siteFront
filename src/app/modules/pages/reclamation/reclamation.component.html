@@ -1,6 +1,7 @@
-<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<div class="absolute inset-0 flex flex-col min-w-0 md:overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 md:h-[90vh]">
+    <div class="h-full grid grid-cols-1 md:grid-cols-2">
+
         <div class="reclamation-bg-header min-h-80 md:h-full"></div>
 
         <div class="flex flex-auto md:overflow-hidden">
@@ -40,68 +41,8 @@
                             </mat-form-field>
 
                             <ng-container *ngIf="pieces.length > 0">
-                                <div
-                                    class="flex flex-col space-y-3 p-3 border border-gray-300 shadow-sm rounded-md mb-3 col-span-2">
-
-                                    <ng-container
-                                        *ngFor="let piece of pieces; let i = index; let last = last; trackBy: trackByFn">
-                                        <div class="grid grid-cols-9 items-start">
-                                            <!-- libelle document -->
-                                            <div class="flex flex-row items-center justify-between col-span-5 mt-1">
-                                                <span class="font-medium whitespace-nowrap truncate">
-                                                    {{piece.libelle}}
-                                                </span>
-                                                <span class="font-bold">&nbsp;:&nbsp;&nbsp;&nbsp;</span>
-                                            </div>
-                                            <!-- liste fichier joint par document -->
-                                            <div class="flex flex-row items-start col-span-4">
-                                                <!-- list -->
-                                                <div class="w-4/5 flex flex-col space-y-2 mt-1.5">
-
-                                                    <ng-container
-                                                        *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
-                                                        <div class="flex flex-row justify-between">
-                                                            <div class="text-md text-primary whitespace-nowrap truncate">
-                                                                {{fich.fileName}}
-                                                            </div>
-                                                            <button *ngIf="fich.fileName"
-                                                                class="ml-2 w-6 h-6 min-h-6 hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                                mat-icon-button (click)="deleteFileFromPiece(fich, i)">
-                                                                <mat-icon class="icon-size-4 text-warn"
-                                                                    [svgIcon]="'heroicons_solid:x'"></mat-icon>
-                                                            </button>
-                                                        </div>
-                                                        <!-- <img [src]="fich.fileContent"> -->
-                                                    </ng-container>
-                                                </div>
-
-                                                <!-- bouton upload file -->
-                                                <div class="ml-auto">
-                                                    <input id="fileInput_{{i}}"
-                                                        class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                        type="file" [multiple]="false"
-                                                        [accept]="'image/jpeg, image/png, text/plain, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                                        (change)="uploadPiece(i, $event)" #fileInput>
-                                                    <label
-                                                        class="flex items-center justify-center w-9 h-9 bg-card shadow rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                        for="fileInput_{{i}}" matRipple>
-                                                        <mat-icon class="icon-size-5"
-                                                            [svgIcon]="'mat_outline:attach_file'"></mat-icon>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mx-auto max-w-120 grid grid-cols-4 gap-2">
-                                            <ng-container *ngFor="let fich of piece.files">
-                                                <img *ngIf="fich.isImage" class="h-20 rounded object-cover"
-                                                    [src]="fich.fileContent" />
-                                            </ng-container>
-                                        </div>
-
-                                        <hr *ngIf="!last" class="w-full border-t">
-                                    </ng-container>
-
+                                <div class="flex flex-col space-y-3 p-3 border border-gray-300 shadow-sm rounded-md mb-3 col-span-2">
+                                    <check-list [pieces]="pieces"></check-list>
                                 </div>
                             </ng-container>
 
@@ -178,37 +119,6 @@
                                 </mat-error>
                             </mat-form-field>
 
-                            <!-- Ville -->
-                            <!-- <mat-form-field class="w-full"
-                                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
-                                </mat-icon>
-                                <mat-label class="max-md:text-sm max-md:font-semibold">Ville</mat-label>
-                                <mat-select
-                                    [formControlName]="'codeVille'">
-                                    <ng-container *ngFor="let ville of villes">
-                                        <mat-option [value]="ville.codeVille">
-                                            {{ville.description}}
-                                        </mat-option>
-                                    </ng-container>
-                                </mat-select>
-                                <mat-error *ngIf="reclamationForm.get('codeVille').hasError('codeVille')">
-                                    Ville obligatoire
-                                </mat-error>
-                            </mat-form-field> -->
-
-                            <!-- adresse -->
-                            <!-- <mat-form-field class="fuse-mat-no-subscript w-full col-span-2"
-                                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix>
-                                </mat-icon>
-                                <input matInput [formControlName]="'adresse'" [required]="true">
-                                <mat-label class="max-md:text-sm max-md:font-semibold">Adresse de correspondance</mat-label>
-                                <mat-error *ngIf="reclamationForm.get('adresse').hasError('required')">
-                                    Adresse obligatoire
-                                </mat-error>
-                            </mat-form-field> -->
-
                             <!-- Message -->
                             <mat-form-field class="fuse-mat-textarea w-full col-span-2">
                                 <textarea matInput [formControlName]="'text'" [required]="true" [rows]="3"
@@ -226,16 +136,24 @@
                             </mat-checkbox>
 
                         </div>
+
                         <div class="flex justify-center mt-9">
-                            <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
+                            <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
+                        </div>
+                        
                         <!-- Actions -->
                         <div class="flex items-center justify-end px-6 sm:px-10 mt-3">
-                            <button mat-stroked-button [color]="'accent'"
-                                [disabled]="reclamationForm.pristine || reclamationForm.untouched" (click)="clearForm()">
+                            <button mat-stroked-button
+                                [color]="'accent'"
+                                [disabled]="reclamationForm.pristine || reclamationForm.untouched"
+                                (click)="clearForm()">
                                 Vider
                             </button>
-                            <button class="ml-2" mat-flat-button [color]="'primary'"
-                                [disabled]="reclamationForm.pristine || reclamationForm.invalid || !isCaptchaValid" (click)="sendForm()">
+                            <button class="ml-2"
+                                mat-flat-button
+                                [color]="'primary'"
+                                [disabled]="reclamationForm.pristine || reclamationForm.invalid || !isCaptchaValid"
+                                (click)="sendForm()">
                                 Envoyer
                             </button>
                         </div>

@@ -1,15 +1,16 @@
 export interface Piece {
-	id              : number;
-	libelle         : string;
-	parent			: number;
-	files			: Fichier[];
+	parent?					: number;
+	id_projet?				: number;
+	idReclamation?          : number;
+	libelleDocument         : string;
+	listFilesArray			: Fichier[];
 }
 
 export interface Fichier {
-	fileIndex		: number;
-	fileName		: string | null;
-	fileExtension	: string | null;
-	fileContent		: string | null;
-	isImage			: boolean;
-	size			: number;
+	ordre			: number;
+	nom				: string | null;
+	extension		: string | null; // MimeType
+	binaire			: any;
+	isImage?		: boolean;
+	size?			: number;
 }
