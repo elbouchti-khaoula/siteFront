@@ -139,6 +139,8 @@ export class ReclamationComponent implements OnInit {
      * Send the form
      */
     sendForm(): void {
+        var telephonbeReplace = this.reclamationForm.get('telephone').value.replace(/-/gi,'');
+
         this._reclamationsService.createReclamationEtStatut(
             this.notAlerteEthique ?
                 {
@@ -146,7 +148,7 @@ export class ReclamationComponent implements OnInit {
                     prenom: this.reclamationForm.get('prenom').value,
                     cin: this.reclamationForm.get('cin').value,
                     email: this.reclamationForm.get('email').value,
-                    telephone: this.reclamationForm.get('telephone').value,
+                    telephone: telephonbeReplace,
                     motif: this.reclamationForm.get('motif').value,
                     motifLibelle: this.selectedMotifLabel,
                     text: this.reclamationForm.get('text').value,
@@ -162,7 +164,7 @@ export class ReclamationComponent implements OnInit {
                     prenom: this.reclamationForm.get('prenom').value,
                     cin: this.reclamationForm.get('cin').value,
                     email: this.reclamationForm.get('email').value,
-                    telephone: this.reclamationForm.get('telephone').value,
+                    telephone: telephonbeReplace,
                     text: this.reclamationForm.get('text').value,
                     dateReception: new Date(),
                     type: "AlerteEthique"
@@ -191,34 +193,7 @@ export class ReclamationComponent implements OnInit {
 
                 if (response && response.id != undefined && response.id != null) {
 
-                    this.pieces.forEach((piece, index) => {
-                        piece = {
-                            idReclamation: response.id,
-                            libelleDocument: piece.libelleDocument,
-                            listFilesArray:
-                                [...piece.listFilesArray.map(e => {
-                                    return {
-                                        nom: e.nom,
-                                        extension: e.extension,
-                                        binaire: e.binaire,
-                                        ordre: e.ordre
-                                    }
-                                })]
-                        }
-                        console.log("+-+-+- piece index", piece, index);
-
-                        this._uploadDocumentService.uploadPiecesReclamation(piece)
-                            .pipe(
-                                catchError((error) => {
-                                    // Log the error
-                                    console.error("+-+-+-+ GRC document error", error);
-                                    // Throw an error
-                                    return throwError(() => error);
-                                }))
-                            .subscribe((response) => {
-                                console.log("+-+-+- GRC document success", response);
-                            });
-                    });
+                    this.uploadCheckList(response.id);
 
                     this._showAlertMessage(
                         'success',
@@ -230,6 +205,48 @@ export class ReclamationComponent implements OnInit {
                 }
 
             });
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    private uploadCheckList(reclamationId: number) {
+
+        this.pieces.forEach((piece, index) => {
+            piece = {
+                idReclamation: reclamationId,
+                libelleDocument: piece.libelleDocument,
+                listFilesArray:
+                    [...piece.listFilesArray.map(e => {
+                        return {
+                            nom: e.nom,
+                            extension: e.extension,
+                            binaire: e.binaire,
+                            ordre: e.ordre
+                        }
+                    })]
+            }
+
+            console.log("+-+-+- piece index", piece, index);
+
+            if (piece.listFilesArray.length > 0) {
+
+                this._uploadDocumentService.uploadPiecesReclamation(piece)
+                    .pipe(
+                        catchError((error) => {
+                            // Log the error
+                            console.error("+-+-+-+ GRC document error", error);
+                            // Throw an error
+                            return throwError(() => error);
+                        }))
+                    .subscribe((response) => {
+                        console.log("+-+-+- GRC document success", response);
+                    });
+
+            }
+        });
+
     }
 
     /**

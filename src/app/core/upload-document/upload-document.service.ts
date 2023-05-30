@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Piece } from './upload-document.types';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { PayloadUpload, Piece } from './upload-document.types';
 
 @Injectable({
     providedIn: 'root'
@@ -33,15 +33,31 @@ export class UploadDocumentService {
     /**
      * upload piece jointe reclamation
      */
-    uploadPiecesReclamation(piece: Piece): Observable<any> {
-        return this._httpClient.post('api/upload/grc', piece, { responseType: 'text' });
+    uploadPiecesReclamation(piece: Piece): Observable<PayloadUpload> {
+        // return this._httpClient.post('api/upload/grc', piece, { responseType: 'text' });
+
+        return this._httpClient.post<PayloadUpload>('api/upload/grc', piece)
+            .pipe(
+                map((response: PayloadUpload) => {
+
+                    // Return a new observable with the response
+                    return response;
+                })
+            );
     }
 
     /**
      * upload piece jointe demande de crédit
      */
-    uploadPiecesDemandesCredit(piece: Piece): Observable<any> {
-        return this._httpClient.post('api/upload/wfdoc', piece, { responseType: 'text' });
+    uploadPiecesDemandesCredit(piece: Piece): Observable<PayloadUpload> {
+        return this._httpClient.post<PayloadUpload>('api/upload/wfdoc', piece)
+            .pipe(
+                map((response: PayloadUpload) => {
+
+                    // Return a new observable with the response
+                    return response;
+                })
+            );
     }
 
 }

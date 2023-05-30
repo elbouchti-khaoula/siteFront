@@ -290,15 +290,17 @@ export class CheckListComponent implements OnInit, OnDestroy {
     }
 
     private addFileToPiece(file: File, pieceIndex: number, estImage: boolean) {
-
+        
         this._readAsDataURL(file).then((data) => {
 
+            var strArray = data.split(',');
             // Add the file to piece
             this.pieces[pieceIndex].listFilesArray.push({
                 ordre: this.pieces[pieceIndex].listFilesArray.length + 1,
                 nom: file.name,
                 extension: file.type,
-                binaire: data,
+                binaire: strArray[1],
+                data: data,
                 isImage: estImage,
                 size: file.size
             });
@@ -347,18 +349,6 @@ export class CheckListComponent implements OnInit, OnDestroy {
                 break;
             }
         }
-    }
-
-    existePieceVide(): boolean {
-        var exist: boolean = false;
-        for (const piece of this.pieces) {
-            exist = piece.listFilesArray.length == 0
-                || piece.listFilesArray.some(fichier => fichier.nom == undefined || fichier.nom == null || fichier.nom == '');
-            if (exist) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

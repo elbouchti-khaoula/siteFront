@@ -276,40 +276,26 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
 
   }
 
-  uploadCheckList() {
-    // if (this.checkList.existePieceVide()) {
+  /**
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
+  trackByFn(index: number, item: any): any {
+    return item.id || index;
+  }
 
-    //   // Open the dialog
-    //   this._fuseConfirmationService.open(
-    //     {
-    //       "title": "Joindre fichier",
-    //       "message": "Veuillez joindre toutes les pièces",
-    //       "icon": {
-    //         "show": true,
-    //         "name": "heroicons_outline:information-circle",
-    //         "color": "warn"
-    //       },
-    //       "actions": {
-    //         "confirm": {
-    //           "show": true,
-    //           "label": "Ok",
-    //           "color": "warn"
-    //         },
-    //         "cancel": {
-    //           "show": false,
-    //           "label": "Cancel"
-    //         }
-    //       },
-    //       "dismissible": false
-    //     }
-    //   );
-
-    //   return;
-    // }
-
+  // -----------------------------------------------------------------------------------------------------
+  // @ private methods
+  // -----------------------------------------------------------------------------------------------------
+  
+  private uploadCheckList() {
     this.pieces.forEach((piece, index) => {
       piece = {
         id_projet: this.simulationResultat.id,
+        // id_dossier: 0,
+        // id_Tiers: 0,
         libelleDocument: piece.libelleDocument,
         listFilesArray:
           [...piece.listFilesArray.map(e => {
@@ -341,16 +327,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       }
 
     });
-  }
-
-  /**
-   * Track by function for ngFor loops
-   *
-   * @param index
-   * @param item
-   */
-  trackByFn(index: number, item: any): any {
-    return item.id || index;
   }
 
 }
