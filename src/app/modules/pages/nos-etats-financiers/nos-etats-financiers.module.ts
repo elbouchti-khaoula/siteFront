@@ -5,6 +5,8 @@ import { nosEtatsFinanciersRoutes } from './nos-etats-financiers.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
+import { ContactezNousModule } from '../landing/contactez-nous/contactez-nous.module';
+
 
 
 
@@ -16,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
         RouterModule.forChild(nosEtatsFinanciersRoutes),
         FuseCardModule,
         SharedModule,
+        ContactezNousModule,
         MatIconModule
     ]
 })

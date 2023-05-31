@@ -358,6 +358,23 @@ export class SimulationDetailleeService {
                 }));
     }
 
+            /**
+                 * count mes simulations
+                 */
+
+            getCountSimulation(email: string, cin:string): Observable<number> {
+                return this._httpClient.post<number>('api/projects/search/count', { origin: "SITE", cin: "B727021", mail: email })
+                .pipe(
+                    map((response: number) => response)
+                );
+            }
+
+
+
+
+
+
+
     // -----------------------------------------------------------------------------------------------------
     // @ utils methods
     // -----------------------------------------------------------------------------------------------------
