@@ -349,14 +349,19 @@ export class ReferentielService {
 
 
 
-    downloadPDF(id: number) {
-        this._httpClient.get('/api/repositories/document/' + id, { responseType: 'blob' })
+       downloadPDF(id:number,fileName: String) {
+
+
+
+
+        
+        this._httpClient.get('/api/repositories/document/'+id, { responseType: 'blob' })
             .subscribe((blob: any) => {
                 //const blob = new Blob([response.body], { type: 'application/pdf' });
                 // const filename = 'Demande Client Financier.pdf';
-                saveAs(blob, "test.pdf");
+                saveAs(blob, fileName);
             });
-    }
+        }
 
 }
 
