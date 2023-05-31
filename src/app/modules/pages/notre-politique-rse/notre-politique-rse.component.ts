@@ -5,6 +5,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { DocumentInstitutionnel } from 'app/core/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { saveAs } from "file-saver";
+import { HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'notre-politique-rse',
@@ -22,8 +23,7 @@ export class NotrePolitiqueRseComponent implements OnInit, OnDestroy {
     * Constructor
     */
     constructor(
-
-
+        private _httpClient: HttpClient,
         private _changeDetectorRef: ChangeDetectorRef,
         private _referentielService: ReferentielService) {
     }
@@ -51,8 +51,10 @@ export class NotrePolitiqueRseComponent implements OnInit, OnDestroy {
 
   
     telecharger() {
-        this._referentielService.telecharger();
+        this._httpClient.get('/assets/file/Charte RSE. VF.pdf', { responseType: 'blob' })
+            .subscribe((blob: any) => {
+                saveAs(blob, "charte.pdf");
+       });
     }
-    
 
 }

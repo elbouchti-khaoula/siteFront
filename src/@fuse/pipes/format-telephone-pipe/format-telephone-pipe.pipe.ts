@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatTelephonePipe implements PipeTransform {
   transform(value: string): string {
     if (!value) {
-      return value; // Renvoie la valeur d'origine si elle est nulle
+      return value; // si elle est nulle
     }
 
     const numericValue = value.replace(/\D/g, '');

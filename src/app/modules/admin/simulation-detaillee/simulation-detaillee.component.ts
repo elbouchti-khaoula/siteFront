@@ -14,7 +14,6 @@ import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.compo
 import { FuseUtilsService } from '@fuse/services/utils';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
-import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
 import { Observable, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
@@ -225,24 +224,23 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.employeurs$ = this._simulationService.employeurs$;
     this._simulationService.getEmployeursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeurConventionne[]) => {
         this.listEmployeurs = employeur;
-
+       
         this._changeDetectorRef.markForCheck();
       });
-
-    this.promoteurs$ = this._simulationService.promoteurs$;
+      this.employeurs$ = this._simulationService.employeurs$;
+    
     this._simulationService.getPromoteursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((promoteur: PromoteurConventionne[]) => {
         this.listPromoteurs = promoteur;
-
+        
         this._changeDetectorRef.markForCheck();
       });
-
+      this.promoteurs$ = this._simulationService.promoteurs$;
     this.searchEmployeurControl.valueChanges
       .pipe(
         debounceTime(this.debounce),

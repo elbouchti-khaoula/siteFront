@@ -14,6 +14,4 @@ import { CaptchaComponent } from "./captcha.component";
         CaptchaComponent
       ]
 })
-export class CaptchaModule
-{
-}
+export class CaptchaModule {}
