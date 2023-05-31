@@ -72,7 +72,7 @@ export class UserService
                     dateNaissance : attrib!= undefined && attrib.dateNaissance!= undefined ?response[0].attributes.dateNaissance[0]:null,
                     statut        : null, 
                     avatar        : null,
-                    status        : null
+                    status        : 'online'
                 }
                this._user.next(user);
             })

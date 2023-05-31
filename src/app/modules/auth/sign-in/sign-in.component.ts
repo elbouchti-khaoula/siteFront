@@ -77,7 +77,7 @@ export class AuthSignInComponent implements OnInit
         this._authService.signIn(this.signInForm.value)
             .subscribe(
                 () => {
-                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/espace-connected-client';
+                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/espace-connecte';
 
                     // Navigate to the redirect url
                     this._router.navigateByUrl(redirectURL);

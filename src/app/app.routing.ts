@@ -63,19 +63,19 @@ export const appRoutes: Route[] = [
         },
         children: [
 
-            {
-                path: 'espace-connected-client',
-                loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
-            },
+            // {
+            //     path: 'espace-connected-client',
+            //     loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
+            // },
 
             // espace connecté
-            
             {
                 path: 'espace-connecte',
                 children: [
                     {
                         path: '',
-                        loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                        // loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                        loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
                     },
                     {
                         path: 'simulation-detaillee',
@@ -128,8 +128,8 @@ export const appRoutes: Route[] = [
     // Pages routes
     {
         path       : '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
+        // canActivate: [NoAuthGuard],
+        // canActivateChild: [NoAuthGuard],
         component  : LayoutComponent,
         resolve    : {
             initialData: InitialDataResolver,

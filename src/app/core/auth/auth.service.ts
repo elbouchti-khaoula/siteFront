@@ -100,8 +100,6 @@ export class AuthService
     signIn(credentials: { email: string; password: string }): Observable<any>
     {
 
-        console.log("signIn")
-
         // Throw error, if the user is already logged in
         if ( this._authenticated )
         {
@@ -119,8 +117,6 @@ export class AuthService
 
                     // Store the access token in the local storage
                     localStorage.setItem('accessTokenUser', response.access_token);
-
-                    console.log("accessTokenUser : "+response.access_token)
 
                     // Set the authenticated flag to true
                     this._authenticated = true;
