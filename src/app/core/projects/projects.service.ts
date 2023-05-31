@@ -447,61 +447,60 @@ export class SimulationDetailleeService {
     getEmployeursConventionnes(): Observable<EmployeurConventionne[]> {
 
         return this._projectAuthService.getToken()
-            .pipe(
-                switchMap((token: string) => {
+        .pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
 
-                    if (token != undefined && token != '') {
+                        'Authorization': `Bearer ${token}`
+                    });
 
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.post<EmployeurConventionne[]>(
-                            'api/projects/referentiel',
-                            { referentiel: "EmployeurConventionne" },
-                            { headers: headers }
-                        ).pipe(
-                            tap((response: EmployeurConventionne[]) => {
-                                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                                this._employeurs.next(response);
-                            })
-                        );
-                    }
-                    return EMPTY;
-                })
-            );
+                    return this._httpClient.post<EmployeurConventionne[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "employeursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: EmployeurConventionne[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            this._employeurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
     }
+
 
     /**
       * Get promoteurs
       */
     getPromoteursConventionnes(): Observable<PromoteurConventionne[]> {
         return this._projectAuthService.getToken()
-            .pipe(
-                switchMap((token: string) => {
+        .pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
 
-                    if (token != undefined && token != '') {
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
+                        'Authorization': `Bearer ${token}`
+                    });
 
-                        return this._httpClient.post<PromoteurConventionne[]>(
-                            'api/projects/referentiel',
-                            { referentiel: "PromoteurConventionne" },
-                            { headers: headers }
-                        ).pipe(
-                            tap((response: PromoteurConventionne[]) => {
-                                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                                this._promoteurs.next(response);
-                            })
-                        );
-                    }
-                    return EMPTY;
-                })
-            );
+                    return this._httpClient.post<PromoteurConventionne[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "promoteursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: PromoteurConventionne[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            this._promoteurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
     }
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods

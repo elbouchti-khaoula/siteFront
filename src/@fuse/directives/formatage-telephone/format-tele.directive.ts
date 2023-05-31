@@ -36,6 +36,7 @@ export class FormatTelephoneDirective implements OnInit {
     } else {
       this.elementRef.nativeElement.value = formattedValue;
     }
+    console.log(this.elementRef.nativeElement.value)
   }
 
   private clearInput() {

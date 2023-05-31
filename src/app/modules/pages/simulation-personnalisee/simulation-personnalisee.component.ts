@@ -13,7 +13,6 @@ import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { resize } from '@fuse/animations/resize';
 import { UserService } from 'app/core/user/user.service';
 import { FuseUtilsService } from '@fuse/services/utils';
-import { CaptchaService } from '@fuse/captcha/Captcha.service';
 
 @Component({
   selector: 'simulation-personnalisee',

@@ -357,16 +357,6 @@ export class ReferentielService {
                 saveAs(blob, "test.pdf");
             });
     }
-  
-    telecharger() {
-        this._httpClient.get('/assets/file/Charte RSE. VF.pdf', { responseType: 'blob' })
-            .subscribe((blob: any) => {
-                saveAs(blob, "test.pdf");
-            });
-    }
-    
 
-   
-      
 }
 
