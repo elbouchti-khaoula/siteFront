@@ -305,7 +305,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         nom: this.simulationForm.get('nom').value,
         prenom: this.simulationForm.get('prenom').value,
         email: this.simulationForm.get('email').value,
-        telephone: this.simulationForm.get('telephone').value,
+        telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
         nationaliteCode: this.simulationForm.get('nationaliteCode').value,
         residentMarocain: this.simulationForm.get('residentMarocain').value,
         cspCode: this.simulationForm.get('cspCode').value,
@@ -384,7 +384,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
             {
               nom             : this.simulationForm.get('nom').value,
               prenom          : this.simulationForm.get('prenom').value,
-              telephone       : this.simulationForm.get('telephone').value,
+              telephone       : this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
               email           : this.simulationForm.get('email').value,
               nationaliteCode : this.simulationForm.get('nationaliteCode').value,
               residentMarocain: this.simulationForm.get('residentMarocain').value,

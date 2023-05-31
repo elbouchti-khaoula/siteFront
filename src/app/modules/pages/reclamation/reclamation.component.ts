@@ -139,7 +139,7 @@ export class ReclamationComponent implements OnInit {
      * Send the form
      */
     sendForm(): void {
-        var telephonbeReplace = this.reclamationForm.get('telephone').value.replace(/-/gi,'');
+        var telephonbeReplace = this.reclamationForm.get('telephone').value.replace(/-/g, '').substring(0, 10);
 
         this._reclamationsService.createReclamationEtStatut(
             this.notAlerteEthique ?

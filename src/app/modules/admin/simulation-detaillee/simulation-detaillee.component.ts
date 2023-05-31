@@ -477,7 +477,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
         autresRevenus: Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')),
         creditsEnCours: Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')),
-        telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+        telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
         email: this.simulationStepperForm.get('step1').get('email').value,
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
@@ -503,7 +503,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           // Mon profil
           nom: this.simulationStepperForm.get('step1').get('nom').value,
           prenom: this.simulationStepperForm.get('step1').get('prenom').value,
-          telephone: this.simulationStepperForm.get('step1').get('telephone').value,
+          telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
           email: this.simulationStepperForm.get('step1').get('email').value,
           dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
           nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
