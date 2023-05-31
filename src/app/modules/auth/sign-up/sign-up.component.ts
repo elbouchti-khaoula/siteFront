@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import { Subject } from 'rxjs';
+import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
 
 @Component({
     selector     : 'sign-up',
@@ -18,6 +19,12 @@ export class AuthSignUpComponent implements OnInit
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+    countdown: number = 3;
+    countdownMapping: any = {
+        '=1'   : '# second',
+        'other': '# seconds'
+    };
+
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',
         message: ''
@@ -30,7 +37,8 @@ export class AuthSignUpComponent implements OnInit
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder
+        private _formBuilder: UntypedFormBuilder,
+        private _router: Router
     )
     {
     }
@@ -103,6 +111,18 @@ export class AuthSignUpComponent implements OnInit
                                     type   : 'success',
                                     message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
                                 };
+
+                                // Redirect after the countdown
+                                timer(1000, 1000)
+                                .pipe(
+                                    finalize(() => {
+                                        this._router.navigate(['landing']);
+                                    }),
+                                    takeWhile(() => this.countdown > 0),
+                                    takeUntil(this._unsubscribeAll),
+                                    tap(() => this.countdown--)
+                                )
+                                .subscribe();
                             },
                             (response) => {
 
@@ -115,9 +135,9 @@ export class AuthSignUpComponent implements OnInit
                     
                     // Show the alert
                     this.showAlert = true;
+
                 },
                 (response) => {
-
 
                     if (response.status == 409) {
                         this.alert = {
@@ -126,6 +146,11 @@ export class AuthSignUpComponent implements OnInit
                         };
                     }
                     else {
+
+                        // Delete user
+
+                        this._authService.sendMail().subscribe();
+
                         this.alert = {
                             type: 'error',
                             message: 'Une erreur s\'est produite.'
