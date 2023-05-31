@@ -199,16 +199,6 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
             },
 
-            // not used
-            {
-                path: 'landingBis',
-                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
-            },
-            {
-                path: 'nous-connaitre-old',
-                loadChildren: () => import('app/modules/pages/nous-connaitre-old/nous-connaitre-old.module').then(m => m.NousConnaitreOldModule),
-            },
-
             // Maintenance
             {
                 path: 'maintenance',
