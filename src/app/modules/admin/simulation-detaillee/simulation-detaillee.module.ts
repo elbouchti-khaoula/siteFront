@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
 import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
-import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CaptchaModule } from 'app/core/captcha/captcha.module';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     declarations: [

@@ -3,4 +3,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    @media (max-width: 959px) {
+        background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url('/assets/images/pages/marketplace/header-sm.jpg');
+    }
 }

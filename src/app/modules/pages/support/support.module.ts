@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FuseCardModule } from '@fuse/components/card';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CaptchaModule } from 'app/core/captcha/captcha.module';
 import { CommonModule } from '@angular/common';
 @NgModule({
     declarations: [
@@ -25,8 +25,6 @@ import { CommonModule } from '@angular/common';
         MatInputModule,
         FuseCardModule,
         FormatTelephoneModule,
-        ReactiveFormsModule,
-        CommonModule,
         CaptchaModule
     ]
 })

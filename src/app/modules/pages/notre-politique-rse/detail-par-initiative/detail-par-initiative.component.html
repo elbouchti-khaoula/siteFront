@@ -1,38 +1,37 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
-  <header class=" py-10 sm:pt-18 sm:pb-20  notre-rse-bg-header">
-    <div class="w-full max-w-400  max-h-20 px-10 sm:px-32">
-      <div class="flex flex-col sm:text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight  text-white   ">
-         Nos Initiatives RSE
+  <header class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 notre-rse-bg-header">
+    <div class="w-full max-w-400 mx-auto min-h-30 md:min-h-20 ">
+      <div class="flex flex-col items-start justify-start sm:text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight  text-white   ">
+        Nos Initiatives RSE
       </div>
     </div>
   </header>
 
-  <header class="py-10 sm:pt-18 sm:pb-20 initiative-bg  md:h-80 ">
-    <div class="w-full max-w-400 mx-auto flex items-center max-h-20">
-    <div class="flex flex-col items-end  item-center  justify-between sm:text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary  pl-10 sm:pl-32 ">
-      <span class="md:w-1/2 sm:w-full">WAFA IMMOBILIER sensibilise ses collaborateurs par rapport à l'utilisation raisonné du papier</span> 
+  <header class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 initiative-bg ">
+    <div class="w-full max-w-400 mx-auto min-h-80 md:min-h-76 ">
+      <div class="flex flex-col items-end justify-between ">
+        <span class="md:w-1/2 sm:w-full sm:text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+          WAFA IMMOBILIER sensibilise ses collaborateurs par rapport à l'utilisation raisonné du papier
+        </span>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-card">
 
+    <div class="w-full max-w-400 mx-auto">
 
-  
-  <section class="py-5 sm:pt-18 sm:pb-20  bg-card">
+      <div class="flex flex-col justify-between">
 
-    <div class="w-full grid grid-cols-1">
-      <!-- left -->
-      <div class=" md:col-span-2 flex flex-col item-start justify-between ">
-      
-        <div class="flex flex-col item-center  md:text-2xl font-medium tracking-tight leading-tight text-gray-700  px-10 sm:px-32">
+        <div class="flex flex-col item-center md:text-lg font-medium tracking-tight leading-tight">
           <div>
             25% des documents sont jetés 5 minutes après leur impression ! Avec un tel gaspillage,
             pas étonnant qu'on utilise 3 ramettes de papier par mois en moyenne.
 
           </div>
           <div class="mt-10">
-            Face à ce constat, Wafa Immobilier a lancé une campagne pour sensibiliser ses collaborateurs, 
+            Face à ce constat, Wafa Immobilier a lancé une campagne pour sensibiliser ses collaborateurs,
             aussi bien au niveau du siège que des agences, afin de lutter contre le gaspillage
             du papier.
           </div>
@@ -46,42 +45,36 @@
             RSE de l'entreprise. </div>
         </div>
 
-        <div class="md:flex md:flex-row md:items-center md:justify-between sm:grid sm:grid-cols-1  mt-10 px-10 max-w-400  pl-10 sm:pl-32 " >
+        <!-- px-10 pl-10 sm:pl-32 -->
+        <div class="flex flex-col md:flex-row items-center justify-center mt-10">
 
-            <!--button class="text-white text-center mt-2  md:ml-3 md:px-3  "
+          <!--button class="text-white text-center mt-2  md:ml-3 md:px-3  "
               mat-flat-button
               [color]="'primary'"
               [routerLink]="'/notre-politique-rse'">
               Voir d'autres initiatives RSE
               </button-->
 
-             <button class="text-white text-center mt-2  md:ml-3 md:px-3  "
-                  mat-flat-button
-                  [color]="'primary'"
-                  [routerLink]="'/notre-politique-rse'">
-                  Revenir à "démarche RSE"
-                  
-                </button>
+          <button class="text-white text-center mt-2  md:ml-3 md:px-3  " mat-flat-button [color]="'primary'"
+            [routerLink]="'/notre-politique-rse'">
+            Revenir à "démarche RSE"
 
-             <button class="text-white text-center mt-2  md:ml-3 md:px-3  "
-                  mat-flat-button
-                  [color]="'primary'"
-                  [routerLink]="'/nos-offres-miftah'">
-                  Découvrir nos produits
-                </button>
+          </button>
 
-        
+          <button class="text-white text-center mt-2  md:ml-3 md:px-3  " mat-flat-button [color]="'primary'"
+            [routerLink]="'/nos-offres-miftah'">
+            Découvrir nos produits
+          </button>
+
+
 
         </div>
       </div>
 
-
     </div>
-  
+
   </section>
 
-
   <contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
-
 
 </div>

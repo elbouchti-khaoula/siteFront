@@ -13,7 +13,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CaptchaModule } from 'app/core/captcha/captcha.module';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -35,8 +35,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatCheckboxModule,
         FuseAlertModule,
         FormatTelephoneModule,
-        ReactiveFormsModule,
-        CommonModule,
         CaptchaModule
     ]
 })

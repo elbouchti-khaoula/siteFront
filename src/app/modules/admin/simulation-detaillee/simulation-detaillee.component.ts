@@ -3,8 +3,8 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { CategorieSocioProfessionnelle, EmployeursConventionnes, Nationalite, ObjetFinancement, PromoteursConventionnes } from 'app/core/referentiel/referentiel.types';
-import { SimulationDetaillee } from 'app/core/projects/projects.types';
+import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
+import { EmployeurConventionne, PromoteurConventionne, SimulationDetaillee } from 'app/core/projects/projects.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import * as moment from 'moment';
@@ -35,19 +35,19 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   @ViewChild('matAutocompletePromoteur') matAutocompletePromoteur: MatAutocomplete;
   @ViewChild('matAutocompleteEmployeur') matAutocompleteEmployeur: MatAutocomplete;
   isCaptchaValid: boolean = false;
-  
+
   resultEmployeurs: any[];
   searchEmployeurControl: UntypedFormControl = new UntypedFormControl();
 
   resultPromoteurs: any[];
   searchPromoteurControl: UntypedFormControl = new UntypedFormControl();
 
-  employeurs: EmployeursConventionnes[];
-  employeurs$: Observable<EmployeursConventionnes[]>;
-  promoteurs: PromoteursConventionnes[];
-  promoteurs$: Observable<PromoteursConventionnes[]>;
-  listEmployeurs: EmployeursConventionnes[];
-  listPromoteurs: PromoteursConventionnes[];
+  employeurs: EmployeurConventionne[];
+  employeurs$: Observable<EmployeurConventionne[]>;
+  promoteurs: PromoteurConventionne[];
+  promoteurs$: Observable<PromoteurConventionne[]>;
+  listEmployeurs: EmployeurConventionne[];
+  listPromoteurs: PromoteurConventionne[];
 
 
   @ViewChild(DetailsSimulationComponent) detailsSimulation;
@@ -106,9 +106,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _referentielService: ReferentielService,
     private _simulationService: SimulationDetailleeService,
-    private _fuseUtilsService: FuseUtilsService,
-    private decimalPipe: DecimalPipe,
-    private currencyPipe: CurrencyPipe
+    private _fuseUtilsService: FuseUtilsService
   ) {
 
     // Horizontal stepper form
@@ -226,27 +224,24 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
-    this._referentielService.getEmployeursConventionnes().pipe(
+
+    this.employeurs$ = this._simulationService.employeurs$;
+    this._simulationService.getEmployeursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
-      .subscribe((employeur: EmployeursConventionnes[]) => {
+      .subscribe((employeur: EmployeurConventionne[]) => {
         this.listEmployeurs = employeur;
 
         this._changeDetectorRef.markForCheck();
       });
 
-
-    this.employeurs$ = this._referentielService.employeurs$;
-
-    this._referentielService.getPromoteursConventionnes().pipe(
+    this.promoteurs$ = this._simulationService.promoteurs$;
+    this._simulationService.getPromoteursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
-      .subscribe((promoteur: PromoteursConventionnes[]) => {
+      .subscribe((promoteur: PromoteurConventionne[]) => {
         this.listPromoteurs = promoteur;
 
         this._changeDetectorRef.markForCheck();
       });
-
-
-    this.promoteurs$ = this._referentielService.promoteurs$;
 
     this.searchEmployeurControl.valueChanges
       .pipe(
@@ -406,15 +401,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  /* formatMontant(montant: number): string {
-     const montantFormate = this.decimalPipe.transform(montant, '1.2-2', 'fr-FR');
-     const montantAvecEspaces = montantFormate.replace('.', ' ');
-     const montantAvecDecimales = this.currencyPipe.transform(montant, 'Dhs', 'symbol', '1.2-2', 'fr-FR');
-     return montantAvecEspaces + montantAvecDecimales.substring(montantAvecEspaces.length);
- }*/
-  getEmployeurs(
-    search: string = ''
-  ): Observable<EmployeursConventionnes[]> {
+  getEmployeurs(search: string = ''): Observable<EmployeurConventionne[]> {
     return this.employeurs$.pipe(
       map((response) => {
         console.log(response);
@@ -428,9 +415,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPromoteurs(
-    search: string = ''
-  ): Observable<PromoteursConventionnes[]> {
+  getPromoteurs(search: string = ''): Observable<PromoteurConventionne[]> {
     return this.promoteurs$.pipe(
       map((response) => {
         console.log(response);
@@ -499,7 +484,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-console.log(critere);
+    console.log(critere);
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
@@ -605,10 +590,10 @@ console.log(critere);
   }
 
   /**
- * Setter for bar search input
- *
- * @param value
- */
+   * Setter for bar search input
+   *
+   * @param value
+   */
   @ViewChild('barSearchInput')
   set barSearchInput(value: ElementRef) {
     if (value) {

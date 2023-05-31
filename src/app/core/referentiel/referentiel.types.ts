@@ -63,16 +63,6 @@ export interface OperationSAVRef {
     nomOperation?: string;
     codeOperation: string | null;
 }
-export interface EmployeursConventionnes
-{
-    code?       : string;
-    libelle?    : string;
-}
-export interface PromoteursConventionnes
-{
-    code?       : string;
-    libelle?    : string;
-}
 
 export interface DocumentInstitutionnel {
     id?: number;
