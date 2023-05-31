@@ -46,8 +46,6 @@ export class UserService
      */
     get(username: string): Observable<User>
     {
-        console.log("get user")
-
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem("accessTokenAdmin")
@@ -56,6 +54,7 @@ export class UserService
         return this._httpClient.get<User>('auth/admin/realms/wafaimmo-siteweb/users?username='+username, { headers: headers }).pipe(
             tap((response) => {
 
+                console.log("Get User : ");
                 console.log(response[0]);
                
                 let attrib = response[0].attributes;

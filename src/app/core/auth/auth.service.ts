@@ -11,6 +11,7 @@ export class AuthService
     private _authenticated: boolean = false;
 
     private userCreated: string;
+    public userMailVerified: boolean;
 
     /**
      * Constructor
@@ -66,6 +67,16 @@ export class AuthService
         return localStorage.getItem('accessTokenUser') ?? '';
     }
 
+    get getAuthenticated(): boolean
+    {
+        return this._authenticated;
+    }
+
+    set setAuthenticated(value: boolean)
+    {
+        this._authenticated = value;
+    }
+
     //
 
     // -----------------------------------------------------------------------------------------------------
@@ -115,16 +126,26 @@ export class AuthService
             .pipe(
                 switchMap((response: any) => {
 
-                    // Store the access token in the local storage
-                    localStorage.setItem('accessTokenUser', response.access_token);
+                    const headers = new HttpHeaders({
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + this.accessTokenAdmin
+                    });
 
-                    // Set the authenticated flag to true
-                    this._authenticated = true;
+                    return this._httpClient.get('auth/admin/realms/wafaimmo-siteweb/users?username='+credentials.email, { headers: headers })
+                        .pipe(
+                            switchMap((response2: any) => {
 
-                    this._userService.get(credentials.email).subscribe();
+                                // Store the access token in the local storage
+                                localStorage.setItem('accessTokenUser', response.access_token);
 
-                    // Return a new observable with the response
-                    return of(response);
+                                this.userMailVerified = response2[0].emailVerified;
+                                
+                                // Return a new observable with the response
+                                return of(response);
+                            })
+                        );
+       
+
                 })
             );
     }
@@ -182,8 +203,6 @@ export class AuthService
      */
     signUp(user: { firstName: string; lastName: string; email: string; cin: string; telephone: string; dateNaissance: string; agreements: any; pass1: string }): Observable<any>
     {
-            console.log("signUp")
-            console.log(this.accessTokenAdmin)
 
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -240,6 +259,25 @@ export class AuthService
         }
 
         return this._httpClient.put('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli+'/send-verify-email', body, { headers: headers })
+            .pipe(
+                switchMap((response: any) => {
+
+                    return of(response);
+                })
+            );
+    }
+
+    deleteUser() : Observable<any>
+    {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.accessTokenAdmin
+        });
+
+        let idCli = this.userCreated;
+
+
+        return this._httpClient.delete('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli, { headers: headers })
             .pipe(
                 switchMap((response: any) => {
 
