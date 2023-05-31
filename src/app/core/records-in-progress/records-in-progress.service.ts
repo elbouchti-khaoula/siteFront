@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { DemandeCredit } from './records-in-progress.types';
+import { CreditEnCours, DemandeCredit } from './records-in-progress.types';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +9,7 @@ import { DemandeCredit } from './records-in-progress.types';
 export class RecordsInProgressService {
     // Private
     private _demandesCredit: BehaviorSubject<DemandeCredit[] | null> = new BehaviorSubject(null);
+    private _creditsEnCours: BehaviorSubject<CreditEnCours[] | null> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -27,6 +28,13 @@ export class RecordsInProgressService {
         return this._demandesCredit.asObservable();
     }
 
+    /**
+     * Getter for crédits en cours
+     */
+    get creditsEnCours$(): Observable<CreditEnCours[]> {
+        return this._creditsEnCours.asObservable();
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -34,7 +42,6 @@ export class RecordsInProgressService {
      * Get demande de crédit
      */
     getDemandesCredit(email: string): Observable<DemandeCredit[]> {
-        console.log("+-+-+- email", email);
 
         return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: email, mail: email })
             .pipe(
@@ -45,6 +52,18 @@ export class RecordsInProgressService {
             );
     }
 
+    /**
+     * Get Crédits en cours
+     */
+    getCreditsEnCours(email: string): Observable<CreditEnCours[]> {
 
+        return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: "640891", mail: "" })
+            .pipe(
+                tap((response: CreditEnCours[]) => {
+
+                    this._creditsEnCours.next(response);
+                })
+            );
+    }
 
 }

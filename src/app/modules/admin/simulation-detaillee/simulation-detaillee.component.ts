@@ -8,7 +8,7 @@ import { EmployeurConventionne, PromoteurConventionne, SimulationDetaillee } fro
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import * as moment from 'moment';
-import { resize } from 'app/modules/common/resize';
+import { resize } from '@fuse/animations/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
 import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.component';
 import { FuseUtilsService } from '@fuse/services/utils';
@@ -484,7 +484,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-    console.log(critere);
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
@@ -516,7 +515,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
           // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
           salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value + this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
-          // autresRevenus: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
           creditsEnCours: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('creditsEnCours').value, 2, '.', ' '),
           // Mon projet
           objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
@@ -532,46 +530,12 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         }
         this.isVisible = true;
 
-        // setTimeout(() => {
-        //   this.detailsSimulation.setSimulation(this.simulationResultat);
-        // }, 200);
-
         if (this.isScreenSmall) {
           setTimeout(() => {
             // Scroll to result
             this.resultat.nativeElement.scrollIntoView({ behavior: "smooth" });
           }, 200);
         }
-
-        // Add query params using the router
-        // this._router.navigate([], {
-        //   // fragment: '',
-        //   queryParams: {
-        //     // Mon profil
-        //     nom: this.simulationStepperForm.get('step1').get('nom').value,
-        //     prenom: this.simulationStepperForm.get('step1').get('prenom').value,
-        //     telephone: this.simulationStepperForm.get('step1').get('telephone').value,
-        //     email: this.simulationStepperForm.get('step1').get('email').value,
-        //     dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-        //     nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
-        //     residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
-        //     // ma situation
-        //     categorieSocioProfessionnelle: this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value,
-        //     nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
-        //     salaire: this.simulationStepperForm.get('step2').get('salaire').value,
-        //     autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value,
-        //     creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value,
-        //     // Mon projet
-        //     montant: this.simulationStepperForm.get('step3').get('montant').value,
-        //     objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
-        //     montantProposition: this.simulationStepperForm.get('step3').get('montantProposition').value,
-        //     duree: this.simulationStepperForm.get('step3').get('duree').value,
-        //     nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
-        //     statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
-        //     typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
-        //   },
-        //   relativeTo: this._activatedRoute
-        // });
 
         // Mark for check
         this._changeDetectorRef.markForCheck();

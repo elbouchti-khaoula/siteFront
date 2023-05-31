@@ -1,7 +1,5 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
-   
-
     <!-- Header -->
     <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 simul-bg-header">
         <div class="w-full max-w-400">
@@ -236,8 +234,10 @@
                                 personnelles</span>
                         </mat-checkbox>
                     </div>
+                    
                     <div class="flex justify-center mt-9">
-                    <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha></div>
+                        <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
+                    </div>
                     
                     <!-- Actions -->
                     <div class="w-full flex justify-end">
@@ -250,17 +250,16 @@
                           (click)="newSimulation()">
                           Refaire ma simulation
                         </button>
-                        
                         <button
                           mat-flat-button    
                           class="ml-2 md:px-12"
+                          [ngClass]="{'bg-primary-200' : simulationForm.pristine || simulationForm.invalid}"
+                          type="button"
                           [color]="'primary'"
                           [disabled]="simulationForm.pristine || simulationForm.invalid || !isCaptchaValid"
                           (click)="simuler()">
                           Valider
                         </button>
-                        
-                        
                     </div>
 
                     <div class="flex flex-row bg-amber-100 rounded-md shadow py-2 px-3">

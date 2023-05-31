@@ -137,7 +137,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
             // If the confirm button pressed...
             if (result === 'confirmed') {
               setTimeout(() => {
-                this._router.navigate(['/espace-connecte']);
+                this._router.navigate(['./']);
               }, 200);
             }
           });

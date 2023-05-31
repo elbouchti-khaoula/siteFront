@@ -531,109 +531,7 @@
 
                         <!-- checkList -->
                         <div class="flex flex-col space-y-5 mt-5">
-
-                            <ng-container *ngFor="let piece of pieces; let i = index; let last = last; trackBy: trackByFn">
-                                
-                                <div class="hidden md:grid grid-cols-9 items-start">
-                                    <!-- libelle document -->
-                                    <div class="flex flex-row items-center justify-between col-span-5 mt-1">
-                                        <span class="font-medium">
-                                            {{piece.libelle}}
-                                        </span>
-                                        <span class="font-bold">&nbsp;:&nbsp;&nbsp;&nbsp;</span>
-                                    </div>
-
-                                    <!-- liste fichier joint par document -->
-                                    <div class="flex flex-row items-start col-span-4">
-                                        <!-- liste -->
-                                        <div class="w-4/5 flex flex-col space-y-2 mt-1.5">
-                                            <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
-                                                <div class="flex flex-row items-center justify-between">
-                                                    <div class="text-md text-primary whitespace-nowrap truncate">
-                                                        {{fich.fileName}}
-                                                    </div>
-                                                    <button *ngIf="fich.fileName"
-                                                        class="ml-2 w-6 h-6 min-h-6 hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                        mat-icon-button (click)="deleteFileFromPiece(fich, i)">
-                                                        <mat-icon class="icon-size-4 text-warn"
-                                                            [svgIcon]="'heroicons_solid:x'"></mat-icon>
-                                                    </button>
-                                                </div>
-                                            </ng-container>
-                                        </div>
-
-                                        <!-- bouton upload file -->
-                                        <div class="ml-auto">
-                                            <input id="fileInput_{{i}}"
-                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
-                                                [multiple]="false"
-                                                [accept]="'image/jpeg, image/png, text/plain, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                                (change)="uploadPiece(i, $event)"
-                                                #fileInput>
-                                            <label
-                                                class="flex items-center justify-center w-9 h-9 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                for="fileInput_{{i}}" matRipple>
-                                                <mat-icon [svgIcon]="'mat_outline:attach_file'"></mat-icon>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- libelle document -->
-                                <div class="md:hidden flex flex-row">
-                                    <span class="font-medium mr-5 mt-1">
-                                        {{piece.libelle}}
-                                    </span>
-
-                                    <!-- bouton upload file -->
-                                    <div class="ml-auto">
-                                        <input id="fileInput_{{i}}"
-                                            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
-                                            [multiple]="false"
-                                            [accept]="'image/jpeg, image/png, text/plain, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                            (change)="uploadPiece(i, $event)"
-                                            #fileInput>
-                                        <label
-                                            class="flex items-center justify-center w-9 h-9 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                            for="fileInput_{{i}}" matRipple>
-                                            <mat-icon [svgIcon]="'mat_outline:attach_file'"></mat-icon>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- liste fichier joint par document -->
-                                <div class="md:hidden flex flex-row items-start">
-                                    <!-- list -->
-                                    <div class="w-full flex flex-col space-y-2 mt-1.5">
-                                        <ng-container *ngFor="let fich of piece.files; let j = index; trackBy: trackByFn">
-                                            <div class="flex flex-row items-center justify-between">
-                                                <div class="text-primary whitespace-nowrap truncate">
-                                                    {{fich.fileName}}
-                                                </div>
-                                                <button *ngIf="fich.fileName"
-                                                    class="ml-2 w-6 h-6 min-h-6 hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                                    mat-icon-button (click)="deleteFileFromPiece(fich, i)">
-                                                    <mat-icon class="icon-size-4 text-warn"
-                                                        [svgIcon]="'heroicons_solid:x'"></mat-icon>
-                                                </button>
-                                            </div>
-                                        </ng-container>
-                                    </div>
-                                </div>
-
-                                <div class="mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <ng-container *ngFor="let fich of piece.files">
-                                        <ng-container *ngIf="fich.isImage">
-                                            <figure class="flex items-center justify-center h-28 sm:h-32">
-                                                <img class="max-h-32 max-w-32" [src]="fich.fileContent"/>
-                                            </figure>
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
-
-                                <hr *ngIf="!last" class="w-full border-t">
-                            </ng-container>
-
+                            <check-list [pieces]="pieces" #checkList></check-list>
                         </div>
 
                         <!-- Agreements -->
@@ -655,10 +553,10 @@
                         <!-- Actions -->
                         <div class="flex items-center mt-5">
                             <button mat-flat-button class="ml-auto px-8"
-                                [ngClass]="{'bg-primary-200' : !existePieceAttachee}"
+                                [ngClass]="{'bg-primary-200' : !checkList?.existePieceAttachee}"
                                 [color]="'primary'"
                                 type="button"
-                                [disabled]="!existePieceAttachee || !agreements" (click)="transformer()">
+                                [disabled]="!checkList?.existePieceAttachee || !agreements" (click)="transformer()">
                                 Valider
                             </button>
                         </div>

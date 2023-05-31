@@ -1,15 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { catchError, debounceTime, Subject, take, takeUntil, throwError } from 'rxjs';
+import { catchError, debounceTime, Subject, takeUntil, throwError } from 'rxjs';
 import { ReclamationsService } from './reclamation.service';
-import { Motif } from './reclamation.types';
-import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
-import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
-import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { Motif, Reclamation } from './reclamation.types';
+import { Piece } from 'app/core/upload-document/upload-document.types';
+import { UploadDocumentService } from 'app/core/upload-document/upload-document.service';
 
 @Component({
     selector: 'reclamation',
@@ -20,7 +19,6 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 })
 export class ReclamationComponent implements OnInit {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
-    @ViewChildren('fileInput') inputFiles: QueryList<ElementRef>;
     isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
     alert: any;
@@ -31,10 +29,10 @@ export class ReclamationComponent implements OnInit {
     selectedMotifLabel: string;
     motifs: Motif[];
     piecesRef: any[] = [
-        { id: 1, libelle: "Justificatif de règlement de mainlevée", parent: 226 },
-        { id: 2, libelle: "Relevé ou Extrait de compte", parent: 291 },
-        { id: 3, libelle: "Justificatif de remboursement", parent: 209 },
-        { id: 4, libelle: "Extrait de compte", parent: 209 },
+        { libelleDocument: "Justificatif de règlement de mainlevée", parent: 226 },
+        { libelleDocument: "Relevé ou Extrait de compte", parent: 291 },
+        { libelleDocument: "Justificatif de remboursement", parent: 209 },
+        { libelleDocument: "Extrait de compte", parent: 209 },
     ];
     pieces: Piece[] = [];
 
@@ -47,8 +45,7 @@ export class ReclamationComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _reclamationsService: ReclamationsService,
-        private _fuseConfirmationService: FuseConfirmationService,
-        private _compressImageService: CompressImageService
+        private _uploadDocumentService: UploadDocumentService
     ) {
     }
 
@@ -113,8 +110,8 @@ export class ReclamationComponent implements OnInit {
                 takeUntil(this._unsubscribeAll)
             )
             .subscribe((value) => {
-                this.selectedMotifLabel = this.motifs.find(e => e.id === value).libelleselfcare;
-                this.pieces = [...this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, files: [] } })];
+                this.selectedMotifLabel = this.motifs.find(e => e.id === value)?.libelleselfcare;
+                this.pieces = [...this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, listFilesArray: [] } })];
                 this.reclamationForm.get('nom').updateValueAndValidity();
                 this.reclamationForm.get('prenom').updateValueAndValidity();
                 this.reclamationForm.get('cin').updateValueAndValidity();
@@ -131,144 +128,6 @@ export class ReclamationComponent implements OnInit {
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Upload file to given piece
-     *
-     * @param piece
-     * @param event
-     */
-    uploadPiece(pieceIndex: number, event: any): void {
-
-        var fileList: FileList = event.target.files;
-
-        // Return if canceled
-        if (!fileList.length) {
-            return;
-        }
-
-        const allowedTypesImg = ['image/jpeg', 'image/png'];
-
-        const allowedTypes = ['image/jpeg', 'image/png', 'text/plain', 'application/pdf',
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-        const file = fileList[0];
-
-        // Return if the file is not allowed
-        if (!allowedTypes.includes(file.type)) {
-
-            // Open the dialog
-            this._fuseConfirmationService.open(
-                {
-                    "title": "Joindre fichier",
-                    "message": "Le type de fichier est incorrect",
-                    "icon": {
-                        "show": true,
-                        "name": "heroicons_outline:information-circle",
-                        "color": "warn"
-                    },
-                    "actions": {
-                        "confirm": {
-                            "show": true,
-                            "label": "Ok",
-                            "color": "warn"
-                        },
-                        "cancel": {
-                            "show": false,
-                            "label": "Cancel"
-                        }
-                    },
-                    "dismissible": false
-                }
-            );
-
-            return;
-        }
-
-        // Return if the file is big
-        if (file.size > 5242880) {
-
-            // Open the dialog
-            this._fuseConfirmationService.open(
-                {
-                    "title": "Joindre fichier",
-                    "message": "Le fichier est volumineux",
-                    "icon": {
-                        "show": true,
-                        "name": "heroicons_outline:information-circle",
-                        "color": "warn"
-                    },
-                    "actions": {
-                        "confirm": {
-                            "show": true,
-                            "label": "Ok",
-                            "color": "warn"
-                        },
-                        "cancel": {
-                            "show": false,
-                            "label": "Cancel"
-                        }
-                    },
-                    "dismissible": false
-                }
-            );
-
-            return;
-        }
-
-        if (allowedTypesImg.includes(file.type) && file.size > 1048576) {
-            // console.log(`+-+- Image size before compressed: ${file.size} bytes.`)
-
-            this._compressImageService.compress(file)
-                .pipe(take(1))
-                .subscribe((compressedImageFile: File) => {
-                    // console.log(`Image size after compressed: ${compressedImageFile.size} bytes.`);
-
-                    // upload the compressed image
-                    this.addFileToPiece(compressedImageFile, pieceIndex, true);
-
-                });
-
-        } else {
-            // upload the file
-            this.addFileToPiece(file, pieceIndex, false);
-        }
-
-    }
-
-    addFileToPiece(file: File, pieceIndex: number, estImage: boolean) {
-
-        this._readAsDataURL(file).then((data) => {
-
-            // Add the file to piece
-            this.pieces[pieceIndex].files.push({
-                fileIndex: this.pieces[pieceIndex].files.length,
-                fileName: file.name,
-                fileExtension: file.name,
-                isImage: estImage,
-                fileContent: data,
-                size: file.size
-            });
-
-            this._changeDetectorRef.detectChanges();
-        });
-
-    }
-
-    deleteFileFromPiece(fichier: Fichier, pieceIndex: number): void {
-        this.pieces[pieceIndex].files = this.pieces[pieceIndex].files.filter((x) => x != fichier);
-
-        const id = 'fileInput_' + pieceIndex;
-        for (const element of this.inputFiles) {
-            if (element.nativeElement.id === id) {
-                element.nativeElement.value = null;
-                element.nativeElement.files = null;
-                break;
-            }
-        }
-
-        this._changeDetectorRef.detectChanges();
-    }
-
-    /**
      * Clear the form
      */
     clearForm(): void {
@@ -280,19 +139,18 @@ export class ReclamationComponent implements OnInit {
      * Send the form
      */
     sendForm(): void {
+        var telephonbeReplace = this.reclamationForm.get('telephone').value.replace(/-/gi,'');
+
         this._reclamationsService.createReclamationEtStatut(
             this.notAlerteEthique ?
                 {
                     nom: this.reclamationForm.get('nom').value,
                     prenom: this.reclamationForm.get('prenom').value,
                     cin: this.reclamationForm.get('cin').value,
-                    // numeroDossier: this.reclamationForm.get('numeroDossier').value,
                     email: this.reclamationForm.get('email').value,
-                    telephone: this.reclamationForm.get('telephone').value,
+                    telephone: telephonbeReplace,
                     motif: this.reclamationForm.get('motif').value,
                     motifLibelle: this.selectedMotifLabel,
-                    // adresse: this.reclamationForm.get('adresse').value,
-                    // ville: this.villes?.length > 0 ? this.villes?.find((e) => e.codeVille == this.reclamationForm.get('codeVille').value)?.description : "",
                     text: this.reclamationForm.get('text').value,
                     statut: 'publié',
                     canal: 7,
@@ -300,12 +158,13 @@ export class ReclamationComponent implements OnInit {
                     dateReception: new Date(),
                     type: "Reclamation"
                 }
-                : {
+                :
+                {
                     nom: this.reclamationForm.get('nom').value,
                     prenom: this.reclamationForm.get('prenom').value,
                     cin: this.reclamationForm.get('cin').value,
                     email: this.reclamationForm.get('email').value,
-                    telephone: this.reclamationForm.get('telephone').value,
+                    telephone: telephonbeReplace,
                     text: this.reclamationForm.get('text').value,
                     dateReception: new Date(),
                     type: "AlerteEthique"
@@ -328,15 +187,66 @@ export class ReclamationComponent implements OnInit {
                 // Throw an error
                 return throwError(() => error);
             }))
-            .subscribe((response) => {
-                this._showAlertMessage(
-                    'success',
-                    'Nous avons bien reçu votre message. Nous le traiterons dans les plus bref délais'
-                );
+            .subscribe((response: Reclamation) => {
 
-                // Clear the form
-                this.clearForm();
+                console.log("+-+-+- reclamation return", response);
+
+                if (response && response.id != undefined && response.id != null) {
+
+                    this.uploadCheckList(response.id);
+
+                    this._showAlertMessage(
+                        'success',
+                        'Nous avons bien reçu votre message. Nous le traiterons dans les plus bref délais'
+                    );
+
+                    // Clear the form
+                    this.clearForm();
+                }
+
             });
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    private uploadCheckList(reclamationId: number) {
+
+        this.pieces.forEach((piece, index) => {
+            piece = {
+                idReclamation: reclamationId,
+                libelleDocument: piece.libelleDocument,
+                listFilesArray:
+                    [...piece.listFilesArray.map(e => {
+                        return {
+                            nom: e.nom,
+                            extension: e.extension,
+                            binaire: e.binaire,
+                            ordre: e.ordre
+                        }
+                    })]
+            }
+
+            console.log("+-+-+- piece index", piece, index);
+
+            if (piece.listFilesArray.length > 0) {
+
+                this._uploadDocumentService.uploadPiecesReclamation(piece)
+                    .pipe(
+                        catchError((error) => {
+                            // Log the error
+                            console.error("+-+-+-+ GRC document error", error);
+                            // Throw an error
+                            return throwError(() => error);
+                        }))
+                    .subscribe((response) => {
+                        console.log("+-+-+- GRC document success", response);
+                    });
+
+            }
+        });
+
     }
 
     /**
@@ -360,47 +270,6 @@ export class ReclamationComponent implements OnInit {
             // Mark for check
             this._changeDetectorRef.markForCheck();
         }, 7000);
-    }
-
-    /**
-     * Track by function for ngFor loops
-     *
-     * @param index
-     * @param item
-     */
-    trackByFn(index: number, item: any): any {
-        return item.id || index;
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Read the given file for demonstration purposes
-     *
-     * @param file
-     */
-    private _readAsDataURL(file: File): Promise<any> {
-        // Return a new promise
-        return new Promise((resolve, reject) => {
-
-            // Create a new reader
-            const reader = new FileReader();
-
-            // Resolve the promise on success
-            reader.onload = (): void => {
-                resolve(reader.result);
-            };
-
-            // Reject the promise on error
-            reader.onerror = (e): void => {
-                reject(e);
-            };
-
-            // Read the file as the
-            reader.readAsDataURL(file);
-        });
     }
 
 }
