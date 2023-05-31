@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, EmployeursConventionnes, PromoteursConventionnes, DocumentInstitutionnel } from './referentiel.types';
-import {saveAs} from "file-saver";
+import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, EmployeursConventionnes, PromoteursConventionnes, DocumentInstitutionnel, OperationSAVDocument } from './referentiel.types';
+import { saveAs } from "file-saver";
 
 @Injectable({
     providedIn: 'root'
@@ -19,9 +19,9 @@ export class ReferentielService {
     private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
     private _agence: BehaviorSubject<Agence | null> = new BehaviorSubject(null);
     private _operationsSAVRef: BehaviorSubject<OperationSAVRef[] | null> = new BehaviorSubject(null);
+    private _operationSAVDocuments: BehaviorSubject<OperationSAVDocument[] | null> = new BehaviorSubject(null);
     private _employeurs: BehaviorSubject<EmployeursConventionnes[] | null> = new BehaviorSubject(null);
     private _promoteurs: BehaviorSubject<PromoteursConventionnes[] | null> = new BehaviorSubject(null);
-    
     private _documents: BehaviorSubject<DocumentInstitutionnel[] | null> = new BehaviorSubject(null);
     
     /**
@@ -88,9 +88,24 @@ export class ReferentielService {
     get agence$(): Observable<Agence> {
         return this._agence.asObservable();
     }
+
     /**
-      * Getter for employeurs
-       */
+     * Getter for operationsSAVRef
+     */
+    get operationsSAVRef$(): Observable<OperationSAVRef[]> {
+        return this._operationsSAVRef.asObservable();
+    }
+
+    /**
+     * Getter for operationsSAVDocuments
+     */
+    get operationSAVDocuments$(): Observable<OperationSAVDocument[]> {
+        return this._operationSAVDocuments.asObservable();
+    }
+
+    /**
+     * Getter for employeurs
+     */
     get employeurs$(): Observable<EmployeursConventionnes[]> {
         return this._employeurs.asObservable();
     }
@@ -102,14 +117,9 @@ export class ReferentielService {
         return this._promoteurs.asObservable();
     }
 
-    /**
-     * Getter for operationsSAVRef
-     */
-    get operationsSAVRef$(): Observable<OperationSAVRef[]> {
-        return this._operationsSAVRef.asObservable();
-    }
 
-  /**
+
+    /**
      * Getter for documents
      */
     get documents$(): Observable<DocumentInstitutionnel[]> {
@@ -391,6 +401,21 @@ export class ReferentielService {
     }
 
     /**
+     * Get Opérations SAV documents
+     */
+    getOperationSAVDocuments(operationId: number): Observable<OperationSAVDocument[]> {
+        return this._httpClient.get<OperationSAVDocument[]>(`api/repositories/operation/documents/${operationId}`)
+            .pipe(
+                tap((response: OperationSAVDocument[]) => {
+                    // Sort the opérationSAV documents by the libelle field by default
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    this._operationSAVDocuments.next(response);
+                })
+            );
+    }
+
+    /**
      * send mail accusé réception of reclamation
      */
     sendMail(envoiMail: EnvoiMail): Observable<EnvoiMail> {
@@ -406,12 +431,12 @@ export class ReferentielService {
                 })
             );
     }
-    
-     /**
-     * Search documents institutionnels with given query
-     *
-     * @param document
-     */
+
+    /**
+    * Search documents institutionnels with given query
+    *
+    * @param document
+    */
     searchDocuments(document: DocumentInstitutionnel): Observable<DocumentInstitutionnel[]> {
 
         return this._httpClient.post<DocumentInstitutionnel[]>('/api/repositories/documents/search', document)
@@ -430,16 +455,14 @@ export class ReferentielService {
             );
     }
 
-
-
-    downloadPDF(id:number) {
-        this._httpClient.get('/api/repositories/document/'+id, { responseType: 'blob' })
+    downloadPDF(id: number) {
+        this._httpClient.get('/api/repositories/document/' + id, { responseType: 'blob' })
             .subscribe((blob: any) => {
                 //const blob = new Blob([response.body], { type: 'application/pdf' });
                 // const filename = 'Demande Client Financier.pdf';
                 saveAs(blob, "test.pdf");
             });
-        }
+    }
 
 }
 

@@ -8,6 +8,7 @@ import { OperationsSAVRefComponent } from './opeartion-sav-ref/operations-sav-re
 import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
 import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
 import { FuseUtilsService } from '@fuse/services/utils';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'mes-credits',
@@ -20,13 +21,13 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   creditsEnCours: CreditEnCours[] = [];
-  selectedDossier: any;
   operationsSAVRef: OperationSAVRef[] = [];
 
   /**
    * Constructor
    */
   constructor(
+    private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _matDialog: MatDialog,
     private _referentielService: ReferentielService,
@@ -63,7 +64,7 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
                 ...e,
                 montant: this._fuseUtilsService.numberFormat(e.montant, 2, '.', ' '),
                 crd: this._fuseUtilsService.numberFormat(e.crd, 2, '.', ' '),
-                mensualite: this._fuseUtilsService.numberFormat(e.mensuaite, 2, '.', ' '),
+                mensuaite: this._fuseUtilsService.numberFormat(e.mensuaite, 2, '.', ' '),
                 existeImpaye: e.impayes !== null && e.impayes !== 0,
                 estCTX: e.statut == 'CTX',
                 estEchu: e.statut == 'ECHU',
@@ -96,14 +97,26 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
+   * Perform navigate
+   */
+  navigateCreerDemandeSAV(operation: OperationSAVRef, dossierCredit: CreditEnCours): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        operation: operation,
+        dossierCredit: dossierCredit,
+      }
+    };
+    this._router.navigate(['/espace-connecte/demande-sav'], navigationExtras);
+  }
+
+  /**
    * Open agence dialog
    */
-  openOperationsSAVRefDialog(dossierCredit: any): void {
-    this.selectedDossier = dossierCredit;
+  openOperationsSAVRefDialog(dossierCredit: CreditEnCours): void {
     this._matDialog.open(OperationsSAVRefComponent, {
       autoFocus: false,
       data: {
-        dossierId: dossierCredit.id
+        dossierCredit: dossierCredit
       }
     });
   }

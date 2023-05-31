@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DemandeCreditDocumentsResolver implements Resolve<any>
+export class DemandeSAVDocumentsResolver implements Resolve<any>
 {
     /**
      * Constructor
      */
     constructor(
         private _router: Router,
-        private _simulationDetailleeService: SimulationDetailleeService
+        private _referentielService: ReferentielService
     )
     {
     }
@@ -32,10 +32,10 @@ export class DemandeCreditDocumentsResolver implements Resolve<any>
     {
         const navigation = this._router.getCurrentNavigation();
         const extrasState = navigation.extras.state;
-        let simulationResultat = extrasState;
+        let operationSAVRef = extrasState.operation;
 
-        if (simulationResultat?.id) {
-            return this._simulationDetailleeService.getDocuments(Number(simulationResultat.id));
+        if (operationSAVRef?.operationId) {
+            return this._referentielService.getOperationSAVDocuments(Number(operationSAVRef?.operationId));
         }
     }
 }

@@ -51,6 +51,7 @@ export interface EnvoiMail {
     id?: number;
     type: string;
     destination: string | null;
+    cc?: string | null;
     titre?: string | null;
     message: string | null;
     dateEnvoi?: Date | null;
@@ -63,11 +64,19 @@ export interface OperationSAVRef {
     nomOperation?: string;
     codeOperation: string | null;
 }
+
+export interface OperationSAVDocument
+{
+    documentId? : string;
+    libelle?    : string;
+}
+
 export interface EmployeursConventionnes
 {
     code?       : string;
     libelle?    : string;
 }
+
 export interface PromoteursConventionnes
 {
     code?       : string;
