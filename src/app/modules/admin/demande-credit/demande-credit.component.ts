@@ -29,6 +29,8 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
   drawerOpened: boolean = false;
   simulationResultat: any;
 
+  isCaptchaValid: boolean = false;
+  
   documents: [] = [];
   pieces: Piece[] = [];
   agreements: boolean;

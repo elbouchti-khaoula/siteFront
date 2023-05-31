@@ -5,6 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatTelephonePipe implements PipeTransform {
   transform(value: string): string {
+    if (!value) {
+      return value; // si elle est nulle
+    }
+
     const numericValue = value.replace(/\D/g, '');
     const startsWith06or07or05 = /^(05|06|07)/.test(numericValue.substr(0, 2));
     let formattedValue = '';

@@ -118,3 +118,14 @@ export interface FraisAnnexes {
     fraisDossier                : number;
     coutTotal?                  : number;
 }
+
+export interface EmployeurConventionne
+{
+    code?       : string;
+    libelle?    : string;
+}
+export interface PromoteurConventionne
+{
+    code?       : string;
+    libelle?    : string;
+}

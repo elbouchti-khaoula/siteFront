@@ -85,7 +85,7 @@ export class SupportComponent implements OnInit {
             this.supportForm.get('nom').value,
             this.supportForm.get('prenom').value,
             this.supportForm.get('email').value,
-            this.supportForm.get('telephone').value,
+            this.supportForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
             this.supportForm.get('message').value,
             "Site WAFA IMMOBILIER",
             "Contacter nous : "

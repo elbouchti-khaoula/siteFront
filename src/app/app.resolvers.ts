@@ -43,12 +43,14 @@ export class InitialDataResolver implements Resolve<any>
     {
         // Fork join multiple API endpoint calls to wait all of them to finish
         return forkJoin([
+            this._userService.getAdminToken(),
+            this._userService.getGenericToken(),
             this._navigationService.get(),
             // this._messagesService.getAll(),
             // this._notificationsService.getAll(),
             // this._quickChatService.getChats(),
             // this._shortcutsService.getAll(),
-            this._userService.get(),
+            //this._userService.get(),
             this._referentielService.getVilles(),
             this._referentielService.getTypesBiens(),
             this._referentielService.getAgences(),

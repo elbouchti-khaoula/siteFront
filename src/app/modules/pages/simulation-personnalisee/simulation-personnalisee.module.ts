@@ -12,12 +12,11 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCommonModule } from '@angular/material/core';
-import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CaptchaModule } from '@fuse/captcha/captcha.module';
+import { CaptchaModule } from 'app/core/captcha/captcha.module';
 
 @NgModule({
     declarations: [
@@ -38,8 +37,6 @@ import { CaptchaModule } from '@fuse/captcha/captcha.module';
         FormatMontantModule,
         FormatTelephoneModule,
         FormatEntierModule,
-        ReactiveFormsModule,
-        CommonModule,
         CaptchaModule
     ],
     exports     : [

@@ -71,18 +71,6 @@ export interface OperationSAVDocument
     libelle?    : string;
 }
 
-export interface EmployeursConventionnes
-{
-    code?       : string;
-    libelle?    : string;
-}
-
-export interface PromoteursConventionnes
-{
-    code?       : string;
-    libelle?    : string;
-}
-
 export interface DocumentInstitutionnel {
     id?: number;
     periode?: string;

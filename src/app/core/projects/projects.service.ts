@@ -5,6 +5,7 @@ import { CritereDetaillee, Project, SimulationDetaillee } from './projects.types
 import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
 import { FuseUtilsService } from '@fuse/services/utils';
+import { EmployeurConventionne, PromoteurConventionne } from './projects.types';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,8 @@ export class SimulationDetailleeService {
     private _critereSimulation: BehaviorSubject<CritereDetaillee | null> = new BehaviorSubject(null);
     private _documents: BehaviorSubject<any | null> = new BehaviorSubject(null);
     private _simulationResultat: BehaviorSubject<any | null> = new BehaviorSubject(null);
+    private _employeurs: BehaviorSubject<EmployeurConventionne[] | null> = new BehaviorSubject(null);
+    private _promoteurs: BehaviorSubject<PromoteurConventionne[] | null> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -25,8 +28,7 @@ export class SimulationDetailleeService {
         private _httpClient: HttpClient,
         private _projectAuthService: ProjectAuthService,
         private _fuseUtilsService: FuseUtilsService
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -66,6 +68,20 @@ export class SimulationDetailleeService {
      */
     get documents$(): Observable<any> {
         return this._documents.asObservable();
+    }
+
+    /**
+     * Getter for employeurs
+     */
+    get employeurs$(): Observable<EmployeurConventionne[]> {
+        return this._employeurs.asObservable();
+    }
+
+    /**
+     * Getter for promoteurs
+    */
+    get promoteurs$(): Observable<PromoteurConventionne[]> {
+        return this._promoteurs.asObservable();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -195,7 +211,7 @@ export class SimulationDetailleeService {
 
                                     var simulationResult = {
                                         ...response[0].tiers,
-                                        codeApporteur: response[0].codeApporteur,  
+                                        codeApporteur: response[0].codeApporteur,
                                         codeUtilisateur: response[0].codeUtilisateur,
                                         // Mon profil
                                         nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
@@ -424,6 +440,67 @@ export class SimulationDetailleeService {
 
         return simulationResultat;
     }
+
+    /**
+    * Get employeurs 
+    */
+    getEmployeursConventionnes(): Observable<EmployeurConventionne[]> {
+
+        return this._projectAuthService.getToken()
+        .pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
+
+                        'Authorization': `Bearer ${token}`
+                    });
+
+                    return this._httpClient.post<EmployeurConventionne[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "employeursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: EmployeurConventionne[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            this._employeurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
+    }
+
+
+    /**
+      * Get promoteurs
+      */
+    getPromoteursConventionnes(): Observable<PromoteurConventionne[]> {
+        return this._projectAuthService.getToken()
+        .pipe(
+            switchMap((token: any) => {
+                if (token !== undefined && token !== '') {
+                    const headers = new HttpHeaders({
+
+                        'Authorization': `Bearer ${token}`
+                    });
+
+                    return this._httpClient.post<PromoteurConventionne[]>(
+                        'api/projects/referentiel',
+                        { referentiel: "promoteursConventionnes" },
+                        { headers: headers }
+                    ).pipe(
+                        tap((response: PromoteurConventionne[]) => {
+                            response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+                            this._promoteurs.next(response);
+                        })
+                    );
+                }
+                return EMPTY;
+            })
+        );
+    }
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods

@@ -566,13 +566,17 @@
                                 personnelles</span>
                         </mat-checkbox>
 
+                        <div class="flex justify-center mt-9">
+                            <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
+                        </div>
+
                         <!-- Actions -->
                         <div class="flex items-center mt-5">
                             <button mat-flat-button class="ml-auto px-8"
                                 [ngClass]="{'bg-primary-200' : !checkList?.existePieceAttachee}"
                                 [color]="'primary'"
                                 type="button"
-                                [disabled]="!checkList?.existePieceAttachee || !agreements" (click)="transformer()">
+                                [disabled]="!checkList?.existePieceAttachee || !agreements  || !isCaptchaValid" (click)="transformer()">
                                 Valider
                             </button>
                         </div>

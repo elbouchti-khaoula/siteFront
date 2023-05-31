@@ -6,34 +6,32 @@ import { Router } from '@angular/router';
 
 
 @Component({
-    selector     : 'nos-guides-conseils',
-    templateUrl  : './nos-guides-conseils.component.html',
-    styleUrls       : ['./nos-guides-conseils.component.scss'],
+    selector: 'nos-guides-conseils',
+    templateUrl: './nos-guides-conseils.component.html',
+    styleUrls: ['./nos-guides-conseils.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations
 })
-export class NosGuidesConseilsComponent
-{
-    
+export class NosGuidesConseilsComponent {
+
     /**
      * Constructor
      */
-    constructor(private router: Router)
-    {
+    constructor(private router: Router) {
     }
-    isScreenSmall :boolean ;
-    imageVisDet10 = 'assets/images/pages/nos-offres-miftah/Santé_1946243179.jpg';
-    imageVisDet14= 'assets/images/pages/nos-offres-miftah/Attaalim_2007116861.jpg';
-    imageVisDet5 = 'assets/images/pages/nos-offres-miftah/Professionel 2_284936198.jpg';
-    imageVisDet7 = 'assets/images/pages/nos-guides-et-conseils/conseil3.png';
+    isScreenSmall: boolean;
+    imageVisDet1 = 'assets/images/pages/nos-guides-et-conseils/detail1.jpg';
+    imageVisDet2 = 'assets/images/pages/nos-guides-et-conseils/detail2.jpg';
+    imageVisDet3 = 'assets/images/pages/nos-guides-et-conseils/detail3.jpg';
+    imageVisDet4 = 'assets/images/pages/nos-guides-et-conseils/detail4.jpg';
 
-    desc1 : boolean ;
-    desc2 : boolean ;
-    desc3 : boolean ;
-    desc4 : boolean ;
+    desc1: boolean;
+    desc2: boolean;
+    desc3: boolean;
+    desc4: boolean;
 
 
-    toggle1(){
+    toggle1() {
         if (this.desc1) {
             this.desc1 = false;
         }
@@ -43,10 +41,10 @@ export class NosGuidesConseilsComponent
             this.desc3 = false;
             this.desc4 = false;
 
-          }
-         
+        }
+
     }
-    toggle2(){
+    toggle2() {
         if (this.desc2) {
             this.desc2 = false;
         }
@@ -57,10 +55,10 @@ export class NosGuidesConseilsComponent
             this.desc4 = false;
 
 
-          }
-         
+        }
+
     }
-    toggle3(){
+    toggle3() {
         if (this.desc3) {
             this.desc3 = false;
         }
@@ -71,10 +69,10 @@ export class NosGuidesConseilsComponent
             this.desc4 = false;
 
 
-          }
-         
+        }
+
     }
-    toggle4(){
+    toggle4() {
         if (this.desc4) {
             this.desc4 = false;
         }
@@ -84,11 +82,23 @@ export class NosGuidesConseilsComponent
             this.desc3 = false;
             this.desc1 = false;
 
-          }
-         
+        }
+
     }
-    
+    redirectToConseil1() {
+        this.router.navigate(['/conseil-detail-1']);
+    }
+    redirectToConseil2() {
+        this.router.navigate(['/conseil-detail-2']);
+    }
+    redirectToConseil3() {
+        this.router.navigate(['/conseil-detail-3']);
+    }
+    redirectToConseil4() {
+        this.router.navigate(['/conseil-detail-4']);
+    }
 
 
-    
+
+
 }

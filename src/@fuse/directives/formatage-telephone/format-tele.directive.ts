@@ -29,6 +29,16 @@ export class FormatTelephoneDirective implements OnInit {
       formattedValue = numericValue;
     }
 
-    this.elementRef.nativeElement.value = formattedValue;
+    const numericValueWithoutDashes = formattedValue.replace(/-/g, '');
+
+    if (numericValueWithoutDashes.length > 10) {
+      this.clearInput();
+    } else {
+      this.elementRef.nativeElement.value = formattedValue;
+    }
+  }
+
+  private clearInput() {
+    this.elementRef.nativeElement.value = '';
   }
 }

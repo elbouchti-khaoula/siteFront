@@ -1,0 +1,16 @@
+
+.b2-bg {
+  background-image: url('/assets/images/pages/nos-guides-et-conseils/details/detail2md.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:  cover ;
+  @media (max-width: 600px) {
+    background-image:  url('/assets/images/pages/nos-guides-et-conseils/details/detail2.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover ;
+  }
+}  
+
+
+  

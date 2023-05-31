@@ -11,13 +11,15 @@
 
         <div class="w-full max-w-400 mx-auto">
 
-            <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+            <span
+                class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                 Simuler mon crédit en ligne
             </span>
 
             <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl -mt-10 h-22 shadow-md">
                 <div class="flex flex-row items-center justify-start w-52">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                         <span class="text-7xl font-bold text-gray-500">1</span>
                     </div>
                     <div class="flex flex-col items-start ml-5">
@@ -37,7 +39,8 @@
                 </div>
 
                 <div class="flex flex-row items-center justify-start w-52">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                         <span class="text-7xl font-bold text-gray-500">3</span>
                     </div>
                     <div class="flex flex-col items-start ml-5">
@@ -51,7 +54,8 @@
             <div class="mx-auto md:max-w-184 flex flex-row py-2 px-3 rounded-md shadow bg-gray-300 mt-7 md:mt-10">
                 <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
                 </mat-icon>
-                <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à l'application Attijari Mobile pour avoir de meilleurs résultats.
+                <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
+                    l'application Attijari Mobile pour avoir de meilleurs résultats.
                 </span>
             </div>
 
@@ -61,10 +65,7 @@
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
 
-                    <mat-horizontal-stepper
-                        [linear]="true"
-                        labelPosition="bottom"
-                        #simulationStepper
+                    <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #simulationStepper
                         class="bg-transparent">
 
                         <ng-template matStepperIcon="number" let-active="active">
@@ -90,69 +91,68 @@
                                 [svgIcon]="'heroicons_outline:check'">
                             </mat-icon>
                         </ng-template> -->
-                        
+
                         <!-- step 1 -->
-                        <mat-step 
-                            [formGroupName]="'step1'"
-                            [stepControl]="simulationStepperForm.get('step1')"
-                            [label]="isXsScreen ? '' : 'Mon profil'"
-                            #simulationStepperStep1>
+                        <mat-step [formGroupName]="'step1'" [stepControl]="simulationStepperForm.get('step1')"
+                            [label]="isXsScreen ? '' : 'Mon profil'" #simulationStepperStep1>
 
                             <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Nom -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'nom'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('nom').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('nom').hasError('required')">
                                         Nom obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
                                 <!-- Prénom -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'prenom'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('prenom').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('prenom').hasError('required')">
                                         Prénom obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
                                 <!-- Téléphone -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'"
+                                        matPrefix></mat-icon>
                                     <input matInput [formControlName]="'telephone'" appFormatTelephone>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('telephone').hasError('required')">
-                                      Téléphone obligatoire
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('telephone').hasError('required')">
+                                        Téléphone obligatoire
                                     </mat-error>
-                                  </mat-form-field>
-                                  
+                                </mat-form-field>
+
 
                                 <!-- Email -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix>
                                     </mat-icon>
                                     <input type="email" matInput [formControlName]="'email'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('email').hasError('email')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('email').hasError('email')">
                                         Enter a valid email address
                                     </mat-error>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('email').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('email').hasError('required')">
                                         Email obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
                                 <!-- Nationalité -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:flag'" matPrefix>
                                     </mat-icon>
                                     <mat-select [formControlName]="'nationalite'">
@@ -164,41 +164,30 @@
                                     </mat-select>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Nationalité
                                     </mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('nationalite').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('nationalite').hasError('required')">
                                         Nationalité obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
                                 <!-- Birthday -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-label>Date de naissance</mat-label>
-                                    <mat-icon
-                                        matPrefix
-                                        class="hidden sm:flex icon-size-5"
+                                    <mat-icon matPrefix class="hidden sm:flex icon-size-5"
                                         [svgIcon]="'heroicons_solid:cake'">
                                     </mat-icon>
-                                    <input
-                                        matInput
-                                        [matDatepicker]="dateNaissancePicker"
-                                        [formControlName]="'dateNaissance'"
-                                        [placeholder]="'Date de naissance'">
-                                    <mat-datepicker-toggle
-                                        matSuffix
-                                        [for]="dateNaissancePicker">
+                                    <input matInput [matDatepicker]="dateNaissancePicker"
+                                        [formControlName]="'dateNaissance'" [placeholder]="'Date de naissance'">
+                                    <mat-datepicker-toggle matSuffix [for]="dateNaissancePicker">
                                     </mat-datepicker-toggle>
                                     <mat-datepicker #dateNaissancePicker>
                                         <mat-datepicker-actions>
-                                            <button 
-                                                mat-button
+                                            <button mat-button
                                                 (click)="simulationStepperForm.get('step1').get('dateNaissance').setValue(null)"
                                                 matDatepickerCancel>
                                                 Clear
                                             </button>
-                                            <button 
-                                                mat-flat-button
-                                                [color]="'primary'"
-                                                matDatepickerApply>
+                                            <button mat-flat-button [color]="'primary'" matDatepickerApply>
                                                 Select
                                             </button>
                                         </mat-datepicker-actions>
@@ -206,11 +195,12 @@
                                 </mat-form-field>
 
                                 <!-- Résident -->
-                                <mat-radio-group class="flex flex-col w-full"
-                                    [color]="'primary'"
+                                <mat-radio-group class="flex flex-col w-full" [color]="'primary'"
                                     [formControlName]="'residantMaroc'">
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Résident au Maroc ? *</mat-label>
-                                    <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Résident au Maroc ?
+                                        *</mat-label>
+                                    <div
+                                        class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'true'">
                                             Oui
                                         </mat-radio-button>
@@ -218,15 +208,15 @@
                                             Non
                                         </mat-radio-button>
                                     </div>
-                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('residantMaroc').touched 
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('residantMaroc').touched 
                                                     && simulationStepperForm.get('step1').get('residantMaroc').hasError('required')">
                                         Résidence est obligatoire
                                     </mat-error>
                                 </mat-radio-group>
 
                                 <!-- Agreements -->
-                                <mat-checkbox class="md:col-span-2 text-sm mt-7 font-medium"
-                                    [color]="'primary'"
+                                <mat-checkbox class="md:col-span-2 text-sm mt-7 font-medium" [color]="'primary'"
                                     [formControlName]="'agreements'">
                                     <span>Je déclare avoir lu et accepter les </span>
                                     <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">conditions
@@ -244,10 +234,7 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-7">
-                                <button 
-                                    class="md:px-5"
-                                    mat-flat-button
-                                    [color]="'primary'"
+                                <button class="md:px-5" mat-flat-button [color]="'primary'"
                                     [disabled]="simulationStepperStep1.stepControl.pristine || simulationStepperStep1.stepControl.invalid"
                                     type="button" matStepperNext>
                                     Suivre
@@ -257,17 +244,14 @@
                         </mat-step>
 
                         <!-- step 2 -->
-                        <mat-step
-                            [formGroupName]="'step2'"
-                            [stepControl]="simulationStepperForm.get('step2')"
+                        <mat-step [formGroupName]="'step2'" [stepControl]="simulationStepperForm.get('step2')"
                             #simulationStepperStep2>
                             <ng-template matStepLabel *ngIf="!isXsScreen">Ma situation</ng-template>
 
                             <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Catégorie socio professionnelle -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:briefcase'" matPrefix>
                                     </mat-icon>
                                     <mat-select [formControlName]="'categorieSocioProfessionnelle'">
@@ -279,60 +263,52 @@
                                     </mat-select>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Socio-professionnelle
                                     </mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').hasError('required')">
                                         Catégorie socio-professionnelle obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Employeur 
+                                <!-- Employeur -->
                                 <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'nomEmployeur'">
+                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}"
+                                    @slideInTop
+                                    @slideOutTop>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                        matPrefix></mat-icon>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
                                     <mat-error *ngIf="simulationStepperForm.get('step2').get('nomEmployeur').hasError('required')">
                                         Employeur obligatoire
                                     </mat-error>
-                                </mat-form-field>-->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop @slideOutTop>
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('nomEmployeur').hasError('required')">
-                                      Employeur obligatoire
-                                    </mat-error>
-                                    <input
-                                      matInput
-                                      [formControlName]="'nomEmployeur'"
-                                      [formControl]="searchEmployeurControl"
-                                      [matAutocomplete]="matAutocompleteEmployeur"
-                                      [placeholder]="'Rechercher un Employeur'"
-                                      #barSearchInput
-                                    />
-                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md" [disableRipple]="true"
-                                      #matAutocompleteEmployeur>
-                                      <mat-option class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
-                                        *ngIf="resultEmployeurs && !resultEmployeurs.length">
-                                        Aucun élément!
-                                      </mat-option>
-                                      <ng-container *ngFor="let resultEmpl of resultEmployeurs; trackBy: trackByFn">
-                                        <mat-option class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
-                                          (click)="simulationStepperForm.get('step2').get('nomEmployeur').setValue(resultEmpl.libelle)">
-                                          <ng-container *ngTemplateOutlet="emplResult; context: {$implicit: resultEmpl}"></ng-container>
+                                    <input matInput [formControlName]="'nomEmployeur'"
+                                        [formControl]="searchEmployeurControl"
+                                        [matAutocomplete]="matAutocompleteEmployeur"
+                                        [placeholder]="'Rechercher un Employeur'" #barSearchInput />
+                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md"
+                                        [disableRipple]="true" #matAutocompleteEmployeur>
+                                        <mat-option
+                                            class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
+                                            *ngIf="resultEmployeurs && !resultEmployeurs.length">
+                                            Aucun élément!
                                         </mat-option>
-                                      </ng-container>
+                                        <ng-container *ngFor="let resultEmpl of resultEmployeurs; trackBy: trackByFn">
+                                            <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step2').get('nomEmployeur').setValue(resultEmpl.libelle)">
+                                                <ng-container
+                                                    *ngTemplateOutlet="emplResult; context: {$implicit: resultEmpl}"></ng-container>
+                                            </mat-option>
+                                        </ng-container>
                                     </mat-autocomplete>
-                                  </mat-form-field>
-                                  
-                            <ng-template
-                                #emplResult
-                                let-resultEmpl>
-                                <div class="flex items-center">
-                                    <div class="ml-3 truncate">
-                                        <span [innerHTML]="resultEmpl.libelle"></span>
+                                </mat-form-field>
+
+                                <ng-template #emplResult let-resultEmpl>
+                                    <div class="flex items-center">
+                                        <div class="ml-3 truncate">
+                                            <span [innerHTML]="resultEmpl.libelle"></span>
+                                        </div>
                                     </div>
-                                </div>
-                            </ng-template>
+                                </ng-template>
 
                                 <!-- Ancienneté -->
                                 <!-- <mat-form-field class="w-full"
@@ -349,67 +325,62 @@
                                 <!-- Salaire annuel net -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                                    <input matInput [formControlName]="'salaire'" [appFormatMontant]="simulationStepperForm.get('step2').get('salaire').value">
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel net</mat-label>
+                                    <input matInput [formControlName]="'salaire'"
+                                        [appFormatMontant]="simulationStepperForm.get('step2').get('salaire').value">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel
+                                        net</mat-label>
                                     <span matSuffix>Dhs</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('salaire').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step2').get('salaire').hasError('required')">
                                         Salaire annuel net obligatoire
                                     </mat-error>
                                 </mat-form-field>
-                                
-                                
-                                
 
                                 <!-- Autres revenus -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                                    <input matInput [formControlName]="'autresRevenus'" [appFormatMontant]="simulationStepperForm.get('step2').get('autresRevenus').value">
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex loyer, primes, …</mat-label>
+                                    <input matInput [formControlName]="'autresRevenus'"
+                                        [appFormatMontant]="simulationStepperForm.get('step2').get('autresRevenus').value">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Insérez d’autres revenus : Ex
+                                        loyer, primes, …</mat-label>
                                     <span matSuffix>Dhs</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('autresRevenus').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step2').get('autresRevenus').hasError('required')">
                                         Autres revenus obligatoire
                                     </mat-error>
                                 </mat-form-field>
-                                
 
                                 <!-- Mensualité de vos crédits en cours -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                                    <input matInput [formControlName]="'creditsEnCours'" [appFormatMontant]="simulationStepperForm.get('step2').get('creditsEnCours').value">
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des mensualités</mat-label>
+                                    <input matInput [formControlName]="'creditsEnCours'"
+                                        [appFormatMontant]="simulationStepperForm.get('step2').get('creditsEnCours').value">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Saisissez le total des
+                                        mensualités</mat-label>
                                     <span matSuffix>Dhs</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
                                         Mensualités de vos crédits en cours obligatoire
                                     </mat-error>
                                 </mat-form-field>
-                                
-
                             </div>
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-5">
-                                <button class="md:px-5 mr-2" 
-                                    mat-flat-button
-                                    [color]="'accent'"
-                                    type="button"
+                                <button class="md:px-5 mr-2" mat-flat-button [color]="'accent'" type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button class="md:px-5"
-                                    mat-flat-button
-                                    [color]="'primary'"
+                                <button class="md:px-5" mat-flat-button [color]="'primary'"
                                     [disabled]="simulationStepperStep2.stepControl.pristine || simulationStepperStep2.stepControl.invalid"
-                                    type="button"
-                                    matStepperNext>
+                                    type="button" matStepperNext>
                                     Suivre
                                 </button>
                             </div>
                         </mat-step>
 
                         <!-- step 3 -->
-                        <mat-step
-                            [formGroupName]="'step3'"
-                            [stepControl]="simulationStepperForm.get('step3')"
+                        <mat-step [formGroupName]="'step3'" [stepControl]="simulationStepperForm.get('step3')"
                             #simulationStepperStep3>
                             <ng-template matStepLabel *ngIf="!isXsScreen">Mon projet</ng-template>
 
@@ -418,18 +389,19 @@
                                 <!-- Prix du bien -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                                    <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationStepperForm.get('step3').get('montant').value">
+                                    <input matInput [formControlName]="'montant'"
+                                        [appFormatMontant]="simulationStepperForm.get('step3').get('montant').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Prix du bien</mat-label>
                                     <span matSuffix>Dhs</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('montant').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('montant').hasError('required')">
                                         Prix du bien obligatoire
                                     </mat-error>
                                 </mat-form-field>
-                                
+
 
                                 <!-- Objet de financement -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:home'" matPrefix>
                                     </mat-icon>
                                     <mat-select [formControlName]="'objetFinancement'">
@@ -441,7 +413,8 @@
                                     </mat-select>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Objet de financement
                                     </mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('objetFinancement').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('objetFinancement').hasError('required')">
                                         Objet de financement obligatoire
                                     </mat-error>
                                 </mat-form-field>
@@ -449,34 +422,37 @@
                                 <!-- Montant -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                                    <input matInput [formControlName]="'montantProposition'" [appFormatMontant]="simulationStepperForm.get('step3').get('montantProposition').value">
+                                    <input matInput [formControlName]="'montantProposition'"
+                                        [appFormatMontant]="simulationStepperForm.get('step3').get('montantProposition').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
                                     <span matSuffix>Dhs</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
                                         Montant obligatoire
                                     </mat-error>
                                 </mat-form-field>
-                                
 
                                 <!-- Durée -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:timelapse'" matPrefix>
                                     </mat-icon>
-                                    <input matInput [formControlName]="'duree'" [appFormatEntier]="simulationStepperForm.get('step3').get('duree').value">
+                                    <input matInput [formControlName]="'duree'"
+                                        [appFormatEntier]="simulationStepperForm.get('step3').get('duree').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Durée (en mois)</mat-label>
                                     <span matSuffix>mois</span>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('duree').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('duree').hasError('required')">
                                         Durée obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
                                 <!-- Statut projet -->
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'" matPrefix>
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'"
+                                        matPrefix>
                                     </mat-icon>
-                                    <mat-select [formControlName]="'statutProjet'" (selectionChange)="selectedStatutProjet($event)">
+                                    <mat-select [formControlName]="'statutProjet'"
+                                        (selectionChange)="selectedStatutProjet($event)">
                                         <mat-option [value]="'statut1'">Recherche active</mat-option>
                                         <mat-option [value]="'statut2'">Simple simulation</mat-option>
                                         <mat-option [value]="'statut3'">Bien trouvé</mat-option>
@@ -484,48 +460,40 @@
                                     </mat-select>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Statut du projet
                                     </mat-label>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('statutProjet').hasError('required')">
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('statutProjet').hasError('required')">
                                         Statut du projet obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Promoteur -
-                                <mat-form-field class="w-full"
-                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:real_estate_agent'" matPrefix>
-                                    </mat-icon>
-                                    <input matInput [formControlName]="'nomPromoteur'">
+                                <!-- Promoteur -->
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop
+                                    @slideOutTop>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                        matPrefix></mat-icon>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Promoteur</mat-label>
-                                </mat-form-field>-->
-                                
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop @slideOutTop>
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Promoteur</mat-label>
-                                    <input
-                                      matInput
-                                      [formControlName]="'nomPromoteur'"
-                                      [formControl]="searchPromoteurControl"
-                                      [matAutocomplete]="matAutocompletePromoteur"
-                                      [placeholder]="'Rechercher un Promoteur'"
-                                      #barSearchInput
-                                    />
-                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md" [disableRipple]="true"
-                                      #matAutocompletePromoteur>
-                                      <mat-option class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
-                                        *ngIf="resultPromoteurs && !resultPromoteurs.length">
-                                        Aucun élément!
-                                      </mat-option>
-                                      <ng-container *ngFor="let resultProm of resultPromoteurs; trackBy: trackByFn">
-                                        <mat-option class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
-                                          (click)="simulationStepperForm.get('step3').get('nomPromoteur').setValue(resultProm.libelle)">
-                                          <ng-container *ngTemplateOutlet="promResult; context: {$implicit: resultProm}"></ng-container>
+                                    <input matInput [formControlName]="'nomPromoteur'"
+                                        [formControl]="searchPromoteurControl"
+                                        [matAutocomplete]="matAutocompletePromoteur"
+                                        [placeholder]="'Rechercher un Promoteur'" #barSearchInput />
+                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md"
+                                        [disableRipple]="true" #matAutocompletePromoteur>
+                                        <mat-option
+                                            class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
+                                            *ngIf="resultPromoteurs && !resultPromoteurs.length">
+                                            Aucun élément!
                                         </mat-option>
-                                      </ng-container>
+                                        <ng-container *ngFor="let resultProm of resultPromoteurs; trackBy: trackByFn">
+                                            <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step3').get('nomPromoteur').setValue(resultProm.libelle)">
+                                                <ng-container
+                                                    *ngTemplateOutlet="promResult; context: {$implicit: resultProm}"></ng-container>
+                                            </mat-option>
+                                        </ng-container>
                                     </mat-autocomplete>
-                                  </mat-form-field>
-                                    <ng-template
-                                    #promResult
-                                    let-resultProm>
+                                </mat-form-field>
+                                <ng-template #promResult let-resultProm>
                                     <div class="flex items-center">
                                         <div class="ml-3 truncate">
                                             <span [innerHTML]="resultProm.libelle"></span>
@@ -533,14 +501,12 @@
                                     </div>
                                 </ng-template>
 
-
                                 <!-- Type de taux -->
-                                <mat-radio-group
-                                    class="flex flex-col w-full"
-                                    [color]="'primary'"
+                                <mat-radio-group class="flex flex-col w-full" [color]="'primary'"
                                     [formControlName]="'typeTaux'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Type de taux *</mat-label>
-                                    <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
+                                    <div
+                                        class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'FIXE'">
                                             Valeur Fixe
                                         </mat-radio-button>
@@ -548,7 +514,8 @@
                                             Valeur variable
                                         </mat-radio-button>
                                     </div>
-                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('typeTaux').touched 
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step3').get('typeTaux').touched 
                                                     && simulationStepperForm.get('step3').get('typeTaux').hasError('required')">
                                         Type de taux est obligatoire
                                     </mat-error>
@@ -562,20 +529,13 @@
                             
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
-                                <button
-                                    class="md:px-5 mr-2"
-                                    mat-flat-button
-                                    [color]="'accent'"
-                                    type="button"
+                                <button class="md:px-5 mr-2" mat-flat-button [color]="'accent'" type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button
-                                    class="md:px-5"
+                                <button class="md:px-5"
                                     [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid}"
-                                    mat-flat-button
-                                    [color]="'primary'"
-                                    type="button"
+                                    mat-flat-button [color]="'primary'" type="button"
                                     [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid || !isCaptchaValid"
                                     (click)="simuler()">
                                     Valider
@@ -588,7 +548,8 @@
                     <div class="flex flex-row bg-amber-100 rounded-md shadow mx-6 mb-5 py-2 px-3">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
-                        <span class="ml-2 text-sm font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et
+                        <span class="ml-2 text-sm font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit
+                            d'accès, de rectification et
                             d'opposition au traitement de vos données personnelles. Ce traitement est opéré
                             conformément aux autorisations obtenues par Wafa Immobilier auprès de la CNDP »
                         </span>
@@ -596,9 +557,7 @@
                 </form>
 
                 <!-- Résultat -->
-                <div #resultat 
-                    class="md:w-3/5 md:-mt-5"
-                    *ngIf="isVisible"
+                <div #resultat class="md:w-3/5 md:-mt-5" *ngIf="isVisible"
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 300}}">
 
                     <details-simulation [simulationResultat]="simulationResultat"></details-simulation>
