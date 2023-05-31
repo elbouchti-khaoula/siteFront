@@ -224,7 +224,6 @@ export class SimulationDetailleeService {
                                         // Mon projet
                                         objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
                                         nomPromoteur: response[0].nomPromoteur,
-                                        // statutProjet: this.simulationStepperForm.get('step3').get('statutProjet').value,
                                         typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
                                         newSimulation: false,
                                         ...simulation
@@ -261,7 +260,7 @@ export class SimulationDetailleeService {
                             headers: headers,
                         };
 
-                        return this._httpClient.post('api/projects/search', { email: emailP }, httpOptions)
+                        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 }, httpOptions)
                             .pipe(
                                 map((response: Project[]) => {
 

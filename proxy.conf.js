@@ -37,6 +37,14 @@ const PROXY_CONFIG = [
     },
     {
         context: [
+            "/api/projects"
+        ],
+        target: "http://10.10.1.198:9099",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
             "/api/records-in-progress"
         ],
         target: "http://10.10.1.187:8965",
@@ -45,9 +53,9 @@ const PROXY_CONFIG = [
     },
     {
         context: [
-            "/api/projects"
+            "/api/upload"
         ],
-        target: "http://10.10.1.198:9099",
+        target: "http://10.10.1.199:8083",
         secure: false,
         logLevel: "debug"
     },

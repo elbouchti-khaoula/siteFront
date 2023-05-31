@@ -48,8 +48,9 @@ export class MesDemandesCreditComponent implements OnInit, OnDestroy {
             e => {
               return {
                 ...e,
-                mtProjet: this._fuseUtilsService.numberFormat(e.mtProjet, 2, '.', ' '), 
-                phaseId: this.steps.find(step => step.libelle == e.phase).id}
+                mtProjet: this._fuseUtilsService.numberFormat(e.mtProjet, 2, '.', ' '),
+                phaseId: this.steps.find(step => step.libelle == e.phase).id
+              }
             }
           );
         }

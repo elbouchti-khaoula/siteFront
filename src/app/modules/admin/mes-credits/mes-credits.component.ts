@@ -5,6 +5,9 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { OperationsSAVRefComponent } from './opeartion-sav-ref/operations-sav-ref.component';
+import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
+import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { FuseUtilsService } from '@fuse/services/utils';
 
 @Component({
   selector: 'mes-credits',
@@ -16,7 +19,7 @@ import { OperationsSAVRefComponent } from './opeartion-sav-ref/operations-sav-re
 export class MesCreditsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
-  dossiersCredits: any[] = [];
+  creditsEnCours: CreditEnCours[] = [];
   selectedDossier: any;
   operationsSAVRef: OperationSAVRef[] = [];
 
@@ -26,12 +29,11 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _matDialog: MatDialog,
-    private _referentielService: ReferentielService
-  ) {
-    this.dossiersCredits.push({ id: 123, montant: "2 000 000.00 Dhs", capital: "454 964,75 Dhs", impayes: null, duree: 240, dureeRestante: 78 });
-    this.dossiersCredits.push({ id: 456, montant: "2 000 000.00 Dhs", capital: "454 964,75 Dhs", impayes: "37 960,35 Dhs", duree: 240, dureeRestante: 78 });
-    // this.dossiersCredits.push({id: 789, montant: "2 000 000.00 Dhs", capital: "454 964,75 Dhs", impayes: null, duree: 240, dureeRestante: 78});
-    // this.dossiersCredits.push({id: 987, montant: "2 000 000.00 Dhs", capital: "454 964,75 Dhs", impayes: "37 960,35 Dhs", duree: 240, dureeRestante: 78});
+    private _referentielService: ReferentielService,
+    private _recordsInProgressService: RecordsInProgressService,
+    private _fuseUtilsService: FuseUtilsService
+  )
+  {
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -44,6 +46,36 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
       .subscribe((response: OperationSAVRef[]) => {
 
         this.operationsSAVRef = response;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
+
+    this._recordsInProgressService.creditsEnCours$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((response: CreditEnCours[]) => {
+
+        let res = [];
+        if (response && response.length > 0) {
+          res = response.map(
+            e => {
+              return {
+                ...e,
+                montant: this._fuseUtilsService.numberFormat(e.montant, 2, '.', ' '),
+                crd: this._fuseUtilsService.numberFormat(e.crd, 2, '.', ' '),
+                mensualite: this._fuseUtilsService.numberFormat(e.mensuaite, 2, '.', ' '),
+                existeImpaye: e.impayes !== null && e.impayes !== 0,
+                estCTX: e.statut == 'CTX',
+                estEchu: e.statut == 'ECHU',
+                // statutAS: 1,
+                // existeImpaye: true
+                // estCTX: true,
+                // estEchu: true,
+              }
+            }
+          );
+        }
+        this.creditsEnCours = res;
 
         // Mark for check
         this._changeDetectorRef.markForCheck();

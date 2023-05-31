@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { MesCreditsComponent } from './mes-credits.component';
-import { OperationSAVRefResolver } from './mes-credits.resolvers';
+import { MesCreditsEnCoursResolver, OperationSAVRefResolver } from './mes-credits.resolvers';
 
 export const mesCreditsRoutes: Route[] = [
     {
@@ -8,6 +8,7 @@ export const mesCreditsRoutes: Route[] = [
         component: MesCreditsComponent,
         resolve  : {
             operationsSAVRef: OperationSAVRefResolver,
+            creditsEnCours: MesCreditsEnCoursResolver
         }
     }
 ];
