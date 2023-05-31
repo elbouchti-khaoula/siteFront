@@ -22,7 +22,6 @@ export class UserComponent implements OnInit, OnDestroy
     @Input() showAvatar: boolean = true;
     user: User;
     authentified: boolean = false;
-    email: string;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -47,6 +46,7 @@ export class UserComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+
         // Subscribe to user changes
         this._userService.user$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -62,8 +62,6 @@ export class UserComponent implements OnInit, OnDestroy
             .subscribe((authentified: boolean) => {
                 this.authentified = authentified;
             });
-        
-        this.email = localStorage.getItem('email');
     }
 
     /**

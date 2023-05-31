@@ -30,6 +30,7 @@
     "@marcreichel/angular-carousel": "^2.0.5",
     "@ngneat/transloco": "4.1.1",
     "@ngneat/transloco-locale": "^4.0.0",
+    "@types/file-saver": "^2.0.5",
     "apexcharts": "3.33.1",
     "crypto-js": "3.3.0",
     "file-saver": "^2.0.5",
@@ -38,7 +39,11 @@
     "lodash-es": "4.17.21",
     "moment": "^2.29.4",
     "ng-apexcharts": "1.7.0",
+<<<<<<< HEAD
     "ng-recaptcha": "^6.0.2",
+=======
+    "ngx-filesaver": "^15.0.1",
+>>>>>>> refs/heads/feature-ahmed
     "ngx-markdown": "13.1.0",
     "ngx-quill": "16.1.2",
     "perfect-scrollbar": "1.5.3",

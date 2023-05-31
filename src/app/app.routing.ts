@@ -62,6 +62,51 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
+
+            // {
+            //     path: 'espace-connected-client',
+            //     loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
+            // },
+
+            // espace connecté
+            {
+                path: 'espace-connecte',
+                children: [
+                    {
+                        path: '',
+                        // loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
+                        loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
+                    },
+                    {
+                        path: 'simulation-detaillee',
+                        loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
+                    },
+                    {
+                        path: 'demande-credit',
+                        loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
+                    },
+                    {
+                        path: 'mes-simulations',
+                        loadChildren: () => import('app/modules/admin/mes-simulations/mes-simulations.module').then(m => m.MesSimulationsModule)
+                    },
+                    {
+                        path: 'consulter-simulation',
+                        loadChildren: () => import('app/modules/admin/consulter-simulation/consulter-simulation.module').then(m => m.ConsulterSimulationModule)
+                    },
+                    {
+                        path: 'mes-demandes-credit',
+                        loadChildren: () => import('app/modules/admin/mes-demandes-credit/mes-demandes-credit.module').then(m => m.MesDemandesCreditModule)
+                    },
+                    {
+                        path: 'mes-credits',
+                        loadChildren: () => import('app/modules/admin/mes-credits/mes-credits.module').then(m => m.MesCreditsModule)
+                    },
+                    {
+                        path: 'mes-projets-favoris',
+                        loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
+                    }
+                ]
+            }
         ]
     },
 
@@ -83,8 +128,8 @@ export const appRoutes: Route[] = [
     // Pages routes
     {
         path       : '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
+        // canActivate: [NoAuthGuard],
+        // canActivateChild: [NoAuthGuard],
         component  : LayoutComponent,
         resolve    : {
             initialData: InitialDataResolver,
@@ -141,8 +186,6 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/notre-politique-rse/notre-politique-rse.module').then(m => m.NotrePolitiqueRseModule),
             },
 
-         
-
             {
                 path: 'nous-contacter',
                 loadChildren: () => import('app/modules/pages/support/support.module').then(m => m.SupportModule),
@@ -156,47 +199,14 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
             },
 
-            // espace connecté
+            // not used
             {
-                path: 'espace-connecte',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
-                    },
-                    {
-                        path: 'simulation-detaillee',
-                        loadChildren: () => import('app/modules/admin/simulation-detaillee/simulation-detaillee.module').then(m => m.SimulationDetailleeModule)
-                    },
-                    {
-                        path: 'demande-credit',
-                        loadChildren: () => import('app/modules/admin/demande-credit/demande-credit.module').then(m => m.DemandeCreditModule)
-                    },
-                    {
-                        path: 'mes-simulations',
-                        loadChildren: () => import('app/modules/admin/mes-simulations/mes-simulations.module').then(m => m.MesSimulationsModule)
-                    },
-                    {
-                        path: 'consulter-simulation',
-                        loadChildren: () => import('app/modules/admin/consulter-simulation/consulter-simulation.module').then(m => m.ConsulterSimulationModule)
-                    },
-                    {
-                        path: 'mes-demandes-credit',
-                        loadChildren: () => import('app/modules/admin/mes-demandes-credit/mes-demandes-credit.module').then(m => m.MesDemandesCreditModule)
-                    },
-                    {
-                        path: 'mes-credits',
-                        loadChildren: () => import('app/modules/admin/mes-credits/mes-credits.module').then(m => m.MesCreditsModule)
-                    },
-                    {
-                        path: 'mes-projets-favoris',
-                        loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
-                    }
-                ]
+                path: 'landingBis',
+                loadChildren: () => import('app/modules/pages/landingBis/landingBis.module').then(m => m.LandingBisModule),
             },
             {
-                path: 'espace-connected-client',
-                loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
+                path: 'nous-connaitre-old',
+                loadChildren: () => import('app/modules/pages/nous-connaitre-old/nous-connaitre-old.module').then(m => m.NousConnaitreOldModule),
             },
 
             // Maintenance

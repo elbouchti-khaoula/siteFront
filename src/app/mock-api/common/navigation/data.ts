@@ -21,7 +21,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Mon espace',
                 type      : 'basic',
-                link      : '/espace-connected-client',
+                link      : '/espace-connecte',
                 exactMatch: true
             },
             {
@@ -170,7 +170,7 @@ export const compactNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Mon espace',
                 type      : 'basic',
-                link      : '/espace-connected-client',
+                link      : '/espace-connecte',
                 exactMatch: true
             },
             {
@@ -319,7 +319,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Mon espace',
                 type      : 'basic',
-                link      : '/espace-connected-client',
+                link      : '/espace-connecte',
                 exactMatch: true
             },
             {
@@ -467,7 +467,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 id        : 'espace-connecte.home',
                 title     : 'Mon espace',
                 type      : 'basic',
-                link      : '/espace-connected-client',
+                link      : '/espace-connecte',
                 exactMatch: true
             },
             {
