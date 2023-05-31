@@ -148,6 +148,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
+    },
+    {
+        id   : 'espace-multimedia',
+        title: 'Espace multimédia2',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/espace-multimedia'
     }
 ];
 
@@ -297,6 +304,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
+    },
+    {
+        id   : 'espace-multimedia',
+        title: 'Espace multimédia2',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/espace-multimedia'
     }
 ];
 
@@ -445,6 +459,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
+    }, 
+    {
+        id   : 'espace-multimedia',
+        title: 'Espace multimédia2',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/espace-multimedia'
     }
 ];
 
@@ -593,5 +614,12 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
+    },
+    {
+        id   : 'espace-multimedia',
+        title: 'Espace multimédia2',
+        type : 'basic',
+        icon : 'heroicons_outline:film',
+        link : '/espace-multimedia'
     }
 ];

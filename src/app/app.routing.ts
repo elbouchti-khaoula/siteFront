@@ -180,6 +180,27 @@ export const appRoutes: Route[] = [
                 path: 'nos-guides-conseils',
                 loadChildren: () => import('app/modules/pages/nos-guides-conseils/nos-guides-conseils.module').then(m => m.NosGidesConseilsModule),
             },
+            {
+                path: 'conseil-detail-1',
+                loadChildren: () => import('app/modules/pages/nos-guides-conseils/conseil-detail-1/conseil-detail-1.module').then(m => m.Detail1Module),
+            },
+            {
+                path: 'conseil-detail-2',
+                loadChildren: () => import('app/modules/pages/nos-guides-conseils/conseil-detail-2/conseil-detail-2.module').then(m => m.Detail2Module),
+            },
+            {
+                path: 'conseil-detail-3',
+                loadChildren: () => import('app/modules/pages/nos-guides-conseils/conseil-detail-3/conseil-detail-3.module').then(m => m.Detail3Module),
+            },
+            {
+                path: 'conseil-detail-4',
+                loadChildren: () => import('app/modules/pages/nos-guides-conseils/conseil-detail-4/conseil-detail-4.module').then(m => m.Detail4Module),
+            },
+            
+            {
+                path: 'espace-multimedia',
+                loadChildren: () => import('app/modules/pages/espace-multimedia/espace-multimedia.module').then(m => m.EspaceMultiMediaModule),
+            },
 
             {
                 path: 'notre-politique-rse',

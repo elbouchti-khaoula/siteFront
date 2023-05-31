@@ -1,0 +1,13 @@
+.b1-bg-header {
+    background-image: url('/assets/images/pages/espace-multimedia/Header.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    @media (max-width: 600px) {
+      background-image: url('/assets/images/pages/espace-multimedia/Headersm.png');
+    }
+}
+
+
+  

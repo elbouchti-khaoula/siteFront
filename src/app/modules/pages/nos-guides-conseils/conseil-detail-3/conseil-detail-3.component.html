@@ -1,0 +1,97 @@
+<div class=" flex flex-col flex-auto min-w-0 overflow-hidden  " [@fadeInRight]="{value:'', params: {duration: 700}}">
+
+  <!-- Header -->
+
+
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 grid grid-cols-12   min-h-[45vh] sm:min-h-[30vh] b3-bg ">
+    <button class="col-span-1 w-full md:w-1/2 " routerLink="/conseil-detail-2"><mat-icon class="h-full text-primary w-full " svgIcon="navigate_before"></mat-icon></button>
+    <div class="w-full col-span-10 max-w-400 mx-auto flex flex-col items-center justify-center">
+      <div class=" grid grid-cols-1 sm:grid-cols-2  gap-y-4 sm:gap-y-6 md:gap-y-8 gap-x-8 sm:gap-x-12 md:gap-x-15  ">
+        <div></div>
+        <div
+          class="hidden sm:block text-2xl sm:text-3xl md:text-4xl uppercase font-bold tracking-tight leading-tight  ">
+          3 règles pratiques pour trouver le bon logement
+        </div>
+      </div>
+    </div>
+    <button class="col-span-1 w-full md:w-1/2 " routerLink="/conseil-detail-4"><mat-icon class="h-full text-primary w-full  " svgIcon="navigate_next"></mat-icon></button>
+</section>
+
+<section class="sm:hidden px-5  py-4   min-h-10">
+  <div class="w-full max-w-400 mx-auto flex flex-col items-center justify-center">
+    <div class=" grid grid-cols-1   gap-y-4 gap-x-8 ">
+
+      <div class="text-2xl uppercase font-bold tracking-tight leading-tight  ">
+        3 règles pratiques pour trouver le bon logement
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="px-5 sm:px-16 py-3   min-h-80 md:min-h-76 b3-gray-100">
+  <div class="sm:w-full  max-w-400 mx-auto md:flex flex-col flex-wrap  justify-start text-justify ">
+    <div class="  py-3 sm:py-3 sm:px-20 md:px-40 text-lg sm:text-xl ">Trouver le logement idéal pour s’y installer peut
+      s’avérer long et
+      fastidieux. Qu’il s’agisse de la phase de recherche de biens répondant à vos critères ou celle de négociation en
+      passant par l’achat effectif du bien. Cependant, certaines petites actions peuvent vous rendre la tâche plus
+      simple. En voici certaines.
+    </div>
+    <div class=" py-3 sm:py-3 sm:px-20 md:px-40 text-lg sm:text-xl text-justify">
+      <h3 class="text-primary font-bold  pt-1 sm:py-2">Connaître les règles du jeu</h3>
+      <p> Il est impératif de visiter plusieurs logements, de lire les petites annonces et de consulter régulièrement
+        notre rubrique <a class="text-primary underline " href="/darrahetbal">choisissez votre logement</a> afin d'avoir
+        une bonne connaissance du marché, des prix et donc des prestations auxquelles vous pouvez prétendre selon le
+        montant de votre investissement.</p>
+    </div>
+
+    <div class="py-3 sm:py-3 sm:px-20 md:px-40 text-lg sm:text-xl text-justify">
+      <h3 class=" text-primary font-bold  pt-1 sm:py-2">Vous avez trouvé ?</h3>
+      <p> N'hésitez pas à visiter votre futur logement à différentes heures : vous en tirerez des informations
+        précieuses sur l'accessibilité du lieu, les éventuelles nuisances sonores ou de pollution, la luminosité et
+        l'ensoleillement, la tranquillité du quartier, les possibilités de stationnement … </p>
+
+      <p class="mt-2 sm:mt-1">Vous pouvez également prendre contact avec vos futurs voisins afin d’en savoir davantage
+        sur le quartier.</p>
+    </div>
+
+
+    <div class="text-lg sm:text-xl py-3 sm:py-3 sm:px-20 md:px-40 text-justify ">
+      <h3 class="text-primary font-bold  pt-1 sm:py-2">Les vérifications obligatoires</h3>
+      <p class="mt-2 sm:mt-1">Si vous n'êtes pas spécialiste du bâtiment, nous vous conseillons de faire appel à un
+        professionnel et même de vous renseigner sur l'importance et les prix des éventuels travaux.</p>
+      <p class="mt-2 sm:mt-1">
+        Les vérifications doivent porter sur la surface du logement, les installations électriques et sanitaires, les
+        toitures, les murs, le chauffage, les ouvertures (portes et fenêtres), les isolations, le traitement contre
+        les parasites.
+      </p>
+      <p class="mt-2 sm:mt-1">Pour les logements en copropriété : consultez le règlement, renseignez-vous sur les
+        charges d'entretien et de travaux.</p>
+    </div>
+    <div class="py-3 sm:py-3 sm:px-20 md:px-40 text-xl sm:text-2xl text-justify ">
+      <h3 class="text-primary font-bold">Vous souhaitez investir dans un bien immobilier et vous souhaitez être
+        accompagnés par
+        des experts de l’immobilier ?</h3>
+
+    </div>
+
+    <div
+      class="py-10 sm:pt-18 sm:px-20 md:px-40 sm:pb-20 grid grid-cols-1 sm:grid-cols-3 space-y-5 sm:space-x-30 sm:place-items-center">
+      <button mat-flat-button [color]="'primary'" [routerLink]="'/nous-contacter'">
+        Contactez-vous
+      </button>
+
+      <button mat-flat-button [color]="'primary'" [routerLink]="'/simulation-personnalisee'">
+        Simulez votre crédit
+      </button>
+
+      <button mat-flat-button [color]="'primary'" [routerLink]="'/nos-offres-miftah'">
+        Découvrez nos offres
+      </button>
+    </div>
+
+
+  </div>
+</section>
+<contactez-nous [isScreenSmall]="isScreenSmall"></contactez-nous>
+
+</div>
