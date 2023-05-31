@@ -47,19 +47,19 @@
     </header>
 
     <div class="z-20 px-5 sm:px-16 pb-10">
-        <div class="hidden md:flex flex-row justify-center mx-auto w-full max-w-360 h-40 shadow-lg rounded-3xl bg-card -mt-20">
+        <div class="hidden md:flex flex-row justify-center mx-auto w-full max-w-360 h-40 shadow-md rounded-2xl bg-card -mt-20">
             <div class="flex flex-row items-center justify-between w-[30%]">
                 <div class="flex items-center justify-center rounded-xl border-primary border p-1 h-32 w-1/4">
                     <img [src]="projet.promoter.logoPath" class="object-cover" />
                 </div>
                 <div class="flex flex-col space-y-3 w-2/3">
-                    <div class="font-extrabold text-3xl text-primary">
+                    <div class="font-extrabold text-2xl text-primary">
                         {{projet.nom}}
                     </div>
                     <div class="flex items-center">
                         <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:location-marker'">
                         </mat-icon>
-                        <div class="ml-3 text-xl font-semibold">{{projet.libelleVille}}</div>
+                        <div class="ml-3 text-lg font-semibold">{{projet.libelleVille}}</div>
                     </div>
                     <button class="text-md uppercase w-fit fuse-mat-button-small"
                         mat-flat-button
@@ -108,7 +108,7 @@
 
         <div class="md:hidden flex flex-col w-full sm:px-10 -mt-15">
             <div class="w-full flex flex-row items-center space-x-3">
-                <div class="flex items-center justify-center border-primary border p-1 h-30 w-28">
+                <div class="flex items-center justify-center rounded-xl border-primary border p-1 h-30 w-28">
                     <img [src]="projet.promoter.logoPath" class="object-cover" />
                 </div>
                 <button class="fuse-mat-button-small w-fit uppercase" 
@@ -174,7 +174,7 @@
             </div>
 
             <div class="hidden md:inline-flex w-2/5 ml-7">
-                <div class="w-full p-7 shadow-lg rounded-2xl bg-card">
+                <div class="w-full p-7 shadow-md rounded-2xl bg-card">
                     <simulation></simulation>
                 </div>
             </div>
@@ -205,6 +205,7 @@
                     Description complète
                 </h2>
             </div>
+
             <div class="max-w-360 prose prose-sm mt-5" [innerHTML]="projet.description"></div>
 
             <hr class="w-full border-t my-7">
@@ -231,11 +232,11 @@
                     Adresse
                 </h2>
                 <div class="flex items-center">
-                    <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'heroicons_outline:location-marker'">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:location-marker'">
                     </mat-icon>
-                    <div class="ml-3 text-lg font-semibold">{{projet.adresse}}, {{projet.libelleVille}}</div>
+                    <div class="ml-3 text-md font-semibold">{{projet.adresse}}, {{projet.libelleVille}}</div>
                 </div>
-                <div class="w-full h-128">
+                <div class="w-full h-80 md:h-128">
                     <google-map
                         height="100%"
                         width="100%"

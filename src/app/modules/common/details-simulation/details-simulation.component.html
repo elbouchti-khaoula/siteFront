@@ -1,5 +1,5 @@
 <mat-drawer-container
-    class="bg-transparent rounded-md"
+    class="bg-transparent rounded-xl"
     [ngClass]="{'h-[95vh]': isScreenSmall && drawerOpened,
                 'min-h-172': !isScreenSmall}"
     [hasBackdrop]="true">
@@ -14,7 +14,7 @@
 
     <mat-drawer-content class="px-1 pt-5 pb-1">
 
-        <fuse-card class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-card rounded-md shadow overflow-visible">
+        <fuse-card class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-card rounded-xl shadow-md overflow-visible">
 
             <div *ngIf="simulationResultat?.newSimulation"
                 class="absolute inset-x-0 -top-4 flex items-center justify-center">

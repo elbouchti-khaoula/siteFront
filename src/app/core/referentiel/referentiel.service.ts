@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, DocumentInstitutionnel } from './referentiel.types';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, DocumentInstitutionnel, OperationSAVDocument } from './referentiel.types';
 import { saveAs } from "file-saver";
 
 @Injectable({
@@ -19,6 +19,7 @@ export class ReferentielService {
     private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
     private _agence: BehaviorSubject<Agence | null> = new BehaviorSubject(null);
     private _operationsSAVRef: BehaviorSubject<OperationSAVRef[] | null> = new BehaviorSubject(null);
+    private _operationSAVDocuments: BehaviorSubject<OperationSAVDocument[] | null> = new BehaviorSubject(null);
     private _documents: BehaviorSubject<DocumentInstitutionnel[] | null> = new BehaviorSubject(null);
 
     /**
@@ -94,8 +95,15 @@ export class ReferentielService {
     }
 
     /**
-       * Getter for documents
-       */
+     * Getter for operationsSAVDocuments
+     */
+    get operationSAVDocuments$(): Observable<OperationSAVDocument[]> {
+        return this._operationSAVDocuments.asObservable();
+    }
+
+    /**
+     * Getter for documents
+     */
     get documents$(): Observable<DocumentInstitutionnel[]> {
         return this._documents.asObservable();
     }
@@ -289,7 +297,7 @@ export class ReferentielService {
             })
         );
     }
-    
+
     /**
      * Get Opérations SAV réferentiel
      */
@@ -303,6 +311,21 @@ export class ReferentielService {
                     localStorage.setItem('operationSAVref', JSON.stringify(response));
 
                     this._operationsSAVRef.next(response);
+                })
+            );
+    }
+
+    /**
+     * Get Opérations SAV documents
+     */
+    getOperationSAVDocuments(operationId: number): Observable<OperationSAVDocument[]> {
+        return this._httpClient.get<OperationSAVDocument[]>(`api/repositories/operation/documents/${operationId}`)
+            .pipe(
+                tap((response: OperationSAVDocument[]) => {
+                    // Sort the opérationSAV documents by the libelle field by default
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    this._operationSAVDocuments.next(response);
                 })
             );
     }
@@ -347,21 +370,14 @@ export class ReferentielService {
             );
     }
 
-
-
-       downloadPDF(id:number,fileName: String) {
-
-
-
-
-        
-        this._httpClient.get('/api/repositories/document/'+id, { responseType: 'blob' })
+    downloadPDF(id: number, fileName: String) {
+        this._httpClient.get('/api/repositories/document/' + id, { responseType: 'blob' })
             .subscribe((blob: any) => {
-                //const blob = new Blob([response.body], { type: 'application/pdf' });
+                // const blob = new Blob([response.body], { type: 'application/pdf' });
                 // const filename = 'Demande Client Financier.pdf';
                 saveAs(blob, fileName);
             });
-        }
+    }
 
 }
 

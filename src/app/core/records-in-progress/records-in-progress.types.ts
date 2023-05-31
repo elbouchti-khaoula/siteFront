@@ -21,4 +21,8 @@ export interface CreditEnCours {
     statut          : string;
     dateCredit      : Date;
     statutAS        : number;
+
+    existeImpaye?   : boolean;
+    estCTX?         : boolean;
+    estEchu?        : boolean;
 }

@@ -74,8 +74,7 @@ const PROXY_CONFIG = [
         target: "https://test.salesforce.com",
         secure: false,
         logLevel: "debug"
-    },
-   
+    }
 ]
 
 module.exports = PROXY_CONFIG;
