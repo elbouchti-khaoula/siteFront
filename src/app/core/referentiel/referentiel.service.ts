@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, DocumentInstitutionnel, OperationSAVDocument } from './referentiel.types';
 import { saveAs } from "file-saver";
 
@@ -297,7 +297,7 @@ export class ReferentielService {
             })
         );
     }
-    
+
     /**
      * Get Opérations SAV réferentiel
      */
@@ -370,12 +370,12 @@ export class ReferentielService {
             );
     }
 
-    downloadPDF(id: number) {
+    downloadPDF(id: number, fileName: String) {
         this._httpClient.get('/api/repositories/document/' + id, { responseType: 'blob' })
             .subscribe((blob: any) => {
                 // const blob = new Blob([response.body], { type: 'application/pdf' });
                 // const filename = 'Demande Client Financier.pdf';
-                saveAs(blob, "test.pdf");
+                saveAs(blob, fileName);
             });
     }
 

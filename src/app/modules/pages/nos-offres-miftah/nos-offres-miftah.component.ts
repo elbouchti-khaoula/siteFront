@@ -100,6 +100,8 @@ export class NosOffresMiftahComponent
 
     imageSrc12= 'assets/images/pages/nos-offres-miftah/MIFTAH IN FINE 1.svg';
     imageSrc11= 'assets/images/pages/nos-offres-miftah/MIFTAH RELAIS 1.svg';
+    imageSrc14= 'assets/images/pages/nos-offres-miftah/MIFTAH ATTAALIM.png';
+
 
     
 
