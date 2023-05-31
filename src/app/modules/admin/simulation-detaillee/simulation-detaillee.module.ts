@@ -22,12 +22,10 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
 import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
-import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     declarations: [
         SimulationDetailleeComponent
@@ -50,11 +48,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         BienvenueModule,
         DetailsSimulationModule,
         MatAutocompleteModule,
-        CommonModule,
         FormatMontantModule,
         FormatTelephoneModule,
         FormatEntierModule,
-        ReactiveFormsModule,
         CaptchaModule
     ],
     
