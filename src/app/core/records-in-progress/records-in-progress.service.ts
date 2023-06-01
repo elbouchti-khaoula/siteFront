@@ -68,7 +68,7 @@ export class RecordsInProgressService {
     }
 
     /**
-     * count mes credit
+     * count mes credits
      */
     getCountCreditByEmailAndCin(email: string, cin: string): Observable<number> {
         return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: "640891", mail: email })
