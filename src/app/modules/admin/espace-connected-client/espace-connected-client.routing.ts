@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { EspaceConnectedClientComponent } from './espace-connected-client.component';
-import { EspaceConnecteClientResolver } from './espace-connected-client.resolvers';
+import { CountCreditResolver, CountSimulationResolver } from './espace-connected-client.resolvers';
 
 export const EspaceConnectedRoutes: Route[] = [
     {
@@ -8,8 +8,7 @@ export const EspaceConnectedRoutes: Route[] = [
         component: EspaceConnectedClientComponent,
 
         resolve  : {
-            countCredit: EspaceConnecteClientResolver,
-            
+            countCredit: CountCreditResolver,
         }
       
     }
