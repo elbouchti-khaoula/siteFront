@@ -84,6 +84,30 @@ export class SimulationDetailleeService {
         return this._promoteurs.asObservable();
     }
 
+ /**
+     * count mes simulations
+     */
+ getCountSimulation(email: string, cin: string): Observable<number> {
+    //alert(localStorage.getItem('accessTokenGeneric'));
+    let headers= new HttpHeaders();
+
+    headers.set("Authentification","Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoVm1tSUFCMWxWVFV4d0l2dFB3aFdCNW1kWlpzUWN4Q25PRTJYZkMyYlFBIn0.eyJleHAiOjE2ODU2MTQ1NjIsImlhdCI6MTY4NTYwNzM2MiwianRpIjoiYTgzMzAxNjYtN2U5YS00MjkyLTgyMDItN2M2NTkzZjhiODFlIiwiaXNzIjoiaHR0cDovLzEwLjEwLjEuMTg0OjgwODAvYXV0aC9yZWFsbXMvc2l0ZXdlYiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIwMjZlZTkzNS04N2RjLTRmZWMtYjVmMS1iMTgyNmJiMGI0NzMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzaXRld2ViLWNsaSIsInNlc3Npb25fc3RhdGUiOiI0NWQ0ODVhOC1iNjU3LTRlMmEtODg3Ny1kNGViNjRiNWIxNDUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly8xMC4xMC4xLjE4NDo5MDk5Il0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc2l0ZXdlYiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNDVkNDg1YTgtYjY1Ny00ZTJhLTg4NzctZDRlYjY0YjViMTQ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzaXRld2ViIn0.l6JIYr8nThVDwUs6mGdxAApCPUZjnLruhyLe7KaFQHLBmdaonj6Un6y65sqVHvlSMQGF92ek1grBfs1S-urlqkyvoqkhepJnAeUP0wmK592Kx5pyJdRWADsF-gQMdlBIzM6pjEmsj5vwBmSj1bGcvyOCn4PRzAKIhbAxH3BBwED-yxsKV4y2dKxN4vwcMhyFj0ueZa0NPiIjHScj_0cCzEmnvG99Dqi9yv07r-dO1u-1-lvbMYrbrCOM2R-zxKLWL0AIjJlLTQtDN60CidHxDH_MsDNIGyzntdcClYtTp4wqKylD8HxLKbERFgu3Cj14qW2nGVkLA31kMZ_AIJIj9g");
+    return this._httpClient.post<number>('api/projects/search/count', { cin: "B727021", mail: email },{headers:headers})
+        .pipe(
+            map(
+                (response: number) => response )
+                
+        );
+
+
+}
+
+
+
+
+
+
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------

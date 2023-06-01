@@ -8,6 +8,7 @@ import { NavigationService } from 'app/core/navigation/navigation.service';
 // import { ShortcutsService } from 'app/layout/common/shortcuts/shortcuts.service';
 import { UserService } from 'app/core/user/user.service';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { SimulationDetailleeService } from './core/projects/projects.service';
 
 @Injectable({
     providedIn: 'root'
@@ -56,7 +57,8 @@ export class InitialDataResolver implements Resolve<any>
             this._referentielService.getAgences(),
             this._referentielService.getNationalites(),
             this._referentielService.getCategories(),
-            this._referentielService.getObjetsFinancement()
+            this._referentielService.getObjetsFinancement(),
+        
         ]);
     }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable,map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { CreditEnCours, DemandeCredit } from './records-in-progress.types';
 
 @Injectable({
@@ -65,16 +65,15 @@ export class RecordsInProgressService {
                 })
             );
     }
-    
-       /**
-     * count mes credit
-     */
 
-     getCountCreditByEmailAndCin(email: string, cin:string): Observable<number> {
+    /**
+     * count mes credits
+     */
+    getCountCreditByEmailAndCin(email: string, cin: string): Observable<number> {
         return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: "640891", mail: email })
-          .pipe(
-            map((response: number) => response)
-          );
-      }
+            .pipe(
+                map((response: number) => response)
+            );
+    }
 
 }
