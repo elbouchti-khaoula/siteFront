@@ -36,10 +36,11 @@ export interface Projet {
     dateCreation?: Date | null;
     dateModification?: Date | null;
 
-    images?: {
+    medias?: {
+        id?: number;
         chemin: string | null;
         classement?: number;
-        typePhoto?: number;
+        type?: number;
     }[];
     promoter?: {
         id: number;

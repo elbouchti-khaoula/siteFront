@@ -202,7 +202,7 @@ export class ProjetsService
                     let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
                     for (let i = 0; i < projets?.length; i++) {
-                        projets[i].images = images[i % 5];
+                        projets[i].medias = images[i % 5];
                         projets[i].promoter.logoPath = logos[i % 5];
                         projets[i].estFavoris = false;
                         this.fillReferentielLabels(projets[i], villes, typesBiens, quartiers);
@@ -351,7 +351,7 @@ export class ProjetsService
                                 let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
                                 for (let i = 0; i < projets?.length; i++) {
-                                    projets[i].images = images[i % 5];
+                                    projets[i].medias = images[i % 5];
                                     projets[i].promoter.logoPath = logos[i % 5];
                                     projets[i].estFavoris = projetsFavoris.some(e => e.realEstateProject.id === projets[i].id);
                                     this.fillReferentielLabels(projets[i], villes, typesBiens, quartiers);
@@ -573,7 +573,7 @@ export class ProjetsService
                     let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
                     for (let i = 0; i < projetsFavoris?.length; i++) {
-                        projetsFavoris[i].realEstateProject.images = images[i % 5];
+                        projetsFavoris[i].realEstateProject.medias = images[i % 5];
                         projetsFavoris[i].realEstateProject.promoter.logoPath = logos[i % 5];
                         this.fillReferentielLabels(projetsFavoris[i].realEstateProject, villes, typesBiens, quartiers);
                     }
