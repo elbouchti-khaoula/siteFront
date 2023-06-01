@@ -2,7 +2,7 @@
 
     <!-- Header -->
     <header
-        class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-80 md:min-h-80 mes-simul-bg-header">
+        class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-76 mes-simul-bg-header">
         <div class="w-full max-w-400">
             <bienvenue></bienvenue>
         </div>
@@ -36,7 +36,7 @@
             
             <ng-container *ngIf="simulations && simulations.length > 0; else noSimulations">
 
-                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-16"
+                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-20"
                     [ngClass]="{'md:grid-cols-3' : simulations.length > 4 || simulations.length === 3,
                                 'md:grid-cols-1' : simulations.length === 1,
                                 'md:grid-cols-2' : simulations.length === 4 || simulations.length === 2}">
