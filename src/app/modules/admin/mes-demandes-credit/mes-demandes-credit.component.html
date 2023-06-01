@@ -1,7 +1,7 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-80 md:min-h-76 mes-demandes-bg-header">
+    <header class="flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-76 mes-demandes-bg-header">
         <div class="w-full max-w-400">
             <bienvenue></bienvenue>
         </div>
@@ -24,7 +24,7 @@
             
             <ng-container *ngIf="demandes && demandes.length > 0; else noDemandes">
 
-                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-16"
+                <div class="mx-auto sm:w-fit grid grid-cols-1 gap-y-14 md:gap-x-10 md:gap-y-16 mt-20"
                     [ngClass]="{'md:grid-cols-3' : demandes.length > 4 || demandes.length === 3,
                                  'md:grid-cols-1' : demandes.length === 1,
                                  'md:grid-cols-2' : demandes.length === 4 || demandes.length === 2}">
@@ -39,7 +39,11 @@
                             </div>
 
                             <div class="flex flex-col items-center mt-14">
-                                <div class="text-2xl font-bold leading-tight uppercase">Demande N° {{demande.nprojet}}
+                                <div class="text-2xl font-bold leading-tight uppercase">
+                                    Demande N° {{demande.nprojet}}
+                                </div>
+                                <div class="text-secondary">
+                                    {{demande.dateCreation}}
                                 </div>
 
                                 <div class="flex flex-col items-center mt-7">
