@@ -121,9 +121,13 @@
                                                             <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                                                         </div>
                                                         <div class="flex flex-col space-y-0.5 mt-3 md:mt-5">
-                                                            <span class="font-extrabold text-xl uppercase text-primary">
+                                                            <div class="font-extrabold text-xl uppercase text-primary">
                                                                 {{projet.nom}}
-                                                            </span>
+                                                                <mat-icon *ngIf="projet.estFavoris"
+                                                                    class="icon-size-5 text-red-500"
+                                                                    [svgIcon]="'heroicons_solid:heart'">
+                                                                </mat-icon>
+                                                            </div>
                                                             <div class="-ml-1 flex items-center text-center">
                                                                 <mat-icon class="icon-size-5 text-primary-700"
                                                                     [svgIcon]="'heroicons_outline:location-marker'">

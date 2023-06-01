@@ -49,6 +49,8 @@ export interface Projet {
         logoPath: string | null;
         extensionLogo: string | null;
     }
+
+    estFavoris?: boolean;
 }
 
 export interface ProjetFavori {
