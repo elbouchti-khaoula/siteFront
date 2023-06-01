@@ -68,7 +68,7 @@
                 <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
                 </mat-icon>
 
-                <a href="#" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
+                <a routerLink="/espace-connecte/mes-projets-favoris" class=" md:hidden span-clicable">Mes Projets Favoris ( 0 )</a>
             </div>
 
             <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
@@ -77,7 +77,7 @@
 
                 <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
                 </mat-icon>
-                <a href="/espace-connecte/mes-simulations" class=" md:hidden span-clicable">Mes Simulations réalisées (
+                <a routerLink="/espace-connecte/mes-simulations" class=" md:hidden span-clicable">Mes Simulations réalisées (
                     4 )</a>
 
             </div>
@@ -94,7 +94,7 @@
 
 
 
-                <a href="/espace-connecte/mes-demandes-credit" class=" md:hidden span-clicable">Mes Demandes de crédit (
+                <a routerLink="/espace-connecte/mes-demandes-credit" class=" md:hidden span-clicable">Mes Demandes de crédit (
                     2 )</a>
 
             </div>
@@ -107,7 +107,7 @@
                 <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'survey'">
                 </mat-icon>
 
-                <a href="/espace-connecte/mes-credits" class=" md:hidden span-clicable">Mes crédits en cours ( 2 )</a>
+                <a routerLink="/espace-connecte/mes-credits" class=" md:hidden span-clicable">Mes crédits en cours ( 2 )</a>
             </div>
 
 
@@ -125,7 +125,7 @@
 
 
 
-                <a href="#" class=" md:hidden span-clicable">Mes opérations SAV ( 2 )</a>
+                <a routerLink="/" class=" md:hidden span-clicable">Mes opérations SAV ( 2 )</a>
 
             </div>
 
@@ -148,7 +148,7 @@
             <!-- border-2 border-primary-500  -->
             <button
                 class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                onclick="window.location.href='/'">
+                routerLink="/espace-connecte/mes-projets-favoris">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
                     <div class="text-xl font-semibold">Mes Projets Favoris </div>
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
@@ -160,7 +160,7 @@
 
             <button
                 class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                onclick="window.location.href='/espace-connecte/mes-simulations'">
+                routerLink="/espace-connecte/mes-simulations">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
                     <div class="text-xl font-semibold">Mes Simulations réalisées</div>
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
@@ -173,7 +173,7 @@
 
             <button
                 class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                onclick="window.location.href='/espace-connecte/mes-demandes-credit'">
+                routerLink="/espace-connecte/mes-demandes-credit">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
                     <div class="text-xl font-semibold">Mes Demandes de crédit </div>
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
@@ -185,19 +185,20 @@
 
             <button *ngIf="countCredit > 0"
                 class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                onclick="window.location.href='/espace-connecte/mes-credits'">
-            <div class="flex flex-col flex-auto items-center p-8 text-center">
-                <div class="text-xl font-semibold">Mes crédits en cours </div>
-                <span class="flex items-center justify-center w-22 h-22 rounded">
-                    <img class="max-w-20" src="assets/images/admin/espace-conn/proj_red.PNG">
-                </span>
-                <div class="text-3xl font-semibold">({{ countCredit }})</div>
-            </div>
-        </button>
+
+                routerLink="/espace-connecte/mes-credits">
+                <div class="flex flex-col flex-auto items-center p-8 text-center">
+                    <div class="text-xl font-semibold">Mes crédits en cours </div>
+                    <span class="flex items-center justify-center w-22 h-22 rounded">
+                        <img class="max-w-20" src="assets/images/admin/espace-conn/proj_red.PNG">
+                    </span>
+                    <div class="text-3xl font-semibold">( 2 )</div>
+                </div>
+            </button>
 
             <button
                 class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                onclick="window.location.href='/'">
+                routerLink="/">
                 <div class="flex flex-col flex-auto items-center p-8 text-center">
                     <div class="text-xl font-semibold">Mes opérations SAV</div>
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
@@ -230,25 +231,22 @@
 
             <button
                 class="bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/projets-search'">
+                routerLink = "/projets-search">
 
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je trouve mon bien</span>
             </button>
 
 
-
-
             <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
             </mat-icon>
 
             <button
                 class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/simulation-personnalisee'">
+                routerLink = "/simulation-personnalisee">
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je simule mon crédit</span>
             </button>
 
 
-
             <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
             </mat-icon>
 
@@ -256,7 +254,7 @@
 
             <button
                 class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/espace-connecte/simulation-detaillee'">
+                routerLink = "/espace-connecte/simulation-detaillee">
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je demande mon crédit</span>
             </button>
 
@@ -267,7 +265,7 @@
 
             <button
                 class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/projets-search'">
+                routerLink = "/projets-search">
                 <span class="ml-3 text-sm font-bold sm:text-xl text-primary"> Je suis mon crédit</span>
             </button>
 
