@@ -139,83 +139,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       })
     });
 
-    // this.simulationResultat = {
-    //   "nom": "TEST",
-    //   "prenom": "TEST",
-    //   "dateNaissance": "02/01/1990",
-    //   "nationalite": "MAROCAINE",
-    //   "residantMaroc": "Oui",
-    //   "salaire": "300 000.00",
-    //   "autresRevenus": 0,
-    //   "segment": "NV",
-    //   "creditsEnCours": "0.00",
-    //   "nomEmployeur": "WAFA immobilier",
-    //   "email": "a.kadmiri@outlook.fr",
-    //   "telephone": "0612345678",
-    //   "proprietaireMaroc": false,
-    //   "capital": 0,
-    //   "objetFinancement": "ACQUISITION",
-    //   "nomPromoteur": "KETTANI IMMO",
-    //   "typeTaux": "Valeur Fixe",
-    //   "newSimulation": false,
-    //   "id": 675141,
-    //   "montant": "2 500 000.00",
-    //   "montantProposition": "2 000 000.00",
-    //   "duree": 240,
-    //   "statut": "NPRO",
-    //   "tauxNominalPondere": 2.409015,
-    //   "tauxEffectifGlobalPondere": 3.0459165,
-    //   "tauxAssurancePondere": 0.3959999999999999,
-    //   "tauxInteretsClientTtc": 2.6499165,
-    //   "dossiers": [
-    //       {
-    //           "id": 805628,
-    //           "montant": "1 300 000.00",
-    //           "duree": 240,
-    //           "echeance": 7470.13,
-    //           "tauxNominal": 2.7272,
-    //           "tauxEffectifGlobal": "3.396",
-    //           "tauxParticipation": "0.000",
-    //           "fraisDossier": "GRATUIT",
-    //           "assurances": "57 469.46",
-    //           "totalInterets": "435 361.74",
-    //           "coutTotal": "1 792 831.20",
-    //           "mensualite": "7 470.13",
-    //           "expertiseImmobiliere": "GRATUIT",
-    //           "estExpImmoNum": false,
-    //           "estFraisDossNum": false,
-    //           "nbreAnnee": 20,
-    //           "nbreMois": 0
-    //       },
-    //       {
-    //           "id": 805627,
-    //           "montant": "700 000.00",
-    //           "duree": 240,
-    //           "echeance": 3673.93,
-    //           "tauxNominal": 1.8181,
-    //           "tauxEffectifGlobal": "2.396",
-    //           "tauxParticipation": "0.000",
-    //           "fraisDossier": "GRATUIT",
-    //           "assurances": "30 038.67",
-    //           "totalInterets": "151 704.53",
-    //           "coutTotal": "881 743.20",
-    //           "mensualite": "3 673.93",
-    //           "expertiseImmobiliere": "GRATUIT",
-    //           "estExpImmoNum": false,
-    //           "estFraisDossNum": false,
-    //           "nbreAnnee": 20,
-    //           "nbreMois": 0
-    //       }
-    //   ],
-    //   "droitsEnregistrement": "100 000.00",
-    //   "conservationFonciere": "37 500.00",
-    //   "honorairesNotaire": "25 000.00",
-    //   "fraisDivers": "1 500.00",
-    //   "totalFrais": "164 000.00",
-    //   "mensualite": "11 144.06",
-    //   "tauxEffectifGlobal": "3.046"
-    // }
-
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -228,19 +151,20 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeurConventionne[]) => {
         this.listEmployeurs = employeur;
-       
+
         this._changeDetectorRef.markForCheck();
       });
-      this.employeurs$ = this._simulationService.employeurs$;
-    
+    this.employeurs$ = this._simulationService.employeurs$;
+
     this._simulationService.getPromoteursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((promoteur: PromoteurConventionne[]) => {
         this.listPromoteurs = promoteur;
-        
+
         this._changeDetectorRef.markForCheck();
       });
-      this.promoteurs$ = this._simulationService.promoteurs$;
+    this.promoteurs$ = this._simulationService.promoteurs$;
+    
     this.searchEmployeurControl.valueChanges
       .pipe(
         debounceTime(this.debounce),
@@ -262,7 +186,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.search.next(this.resultEmployeurs);
         });
       });
-
 
     this.searchPromoteurControl.valueChanges
       .pipe(
@@ -316,11 +239,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Fill the form with the values from query
         // params without emitting any form events
-        this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
-        this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
-        this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
+        // this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
+        // this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
+        // this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
         // this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
-        this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
+        // this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
         this.simulationStepperForm.get('step1').get('nationalite').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationalite);
         this.simulationStepperForm.get('step1').get('residantMaroc').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residantMaroc);
         this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
@@ -383,6 +306,30 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
     } else if (this.bienvenueComponent.user?.email) {
       this.simulationStepperForm.get('step1').get('email').setValue(this.bienvenueComponent.user?.email);
+    }
+
+    if (this.queryParams?.nom) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
+    } else if (this.bienvenueComponent.user?.lastName) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.bienvenueComponent.user?.lastName);
+    }
+
+    if (this.queryParams?.prenom) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
+    } else if (this.bienvenueComponent.user?.firstName) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.bienvenueComponent.user?.firstName);
+    }
+
+    if (this.queryParams?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
+    } else if (this.bienvenueComponent.user?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.bienvenueComponent.user?.telephone);
+    }
+
+    if (this.queryParams?.dateNaissance) {
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.queryParams?.dateNaissance);
+    } else if (this.bienvenueComponent.user?.dateNaissance) {
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.bienvenueComponent.user?.dateNaissance);
     }
   }
 
@@ -556,13 +503,13 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    *
    * @param value
    */
-  @ViewChild('barSearchInput')
-  set barSearchInput(value: ElementRef) {
-    if (value) {
-      setTimeout(() => {
+  // @ViewChild('barSearchInput')
+  // set barSearchInput(value: ElementRef) {
+  //   if (value) {
+  //     setTimeout(() => {
 
-        value.nativeElement.focus();
-      });
-    }
-  }
+  //       value.nativeElement.focus();
+  //     });
+  //   }
+  // }
 }

@@ -54,7 +54,7 @@
 
                 <!-- Résultat -->
                 <mat-drawer-container
-                    class="bg-transparent md:w-9/20 rounded-md md:-mt-5"
+                    class="bg-transparent md:w-9/20 rounded-xl md:-mt-5"
                     [hasBackdrop]="true"
                     #drawerContainerResult>
 
@@ -68,16 +68,20 @@
 
                     <mat-drawer-content class="px-1 pt-5 pb-1">
 
-                        <fuse-card #resultat
-                            class="flex flex-col px-6 pb-8 pt-7 ring-1 ring-primary bg-default rounded-md shadow overflow-visible">
+                        <fuse-card class="flex flex-col px-6 pb-8 pt-7 bg-gray-50 ring-1 ring-primary rounded-xl shadow-md overflow-hidden">
                             
-                            <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
-                                <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
-                                    Récapitulatif
+                            <!-- titre -->
+                            <div class="flex flex-row">
+                                <div class="w-full flex items-center">
+                                    <div class="flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
+                                        <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
+                                        </mat-icon>
+                                    </div>
+                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">
+                                        Simulation N° {{simulationResultat?.id}}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="flex flex-col space-y-5">
                                 <!-- bouton tableau amortissement -->
                                 <div *ngIf="simulationResultat?.dossiers?.length === 1" 
                                     class="ml-auto mt-3">
@@ -90,8 +94,10 @@
                                         Ouvrir tableau d'amortissement
                                     </button>
                                 </div>
+                            </div>
 
-                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
+                            <div class="flex flex-col space-y-5 mt-7">
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md border"
                                     #fuseCardProfil
                                     [expanded]="openedCard === 1">
                                     
@@ -177,7 +183,7 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md border"
                                     [expanded]="openedCard === 2"
                                     #fuseCardSituation>
                                     
@@ -254,7 +260,7 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md border"
                                     [expanded]="openedCard === 3"
                                     #fuseCardProjet>
 
@@ -339,7 +345,7 @@
                                     </ng-container>
                                 </fuse-card>
 
-                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md shadow"
+                                <fuse-card class="flex flex-col px-5 md:px-8 py-3 pb-4 rounded-md border"
                                     [expanded]="openedCard === 4"
                                     #fuseCardResultat>
 
@@ -517,11 +523,19 @@
 
                 <div class="w-full md:w-11/20">
                     
-                    <div class="bg-card shadow rounded-md overflow-hidden ring-1 ring-current p-6">
+                    <div class="bg-card shadow-md rounded-xl overflow-hidden ring-1 ring-current p-6">
 
-                        <!-- header -->
-                        <div class="text-2xl font-semibold">Veuillez charger les fichiers ci-dessous : </div>
-                        <div class="flex flex-row space-x-2 py-2 px-4 rounded-md shadow bg-amber-100 mt-2">
+                        <!-- titre -->
+                        <div class="w-full flex items-center">
+                            <div class="flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-second-500">
+                                <mat-icon class="icon-size-16 text-black -mt-1" svgIcon="checklist">
+                                </mat-icon>
+                            </div>
+                            <div class="ml-6 text-2xl font-bold leading-tight uppercase">Chargement de document</div>
+                        </div>
+
+                        <!-- warning -->
+                        <div class="flex flex-row space-x-2 py-2 px-4 rounded-md shadow bg-amber-100 mt-5">
                             <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                             </mat-icon>
                             <span class="text-sm font-semibold">
@@ -529,8 +543,10 @@
                             </span>
                         </div>
 
+                        <div class="text-lg font-semibold mt-7">Veuillez charger les fichiers ci-dessous : </div>
+
                         <!-- checkList -->
-                        <div class="flex flex-col space-y-5 mt-5">
+                        <div class="flex flex-col space-y-5 mt-3">
                             <check-list [pieces]="pieces" #checkList></check-list>
                         </div>
 
@@ -567,7 +583,7 @@
                     </div>
 
                     <!-- Changer d'agence -->
-                    <div class="flex flex-col max-md:space-y-2 md:flex-row items-center justify-between md:space-x-5 mt-5 p-3 bg-gray-50 shadow rounded-md ring-1 ring-current">
+                    <div class="flex flex-col max-md:space-y-2 md:flex-row items-center justify-between md:space-x-5 mt-5 p-3 bg-card shadow-md rounded-xl ring-1 ring-current">
                         <div class="flex flex-col">
                             <span>Agence :</span>
                             <span class="whitespace-nowrap">{{simulationResultat?.nomAgence}}</span>

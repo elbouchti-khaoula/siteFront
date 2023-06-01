@@ -39,10 +39,10 @@ export class AppComponent
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/DELIVERY-TIME.svg")
         );
 
-        // this.matIconRegistry.addSvgIcon(
-        //     "checklist",
-        //     this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CHECKLIST.svg")
-        // );
+        this.matIconRegistry.addSvgIcon(
+            "checklist",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/CHECKLIST.svg")
+        );
         this.matIconRegistry.addSvgIcon(
             "finance",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/FINANCE.svg")

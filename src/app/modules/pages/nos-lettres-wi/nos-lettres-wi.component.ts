@@ -60,8 +60,10 @@ export class NosLettresWiComponent
     
 
 
-      telechargerLettre(id:number) {
-        this._referentielService.downloadPDF(id);
+      telechargerLettre(id:number,fileName:String ) {
+
+        fileName="LettreWafaImmobilier"+id+".pdf";
+        this._referentielService.downloadPDF(id,fileName);
     
     }
 

@@ -13,6 +13,9 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 })
 export class NosEtatsFinanciersComponent  implements OnInit, OnDestroy 
 {
+
+  isScreenSmall: boolean;
+  
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     etatsFinanciers: DocumentInstitutionnel[];
 
@@ -53,8 +56,12 @@ export class NosEtatsFinanciersComponent  implements OnInit, OnDestroy
     this._unsubscribeAll.complete();
   }
 
-  telecharger(id:number) {
-    this._referentielService.downloadPDF(id);
+  telecharger(id:number, fileName:String) {
+
+    fileName="EtatFinancier"+id+".pdf";
+
+
+    this._referentielService.downloadPDF(id,fileName);
 
 
 
