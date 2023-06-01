@@ -42,8 +42,8 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
   {
     let data = this._router.getCurrentNavigation()?.extras?.state;
     if (data) {
-      this.operationSAVRef = data.operation;
-      this.dossierCredit = data.dossierCredit;
+      this.operationSAVRef = data?.operation;
+      this.dossierCredit = data?.dossierCredit;
     }
   }
 
@@ -61,7 +61,6 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
         if (response) {
           // Update the documents
           this.documents = response;
-          console.log("+-+-+- operationSAVDocuments",response)
 
           for (var i = 0; i < this.documents.length; i++) {
             this.pieces.push({

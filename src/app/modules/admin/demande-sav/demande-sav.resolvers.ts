@@ -32,7 +32,7 @@ export class DemandeSAVDocumentsResolver implements Resolve<any>
     {
         const navigation = this._router.getCurrentNavigation();
         const extrasState = navigation.extras.state;
-        let operationSAVRef = extrasState.operation;
+        let operationSAVRef = extrasState?.operation;
 
         if (operationSAVRef?.operationId) {
             return this._referentielService.getOperationSAVDocuments(Number(operationSAVRef?.operationId));

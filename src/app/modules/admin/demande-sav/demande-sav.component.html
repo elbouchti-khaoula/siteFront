@@ -55,8 +55,7 @@
                             </span>
                         </div>
 
-                        <!-- *ngIf="dossierCredit.existeImpaye" -->
-                        <div 
+                        <div *ngIf="dossierCredit.existeImpaye"
                             class="flex flex-col items-center text-warn">
                             <span class="font-medium">Total des impayés</span>
                             <span class="text-3xl font-semibold">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable,map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { CreditEnCours, DemandeCredit } from './records-in-progress.types';
 
 @Injectable({
@@ -41,9 +41,9 @@ export class RecordsInProgressService {
     /**
      * Get demande de crédit
      */
-    getDemandesCredit(email: string): Observable<DemandeCredit[]> {
+    getDemandesCredit(cin: string, email: string): Observable<DemandeCredit[]> {
 
-        return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: email, mail: email })
+        return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: cin, mail: email })
             .pipe(
                 tap((response: DemandeCredit[]) => {
 
@@ -55,9 +55,10 @@ export class RecordsInProgressService {
     /**
      * Get Crédits en cours
      */
-    getCreditsEnCours(email: string): Observable<CreditEnCours[]> {
+    getCreditsEnCours(cin: string, email: string): Observable<CreditEnCours[]> {
 
-        return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: "640891", mail: "" })
+        // 640891
+        return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: cin, mail: email })
             .pipe(
                 tap((response: CreditEnCours[]) => {
 
@@ -65,16 +66,15 @@ export class RecordsInProgressService {
                 })
             );
     }
-    
-       /**
+
+    /**
      * count mes credit
      */
-
-     getCountCreditByEmailAndCin(email: string, cin:string): Observable<number> {
+    getCountCreditByEmailAndCin(email: string, cin: string): Observable<number> {
         return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: "640891", mail: email })
-          .pipe(
-            map((response: number) => response)
-          );
-      }
+            .pipe(
+                map((response: number) => response)
+            );
+    }
 
 }

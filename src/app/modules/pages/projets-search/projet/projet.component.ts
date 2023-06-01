@@ -151,6 +151,8 @@ export class ProjetComponent implements OnInit, OnDestroy {
                         }
                     );
                 } else {
+                    this.projet.estFavoris = true;
+                    
                     // Open the dialog
                     this._fuseConfirmationService.open(
                         {
