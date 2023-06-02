@@ -154,7 +154,7 @@
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
                         <img class="max-w-20" src="assets/images/admin/espace-conn/dem_red.PNG">
                     </span>
-                    <div class="text-3xl font-semibold">( 0 )</div>
+                    <div class="text-3xl font-semibold">( {{ countProjetFavoris }} )</div>
                 </div>
             </button>
 
@@ -166,7 +166,7 @@
                     <span class="flex items-center justify-center w-22 h-22 rounded ">
                         <img class="max-w-20" src="assets/images/admin/espace-conn/calc_red.PNG">
                     </span>
-                    <div class="text-3xl font-semibold">( 6 )</div>
+                    <div class="text-3xl font-semibold">({{ countSimulation }})</div>
                 </div>
 
             </button>
@@ -228,13 +228,15 @@
 
         <div class="grid grid-cols-1 gap-y-2 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10">
 
+           
+
             <button
-                class="bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/projets-search'">
-
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je trouve mon bien</span>
-            </button>
-
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/projets-search'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                Je recherche<br>mon bien
+            </span>
+        </button>
 
 
 
@@ -242,10 +244,12 @@
             </mat-icon>
 
             <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/simulation-personnalisee'">
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je simule mon crédit</span>
-            </button>
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/simulation-personnalisee'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                Je simule<br>mon crédit
+            </span>
+        </button>
 
 
 
@@ -254,22 +258,53 @@
 
 
 
+            
+
             <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/espace-connecte/simulation-detaillee'">
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">Je demande mon crédit</span>
-            </button>
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/simulation-detaillee'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                Je demande<br>mon crédit
+            </span>
+        </button>
+
+            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
+            </mat-icon>
+
+            <button
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/espace-connecte/mes-demandes-credit'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                Je suis<br>ma demande
+            </span>
+        </button>
+
+            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
+            </mat-icon>
+
+            <button
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/espace-connecte/mes-demandes-credit'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                J'ouvre<br>mon compte
+            </span>
+        </button>
 
             <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
             </mat-icon>
 
 
 
+
+         
+
             <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                onclick="window.location.href = '/projets-search'">
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary"> Je suis mon crédit</span>
-            </button>
+            class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            onclick="window.location.href = '/simulation-detaillee'">
+            <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
+                Je gère<br>mon crédit
+            </span>
+        </button>
 
 
 

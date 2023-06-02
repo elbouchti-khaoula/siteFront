@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet, ProjetFavori } from './projets.types';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
 
@@ -13,6 +13,7 @@ export class ProjetsService
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
     private _projetsFavoris: BehaviorSubject<ProjetFavori[] | null> = new BehaviorSubject(null);
+    private _projectAuthService: any;
 
     /**
      * Constructor
@@ -389,6 +390,31 @@ export class ProjetsService
                     this._projetsFavoris.next(projetsFavoris);
                 })
             );
+    }
+
+    getCountProjetFavoris(email: string, cin: string): Observable<number> {
+
+        return this._projectAuthService.getToken()
+        .pipe(
+            switchMap((token: string) => {
+
+                if (token != undefined && token != '') {
+
+                    const headers = new HttpHeaders({
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    });
+                    return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { cin: "", mail: email },{headers:headers})
+                    .pipe(
+                        map(
+                            (response: number) => response )
+                            
+                    );
+                
+                }
+                return EMPTY;
+            }));
+
     }
 
     // -----------------------------------------------------------------------------------------------------

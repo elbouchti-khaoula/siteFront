@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { ProjetsService } from 'app/core/projets/projets.service';
 import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { UserService } from 'app/core/user/user.service';
 import { Subject, takeUntil } from 'rxjs';
 
 
@@ -19,6 +21,7 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy
         // get count credit
         countCredit: number;
         countSimulation: number;
+        countProjetFavoris : number;
 
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
     imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
@@ -34,6 +37,10 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _recordsInProgressService: RecordsInProgressService,
         private _simulationService: SimulationDetailleeService,
+        private _projetsService: ProjetsService,
+        private _userService: UserService
+
+
 
 
 
@@ -69,16 +76,35 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy
                 }
                 );
 
-                const email2 = 'firstname.lastname@gmail.com';
-                const cin2 = '640891'; 
-               /* this._simulationService.getCountSimulation(email2,cin2).subscribe(
+                let email2;
+                let cin2;
+                 this._userService.user$.subscribe((user) => {
+                     email2 = user?.email ? user.email : '';
+         
+                     cin2 = user?.cin ? user.cin : '';
+                 });
+                this._simulationService.getCountSimulation(email2,cin2).subscribe(
                     count => {
                         this.countSimulation = count;
                     },
                     error => {
                         console.log('Une erreur s\'est produite lors de la récupération du nombre de crédits : ', error);
                     }
-                    );*/
+                    );
+
+                    const cin3 = ''; 
+                    let email3;
+                    this._userService.user$.subscribe((user) => {
+                        email3 = user?.email ? user.email : '';
+                    });
+                    this._projetsService.getCountProjetFavoris(email3,cin3).subscribe(
+                        count => {
+                            this.countProjetFavoris = count;
+                        },
+                        error => {
+                            console.log('Une erreur s\'est produite lors de la récupération du nombre de crédits : ', error);
+                        }
+                        );   
 
 
           
