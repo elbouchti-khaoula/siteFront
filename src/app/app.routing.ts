@@ -104,6 +104,10 @@ export const appRoutes: Route[] = [
                     {
                         path: 'mes-projets-favoris',
                         loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
+                    },
+                    {
+                        path: 'mes-operations-sav',
+                        loadChildren: () => import('app/modules/admin/mes-operations-sav/mes-operations-sav.module').then(m => m.MesOperationsSavModule)
                     }
                 ]
             }

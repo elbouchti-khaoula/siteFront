@@ -53,6 +53,12 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Mes crédits',
                 type : 'basic',
                 link : '/espace-connecte/mes-credits'
+            },
+            {
+                id   : 'espace-connecte.mes-operations-sav',
+                title: 'Mes Opérations S.A.V',
+                type : 'basic',
+                link : '/espace-connecte/mes-operations-sav'
             }
 
         ]
