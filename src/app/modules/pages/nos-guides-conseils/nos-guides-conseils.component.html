@@ -2,8 +2,9 @@
   [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-[45vh] sm:min-h-[30vh] b1-bg-header">
-    <div class="w-full max-w-400 mx-auto flex flex-col items-start justify-start">
+  <!-- min-h-[45vh] sm:min-h-[30vh]  -->
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-76 b1-bg-header">
+    <div class="w-full max-w-400 mx-auto flex flex-col">
       <div class=" text-2xl sm:text-3xl md:text-4xl uppercase font-bold tracking-tight leading-tight text-primary-700 ">
         Conseils & GUIDES
       </div>
@@ -21,130 +22,107 @@
     </div>
   </section>
 
-  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 bg-primary">
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-primary">
     <div class="w-full max-w-400 mx-auto flex flex-col items-center justify-center">
-      <div class="text-2xl md:text-4xl items-center uppercase font-large tracking-tight leading-tight text-white ">
+      <div class="text-2xl md:text-4xl items-center uppercase font-large tracking-tight leading-tight text-white">
         NOS CONSEILS D'EXPERTS
       </div>
 
-      <div
-        class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  sm:gap-x-10 md:gap-x-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-7 mt-5">
 
-        <div
-          class="rounded-xl  overflow-hidden shadow-md bg-white mt-5 flex-left  divide-y-4 divide-primary-500 ">
-          <div>
-            <img class="w-full h-auto sm:w-full sm:h-72 " [src]="imageVisDet1" alt="Header Image">
+        <div class="rounded-xl overflow-hidden shadow-md bg-white mt-5 divide-y-4 divide-primary-500">
+          <div class="h-60">
+            <img class="object-cover h-full" [src]="imageVisDet1" alt="Header Image">
           </div>
-          <div>
-            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
-              <div class="p-4 text-justify">
-                <h2 class="font-bold text-primary-500">ACHAT IMMOBILIER : </h2>
-                <h2 class="font-bold uppercase text-primary-500">10 Règles à réspecter </h2>
-              </div>
-              <div class="p-4 text-justify">
-                <p>Investir dans l’immobilier est l’un des moyens sûrs pour se constituer un patrimoine.
-                  Voici quelques règles à respecter pour réussir ...
-                </p>
-                <ng-container class="">
-                  <button (click)="redirectToConseil1()">
-                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
-                  </button>
-                </ng-container>
-              </div>
 
+          <div class="px-5 grid grid-cols-1 divide-y-2 divide-primary-400">
+            <div class="pt-4 pb-2 flex flex-col">
+              <span class="md:text-lg font-extrabold text-primary-500">ACHAT IMMOBILIER : </span>
+              <span class="md:text-lg font-extrabold uppercase text-primary-500">10 Règles à réspecter </span>
+            </div>
+            <div class="py-3 flex flex-col items-start">
+              <span class="text-justify tracking-tight leading-tight">Investir dans l’immobilier est l’un des moyens
+                sûrs pour se constituer un patrimoine.
+                Voici quelques règles à respecter pour réussir ...
+              </span>
+
+              <button class="mt-2" (click)="redirectToConseil1()">
+                <span class="font-medium text-primary-500 underline">Lire la suite > </span>
+              </button>
             </div>
           </div>
-
-
-
         </div>
 
-        <div
-          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left  divide-y-4 divide-primary-500 ">
-          <div>
-            <img class="w-full h-auto sm:w-full sm:h-72 " [src]="imageVisDet2" alt="Header Image">
+        <div class="rounded-xl overflow-hidden shadow-md bg-white mt-5 divide-y-4 divide-primary-500">
+          <div class="h-60">
+            <img class="object-cover h-full" [src]="imageVisDet2" alt="Header Image">
           </div>
-          <div>
-            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
-              <div class="p-4 text-justify">
-                <h2 class="font-bold uppercase text-primary-500">copropriété : </h2>
-                <h2 class="font-bold uppercase text-primary-500">bon à savoir </h2>
-              </div>
-              <div class="p-4 text-justify">
-                <p>Être copropriétaire, c'est être propriétaire collectivement d'un bien divisé en lots à l’instar d’un
-                  immeuble, propriété collective ...</p>
-                <ng-container class="">
-                  <button (click)="redirectToConseil2()">
-                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
-                  </button>
-                </ng-container>
-              </div>
+
+          <div class="px-5 grid grid-cols-1 divide-y-2 divide-primary-400">
+            <div class="pt-4 pb-2 flex flex-col">
+              <span class="md:text-lg font-extrabold uppercase text-primary-500">copropriété :  </span>
+              <span class="md:text-lg font-extrabold uppercase text-primary-500">bon à savoir</span>
+            </div>
+            <div class="py-3 flex flex-col items-start">
+              <span class="text-justify tracking-tight leading-tight">Être copropriétaire, c'est être propriétaire collectivement d'un bien divisé en lots à l’instar d’un
+                immeuble, propriété collective ...
+              </span>
+
+              <button class="mt-2" (click)="redirectToConseil2()">
+                <span class="font-medium text-primary-500 underline">Lire la suite > </span>
+              </button>
             </div>
           </div>
-
-
-
         </div>
 
-
-
-        <div
-          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left  divide-y-4 divide-primary-500 ">
-          <div>
-            <img class="w-full h-auto sm:w-full sm:h-72 " [src]="imageVisDet3" alt="Header Image">
+        <div class="rounded-xl overflow-hidden shadow-md bg-white mt-5 divide-y-4 divide-primary-500">
+          <div class="h-60">
+            <img class="object-cover h-full" [src]="imageVisDet3" alt="Header Image">
           </div>
-          <div>
-            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
-              <div class="p-4 text-justify">
-                <h2 class="font-bold uppercase text-primary-500  ">3 règles pratiques pour trouver le bon logement</h2>
-              </div>
-              <div class="p-4 text-justify">
-                <p>Trouver le logement idéal pour s’y installer peut s’avérer long et fastidieux. Qu’il s’agisse de la
-                  phase de recherche de biens répondant à ...</p>
-                <ng-container class="">
-                  <button (click)="redirectToConseil3()">
-                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
-                  </button>
-                </ng-container>
-              </div>
+
+          <div class="px-5 grid grid-cols-1 divide-y-2 divide-primary-400">
+            <div class="pt-4 pb-2 flex flex-col">
+              <span class="md:text-lg font-extrabold uppercase text-primary-500">3 règles pratiques pour trouver le bon logement</span>
+            </div>
+            <div class="py-3 flex flex-col items-start">
+              <span class="text-justify tracking-tight leading-tight">Trouver le logement idéal pour s’y installer peut s’avérer long et fastidieux. Qu’il s’agisse de la
+                phase de recherche de biens répondant à ...
+              </span>
+
+              <button class="mt-2" (click)="redirectToConseil3()">
+                <span class="font-medium text-primary-500 underline">Lire la suite > </span>
+              </button>
             </div>
           </div>
-
-
-
         </div>
 
-        <div
-          class="rounded-xl overflow-hidden shadow-md bg-white mt-5 flex-left divide-y-4 divide-primary-500 ">
-          <div>
-            <img class="w-full h-auto sm:w-full sm:h-72 " [src]="imageVisDet4" alt="Header Image">
+        <div class="rounded-xl overflow-hidden shadow-md bg-white mt-5 divide-y-4 divide-primary-500">
+          <div class="h-60">
+            <img class="object-cover h-full" [src]="imageVisDet4" alt="Header Image">
           </div>
-          <div>
-            <div class=" mx-4 grid grid-cols-1 divide-y-2 divide-primary-400   ">
-              <div class="p-4 text-justify">
-                <h2 class="font-bold uppercase text-primary-500">COMMENT élaborer VOTRE PLAN DE FINANCEMENT</h2>
-              </div>
-              <div class="p-4 text-justify">
-                <p>En pratique, le capital nécessaire pour acheter étant difficile à mobiliser, le financement à crédit
-                  est particulièrement répandu.</p>
-                <ng-container class="">
-                  <button (click)="redirectToConseil4()">
-                    <span class="font-medium text-primary-500 underline ">Lire la suite > </span>
-                  </button>
-                </ng-container>
-              </div>
+
+          <div class="px-5 grid grid-cols-1 divide-y-2 divide-primary-400">
+            <div class="pt-4 pb-2 flex flex-col">
+              <span class="md:text-lg font-extrabold uppercase text-primary-500">COMMENT élaborer VOTRE PLAN DE FINANCEMENT</span>
+            </div>
+            <div class="py-3 flex flex-col items-start">
+              <span class="text-justify tracking-tight leading-tight">En pratique, le capital nécessaire pour acheter étant difficile à mobiliser, le financement à crédit
+                est particulièrement répandu.
+              </span>
+
+              <button class="mt-2" (click)="redirectToConseil4()">
+                <span class="font-medium text-primary-500 underline">Lire la suite > </span>
+              </button>
             </div>
           </div>
-
-
-
         </div>
-
+      
+       
       </div>
     </div>
   </section>
 
-  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 b3-bg">
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 b3-bg">
     <div class="w-full  max-w-400 mx-auto md:flex flex-col flex-wrap  justify-start  ">
       <div
         class="text-2xl sm:text-3xl md:text-4xl  items-center sm:items-start uppercase font-bold tracking-tight leading-tight text-primary ">
@@ -155,18 +133,15 @@
         MENER BIEN VOTRE PROJET
       </div>
       <!--button-->
-      <div  class=" group  w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7] sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
+      <div
+        class=" group  w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7] sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
         (click)="toggle1()">
         <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
-          <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 ">Acheter ou louer? Faites le bon choix!</span>
+          <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 px-1 sm:px-3 ">Acheter ou louer? Faites le bon choix!</span>
           <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
             <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
           </button>
         </div>
-
-
-
-
       </div>
 
       <div *ngIf="desc1" class="text-start px-3   sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1 text-justify">
@@ -176,13 +151,16 @@
           neuf ou ancien, posez-vous les bonnes questions afin de trouver le logement idéal.</p>
 
         <div class="bullet-points grid grid-cols-1 sm:ml-6 px-2   my-2 sm:my-1  text-justify">
-          <div class="bullet-point  "><span class="text-primary">● Acheter un bien neuf :</span> comparé à un bien ancien, un logement neuf devrait
+          <div class="bullet-point  "><span class="text-primary">● Acheter un bien neuf :</span> comparé à un bien
+            ancien, un logement neuf devrait
             logiquement offrir un nombre d'avantages et de garanties non négligeables, à condition toutefois de le
             vérifier auprès du promoteur du bien.</div>
-          <div class="bullet-point  "><span class="text-primary">● Un logement à construire :</span> si vous envisagez de construire votre logement,
+          <div class="bullet-point  "><span class="text-primary">● Un logement à construire :</span> si vous envisagez
+            de construire votre logement,
             pensez à faire appel à des experts pour bien estimer le coût de votre projet et vous garantir la bonne
             livraison de votre bien.</div>
-          <div class="bullet-point  "><span class="text-primary">● Le cachet de l'ancien :</span> si vous êtes attiré par "les pierres", sachez qu'il
+          <div class="bullet-point  "><span class="text-primary">● Le cachet de l'ancien :</span> si vous êtes attiré
+            par "les pierres", sachez qu'il
             existe de belles demeures, totalement rénovées, en parfait état de fonctionnement. Lors de la deuxième ou
             troisième visite, faites-vous toutefois assister d'un professionnel de la construction, qui saura
             véritablement évaluer le bien.
@@ -196,42 +174,44 @@
         class=" group w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7]  sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
         (click)="toggle2()">
         <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
-          <span
-          class="sm:text-xl  p-2   md:text-2xl font-medium ml-2 ">Définissez
+          <span class="sm:text-xl     md:text-2xl font-medium ml-4 sm:ml-2 px-1 sm:px-3 ">Définissez
             votre budget: les frais à prendre en compte </span>
           <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
             <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
           </button>
         </div>
-        
+
       </div>
       <div *ngIf="desc2" class="text-start px-3 sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1 text-justify">
         <p class="m-2 ">Acheter un logement implique l'addition d'un ensemble de coûts :</p>
         <div class="bullet-points px-3 grid grid-cols-1 sm:ml-6  my-2 sm:my-1 text-justify ">
-          <div class="bullet-point "><span class="text-primary">● Le coût réel de l'achat :</span> le prix de vente d'un logement neuf est annoncé TTC. Il
+          <div class="bullet-point "><span class="text-primary">● Le coût réel de l'achat :</span> le prix de vente d'un
+            logement neuf est annoncé TTC. Il
             peut être ferme et définitif à la réservation ou révisable. Viennent s'y ajouter les frais annexes : frais
             d’enregistrement et d’hypothèque, frais de notaire et frais d’assurance,…</div>
-          <div class="bullet-point  "><span class="text-primary">● Évaluer le coût des travaux :</span> si vous envisagez de réaliser des travaux dans
+          <div class="bullet-point  "><span class="text-primary">● Évaluer le coût des travaux :</span> si vous
+            envisagez de réaliser des travaux dans
             votre futur logement, prévoyez un budget par avance.</div>
 
         </div>
       </div>
 
-      <div  class=" group w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7]  sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
-      (click)="toggle3()">
-      <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
-        <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 ">Les différentes formes de transactions</span>
-        <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
-          <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
-        </button>
-      </div>
+      <div
+        class=" group w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7]  sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
+        (click)="toggle3()">
+        <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+          <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 px-1 sm:px-3 ">Les différentes formes de transactions</span>
+          <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+          </button>
+        </div>
 
       </div>
       <div *ngIf="desc3" class="text-start px-3 sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1 text-justify">
         <div class="text-justify">
           <p class="  m-2 ">Vous pouvez négocier directement avec le vendeur du bien. Mais, dès qu'il s'agit de
             finaliser une affaire, recourir à une tierce personne est une garantie nécessaire</p>
-  
+
           <h2 class=" m-2 text-primary">En direct avec le particulier </h2>
           <p class="ml-2 mt-1">Certes, rien ne vous empêche de négocier directement avec le vendeur du bien. Mais,
             faîtes appel à un notaire pour établir l'acte de vente. Il vérifiera les droits de propriété du vendeur et
@@ -245,16 +225,17 @@
             transaction d’achat. Il doit aussi vous mettre en rapport avec le vendeur et s'engager à rédiger l'acte de
             vente.</p>
         </div>
-        
+
       </div>
-      <div  class=" group w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7]  sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
-      (click)="toggle4()">
-      <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
-        <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 ">Conclure la transaction</span>
-        <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
-          <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
-        </button>
-      </div>
+      <div
+        class=" group w-full  sm:w-1/2  rounded-full mt-5 border-2 border-white-500 bg-gray-900/[.7]  sm:cursor-pointer sm:transition-transform sm:duration-500 sm:ease-in-out sm:hover:scale-[1.1] hover:border-primary-500"
+        (click)="toggle4()">
+        <div class="flex justify-between items-center text-white group-hover:text-primary group-hover:cursor-pointer">
+          <span class="sm:text-xl md:text-2xl font-medium ml-4 sm:ml-2 px-1 sm:px-3 ">Conclure la transaction</span>
+          <button class="w-8 h-8 rounded-full flex justify-center items-center" mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:plus'" class="text-white group-hover:text-primary"></mat-icon>
+          </button>
+        </div>
       </div>
       <div *ngIf="desc4" class="text-start px-3 sm:text-xl w-full sm:w-1/2  text-white my-2 sm:my-1 text-justify">
         <div class="text-justify"> </div>
@@ -300,26 +281,34 @@
   </section>
 
   <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20  min-h-80 md:min-h-76 b4-bg">
-    <div class="w-full  max-w-400 mx-auto my-auto text-2xl sm:text-3xl md:text-4xl grid-cols-1 grid sm:grid-cols-2  items-center justify-center sm:place-items-center">
+    <div
+      class="w-full max-w-400 mx-auto my-auto grid-cols-1 grid sm:grid-cols-2 sm:place-items-center">
       <div class="hidden sm:block"></div>
 
-      <div class=" uppercase font-medium tracking-tight justify-center  leading-tight text-black mt-20">
-        POUR PLUS D'INFORMATION
-      </div>
-      <div class="hidden sm:block"></div>
-      <div class="  uppercase font-bold tracking-tight justify-center leading-tight text-black ">
-        CONTACTER NOS EXPERT
-      </div>
-      <div class="hidden sm:block"></div>
+      <div class="flex flex-col items-center">
+        <div class=" text-lg sm:text-xl uppercase font-medium tracking-tight leading-tight mt-20">
+          POUR PLUS D'INFORMATION
+        </div>
+        <div class="text-xl sm:text-2xl  uppercase font-extrabold tracking-tight leading-tight">
+          CONTACTEz NOS EXPERT
+        </div>
+        <!--button-->
+        <!-- <div class="group w-fit items-center justify-center rounded-3xl justify-center cursor-pointer bg-primary transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-200"
+          [routerLink]="'/nous-contacter'">
+          <label class="h-center  font-medium text-white  group-hover:cursor-pointer">
+            Nous Contacter
+          </label>
+        </div> -->
 
-      <!--button-->
-      <div
-        class="group    w-fit items-center justify-center rounded-3xl justify-center cursor-pointer bg-primary  transition-transform duration-500 ease-in-out hover:scale-[1.1] hover:border-primary-200"
-        [routerLink]="'/nous-contacter'">
-        <label class=" ml-8 mr-8 h-center  font-medium text-white  group-hover:cursor-pointer">Nous Contacter
-        </label>
-
+        <button mat-flat-button
+          class="bg-primary text-on-primary-500 mt-5">
+          <span class="text-lg">Nous contacter</span>
+        </button>
       </div>
+
+
+
+
 
     </div>
 
