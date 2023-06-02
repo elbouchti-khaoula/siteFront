@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { DemandeSAVComponent } from './demande-sav.component';
 import { demandeCreditRoutes } from './demande-sav.routing';
@@ -23,6 +25,8 @@ import { CheckListModule } from 'app/modules/common/check-list/check-list.module
         MatIconModule,
         MatCheckboxModule,
         MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
         FuseCardModule,
         BienvenueModule,
         CheckListModule

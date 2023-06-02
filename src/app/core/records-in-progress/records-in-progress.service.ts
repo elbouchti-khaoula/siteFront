@@ -41,9 +41,9 @@ export class RecordsInProgressService {
     /**
      * Get demande de crédit
      */
-    getDemandesCredit(email: string): Observable<DemandeCredit[]> {
+    getDemandesCredit(cin: string, email: string): Observable<DemandeCredit[]> {
 
-        return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: email, mail: email })
+        return this._httpClient.post<DemandeCredit[]>('api/records-in-progress/demandes/search', { origin: "SITE", cin: cin, mail: email })
             .pipe(
                 tap((response: DemandeCredit[]) => {
 
@@ -55,9 +55,10 @@ export class RecordsInProgressService {
     /**
      * Get Crédits en cours
      */
-    getCreditsEnCours(email: string): Observable<CreditEnCours[]> {
+    getCreditsEnCours(cin: string, email: string): Observable<CreditEnCours[]> {
 
-        return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: "640891", mail: "" })
+        // 640891
+        return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: cin, mail: email })
             .pipe(
                 tap((response: CreditEnCours[]) => {
 

@@ -35,7 +35,7 @@
             [pagination]="pagination"
             class="mySwiper custom-swiper-projet">
 
-            <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
+            <ng-container *ngFor="let image of projet.medias; trackBy: trackByFn">
                 <ng-template swiperSlide class="h-[60vh] sm:h-[75vh]">
                     <div class="z-10 absolute inset-0 bg-black/[.3]"></div>
                     <div class="absolute inset-0">
@@ -47,6 +47,7 @@
     </header>
 
     <div class="z-20 px-5 sm:px-16 pb-10">
+        <!-- header md -->
         <div class="hidden md:flex flex-row justify-center mx-auto w-full max-w-360 h-40 shadow-md rounded-2xl bg-card -mt-20">
             <div class="flex flex-row items-center justify-between w-[30%]">
                 <div class="flex items-center justify-center rounded-xl border-primary border p-1 h-32 w-1/4">
@@ -83,9 +84,20 @@
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
                 </div>
-                <div class="flex flex-row items-center cursor-pointer"
+                <div *ngIf="user != undefined && projet.estFavoris" 
+                    class="flex flex-row items-center">
+                    <mat-icon
+                        class="icon-size-7 text-red-500"
+                        [svgIcon]="'heroicons_solid:heart'">
+                    </mat-icon>
+                    <div class="ml-3 text-lg font-semibold">Projet favori</div>
+                </div>
+                <div *ngIf="user != undefined && !projet.estFavoris" 
+                    class="flex flex-row items-center cursor-pointer"
                     (click)="ajouterAuxFavoris()">
-                    <mat-icon class="icon-size-7" [svgIcon]="'heroicons_outline:heart'">
+                    <mat-icon
+                        class="icon-size-7"
+                        [svgIcon]="'heroicons_outline:heart'">
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">Ajouter au favoris</div>
                 </div>
@@ -97,7 +109,7 @@
                 <div class="py-0.5 px-3 rounded-full text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                 </div>
-                <button class="fuse-mat-button-large mt-5 uppercase"
+                <button class="mt-5 uppercase"
                     mat-flat-button
                     [color]="'primary'"
                     [routerLink]="'/espace-connecte/simulation-detaillee'">
@@ -106,6 +118,7 @@
             </div>
         </div>
 
+        <!-- header xs, sm -->
         <div class="md:hidden flex flex-col w-full sm:px-10 -mt-15">
             <div class="w-full flex flex-row items-center space-x-3">
                 <div class="flex items-center justify-center rounded-xl border-primary border p-1 h-30 w-28">
@@ -155,10 +168,20 @@
                     </mat-icon>
                     <div class="ml-3 font-semibold">{{projet.statut}}</div>
                 </div>
-                <div class="flex flex-row items-center mt-2">
+                <div *ngIf="user != undefined && !projet.estFavoris" 
+                    class="flex flex-row items-center mt-2"
+                    (click)="ajouterAuxFavoris()">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:heart'">
                     </mat-icon>
                     <div class="ml-3 font-semibold">Ajouter au favoris</div>
+                </div>
+                <div *ngIf="user != undefined && projet.estFavoris" 
+                    class="flex flex-row items-center mt-2">
+                    <mat-icon
+                        class="icon-size-5 text-red-500"
+                        [svgIcon]="'heroicons_solid:heart'">
+                    </mat-icon>
+                    <div class="ml-3 font-semibold">Projet favori</div>
                 </div>
             </div>
         </div>

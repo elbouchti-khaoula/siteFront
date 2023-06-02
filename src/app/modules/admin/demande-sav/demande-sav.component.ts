@@ -9,6 +9,10 @@ import { UploadDocumentService } from 'app/core/upload-document/upload-document.
 import { OperationSAVDocument, OperationSAVRef } from 'app/core/referentiel/referentiel.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
+import { DemandeSAVService } from 'app/core/demandes-sav/demandes-sav.service';
+import { CritereDemandeSAV, DemandeSAV } from 'app/core/demandes-sav/demandes-sav.types';
+import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 
 @Component({
   selector: 'demande-sav',
@@ -20,11 +24,12 @@ import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.
 export class DemandeSAVComponent implements OnInit, OnDestroy {
 
   @ViewChild(CheckListComponent) checkList: CheckListComponent;
-
+  user: User;
   operationSAVRef: OperationSAVRef;
   documents: OperationSAVDocument[] = [];
   pieces: Piece[] = [];
   agreements: boolean;
+  motif: string
   dossierCredit: CreditEnCours;
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -37,13 +42,15 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     private _fuseConfirmationService: FuseConfirmationService,
     private _referentielService: ReferentielService,
-    private _uploadDocumentService: UploadDocumentService
+    private _uploadDocumentService: UploadDocumentService,
+    private _demandeSAVService: DemandeSAVService,
+    private _userService: UserService
   ) 
   {
     let data = this._router.getCurrentNavigation()?.extras?.state;
     if (data) {
-      this.operationSAVRef = data.operation;
-      this.dossierCredit = data.dossierCredit;
+      this.operationSAVRef = data?.operation;
+      this.dossierCredit = data?.dossierCredit;
     }
   }
 
@@ -53,6 +60,17 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // Subscribe to user changes
+    this._userService.user$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((user: User) => {
+        this.user = user;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      });
+
+
     // Get the documents
     this._referentielService.operationSAVDocuments$
       .pipe(takeUntil(this._unsubscribeAll))
@@ -61,7 +79,6 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
         if (response) {
           // Update the documents
           this.documents = response;
-          console.log("+-+-+- operationSAVDocuments",response)
 
           for (var i = 0; i < this.documents.length; i++) {
             this.pieces.push({
@@ -89,62 +106,68 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  /**
-   * transformer en demande de crédit
-   */
-  creerOperationSAV(): void {
+  creerDemandeSAV() {
 
-    // this._simulationDetailleeService.transformer(this.simulationResultat.id)
-    //   .pipe(
-    //     catchError((error) => {
+    const critereDemandeSAV: CritereDemandeSAV = {
+      codeOperation: this.operationSAVRef.codeOperation,
+      dossierId: this.dossierCredit.id,
+      mode: null,
+      cin: this.user.cin,
+      mail: this.user.email,
+      motifRemboursement: this.motif,
+      origineFonds: null
+    }
 
-    //       // Throw an error
-    //       return throwError(() => error);
-    //     })
-    //   )
-    //   .subscribe((response) => {
+    this._demandeSAVService.createDemandeSAV(critereDemandeSAV)
+      .pipe(
+        catchError((error) => {
 
-    //     if (response.codeStatut === "DINS") {
+          // Throw an error
+          return throwError(() => error);
+        })
+      )
+      .subscribe((response: DemandeSAV) => {
+        if (response !== null && response !== undefined) {
 
-    //       this.uploadCheckList();
+          // this.uploadCheckList();
 
-    //       // Open the confirmation dialog
-    //       const confirmation = this._fuseConfirmationService.open(
-    //         {
-    //           "title": "Demande de crédit",
-    //           "message": "Votre demande de crédit à été validée avec succès",
-    //           "icon": {
-    //             "show": true,
-    //             "name": "heroicons_outline:check-circle",
-    //             "color": "success"
-    //           },
-    //           "actions": {
-    //             "confirm": {
-    //               "show": true,
-    //               "label": "Ok",
-    //               "color": "primary"
-    //             },
-    //             "cancel": {
-    //               "show": false,
-    //               "label": "Cancel"
-    //             }
-    //           },
-    //           "dismissible": false
-    //         }
-    //       );
+          // Open the dialog
+          const confirmation = this._fuseConfirmationService.open(
+            {
+              "title": "Demande opération SAV",
+              "message": "La demande a été créée avec succès",
+              "icon": {
+                "show": true,
+                "name": "heroicons_outline:check-circle",
+                "color": "success"
+              },
+              "actions": {
+                "confirm": {
+                  "show": true,
+                  "label": "Ok",
+                  "color": "primary"
+                },
+                "cancel": {
+                  "show": false,
+                  "label": "Cancel"
+                }
+              },
+              "dismissible": false
+            }
+          );
 
-    //       confirmation.afterClosed().subscribe((result) => {
+          confirmation.afterClosed().subscribe((result) => {
 
-    //         // If the confirm button pressed...
-    //         if (result === 'confirmed') {
-    //           setTimeout(() => {
-    //             this._router.navigate(['/espace-connected-client']);
-    //           }, 200);
-    //         }
-    //       });
-    //     }
+            // If the confirm button pressed...
+            if (result === 'confirmed') {
+              setTimeout(() => {
+                this._router.navigate(['/espace-connecte/mes-credits']);
+              }, 200);
+            }
+          });
 
-    //   });
+        }
+      });
 
   }
 

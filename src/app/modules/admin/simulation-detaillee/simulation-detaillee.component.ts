@@ -151,19 +151,20 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeurConventionne[]) => {
         this.listEmployeurs = employeur;
-       
+
         this._changeDetectorRef.markForCheck();
       });
-      this.employeurs$ = this._simulationService.employeurs$;
-    
+    this.employeurs$ = this._simulationService.employeurs$;
+
     this._simulationService.getPromoteursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
       .subscribe((promoteur: PromoteurConventionne[]) => {
         this.listPromoteurs = promoteur;
-        
+
         this._changeDetectorRef.markForCheck();
       });
-      this.promoteurs$ = this._simulationService.promoteurs$;
+    this.promoteurs$ = this._simulationService.promoteurs$;
+    
     this.searchEmployeurControl.valueChanges
       .pipe(
         debounceTime(this.debounce),
@@ -185,7 +186,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.search.next(this.resultEmployeurs);
         });
       });
-
 
     this.searchPromoteurControl.valueChanges
       .pipe(
@@ -239,11 +239,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Fill the form with the values from query
         // params without emitting any form events
-        this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
-        this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
-        this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
+        // this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
+        // this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
+        // this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
         // this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
-        this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
+        // this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
         this.simulationStepperForm.get('step1').get('nationalite').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationalite);
         this.simulationStepperForm.get('step1').get('residantMaroc').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residantMaroc);
         this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
@@ -306,6 +306,30 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
     } else if (this.bienvenueComponent.user?.email) {
       this.simulationStepperForm.get('step1').get('email').setValue(this.bienvenueComponent.user?.email);
+    }
+
+    if (this.queryParams?.nom) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
+    } else if (this.bienvenueComponent.user?.lastName) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.bienvenueComponent.user?.lastName);
+    }
+
+    if (this.queryParams?.prenom) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
+    } else if (this.bienvenueComponent.user?.firstName) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.bienvenueComponent.user?.firstName);
+    }
+
+    if (this.queryParams?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
+    } else if (this.bienvenueComponent.user?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.bienvenueComponent.user?.telephone);
+    }
+
+    if (this.queryParams?.dateNaissance) {
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.queryParams?.dateNaissance);
+    } else if (this.bienvenueComponent.user?.dateNaissance) {
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.bienvenueComponent.user?.dateNaissance);
     }
   }
 
@@ -479,13 +503,13 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    *
    * @param value
    */
-  @ViewChild('barSearchInput')
-  set barSearchInput(value: ElementRef) {
-    if (value) {
-      setTimeout(() => {
+  // @ViewChild('barSearchInput')
+  // set barSearchInput(value: ElementRef) {
+  //   if (value) {
+  //     setTimeout(() => {
 
-        value.nativeElement.focus();
-      });
-    }
-  }
+  //       value.nativeElement.focus();
+  //     });
+  //   }
+  // }
 }

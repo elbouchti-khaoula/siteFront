@@ -4,9 +4,6 @@
     <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 demande-bg-header">
         <div class="w-full max-w-400">
             <bienvenue></bienvenue>
-            <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                Complétez votre demande avec les documents joints
-            </div>
         </div>
     </header>
 
@@ -52,7 +49,7 @@
 
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-16">
 
-                <!-- Résultat -->
+                <!-- Récap -->
                 <mat-drawer-container
                     class="bg-transparent md:w-9/20 rounded-xl md:-mt-5"
                     [hasBackdrop]="true"
@@ -521,6 +518,7 @@
 
                 </mat-drawer-container>
 
+                <!-- Chargement document -->
                 <div class="w-full md:w-11/20">
                     
                     <div class="bg-card shadow-md rounded-xl overflow-hidden ring-1 ring-current p-6">
@@ -551,7 +549,7 @@
                         </div>
 
                         <!-- Agreements -->
-                        <mat-checkbox class="md:col-span-2 text-sm mt-3 font-medium"
+                        <!-- <mat-checkbox class="md:col-span-2 text-sm mt-3 font-medium"
                             [color]="'primary'"
                             [(ngModel)]="agreements">
                             <span>Je déclare avoir lu et accepter les&nbsp;</span>
@@ -564,19 +562,21 @@
                             </a>
                             <span>, notamment les mentions relatives à la protection des données
                                 personnelles</span>
-                        </mat-checkbox>
+                        </mat-checkbox> -->
 
-                        <div class="flex justify-center mt-9">
+                        <!-- <div class="flex justify-center mt-9">
                             <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
-                        </div>
+                        </div> -->
 
                         <!-- Actions -->
+                        <!-- || !isCaptchaValid -->
                         <div class="flex items-center mt-5">
                             <button mat-flat-button class="ml-auto px-8"
                                 [ngClass]="{'bg-primary-200' : !checkList?.existePieceAttachee}"
                                 [color]="'primary'"
                                 type="button"
-                                [disabled]="!checkList?.existePieceAttachee || !agreements  || !isCaptchaValid" (click)="transformer()">
+                                [disabled]="!checkList?.existePieceAttachee || !agreements"
+                                (click)="transformer()">
                                 Valider
                             </button>
                         </div>

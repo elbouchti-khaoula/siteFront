@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, catchError, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet, ProjetFavori } from './projets.types';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
+import { User } from '../user/user.types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProjetsService
-{
+export class ProjetsService {
     // Private
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
@@ -18,8 +18,7 @@ export class ProjetsService
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(private _httpClient: HttpClient) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -29,24 +28,21 @@ export class ProjetsService
     /**
      * Getter for projet
      */
-    get projet$(): Observable<Projet>
-    {
+    get projet$(): Observable<Projet> {
         return this._projet.asObservable();
     }
 
     /**
      * Getter for projets
      */
-    get projets$(): Observable<Projet[]>
-    {
+    get projets$(): Observable<Projet[]> {
         return this._projets.asObservable();
     }
 
     /**
      * Getter for projets favoris
      */
-    get projetsFavoris$(): Observable<ProjetFavori[]>
-    {
+    get projetsFavoris$(): Observable<ProjetFavori[]> {
         return this._projetsFavoris.asObservable();
     }
 
@@ -54,13 +50,46 @@ export class ProjetsService
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
+    searchProjets(
+        queryParams: {
+            codeVille?: string;
+            codeQuartier?: string;
+            codeTypeBien?: string;
+            prixMin?: number;
+            prixMax?: number
+        },
+        user: User
+    ): Observable<Projet[]> {
+        console.log("+-+-+- user", user);
+
+        if (user
+            && user.userName != null && user.userName != undefined
+            && user.email != null && user.email != undefined) {
+            console.log("+-+-+- with favoris");
+            return this.searchProjetsWithFavoris(queryParams, user);
+        }
+        else {
+            console.log("+-+-+- without favoris");
+            return this.searchProjetsWithoutFavoris(queryParams);
+        }
+    }
+
+
     /**
-     * Search projets with given query
+     * Search projets without favoris
      *
      * @param queryParams
      */
-    searchProjets(queryParams: { codeVille?: string; codeQuartier?: string; codeTypeBien?: string; prixMin?: number; prixMax?: number }): Observable<Projet[]>
-    {
+    searchProjetsWithoutFavoris(
+        queryParams: {
+            codeVille?: string;
+            codeQuartier?: string;
+            codeTypeBien?: string;
+            prixMin?: number;
+            prixMax?: number
+        }
+    ): Observable<Projet[]> {
+
         return this._httpClient.post<Projet[]>('api/real-estate-projects/search', queryParams)
             .pipe(
                 tap((projets: Projet[]) => {
@@ -169,8 +198,9 @@ export class ProjetsService
                     let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
                     for (let i = 0; i < projets?.length; i++) {
-                        projets[i].images = images[i % 5];
+                        projets[i].medias = images[i % 5];
                         projets[i].promoter.logoPath = logos[i % 5];
+                        projets[i].estFavoris = false;
                         this.fillReferentielLabels(projets[i], villes, typesBiens, quartiers);
                     }
 
@@ -180,10 +210,162 @@ export class ProjetsService
     }
 
     /**
+     * Search projets with favoris
+     *
+     * @param queryParams
+     */
+    searchProjetsWithFavoris(
+        queryParams: {
+            codeVille?: string;
+            codeQuartier?: string;
+            codeTypeBien?: string;
+            prixMin?: number;
+            prixMax?: number
+        },
+        user: User
+    ): Observable<Projet[]> {
+
+        return this._httpClient.post<Projet[]>('api/real-estate-projects/search', queryParams)
+            .pipe(
+                switchMap((projets: Projet[]) => {
+
+                    return this.searchProjetsFavorisQuery({
+                        userName: user.userName,
+                        userEmail: user.email,
+                        statutFavorite: 'ENCOURS',
+                    })
+                        .pipe(
+                            catchError(err2 => {
+                                console.log("Error from second call: ");
+                                return throwError(() => err2);
+                            }),
+                            switchMap((projetsFavoris: ProjetFavori[]) => {
+
+                                console.log("+-+-+- projetsFavoris", projetsFavoris);
+
+                                // Sort the projets by the name field by default
+                                projets.sort((a, b) => a.nom.localeCompare(b.nom));
+
+                                let images = [
+                                    [
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet1/princ.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet1/salon.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet1/kitchen.jpeg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet1/bedroom.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet1/childroom.jpg'
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet2/princ.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet2/salon.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet2/kitchen.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet2/bedroom.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet2/childroom.jpg'
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet3/princ.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet3/salon.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet3/kitchen.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet3/bedroom.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet3/childroom.jpg'
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet4/princ.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet4/salon.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet4/kitchen.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet4/bedroom.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet4/childroom.jpg'
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet5/princ.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet5/salon.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet5/kitchen.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet5/bedroom.jpg'
+                                        },
+                                        {
+                                            chemin: 'assets/images/pages/marketplace/projet5/childroom.jfif'
+                                        }
+                                    ]
+                                ];
+
+                                let logos = [
+                                    'assets/images/pages/marketplace/projet1/promoteur.png',
+                                    'assets/images/pages/marketplace/projet2/promoteur.jpeg',
+                                    'assets/images/pages/marketplace/projet3/promoteur.png',
+                                    'assets/images/pages/marketplace/projet4/promoteur.png',
+                                    'assets/images/pages/marketplace/projet5/promoteur.png'
+                                ];
+
+                                let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
+                                let typesBiens: TypeBien[] = JSON.parse(localStorage.getItem('typesBiens'));
+                                let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
+
+                                for (let i = 0; i < projets?.length; i++) {
+                                    projets[i].medias = images[i % 5];
+                                    projets[i].promoter.logoPath = logos[i % 5];
+                                    projets[i].estFavoris = projetsFavoris.some(e => e.realEstateProject.id === projets[i].id);
+                                    this.fillReferentielLabels(projets[i], villes, typesBiens, quartiers);
+                                }
+
+                                this._projets.next(projets);
+
+                                return of(projets);
+                            })
+                        );
+                })
+            );
+    }
+
+    /**
      * Get projet by id
      */
-    getProjetById(id: number): Observable<Projet>
-    {
+    getProjetById(id: number): Observable<Projet> {
         return this._projets.pipe(
             take(1),
             map((projets) => {
@@ -241,7 +423,7 @@ export class ProjetsService
      * @param projetFavori
      */
     addProjetFavori(projetFavori: ProjetFavori): Observable<ProjetFavori> {
-        return this.searchProjetsFavoris({
+        return this.searchProjetsFavorisQuery({
             userName: projetFavori.userName,
             userEmail: projetFavori.userEmail,
             statutFavorite: 'ENCOURS',
@@ -270,12 +452,16 @@ export class ProjetsService
     /**
      * Search projets favoris with given query
      *
-     * @param queryParams
+     * @param projetFavori
      */
     searchProjetsFavoris(projetFavori: ProjetFavori): Observable<ProjetFavori[]> {
 
-        return this._httpClient.post<ProjetFavori[]>('api/real-estate-projects/favoris/searchLastSix', projetFavori)
+        return this.searchProjetsFavorisQuery(projetFavori)
             .pipe(
+                catchError(err1 => {
+                    console.log("Error from first call: ");
+                    return throwError(() => err1);
+                }),
                 tap((projetsFavoris: ProjetFavori[]) => {
 
                     // Sort the projets by the dateCreation field by default
@@ -382,7 +568,7 @@ export class ProjetsService
                     let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
 
                     for (let i = 0; i < projetsFavoris?.length; i++) {
-                        projetsFavoris[i].realEstateProject.images = images[i % 5];
+                        projetsFavoris[i].realEstateProject.medias = images[i % 5];
                         projetsFavoris[i].realEstateProject.promoter.logoPath = logos[i % 5];
                         this.fillReferentielLabels(projetsFavoris[i].realEstateProject, villes, typesBiens, quartiers);
                     }
@@ -392,29 +578,45 @@ export class ProjetsService
             );
     }
 
+    /**
+     * Search projets favoris with given query
+     *
+     * @param projetFavori
+     */
+    searchProjetsFavorisQuery(projetFavori: ProjetFavori): Observable<ProjetFavori[]> {
+
+        return this._httpClient.post<ProjetFavori[]>('api/real-estate-projects/favoris/searchLastSix', projetFavori)
+            .pipe(
+                map((projetsFavoris: ProjetFavori[]) => {
+
+                    return projetsFavoris;
+                })
+            );
+    }
+
+
     getCountProjetFavoris(email: string, cin: string): Observable<number> {
 
         return this._projectAuthService.getToken()
-        .pipe(
-            switchMap((token: string) => {
+            .pipe(
+                switchMap((token: string) => {
 
-                if (token != undefined && token != '') {
+                    if (token != undefined && token != '') {
 
-                    const headers = new HttpHeaders({
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    });
-                    return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { cin: "", mail: email },{headers:headers})
-                    .pipe(
-                        map(
-                            (response: number) => response )
-                            
-                    );
-                
-                }
-                return EMPTY;
-            }));
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+                        return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { cin: "", mail: email }, { headers: headers })
+                            .pipe(
+                                map(
+                                    (response: number) => response)
 
+                            );
+
+                    }
+                    return EMPTY;
+                }));
     }
 
     // -----------------------------------------------------------------------------------------------------

@@ -33,7 +33,9 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
-            this.content.getElementRef().nativeElement.scrollTop = 0;
+            setTimeout(() => {
+                this.content.getElementRef().nativeElement.scrollTop = 0;
+            }, 300);
         });
     }
 
