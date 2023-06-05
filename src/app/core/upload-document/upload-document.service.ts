@@ -59,5 +59,19 @@ export class UploadDocumentService {
                 })
             );
     }
+    
+    /**
+     * upload piece jointe opération SAV
+     */
+    uploadPiecesDemandeSAV(piece: Piece): Observable<PayloadUpload> {
+        return this._httpClient.post<PayloadUpload>('api/upload/sav/operations', piece)
+            .pipe(
+                map((response: PayloadUpload) => {
+
+                    // Return a new observable with the response
+                    return response;
+                })
+            );
+    }
 
 }
