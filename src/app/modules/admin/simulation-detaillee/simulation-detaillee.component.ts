@@ -498,18 +498,4 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     return item.id || index;
   }
 
-  /**
-   * Setter for bar search input
-   *
-   * @param value
-   */
-  // @ViewChild('barSearchInput')
-  // set barSearchInput(value: ElementRef) {
-  //   if (value) {
-  //     setTimeout(() => {
-
-  //       value.nativeElement.focus();
-  //     });
-  //   }
-  // }
 }
