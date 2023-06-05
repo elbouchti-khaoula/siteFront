@@ -224,11 +224,11 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     // this._animateCounterService.animateValue(this.totalInteretsId, this.simulationPersonnalisee.totalInteretsMin, 0, 600);
     // this._animateCounterService.animateValue(this.coutTotalMinId, this.simulationPersonnalisee.coutTotalMin, 0, 600);
     // this._animateCounterService.animateValue(this.coutTotalMaxId, this.simulationPersonnalisee.coutTotalMax, 0, 600);
-    
+
     let nbExp = 0;
     if (this.simulationPersonnalisee.expertiseImmobiliere && this.simulationPersonnalisee.expertiseImmobiliere > 0) {
       nbExp = this.simulationPersonnalisee.expertiseImmobiliere;
-    } 
+    }
     this.estExpImmoNum = true;
     this._animateCounterService.animateValue(this.expertiseImmobiliereId, nbExp, 0, 600);
 
@@ -280,7 +280,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           // Throw an error
           return throwError(() => error);
         })
-      ).subscribe((response) => {
+      ).subscribe((response: SimulationPersonnalisee) => {
 
         this.simulationPersonnalisee = response;
         this.simulationPersonnalisee.nbreAnnee = Math.trunc(this.simulationPersonnalisee.duree / 12);
@@ -304,35 +304,37 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
-      });
 
-    this._salesForceService.createLead(
-      {
-        nom: this.simulationForm.get('nom').value,
-        prenom: this.simulationForm.get('prenom').value,
-        email: this.simulationForm.get('email').value,
-        telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
-        nationaliteCode: this.simulationForm.get('nationaliteCode').value,
-        residentMarocain: this.simulationForm.get('residentMarocain').value,
-        cspCode: this.simulationForm.get('cspCode').value,
-        montant: this.simulationForm.get('montant').value
-      }
-    )
-      .pipe(
-        catchError((error) => {
-          // Log the error
-          console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
-          // Throw an error
-          return throwError(() => error);
-        }))
-      .subscribe((response) => {
-        console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
+        // Création du lead dans salesForce
+        this._salesForceService.createLead(
+          {
+            nom: this.simulationForm.get('nom').value,
+            prenom: this.simulationForm.get('prenom').value,
+            email: this.simulationForm.get('email').value,
+            telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
+            nationaliteCode: this.simulationForm.get('nationaliteCode').value,
+            residentMarocain: this.simulationForm.get('residentMarocain').value,
+            cspCode: this.simulationForm.get('cspCode').value,
+            montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, '')
+          }
+        )
+          .pipe(
+            catchError((error) => {
+              // Log the error
+              console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
+              // Throw an error
+              return throwError(() => error);
+            }))
+          .subscribe((response) => {
+            console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
+          });
+
       });
 
   }
 
   convertSimulationPersonaliseeToString(): void {
-    
+
     let expertiseImmobiliereStr = "";
     if (this.simulationPersonnalisee.expertiseImmobiliere && this.simulationPersonnalisee.expertiseImmobiliere > 0) {
       expertiseImmobiliereStr = this._fuseUtilsService.numberFormat(this.simulationPersonnalisee.expertiseImmobiliere, 2, '.', ' ');
@@ -381,25 +383,25 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   }
 
   navigateToSimulationDetaillee(): void {
-    
+
     // Add query params using the router
     this._router.navigate(
-        ['/espace-connecte/simulation-detaillee'],
+      ['/espace-connecte/simulation-detaillee'],
+      {
+        queryParams:
         {
-            queryParams: 
-            {
-              nom             : this.simulationForm.get('nom').value,
-              prenom          : this.simulationForm.get('prenom').value,
-              telephone       : this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
-              email           : this.simulationForm.get('email').value,
-              nationaliteCode : this.simulationForm.get('nationaliteCode').value,
-              residentMarocain: this.simulationForm.get('residentMarocain').value,
-              agreements      : this.simulationForm.get('agreements').value,
-              cspCode         : this.simulationForm.get('cspCode').value,
-              montant         : this.simulationForm.get('montant').value,
-              duree           : this.simulationForm.get('duree').value
-            }
+          nom             : this.simulationForm.get('nom').value,
+          prenom          : this.simulationForm.get('prenom').value,
+          telephone       : this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
+          email           : this.simulationForm.get('email').value,
+          nationaliteCode : this.simulationForm.get('nationaliteCode').value,
+          residentMarocain: this.simulationForm.get('residentMarocain').value,
+          agreements      : this.simulationForm.get('agreements').value,
+          cspCode         : this.simulationForm.get('cspCode').value,
+          montant         : this.simulationForm.get('montant').value.toString().replace(/\D/g, ''),
+          duree           : this.simulationForm.get('duree').value
         }
+      }
     );
   }
 
