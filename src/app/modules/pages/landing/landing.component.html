@@ -13,11 +13,11 @@
         </div> -->
 
         <!-- Header -->
-        <header class="relative w-full flex flex-col items-center justify-center md:justify-end min-h-80 sm:min-h-[92vh] landing-bg-header md:bg-fixed">
+        <header class="w-full flex flex-col items-center justify-center md:justify-end min-h-80 sm:min-h-[92vh] landing-bg-header md:bg-fixed">
 
-            <div class="relative w-full max-w-6xl flex flex-row justify-center  md:items-end md:justify-between">
+            <div class="w-full max-w-6xl flex flex-row justify-center md:items-end md:justify-between">
                 <!-- Titre -->
-                <div class="md:w-1/2 text-white max-md:mt-12 md:mb-10">
+                <div class="md:w-1/2 text-white max-md:mt-5 md:mb-10">
                     <div class="text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
                         {{t('header1')}}<br />
                         {{t('header2')}}
@@ -61,7 +61,7 @@
                 <!-- simulation -->
                 <div class="max-md:w-full max-sm:px-5 sm:max-md:px-16 max-md:py-10 md:col-span-2 md:pl-7"
                     [ngClass]="{'bg-simul': isScreenSmall}">
-                    <div class="p-5 sm:p-10 shadow-lg rounded-2xl bg-card">
+                    <div class="p-5 sm:p-10 shadow-md rounded-2xl bg-card">
                         <simulation [isScreenSmall]="isScreenSmall"></simulation>
                     </div>
                 </div>

@@ -1,15 +1,12 @@
 
 
 .b4-bg {
-  background-image: url('/assets/images/pages/nos-guides-et-conseils/details/detail4md.png');
+  background-image: url('/assets/images/pages/nos-guides-et-conseils/details/detail4md.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size:  cover ;
   @media (max-width: 600px) {
     background-image: url('/assets/images/pages/nos-guides-et-conseils/details/detail4.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover ;
   }
 }  
 

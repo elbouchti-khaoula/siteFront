@@ -184,8 +184,8 @@ export class ReclamationsService {
                 // + "     <p><b>Ville:</b> " + (reclamation.getCity() == null ? "NC" : reclamation.getCity()) + "</p>"
                 // + " <p><b>Adresse de Résidence:</b> " + (reclamation.getAddress() == null ? " NC" : reclamation.getAddress()) + "</p> "
                 // + "<p><b>Adresse de Correspondance:</b>  "
-                // + (reclamation.getPostalAddress() == null ? "NC" : reclamation.getPostalAddress()) + " </p>" + " <p><b>Fax:</b><b>"
-                // + (reclamation.getFax() == null ? "NC" : reclamation.getFax()) + " </p>   " 
+                // + (reclamation.getPostalAddress() == null ? "NC" : reclamation.getPostalAddress()) + " </p>" 
+                // + " <p><b>Fax:</b><b>" + (reclamation.getFax() == null ? "NC" : reclamation.getFax()) + " </p>   " 
                 // + " <p><b>Moyen de Communication: </b> " + reclamation.getChoix() + "</p>" 
                 + "</fieldset>"
 
@@ -205,9 +205,9 @@ export class ReclamationsService {
             envoiMail = {
                 type: "Réclamation",
                 destination: reclamation.email,
+                // cc : "k.qasmi@wafaimmobilier.co.ma,M.SAADI@wafaimmobilier.co.ma",
                 titre: "Reclamation n°: " + reclamation.id + " - Motif: " + reclamation.motifLibelle,
                 message: body
-                // message: reclamation.text
             }
 
         } else if (reclamation.type === "AlerteEthique") {

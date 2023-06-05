@@ -4,6 +4,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
 
 @Component({
     selector: 'operations-sav-ref',
@@ -13,8 +15,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 export class OperationsSAVRefComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     operationsSAVRef: OperationSAVRef[] = [];
-    selectedOperationSAV: OperationSAVRef;
-    dossierId: number;
+    dossierCredit: CreditEnCours;
 
     // Private
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -23,7 +24,8 @@ export class OperationsSAVRefComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
-        @Inject(MAT_DIALOG_DATA) private _data: { dossierId: number },
+        private _router: Router,
+        @Inject(MAT_DIALOG_DATA) private _data: { dossierCredit: CreditEnCours },
         public matDialogRef: MatDialogRef<OperationsSAVRefComponent>,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _changeDetectorRef: ChangeDetectorRef,
@@ -41,8 +43,8 @@ export class OperationsSAVRefComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
 
-        if (this._data.dossierId) {
-            this.dossierId = this._data.dossierId;
+        if (this._data.dossierCredit) {
+            this.dossierCredit = this._data.dossierCredit;
         }
 
         this._referentielService.operationsSAVRef$
@@ -80,12 +82,16 @@ export class OperationsSAVRefComponent implements OnInit, OnDestroy {
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Select agence
-     *
-     * @param agence
+     * Perform navigate
      */
-    selectAgence(operation: OperationSAVRef): void {
-        this.selectedOperationSAV = operation;
+    navigateCreerDemandeSAV(operation: OperationSAVRef): void {
+        const navigationExtras: NavigationExtras = {
+            state: {
+                operation: operation,
+                dossierCredit: this.dossierCredit
+            }
+        };
+        this._router.navigate(['/espace-connecte/demande-sav'], navigationExtras);
     }
 
 }

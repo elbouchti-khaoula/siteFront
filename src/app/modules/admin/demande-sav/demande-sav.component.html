@@ -1,0 +1,161 @@
+<div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
+
+    <!-- Header -->
+    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 demande-sav-bg-header">
+        <div class="w-full max-w-400">
+            <bienvenue></bienvenue>
+            <div class="max-w-xl text-2xl md:text-3xl font-semibold mt-5">
+                Demander une opération SAV : {{operationSAVRef?.nomOperation}}
+            </div>
+        </div>
+    </header>
+
+    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20">
+
+        <div class="w-full max-w-400 mx-auto">
+
+            <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-16">
+
+                <fuse-card class="w-full md:w-9/20 flex flex-col px-6 pb-12 pt-7 bg-card ring-1 ring-primary rounded-xl shadow-md overflow-hidden">
+
+                    <!-- titre -->
+                    <div class="w-full flex items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
+                            <mat-icon class="icon-size-16 text-on-primary ml-0.5" svgIcon="finance">
+                            </mat-icon>
+                        </div>
+                        <div class="ml-6 text-2xl font-bold leading-tight uppercase">Crédit N° {{dossierCredit.id}}</div>
+                    </div>
+
+                    <!-- données -->
+                    <div class="grid grid-cols-1 max-md:gap-y-5 md:grid-cols-2 gap-5 mt-7">
+
+                        <div class="flex flex-col items-center">
+                            <span class="font-medium">Montant du crédit</span>
+                            <span class="text-3xl font-semibold">
+                                {{dossierCredit.montant}}
+                            </span>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <span class="font-medium">Capital restand dû</span>
+                            <span class="text-3xl font-semibold">
+                                {{dossierCredit.crd}}
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <span class="font-medium">Mensualité</span>
+                            <span class="text-3xl font-semibold">
+                                {{dossierCredit.mensuaite}}
+                            </span>
+                        </div>
+
+                        <div *ngIf="dossierCredit.existeImpaye"
+                            class="flex flex-col items-center text-warn">
+                            <span class="font-medium">Total des impayés</span>
+                            <span class="text-3xl font-semibold">
+                                {{dossierCredit.impayes}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-7"
+                        [ngClass]="{'mb-5 ': dossierCredit.existeImpaye}">
+                        <span class="font-medium">Durée restante : {{dossierCredit.dureeRestante}} / {{dossierCredit.duree}} mois</span>
+                        <mat-progress-bar
+                            class="mt-3 rounded-full"
+                            [mode]="'determinate'"
+                            [value]="((dossierCredit.duree - dossierCredit.dureeRestante) * 100) / dossierCredit.duree">
+                        </mat-progress-bar>
+                    </div>
+
+                    <div *ngIf="dossierCredit.existeImpaye"
+                        class="md:max-w-184 flex flex-row py-2 px-3 rounded-md shadow bg-warn-100 mt-auto">
+                        <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
+                        </mat-icon>
+                        <span class="ml-2 text-md font-semibold">Merci d'alimenter votre compte bancaire ou d'effectuer un versement en faveur de WAFAIMMOBILIER sur le compte N° 007 780 00 02 38 200 0 170010 80 ou par le code SWIFT: BCMAMAMC.
+                        </span>
+                    </div>
+                </fuse-card>
+
+                <div class="w-full md:w-11/20">
+                    
+                    <div class="p-6 bg-card ring-1 ring-current rounded-xl shadow-md overflow-hidden">
+
+                        <!-- titre -->
+                        <div class="w-full flex items-center">
+                            <div class="flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-second-500">
+                                <mat-icon class="icon-size-16 text-black -mt-1" svgIcon="checklist">
+                                </mat-icon>
+                            </div>
+                            <div class="ml-6 text-2xl font-bold leading-tight uppercase">Chargement de document</div>
+                        </div>
+
+                        <!-- warning -->
+                        <div class="flex flex-row space-x-2 py-2 px-4 rounded-md shadow bg-amber-100 mt-5">
+                            <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
+                            </mat-icon>
+                            <span class="text-sm font-semibold">
+                                la taille des fichiers est limitée à 5 Mo
+                            </span>
+                        </div>
+
+                        <div class="text-lg font-semibold mt-7">Veuillez charger les fichiers ci-dessous : </div>
+
+                        <!-- checkList -->
+                        <div class="flex flex-col space-y-5 mt-3">
+                            <check-list [pieces]="pieces" #checkList></check-list>
+                        </div>
+
+                        <!-- Motif -->
+                        <!-- [ngClass]="{'fuse-mat-dense': isScreenSmall}" -->
+                        <mat-form-field class="w-full mt-3"
+                            *ngIf="operationSAVRef.codeOperation === 'RAT'">
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'mat_solid:view_list'"
+                                matPrefix>
+                            </mat-icon>
+                            <input matInput [(ngModel)]="motif">
+                            <mat-label class="max-md:text-sm max-md:font-semibold">Motif de remboursement</mat-label>
+                        </mat-form-field>
+
+                        <!-- Agreements -->
+                        <mat-checkbox class="md:col-span-2 text-sm mt-3 font-medium"
+                            [color]="'primary'"
+                            [(ngModel)]="agreements">
+                            <span>Je déclare avoir lu et accepter les&nbsp;</span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">
+                                conditions générales
+                            </a>
+                            <span>&nbsp;d'utilisation du site&nbsp;</span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/landing']">
+                                www.wafaimmobilier.com
+                            </a>
+                            <span>, notamment les mentions relatives à la protection des données
+                                personnelles</span>
+                        </mat-checkbox>
+
+                        <!-- Actions -->
+                        <div class="flex items-center mt-5">
+                            <button mat-flat-button class="ml-auto px-8"
+                                [ngClass]="{'bg-primary-200' : !checkList?.existePieceAttachee}"
+                                [color]="'primary'"
+                                type="button"
+                                [disabled]="!checkList?.existePieceAttachee || !agreements"
+                                (click)="creerDemandeSAV()">
+                                Valider
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

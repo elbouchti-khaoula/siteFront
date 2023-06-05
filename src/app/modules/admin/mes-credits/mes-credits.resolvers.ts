@@ -61,11 +61,15 @@ export class MesCreditsEnCoursResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        let email;
+        var email = '';
+        var cin = '';
         this._userService.user$.subscribe((user) => {
-            email = user?.email ? user.email : '';
+            if (user) {
+                email = user.email;
+                cin = user.cin;
+            }
         });
-        return this._recordsInProgressService.getCreditsEnCours(email);
+        return this._recordsInProgressService.getCreditsEnCours(cin, email);
     }
 
 }

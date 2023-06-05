@@ -37,8 +37,5 @@ export class DemandeCreditDocumentsResolver implements Resolve<any>
         if (simulationResultat?.id) {
             return this._simulationDetailleeService.getDocuments(Number(simulationResultat.id));
         }
-        // else {
-        //     return this._simulationDetailleeService.getDocuments(674266);
-        // }
     }
 }

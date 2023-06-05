@@ -94,9 +94,9 @@
                                         <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-5">
                                             <!-- carousel projet images -->
                                             <div class="flex flex-0 items-center justify-center">
-                                                <ng-container *ngIf="projet.images && projet.images.length > 0">
+                                                <ng-container *ngIf="projet.medias && projet.medias.length > 0">
                                                     <angular-carousel [auto]="true" [infinite]="true" [duration]="1500" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
-                                                        <ng-container *ngFor="let image of projet.images; trackBy: trackByFn">
+                                                        <ng-container *ngFor="let image of projet.medias; trackBy: trackByFn">
                                                             <div *angularCarouselSlide class="h-50 md:h-68">
                                                                 <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
                                                                 <img [src]="image.chemin" class="object-cover h-full" />
@@ -104,7 +104,7 @@
                                                         </ng-container>
                                                     </angular-carousel>
                                                 </ng-container>
-                                                <ng-container *ngIf="!projet.images || !projet.images.length">
+                                                <ng-container *ngIf="!projet.medias || !projet.medias.length">
                                                     <span class="flex items-center justify-center w-full h-50 md:h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                         No image
                                                     </span>
@@ -121,9 +121,13 @@
                                                             <strong>{{projet.prixMin}} {{projet.devise}}</strong>
                                                         </div>
                                                         <div class="flex flex-col space-y-0.5 mt-3 md:mt-5">
-                                                            <span class="font-extrabold text-xl uppercase text-primary">
+                                                            <div class="font-extrabold text-xl uppercase text-primary">
                                                                 {{projet.nom}}
-                                                            </span>
+                                                                <mat-icon *ngIf="projet.estFavoris"
+                                                                    class="icon-size-5 text-red-500"
+                                                                    [svgIcon]="'heroicons_solid:heart'">
+                                                                </mat-icon>
+                                                            </div>
                                                             <div class="-ml-1 flex items-center text-center">
                                                                 <mat-icon class="icon-size-5 text-primary-700"
                                                                     [svgIcon]="'heroicons_outline:location-marker'">

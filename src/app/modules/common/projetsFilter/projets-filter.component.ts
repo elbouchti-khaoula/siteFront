@@ -7,6 +7,8 @@ import { catchError, debounceTime, Observable, Subject, takeUntil, throwError } 
 import { ProjetsService } from 'app/core/projets/projets.service';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
+import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 
 @Component({
   selector: 'projets-filter',
@@ -15,6 +17,7 @@ import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.type
 })
 export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
+  user: User;
   isScreenSmall: boolean;
   @Input() parentComponent: 'landing' | 'projets-search';
 
@@ -46,7 +49,8 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     private _formBuilder: UntypedFormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _referentielService: ReferentielService
+    private _referentielService: ReferentielService,
+    private _userService: UserService
   ) {
 
     // Prepare the search form with defaults
@@ -74,6 +78,13 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+
+    // Subscribe to the user service
+    this._userService.user$
+      .pipe((takeUntil(this._unsubscribeAll)))
+      .subscribe((user: User) => {
+        this.user = user;
+      });
 
     // Get the villes
     this._referentielService.villes$
@@ -184,7 +195,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
     if (this.parentComponent === 'projets-search') {
 
-      this._projetsService.searchProjets({})
+      this._projetsService.searchProjets({}, this.user)
         .subscribe(() => {
 
           this._router.navigate([], {
@@ -204,29 +215,29 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * Perform the search
    */
   search(): void {
-    this._projetsService.searchProjets(this.searchForm.value)
-    .pipe(
-      // Error here means the requested is not available
-      catchError((error) => {
+    this._projetsService.searchProjets(this.searchForm.value, this.user)
+      .pipe(
+        // Error here means the requested is not available
+        catchError((error) => {
 
-        // Log the error
-        console.error(error);
+          // Log the error
+          console.error(error);
 
-        if (error.status === 500) {
-          this._router.navigateByUrl('/500-server-error');
-        } else if (error.status === 400) {
-          this._router.navigateByUrl('/404-not-found');
-        } else {
-          // Get the parent url
-          const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
+          if (error.status === 500) {
+            this._router.navigateByUrl('/500-server-error');
+          } else if (error.status === 400) {
+            this._router.navigateByUrl('/404-not-found');
+          } else {
+            // Get the parent url
+            const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
 
-          // Navigate to there
-          this._router.navigateByUrl(parentUrl);
-        }
+            // Navigate to there
+            this._router.navigateByUrl(parentUrl);
+          }
 
-        // Throw an error
-        return throwError(() => error);
-      }))
+          // Throw an error
+          return throwError(() => error);
+        }))
       .subscribe(() => {
 
         // Add query params using the router
@@ -259,7 +270,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   navigateToMarketPlace(): void {
 
     if (!(this.searchForm.pristine || this.searchForm.invalid)) {
-      
+
       // Add query params using the router
       this._router.navigate(
         ['/projets-search'],

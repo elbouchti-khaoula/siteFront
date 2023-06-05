@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, filter, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
@@ -29,12 +29,6 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
         private _fuseNavigationService: FuseNavigationService
     )
     {
-        this._router.events.subscribe((evt) => {
-            if (!(evt instanceof NavigationEnd)) {
-                return;
-            }
-            this.content.getElementRef().nativeElement.scrollTop = 0;
-        });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -73,6 +67,16 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
+
+        // Subscribe to NavigationEnd event
+        this._router.events.pipe(
+            filter(event => event instanceof NavigationEnd),
+            takeUntil(this._unsubscribeAll)
+        ).subscribe(() => {
+
+            // Reset the element's scroll position to the top
+            this.content.getElementRef().nativeElement.scrollTop = 0;
+        });
     }
 
     /**

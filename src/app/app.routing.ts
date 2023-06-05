@@ -106,6 +106,10 @@ export const appRoutes: Route[] = [
                         loadChildren: () => import('app/modules/admin/mes-projets-favoris/mes-projets-favoris.module').then(m => m.MesProjetsFavorisModule)
                     },
                     {
+                        path: 'demande-sav',
+                        loadChildren: () => import('app/modules/admin/demande-sav/demande-sav.module').then(m => m.DemandeSAVModule)
+                    },
+                    {
                         path: 'mes-operations-sav',
                         loadChildren: () => import('app/modules/admin/mes-operations-sav/mes-operations-sav.module').then(m => m.MesOperationsSavModule)
                     }

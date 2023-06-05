@@ -25,16 +25,19 @@
                 <div class="text-md text-secondary">{{projet.telephone}}</div>
                 <div class="text-md text-secondary">{{projet.email}}</div>
             </div>
-            <ng-container *ngIf="projet.promoter.logoPath">
-                <figure class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 bg-card">
-                    <img [src]="projet.promoter.logoPath" class="object-cover w-full h-fit" />
-                </figure>
-            </ng-container>
-            <ng-container *ngIf="!projet.promoter.logoPath">
-                <span class="flex items-center justify-center w-28 h-32 sm:w-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                    No Logo
-                </span>
-            </ng-container>
+            <!-- logo promoteur -->
+            <div class="w-full ml-auto h-36 sm:h-40">
+                <ng-container *ngIf="projet.promoter.logoPath">
+                    <figure class="flex items-center justify-center h-32 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
+                        <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
+                    </figure>
+                </ng-container>
+                <ng-container *ngIf="!projet.promoter.logoPath">
+                    <span class="flex items-center justify-center h-32 h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                        No Logo
+                    </span>
+                </ng-container>
+            </div>
         </fuse-card>
 
         <form *ngIf="!visible" class="space-y-1"

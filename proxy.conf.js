@@ -53,6 +53,14 @@ const PROXY_CONFIG = [
     },
     {
         context: [
+            "/api/sav"
+        ],
+        target: "http://10.10.1.187:8090",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
             "/api/upload"
         ],
         target: "http://10.10.1.199:8083",
@@ -74,8 +82,7 @@ const PROXY_CONFIG = [
         target: "https://test.salesforce.com",
         secure: false,
         logLevel: "debug"
-    },
-   
+    }
 ]
 
 module.exports = PROXY_CONFIG;
