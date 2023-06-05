@@ -127,9 +127,9 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((response: DemandeSAV) => {
-        if (response !== null && response !== undefined) {
+        if (response !== null && response !== undefined && response.demandeSavId != null) {
 
-          // this.uploadCheckList();
+          this.uploadCheckList(response.demandeSavId);
 
           // Open the dialog
           const confirmation = this._fuseConfirmationService.open(
@@ -184,11 +184,12 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
   // @ private methods
   // -----------------------------------------------------------------------------------------------------
-  
-  private uploadCheckList() {
+
+  private uploadCheckList(demandeSAVId: number) {
     this.pieces.forEach((piece, index) => {
       piece = {
-        id_projet: 1,
+        id_Demande: demandeSAVId,
+        code_Operation: this.operationSAVRef.codeOperation,
         libelleDocument: piece.libelleDocument,
         listFilesArray:
           [...piece.listFilesArray.map(e => {
@@ -205,16 +206,16 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
 
       if (piece.listFilesArray.length > 0) {
 
-        this._uploadDocumentService.uploadPiecesDemandesCredit(piece)
+        this._uploadDocumentService.uploadPiecesDemandeSAV(piece)
           .pipe(
             catchError((error) => {
               // Log the error
-              console.error("+-+-+-+ demande crédit document error", error);
+              console.error("+-+-+- demande SAV document error", error);
               // Throw an error
               return throwError(() => error);
             }))
           .subscribe((response) => {
-            console.log("+-+-+- demande crédit document success", response);
+            console.log("+-+-+- demande SAV document success", response);
           });
 
       }
