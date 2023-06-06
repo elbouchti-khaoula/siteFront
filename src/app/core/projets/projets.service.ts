@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet, ProjetFavori } from './projets.types';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
 import { User } from '../user/user.types';
@@ -8,18 +8,17 @@ import { User } from '../user/user.types';
 @Injectable({
     providedIn: 'root'
 })
-export class ProjetsService
-{
+export class ProjetsService {
     // Private
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
     private _projetsFavoris: BehaviorSubject<ProjetFavori[] | null> = new BehaviorSubject(null);
+    private _projectAuthService: any;
 
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(private _httpClient: HttpClient) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -29,24 +28,21 @@ export class ProjetsService
     /**
      * Getter for projet
      */
-    get projet$(): Observable<Projet>
-    {
+    get projet$(): Observable<Projet> {
         return this._projet.asObservable();
     }
 
     /**
      * Getter for projets
      */
-    get projets$(): Observable<Projet[]>
-    {
+    get projets$(): Observable<Projet[]> {
         return this._projets.asObservable();
     }
 
     /**
      * Getter for projets favoris
      */
-    get projetsFavoris$(): Observable<ProjetFavori[]>
-    {
+    get projetsFavoris$(): Observable<ProjetFavori[]> {
         return this._projetsFavoris.asObservable();
     }
 
@@ -65,7 +61,7 @@ export class ProjetsService
         user: User
     ): Observable<Projet[]> {
         console.log("+-+-+- user", user);
-        
+
         if (user
             && user.userName != null && user.userName != undefined
             && user.email != null && user.email != undefined) {
@@ -369,8 +365,7 @@ export class ProjetsService
     /**
      * Get projet by id
      */
-    getProjetById(id: number): Observable<Projet>
-    {
+    getProjetById(id: number): Observable<Projet> {
         return this._projets.pipe(
             take(1),
             map((projets) => {
@@ -596,6 +591,18 @@ export class ProjetsService
 
                     return projetsFavoris;
                 })
+            );
+    }
+
+    /**
+     * get count projets favoris
+     *
+     * @param email
+     */
+    getCountProjetFavoris(email: string): Observable<number> {
+        return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { userEmail: email })
+            .pipe(
+                map((response: number) => response)
             );
     }
 
