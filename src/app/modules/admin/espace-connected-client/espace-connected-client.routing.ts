@@ -1,16 +1,19 @@
 import { Route } from '@angular/router';
 import { EspaceConnectedClientComponent } from './espace-connected-client.component';
-import { CountCreditResolver, CountProjetsFavorisResolver, CountSimulationResolver } from './espace-connected-client.resolvers';
+import { CountCreditResolver, CountDemandesCreditsResolver, CountDemandesSAVResolver, CountProjetsFavorisResolver, CountSimulationResolver } from './espace-connected-client.resolvers';
 
 export const EspaceConnectedRoutes: Route[] = [
     {
-        path     : '',
+        path: '',
         component: EspaceConnectedClientComponent,
 
-        resolve  : {
+        resolve: {
             countCredit: CountCreditResolver,
-            countSimulation : CountSimulationResolver,
+            countSimulation: CountSimulationResolver,
+            countProjetFavoris: CountProjetsFavorisResolver,
+            countDemandesCredits: CountDemandesCreditsResolver,
+            countDemandesSAV: CountDemandesSAVResolver,
         }
-      
+
     }
 ];

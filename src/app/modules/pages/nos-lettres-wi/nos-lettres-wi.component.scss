@@ -1,11 +1,15 @@
 .nos-lettre-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .3)), url('/assets/images/pages/lettre/Bannièrelettre.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .3)), url('/assets/images/pages/lettre/header.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  // @media (max-width: 959px) {
+  //   background-image:  linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('/assets/images/pages/nos-guides-et-conseils/header-sm.png');
+  // }
 }
 
-.etat-financier-bg-body{
+.etat-financier-bg-body {
   background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre-old/backgd.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -14,30 +18,31 @@
 
 
 .text-orange {
-    color: rgb(238, 125, 33);
+  color: rgb(238, 125, 33);
 }
 
 .orange-circle {
-    background-color: orange;
-  }
+  background-color: orange;
+}
 
-  .selected {
-    border: 2px solid blue;
-  }
+.selected {
+  border: 2px solid blue;
+}
 
 
-  @media (max-width: 767px) {
-    .mobile-full-width {
-      width: 100%;
-    }
+@media (max-width: 767px) {
+  .mobile-full-width {
+    width: 100%;
   }
+}
 
-  
-  .even-bg {
-    background-color: #F2F2F2; /* Couleur de fond pour les éléments pairs */
-  }
-  
-  .odd-bg {
-    background-color: #EAEAEA; /* Couleur de fond pour les éléments impairs */
-  }
-  
+
+.even-bg {
+  background-color: #F2F2F2;
+  /* Couleur de fond pour les éléments pairs */
+}
+
+.odd-bg {
+  background-color: #EAEAEA;
+  /* Couleur de fond pour les éléments impairs */
+}

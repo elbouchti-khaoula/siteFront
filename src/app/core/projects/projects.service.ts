@@ -85,7 +85,13 @@ export class SimulationDetailleeService {
     }
 
     /**
+     */
+
+    /**
      * count mes simulations
+     *
+     * @param email
+     * @param cin
      */
     getCountSimulation(email: string, cin: string): Observable<number> {
 
@@ -100,11 +106,16 @@ export class SimulationDetailleeService {
                             'Authorization': `Bearer ${token}`
                         });
 
-                        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, mail: email }, { headers: headers })
-                            .pipe(
-                                map(
-                                    (response: number) => response)
+                        // console.log(this.countSimulation);
 
+                        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, email: email }, { headers: headers })
+                            .pipe(
+                                map((response: number) => {
+                                     console.log(cin);
+                                     console.log(email);
+                                    // console.log(response); // Imprime la valeur du compteur
+                                    return response;
+                                })
                             );
 
                     }

@@ -67,14 +67,33 @@ export class RecordsInProgressService {
             );
     }
 
+  
+
+
     /**
-     * count mes credits
+     * count mes demandes de credits
+     *
+     * @param cin
      */
-    getCountCreditByEmailAndCin(email: string, cin: string): Observable<number> {
-        return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: "640891", mail: email })
+    getCountCreditByEmailAndCin(cin: string): Observable<number> {
+        return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: cin,mail:""})
             .pipe(
                 map((response: number) => response)
             );
     }
+
+      /**
+     * count mes credits
+     *
+     * @param cin
+     */
+      getCountDemandesCredits(cin: string): Observable<number> {
+        return this._httpClient.post<number>('api/records-in-progress/demandes/count', { origin: "SITE", cin: cin, mail:""})
+            .pipe(
+                map((response: number) => response)
+            );
+    }
+
+    
 
 }

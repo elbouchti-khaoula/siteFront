@@ -594,29 +594,16 @@ export class ProjetsService {
             );
     }
 
-
-    getCountProjetFavoris(email: string, cin: string): Observable<number> {
-
-        return this._projectAuthService.getToken()
+    /**
+     * get count projets favoris
+     *
+     * @param email
+     */
+    getCountProjetFavoris(email: string): Observable<number> {
+        return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { userEmail: email })
             .pipe(
-                switchMap((token: string) => {
-
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-                        return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { cin: "", mail: email }, { headers: headers })
-                            .pipe(
-                                map(
-                                    (response: number) => response)
-
-                            );
-
-                    }
-                    return EMPTY;
-                }));
+                map((response: number) => response)
+            );
     }
 
     // -----------------------------------------------------------------------------------------------------
