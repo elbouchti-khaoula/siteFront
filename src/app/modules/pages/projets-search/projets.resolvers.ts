@@ -32,12 +32,12 @@ export class ProjetsResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet[]>
     {
-        let userP;
+        let currentUser;
         this._userService.user$.subscribe((user) => {
-            userP = user;
+            currentUser = user;
         });
 
-        return this._projetsService.searchProjets(state.root.queryParams, userP).pipe(
+        return this._projetsService.searchProjets(state.root.queryParams, currentUser).pipe(
             // Error here means the requested projet is not available
             catchError((error) => {
 

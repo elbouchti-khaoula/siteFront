@@ -129,14 +129,16 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // this.isVisible = true;
 
-    this._userService.user$.subscribe((user: User) => {
-      if (user) {
-        this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
-        this.simulationForm.get('nom').setValue(user?.lastName ? user.lastName : this.simulationFormDefaults.nom);
-        this.simulationForm.get('prenom').setValue(user?.firstName ? user.firstName : this.simulationFormDefaults.prenom);
-        this.simulationForm.get('telephone').setValue(user?.telephone ? user.telephone : this.simulationFormDefaults.telephone);
-      }
-    });
+    this._userService.user$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((user: User) => {
+        if (user != undefined && user != null) {
+          this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
+          this.simulationForm.get('nom').setValue(user?.lastName ? user.lastName : this.simulationFormDefaults.nom);
+          this.simulationForm.get('prenom').setValue(user?.firstName ? user.firstName : this.simulationFormDefaults.prenom);
+          this.simulationForm.get('telephone').setValue(user?.telephone ? user.telephone : this.simulationFormDefaults.telephone);
+        }
+      });
 
     // Subscribe to query params change
     this._activatedRoute.queryParams

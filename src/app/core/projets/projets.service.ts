@@ -64,16 +64,14 @@ export class ProjetsService
         },
         user: User
     ): Observable<Projet[]> {
-        console.log("+-+-+- user", user);
-        
+
         if (user
-            && user.userName != null && user.userName != undefined
+            && user.username != null && user.username != undefined
             && user.email != null && user.email != undefined) {
-            console.log("+-+-+- with favoris");
+
             return this.searchProjetsWithFavoris(queryParams, user);
         }
         else {
-            console.log("+-+-+- without favoris");
             return this.searchProjetsWithoutFavoris(queryParams);
         }
     }
@@ -234,7 +232,7 @@ export class ProjetsService
                 switchMap((projets: Projet[]) => {
 
                     return this.searchProjetsFavorisQuery({
-                        userName: user.userName,
+                        userName: user.username,
                         userEmail: user.email,
                         statutFavorite: 'ENCOURS',
                     })
@@ -244,8 +242,6 @@ export class ProjetsService
                                 return throwError(() => err2);
                             }),
                             switchMap((projetsFavoris: ProjetFavori[]) => {
-
-                                console.log("+-+-+- projetsFavoris", projetsFavoris);
 
                                 // Sort the projets by the name field by default
                                 projets.sort((a, b) => a.nom.localeCompare(b.nom));
