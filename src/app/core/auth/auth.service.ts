@@ -201,7 +201,7 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { firstName: string; lastName: string; email: string; cin: string; telephone: string; dateNaissance: string; agreements: any; pass1: string }): Observable<any>
+    signUp(user: { firstName: string; lastName: string; cin: string, dateNaissance: string, email: string; telephone: string; agreements: any; pass1: string }): Observable<any>
     {
 
             const headers = new HttpHeaders({
@@ -246,6 +246,9 @@ export class AuthService
 
     sendMail(): Observable<any>
     {
+
+        console.log('send mail for user id : '+this.userCreated);
+
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + this.accessTokenAdmin
@@ -253,16 +256,58 @@ export class AuthService
 
         let idCli = this.userCreated;
 
-        let body = {
-            "id": idCli,
-            "realm": "wafaimmo-siteweb"
-        }
-
-        return this._httpClient.put('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli+'/send-verify-email', body, { headers: headers })
+        return this._httpClient.put('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli+'/send-verify-email', { headers: headers })
             .pipe(
                 switchMap((response: any) => {
 
                     return of(response);
+                })
+            );
+    }
+
+    sendSms(code: String, numero: String): Observable<any>
+    {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        let body = {
+            "name" : "generateToken",
+            "param" : {
+                "username" : "cherraj",
+                "pass" : "cherraj55sms"
+            } 
+        }
+
+        return this._httpClient.post('/apimsg/v2/', body, { headers: headers })
+            .pipe(
+                switchMap((response: any) => {
+
+                    const headers = new HttpHeaders({
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + response.response.result.token
+                    });
+            
+                    let body = {
+                        "name": "SendSMS",
+                        "param": {
+                            "username": "cherraj",
+                            "password": "cherraj55sms",
+                            "ndest": "212"+numero.substring(1, numero.length),
+                            "message": "Votre code d\'activation est : "+code,
+                            "msgtype": "1",
+                            "label": "Wafa immo",
+                            "smsid": "1"
+                        }
+                    }
+                    return this._httpClient.post('/apimsg/v2/', body, { headers: headers })
+                        .pipe(
+                            switchMap((response: any) => {
+                                
+                                return of(response);
+                            })
+                        );
+                   
                 })
             );
     }
@@ -275,7 +320,6 @@ export class AuthService
         });
 
         let idCli = this.userCreated;
-
 
         return this._httpClient.delete('/auth/admin/realms/wafaimmo-siteweb/users/'+idCli, { headers: headers })
             .pipe(
@@ -321,5 +365,27 @@ export class AuthService
 
         // If the access token exists and it didn't expire, sign in using it
         return this.signInUsingToken();
+    }
+
+    // check
+
+    checkUserProd(user: { firstName: string; lastName: string; email: string; cin: string; telephone: string; dateNaissance: string; agreements: any; pass1: string }): Observable<any>
+    {
+        console.log('checkUserProd');
+        console.log(this.accessTokenGeneric)
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.accessTokenGeneric
+        });
+
+        let body = '{"cin" : "'+user.cin+'","dateNaissance" : "'+user.dateNaissance+'"}'
+
+        return this._httpClient.post('/api/accounts/numbers', body, { headers: headers })
+            .pipe(
+                switchMap((response: any) => {
+                    return of(response);
+                })
+            );
     }
 }

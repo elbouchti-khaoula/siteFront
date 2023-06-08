@@ -22,9 +22,8 @@
                     {{alert.message}}
                 </fuse-alert>
 
-                <!-- Sign Up form -->
-                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm" #signUpNgForm="ngForm">
-
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="chooseForm" #chooseFormNgForm="ngForm">
+                    
                     <mat-radio-group class="flex flex-col md:col-span-2 w-full" [formControlName]="'clientAWB'">
                         <mat-label>Etes-vous client Wafaimmobilier ? </mat-label>
                         <div class="flex flex-row mt-3 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
@@ -32,6 +31,91 @@
                             <mat-radio-button class="ml-5" [value]="false">Non</mat-radio-button>
                         </div>
                     </mat-radio-group>
+                </form>
+
+                <!-- Sign Up form abonné -->
+
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm2" #signUpNgForm2="ngForm" *ngIf="!isClient">
+
+                    <mat-form-field>
+                        <mat-label>Nom</mat-label>
+                        <input id="lastName" matInput [formControlName]="'lastName'">
+                        <mat-error *ngIf="signUpForm2.get('lastName').hasError('required')">
+                            champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Prénom</mat-label>
+                        <input id="firstName" matInput [formControlName]="'firstName'">
+                        <mat-error *ngIf="signUpForm2.get('firstName').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input id="email" matInput [formControlName]="'email'">
+                        <mat-error *ngIf="signUpForm2.get('email').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Téléphone</mat-label>
+                        <input id="telephone" matInput [formControlName]="'telephone'" appFormatTelephone>
+                        <mat-error *ngIf="signUpForm2.get('telephone').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Mot de passe</mat-label>
+                        <input id="pass1" matInput [formControlName]="'pass1'" type="password">
+                        <mat-error *ngIf="signUpForm2.get('pass1').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Confirmer le mot de passe</mat-label>
+                        <input id="pass2" matInput [formControlName]="'pass2'" type="password">
+                        <mat-error *ngIf="signUpForm2.get('pass2').hasError('required')">
+                            Champs requis
+                        </mat-error>
+
+                    </mat-form-field>
+ 
+                    <!-- ToS and PP -->
+                    <div class="inline-flex items-end w-full mt-1.5 col-span-2">
+                        <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">
+                            <span>Je déclare avoir lu et accepter les </span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">les conditions générales d’utilisation </a>
+                            <span>du site</span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">www.wafaimmobilier.com</a>
+                        </mat-checkbox>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [disabled]="signUpForm2.disabled"
+                        (click)="signUp2()">
+                        <span *ngIf="!signUpForm2.disabled">
+                            Inscription
+                        </span>
+                        <mat-progress-spinner
+                            *ngIf="signUpForm2.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'">
+                        </mat-progress-spinner>
+                    </button>
+                </form>
+
+                <!-- Sign Up form client step 1-->
+
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm" #signUpNgForm="ngForm" *ngIf="isClient && !isNum && !isSendSms">
 
                     <mat-form-field>
                         <mat-label>Nom</mat-label>
@@ -40,6 +124,7 @@
                             champs requis
                         </mat-error>
                     </mat-form-field>
+
                     <mat-form-field>
                         <mat-label>Prénom</mat-label>
                         <input id="firstName" matInput [formControlName]="'firstName'">
@@ -48,17 +133,10 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field *ngIf="signUpForm.get('clientAWB').value">
+                    <mat-form-field>
                         <mat-label>CIN</mat-label>
-                        <input id="cin" matInput [formControlName]="'cin'">
+                        <input id="cin" matInput [formControlName]="'cin'" >
                         <mat-error *ngIf="signUpForm.get('cin').hasError('required')">
-                            Champs requis
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field *ngIf="signUpForm.get('clientAWB').value">
-                        <mat-label>Date de naissance</mat-label>
-                        <input id="dateNaissance" matInput [formControlName]="'dateNaissance'">
-                        <mat-error *ngIf="signUpForm.get('dateNaissance').hasError('required')">
                             Champs requis
                         </mat-error>
                     </mat-form-field>
@@ -70,40 +148,26 @@
                             Champs requis
                         </mat-error>
                     </mat-form-field>
+
                     <mat-form-field>
-                        <mat-label>Téléphone</mat-label>
-                        <input id="telephone" matInput [formControlName]="'telephone'" appFormatTelephone>
-                        <mat-error *ngIf="signUpForm.get('telephone').hasError('required')">
+                        <mat-label>Date de naissance</mat-label>
+                        <input id="dateNaissance" matInput [formControlName]="'dateNaissance'">
+                        <mat-error *ngIf="signUpForm.get('dateNaissance').hasError('required')">
                             Champs requis
                         </mat-error>
                     </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Mot de passe</mat-label>
-                        <input id="pass1" matInput [formControlName]="'pass1'" type="password">
-                        <mat-error *ngIf="signUpForm.get('pass1').hasError('required')">
-                            Champs requis
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Confirmer le mot de passe</mat-label>
-                        <input id="pass2" matInput [formControlName]="'pass2'" type="password">
-                        <mat-error *ngIf="signUpForm.get('pass2').hasError('required')">
-                            Champs requis
-                        </mat-error>
-                    </mat-form-field>
-
+ 
                     <!-- ToS and PP -->
                     <div class="inline-flex items-end w-full mt-1.5 col-span-2">
                         <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">
-                            <span>I agree to the</span>
-                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Terms of Service</a>
-                            <span>and</span>
-                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">Privacy Policy</a>
+                            <span>Je déclare avoir lu et accepter les </span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">les conditions générales d’utilisation </a>
+                            <span>du site</span>
+                            <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['./']">www.wafaimmobilier.com</a>
                         </mat-checkbox>
                     </div>
                     <!-- Submit button -->
+                    
                     <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2"
                         mat-flat-button
                         [color]="'primary'"
@@ -119,6 +183,90 @@
                         </mat-progress-spinner>
                     </button>
                 </form>
+
+                <!-- Sign Up form client step 2 -->
+
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm3" #signUpNgForm3="ngForm" *ngIf="isClient && isNum">
+
+                    <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:flag'" matPrefix>
+                        </mat-icon>
+                        <mat-select [formControlName]="'num'">
+                            <ng-container *ngFor="let numero of numeros">
+                                <mat-option [value]="numero">
+                                    {{numero}}
+                                </mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-label class="max-md:text-sm max-md:font-semibold">Vos numéros
+                        </mat-label>
+                    </mat-form-field>
+
+                    <!-- Submit button -->
+                    
+                    <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [disabled]="signUpForm3.disabled"
+                        (click)="sendSms()">
+                        <span *ngIf="!signUpForm3.disabled">
+                            Envoyer SMS
+                        </span>
+                        <mat-progress-spinner
+                            *ngIf="signUpForm3.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'">
+                        </mat-progress-spinner>
+                    </button>
+                </form>
+
+                <!-- Sign Up form client step 3 -->
+
+                <form class="grid grid-cols-2 gap-3 mt-8" [formGroup]="signUpForm4" #signUpNgForm4="ngForm" *ngIf="isClient && isSendSms">
+
+                    <mat-form-field>
+                        <mat-label>Code d'activation</mat-label>
+                        <input id="code" matInput [formControlName]="'code'">
+                        <mat-error *ngIf="signUpForm4.get('code').hasError('required')">
+                            champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <mat-label>Mot de passe</mat-label>
+                        <input id="pass1" matInput [formControlName]="'pass1'" type="password">
+                        <mat-error *ngIf="signUpForm4.get('pass1').hasError('required')">
+                            Champs requis
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Confirmer le mot de passe</mat-label>
+                        <input id="pass2" matInput [formControlName]="'pass2'" type="password">
+                        <mat-error *ngIf="signUpForm4.get('pass2').hasError('required')">
+                            Champs requis
+                        </mat-error>
+
+                    </mat-form-field>
+                    
+                    <!-- Submit button -->
+                    <button class="fuse-mat-button-large w-fit mt-6 mx-auto col-span-2"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [disabled]="signUpForm4.disabled"
+                        (click)="activerCompte()">
+                        <span *ngIf="!signUpForm4.disabled">
+                            Validation
+                        </span>
+                        <mat-progress-spinner
+                            *ngIf="signUpForm4.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'">
+                        </mat-progress-spinner>
+                    </button>
+                </form>
+
 
             </div>
 

@@ -91,7 +91,7 @@ export class UserService
                 tap((response: any) => {
                     localStorage.setItem('accessTokenAdmin', response.access_token);
                     console.log("success accessTokenAdmin");
-                    console.log(response);
+                    console.log(response.access_token);
                 })
             );
     }
@@ -104,12 +104,12 @@ export class UserService
 
         let body = '{"userName" : "siteweb","password" : "w@afa2022"}'
 
-        return this._httpClient.post('/api/projects/authentification/getToken', body, { headers: headers })
+        return this._httpClient.post('/api/accounts/authentification/getToken', body, { headers: headers })
             .pipe(
                 tap((response: any) => {
-                    localStorage.setItem('accessTokenGeneric', response.access_token);
+                    localStorage.setItem('accessTokenGeneric', response.accesToken);
                     console.log("success accessTokenGeneric");
-                    console.log(response);
+                    console.log(response.accesToken);
                 })
             );
     }
