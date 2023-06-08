@@ -14,7 +14,8 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 })
 export class NosLettresWiComponent
 {
-    
+    isScreenSmall: boolean;
+
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     lettres: DocumentInstitutionnel[];

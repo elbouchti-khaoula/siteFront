@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { CritereDemandeSAV, DemandeSAV } from './demandes-sav.types';
+import { head } from 'lodash';
 
 @Injectable({
     providedIn: 'root'
@@ -43,6 +44,28 @@ export class DemandeSAVService {
 
                     // Return a new observable with the response
                     return newDemandeSAV
+                })
+            );
+    }
+
+
+    /**
+     * get count mes operation SAV
+     *
+     * @param cin
+     */
+    getCountDemandesSAV(cin: string): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            //'Authorization': `Bearer ${token}`
+        });
+
+        return this._httpClient.post<number>('api/sav/demandesav/count', { cin: cin, mail: ""},{ headers: headers })
+            .pipe(
+                map((response: number) => {
+                    console.log(cin);
+                    console.log(response); // Imprime la valeur du compteur
+                    return response;
                 })
             );
     }
