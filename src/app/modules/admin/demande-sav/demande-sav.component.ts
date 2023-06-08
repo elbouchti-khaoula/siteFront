@@ -11,8 +11,8 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
 import { DemandeSAVService } from 'app/core/demandes-sav/demandes-sav.service';
 import { CritereDemandeSAV, DemandeSAV } from 'app/core/demandes-sav/demandes-sav.types';
-import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
   selector: 'demande-sav',
@@ -44,7 +44,7 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
     private _referentielService: ReferentielService,
     private _uploadDocumentService: UploadDocumentService,
     private _demandeSAVService: DemandeSAVService,
-    private _userService: UserService
+    private _authenticationService: AuthenticationService
   ) 
   {
     let data = this._router.getCurrentNavigation()?.extras?.state;
@@ -60,16 +60,7 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // Subscribe to user changes
-    this._userService.user$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((user: User) => {
-        this.user = user;
-
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
-      });
-
+    this.user = this._authenticationService.connectedUser;
 
     // Get the documents
     this._referentielService.operationSAVDocuments$

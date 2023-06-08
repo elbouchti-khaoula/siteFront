@@ -11,9 +11,8 @@ import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
 import { SalesForceService } from 'app/core/salesforce/salesforce.service';
 import { resize } from '@fuse/animations/resize';
-import { UserService } from 'app/core/user/user.service';
 import { FuseUtilsService } from '@fuse/services/utils';
-import { User } from 'app/core/user/user.types';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
   selector: 'simulation-personnalisee',
@@ -80,7 +79,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     private _referentielService: ReferentielService,
     private _simulationService: SimulationPersonaliseeService,
     private _salesForceService: SalesForceService,
-    private _userService: UserService,
+    private _authenticationService: AuthenticationService,
     private _fuseUtilsService: FuseUtilsService
   )
   {
@@ -129,16 +128,13 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // this.isVisible = true;
 
-    this._userService.user$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((user: User) => {
-        if (user != undefined && user != null) {
-          this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
-          this.simulationForm.get('nom').setValue(user?.lastName ? user.lastName : this.simulationFormDefaults.nom);
-          this.simulationForm.get('prenom').setValue(user?.firstName ? user.firstName : this.simulationFormDefaults.prenom);
-          this.simulationForm.get('telephone').setValue(user?.telephone ? user.telephone : this.simulationFormDefaults.telephone);
-        }
-      });
+    let user = this._authenticationService.connectedUser;
+    if (user != undefined && user != null) {
+      this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
+      this.simulationForm.get('nom').setValue(user?.lastName ? user.lastName : this.simulationFormDefaults.nom);
+      this.simulationForm.get('prenom').setValue(user?.firstName ? user.firstName : this.simulationFormDefaults.prenom);
+      this.simulationForm.get('telephone').setValue(user?.telephone ? user.telephone : this.simulationFormDefaults.telephone);
+    }
 
     // Subscribe to query params change
     this._activatedRoute.queryParams

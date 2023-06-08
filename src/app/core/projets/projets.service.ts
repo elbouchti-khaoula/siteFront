@@ -377,7 +377,7 @@ export class ProjetsService {
             switchMap((projet) => {
 
                 if (!projet) {
-                    return throwError('Could not found projet with id of ' + id + '!');
+                    return throwError(() => 'Could not found projet with id of ' + id + '!');
                 }
 
                 return of(projet);

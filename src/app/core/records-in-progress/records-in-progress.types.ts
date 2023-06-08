@@ -26,3 +26,15 @@ export interface CreditEnCours {
     estCTX?         : boolean;
     estEchu?        : boolean;
 }
+
+
+export enum TypeDocument {
+    // « 0WFSTABL » : Tableau d’amortissement.
+    // « 0WFIARRSIT » : Arrête de situation.
+    // « 0WFSFICHE » : Attestation d’intérêt.
+    // « MLV » : Main levée  
+    TableauAmortissement,
+    ArreteSituation,
+    AttestationInteret,
+    MainLevee,
+}

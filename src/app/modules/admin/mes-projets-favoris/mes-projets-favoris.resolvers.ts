@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from 'app/core/user/user.service';
 import { ProjetsService } from 'app/core/projets/projets.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +14,9 @@ export class MesProjetsFavorisResolver implements Resolve<any>
      */
     constructor(
         private _projetsService: ProjetsService,
-        private _userService: UserService
-    ) {
+        private _authenticationService: AuthenticationService
+    )
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -29,13 +30,10 @@ export class MesProjetsFavorisResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        let email;
-        this._userService.user$.subscribe((user) => {
-            email = user?.email ? user.email : '';
-        });
+        let user = this._authenticationService.connectedUser;
 
         return this._projetsService.searchProjetsFavoris({
-            userEmail: email,
+            userEmail: user.email,
         });
     }
 }

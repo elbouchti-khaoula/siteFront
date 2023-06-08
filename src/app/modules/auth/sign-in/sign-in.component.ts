@@ -5,7 +5,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { UserService } from 'app/core/user/user.service';
-import { User } from 'app/core/user/user.types';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -32,8 +31,7 @@ export class AuthSignInComponent implements OnInit
         private _activatedRoute: ActivatedRoute,
         private _authenticationService: AuthenticationService,
         private _formBuilder: UntypedFormBuilder,
-        private _router: Router,
-        private _userService: UserService
+        private _router: Router
     )
     {
     }
@@ -79,13 +77,10 @@ export class AuthSignInComponent implements OnInit
         // Sign in
         this._authenticationService.signIn(this.signInForm.value)
             .subscribe(
-
                 () => {
-                    let currentUser;
-                    this._userService.user$.subscribe((user: User) => {
-                        currentUser = user;
-                    });
 
+                    let currentUser = this._authenticationService.connectedUser;
+                    
                     if (currentUser != undefined && currentUser != null && currentUser.emailVerified) {
 
                         const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/espace-connecte';

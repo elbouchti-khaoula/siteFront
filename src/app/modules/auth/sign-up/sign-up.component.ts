@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
 
 @Component({
@@ -104,7 +105,11 @@ export class AuthSignUpComponent implements OnInit
                 () => {
 
                     // send mail
-                    this._userService.sendMailToUser(this._userService.user.id)
+                    let currentUser;
+                    this._userService.user$.subscribe((user: User) => {
+                        currentUser = user;
+                    });
+                    this._userService.sendMailToUser(currentUser.id)
                         .subscribe(
                             () => {
                                 this.alert = {

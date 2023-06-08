@@ -290,7 +290,7 @@ export class ReferentielService {
             switchMap((agence) => {
 
                 if (!agence) {
-                    return throwError('Could not found agence with id of ' + id + '!');
+                    return throwError(() => 'Could not found agence with id of ' + id + '!');
                 }
 
                 return of(agence);

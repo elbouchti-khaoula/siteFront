@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { UserService } from '../user/user.service';
-import { User } from '../user/user.types';
+import { AuthUtils } from './auth.utils';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -11,8 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
      * Constructor
      */
     constructor(
-        private _authenticationService: AuthenticationService,
-        private _userService: UserService
+        private _authenticationService: AuthenticationService
     )
     {
     }
@@ -66,21 +64,25 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     getToken(): string {
-        let currentUser;
-        this._userService.user$.subscribe((user: User) => {
-            currentUser = user;
-        });
+        let currentUser = this._authenticationService.connectedUser;
 
         if (currentUser == undefined || currentUser == null) {
-            if (this._authenticationService.checkAuthenticationGeneric()) {
+            if (this._authenticationService.accessTokenGeneric !== undefined
+                && this._authenticationService.accessTokenGeneric !== null
+                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
+            ) {
                 return this._authenticationService.accessTokenGeneric;
             }
         }
         else {
-            if (this._authenticationService.checkAuthenticationUser()) {
+            if (this._authenticationService.accessTokenUser !== undefined
+                && this._authenticationService.accessTokenUser !== null
+                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
+            ) {
                 return this._authenticationService.accessTokenUser;
             }
         }
+
         return null;
     }
 

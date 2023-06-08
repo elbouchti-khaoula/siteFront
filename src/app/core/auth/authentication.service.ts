@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
@@ -14,7 +14,8 @@ export class AuthenticationService {
     constructor(
         private _httpClient: HttpClient,
         private _userService: UserService
-    ) {
+    )
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -41,6 +42,14 @@ export class AuthenticationService {
 
     get accessTokenUser(): string {
         return localStorage.getItem('accessTokenUser') ?? '';
+    }
+
+    set connectedUser(user: User) {
+        localStorage.setItem('connectedUser', JSON.stringify(user));
+    }
+
+    get connectedUser(): User {
+        return localStorage.getItem('connectedUser') ? JSON.parse(localStorage.getItem('connectedUser')): null;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -102,37 +111,24 @@ export class AuthenticationService {
      */
     signIn(credentials: { email: string; password: string }): Observable<boolean> {
 
-        // Throw error, if the user is already logged in
-        // if (this._authenticated) {
-        //     return throwError('User is already logged in.');
-        // }
-
         return this.getTokenUser(credentials.email, credentials.password).pipe(
-            switchMap((accessToken: string) => {
+            switchMap(() => {
 
                 return this._userService.searchUserByEmail(credentials.email).pipe(
                     switchMap((user: User) => {
+
                         if (user) {
+                            // Set user
+                            this.connectedUser = user;
+                            // Set user in service
+                            this._userService.user = user;
 
-                            if (user.emailVerified) {
-
-                                // Set user
-                                this._userService.user = user;
-
-                                return of(true)
-                            } else {
-
-                                // Remove user
-                                this._userService.user = null;
-
-                                return of(false)
-                            }
+                            return of(true);
                         } else {
 
-                            // Remove user
-                            this._userService.user = null;
+                            this.signOut();
 
-                            return of(false)
+                            return throwError(() => 'User inexistant');
                         }
                     })
                 );
@@ -146,6 +142,9 @@ export class AuthenticationService {
     signOut(): Observable<any> {
         // Remove the access token from the local storage
         localStorage.removeItem('accessTokenUser');
+
+        // Remove the connectedUser from the local storage
+        localStorage.removeItem('connectedUser');
 
         // Remove user
         this._userService.user = null;
@@ -180,12 +179,8 @@ export class AuthenticationService {
     checkAuthenticationUser(): Observable<boolean> {
 
         // Check if the user is logged in
-        let currentUser;
-        this._userService.user$.subscribe((user: User) => {
-            currentUser = user;
-        });
-        if (currentUser != undefined && currentUser != null) {
-            return of(true);
+        if (this.connectedUser === undefined || this.connectedUser === null) {
+            return of(false);
         }
 
         // Check the access token availability
