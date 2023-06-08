@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, catchError, EMPTY, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, catchError, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Projet, ProjetFavori } from './projets.types';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
 import { User } from '../user/user.types';
@@ -13,7 +13,6 @@ export class ProjetsService {
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
     private _projetsFavoris: BehaviorSubject<ProjetFavori[] | null> = new BehaviorSubject(null);
-    private _projectAuthService: any;
 
     /**
      * Constructor
@@ -60,16 +59,14 @@ export class ProjetsService {
         },
         user: User
     ): Observable<Projet[]> {
-        console.log("+-+-+- user", user);
 
         if (user
-            && user.userName != null && user.userName != undefined
+            && user.username != null && user.username != undefined
             && user.email != null && user.email != undefined) {
-            console.log("+-+-+- with favoris");
+
             return this.searchProjetsWithFavoris(queryParams, user);
         }
         else {
-            console.log("+-+-+- without favoris");
             return this.searchProjetsWithoutFavoris(queryParams);
         }
     }
@@ -230,7 +227,7 @@ export class ProjetsService {
                 switchMap((projets: Projet[]) => {
 
                     return this.searchProjetsFavorisQuery({
-                        userName: user.userName,
+                        userName: user.username,
                         userEmail: user.email,
                         statutFavorite: 'ENCOURS',
                     })
@@ -240,8 +237,6 @@ export class ProjetsService {
                                 return throwError(() => err2);
                             }),
                             switchMap((projetsFavoris: ProjetFavori[]) => {
-
-                                console.log("+-+-+- projetsFavoris", projetsFavoris);
 
                                 // Sort the projets by the name field by default
                                 projets.sort((a, b) => a.nom.localeCompare(b.nom));

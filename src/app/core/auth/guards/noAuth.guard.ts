@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
-import { AuthService } from 'app/core/auth/auth.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,7 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad
      * Constructor
      */
     constructor(
-        private _authService: AuthService,
+        private _authenticationService: AuthenticationService,
         private _router: Router
     )
     {
@@ -67,7 +67,7 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad
     private _check(): Observable<boolean>
     {
         // Check the authentication status
-        return this._authService.check()
+        return this._authenticationService.checkAuthenticationUser()
                    .pipe(
                        switchMap((authenticated) => {
 

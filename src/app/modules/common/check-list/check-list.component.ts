@@ -307,9 +307,6 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
             this.existePieceRempli();
 
-            // console.log("+-+-+- file", file);
-            // console.log("+-+-+- this.pieces[pieceIndex].listFilesArray", this.pieces[pieceIndex].listFilesArray);
-
             this._changeDetectorRef.detectChanges();
         });
 

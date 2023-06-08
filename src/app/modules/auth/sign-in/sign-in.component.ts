@@ -3,8 +3,9 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -29,7 +30,7 @@ export class AuthSignInComponent implements OnInit
      */
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _authService: AuthService,
+        private _authenticationService: AuthenticationService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
         private _userService: UserService
@@ -76,26 +77,24 @@ export class AuthSignInComponent implements OnInit
         this.showAlert = false;
 
         // Sign in
-        this._authService.signIn(this.signInForm.value)
+        this._authenticationService.signIn(this.signInForm.value)
             .subscribe(
+
                 () => {
+                    let currentUser;
+                    this._userService.user$.subscribe((user: User) => {
+                        currentUser = user;
+                    });
 
-                    if(this._authService.userMailVerified){
-
-                        // Set the authenticated flag to true
-                        this._authService.setAuthenticated = true;
-                        
-                        const dataForm = this.signInForm.value;
-                        this._userService.get(dataForm.email).subscribe();
+                    if (currentUser != undefined && currentUser != null && currentUser.emailVerified) {
 
                         const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/espace-connecte';
+
                         this._router.navigateByUrl(redirectURL);
 
-                    }
-                    else{
+                    } else {
 
-                        // Remove the access token in the local storage
-                        localStorage.removeItem('accessTokenUser');
+                        this._authenticationService.signOut();
 
                         // Re-enable the form
                         this.signInForm.enable();
@@ -111,20 +110,19 @@ export class AuthSignInComponent implements OnInit
 
                         // Show the alert
                         this.showAlert = true;
-                        }
-
+                    }
                 },
                 (response) => {
 
-                     // Re-enable the form
-                     this.signInForm.enable();
+                    // Re-enable the form
+                    this.signInForm.enable();
 
-                     // Reset the form
-                     this.signInNgForm.resetForm();
+                    // Reset the form
+                    this.signInNgForm.resetForm();
 
                     // Set the alert
                     this.alert = {
-                        type   : 'error',
+                        type: 'error',
                         message: 'Wrong email or password'
                     };
 

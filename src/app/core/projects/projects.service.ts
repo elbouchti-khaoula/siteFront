@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, map, Observable, switchMap, tap } from 'rxjs';
 import { CritereDetaillee, Project, SimulationDetaillee } from './projects.types';
-import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { EmployeurConventionne, PromoteurConventionne } from './projects.types';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +26,7 @@ export class SimulationDetailleeService {
      */
     constructor(
         private _httpClient: HttpClient,
-        private _projectAuthService: ProjectAuthService,
+        private _authenticationService: AuthenticationService,
         private _fuseUtilsService: FuseUtilsService
     ) {
     }
@@ -84,8 +84,9 @@ export class SimulationDetailleeService {
         return this._promoteurs.asObservable();
     }
 
-    /**
-     */
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
 
     /**
      * count mes simulations
@@ -95,48 +96,14 @@ export class SimulationDetailleeService {
      */
     getCountSimulation(email: string, cin: string): Observable<number> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, email: email })
             .pipe(
-                switchMap((token: string) => {
-
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        // console.log(this.countSimulation);
-
-                        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, email: email }, { headers: headers })
-                            .pipe(
-                                map((response: number) => {
-                                     console.log(cin);
-                                     console.log(email);
-                                    // console.log(response); // Imprime la valeur du compteur
-                                    return response;
-                                })
-                            );
-
-                    }
-                    return EMPTY;
-                }));
-
-        // // alert(localStorage.getItem('accessTokenGeneric'));
-        // let headers = new HttpHeaders();
-
-        // headers.set("Authentification", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoVm1tSUFCMWxWVFV4d0l2dFB3aFdCNW1kWlpzUWN4Q25PRTJYZkMyYlFBIn0.eyJleHAiOjE2ODU2MTQ1NjIsImlhdCI6MTY4NTYwNzM2MiwianRpIjoiYTgzMzAxNjYtN2U5YS00MjkyLTgyMDItN2M2NTkzZjhiODFlIiwiaXNzIjoiaHR0cDovLzEwLjEwLjEuMTg0OjgwODAvYXV0aC9yZWFsbXMvc2l0ZXdlYiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIwMjZlZTkzNS04N2RjLTRmZWMtYjVmMS1iMTgyNmJiMGI0NzMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzaXRld2ViLWNsaSIsInNlc3Npb25fc3RhdGUiOiI0NWQ0ODVhOC1iNjU3LTRlMmEtODg3Ny1kNGViNjRiNWIxNDUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly8xMC4xMC4xLjE4NDo5MDk5Il0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc2l0ZXdlYiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNDVkNDg1YTgtYjY1Ny00ZTJhLTg4NzctZDRlYjY0YjViMTQ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzaXRld2ViIn0.l6JIYr8nThVDwUs6mGdxAApCPUZjnLruhyLe7KaFQHLBmdaonj6Un6y65sqVHvlSMQGF92ek1grBfs1S-urlqkyvoqkhepJnAeUP0wmK592Kx5pyJdRWADsF-gQMdlBIzM6pjEmsj5vwBmSj1bGcvyOCn4PRzAKIhbAxH3BBwED-yxsKV4y2dKxN4vwcMhyFj0ueZa0NPiIjHScj_0cCzEmnvG99Dqi9yv07r-dO1u-1-lvbMYrbrCOM2R-zxKLWL0AIjJlLTQtDN60CidHxDH_MsDNIGyzntdcClYtTp4wqKylD8HxLKbERFgu3Cj14qW2nGVkLA31kMZ_AIJIj9g");
-        // return this._httpClient.post<number>('api/projects/search/count', { cin: "B727021", mail: email }, { headers: headers })
-        //     .pipe(
-        //         map(
-        //             (response: number) => response)
-
-        //     );
+                map((response: number) => {
+                    return response;
+                })
+            );
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
     /**
      * Simulation détaillée with given query
      *
@@ -144,29 +111,15 @@ export class SimulationDetailleeService {
      */
     simuler(critere: CritereDetaillee): Observable<SimulationDetaillee> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.post('api/projects/simulation', critere)
             .pipe(
-                switchMap((token: string) => {
+                map((response: Project[]) => {
 
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.post('api/projects/simulation', critere, { headers: headers })
-                            .pipe(
-                                map((response: Project[]) => {
-
-                                    let result = this.convertToSimulation(response[0]);
-                                    this._simulation.next(result);
-                                    return result;
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                    let result = this.convertToSimulation(response[0]);
+                    this._simulation.next(result);
+                    return result;
+                })
+            );
     }
 
     /**
@@ -176,28 +129,14 @@ export class SimulationDetailleeService {
      */
     abandonner(projectId: number): Observable<any> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "PABA" })
             .pipe(
-                switchMap((token: string) => {
+                map((updatedProject: any) => {
 
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "PABA" }, { headers: headers })
-                            .pipe(
-                                map((updatedProject: any) => {
-
-                                    // Return the updated project
-                                    return updatedProject;
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                    // Return the updated project
+                    return updatedProject;
+                })
+            );
     }
 
     /**
@@ -207,30 +146,16 @@ export class SimulationDetailleeService {
      */
     getProjectById(projectId: number): Observable<SimulationDetaillee> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.get(`api/projects/${projectId}`)
             .pipe(
-                switchMap((token: string) => {
+                map((response: Project[]) => {
 
-                    if (token != undefined && token != '') {
+                    let convert = this.convertToSimulation(response[0]);
+                    this._simulation.next(convert);
+                    return convert;
 
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.get(`api/projects/${projectId}`, { headers: headers })
-                            .pipe(
-                                map((response: Project[]) => {
-
-                                    let convert = this.convertToSimulation(response[0]);
-                                    this._simulation.next(convert);
-                                    return convert;
-
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                })
+            );
     }
 
     /**
@@ -239,53 +164,39 @@ export class SimulationDetailleeService {
      * @param simulation
      */
     getInfoTiers(simulation: any): Observable<any> {
-
-        return this._projectAuthService.getToken()
+        
+        return this._httpClient.get(`api/projects/${simulation.id}/infos-client`)
             .pipe(
-                switchMap((token: string) => {
+                map((response: CritereDetaillee[]) => {
 
-                    if (token != undefined && token != '') {
+                    let nationalites: Nationalite[] = JSON.parse(localStorage.getItem('nationalites'));
+                    let categories: CategorieSocioProfessionnelle[] = JSON.parse(localStorage.getItem('categoriesSocioProfessionnelle'));
+                    let objetsFinancement: ObjetFinancement[] = JSON.parse(localStorage.getItem('objetsFinancement'));
 
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
+                    var simulationResult = {
+                        ...response[0].tiers,
+                        codeApporteur: response[0].codeApporteur,
+                        codeUtilisateur: response[0].codeUtilisateur,
+                        // Mon profil
+                        nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
+                        residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
+                        // ma situation
+                        categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
+                        // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
+                        salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
+                        creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
+                        // Mon projet
+                        objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
+                        nomPromoteur: response[0].nomPromoteur,
+                        typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
+                        newSimulation: false,
+                        ...simulation
+                    };
 
-                        return this._httpClient.get(`api/projects/${simulation.id}/infos-client`, { headers: headers })
-                            .pipe(
-                                map((response: CritereDetaillee[]) => {
-
-                                    let nationalites: Nationalite[] = JSON.parse(localStorage.getItem('nationalites'));
-                                    let categories: CategorieSocioProfessionnelle[] = JSON.parse(localStorage.getItem('categoriesSocioProfessionnelle'));
-                                    let objetsFinancement: ObjetFinancement[] = JSON.parse(localStorage.getItem('objetsFinancement'));
-
-                                    var simulationResult = {
-                                        ...response[0].tiers,
-                                        codeApporteur: response[0].codeApporteur,
-                                        codeUtilisateur: response[0].codeUtilisateur,
-                                        // Mon profil
-                                        nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
-                                        residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
-                                        // ma situation
-                                        categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
-                                        // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
-                                        salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
-                                        creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
-                                        // Mon projet
-                                        objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
-                                        nomPromoteur: response[0].nomPromoteur,
-                                        typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
-                                        newSimulation: false,
-                                        ...simulation
-                                    };
-
-                                    this._simulationResultat.next(simulationResult);
-                                    return simulationResult;
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                    this._simulationResultat.next(simulationResult);
+                    return simulationResult;
+                })
+            );
     }
 
     /**
@@ -295,39 +206,21 @@ export class SimulationDetailleeService {
      */
     search(emailP: string): Observable<SimulationDetaillee[]> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 })
             .pipe(
-                switchMap((token: string) => {
+                map((response: Project[]) => {
 
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        const httpOptions = {
-                            headers: headers,
-                        };
-
-                        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 }, httpOptions)
-                            .pipe(
-                                map((response: Project[]) => {
-
-                                    if (response && response.length > 0) {
-                                        let result = this.convertToSimulations(response);
-                                        this._simulations.next(result);
-                                        return result;
-                                    }
-                                    else {
-                                        return null;
-                                    }
-
-                                })
-                            );
+                    if (response && response.length > 0) {
+                        let result = this.convertToSimulations(response);
+                        this._simulations.next(result);
+                        return result;
                     }
-                    return EMPTY;
-                }));
+                    else {
+                        return null;
+                    }
+
+                })
+            );
     }
 
     /**
@@ -337,27 +230,12 @@ export class SimulationDetailleeService {
      */
     getDocuments(simulationId: number): Observable<any> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.get<any>(`api/projects/${simulationId}/documents`)
             .pipe(
-                switchMap((token: string) => {
-
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.get<any>(
-                            `api/projects/${simulationId}/documents`, { headers: headers }
-                        ).pipe(
-                            tap((response) => {
-                                this._documents.next(response);
-                            })
-                        );
-                    }
-                    return EMPTY;
-                }));
+                tap((response) => {
+                    this._documents.next(response);
+                })
+            );
     }
 
     /**
@@ -367,28 +245,14 @@ export class SimulationDetailleeService {
      */
     transformer(projectId: number): Observable<any> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" })
             .pipe(
-                switchMap((token: string) => {
+                map((updatedProject: any) => {
 
-                    if (token != undefined && token != '') {
-
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" }, { headers: headers })
-                            .pipe(
-                                map((updatedProject: any) => {
-
-                                    // Return the updated project
-                                    return updatedProject;
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                    // Return the updated project
+                    return updatedProject;
+                })
+            );
     }
 
     /**
@@ -399,28 +263,56 @@ export class SimulationDetailleeService {
      */
     changerAgence(projectId: number, codeAgence: string, dagAgence: string): Observable<any> {
 
-        return this._projectAuthService.getToken()
+        return this._httpClient.patch(`api/projects/${projectId}/affectation`, { codeApporteur: codeAgence, codeUtilisateur: dagAgence })
             .pipe(
-                switchMap((token: string) => {
+                map((updatedProject: any) => {
 
-                    if (token != undefined && token != '') {
+                    // Return the updated project
+                    return updatedProject;
+                })
+            );
+    }
 
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
+    /**
+     * Get employeurs 
+     */
+    getEmployeursConventionnes(): Observable<EmployeurConventionne[]> {
 
-                        return this._httpClient.patch(`api/projects/${projectId}/affectation`, { codeApporteur: codeAgence, codeUtilisateur: dagAgence }, { headers: headers })
-                            .pipe(
-                                map((updatedProject: any) => {
+        return this._httpClient.post<EmployeurConventionne[]>(
+            'api/projects/referentiel',
+            { referentiel: "employeursConventionnes" })
+            .pipe(
+                tap((response: EmployeurConventionne[]) => {
+                    
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
 
-                                    // Return the updated project
-                                    return updatedProject;
-                                })
-                            );
-                    }
-                    return EMPTY;
-                }));
+                    this._employeurs.next(response);
+
+                    // console.log("+-+-+- EmployeurConventionne[]", response);
+
+                    return response;
+                })
+            );
+    }
+
+    /**
+     * Get promoteurs
+     */
+    getPromoteursConventionnes(): Observable<PromoteurConventionne[]> {
+
+        return this._httpClient.post<PromoteurConventionne[]>(
+            'api/projects/referentiel',
+            { referentiel: "promoteursConventionnes" })
+            .pipe(
+                tap((response: PromoteurConventionne[]) => {
+
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    this._promoteurs.next(response);
+
+                    return response;
+                })
+            );
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -490,67 +382,6 @@ export class SimulationDetailleeService {
 
         return simulationResultat;
     }
-
-    /**
-    * Get employeurs 
-    */
-    getEmployeursConventionnes(): Observable<EmployeurConventionne[]> {
-
-        return this._projectAuthService.getToken()
-            .pipe(
-                switchMap((token: any) => {
-                    if (token !== undefined && token !== '') {
-                        const headers = new HttpHeaders({
-
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.post<EmployeurConventionne[]>(
-                            'api/projects/referentiel',
-                            { referentiel: "employeursConventionnes" },
-                            { headers: headers }
-                        ).pipe(
-                            tap((response: EmployeurConventionne[]) => {
-                                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                                this._employeurs.next(response);
-                            })
-                        );
-                    }
-                    return EMPTY;
-                })
-            );
-    }
-
-
-    /**
-      * Get promoteurs
-      */
-    getPromoteursConventionnes(): Observable<PromoteurConventionne[]> {
-        return this._projectAuthService.getToken()
-            .pipe(
-                switchMap((token: any) => {
-                    if (token !== undefined && token !== '') {
-                        const headers = new HttpHeaders({
-
-                            'Authorization': `Bearer ${token}`
-                        });
-
-                        return this._httpClient.post<PromoteurConventionne[]>(
-                            'api/projects/referentiel',
-                            { referentiel: "promoteursConventionnes" },
-                            { headers: headers }
-                        ).pipe(
-                            tap((response: PromoteurConventionne[]) => {
-                                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                                this._promoteurs.next(response);
-                            })
-                        );
-                    }
-                    return EMPTY;
-                })
-            );
-    }
-
 
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods

@@ -105,8 +105,6 @@ export class ReclamationsService {
 
                     if (reclamationCree?.id != undefined && reclamationCree?.id != null) {
 
-                        // console.log("+-+-+- enter response: reclamationCree", reclamationCree);
-
                         let statut = {
                             id: {
                                 statut: 'publié',
@@ -128,8 +126,6 @@ export class ReclamationsService {
                                     return throwError(() => err2);
                                 }),
                                 switchMap((statutCree: any) => {
-
-                                    // console.log("+-+- statutCree", statutCree);
 
                                     if (statutCree != null) {
 

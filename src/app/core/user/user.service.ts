@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, ReplaySubject, switchMap, tap } from 'rxjs';
-import { User } from 'app/core/user/user.types';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable, of, ReplaySubject, switchMap } from 'rxjs';
+import { User, UserKeycloak } from 'app/core/user/user.types';
 
 @Injectable({
     providedIn: 'root'
@@ -42,76 +42,147 @@ export class UserService
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Get the current logged in user data
+     * get user
+     *
+     * @param user
      */
-    get(username: string): Observable<User>
-    {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem("accessTokenAdmin")
-        });
+    get(userId: string): Observable<User> {
+        return this._httpClient.get(`api/authentication/users/${userId}`)
+            .pipe(
+                switchMap((response: UserKeycloak) => {
 
-        return this._httpClient.get<User>('auth/admin/realms/wafaimmo-siteweb/users?username='+username, { headers: headers }).pipe(
-            tap((response) => {
+                    let user = this.mapUserKeycloakToUser(response);
 
-                console.log("Get User : ");
-                console.log(response[0]);
-               
-                let attrib = response[0].attributes;
+                    // Set user
+                    this.user = user;
 
-                let user = {
-                    id:response[0].id,
-                    userName        : response[0].username,
-                    firstName       : response[0].firstName, 
-                    lastName        : response[0].lastName,
-                    email           : response[0].email,
-                    clientAWB      : false,
-                    telephone      : attrib!= undefined && attrib.telephone != undefined?response[0].attributes.telephone[0]:null,
-                    cin            : attrib!= undefined && attrib.cin != undefined?response[0].attributes.cin[0]:null,
-                    dateNaissance : attrib!= undefined && attrib.dateNaissance!= undefined ?response[0].attributes.dateNaissance[0]:null,
-                    statut        : null, 
-                    avatar        : null,
-                    status        : 'online'
+                    return of(user);
+                })
+            );
+    }
+
+    /**
+     * serach user
+     *
+     * @param userKeycloak
+     * return userKeycloakId
+     */
+    searchUser(userKeycloak: UserKeycloak): Observable<User[]> {
+
+        return this._httpClient.post('api/authentication/users/search', userKeycloak)
+            .pipe(
+                map((response: UserKeycloak[]) => {
+                    // console.log("+-+-+- response searchUser : UserKeycloak[]", response);
+
+                    return response.map(element => {
+                        return this.mapUserKeycloakToUser(element)
+                    })
+                })
+            );
+    }
+
+    /**
+     * serach user
+     *
+     * @param username
+     * return user
+     */
+    searchUserByEmail(email: string): Observable<User> {
+        return this.searchUser({ email: email })
+            .pipe(
+                map((response: User[]) => {
+                    // console.log("+-+-+- response searchUserByEmail", response);
+
+                    if (response && response.length > 0) {
+                        // Set user
+                        this.user = response[0];
+
+                        return response[0];
+                    }
+                })
+            );
+    }
+
+    /**
+     * sign up user
+     *
+     * @param user
+     */
+    signUp(user: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        cin: string;
+        telephone: string;
+        dateNaissance: string;
+        clientAWB: boolean;
+        password: string
+    }): Observable<User> {
+
+        let userKeycloak: UserKeycloak = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            enabled: true,
+            username: user.email,
+            attributes: {
+                cin: [user.cin],
+                telephone: [user.telephone],
+                dateNaissance: [user.dateNaissance],
+                clientAWB: [user.clientAWB.toString()]
+            },
+            credentials: [
+                {
+                    "type": "password",
+                    "value": user.password,
+                    "temporary": false
                 }
-               this._user.next(user);
-            })
-        );
-    }
+            ]
+        }
 
-    getAdminToken(): Observable<any> {
-
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded'
-        });
-
-        let body = 'grant_type=client_credentials&client_id=admin-cli&client_secret=0b4a269a-7076-4c4b-8729-4b6d0e7f6548'
-
-        return this._httpClient.post('/auth/realms/wafaimmo-siteweb/protocol/openid-connect/token', body, { headers: headers })
+        return this.createUser(userKeycloak)
             .pipe(
-                tap((response: any) => {
-                    localStorage.setItem('accessTokenAdmin', response.access_token);
-                    console.log("success accessTokenAdmin");
-                    console.log(response);
+                switchMap((response: string) => {
+
+                    return this.get(response)
                 })
             );
     }
-    
-    getGenericToken(): Observable<any> {
 
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
-
-        let body = '{"userName" : "siteweb","password" : "w@afa2022"}'
-
-        return this._httpClient.post('/api/projects/authentification/getToken', body, { headers: headers })
+    /**
+     * Create user
+     *
+     * @param userKeycloak
+     * return userKeycloakId
+     */
+    createUser(userKeycloak: UserKeycloak): Observable<string> {
+        return this._httpClient.post('api/authentication/users', userKeycloak)
             .pipe(
-                tap((response: any) => {
-                    localStorage.setItem('accessTokenGeneric', response.access_token);
-                    console.log("success accessTokenGeneric");
-                    console.log(response);
+                map((userId: string) => {
+
+                    return userId;
                 })
             );
+    }
+
+    /**
+     * send mail de vérification to user
+     *
+     * @param userKeycloak
+     * return userKeycloakId
+     */
+    sendMailToUser(userId: string): Observable<any> {
+        return this._httpClient.put(`api/authentication/users/sendMail/${userId}`, {});
+    }
+
+    /**
+     * delete user
+     *
+     * @param userKeycloak
+     * return userKeycloakId
+     */
+    deleteUser(userId: string): Observable<any> {
+        return this._httpClient.delete(`api/authentication/users/${userId}`);
     }
 
     /**
@@ -119,12 +190,34 @@ export class UserService
      *
      * @param user
      */
-    update(user: User): Observable<any>
-    {
-        return this._httpClient.patch<User>('api/common/user', {user}).pipe(
+    update(user: User): Observable<any> {
+        return this._httpClient.patch<User>('api/common/user', { user }).pipe(
             map((response) => {
                 this._user.next(response);
             })
         );
     }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    mapUserKeycloakToUser(userKeycloak: UserKeycloak): User {
+        let result: User = {
+            id: userKeycloak.id,
+            username: userKeycloak.username,
+            createdTimestamp: userKeycloak.createdTimestamp,
+            enabled: userKeycloak.enabled,
+            emailVerified: userKeycloak.emailVerified,
+            firstName: userKeycloak.firstName,
+            lastName: userKeycloak.lastName,
+            email: userKeycloak.email,
+            cin: userKeycloak.attributes?.cin?.[0],
+            telephone: userKeycloak.attributes?.telephone?.[0],
+            dateNaissance: userKeycloak.attributes?.dateNaissance?.[0],
+            clientAWB: userKeycloak.attributes?.clientAWB?.[0] == "true",
+        }
+        return result;
+    }
+
 }

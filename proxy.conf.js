@@ -1,19 +1,11 @@
 const PROXY_CONFIG = [
     {
         context: [
-            "/auth"
-        ],
-        target: "http://10.10.1.230:8080",
-        secure: false,
-        logLevel: "debug"
-    },
-    {
-        context: [
             "/api/repositories"
         ],
         // target: "http://localhost:8888",
-        // target: "http://10.10.1.187:8082",
-        target: "http://10.10.1.245:8888",
+        target: "http://10.10.1.187:8888",
+        // target: "http://10.10.1.245:8888",
         secure: false,
         logLevel: "debug"
     },
@@ -39,7 +31,8 @@ const PROXY_CONFIG = [
         context: [
             "/api/projects"
         ],
-        target: "http://10.10.1.198:9099",
+        // target: "http://10.10.1.198:9099",
+        target: "http://10.10.1.187:9099",
         secure: false,
         logLevel: "debug"
     },
@@ -64,6 +57,14 @@ const PROXY_CONFIG = [
             "/api/upload"
         ],
         target: "http://10.10.1.199:8083",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
+            "/api/authentication"
+        ],
+        target: "http://10.10.1.187:8010",
         secure: false,
         logLevel: "debug"
     },

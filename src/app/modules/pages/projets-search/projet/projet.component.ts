@@ -116,7 +116,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
     ajouterAuxFavoris() {
 
         const projetFavori: ProjetFavori = {
-            userName: this.user.userName,
+            userName: this.user.username,
             userEmail: this.user.email,
             statutFavorite: 'ENCOURS',
             realEstateProject: { id: this.projet.id },
@@ -179,7 +179,6 @@ export class ProjetComponent implements OnInit, OnDestroy {
                     );
                 }
             });
-
     }
 
     /**

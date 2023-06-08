@@ -64,7 +64,7 @@ export class MesCreditsEnCoursResolver implements Resolve<any>
         var email = '';
         var cin = '';
         this._userService.user$.subscribe((user) => {
-            if (user) {
+            if (user != undefined && user != null) {
                 email = user.email;
                 cin = user.cin;
             }

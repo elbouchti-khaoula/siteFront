@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, switchMap, tap } from 'rxjs';
 import { TableauAmortissement } from './tableau-amortissement.types';
-import { ProjectAuthService } from 'app/core/projects/projects-auth.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class TableauAmortissementService {
      */
     constructor(
         private _httpClient: HttpClient,
-        private _projectAuthService: ProjectAuthService,
+        private _authenticationService: AuthenticationService,
     )
     {   
     }
@@ -41,27 +41,28 @@ export class TableauAmortissementService {
 
     getTableauAmortissement(dossierId: number): Observable<TableauAmortissement[]> {
         
-        return this._projectAuthService.getToken()
-            .pipe(
-                switchMap((token: string) => {
+        // return this._authenticationService.getTokenGeneric()
+        //     .pipe(
+        //         switchMap((token: string) => {
 
-                    if (token != undefined && token != '') {
-                        const headers = new HttpHeaders({
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        });
+        //             if (token != undefined && token != '') {
+        //                 const headers = new HttpHeaders({
+        //                     'Content-Type': 'application/json',
+        //                     'Authorization': `Bearer ${token}`
+        //                 });
 
                         return this._httpClient.get<TableauAmortissement[]>(
-                            `api/projects/dossiers/${dossierId}/amortissement`, { headers: headers }
+                            `api/projects/dossiers/${dossierId}/amortissement`
+                            // , { headers: headers }
                         ).pipe(
                             tap((response) => {
                                 this._tableauAmortissement.next(response);
                             })
                         );
-                    }
+                //     }
 
-                    return EMPTY;
-                }));
+                //     return EMPTY;
+                // }));
     }
 
 }
