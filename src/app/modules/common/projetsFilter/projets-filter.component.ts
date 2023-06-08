@@ -7,8 +7,8 @@ import { catchError, debounceTime, Observable, Subject, takeUntil, throwError } 
 import { ProjetsService } from 'app/core/projets/projets.service';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { Quartier, TypeBien, Ville } from 'app/core/referentiel/referentiel.types';
-import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
   selector: 'projets-filter',
@@ -50,8 +50,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _referentielService: ReferentielService,
-    private _userService: UserService
-  ) {
+    private _authenticationService: AuthenticationService
+  )
+  {
 
     // Prepare the search form with defaults
     this.searchForm = this._formBuilder.group(
@@ -79,12 +80,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // Subscribe to the user service
-    this._userService.user$
-      .pipe((takeUntil(this._unsubscribeAll)))
-      .subscribe((user: User) => {
-        this.user = user;
-      });
+    this.user = this._authenticationService.connectedUser;
 
     // Get the villes
     this._referentielService.villes$

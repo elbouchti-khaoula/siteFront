@@ -82,7 +82,8 @@
                                     <button *ngIf="dossierCredit.statutAS === 0 && !dossierCredit.estEchu"
                                         class="px-5 md:mt-2"
                                         mat-flat-button
-                                        [color]="'primary'">
+                                        [color]="'primary'"
+                                        (click)="downloadDocument(dossierCredit.id, typeDocument.ArreteSituation)">
                                         <mat-icon
                                             class="icon-size-5"
                                             [svgIcon]="'heroicons_solid:save'">
@@ -92,7 +93,8 @@
                                     <button *ngIf="!dossierCredit.estEchu"
                                         class="px-5 md:ml-2 md:mt-2"
                                         mat-flat-button
-                                        [color]="'primary'">
+                                        [color]="'primary'"
+                                        (click)="downloadDocument(dossierCredit.id, typeDocument.TableauAmortissement)">
                                         <mat-icon
                                             class="icon-size-5"
                                             [svgIcon]="'heroicons_solid:save'"></mat-icon>
@@ -101,7 +103,8 @@
                                     <button *ngIf="!dossierCredit.estEchu"
                                         class="px-5 md:ml-2 md:mt-2"
                                         mat-flat-button
-                                        [color]="'primary'">
+                                        [color]="'primary'"
+                                        (click)="downloadDocument(dossierCredit.id, typeDocument.AttestationInteret)">
                                         <mat-icon
                                             class="icon-size-5"
                                             [svgIcon]="'heroicons_solid:save'"></mat-icon>
@@ -110,7 +113,8 @@
                                     <button *ngIf="dossierCredit.estEchu"
                                         class="px-5 md:mt-2"
                                         mat-flat-button
-                                        [color]="'primary'">
+                                        [color]="'primary'"
+                                        (click)="downloadDocument(dossierCredit.id, typeDocument.MainLevee)">
                                         <mat-icon
                                             class="icon-size-5"
                                             [svgIcon]="'heroicons_solid:save'"></mat-icon>

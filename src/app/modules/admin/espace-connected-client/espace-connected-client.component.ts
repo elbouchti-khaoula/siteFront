@@ -1,15 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { DemandeSAVService } from 'app/core/demandes-sav/demandes-sav.service';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
-import { ProjetsService } from 'app/core/projets/projets.service';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
-import { UserService } from 'app/core/user/user.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-
-
 
 @Component({
     selector: 'espace-connected-client',
@@ -29,6 +22,8 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
     imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
     imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
+    
+    panelOpenState = false;
 
     isXsScreen: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -81,18 +76,5 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    scrollToElement(el: HTMLElement) {
-        el.scrollIntoView();
-    }
-
-    panelOpenState = false;
-
-
-
-
-
-
-
-
 
 }

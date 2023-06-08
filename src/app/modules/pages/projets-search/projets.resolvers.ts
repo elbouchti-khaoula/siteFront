@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { catchError, Observable, throwError } from 'rxjs';
 import { ProjetsService } from 'app/core/projets/projets.service';
 import { Projet } from 'app/core/projets/projets.types';
-import { UserService } from 'app/core/user/user.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +16,9 @@ export class ProjetsResolver implements Resolve<any>
     constructor(
         private _projetsService: ProjetsService,
         private _router: Router,
-        private _userService: UserService
-    ) {
+        private _authenticationService: AuthenticationService
+    )
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -32,10 +33,7 @@ export class ProjetsResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet[]>
     {
-        let currentUser;
-        this._userService.user$.subscribe((user) => {
-            currentUser = user;
-        });
+        let currentUser = this._authenticationService.connectedUser;
 
         return this._projetsService.searchProjets(state.root.queryParams, currentUser).pipe(
             // Error here means the requested projet is not available

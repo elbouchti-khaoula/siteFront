@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { User } from 'app/core/user/user.types';
-import { UserService } from 'app/core/user/user.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
     selector: 'bienvenue',
@@ -17,7 +17,7 @@ export class BienvenueComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
-        private _userService: UserService
+        private _authenticationService: AuthenticationService
     )
     {
     }
@@ -30,12 +30,7 @@ export class BienvenueComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        // Subscribe to the user service
-        this._userService.user$
-            .pipe((takeUntil(this._unsubscribeAll)))
-            .subscribe((user: User) => {
-                this.user = user;
-            });
+        this.user = this._authenticationService.connectedUser;
     }
 
     /**

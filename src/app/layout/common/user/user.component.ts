@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { BooleanInput } from '@angular/cdk/coercion';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
     selector       : 'user',
@@ -27,9 +28,9 @@ export class UserComponent implements OnInit, OnDestroy
      * Constructor
      */
     constructor(
-        private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _userService: UserService
+        private _userService: UserService,
+        private _authenticationService: AuthenticationService
     )
     {
     }
@@ -43,16 +44,7 @@ export class UserComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-
-        // Subscribe to user changes
-        this._userService.user$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: User) => {
-                this.user = user;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        this.user = this._authenticationService.connectedUser;
     }
 
     /**

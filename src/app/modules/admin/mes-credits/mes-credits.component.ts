@@ -5,7 +5,7 @@ import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { OperationsSAVRefComponent } from './opeartion-sav-ref/operations-sav-ref.component';
-import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
+import { CreditEnCours, TypeDocument } from 'app/core/records-in-progress/records-in-progress.types';
 import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { NavigationExtras, Router } from '@angular/router';
@@ -95,6 +95,14 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
+
+  public get typeDocument(): typeof TypeDocument {
+    return TypeDocument; 
+  }
+
+  downloadDocument(dossierId: number, typeDocument: TypeDocument): void {
+    this._recordsInProgressService.downloadDocument(dossierId, typeDocument);
+  }
 
   /**
    * Perform navigate
