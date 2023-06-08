@@ -377,18 +377,13 @@ export class AuthSignUpComponent implements OnInit
 
     signUp2(): void
     {   
-        console.log("signUp abonné")
 
-        // Do nothing if the form is invalid
         if ( this.signUpForm2.invalid)
         {
             return;
         }
 
-        // Disable the form
         this.signUpForm2.disable();
-
-        // Hide the alert
         this.showAlert = false;
 
         this._authService.signUp(this.signUpForm2.value)
@@ -399,10 +394,13 @@ export class AuthSignUpComponent implements OnInit
                     this._authService.sendMail()
                         .subscribe(
                             () => {
+
                                 this.alert = {
                                     type   : 'success',
-                                    message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
+                                    message: 'Un lien d\'activation vous a été envoyé à votre adresse mail.'
                                 };
+
+                                this.showAlert = true;
 
                                 // Redirect after the countdown
                                 timer(1000, 1000)
@@ -419,18 +417,16 @@ export class AuthSignUpComponent implements OnInit
                             (response) => {
 
                                 // Delete user
-
                                 this._authService.deleteUser().subscribe();
 
                                 this.alert = {
                                     type   : 'error',
                                     message: 'Erreur lors de l\'envoi du lien d\'activation par email.'
                                 };
+                                this.signUpForm2.enable();
+                                this.showAlert = true;
                             }
                         );
-                    
-                    // Show the alert
-                    this.showAlert = true;
 
                 },
                 (response) => {
@@ -440,23 +436,17 @@ export class AuthSignUpComponent implements OnInit
                             type: 'warning',
                             message: 'Compte existant.'
                         };
+                        this.signUpForm2.enable();
+                        this.showAlert = true;
                     }
                     else {
-
                         this.alert = {
                             type: 'error',
                             message: 'Une erreur s\'est produite.'
                         };
+                        this.signUpForm2.enable();
+                        this.showAlert = true;
                     }
-
-                    // Re-enable the form
-                    this.signUpForm2.enable();
-
-                    // Reset the form
-                    this.signUpNgForm2.resetForm();
-
-                    // Show the alert
-                    this.showAlert = true;
                 }
             );
 

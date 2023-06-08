@@ -110,6 +110,7 @@ export class AuthService
      */
     signIn(credentials: { email: string; password: string }): Observable<any>
     {
+        console.log('signIn')
 
         // Throw error, if the user is already logged in
         if ( this._authenticated )
@@ -130,6 +131,8 @@ export class AuthService
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + this.accessTokenAdmin
                     });
+
+                    console.log(this.accessTokenAdmin)
 
                     return this._httpClient.get('auth/admin/realms/wafaimmo-siteweb/users?username='+credentials.email, { headers: headers })
                         .pipe(
@@ -246,8 +249,8 @@ export class AuthService
 
     sendMail(): Observable<any>
     {
-
         console.log('send mail for user id : '+this.userCreated);
+        console.log(this.accessTokenAdmin);
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
