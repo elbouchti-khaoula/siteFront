@@ -84,8 +84,9 @@ export class SimulationDetailleeService {
         return this._promoteurs.asObservable();
     }
 
-    /**
-     */
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
 
     /**
      * count mes simulations
@@ -95,50 +96,14 @@ export class SimulationDetailleeService {
      */
     getCountSimulation(email: string, cin: string): Observable<number> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-                        // console.log(this.countSimulation);
-
-                        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, email: email }
-                            // , { headers: headers }
-                            )
-                            .pipe(
-                                map((response: number) => {
-                                     console.log(cin);
-                                     console.log(email);
-                                    // console.log(response); // Imprime la valeur du compteur
-                                    return response;
-                                })
-                            );
-
-                //     }
-                //     return EMPTY;
-                // }));
-
-        // // alert(localStorage.getItem('accessTokenGeneric'));
-        // let headers = new HttpHeaders();
-
-        // headers.set("Authentification", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoVm1tSUFCMWxWVFV4d0l2dFB3aFdCNW1kWlpzUWN4Q25PRTJYZkMyYlFBIn0.eyJleHAiOjE2ODU2MTQ1NjIsImlhdCI6MTY4NTYwNzM2MiwianRpIjoiYTgzMzAxNjYtN2U5YS00MjkyLTgyMDItN2M2NTkzZjhiODFlIiwiaXNzIjoiaHR0cDovLzEwLjEwLjEuMTg0OjgwODAvYXV0aC9yZWFsbXMvc2l0ZXdlYiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIwMjZlZTkzNS04N2RjLTRmZWMtYjVmMS1iMTgyNmJiMGI0NzMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzaXRld2ViLWNsaSIsInNlc3Npb25fc3RhdGUiOiI0NWQ0ODVhOC1iNjU3LTRlMmEtODg3Ny1kNGViNjRiNWIxNDUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly8xMC4xMC4xLjE4NDo5MDk5Il0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc2l0ZXdlYiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNDVkNDg1YTgtYjY1Ny00ZTJhLTg4NzctZDRlYjY0YjViMTQ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzaXRld2ViIn0.l6JIYr8nThVDwUs6mGdxAApCPUZjnLruhyLe7KaFQHLBmdaonj6Un6y65sqVHvlSMQGF92ek1grBfs1S-urlqkyvoqkhepJnAeUP0wmK592Kx5pyJdRWADsF-gQMdlBIzM6pjEmsj5vwBmSj1bGcvyOCn4PRzAKIhbAxH3BBwED-yxsKV4y2dKxN4vwcMhyFj0ueZa0NPiIjHScj_0cCzEmnvG99Dqi9yv07r-dO1u-1-lvbMYrbrCOM2R-zxKLWL0AIjJlLTQtDN60CidHxDH_MsDNIGyzntdcClYtTp4wqKylD8HxLKbERFgu3Cj14qW2nGVkLA31kMZ_AIJIj9g");
-        // return this._httpClient.post<number>('api/projects/search/count', { cin: "B727021", mail: email }, { headers: headers })
-        //     .pipe(
-        //         map(
-        //             (response: number) => response)
-
-        //     );
+        return this._httpClient.post<number>('api/projects/search/count', { cin: cin, email: email })
+            .pipe(
+                map((response: number) => {
+                    return response;
+                })
+            );
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
     /**
      * Simulation détaillée with given query
      *
@@ -146,20 +111,7 @@ export class SimulationDetailleeService {
      */
     simuler(critere: CritereDetaillee): Observable<SimulationDetaillee> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.post('api/projects/simulation', critere
-            // , { headers: headers }
-        )
+        return this._httpClient.post('api/projects/simulation', critere)
             .pipe(
                 map((response: Project[]) => {
 
@@ -168,9 +120,6 @@ export class SimulationDetailleeService {
                     return result;
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -180,20 +129,7 @@ export class SimulationDetailleeService {
      */
     abandonner(projectId: number): Observable<any> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "PABA" }
-            // , { headers: headers }
-        )
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "PABA" })
             .pipe(
                 map((updatedProject: any) => {
 
@@ -201,9 +137,6 @@ export class SimulationDetailleeService {
                     return updatedProject;
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -213,20 +146,7 @@ export class SimulationDetailleeService {
      */
     getProjectById(projectId: number): Observable<SimulationDetaillee> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.get(`api/projects/${projectId}`
-            // , { headers: headers }
-        )
+        return this._httpClient.get(`api/projects/${projectId}`)
             .pipe(
                 map((response: Project[]) => {
 
@@ -236,9 +156,6 @@ export class SimulationDetailleeService {
 
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -247,21 +164,8 @@ export class SimulationDetailleeService {
      * @param simulation
      */
     getInfoTiers(simulation: any): Observable<any> {
-
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.get(`api/projects/${simulation.id}/infos-client`
-            // , { headers: headers }
-        )
+        
+        return this._httpClient.get(`api/projects/${simulation.id}/infos-client`)
             .pipe(
                 map((response: CritereDetaillee[]) => {
 
@@ -293,9 +197,6 @@ export class SimulationDetailleeService {
                     return simulationResult;
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -305,24 +206,7 @@ export class SimulationDetailleeService {
      */
     search(emailP: string): Observable<SimulationDetaillee[]> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        //                 const httpOptions = {
-        //                     headers: headers,
-        //                 };
-
-        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 },
-            // httpOptions
-        )
+        return this._httpClient.post('api/projects/search', { email: emailP, rowNum: 6 })
             .pipe(
                 map((response: Project[]) => {
 
@@ -337,9 +221,6 @@ export class SimulationDetailleeService {
 
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -349,28 +230,12 @@ export class SimulationDetailleeService {
      */
     getDocuments(simulationId: number): Observable<any> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.get<any>(
-            `api/projects/${simulationId}/documents`
-            // , { headers: headers }
-        ).pipe(
-            tap((response) => {
-                this._documents.next(response);
-            })
-        );
-        //     }
-        //     return EMPTY;
-        // }));
+        return this._httpClient.get<any>(`api/projects/${simulationId}/documents`)
+            .pipe(
+                tap((response) => {
+                    this._documents.next(response);
+                })
+            );
     }
 
     /**
@@ -380,20 +245,7 @@ export class SimulationDetailleeService {
      */
     transformer(projectId: number): Observable<any> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" }
-            // , { headers: headers }
-        )
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" })
             .pipe(
                 map((updatedProject: any) => {
 
@@ -401,9 +253,6 @@ export class SimulationDetailleeService {
                     return updatedProject;
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -414,20 +263,7 @@ export class SimulationDetailleeService {
      */
     changerAgence(projectId: number, codeAgence: string, dagAgence: string): Observable<any> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
-
-        //             if (token != undefined && token != '') {
-
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-        return this._httpClient.patch(`api/projects/${projectId}/affectation`, { codeApporteur: codeAgence, codeUtilisateur: dagAgence }
-            // , { headers: headers }
-        )
+        return this._httpClient.patch(`api/projects/${projectId}/affectation`, { codeApporteur: codeAgence, codeUtilisateur: dagAgence })
             .pipe(
                 map((updatedProject: any) => {
 
@@ -435,9 +271,6 @@ export class SimulationDetailleeService {
                     return updatedProject;
                 })
             );
-        //     }
-        //     return EMPTY;
-        // }));
     }
 
     /**
@@ -445,34 +278,21 @@ export class SimulationDetailleeService {
      */
     getEmployeursConventionnes(): Observable<EmployeurConventionne[]> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: any) => {
-        //             if (token !== undefined && token !== '') {
-        //                 const headers = new HttpHeaders({
-
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
         return this._httpClient.post<EmployeurConventionne[]>(
             'api/projects/referentiel',
-            { referentiel: "employeursConventionnes" },
-            // { headers: headers }
-        ).pipe(
-            tap((response: EmployeurConventionne[]) => {
-                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+            { referentiel: "employeursConventionnes" })
+            .pipe(
+                tap((response: EmployeurConventionne[]) => {
+                    
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
 
-                this._employeurs.next(response);
+                    this._employeurs.next(response);
 
-                console.log("+-+-+- EmployeurConventionne[]", response);
+                    // console.log("+-+-+- EmployeurConventionne[]", response);
 
-                return response;
-            })
-        );
-        //         }
-        //         return EMPTY;
-        //     })
-        // );
+                    return response;
+                })
+            );
     }
 
     /**
@@ -480,31 +300,19 @@ export class SimulationDetailleeService {
      */
     getPromoteursConventionnes(): Observable<PromoteurConventionne[]> {
 
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: any) => {
-        //             if (token !== undefined && token !== '') {
-        //                 const headers = new HttpHeaders({
-
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
         return this._httpClient.post<PromoteurConventionne[]>(
             'api/projects/referentiel',
-            { referentiel: "promoteursConventionnes" },
-            // { headers: headers }
-        ).pipe(
-            tap((response: PromoteurConventionne[]) => {
-                response.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                this._promoteurs.next(response);
+            { referentiel: "promoteursConventionnes" })
+            .pipe(
+                tap((response: PromoteurConventionne[]) => {
 
-                return response;
-            })
-        );
-        //         }
-        //         return EMPTY;
-        //     })
-        // );
+                    response.sort((a, b) => a.libelle.localeCompare(b.libelle));
+
+                    this._promoteurs.next(response);
+
+                    return response;
+                })
+            );
     }
 
     // -----------------------------------------------------------------------------------------------------
