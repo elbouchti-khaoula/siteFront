@@ -183,4 +183,51 @@ export class AuthService
         // If the access token exists and it didn't expire, sign in using it
         return this.signInUsingToken();
     }
+    
+    sendSms(code: String, numero: String): Observable<any>
+    {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        let body = {
+            "name" : "generateToken",
+            "param" : {
+                "username" : "cherraj",
+                "pass" : "cherraj55sms"
+            } 
+        }
+
+        return this._httpClient.post('/apimsg/v2/', body, { headers: headers })
+            .pipe(
+                switchMap((response: any) => {
+
+                    const headers = new HttpHeaders({
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + response.response.result.token
+                    });
+            
+                    let body = {
+                        "name": "SendSMS",
+                        "param": {
+                            "username": "cherraj",
+                            "password": "cherraj55sms",
+                            "ndest": "212"+numero.substring(1, numero.length),
+                            "message": "Votre code d\'activation est : "+code,
+                            "msgtype": "1",
+                            "label": "Wafa immo",
+                            "smsid": "1"
+                        }
+                    }
+                    return this._httpClient.post('/apimsg/v2/', body, { headers: headers })
+                        .pipe(
+                            switchMap((response: any) => {
+                                
+                                return of(response);
+                            })
+                        );
+                   
+                })
+            );
+    }
 }
