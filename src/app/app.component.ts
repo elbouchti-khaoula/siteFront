@@ -82,6 +82,10 @@ export class AppComponent
             "fork",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/fork.svg")
         );
+        this.matIconRegistry.addSvgIcon(
+            "pdf",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/pdf.svg")
+        );
         
     }
 }

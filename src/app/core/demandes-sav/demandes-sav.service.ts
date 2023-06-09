@@ -47,5 +47,20 @@ export class DemandeSAVService {
             );
     }
 
+    /**
+     * get count mes operation SAV
+     *
+     * @param cin
+     */
+    getCountDemandesSAV(cin: string): Observable<any> {
+
+        return this._httpClient.post<number>('api/sav/demandesav/count', { cin: cin, mail: ""})
+            .pipe(
+                map((response: number) => {
+                    return response;
+                })
+            );
+    }
+
 
 }

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { AuthService } from 'app/core/auth/auth.service';
-import { AuthUtils } from 'app/core/auth/auth.utils';
+import { AuthenticationService } from './authentication.service';
+import { AuthUtils } from './auth.utils';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor
-{
+export class AuthInterceptor implements HttpInterceptor {
     /**
      * Constructor
      */
-    constructor(private _authService: AuthService)
+    constructor(
+        private _authenticationService: AuthenticationService
+    )
     {
     }
 
@@ -33,22 +34,25 @@ export class AuthInterceptor implements HttpInterceptor
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-        if ( this._authService.accessTokenUser && !AuthUtils.isTokenExpired(this._authService.accessTokenUser) )
-        {
-            newReq = req.clone({
-                headers: req.headers.set('Authorization', 'Bearer ' + this._authService.accessTokenUser)
-            });
-        }
+      //  if (newReq.url.substring(0, 12) === "api/projects") {
+
+            let token = this.getToken();
+            if (token) {
+                newReq = req.clone({
+                    headers: req.headers.set('Authorization', 'Bearer ' + token)
+                });
+            }
+            console.log("+-+-+- newReq", newReq);
+      //  }
 
         // Response
         return next.handle(newReq).pipe(
             catchError((error) => {
 
                 // Catch "401 Unauthorized" responses
-                if ( error instanceof HttpErrorResponse && error.status === 401 )
-                {
+                if (error instanceof HttpErrorResponse && error.status === 401) {
                     // Sign out
-                    this._authService.signOut();
+                    this._authenticationService.signOut();
 
                     // Reload the app
                     // location.reload();
@@ -58,4 +62,28 @@ export class AuthInterceptor implements HttpInterceptor
             })
         );
     }
+
+    getToken(): string {
+        let currentUser = this._authenticationService.connectedUser;
+
+        if (currentUser == undefined || currentUser == null) {
+            if (this._authenticationService.accessTokenGeneric !== undefined
+                && this._authenticationService.accessTokenGeneric !== null
+                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
+            ) {
+                return this._authenticationService.accessTokenGeneric;
+            }
+        }
+        else {
+            if (this._authenticationService.accessTokenUser !== undefined
+                && this._authenticationService.accessTokenUser !== null
+                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
+            ) {
+                return this._authenticationService.accessTokenUser;
+            }
+        }
+
+        return null;
+    }
+
 }

@@ -1,42 +1,39 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
 import { Subject, takeUntil } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector        : 'espace-connected-client',
-    templateUrl     : './espace-connected-client.component.html',
-    styleUrls       : ['./espace-connected-client.component.scss'],
-    encapsulation   : ViewEncapsulation.None,
-    animations      : fuseAnimations
+    selector: 'espace-connected-client',
+    templateUrl: './espace-connected-client.component.html',
+    styleUrls: ['./espace-connected-client.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations: fuseAnimations
 })
-export class EspaceConnectedClientComponent implements OnInit, OnDestroy
-{
+export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
 
-        // get count credit
-        countCredit: number;
-        countSimulation: number;
+    countSimulation: number;
+    countProjetFavoris: number;
+    countDemandesCredits: number;
+    countCredit: number;
+    countDemandesSAV: number;
 
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
     imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
     imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
     
+    panelOpenState = false;
+
     isXsScreen: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-   
+
     /**
      * Constructor
      */
     constructor(
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _recordsInProgressService: RecordsInProgressService,
-        private _simulationService: SimulationDetailleeService,
-
-
-
+        private route: ActivatedRoute
     ) {
     }
 
@@ -53,37 +50,18 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy
 
                 // Check if the screen is xsSmall
                 this.isXsScreen = !matchingAliases.includes('sm');
-
             });
 
-            // get count mes credit
-             const email = 'firstname.lastname@gmail.com';
-             const cin = '640891'; 
-
-                this._recordsInProgressService.getCountCreditByEmailAndCin(email,cin).subscribe(
-                count => {
-                    this.countCredit = count;
-                },
-                error => {
-                    console.log('Une erreur s\'est produite lors de la récupération du nombre de crédits : ', error);
-                }
-                );
-
-                const email2 = 'firstname.lastname@gmail.com';
-                const cin2 = '640891'; 
-               /* this._simulationService.getCountSimulation(email2,cin2).subscribe(
-                    count => {
-                        this.countSimulation = count;
-                    },
-                    error => {
-                        console.log('Une erreur s\'est produite lors de la récupération du nombre de crédits : ', error);
-                    }
-                    );*/
-
-
-          
-
-
+        // et count mes projets favoris
+        this.countProjetFavoris = this.route.snapshot.data.countProjetFavoris;
+        // get count mes credit en cours
+        this.countCredit = this.route.snapshot.data.countCredit;
+        // get count mes simulations
+        this.countSimulation = this.route.snapshot.data.countSimulation;
+        // get count mes demandes credits
+        this.countDemandesCredits = this.route.snapshot.data.countDemandesCredits;
+        // get count mes demandes SAV
+        this.countDemandesSAV = this.route.snapshot.data.countDemandesSAV;
     }
 
     /**
@@ -98,18 +76,5 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-    scrollToElement(el: HTMLElement) {
-        el.scrollIntoView();
-    }
-
-    panelOpenState = false;
-
-
-
-  
-
-
-
-
 
 }

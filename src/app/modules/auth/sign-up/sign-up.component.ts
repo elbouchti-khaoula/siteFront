@@ -3,7 +3,8 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
+import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
 
 @Component({
@@ -36,7 +37,7 @@ export class AuthSignUpComponent implements OnInit
      * Constructor
      */
     constructor(
-        private _authService: AuthService,
+        private _userService: UserService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router
     )
@@ -99,17 +100,21 @@ export class AuthSignUpComponent implements OnInit
         this.showAlert = false;
 
 
-        this._authService.signUp(this.signUpForm.value)
+        this._userService.signUp(this.signUpForm.value)
             .subscribe(
                 () => {
 
                     // send mail
-                    this._authService.sendMail()
+                    let currentUser;
+                    this._userService.user$.subscribe((user: User) => {
+                        currentUser = user;
+                    });
+                    this._userService.sendMailToUser(currentUser.id)
                         .subscribe(
                             () => {
                                 this.alert = {
                                     type   : 'success',
-                                    message: 'Un lien d\'activation vus a été envoyé à votre adresse mail.'
+                                    message: 'Un lien d\'activation vous a été envoyé à votre adresse mail.'
                                 };
 
                                 // Redirect after the countdown
@@ -125,6 +130,9 @@ export class AuthSignUpComponent implements OnInit
                                 .subscribe();
                             },
                             (response) => {
+                                
+                                // Delete user
+                                // this._userService.deleteUser(id).subscribe();
 
                                 this.alert = {
                                     type   : 'error',
@@ -146,11 +154,6 @@ export class AuthSignUpComponent implements OnInit
                         };
                     }
                     else {
-
-                        // Delete user
-
-                        this._authService.sendMail().subscribe();
-
                         this.alert = {
                             type: 'error',
                             message: 'Une erreur s\'est produite.'

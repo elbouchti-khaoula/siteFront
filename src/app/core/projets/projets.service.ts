@@ -8,8 +8,7 @@ import { User } from '../user/user.types';
 @Injectable({
     providedIn: 'root'
 })
-export class ProjetsService
-{
+export class ProjetsService {
     // Private
     private _projet: BehaviorSubject<Projet | null> = new BehaviorSubject(null);
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
@@ -18,8 +17,7 @@ export class ProjetsService
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(private _httpClient: HttpClient) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -29,24 +27,21 @@ export class ProjetsService
     /**
      * Getter for projet
      */
-    get projet$(): Observable<Projet>
-    {
+    get projet$(): Observable<Projet> {
         return this._projet.asObservable();
     }
 
     /**
      * Getter for projets
      */
-    get projets$(): Observable<Projet[]>
-    {
+    get projets$(): Observable<Projet[]> {
         return this._projets.asObservable();
     }
 
     /**
      * Getter for projets favoris
      */
-    get projetsFavoris$(): Observable<ProjetFavori[]>
-    {
+    get projetsFavoris$(): Observable<ProjetFavori[]> {
         return this._projetsFavoris.asObservable();
     }
 
@@ -64,16 +59,14 @@ export class ProjetsService
         },
         user: User
     ): Observable<Projet[]> {
-        console.log("+-+-+- user", user);
-        
+
         if (user
-            && user.userName != null && user.userName != undefined
+            && user.username != null && user.username != undefined
             && user.email != null && user.email != undefined) {
-            console.log("+-+-+- with favoris");
+
             return this.searchProjetsWithFavoris(queryParams, user);
         }
         else {
-            console.log("+-+-+- without favoris");
             return this.searchProjetsWithoutFavoris(queryParams);
         }
     }
@@ -234,7 +227,7 @@ export class ProjetsService
                 switchMap((projets: Projet[]) => {
 
                     return this.searchProjetsFavorisQuery({
-                        userName: user.userName,
+                        userName: user.username,
                         userEmail: user.email,
                         statutFavorite: 'ENCOURS',
                     })
@@ -244,8 +237,6 @@ export class ProjetsService
                                 return throwError(() => err2);
                             }),
                             switchMap((projetsFavoris: ProjetFavori[]) => {
-
-                                console.log("+-+-+- projetsFavoris", projetsFavoris);
 
                                 // Sort the projets by the name field by default
                                 projets.sort((a, b) => a.nom.localeCompare(b.nom));
@@ -369,8 +360,7 @@ export class ProjetsService
     /**
      * Get projet by id
      */
-    getProjetById(id: number): Observable<Projet>
-    {
+    getProjetById(id: number): Observable<Projet> {
         return this._projets.pipe(
             take(1),
             map((projets) => {
@@ -387,7 +377,7 @@ export class ProjetsService
             switchMap((projet) => {
 
                 if (!projet) {
-                    return throwError('Could not found projet with id of ' + id + '!');
+                    return throwError(() => 'Could not found projet with id of ' + id + '!');
                 }
 
                 return of(projet);
@@ -596,6 +586,18 @@ export class ProjetsService
 
                     return projetsFavoris;
                 })
+            );
+    }
+
+    /**
+     * get count projets favoris
+     *
+     * @param email
+     */
+    getCountProjetFavoris(email: string): Observable<number> {
+        return this._httpClient.post<number>('api/real-estate-projects/favoris/count', { userEmail: email })
+            .pipe(
+                map((response: number) => response)
             );
     }
 

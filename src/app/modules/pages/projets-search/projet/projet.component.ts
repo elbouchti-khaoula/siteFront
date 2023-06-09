@@ -7,13 +7,13 @@ import { Location } from "@angular/common";
 import { cloneDeep } from 'lodash-es';
 import { MatDialog } from '@angular/material/dialog';
 import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { User } from 'app/core/user/user.types';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 // import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
-import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { UserService } from 'app/core/user/user.service';
-import { User } from 'app/core/user/user.types';
 //install Swiper modules
 SwiperCore.use([Autoplay, EffectCoverflow, Pagination, Navigation]);
 
@@ -60,8 +60,9 @@ export class ProjetComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _matDialog: MatDialog,
         private _fuseConfirmationService: FuseConfirmationService,
-        private _userService: UserService
-    ) {
+        private _authenticationService: AuthenticationService
+    )
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -72,15 +73,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        // Subscribe to user changes
-        this._userService.user$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: User) => {
-                this.user = user;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        this.user = this._authenticationService.connectedUser;
 
         // Selected projet
         this._projetsService.projet$
@@ -116,7 +109,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
     ajouterAuxFavoris() {
 
         const projetFavori: ProjetFavori = {
-            userName: this.user.userName,
+            userName: this.user.username,
             userEmail: this.user.email,
             statutFavorite: 'ENCOURS',
             realEstateProject: { id: this.projet.id },
@@ -179,7 +172,6 @@ export class ProjetComponent implements OnInit, OnDestroy {
                     );
                 }
             });
-
     }
 
     /**
