@@ -1,22 +1,21 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 simul-det-bg-header">
-        <div class="w-full max-w-400">
-            <bienvenue></bienvenue>
-        </div>
-    </header>
+    <page-header
+        [headerStyle]="'simul-det-bg-header'"
+        [headerLibelle]="'Simulation détaillée'"
+        [hideSmallScreen]="'true'">
+    </page-header>
 
     <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
 
-            <span
-                class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Simuler mon crédit en ligne
+            <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+                Simulation détaillée
             </span>
 
-            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl -mt-10 h-22 shadow-md">
+            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl mt-7 h-22 shadow-md">
                 <div class="flex flex-row items-center justify-start w-52">
                     <div
                         class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
@@ -50,20 +49,19 @@
                 </div>
             </fuse-card>
 
-            <!-- *ngIf="user.cin !== null" -->
-            <div class="mx-auto md:max-w-184 flex flex-row py-2 px-3 rounded-md shadow bg-gray-300 mt-7 md:mt-10">
-                <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
-                </mat-icon>
-                <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
-                    l'application Attijari Mobile pour avoir de meilleurs résultats.
-                </span>
-            </div>
-
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10">
 
                 <form class="ring-1 ring-current bg-card rounded-xl shadow-md overflow-hidden"
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
+
+                    <div class="flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
+                        <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
+                        </mat-icon>
+                        <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
+                            l'application Attijari Mobile pour avoir de meilleurs résultats.
+                        </span>
+                    </div>
 
                     <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #simulationStepper
                         class="bg-transparent">
@@ -199,8 +197,7 @@
                                     [formControlName]="'residantMaroc'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Résident au Maroc ?
                                         *</mat-label>
-                                    <div
-                                        class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
+                                    <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'true'">
                                             Oui
                                         </mat-radio-button>
@@ -505,8 +502,7 @@
                                 <mat-radio-group class="flex flex-col w-full" [color]="'primary'"
                                     [formControlName]="'typeTaux'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Type de taux *</mat-label>
-                                    <div
-                                        class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
+                                    <div class="flex flex-row mt-1.5 bg-card px-4 py-2 md:py-3 rounded-md shadow ring-1 ring-gray-300 w-full">
                                         <mat-radio-button [value]="'FIXE'">
                                             Valeur Fixe
                                         </mat-radio-button>
@@ -545,7 +541,7 @@
 
                     </mat-horizontal-stepper>
 
-                    <div class="flex flex-row bg-amber-100 rounded-md shadow mx-6 mb-5 py-2 px-3">
+                    <div class="flex flex-row bg-amber-100 rounded-md shadow py-2 px-3 mx-6 mb-5">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
                         <span class="ml-2 text-sm font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit
@@ -557,7 +553,8 @@
                 </form>
 
                 <!-- Résultat -->
-                <div #resultat class="md:w-3/5 md:-mt-5" *ngIf="isVisible"
+                <div #resultat class="md:w-3/5 md:-mt-5" 
+                    *ngIf="isVisible"
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 300}}">
 
                     <details-simulation [simulationResultat]="simulationResultat"></details-simulation>

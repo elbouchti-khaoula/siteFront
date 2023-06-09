@@ -1,21 +1,21 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 demande-bg-header">
-        <div class="w-full max-w-400">
-            <bienvenue></bienvenue>
-        </div>
-    </header>
+    <page-header
+        [headerStyle]="'demande-bg-header'"
+        [headerLibelle]="'Demande de crédit'"
+        [hideSmallScreen]="'true'">
+    </page-header>
 
     <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 demande-bg-header-sm">
 
         <div class="w-full max-w-400 mx-auto">
 
             <span class="md:hidden text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                Demander mon crédit
+                Demande de crédit
             </span>
 
-            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl -mt-10 h-22 shadow-md">
+            <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl mt-7 h-22 shadow-md">
                 <div class="flex flex-row items-center justify-start w-52">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                         <span class="text-7xl font-bold text-gray-500">1</span>

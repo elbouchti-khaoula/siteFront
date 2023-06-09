@@ -11,12 +11,12 @@ import { simulationPersonaliseeRoutes } from './simulation-personnalisee.routing
 import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatCommonModule } from '@angular/material/core';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -33,11 +33,11 @@ import { CaptchaModule } from 'app/core/captcha/captcha.module';
         MatCheckboxModule,
         MatRadioModule,
         FuseCardModule,
-        MatCommonModule,
         FormatMontantModule,
         FormatTelephoneModule,
         FormatEntierModule,
-        CaptchaModule
+        CaptchaModule,
+        PageHeaderModule
     ],
     exports     : [
         SimulationPersonaliseeComponent

@@ -10,6 +10,7 @@ import { AgencesComponent } from './agences.component';
 import { agencesRoutes } from './agences.routing';
 import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
 import { AgencesResultComponent } from './agence-result/agences-result.component';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AgencesResultComponent } from './agence-result/agences-result.component
         MatFormFieldModule,
         MatSelectModule,
         MatSidenavModule,
-        LocalisationModule
+        LocalisationModule,
+        PageHeaderModule
     ]
 })
 export class AgencesModule

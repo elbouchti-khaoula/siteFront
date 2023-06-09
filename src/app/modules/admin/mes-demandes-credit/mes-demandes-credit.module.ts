@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FuseCardModule } from '@fuse/components/card';
 import { MesDemandesCreditComponent } from './mes-demandes-credit.component';
 import { mesDemandesCreditRoutes } from './mes-demandes-credit.routing';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +18,7 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         MatButtonModule,
         MatIconModule,
         FuseCardModule,
-        BienvenueModule
+        PageHeaderModule
     ],
     exports     : [
         MesDemandesCreditComponent

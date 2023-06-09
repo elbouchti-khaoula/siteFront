@@ -5,8 +5,7 @@ import { nousConnaiteRoutes } from './nous-connaite.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
         RouterModule.forChild(nousConnaiteRoutes),
         FuseCardModule,
         SharedModule,
-        MatIconModule
+        MatIconModule,
+        PageHeaderModule
     ]
 })
 export class NousConnaitreModule
