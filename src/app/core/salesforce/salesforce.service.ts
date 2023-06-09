@@ -140,7 +140,7 @@ export class SalesForceService {
                             'Authorization': `Bearer ${token}`
                         });
 
-                        return this._httpClient.post(url, body, 
+                        return this._httpClient.post(url, body,
                             { headers: headers }
                         )
                     }
@@ -150,19 +150,44 @@ export class SalesForceService {
     }
 
     private get(url: string): Observable<any> {
-        
+
         // GET ACCESS TOKEN
         return this.getToken()
             .pipe(
-                switchMap(response => {
-                    // ADD TOKEN TO HEADER
-                    const headers = new HttpHeaders()
-                        .set('Authorization', 'Bearer ' + response);
-                    // CALL GET API
-                    return this._httpClient.get(url, { headers: headers }
-                    );
-                })
-            );
+                switchMap((token: string) => {
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.get(url,
+                            { headers: headers }
+                        )
+                    }
+                    return EMPTY;
+                }));
+    }
+    private patch(url: string, body): Observable<any> {
+
+        // return this.getToken()
+        return this.getAccessToken()
+            .pipe(
+                switchMap((token: string) => {
+                    if (token != undefined && token != '') {
+
+                        const headers = new HttpHeaders({
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        });
+
+                        return this._httpClient.patch(url, body,
+                            { headers: headers }
+                        )
+                    }
+                    return EMPTY;
+                }));
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -242,5 +267,238 @@ export class SalesForceService {
 
         return this.post('/services/data/v54.0/sobjects/Lead', body);
     }
+
+
+    searchLead(email: string): Observable<any> {
+        const searchLeadUrl = `/services/data/v54.0/query/?q=SELECT+Id+FROM+Lead+WHERE+Email=\'${email}\'`;
+        return this.get(searchLeadUrl);
+    }
+
+    updateLeadStatus(leadId: string): Observable<any> {
+        const updateLeadUrl = `/services/data/v54.0/sobjects/Lead/{idLead}`;
+        const updateLeadBody = {
+            Status: 'Qualifié'
+        };
+        return this.patch(updateLeadUrl.replace('{idLead}', leadId), updateLeadBody);
+    }
+
+    searchProspect(cin: string, email: string, telephone: string, nom: string, prenom: string, dateNaissance: Date): Observable<any> {
+        const formattedDateNaissance = dateNaissance.toString().split("T")[0];        
+        const searchProspectUrl = `/services/data/v54.0/query/?q=Select+id,(select+id+from+Opportunities+where+StageName='Simulation'+and+TECH_Simulation_transformee__c=false+and+Type='WI'+order+by+CreatedDate+DESC)+from+Account+where(PersonEmail=\'${email}\' OR PersonMobilePhone=\'${telephone}\' OR (LastName=\'${nom}\' AND FirstName=\'${prenom}\' AND PersonBirthdate=${formattedDateNaissance})) AND (personEmail!=null and PersonMobilePhone!=null and FirstName!=null and LastName!=null and PersonBirthdate!=null)`;
+        console.log("--searchProspectUrl---",searchProspectUrl);
+
+        return this.get(searchProspectUrl);
+    }
+
+    insertAccount(nom: string, prenom: string, dateNaissance: Date, nationalite: string, cin: string, residantMaroc: boolean, categorieSocioProfessionnelle: string, telephone: string, email: string, salaire: number, autresRevenus: number): Observable<any> {
+        const insertAccountUrl = `/services/data/v54.0/sobjects/Account`;
+        const formattedDateNaissance = dateNaissance.toString().split("T")[0];    
+        const insertAccountBody = {
+            OwnerId: '0053H000003XxhJQAS',
+            RecordTypeId: '0123H00000065rhQAA',
+            Salutation: 'MR',
+            LastName: nom,
+            FirstName: prenom,
+            PersonBirthdate: formattedDateNaissance,
+            Nationalite__c: nationalite,
+            //CIN__c: cin,
+            Resident_au_Maroc__c: residantMaroc,
+            Categorie_socio_professionnelle__c: categorieSocioProfessionnelle,
+            PersonMobilePhone: telephone,
+            PersonEmail: email,
+            //Client_d_Attijariwafa_Bank__c: 'TEST',
+            //PersonTitle: 'TEST',
+            //Conventionne__c: 'TEST',
+            Salaire_revenu_Annuel__c: salaire,
+            Autres_revenus__c: autresRevenus,
+            //Statut__c: 'TEST',
+            AccountSource: 'Site WAFA IMMOBILIER',
+            TECH_Assign_Owner__c: true
+        };
+        console.log("----------insertAccountBody-----");
+        console.log(insertAccountBody);
+        return this.post(insertAccountUrl, insertAccountBody);
+    }
+
+    insertOpportunity(accountId: string, objetFinancement: string, statutProjet: string): Observable<any> {
+        const insertOpportunityUrl = `/services/data/v54.0/sobjects/Opportunity`;
+        const aujourdHui = new Date();
+        aujourdHui.setFullYear(aujourdHui.getFullYear() + 1);
+        const dateFormatee = `${aujourdHui.getFullYear()}-${('0' + (aujourdHui.getMonth() + 1)).slice(-2)}-${('0' + aujourdHui.getDate()).slice(-2)}`;
+
+        console.log(dateFormatee);
+
+        const insertOpportunityBody = {
+            AccountId: accountId,
+            RecordTypeId: '0123H00000065reQAA',
+            Name: 'test',
+            Amount: 100000,
+            StageName: 'Simulation',
+            CloseDate: dateFormatee,
+            ID_ImmoNet__c: 'ID PROJET IMMONET',
+            TECH_Assign_Owner__c: true,
+            Motif__c: objetFinancement,
+            //Statut_du_projet__c: statutProjet,
+            Documents_obligatoires__c: 'String'
+        };
+        console.log("----------insertOpportunityBody-----");
+        console.log(insertOpportunityBody);
+        return this.post(insertOpportunityUrl, insertOpportunityBody);
+    }
+
+    insertSimulation(accountId: string, montant: number, mensualite: number, duree: number, tauxCredit: number, teg: number,
+        prestations: number, tauxParticipation: number, typeTaux: string, nomPromoteur: string, nomEmployeur: string, objetFinancement: string, creditsEnCours: number,
+        fraisDossier:number,totalInterets:number,coutTotal:number): Observable<any> {
+        const insertSimulationUrl = `/services/data/v54.0/sobjects/Simulation__c`;
+        const insertSimulationBody = {
+            Opportunite__c: accountId,
+            Montant__c: montant,
+            Mensualite__c: mensualite,
+            Duree__c: duree,
+            //Type_de_Taux__c: typeTaux,
+            Taux_du_credit__c: tauxCredit,
+            TEG__c: teg,
+            Prestations__c: prestations,
+            Taux_participation__c: tauxParticipation,
+            Frais_de_dossier__c: fraisDossier,
+            //Nom_du_produit_de_credit__c: 'CODE PRODUIT',
+            Total_interets__c: totalInterets,
+            Cout_total_du_credit__c: coutTotal,
+            Nom_de_l_employeur__c: nomEmployeur,
+            Nom_du_promoteur_immobilier__c: nomPromoteur,
+            Motif__c: objetFinancement,
+            Total_credits_en_cours__c: creditsEnCours,
+            OwnerId: '0053H000003XxhJQAS'
+        };
+       
+        return this.post(insertSimulationUrl, insertSimulationBody);
+    }
+
+    getAffectationSimulation(idSimulation: number): Observable<any> {
+        const getAffectationSimulationUrl = `/services/data/v54.0/query/?q=select+id,TECH_Code_Apporteur__c,TECH_Code_Utilisateur__c+from+Simulation__c+where+id=\'${idSimulation}\'`;
+        return this.get(getAffectationSimulationUrl);
+    }
+
+    updateAffectation(codeApporteur: string = "100", codeUtilisateur: string = "WEB"): any {
+        return;
+    }
+
+    affectationFunction(cin: string = '.', montant: number, duree: number,objetFinancement: string,  nomPromoteur: string, nom: string, prenom: string,
+        categorieSocioProfessionnelle: string, residantMaroc: boolean, nationalite: string,dateNaissance: Date, salaire: number, autresRevenus: number, 
+        creditsEnCours: number, telephone: string, email: string,nomEmployeur: string, statutProjet: string, typeTaux: string,mensualite: number, totalInterets: number,tauxParticipation: number,tauxEffectifGlobal: number,coutTotal: number,fraisDossier: number,
+       ): Observable<any> {
+
+        let prestations: number = 100000;
+        let tauxCredit: number = 4.62;
+        // 1-search lead
+        return this.searchLead(email).pipe(
+            switchMap((leadResponse: any) => {
+                console.log("leadResponse",leadResponse);
+                // 1-2-update lead statut
+                if (leadResponse.records.length > 0) {
+                    const leadId = leadResponse.records[0].Id;
+                    return this.updateLeadStatus(leadId).pipe(
+                        switchMap(() => this.searchProspect(cin, email, telephone, nom, prenom, dateNaissance))
+                    );
+                } else {
+                    // 2-search prospect
+                    return this.searchProspect(cin, email, telephone, nom, prenom, dateNaissance);
+                }
+            }),
+            switchMap((prospectResponse: any) => {
+                // 3-if existe on fait insert simulation
+                console.log("--prospectResponse---",prospectResponse);
+                if (prospectResponse.records[0]?.Opportunities?.records) {
+                    const prospectId = prospectResponse.records[0].Opportunities.records[0].Id;
+                    return this.insertSimulation(prospectId, montant, mensualite, duree, tauxCredit, tauxEffectifGlobal, prestations, tauxParticipation, typeTaux, nomPromoteur, nomEmployeur, objetFinancement, creditsEnCours, fraisDossier,totalInterets,coutTotal).pipe(
+                        switchMap((insertSimulationResponse: any) => {
+                            console.log("insertSimulationResponse",insertSimulationResponse);
+                            const simulationId = insertSimulationResponse.id;
+                            // 4-getAffectationSimulationUrl
+                            return this.getAffectationSimulation(simulationId).pipe(
+                                switchMap((affectationResponse: any) => {
+                                    console.log("affectationResponse",affectationResponse);
+                                    const codeApporteurSimul = affectationResponse.records[0].TECH_Code_Apporteur__c;
+                                    const codeUtilisateurSimul = affectationResponse.records[0].TECH_Code_Utilisateur__c;
+                                    console.log("recuperer les cpde user et apporte",codeApporteurSimul,codeUtilisateurSimul);
+                                    // 5-update l'affectation avec immonet
+                                    return this.updateAffectation(codeApporteurSimul, codeUtilisateurSimul);
+                                })
+                            );
+                        })
+                    );
+                } else {
+                    //aucun account trouvé
+                     if((!prospectResponse?.records)){ 
+                        // 2-1-insertAccount
+                        return this.insertAccount(nom, prenom, dateNaissance, nationalite, cin, residantMaroc, categorieSocioProfessionnelle, telephone, email, salaire, autresRevenus).pipe(
+                            switchMap((insertAccountResponse: any) => {
+                                console.log("insertAccountResponse",insertAccountResponse);
+                                if (insertAccountResponse.records.length > 0) {
+                                    const accountId = insertAccountResponse.records[0].Id;
+                                    // 2-1-insertopportunity
+                                    return this.insertOpportunity(accountId, objetFinancement, statutProjet).pipe(
+                                        switchMap((insertOpportunityResponse: any) => {
+                                            console.log("insertOpportunityResponse",insertOpportunityResponse);
+                                            // 3-insert simulation
+                                            const opportunityId = insertOpportunityResponse.id;
+                                            return this.insertSimulation(opportunityId, montant, mensualite, duree, tauxCredit, tauxEffectifGlobal, prestations, tauxParticipation, typeTaux, nomPromoteur, nomEmployeur, objetFinancement, creditsEnCours, fraisDossier,totalInterets,coutTotal).pipe(
+                                                switchMap((insertSimulationResponse: any) => {
+                                                    console.log("insertSimulationResponse",insertSimulationResponse);
+                                                    const simulationId = insertSimulationResponse.id;
+                                                    // 4-getAffectationSimulationUrl
+                                                    return this.getAffectationSimulation(simulationId).pipe(
+                                                        switchMap((affectationResponse: any) => {
+                                                            console.log("affectationResponse",affectationResponse);
+                                                            const codeApporteurSimul = affectationResponse.records[0].TECH_Code_Apporteur__c;
+                                                            const codeUtilisateurSimul = affectationResponse.records[0].TECH_Code_Utilisateur__c;
+                                                            console.log("recuperer les cpde user et apporte",codeApporteurSimul,codeUtilisateurSimul);
+                                                            // 5-update l'affectation avec immonet
+                                                            return this.updateAffectation(codeApporteurSimul, codeUtilisateurSimul);
+                                                        })
+                                                    );
+                                                })
+                                            );
+                                        })
+                                    );
+                                }
+                            })
+                        );
+                    }else{
+                        //l account existe mais y a pas d opportunité
+                            const accountId = prospectResponse.records[0].Id;
+                            // 2-1-insertopportunity
+                            return this.insertOpportunity(accountId, objetFinancement, statutProjet).pipe(
+                                switchMap((insertOpportunityResponse: any) => {
+                                    console.log("insertOpportunityResponse",insertOpportunityResponse);
+                                    // 3-insert simulation
+                                    const opportunityId = insertOpportunityResponse.id;
+                                    return this.insertSimulation(opportunityId, montant, mensualite, duree, tauxCredit, tauxEffectifGlobal, prestations, tauxParticipation, typeTaux, nomPromoteur, nomEmployeur, objetFinancement, creditsEnCours, fraisDossier,totalInterets,coutTotal).pipe(
+                                        switchMap((insertSimulationResponse: any) => {
+                                            console.log("insertSimulationResponse",insertSimulationResponse);
+                                            const simulationId = insertSimulationResponse.id;
+                                            // 4-getAffectationSimulationUrl
+                                            return this.getAffectationSimulation(simulationId).pipe(
+                                                switchMap((affectationResponse: any) => {
+                                                    console.log("affectationResponse",affectationResponse);
+                                                    const codeApporteurSimul = affectationResponse.records[0].TECH_Code_Apporteur__c;
+                                                    const codeUtilisateurSimul = affectationResponse.records[0].TECH_Code_Utilisateur__c;
+                                                    console.log("recuperer les cpde user et apporte",codeApporteurSimul,codeUtilisateurSimul);
+                                                    // 5-update l'affectation avec immonet
+                                                    return this.updateAffectation(codeApporteurSimul, codeUtilisateurSimul);
+                                                })
+                                            );
+                                        })
+                                    );
+                                })
+                            );
+                        }
+                    
+                }
+            })
+
+        );
+    }
+
 
 }
