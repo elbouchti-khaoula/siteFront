@@ -18,7 +18,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
 import { simulationDetailleeRoutes } from './simulation-detaillee.routing';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
 import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
@@ -26,6 +25,8 @@ import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-m
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+
 @NgModule({
     declarations: [
         SimulationDetailleeComponent
@@ -45,13 +46,13 @@ import { CaptchaModule } from 'app/core/captcha/captcha.module';
         MatDatepickerModule,
         MatMomentDateModule,
         MatSidenavModule,
-        BienvenueModule,
         DetailsSimulationModule,
         MatAutocompleteModule,
         FormatMontantModule,
         FormatTelephoneModule,
         FormatEntierModule,
-        CaptchaModule
+        CaptchaModule,
+        PageHeaderModule
     ],
     
     providers   : [

@@ -6,11 +6,9 @@ import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { ContactezNousModule } from '../landing/contactez-nous/contactez-nous.module';
 import { DetailParInitiativeComponent } from './detail-par-initiative/detail-par-initiative.component';
-
-
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -23,8 +21,8 @@ import { DetailParInitiativeComponent } from './detail-par-initiative/detail-par
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        BienvenueModule,
-        ContactezNousModule
+        ContactezNousModule,
+        PageHeaderModule
     ]
 })
 export class NotrePolitiqueRseModule

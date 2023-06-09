@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FuseCardModule } from '@fuse/components/card';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+
 @NgModule({
     declarations: [
         SupportComponent,
@@ -23,7 +25,8 @@ import { CaptchaModule } from 'app/core/captcha/captcha.module';
         MatInputModule,
         FuseCardModule,
         FormatTelephoneModule,
-        CaptchaModule
+        CaptchaModule,
+        PageHeaderModule
     ]
 })
 export class SupportModule

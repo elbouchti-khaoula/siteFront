@@ -18,6 +18,7 @@ import { ProjetModule } from './projet/projet.module';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/form
         ProjetsFilterModule,
         ProjetModule,
         LocalisationModule,
-        FormatTelephoneModule
+        FormatTelephoneModule,
+        PageHeaderModule
     ]
 })
 export class ProjetsSearchModule

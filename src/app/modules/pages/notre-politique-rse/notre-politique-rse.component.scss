@@ -1,23 +1,26 @@
-
-.notre-demarage-rse-bg-header {
+.notre-demarche-rse-bg-header {
   background-image: url('/assets/images/pages/rse/rse-niv1/Bannière1.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   @media (max-width: 959px) {
-    background-image:url('/assets/images/pages/rse/rse-niv1/Bannière1-sm.png');
-}
+    background-image: url('/assets/images/pages/rse/rse-niv1/Bannière1-sm.png');
+  }
+
+  color: rgb(255 255 255);
 }
 
 
 .nos-initiative-bg {
-  background-image:linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/rse/rse-niv1/Bannière2.png');
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/rse/rse-niv1/Bannière2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   @media (max-width: 959px) {
     background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url('/assets/images/pages/rse/rse-niv1/Bannière2-sm.png');
-}
+  }
 }
 
 .nos-rectangle-noire-bg {
@@ -37,21 +40,20 @@
 
 
 .text-orange {
-    color: rgb(238, 125, 33);
+  color: rgb(238, 125, 33);
 }
 
 .orange-circle {
-    background-color: orange;
-  }
+  background-color: orange;
+}
 
-  .selected {
-    border: 2px solid blue;
-  }
+.selected {
+  border: 2px solid blue;
+}
 
 
-  @media (max-width: 767px) {
-    .mobile-full-width {
-      width: 100%;
-    }
+@media (max-width: 767px) {
+  .mobile-full-width {
+    width: 100%;
   }
-  
+}

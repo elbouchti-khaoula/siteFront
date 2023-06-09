@@ -1,18 +1,17 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 demande-sav-bg-header">
-        <div class="w-full max-w-400">
-            <bienvenue></bienvenue>
-            <div class="max-w-xl text-2xl md:text-3xl font-semibold mt-5">
-                Demander une opération SAV : {{operationSAVRef?.nomOperation}}
-            </div>
-        </div>
-    </header>
+    <page-header [headerStyle]="'demande-sav-bg-header'" [headerLibelle]="'Demande SAV'"></page-header>
 
-    <div class="px-5 sm:px-16 max-md:py-10 md:pb-20">
+    <div class="px-5 sm:px-16 py-10 sm:pt-18 md:pb-20">
 
         <div class="w-full max-w-400 mx-auto">
+
+            <div class="flex flex-col">
+                <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
+                    Demander une opération SAV : {{operationSAVRef?.nomOperation}}
+                </span>
+            </div>
 
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10 md:mt-16">
 

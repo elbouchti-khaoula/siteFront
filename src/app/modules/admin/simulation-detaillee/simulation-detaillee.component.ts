@@ -18,6 +18,7 @@ import { MatOption } from '@angular/material/core';
 import { Observable, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { SalesForceService } from 'app/core/salesforce/salesforce.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -49,9 +50,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   listEmployeurs: EmployeurConventionne[];
   listPromoteurs: PromoteurConventionne[];
 
-
   @ViewChild(DetailsSimulationComponent) detailsSimulation;
-  @ViewChild(BienvenueComponent) bienvenueComponent;
   isScreenSmall: boolean;
   isXsScreen: boolean;
   animationState: string;
@@ -107,7 +106,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _referentielService: ReferentielService,
     private _simulationService: SimulationDetailleeService,
     private _salesForceService: SalesForceService,
-    private _fuseUtilsService: FuseUtilsService
+    private _fuseUtilsService: FuseUtilsService,
+    private _authenticationService: AuthenticationService
   ) {
 
     // Horizontal stepper form
@@ -304,34 +304,36 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    let currentUser = this._authenticationService.connectedUser;
+
     if (this.queryParams?.email) {
       this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
-    } else if (this.bienvenueComponent.user?.email) {
-      this.simulationStepperForm.get('step1').get('email').setValue(this.bienvenueComponent.user?.email);
+    } else if (currentUser?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(currentUser?.email);
     }
 
     if (this.queryParams?.nom) {
       this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
-    } else if (this.bienvenueComponent.user?.lastName) {
-      this.simulationStepperForm.get('step1').get('nom').setValue(this.bienvenueComponent.user?.lastName);
+    } else if (currentUser?.lastName) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(currentUser?.lastName);
     }
 
     if (this.queryParams?.prenom) {
       this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
-    } else if (this.bienvenueComponent.user?.firstName) {
-      this.simulationStepperForm.get('step1').get('prenom').setValue(this.bienvenueComponent.user?.firstName);
+    } else if (currentUser?.firstName) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(currentUser?.firstName);
     }
 
     if (this.queryParams?.telephone) {
       this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
-    } else if (this.bienvenueComponent.user?.telephone) {
-      this.simulationStepperForm.get('step1').get('telephone').setValue(this.bienvenueComponent.user?.telephone);
+    } else if (currentUser?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
     }
 
     if (this.queryParams?.dateNaissance) {
       this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.queryParams?.dateNaissance);
-    } else if (this.bienvenueComponent.user?.dateNaissance) {
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.bienvenueComponent.user?.dateNaissance);
+    } else if (currentUser?.dateNaissance) {
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(currentUser?.dateNaissance);
     }
   }
 

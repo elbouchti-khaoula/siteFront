@@ -11,8 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 
 import { DemandeSAVComponent } from './demande-sav.component';
 import { demandeCreditRoutes } from './demande-sav.routing';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -28,8 +28,8 @@ import { CheckListModule } from 'app/modules/common/check-list/check-list.module
         MatFormFieldModule,
         MatInputModule,
         FuseCardModule,
-        BienvenueModule,
-        CheckListModule
+        CheckListModule,
+        PageHeaderModule
     ],
     exports     : [
         DemandeSAVComponent

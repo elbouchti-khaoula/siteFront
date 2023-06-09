@@ -37,16 +37,6 @@ export class AgencesComponent implements OnInit, OnDestroy {
     {
     }
 
-    refineURL(currURL: string): string {
-        // Get the URL between what's after '/' and before '?' 
-        // 1- get URL after'/'
-        var afterDomain = currURL?.substring(currURL.lastIndexOf('/') + 1);
-        // 2- get the part before '?'
-        var beforeQueryString = afterDomain?.split("?")[0];
-
-        return beforeQueryString;
-    }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------

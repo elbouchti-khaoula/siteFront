@@ -1,15 +1,13 @@
 .espace-connected-bg-header-vice {
-  background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/admin/espace-conn/espace-abonne-vd.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('/assets/images/admin/espace-conn/espace-abonne-vd.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-}
 
-.espace-connected-bg-header-sm{
-  background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/admin/espace-conn/shutterstock_2133541715.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  @media (max-width: 959px) {
+    background-image: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('/assets/images/admin/espace-conn/shutterstock_2133541715.jpg');
+    color: rgb(255 255 255);
+  }
 }
 
 
@@ -27,7 +25,7 @@
 }
 
 .chiffre-bg2 {
-  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nous-connaitre/backgd.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/backgd.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -50,9 +48,9 @@
 
 
 // .u-section-2 .u-layout-wrap-1 {
-  // width: 1029px;
-  // margin: -758px auto 0;
-  // background-color: yellow;
+// width: 1029px;
+// margin: -758px auto 0;
+// background-color: yellow;
 // }
 
 // amine
@@ -61,8 +59,8 @@
   border: 1px solid white;
   border-radius: 5px;
   background-color: #b4272f
-
 }
+
 .bg-primary-2 {
-  background-color:#b4272f
+  background-color: #b4272f
 }

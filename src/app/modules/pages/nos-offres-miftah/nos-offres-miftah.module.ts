@@ -6,9 +6,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
-
-
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
         FuseCardModule,
         SharedModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        PageHeaderModule
     ]
 })
 export class NosOffresMiftahModule

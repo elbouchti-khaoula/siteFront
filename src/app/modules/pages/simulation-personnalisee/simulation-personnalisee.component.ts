@@ -128,12 +128,12 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // this.isVisible = true;
 
-    let user = this._authenticationService.connectedUser;
-    if (user != undefined && user != null) {
-      this.simulationForm.get('email').setValue(user?.email ? user.email : this.simulationFormDefaults.email);
-      this.simulationForm.get('nom').setValue(user?.lastName ? user.lastName : this.simulationFormDefaults.nom);
-      this.simulationForm.get('prenom').setValue(user?.firstName ? user.firstName : this.simulationFormDefaults.prenom);
-      this.simulationForm.get('telephone').setValue(user?.telephone ? user.telephone : this.simulationFormDefaults.telephone);
+    let currentUser = this._authenticationService.connectedUser;
+    if (currentUser != undefined && currentUser != null) {
+      this.simulationForm.get('email').setValue(currentUser?.email ? currentUser.email : this.simulationFormDefaults.email);
+      this.simulationForm.get('nom').setValue(currentUser?.lastName ? currentUser.lastName : this.simulationFormDefaults.nom);
+      this.simulationForm.get('prenom').setValue(currentUser?.firstName ? currentUser.firstName : this.simulationFormDefaults.prenom);
+      this.simulationForm.get('telephone').setValue(currentUser?.telephone ? currentUser.telephone : this.simulationFormDefaults.telephone);
     }
 
     // Subscribe to query params change
