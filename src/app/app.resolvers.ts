@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import {catchError, forkJoin, Observable, throwError} from 'rxjs';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { ReferentielService } from 'app/core/referentiel/referentiel.service';
 import { AuthenticationService } from './core/auth/authentication.service';
@@ -31,18 +31,31 @@ export class InitialDataResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
-    {
-        // Fork join multiple API endpoint calls to wait all of them to finish
-        return forkJoin([
-            this._authenticationService.getTokenGeneric(),
-            this._navigationService.get(),
-            this._referentielService.getVilles(),
-            this._referentielService.getTypesBiens(),
-            this._referentielService.getAgences(),
-            this._referentielService.getNationalites(),
-            this._referentielService.getCategories(),
-            this._referentielService.getObjetsFinancement()
-        ]);
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+        return new Observable<any>((observer) => {
+            this._authenticationService.getTokenGeneric()
+                .pipe(
+                    catchError((error) => {
+                        // Handle error if token generation fails
+                        // observer.error(error);
+                        // Log the error
+                        console.log('error génération token ::' + error);
+                        // Throw an error
+                        return throwError(() => error);
+                    }))
+                .subscribe((response: any) => {
+                    console.log('sinon génération new token::' + response.accessToken);
+                    observer.next(this._navigationService.get().subscribe());
+                    observer.next(this._referentielService.getVilles().subscribe());
+                    observer.next(this._referentielService.getTypesBiens().subscribe());
+                    observer.next(this._referentielService.getAgences().subscribe());
+                    observer.next(this._referentielService.getNationalites().subscribe());
+                    observer.next(this._referentielService.getCategories().subscribe());
+                    observer.next(this._referentielService.getObjetsFinancement().subscribe());
+                    observer.complete();
+                }
+            );
+        });
     }
+
 }
