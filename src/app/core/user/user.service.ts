@@ -166,7 +166,7 @@ export class UserService
     }
 
     /**
-     * send mail de vÃ©rification to user
+     * send mail de vérification to user
      *
      * @param userKeycloak
      * return userKeycloakId

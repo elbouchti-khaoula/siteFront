@@ -1,6 +1,22 @@
 const PROXY_CONFIG = [
     {
         context: [
+            "/apimsg/v2"
+        ],
+        target: "https://prosms.atrait.eu",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
+            "/api/accounts"
+        ],
+        target: "http://10.10.1.187:9092",
+        secure: false,
+        logLevel: "debug"
+    },
+    {
+        context: [
             "/api/repositories"
         ],
         // target: "http://localhost:8888",
