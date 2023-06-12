@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-      //  if (newReq.url.substring(0, 12) === "api/projects") {
+       if (!newReq.url.includes("apimsg/v2")) {
 
             let token = this.getToken();
             if (token) {
@@ -43,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 });
             }
             console.log("+-+-+- newReq", newReq);
-      //  }
+       }
 
         // Response
         return next.handle(newReq).pipe(

@@ -16,18 +16,17 @@ export class AccountService
     }
 
     checkUserTelephones(user: { firstName: string; lastName: string; email: string; cin: string; telephone: string; dateNaissance: string; agreements: any; pass1: string }): Observable<any> {
-        // console.log('checkUserProd');
+        console.log('checkUserProd');
         // console.log(this.accessTokenGeneric)
 
-        // const headers = new HttpHeaders({
-        //     'Content-Type': 'application/json',
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
         //     'Authorization': 'Bearer ' + this.accessTokenGeneric
-        // });
+         });
 
         let body = '{"cin" : "' + user.cin + '","dateNaissance" : "' + user.dateNaissance + '"}'
 
-        return this._httpClient.post('/api/accounts/numbers', body
-            // , { headers: headers }
+        return this._httpClient.post('/api/accounts/numbers', body , { headers: headers }
         )
             .pipe(
                 switchMap((response: any) => {

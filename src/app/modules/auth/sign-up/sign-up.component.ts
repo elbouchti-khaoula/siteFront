@@ -301,17 +301,32 @@ export class AuthSignUpComponent implements OnInit {
         this._smsService.sendSms(code, this.signUpForm3.get('num').value).subscribe(
             response => {
 
-                this.alert = {
-                    type: 'success',
-                    message: 'Un code d\'activation vous a été envoyé via sms.'
+                if(response.error != undefined || response.error != null){
+                    this.alert = {
+                        type: 'error',
+                        message: 'Erreur lors de l\'envoi du code d\'activation via \'sms.'
+                    }
+    
+                    this.isClient = true
+                    this.isNum = false
+                    this.isSendSms = false
+    
+                    this.showAlert = true;
+                    this.signUpForm3.enable();
                 }
+                else {
+                    this.alert = {
+                        type: 'success',
+                        message: 'Un code d\'activation vous a été envoyé via sms.'
+                    }
 
-                this.isClient = true
-                this.isNum = false
-                this.isSendSms = true
+                    this.isClient = true
+                    this.isNum = false
+                    this.isSendSms = true
 
-                this.showAlert = true;
-                this.signUpForm3.enable();
+                    this.showAlert = true;
+                    this.signUpForm3.enable();
+                }
 
             },
             (error: HttpErrorResponse) => {
