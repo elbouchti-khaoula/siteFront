@@ -569,13 +569,13 @@
                         </div> -->
 
                         <!-- Actions -->
-                        <!-- || !isCaptchaValid -->
+                        <!-- || !agreements || !isCaptchaValid -->
                         <div class="flex items-center mt-5">
                             <button mat-flat-button class="ml-auto px-8"
                                 [ngClass]="{'bg-primary-200' : !checkList?.existePieceAttachee}"
                                 [color]="'primary'"
                                 type="button"
-                                [disabled]="!checkList?.existePieceAttachee || !agreements"
+                                [disabled]="!checkList?.existePieceAttachee"
                                 (click)="transformer()">
                                 Valider
                             </button>
