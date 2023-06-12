@@ -32,7 +32,7 @@
                                         <mat-icon class="icon-size-16 text-on-primary ml-0.5" svgIcon="finance">
                                         </mat-icon>
                                     </div>
-                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Crédit N° {{dossierCredit.id}}</div>
+                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Dossier de crédit N° {{dossierCredit.id}}</div>
                                 </div>
 
                                 <!-- données -->
@@ -143,21 +143,23 @@
                                         <mat-icon class="icon-size-16 text-black -mt-2" svgIcon="home-repair">
                                         </mat-icon>
                                     </div>
-                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Opérations SAV</div>
+                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Initier une opération SAV</div>
                                 </div>
 
                                 <div *ngIf="!dossierCredit.estCTX && !dossierCredit.estEchu"
                                     class="relative z-20 mx-auto max-w-100 grid grid-cols-2 gap-x-5 gap-y-3 mt-7">
                                     <ng-container *ngFor="let operation of operationsSAVRef | slice:0:3; trackBy: trackByFn">
-                                        <div class="group px-5 py-3 flex flex-col items-center bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
+                                        <div class="group h-30 px-5 pt-5 pb-3 flex flex-col items-center justify-between bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
                                             (click)="navigateCreerDemandeSAV(operation, dossierCredit)">
-                                            <mat-icon class="icon-size-8 mb-2 text-white group-hover:text-black"
-                                                [svgIcon]="'heroicons_outline:support'">
+                                            <mat-icon class="icon-size-8 text-white group-hover:text-black"
+                                                [svgIcon]="'mat_outline:build'">
                                             </mat-icon>
-                                            <span class="font-semibold text-center text-white group-hover:text-black">{{operation.nomOperation}}</span>
+                                            <div class="h-10 flex flex-col">
+                                                <span class="font-semibold text-center text-white group-hover:text-black">{{operation.nomOperation}}</span>
+                                            </div>
                                         </div>
                                     </ng-container>
-                                    <div class="group px-2 py-3 flex flex-col items-center justify-center bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
+                                    <div class="group h-30 flex flex-col items-center justify-center bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
                                         (click)="openOperationsSAVRefDialog(dossierCredit)">
                                         <mat-icon class="icon-size-8 text-white group-hover:text-black"
                                             [svgIcon]="'heroicons_outline:dots-horizontal'">

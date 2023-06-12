@@ -7,10 +7,8 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { mesOperationSavRoutes } from './mes-operations-sav.routing';
 import { MesOperationsSavComponent } from './mes-operations-sav.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
-import { ContactezNousModule } from 'app/modules/pages/landing/contactez-nous/contactez-nous.module';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatInputModule } from '@angular/material/input';
 import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
@@ -23,12 +21,11 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
     MatButtonModule,
     MatIconModule,
     FuseCardModule,
+    // MatFormFieldModule,
+    // MatInputModule,
     MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-    ContactezNousModule,
     PageHeaderModule
   ],
 })
-export class MesOperationsSavModule { }
+export class MesOperationsSavModule {
+}

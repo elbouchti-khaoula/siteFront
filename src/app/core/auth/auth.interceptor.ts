@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-      //  if (newReq.url.substring(0, 12) === "api/projects") {
+        if (newReq.url.substring(0, 3) === "api" && newReq.url.substring(0, 10) !== "api/upload") {
 
             let token = this.getToken();
             if (token) {
@@ -42,8 +42,8 @@ export class AuthInterceptor implements HttpInterceptor {
                     headers: req.headers.set('Authorization', 'Bearer ' + token)
                 });
             }
-            console.log("+-+-+- newReq", newReq);
-      //  }
+            // console.log("+-+-+- newReq", newReq);
+        }
 
         // Response
         return next.handle(newReq).pipe(
@@ -67,6 +67,7 @@ export class AuthInterceptor implements HttpInterceptor {
         let currentUser = this._authenticationService.connectedUser;
 
         if (currentUser == undefined || currentUser == null) {
+            // console.log("+-+-+- this._authenticationService.accessTokenGeneric", this._authenticationService.accessTokenGeneric)
             if (this._authenticationService.accessTokenGeneric !== undefined
                 && this._authenticationService.accessTokenGeneric !== null
                 // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
@@ -75,6 +76,7 @@ export class AuthInterceptor implements HttpInterceptor {
             }
         }
         else {
+            // console.log("+-+-+- this._authenticationService.accessTokenUser", this._authenticationService.accessTokenUser)
             if (this._authenticationService.accessTokenUser !== undefined
                 && this._authenticationService.accessTokenUser !== null
                 // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
