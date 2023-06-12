@@ -32,6 +32,7 @@ export class InitialDataResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+
         return new Observable<any>((observer) => {
             this._authenticationService.getTokenGeneric()
                 .pipe(
@@ -44,7 +45,7 @@ export class InitialDataResolver implements Resolve<any>
                         return throwError(() => error);
                     }))
                 .subscribe((response: any) => {
-                    console.log('sinon génération new token::' + response.accessToken);
+                    console.log('génération new token::' + response.accessToken);
                     observer.next(this._navigationService.get().subscribe());
                     observer.next(this._referentielService.getVilles().subscribe());
                     observer.next(this._referentielService.getTypesBiens().subscribe());
@@ -52,6 +53,7 @@ export class InitialDataResolver implements Resolve<any>
                     observer.next(this._referentielService.getNationalites().subscribe());
                     observer.next(this._referentielService.getCategories().subscribe());
                     observer.next(this._referentielService.getObjetsFinancement().subscribe());
+                    observer.next(this._referentielService.getOperationsSAVRef().subscribe());
                     observer.complete();
                 }
             );

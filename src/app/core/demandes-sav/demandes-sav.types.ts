@@ -9,15 +9,15 @@ export interface CritereDemandeSAV {
 }
 
 export interface DemandeSAV {
-    demandeSavId: number;
-    codeOperation: string;
-    dossierId: number;
-    dateCreation: Date;
-    statut: string;
-    cin: string;
-    mail: string;
-    mode: string;
-    userId: number;
-    motifRemboursement: string;
-    origineFonds: string;
+    demandeSavId        : number;
+    codeOperation       : string;
+    dossierId           : number;
+    dateCreation        : Date;
+    statut              : string;
+    cin?                : string;
+    mail?               : string;
+    mode?               : string;
+    userId?             : number;
+    motifRemboursement  : string;
+    origineFonds?       : string;
 }
