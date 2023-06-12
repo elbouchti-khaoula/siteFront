@@ -90,7 +90,8 @@ export class AuthSignUpComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             cin: ['', [Validators.required]],
             dateNaissance: ['', [Validators.required]],
-            agreements: ['']
+            agreements: [''],
+            clientAWB: ['']
         });
 
         this.signUpForm2 = this._formBuilder.group({
@@ -100,7 +101,8 @@ export class AuthSignUpComponent implements OnInit {
             telephone: ['', [Validators.required]],
             pass1: ['', [Validators.required]],
             pass2: ['', [Validators.required]],
-            agreements: ['']
+            agreements: [''],
+            clientAWB: ['']
         });
 
         this.signUpForm3 = this._formBuilder.group({
@@ -200,6 +202,87 @@ export class AuthSignUpComponent implements OnInit {
             }
         );
 
+
+    }
+
+    signUp2(): void
+    {   
+
+        if ( this.signUpForm2.invalid)
+        {
+            return;
+        }
+
+        this.signUpForm2.disable();
+        this.showAlert = false;
+
+        this._userService.signUp(this.signUpForm2.value)
+        //this._authService.signUp(this.signUpForm2.value)
+            .subscribe(
+                () => {
+
+                    // send mail
+                    let currentUser = this._authenticationService.connectedUser;
+                    this._userService.sendMailToUser(currentUser.id)
+                    //this._authService.sendMail()
+                        .subscribe(
+                            () => {
+
+                                this.alert = {
+                                    type   : 'success',
+                                    message: 'Un lien d\'activation vous a été envoyé à votre adresse mail.'
+                                };
+
+                                this.showAlert = true;
+
+                                // Redirect after the countdown
+                                timer(1000, 1000)
+                                .pipe(
+                                    finalize(() => {
+                                        this._router.navigate(['landing']);
+                                    }),
+                                    takeWhile(() => this.countdown > 0),
+                                    takeUntil(this._unsubscribeAll),
+                                    tap(() => this.countdown--)
+                                )
+                                .subscribe();
+                            },
+                            (response) => {
+
+                                // Delete user
+                                //this._authService.deleteUser().subscribe();
+                                this._userService.deleteUser(currentUser.id).subscribe();
+
+                                this.alert = {
+                                    type   : 'error',
+                                    message: 'Erreur lors de l\'envoi du lien d\'activation par email.'
+                                };
+                                this.signUpForm2.enable();
+                                this.showAlert = true;
+                            }
+                        );
+
+                },
+                (response) => {
+
+                    if (response.status == 409) {
+                        this.alert = {
+                            type: 'warning',
+                            message: 'Compte existant.'
+                        };
+                        this.signUpForm2.enable();
+                        this.showAlert = true;
+                    }
+                    else {
+                        this.alert = {
+                            type: 'error',
+                            message: 'Une erreur s\'est produite.'
+                        };
+                        this.signUpForm2.enable();
+                        this.showAlert = true;
+                    }
+                }
+            );
 
     }
 
