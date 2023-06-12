@@ -142,21 +142,13 @@ export class UserService
 
         return this.createUser(userKeycloak)
             .pipe(
-<<<<<<< HEAD
                 switchMap((response: string) => {
 
                     return this.get(response)
-=======
-                tap((response: any) => {
-                    localStorage.setItem('accessTokenAdmin', response.access_token);
-                    console.log("success accessTokenAdmin");
-                    console.log(response.access_token);
->>>>>>> refs/heads/feature-ahmed
                 })
             );
     }
 
-<<<<<<< HEAD
     /**
      * Create user
      *
@@ -165,32 +157,16 @@ export class UserService
      */
     createUser(userKeycloak: UserKeycloak): Observable<string> {
         return this._httpClient.post('api/authentication/users', userKeycloak)
-=======
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
-
-        let body = '{"userName" : "siteweb","password" : "w@afa2022"}'
-
-        return this._httpClient.post('/api/accounts/authentification/getToken', body, { headers: headers })
->>>>>>> refs/heads/feature-ahmed
             .pipe(
-<<<<<<< HEAD
                 map((userId: string) => {
 
                     return userId;
-=======
-                tap((response: any) => {
-                    localStorage.setItem('accessTokenGeneric', response.accesToken);
-                    console.log("success accessTokenGeneric");
-                    console.log(response.accesToken);
->>>>>>> refs/heads/feature-ahmed
                 })
             );
     }
 
     /**
-     * send mail de vÃ©rification to user
+     * send mail de vérification to user
      *
      * @param userKeycloak
      * return userKeycloakId
