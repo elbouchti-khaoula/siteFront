@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { NosConventionsComponent } from './nos-conventions.component';
 import { nosConventionsRoutes } from './nos-conventions.routing';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { nosConventionsRoutes } from './nos-conventions.routing';
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        MatExpansionModule
+        MatExpansionModule,
+        PageHeaderModule
     ]
 })
 export class NosConventionsModule

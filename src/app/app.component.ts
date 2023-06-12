@@ -86,6 +86,10 @@ export class AppComponent
             "pdf",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/pdf.svg")
         );
+        this.matIconRegistry.addSvgIcon(
+            "agent",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/AGENT.svg")
+        );
         
     }
 }

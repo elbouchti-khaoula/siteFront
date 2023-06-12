@@ -1,32 +1,30 @@
 .nous-connaitre-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/nous-connaitre.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-}
-
-.nous-connaitre-bg-header-sm {
-  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/shutterstock_1296270229.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/nous-connaitre.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+  @media (max-width: 959px) {
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/shutterstock_1296270229.jpg');
+  }
 }
+
+
 .text-orange {
-    color: rgb(238, 125, 33);
+  color: rgb(238, 125, 33);
 }
 
 .orange-circle {
-    background-color: orange;
-  }
+  background-color: orange;
+}
 
-  .selected {
-    border: 2px solid blue;
-  }
+.selected {
+  border: 2px solid blue;
+}
 
 
-  @media (max-width: 767px) {
-    .mobile-full-width {
-      width: 100%;
-    }
+@media (max-width: 767px) {
+  .mobile-full-width {
+    width: 100%;
   }
-  
+}

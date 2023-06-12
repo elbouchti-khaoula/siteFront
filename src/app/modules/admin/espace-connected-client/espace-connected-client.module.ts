@@ -12,7 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-small.module';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -29,8 +29,8 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         MatExpansionModule,
         MatButtonModule,
         ParcoursSmallModule,
-        BienvenueModule,
-        FuseCardModule
+        FuseCardModule,
+        PageHeaderModule
     ]
 })
 export class EspaceConnectedClientModule {

@@ -1,48 +1,37 @@
 <div class="flex flex-col flex-auto min-w-0 min-h-[85vh]" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header MD -->
-    <header
-        class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 espace-connected-bg-header-vice">
-        <!-- <header class="hidden md:flex flex-col px-16 w-full min-h-76 espace-connected-bg-header-vice"> -->
+    <!-- <header class="hidden md:flex flex-col items-center justify-center px-16 w-full min-h-76 espace-connected-bg-header-vice">
         <div class="w-full max-w-400">
-            <!-- <div class="max-w-xl text-2xl md:text-6xl font-bold uppercase tracking-tight leading-tight text-white mt-32">
-                Bienvenue Mr.OUADDI MOHAMED AMINE
-            </div> -->
             <bienvenue></bienvenue>
-
-            <!-- notification -->
-            <div class="absolute top-5 left-15">
-
-                <mat-accordion>
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title style="font-size: 17px;">
-                                Impayé<span style="color: rgb(177, 12, 12);"> (0)</span>
-                            </mat-panel-title>
-
-                        </mat-expansion-panel-header>
-                        <p>Vous n'avez pas de nouveaux impayés</p>
-                    </mat-expansion-panel>
-                </mat-accordion>
-
-            </div>
         </div>
-    </header>
+            notification
+        <div class="absolute top-5 left-15">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="font-size: 17px;">
+                            Impayé<span style="color: rgb(177, 12, 12);"> (0)</span>
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p>Vous n'avez pas de nouveaux impayés</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </header> -->
 
     <!-- Header sm -->
-    <div
-        class="md:hidden relative h-full pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16 overflow-hidden espace-connected-bg-header-sm min-h-80">
+    <!-- <div class="md:hidden relative h-full pt-8 pb-28 px-4 sm:pt-20 sm:pb-48 sm:px-16 overflow-hidden espace-connected-bg-header-sm min-h-80">
         <div class="w-full max-w-400">
             <bienvenue></bienvenue>
-
-            <!-- <div class="max-w-xl hidden md:block text-2xl text-white mt-3">
-                Ne manquez pas l'opportunité de découvrir tout ce que notre site peut vous offrir !
-            </div> -->
         </div>
-    </div>
+    </div> -->
+
+    <page-header [headerStyle]="'espace-connected-bg-header-vice'" [headerLibelle]="'Mon espace'"></page-header>
 
     <!-- notification -->
-    <div class="md:hidden mt-5 px-5">
+    <div class="max-w-80 mt-5 px-5">
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>

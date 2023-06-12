@@ -10,7 +10,7 @@ import { consulterSimulationRoutes } from './consulter-simulation.routing';
 import { ConsulterSimulationComponent } from './consulter-simulation.component';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { DetailsSimulationModule } from 'app/modules/common/details-simulation/details-simulation.module';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -24,8 +24,8 @@ import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
         FuseCardModule,
         MatSidenavModule,
         TableauAmortissementModule,
-        BienvenueModule,
-        DetailsSimulationModule
+        DetailsSimulationModule,
+        PageHeaderModule
     ],
     exports     : [
         ConsulterSimulationComponent

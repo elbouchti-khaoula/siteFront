@@ -10,8 +10,8 @@ import { MesOperationsSavComponent } from './mes-operations-sav.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
-import { BienvenueModule } from 'app/modules/common/bienvenue/bienvenue.module';
 import { ContactezNousModule } from 'app/modules/pages/landing/contactez-nous/contactez-nous.module';
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,8 @@ import { ContactezNousModule } from 'app/modules/pages/landing/contactez-nous/co
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
-    BienvenueModule,
     ContactezNousModule,
-    
+    PageHeaderModule
   ],
 })
 export class MesOperationsSavModule { }

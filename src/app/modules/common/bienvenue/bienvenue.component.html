@@ -1,3 +1,45 @@
-<div class="max-w-xl text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight">
-    Bienvenue {{user?.firstName}} {{user?.lastName}}
+<div *ngIf="user" class="px-5 sm:px-16">
+
+    <div class="w-full max-w-400 mx-auto">
+        
+        <!-- User info -->
+        <div class="hidden md:flex flex-col flex-0 lg:flex-row items-center lg:h-18 bg-card py-3">
+
+            <!-- Avatar -->
+            <div class="-mt-10 lg:-mt-16 rounded-full">
+                <span class="flex items-center justify-center w-22 h-22 rounded-full bg-second-500 ring-4 ring-bg-card">
+                    <mat-icon class="ml-3 icon-size-20 text-black" svgIcon="agent"></mat-icon>
+                </span>
+            </div>
+
+            <!-- Details -->
+            <div class="flex flex-col items-center lg:items-start mt-4 lg:mt-0 lg:ml-8">
+                <div class="text-lg md:text-2xl font-bold leading-none">Bienvenue {{user?.firstName}} {{user?.lastName}}
+                </div>
+                <div class="text-secondary">{{user?.email}}</div>
+            </div>
+
+            <!-- Separator -->
+            <div class="hidden lg:flex h-8 mx-10 border-l-2"></div>
+
+            <!-- infos user -->
+            <div class="flex items-center mt-6 lg:mt-0 space-x-5">
+                <div class="flex flex-col items-center">
+                    <span class="text-sm font-medium text-secondary">Téléphone</span>
+                    <span class="font-bold">{{user?.telephone}}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-sm font-medium text-secondary">CIN</span>
+                    <span class="font-bold">{{user?.cin}}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-sm font-medium text-secondary">Date de naissance</span>
+                    <span class="font-bold">{{user?.dateNaissance}}</span>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
 </div>
