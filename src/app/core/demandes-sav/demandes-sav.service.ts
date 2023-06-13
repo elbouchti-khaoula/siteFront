@@ -38,7 +38,7 @@ export class DemandeSAVService {
      * @param critereDemandeSAV
      */
     createDemandeSAV(critereDemandeSAV: CritereDemandeSAV): Observable<DemandeSAV> {
-        return this._httpClient.post<DemandeSAV>('api/sav/demandesav', critereDemandeSAV)
+        return this._httpClient.post<DemandeSAV>('api/sav/demandessav', critereDemandeSAV)
             .pipe(
                 map((newDemandeSAV: DemandeSAV) => {
 
@@ -55,7 +55,7 @@ export class DemandeSAVService {
      */
     getCountDemandesSAV(cin: string): Observable<any> {
 
-        return this._httpClient.post<number>('api/sav/demandesav/count', { cin: cin, mail: "" })
+        return this._httpClient.post<number>('api/sav/demandessav/count', { cin: cin, mail: "" })
             .pipe(
                 map((response: number) => {
                     return response;
@@ -70,8 +70,7 @@ export class DemandeSAVService {
      */
     getDemandesSAV(cin: string): Observable<DemandeSAV[]> {
 
-        // , { cin: cin, mail: "" }
-        return this._httpClient.get<DemandeSAV[]>('api/sav/demandesav')
+        return this._httpClient.post<DemandeSAV[]>('api/sav/demandessav', { cin: cin, mail: "" })
             .pipe(
                 map((response: DemandeSAV[]) => {
 
@@ -81,6 +80,5 @@ export class DemandeSAVService {
                 })
             );
     }
-
 
 }
