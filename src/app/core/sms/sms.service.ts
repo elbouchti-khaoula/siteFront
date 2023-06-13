@@ -36,6 +36,8 @@ export class SmsService
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + response.response.result.token
                     });
+
+                    console.log("TOKEN SMS : "+response.response.result.token)
             
                     let body = {
                         "name": "SendSMS",
@@ -52,7 +54,7 @@ export class SmsService
                     return this._httpClient.post('/apimsg/v2/', body, { headers: headers })
                         .pipe(
                             switchMap((response: any) => {
-                                
+                                console.log(response)
                                 return of(response);
                             })
                         );
