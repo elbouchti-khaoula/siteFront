@@ -34,7 +34,14 @@
 
                             <!-- Header -->
                             <div class="w-full h-36 sm:h-44 bg-accent-100 dark:bg-accent-700 rounded-t-2xl overflow-hidden">
-                                <img class="object-cover w-full h-full" [src]="projetFav.realEstateProject.medias[1].chemin">
+                                <ng-container *ngIf="projetFav.realEstateProject.medias?.[0]?.chemin">
+                                    <img class="object-cover w-full h-full" [src]="projetFav.realEstateProject.medias?.[0]?.chemin">
+                                </ng-container>
+                                <ng-container *ngIf="!projetFav.realEstateProject.medias?.[0]?.chemin">
+                                    <span class="flex items-center justify-center w-full h-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                        No Image
+                                    </span>
+                                </ng-container>
                             </div>
 
                             <div class="flex flex-col items-center mt-5">
