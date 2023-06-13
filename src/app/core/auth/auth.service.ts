@@ -1,91 +1,171 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import { AuthenticationService } from './authentication.service';
-import { AuthUtils } from './auth.utils';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { AuthUtils } from 'app/core/auth/auth.utils';
+import { UserService } from 'app/core/user/user.service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class AuthService {
+    private _authenticated: boolean = false;
+
     /**
      * Constructor
      */
     constructor(
-        private _authenticationService: AuthenticationService
-    )
-    {
+        private _httpClient: HttpClient,
+        private _userService: UserService
+    ) {
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Accessors
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Setter & getter for access token
+     */
+    set accessToken(token: string) {
+        localStorage.setItem('accessToken', token);
+    }
+
+    get accessToken(): string {
+        return localStorage.getItem('accessToken') ?? '';
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Forgot password
+     *
+     * @param email
+     */
+    forgotPassword(email: string): Observable<any> {
+        return this._httpClient.post('api/auth/forgot-password', email);
     }
 
     /**
-     * Intercept
+     * Reset password
      *
-     * @param req
-     * @param next
+     * @param password
      */
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
-    {
-        // Clone the request object
-        let newReq = req.clone();
+    resetPassword(password: string): Observable<any> {
+        return this._httpClient.post('api/auth/reset-password', password);
+    }
 
-        // Request
-        //
-        // If the access token didn't expire, add the Authorization header.
-        // We won't add the Authorization header if the access token expired.
-        // This will force the server to return a "401 Unauthorized" response
-        // for the protected API routes which our response interceptor will
-        // catch and delete the access token from the local storage while logging
-        // the user out from the app.
-
-       if (!newReq.url.includes("apimsg/v2")) {
-
-            let token = this.getToken();
-            if (token) {
-                newReq = req.clone({
-                    headers: req.headers.set('Authorization', 'Bearer ' + token)
-                });
-            }
-
+    /**
+     * Sign in
+     *
+     * @param credentials
+     */
+    signIn(credentials: { email: string; password: string }): Observable<any> {
+        // Throw error, if the user is already logged in
+        if (this._authenticated) {
+            return throwError('User is already logged in.');
         }
-        // Response
-        return next.handle(newReq).pipe(
-            catchError((error) => {
 
-                // Catch "401 Unauthorized" responses
-                if (error instanceof HttpErrorResponse && error.status === 401) {
-                    // Sign out
-                    this._authenticationService.signOut();
+        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+            switchMap((response: any) => {
 
-                    // Reload the app
-                    // location.reload();
-                }
+                // Store the access token in the local storage
+                this.accessToken = response.accessToken;
 
-                return throwError(() => error);
+                // Set the authenticated flag to true
+                this._authenticated = true;
+
+                // Store the user on the user service
+                this._userService.user = response.user;
+
+                // Return a new observable with the response
+                return of(response);
             })
         );
     }
 
-    getToken(): string {
-        let currentUser = this._authenticationService.connectedUser;
+    /**
+     * Sign in using the access token
+     */
+    signInUsingToken(): Observable<any> {
+        // Renew token
+        return this._httpClient.post('api/auth/refresh-access-token', {
+            accessToken: this.accessToken
+        }).pipe(
+            catchError(() =>
 
-        if (currentUser == undefined || currentUser == null) {
-            // console.log("+-+-+- this._authenticationService.accessTokenGeneric", this._authenticationService.accessTokenGeneric)
-            if (this._authenticationService.accessTokenGeneric !== undefined
-                && this._authenticationService.accessTokenGeneric !== null
-                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
-            ) {
-                return this._authenticationService.accessTokenGeneric;
-            }
-        }
-        else {
-            // console.log("+-+-+- this._authenticationService.accessTokenUser", this._authenticationService.accessTokenUser)
-            if (this._authenticationService.accessTokenUser !== undefined
-                && this._authenticationService.accessTokenUser !== null
-                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
-            ) {
-                return this._authenticationService.accessTokenUser;
-            }
+                // Return false
+                of(false)
+            ),
+            switchMap((response: any) => {
+
+                // Store the access token in the local storage
+                this.accessToken = response.accessToken;
+
+                // Set the authenticated flag to true
+                this._authenticated = true;
+
+                // Store the user on the user service
+                this._userService.user = response.user;
+
+                // Return true
+                return of(true);
+            })
+        );
+    }
+
+    /**
+     * Sign out
+     */
+    signOut(): Observable<any> {
+        // Remove the access token from the local storage
+        localStorage.removeItem('accessToken');
+
+        // Set the authenticated flag to false
+        this._authenticated = false;
+
+        // Return the observable
+        return of(true);
+    }
+
+    /**
+     * Sign up
+     *
+     * @param user
+     */
+    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any> {
+        return this._httpClient.post('api/auth/sign-up', user);
+    }
+
+    /**
+     * Unlock session
+     *
+     * @param credentials
+     */
+    unlockSession(credentials: { email: string; password: string }): Observable<any> {
+        return this._httpClient.post('api/auth/unlock-session', credentials);
+    }
+
+    /**
+     * Check the authentication status
+     */
+    check(): Observable<boolean> {
+        // Check if the user is logged in
+        if (this._authenticated) {
+            return of(true);
         }
 
-        return null;
+        // Check the access token availability
+        if (!this.accessToken) {
+            return of(false);
+        }
+
+        // Check the access token expire date
+        if (AuthUtils.isTokenExpired(this.accessToken)) {
+            return of(false);
+        }
+
+        // If the access token exists and it didn't expire, sign in using it
+        return this.signInUsingToken();
     }
 
 }
