@@ -91,8 +91,4 @@ export class FuseUtilsService
     return s.join(dec);
   }
 
-  formatMomentToString(date: moment.Moment): string {
-    return date.format("DD/MM/YYYY");
-  }
-
 }

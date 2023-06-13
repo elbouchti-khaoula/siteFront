@@ -75,7 +75,7 @@
                             </mat-icon>
                             <input matInput [formControlName]="'montant'">
                             <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
-                            <span matSuffix>Dhs</span>
+                            <span matSuffix>MAD</span>
                             <mat-error *ngIf="simulationForm.get('montant').hasError('required')">
                                 Montant obligatoire
                             </mat-error>
@@ -85,7 +85,7 @@
                             <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                             <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationForm.get('montant').value">
                             <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
-                            <span matSuffix>Dhs</span>
+                            <span matSuffix>MAD</span>
                             <mat-error *ngIf="simulationForm.get('montant').hasError('required')">Montant obligatoire</mat-error>
                         </mat-form-field>
                         <!-- Durée -->
@@ -292,7 +292,7 @@
                                             <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMin">
                                                 {{simulationPersonnaliseeStr?.mensualiteMin}}
                                             </span>
-                                            <span class="ml-2 md:text-xl leading-none">Dhs/mois</span>
+                                            <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
                                         </div>
                                         <div class="flex flex-row items-baseline whitespace-nowrap max-md:ml-auto">
                                             <span class="hidden md:block">jusqu'à</span>
@@ -300,7 +300,7 @@
                                             <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMax">
                                                 {{simulationPersonnaliseeStr?.mensualiteMax}}
                                             </span>
-                                            <span class="ml-2 md:text-xl leading-none">Dhs/mois</span>
+                                            <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +329,7 @@
                                             <div class="font-semibold text-xl leading-tight tracking-tight" #montantId [appFormatMontant]="simulationPersonnaliseeStr?.montant">
                                                 {{simulationPersonnaliseeStr?.montant}}
                                             </div>
-                                            <div class="ml-2 text-lg leading-none">Dhs</div>
+                                            <div class="ml-2 text-lg leading-none">MAD</div>
                                         </div>
                                     </div>
                                     
@@ -380,7 +380,7 @@
                                                 <span class=" ml-2 font-semibold text-xl leading-tight tracking-tight" #coutTotalMinId>
                                                     {{simulationPersonnaliseeStr?.coutTotalMin}}
                                                 </span>
-                                                <span class="ml-2 text-lg leading-none">Dhs</span>
+                                                <span class="ml-2 text-lg leading-none">MAD</span>
                                             </div>
                                             <div class="flex flex-row items-baseline whitespace-nowrap">
                                                 <span class="hidden md:block">jusqu'à</span>
@@ -388,7 +388,7 @@
                                                 <span class="font-semibold text-xl leading-tight tracking-tight ml-2" #coutTotalMaxId>
                                                     {{simulationPersonnaliseeStr?.coutTotalMax}}
                                                 </span>
-                                                <span class="ml-2 text-lg leading-none">Dhs</span>
+                                                <span class="ml-2 text-lg leading-none">MAD</span>
                                             </div>
                                         </div>
                                     </div>
@@ -408,7 +408,7 @@
                                                 [ngClass]="{'text-green-600 ': !estExpImmoNum}">
                                                 {{simulationPersonnaliseeStr?.expertiseImmobiliere}}
                                             </div>
-                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estExpImmoNum}">Dhs</div>
+                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estExpImmoNum}">MAD</div>
                                         </div>
                                     </div>
                                 </div>
@@ -426,7 +426,7 @@
                                                 [ngClass]="{'text-green-600 ': !estFraisDossNum}">
                                                 {{simulationPersonnaliseeStr?.fraisDossier}}
                                             </div>
-                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">Dhs</div>
+                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">MAD</div>
                                         </div>
                                     </div>
                                 </div>
@@ -457,7 +457,7 @@
                                                 [appFormatMontant]="simulationPersonnaliseeStr?.droitsEnregistrement">
                                                 {{simulationPersonnaliseeStr?.droitsEnregistrement}}
                                             </div>
-                                            <div class="ml-2 text-lg leading-none">Dhs</div>
+                                            <div class="ml-2 text-lg leading-none">MAD</div>
                                         </div>
                                     </div>
                                 </div>
@@ -475,7 +475,7 @@
                                                 [appFormatMontant]="simulationPersonnaliseeStr?.conservationFonciere">
                                                 {{simulationPersonnaliseeStr?.conservationFonciere}}
                                             </div>
-                                            <div class="ml-2 text-lg leading-none">Dhs</div>
+                                            <div class="ml-2 text-lg leading-none">MAD</div>
                                         </div>
                                     </div>
                                     

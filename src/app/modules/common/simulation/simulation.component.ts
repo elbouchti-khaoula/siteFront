@@ -58,7 +58,7 @@ export class SimulationComponent {
         var n = value.toString().concat(".00");
         var parts = n.toString().split(".");
         var res = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ") + (parts[1] ? "." + parts[1] : "");
-        return `  ${res} Dhs  `;
+        return `  ${res} MAD  `;
     }
 
     formatLabelDuree(value: number): string {

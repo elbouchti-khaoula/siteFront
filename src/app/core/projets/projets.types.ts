@@ -18,6 +18,8 @@ export interface Projet {
     devise?: string | null;
     prixMin?: number;
     prixMax?: number;
+    prixMinStr?: string;
+    prixMaxStr?: string;
     superficieMin?: number;
     superficieMax?: number;
     nombreChambresMin?: number;

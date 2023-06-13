@@ -9,6 +9,7 @@ export class PageHeaderConnecteComponent {
 
     @Input() headerStyle: string = "";
     @Input() headerLibelle: string = "";
+    @Input() subHeaderLibelle: string;
     @Input() hideSmallScreen: boolean = false;
 
     /**

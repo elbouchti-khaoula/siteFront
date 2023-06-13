@@ -106,7 +106,7 @@ export class FaitesVousRappelerComponent implements OnInit, OnDestroy
             this.faitesVousRappelerForm.get('telephone').value,
             this.faitesVousRappelerForm.get('message').value,
             "Flux Marketplace",
-            "Faites-vous rappeler : "
+            "Nous rappeler : "
         )
             .pipe(
                 catchError((error) => {

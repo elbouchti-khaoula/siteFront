@@ -5,7 +5,7 @@
     <div class="w-full mb-5"
         [ngClass]="{'md:hidden': parentComponent === 'projets-search'}">
         <div class="text-lg font-bold text-primary">
-            Trouver mon bien
+            Rechercher mon bien
         </div>
         <div class="w-7 h-1 rounded-2xl mt-2 bg-second-500"></div>
     </div>
@@ -70,13 +70,13 @@
             <!-- Prix min -->
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMin'" [placeholder]="'Prix min'" [appFormatMontant]="searchForm.get('prixMin').value">
-                <span matSuffix>Dhs</span>
+                <span matSuffix>MAD</span>
             </mat-form-field>
             
             <!-- Prix max -->
             <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMax'" [placeholder]="'Prix max'" [appFormatMontant]="searchForm.get('prixMax').value">
-                <span matSuffix>Dhs</span>
+                <span matSuffix>MAD</span>
             </mat-form-field>
             
         </div>

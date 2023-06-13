@@ -424,7 +424,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value,
         nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
         segment: "NV",
-        dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+        dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
         salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
         autresRevenus: Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')),
         creditsEnCours: Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')),
@@ -457,7 +457,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           prenom: this.simulationStepperForm.get('step1').get('prenom').value,
           telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
           email: this.simulationStepperForm.get('step1').get('email').value,
-          dateNaissance: this._fuseUtilsService.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
+          dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
           nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
           residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
           // ma situation
@@ -599,6 +599,13 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    */
   trackByFn(index: number, item: any): any {
     return item.id || index;
+  }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Private methods
+  // -----------------------------------------------------------------------------------------------------
+  private formatMomentToString(date: moment.Moment): string {
+    return date.format("DD/MM/YYYY");
   }
 
 }
