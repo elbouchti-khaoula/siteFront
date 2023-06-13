@@ -21,6 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
      * @param next
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
         // Clone the request object
         let newReq = req.clone();
 
@@ -32,11 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-       // const isApiUpload=  newReq.url.includes( 'api/upload');
-
-
-        //api upload contient l'adapter
-        if (newReq.url.includes( 'api') &&  !newReq.url.includes('apimsg/v2') ) {
+        if (newReq.url?.substring(0, 4) === "api/" &&  !newReq.url.includes('apimsg/v2') ) {
 
             let token = this.getToken();
             if (token) {
@@ -44,7 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     headers: req.headers.set('Authorization', 'Bearer ' + token)
                 });
             }
-            //console.log("+-+-+- newReq", newReq);
+            // console.log("+-+-+- newReq", newReq);
         }
 
         // Response

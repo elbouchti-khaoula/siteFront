@@ -84,7 +84,7 @@ export class InitialDataResolver implements Resolve<any>
                         return throwError(() => error);
                     }))
                 .subscribe((response: any) => {
-                    console.log('génération new token:: ' + response);
+                    // console.log('génération new token:: ' + response);
                     observer.next(this._referentielService.getVilles().subscribe());
                     observer.next(this._referentielService.getTypesBiens().subscribe());
                     observer.next(this._referentielService.getAgences().subscribe());
