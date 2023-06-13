@@ -4,6 +4,10 @@
             <div class="max-w-2xl text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight">
                 {{headerLibelle}}
             </div>
+            <div *ngIf="subHeaderLibelle" class="max-w-2xl text-xl mt-2">
+                <span [innerText]="subHeaderLibelle"></span>
+                <!-- <span [innerHTML]="subHeaderLibelle"></span> -->
+            </div>
         </div>
     </div>
 </header>

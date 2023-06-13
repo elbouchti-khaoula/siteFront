@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, map, Observable, switchMap, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { CritereDetaillee, Project, SimulationDetaillee } from './projects.types';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '../referentiel/referentiel.types';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { EmployeurConventionne, PromoteurConventionne } from './projects.types';
-import { AuthenticationService } from '../auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -26,9 +25,9 @@ export class SimulationDetailleeService {
      */
     constructor(
         private _httpClient: HttpClient,
-        private _authenticationService: AuthenticationService,
         private _fuseUtilsService: FuseUtilsService
-    ) {
+    )
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------

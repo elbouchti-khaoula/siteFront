@@ -80,5 +80,5 @@ export const appConfig: AppConfig = {
         // }
     ],
     direction: 'ltr',
-    devise: 'Dhs'
+    devise: 'MAD'
 };
