@@ -32,7 +32,11 @@ export class AuthInterceptor implements HttpInterceptor {
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-        if (newReq.url.substring(0, 3) === "api" && newReq.url.substring(0, 10) !== "api/upload" && !newReq.url.includes("apimsg/v2")) {
+       // const isApiUpload=  newReq.url.includes( 'api/upload');
+
+
+        //api upload contient l'adapter
+        if (newReq.url.includes( 'api') &&  !newReq.url.includes('apimsg/v2') ) {
 
             let token = this.getToken();
             if (token) {
