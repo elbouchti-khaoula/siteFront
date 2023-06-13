@@ -354,7 +354,7 @@ export class ReferentielService {
     */
     searchDocuments(document: DocumentInstitutionnel): Observable<DocumentInstitutionnel[]> {
 
-        return this._httpClient.post<DocumentInstitutionnel[]>('/api/repositories/documents/search', document)
+        return this._httpClient.post<DocumentInstitutionnel[]>('api/repositories/documents/search', document)
             .pipe(
                 tap((documents: DocumentInstitutionnel[]) => {
 
@@ -371,7 +371,7 @@ export class ReferentielService {
     }
 
     downloadPDF(id: number, fileName: String) {
-        this._httpClient.get('/api/repositories/document/' + id, { responseType: 'blob' })
+        this._httpClient.get('api/repositories/document/' + id, { responseType: 'blob' })
             .subscribe((blob: any) => {
                 // const blob = new Blob([response.body], { type: 'application/pdf' });
                 // const filename = 'Demande Client Financier.pdf';
