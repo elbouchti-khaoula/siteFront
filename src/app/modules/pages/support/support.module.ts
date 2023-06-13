@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FuseCardModule } from '@fuse/components/card';
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +26,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         FuseCardModule,
         FormatTelephoneModule,
         CaptchaModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ]
 })
 export class SupportModule

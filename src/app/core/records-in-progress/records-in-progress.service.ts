@@ -8,6 +8,7 @@ import { saveAs } from "file-saver";
     providedIn: 'root'
 })
 export class RecordsInProgressService {
+
     // Private
     private _demandesCredit: BehaviorSubject<DemandeCredit[] | null> = new BehaviorSubject(null);
     private _creditsEnCours: BehaviorSubject<CreditEnCours[] | null> = new BehaviorSubject(null);
@@ -58,7 +59,6 @@ export class RecordsInProgressService {
      */
     getCreditsEnCours(cin: string, email: string): Observable<CreditEnCours[]> {
 
-        // 640891
         return this._httpClient.post<CreditEnCours[]>('api/records-in-progress/credits/search', { origin: "SITE", cin: cin, mail: email })
             .pipe(
                 tap((response: CreditEnCours[]) => {
@@ -92,7 +92,7 @@ export class RecordsInProgressService {
 
         this._httpClient.post('api/records-in-progress/document', { origin: "SITE", dossier: dossierId, type: code }, { responseType: 'blob' })
             .subscribe((blob: any) => {
-                console.log("+-+- blob", blob);
+                // console.log("+-+- blob", blob);
                 if (blob) {
                     saveAs(blob, fileName);
                 }

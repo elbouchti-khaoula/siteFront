@@ -9,7 +9,7 @@ import { mesOperationSavRoutes } from './mes-operations-sav.routing';
 import { MesOperationsSavComponent } from './mes-operations-sav.component';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatInputModule } from '@angular/material/input';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
     // MatFormFieldModule,
     // MatInputModule,
     MatProgressBarModule,
-    PageHeaderModule
+    PageHeaderConnecteModule
   ],
 })
 export class MesOperationsSavModule {

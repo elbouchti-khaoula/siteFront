@@ -10,7 +10,7 @@ import { AgencesComponent } from './agences.component';
 import { agencesRoutes } from './agences.routing';
 import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
 import { AgencesResultComponent } from './agence-result/agences-result.component';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +26,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         MatSelectModule,
         MatSidenavModule,
         LocalisationModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ]
 })
 export class AgencesModule

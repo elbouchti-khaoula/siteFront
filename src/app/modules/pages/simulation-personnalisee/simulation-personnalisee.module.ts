@@ -16,7 +16,7 @@ import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-m
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -37,7 +37,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         FormatTelephoneModule,
         FormatEntierModule,
         CaptchaModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ],
     exports     : [
         SimulationPersonaliseeComponent

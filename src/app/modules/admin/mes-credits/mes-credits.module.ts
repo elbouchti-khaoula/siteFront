@@ -9,7 +9,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MesCreditsComponent } from './mes-credits.component';
 import { mesCreditsRoutes } from './mes-credits.routing';
 import { OperationsSAVRefModule } from './opeartion-sav-ref/operations-sav-ref.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +23,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         FuseCardModule,
         MatProgressBarModule,
         OperationsSAVRefModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ],
     exports     : [
         MesCreditsComponent

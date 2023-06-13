@@ -7,6 +7,7 @@ import { CritereDemandeSAV, DemandeSAV } from './demandes-sav.types';
     providedIn: 'root'
 })
 export class DemandeSAVService {
+
     // Private
     private _demandesSAV: BehaviorSubject<DemandeSAV[] | null> = new BehaviorSubject(null);
 
@@ -48,15 +49,34 @@ export class DemandeSAVService {
     }
 
     /**
-     * get count mes operation SAV
+     * get count mes operations SAV
      *
      * @param cin
      */
     getCountDemandesSAV(cin: string): Observable<any> {
 
-        return this._httpClient.post<number>('api/sav/demandesav/count', { cin: cin, mail: ""})
+        return this._httpClient.post<number>('api/sav/demandesav/count', { cin: cin, mail: "" })
             .pipe(
                 map((response: number) => {
+                    return response;
+                })
+            );
+    }
+
+    /**
+     * lister mes operations SAV
+     *
+     * @param cin
+     */
+    getDemandesSAV(cin: string): Observable<DemandeSAV[]> {
+
+        // , { cin: cin, mail: "" }
+        return this._httpClient.get<DemandeSAV[]>('api/sav/demandesav')
+            .pipe(
+                map((response: DemandeSAV[]) => {
+
+                    this._demandesSAV.next(response);
+                    
                     return response;
                 })
             );

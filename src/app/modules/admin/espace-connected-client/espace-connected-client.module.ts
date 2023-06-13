@@ -12,7 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-small.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -30,7 +30,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         MatButtonModule,
         ParcoursSmallModule,
         FuseCardModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ]
 })
 export class EspaceConnectedClientModule {

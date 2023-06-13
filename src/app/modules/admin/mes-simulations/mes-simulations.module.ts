@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FuseCardModule } from '@fuse/components/card';
 import { MesSimulationsComponent } from './mes-simulations.component';
 import { mesSimulationsRoutes } from './mes-simulations.routing';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +18,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         MatButtonModule,
         MatIconModule,
         FuseCardModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ],
     exports     : [
         MesSimulationsComponent
