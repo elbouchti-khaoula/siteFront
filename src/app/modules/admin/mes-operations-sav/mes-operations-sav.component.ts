@@ -27,8 +27,8 @@ export class MesOperationsSavComponent implements OnInit, OnDestroy
     { demandeSavId: 3, codeOperation: 'RAT', dossierId: 1, statut: 'en cours', dateCreation: new Date(), motifRemboursement: '' },
     { demandeSavId: 4, codeOperation: 'FRA', dossierId: 2, statut: 'traité', dateCreation: new Date(), motifRemboursement: '' },
     { demandeSavId: 5, codeOperation: 'DON', dossierId: 2, statut: 'traité', dateCreation: new Date(), motifRemboursement: '' },
-    { demandeSavId: 4, codeOperation: 'FRA', dossierId: 3, statut: 'traité', dateCreation: new Date(), motifRemboursement: '' },
-    { demandeSavId: 5, codeOperation: 'RAT', dossierId: 3, statut: 'en cours', dateCreation: new Date(), motifRemboursement: '' }
+    { demandeSavId: 6, codeOperation: 'FRA', dossierId: 3, statut: 'traité', dateCreation: new Date(), motifRemboursement: '' },
+    // { demandeSavId: 7, codeOperation: 'RAT', dossierId: 3, statut: 'en cours', dateCreation: new Date(), motifRemboursement: '' }
   ];
   searchInputControl: FormControl = new FormControl();
 

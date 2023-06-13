@@ -15,7 +15,7 @@ import { CheckListModule } from 'app/modules/common/check-list/check-list.module
 import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
 import { FormatTelephonePipeModule } from '@fuse/pipes/format-telephone-pipe/format-telephone-pipe.module';
 import { CaptchaModule } from 'app/core/captcha/captcha.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         FormatTelephoneModule,
         FormatTelephonePipeModule,
         CaptchaModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ],
     exports     : [
         DemandeCreditComponent

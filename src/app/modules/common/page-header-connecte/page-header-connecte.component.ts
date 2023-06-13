@@ -1,14 +1,15 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector: 'page-header',
-    templateUrl: './page-header.component.html',
+    selector: 'page-header-connecte',
+    templateUrl: './page-header-connecte.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class PageHeaderComponent {
+export class PageHeaderConnecteComponent {
 
     @Input() headerStyle: string = "";
     @Input() headerLibelle: string = "";
+    @Input() hideSmallScreen: boolean = false;
 
     /**
      * Constructor

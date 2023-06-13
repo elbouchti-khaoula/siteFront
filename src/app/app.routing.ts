@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
-import { InitialDataResolver } from 'app/app.resolvers';
+import { InitialDataResolver, NavigationResolver } from 'app/app.resolvers';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -52,6 +52,21 @@ export const appRoutes: Route[] = [
         ]
     },
 
+    // home routes
+    {
+        path: '',
+        component: LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children: [
+            {
+                path: 'home',
+                loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
+            },
+        ]
+    },
+
     // Admin routes
     {
         path: '',
@@ -59,14 +74,10 @@ export const appRoutes: Route[] = [
         canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
+            navigation: NavigationResolver,
             initialData: InitialDataResolver,
         },
         children: [
-
-            // {
-            //     path: 'espace-connected-client',
-            //     loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
-            // },
 
             // espace connecté
             {
@@ -74,7 +85,6 @@ export const appRoutes: Route[] = [
                 children: [
                     {
                         path: '',
-                        // loadChildren: () => import('app/modules/admin/espace-connected/espace-connected.module').then(m => m.EspaceConnectedModule),
                         loadChildren: () => import('app/modules/admin/espace-connected-client/espace-connected-client.module').then(m => m.EspaceConnectedClientModule),
                     },
                     {
@@ -118,31 +128,15 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // home routes
-    {
-        path: '',
-        component  : LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children   : [
-            {
-                path: 'home',
-                loadChildren: () => import('app/modules/pages/home/home.module').then(m => m.HomeModule),
-            },
-        ]
-    },
-
     // Pages routes
     {
-        path       : '',
-        // canActivate: [NoAuthGuard],
-        // canActivateChild: [NoAuthGuard],
-        component  : LayoutComponent,
-        resolve    : {
+        path: '',
+        component: LayoutComponent,
+        resolve: {
+            navigation: NavigationResolver,
             initialData: InitialDataResolver,
         },
-        children   : [
+        children: [
             {
                 path: 'landing',
                 loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
@@ -204,7 +198,7 @@ export const appRoutes: Route[] = [
                 path: 'conseil-detail-4',
                 loadChildren: () => import('app/modules/pages/nos-guides-conseils/conseil-detail-4/conseil-detail-4.module').then(m => m.Detail4Module),
             },
-            
+
             {
                 path: 'espace-multimedia',
                 loadChildren: () => import('app/modules/pages/espace-multimedia/espace-multimedia.module').then(m => m.EspaceMultiMediaModule),

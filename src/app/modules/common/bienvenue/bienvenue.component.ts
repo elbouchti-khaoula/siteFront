@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
@@ -12,6 +12,7 @@ export class BienvenueComponent implements OnInit, OnDestroy {
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     user: User;
+    @Input() hide: boolean = false;
 
     /**
      * Constructor

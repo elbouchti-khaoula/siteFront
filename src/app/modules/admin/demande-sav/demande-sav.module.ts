@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DemandeSAVComponent } from './demande-sav.component';
 import { demandeCreditRoutes } from './demande-sav.routing';
 import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
-import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
+import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +29,7 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         MatInputModule,
         FuseCardModule,
         CheckListModule,
-        PageHeaderModule
+        PageHeaderConnecteModule
     ],
     exports     : [
         DemandeSAVComponent
