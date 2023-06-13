@@ -26,7 +26,7 @@ export class AccountService
 
         let body = '{"cin" : "' + user.cin + '","dateNaissance" : "' + user.dateNaissance + '"}'
 
-        return this._httpClient.post('/api/accounts/numbers', body , { headers: headers }
+        return this._httpClient.post('api/accounts/numbers', body , { headers: headers }
         )
             .pipe(
                 switchMap((response: any) => {
