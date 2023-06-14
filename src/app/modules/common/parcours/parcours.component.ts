@@ -9,6 +9,7 @@ export class ParcoursComponent
 {
 
     @Input() inputMethod: () => void
+    @Input() land: number;
 
     /**
      * Constructor

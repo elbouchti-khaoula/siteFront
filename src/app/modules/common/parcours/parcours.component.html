@@ -1,11 +1,12 @@
-<div class="hidden md:flex flex-row justify-center space-x-10 text-white mt-20 mb-14">
+<div class="hidden md:flex flex-row justify-center space-x-10"
+    [ngClass]="{'space-x-16': land === 2}">
     <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
         [routerLink]="['/projets-search']">
         <div class="h-20">
             <mat-icon class="icon-size-20 text-white" svgIcon="property">
             </mat-icon>
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>Je recherche</span>
             <span>mon bien</span>
         </div>
@@ -16,7 +17,7 @@
             <mat-icon class="icon-size-20 text-white" svgIcon="calculation">
             </mat-icon>
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>Je simule </span>
             <span>mon crédit</span>
         </div>
@@ -27,30 +28,41 @@
             <mat-icon class="icon-size-20 text-white" svgIcon="survey">
             </mat-icon>
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>Je demande</span>
             <span>mon crédit</span>
         </div>
     </a>
-    <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+    <a class="relative w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
         [routerLink]="['/espace-connecte/mes-demandes-credit']">
+
+        <!-- ring-offset-4 ring-offset-white -->
+        <a *ngIf="land === 2"
+            href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne"
+            target="blank"
+            class="absolute -top-10 -right-10 flex flex-col items-center justify-center h-24 w-24 rounded-full bg-second-500 ring-2 ring-primary-500">
+            <img class="h-10 w-fit" src="assets/images/logo/logo-awb.jpg">
+            <span class="mt-2 text-sm font-bold text-center leading-none">
+                J'ouvre mon<br />compte
+            </span>
+        </a>
+
         <div class="h-20">
             <mat-icon class="-mt-1 icon-size-22 text-white" svgIcon="fork">
             </mat-icon>
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>Je suis</span>
             <span>ma demande</span>
         </div>
     </a>
-    <a class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+    <a *ngIf="land === 0"
+        class="w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
         href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne" target="blank">
         <div class="h-20 flex items-center">
-            <img class="h-12"
-                src="assets/images/logo/logo-awb.jpg"
-                alt="Logo image">
+            <img class="h-12" src="assets/images/logo/logo-awb.jpg" alt="Logo image">
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>J'ouvre</span>
             <span>mon compte</span>
         </div>
@@ -61,9 +73,21 @@
             <mat-icon class="icon-size-20 text-white" svgIcon="timeline">
             </mat-icon>
         </div>
-        <div class="flex flex-col items-center font-semibold my-2">
+        <div class="flex flex-col items-center font-semibold text-white my-2">
             <span>Je gère</span>
             <span>mon crédit</span>
+        </div>
+    </a>
+
+    <a *ngIf="land === 3"
+        class="absolute right-10 w-40 py-2 flex flex-col items-center justify-start rounded-2xl border-2 border-primary-500 bg-gray-600/[.7] cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.1] hover:bg-primary-500 hover:border-white"
+        href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne" target="blank">
+        <div class="h-20 flex items-center">
+            <img class="h-12" src="assets/images/logo/logo-awb.jpg" alt="Logo image">
+        </div>
+        <div class="flex flex-col items-center font-semibold text-white my-2">
+            <span>J'ouvre</span>
+            <span>mon compte</span>
         </div>
     </a>
 </div>
