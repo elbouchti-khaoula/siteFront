@@ -34,35 +34,7 @@ export const appRoutes: Route[] = [
         ]
     },
 //a mettre ici les urls qui besion le token generic en entree de la page
-    {
-        path: '',
-        component: LayoutComponent,
-        resolve: {
-            navigation: NavigationResolver,
-            initialTokenResolver: InitialGenericTokenResolver,
-        },
-        children: [
 
-            {
-                path: 'nos-etats-financiers',
-                loadChildren: () => import('app/modules/pages/nos-etats-financiers/nos-etats-financiers.module').then(m => m.NosEtatsFinanciersModule),
-            },
-
-            {
-                path: 'nos-lettres-wi',
-                loadChildren: () => import('app/modules/pages/nos-lettres-wi/nos-lettres-wi.module').then(m => m.NosLettresWiModule),
-            },
-            {
-                path: 'reclamation',
-                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
-            },
-            {
-                path: 'nous-connaitre',
-                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
-            }
-
-        ]
-    },
 
     // Redirect signed in user to the '/landing'
     //
@@ -184,7 +156,8 @@ export const appRoutes: Route[] = [
         path: '',
         component: LayoutComponent,
         resolve: {
-            navigation: NavigationResolver
+            navigation: NavigationResolver,
+            initialTokenResolver: InitialGenericTokenResolver
         },
         children: [
 
@@ -200,15 +173,15 @@ export const appRoutes: Route[] = [
                 path: 'simulation-personnalisee',
                 loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
             },
-           {
-               path: 'nos-offres-miftah',
-               loadChildren: () => import('app/modules/pages/nos-offres-miftah/nos-offres-miftah.module').then(m => m.NosOffresMiftahModule),
-           },
+            {
+                path: 'nos-offres-miftah',
+                loadChildren: () => import('app/modules/pages/nos-offres-miftah/nos-offres-miftah.module').then(m => m.NosOffresMiftahModule),
+            },
 
-           {
-               path: 'nos-conventions',
-               loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
-           },
+            {
+                path: 'nos-conventions',
+                loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
+            },
 
             {
                 path: 'nos-guides-conseils',
@@ -254,6 +227,23 @@ export const appRoutes: Route[] = [
             {
                 path: 'maintenance',
                 loadChildren: () => import('app/modules/pages/maintenance/maintenance.module').then(m => m.MaintenanceModule),
+            },
+            {
+                path: 'nos-etats-financiers',
+                loadChildren: () => import('app/modules/pages/nos-etats-financiers/nos-etats-financiers.module').then(m => m.NosEtatsFinanciersModule),
+            },
+
+            {
+                path: 'nos-lettres-wi',
+                loadChildren: () => import('app/modules/pages/nos-lettres-wi/nos-lettres-wi.module').then(m => m.NosLettresWiModule),
+            },
+            {
+                path: 'reclamation',
+                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
+            },
+            {
+                path: 'nous-connaitre',
+                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
             },
             // 404 & 500 & Catch all
             {
