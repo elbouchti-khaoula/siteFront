@@ -11,7 +11,7 @@ export class FormatTelephoneDirective implements OnInit {
   }
 
   @HostListener('input')
-  onInputChange() {
+  onInput() {
     this.formatTelephone();
   }
 
@@ -29,16 +29,6 @@ export class FormatTelephoneDirective implements OnInit {
       formattedValue = numericValue;
     }
 
-    const numericValueWithoutDashes = formattedValue.replace(/-/g, '');
-
-    if (numericValueWithoutDashes.length > 10) {
-      this.clearInput();
-    } else {
-      this.elementRef.nativeElement.value = formattedValue;
-    }
-  }
-
-  private clearInput() {
-    this.elementRef.nativeElement.value = '';
+    this.elementRef.nativeElement.value = formattedValue;
   }
 }
