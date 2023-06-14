@@ -68,8 +68,8 @@ export class InitialDataResolver implements Resolve<any>
 
 
         return new Observable<any>((observer) => {
-            if (this._authenticationService.checkAuthenticationGeneric()){
-                //console.log('utilisation token '+this._authenticationService.accessTokenGeneric);
+            if (!this._authenticationService.checkAuthenticationGeneric()){
+                console.log('utilisation token '+this._authenticationService.accessTokenGeneric);
                 observer.next(this._referentielService.getVilles().subscribe());
                 observer.next(this._referentielService.getTypesBiens().subscribe());
                 observer.next(this._referentielService.getAgences().subscribe());
