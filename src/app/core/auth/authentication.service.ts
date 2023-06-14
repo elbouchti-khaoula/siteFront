@@ -226,6 +226,21 @@ export class AuthenticationService {
             })
         );
     }
+    /**
+     * Get access token generic from api with promise call
+     *
+     */
+    // eslint-disable-next-line @typescript-eslint/member-ordering
+    getSyncAccessTokenGeneric(): Promise<any> {
+
+        // @ts-ignore
+        return this._httpClient.post('api/authentication/getToken',
+            {
+                username: 'siteweb',
+                password: 'w@afa2022'
+            }
+        ).toPromise();
+    }
 
     /**
      * Get access token connected user from api
