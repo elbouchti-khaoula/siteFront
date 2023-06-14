@@ -68,7 +68,8 @@ export class InitialDataResolver implements Resolve<any>
 
 
         return new Observable<any>((observer) => {
-            if (this._authenticationService.accessTokenGeneric){
+           console.log( this._authenticationService.accessTokenGeneric);
+            if (this._authenticationService.checkAuthenticationGeneric()!==null &&  this._authenticationService.accessTokenGeneric!==''){
                 console.log('utilisation token '+this._authenticationService.accessTokenGeneric);
                 observer.next(this._referentielService.getVilles().subscribe());
                 observer.next(this._referentielService.getTypesBiens().subscribe());
@@ -125,7 +126,7 @@ export class InitialGenericTokenResolver implements Resolve<any> {
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        if (!this._authenticationService.accessTokenGeneric) {
+        if (this._authenticationService.accessTokenGeneric===null ||  this._authenticationService.accessTokenGeneric=='') {
             return new Observable<any>((observer) => {
 
                     this._authenticationService.getSyncAccessTokenGeneric()
