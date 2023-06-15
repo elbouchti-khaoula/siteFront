@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from 'app/core/projets/projets.service';
-import { Projet } from 'app/core/projets/projets.types';
+import { ProjetsService } from 'app/core/services/projets/projets.service';
+import { Projet } from 'app/core/services/projets/projets.types';
 import { MatDrawer } from '@angular/material/sidenav';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { Agence } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { Agence } from 'app/core/services/referentiel/referentiel.types';
 
 @Component({
     selector: 'localisation',

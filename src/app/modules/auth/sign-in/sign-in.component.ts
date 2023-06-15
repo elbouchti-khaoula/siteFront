@@ -83,7 +83,7 @@ export class AuthSignInComponent implements OnInit
                     
                     if (currentUser != undefined && currentUser != null && currentUser.emailVerified) {
 
-                        const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/espace-connecte';
+                        const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
 
                         this._router.navigateByUrl(redirectURL);
 

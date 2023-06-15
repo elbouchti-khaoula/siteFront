@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } fr
 import { NavigationExtras, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
-import { SimulationDetaillee } from 'app/core/projects/projects.types';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
+import { SimulationDetaillee } from 'app/core/services/projects/projects.types';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({

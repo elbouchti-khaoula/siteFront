@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { Fichier, Piece } from 'app/core/upload-document/upload-document.types';
-import { CompressImageService } from '@fuse/services/compress-image/compress-image.service';
+import { Fichier, Piece } from 'app/core/services/upload-document/upload-document.types';
+import { CompressImageService } from 'app/core/services/compress-image/compress-image.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { take } from 'rxjs';
 

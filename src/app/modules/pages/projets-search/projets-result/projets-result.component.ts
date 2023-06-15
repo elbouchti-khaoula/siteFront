@@ -3,8 +3,8 @@ import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { NavigationEnd, Router } from '@angular/router';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { Projet } from 'app/core/projets/projets.types';
-import { ProjetsService } from 'app/core/projets/projets.service';
+import { Projet } from 'app/core/services/projets/projets.types';
+import { ProjetsService } from 'app/core/services/projets/projets.service';
 
 @Component({
     selector: 'projets-result',

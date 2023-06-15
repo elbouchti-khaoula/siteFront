@@ -12,10 +12,10 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
-import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
-import { FormatEntierModule } from '@fuse/directives/formatage-entier/format-entier.module';
-import { CaptchaModule } from 'app/core/captcha/captcha.module';
+import { FormatMontantModule } from 'app/core/directives/formatage-montant/format-montant.module';
+import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
+import { FormatEntierModule } from 'app/core/directives/formatage-entier/format-entier.module';
+import { CaptchaModule } from 'app/modules/common/captcha/captcha.module';
 import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({

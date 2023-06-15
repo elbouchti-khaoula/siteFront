@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, debounceTime, Subject, takeUntil, throwError } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Agence, Ville } from 'app/core/referentiel/referentiel.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { Agence, Ville } from 'app/core/services/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({

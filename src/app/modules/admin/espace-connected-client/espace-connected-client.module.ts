@@ -4,6 +4,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FuseCardModule } from '@fuse/components/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { EspaceConnectedClientComponent } from './espace-connected-client.component';
 import { EspaceConnectedRoutes } from './espace-connected-client.routing';
@@ -19,6 +20,7 @@ import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connect
         SharedModule,
         MatIconModule,
         MatButtonModule,
+        MatExpansionModule,
         ParcoursSmallModule,
         FuseCardModule,
         PageHeaderConnecteModule

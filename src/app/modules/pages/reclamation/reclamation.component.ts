@@ -7,8 +7,8 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, debounceTime, Subject, takeUntil, throwError } from 'rxjs';
 import { ReclamationsService } from './reclamation.service';
 import { Motif, Reclamation } from './reclamation.types';
-import { Piece } from 'app/core/upload-document/upload-document.types';
-import { UploadDocumentService } from 'app/core/upload-document/upload-document.service';
+import { Piece } from 'app/core/services/upload-document/upload-document.types';
+import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
 
 @Component({
     selector: 'reclamation',

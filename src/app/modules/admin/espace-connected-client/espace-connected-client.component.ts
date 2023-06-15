@@ -18,6 +18,7 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
     countDemandesCredits: number;
     countCredit: number;
     countDemandesSAV: number;
+    panelOpenState = false;
 
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
     imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';

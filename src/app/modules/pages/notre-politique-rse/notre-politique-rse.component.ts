@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { fuseAnimations } from '@fuse/animations';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { DocumentInstitutionnel } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { DocumentInstitutionnel } from 'app/core/services/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { saveAs } from "file-saver";
 import { HttpClient } from '@angular/common/http';
-import { SwiperOptions } from 'swiper';
+
+// import { SwiperOptions } from 'swiper';
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 SwiperCore.use([Autoplay, EffectCoverflow, Pagination, Navigation]);
+
 @Component({
     selector: 'notre-politique-rse',
     templateUrl: './notre-politique-rse.component.html',

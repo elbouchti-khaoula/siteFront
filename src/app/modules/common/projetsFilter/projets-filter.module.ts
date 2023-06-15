@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { DisableControlModule } from '@fuse/directives/disabled/disabled.module';
-import { FormatMontantModule } from '@fuse/directives/formatage-montant/format-montant.module';
+import { DisableControlModule } from 'app/core/directives/disabled/disabled.module';
+import { FormatMontantModule } from 'app/core/directives/formatage-montant/format-montant.module';
 
 @NgModule({
     declarations: [

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { Motif, Reclamation } from './reclamation.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { EnvoiMail } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { EnvoiMail } from 'app/core/services/referentiel/referentiel.types';
 
 @Injectable({
     providedIn: 'root'

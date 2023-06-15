@@ -2,15 +2,15 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsu
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { Piece } from 'app/core/upload-document/upload-document.types';
+import { Piece } from 'app/core/services/upload-document/upload-document.types';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { CheckListComponent } from 'app/modules/common/check-list/check-list.component';
-import { UploadDocumentService } from 'app/core/upload-document/upload-document.service';
-import { OperationSAVDocument, OperationSAVRef } from 'app/core/referentiel/referentiel.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
-import { DemandeSAVService } from 'app/core/demandes-sav/demandes-sav.service';
-import { CritereDemandeSAV, DemandeSAV } from 'app/core/demandes-sav/demandes-sav.types';
+import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
+import { OperationSAVDocument, OperationSAVRef } from 'app/core/services/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { CreditEnCours } from 'app/core/services/records-in-progress/records-in-progress.types';
+import { DemandeSAVService } from 'app/core/services/demandes-sav/demandes-sav.service';
+import { CritereDemandeSAV, DemandeSAV } from 'app/core/services/demandes-sav/demandes-sav.types';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 

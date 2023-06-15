@@ -2,8 +2,8 @@ import { EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, Component, In
 import { fuseAnimations } from '@fuse/animations';
 import { Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { DemandeSAV } from 'app/core/demandes-sav/demandes-sav.types';
-import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
+import { DemandeSAV } from 'app/core/services/demandes-sav/demandes-sav.types';
+import { OperationSAVRef } from 'app/core/services/referentiel/referentiel.types';
 import moment from 'moment';
 
 @Component({

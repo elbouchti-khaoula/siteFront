@@ -3,20 +3,19 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { ActivatedRoute, Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/referentiel/referentiel.types';
-import { EmployeurConventionne, PromoteurConventionne, SimulationDetaillee } from 'app/core/projects/projects.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/services/referentiel/referentiel.types';
+import { EmployeurConventionne, PromoteurConventionne, SimulationDetaillee } from 'app/core/services/projects/projects.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import * as moment from 'moment';
-import { resize } from '@fuse/animations/resize';
+import { resize } from 'app/core/animations/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
-
 import { Observable, debounceTime, filter, map, Subject, takeUntil, catchError, throwError } from 'rxjs';
 import { MatAutocomplete } from '@angular/material/autocomplete';
-import { SalesForceService } from 'app/core/salesforce/salesforce.service';
+import { SalesForceService } from 'app/core/services/salesforce/salesforce.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
@@ -327,11 +326,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
     }
 
-    if (this.queryParams?.dateNaissance) {
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(this.queryParams?.dateNaissance));
-    } else if (currentUser?.dateNaissance) {
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(currentUser?.dateNaissance));
-    }
+    // if (this.queryParams?.dateNaissance) {
+    //   this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(this.queryParams?.dateNaissance));
+    // } else if (currentUser?.dateNaissance) {
+    //   this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(currentUser?.dateNaissance));
+    // }
   }
 
   /**

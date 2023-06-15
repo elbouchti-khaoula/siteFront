@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import {catchError, forkJoin, Observable, of, Subscriber, throwError} from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { NavigationService } from 'app/core/navigation/navigation.service';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 import { AuthenticationService } from './core/auth/authentication.service';
 
 
@@ -42,7 +42,6 @@ export class NavigationResolver implements Resolve<any>
     }
 
 }
-
 
 @Injectable({
     providedIn: 'root'
