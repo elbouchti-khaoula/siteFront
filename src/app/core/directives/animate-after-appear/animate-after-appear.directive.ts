@@ -9,8 +9,8 @@ import {
     style,
     useAnimation
 } from '@angular/animations';
-import { IntersectionObserverService } from '../services/intersection-observer.service';
-import { fuseAnimationsMap } from '../public-api';
+import { IntersectionObserverService } from '../../services/intersection-observer/intersection-observer.service';
+import { fuseAnimationsMap } from 'app/core/animations/public-api';
 
 @Directive({
     selector: '[animateAfterAppear]'

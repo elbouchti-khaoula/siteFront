@@ -2,17 +2,17 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsu
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { SimulationDetaillee } from 'app/core/projects/projects.types';
-import { Piece } from 'app/core/upload-document/upload-document.types';
+import { SimulationDetaillee } from 'app/core/services/projects/projects.types';
+import { Piece } from 'app/core/services/upload-document/upload-document.types';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
-import { Agence } from 'app/core/referentiel/referentiel.types';
+import { Agence } from 'app/core/services/referentiel/referentiel.types';
 import { CheckListComponent } from 'app/modules/common/check-list/check-list.component';
-import { UploadDocumentService } from 'app/core/upload-document/upload-document.service';
+import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
 
 @Component({
   selector: 'demande-credit',

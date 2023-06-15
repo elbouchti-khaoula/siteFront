@@ -12,7 +12,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AuthSignUpComponent } from 'app/modules/auth/sign-up/sign-up.component';
 import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
 import { MatRadioModule } from '@angular/material/radio';
-import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({

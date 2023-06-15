@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fuseAnimations } from '@fuse/animations';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { OperationSAVRef } from 'app/core/services/referentiel/referentiel.types';
 import { Subject, takeUntil } from 'rxjs';
 import { OperationsSAVRefComponent } from './opeartion-sav-ref/operations-sav-ref.component';
-import { CreditEnCours, TypeDocument } from 'app/core/records-in-progress/records-in-progress.types';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { CreditEnCours, TypeDocument } from 'app/core/services/records-in-progress/records-in-progress.types';
+import { RecordsInProgressService } from 'app/core/services/records-in-progress/records-in-progress.service';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { NavigationExtras, Router } from '@angular/router';
 

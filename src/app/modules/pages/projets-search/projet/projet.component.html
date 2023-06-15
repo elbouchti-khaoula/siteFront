@@ -92,7 +92,7 @@
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">Projet favori</div>
                 </div>
-                <div *ngIf="user != undefined && !projet.estFavoris" 
+                <div *ngIf="!projet.estFavoris" 
                     class="flex flex-row items-center cursor-pointer"
                     (click)="ajouterAuxFavoris()">
                     <mat-icon

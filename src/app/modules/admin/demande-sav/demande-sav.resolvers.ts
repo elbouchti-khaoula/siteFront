@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 
 @Injectable({
     providedIn: 'root'

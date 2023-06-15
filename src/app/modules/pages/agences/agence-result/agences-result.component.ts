@@ -2,8 +2,8 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
-import { Agence } from 'app/core/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { Agence } from 'app/core/services/referentiel/referentiel.types';
 
 @Component({
     selector: 'agences-result',

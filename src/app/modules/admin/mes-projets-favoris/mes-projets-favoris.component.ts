@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetFavori } from 'app/core/projets/projets.types';
-import { ProjetsService } from 'app/core/projets/projets.service';
+import { ProjetFavori } from 'app/core/services/projets/projets.types';
+import { ProjetsService } from 'app/core/services/projets/projets.service';
 
 @Component({
   selector: 'mes-projets-favoris',

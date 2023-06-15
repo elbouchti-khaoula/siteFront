@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------------------------------
 
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { paramsIn } from "./defaults";
+import { paramsIn } from "@fuse/animations/defaults";
 
 const grow = trigger('grow',
     [

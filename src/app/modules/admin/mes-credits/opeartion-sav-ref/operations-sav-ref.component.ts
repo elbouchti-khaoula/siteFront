@@ -2,10 +2,10 @@ import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewEncapsulat
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { OperationSAVRef } from 'app/core/referentiel/referentiel.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { OperationSAVRef } from 'app/core/services/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 import { NavigationExtras, Router } from '@angular/router';
-import { CreditEnCours } from 'app/core/records-in-progress/records-in-progress.types';
+import { CreditEnCours } from 'app/core/services/records-in-progress/records-in-progress.types';
 
 @Component({
     selector: 'operations-sav-ref',

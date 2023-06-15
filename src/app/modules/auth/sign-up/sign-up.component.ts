@@ -5,13 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
-import { AccountService } from 'app/core/accounts/accounts.service';
-import { AuthService } from 'app/core/auth/auth.service';
+import { AccountService } from 'app/core/services/accounts/accounts.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
-import { SmsService } from 'app/core/sms/sms.service';
+import { SmsService } from 'app/core/services/sms/sms.service';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
-import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
 
 @Component({

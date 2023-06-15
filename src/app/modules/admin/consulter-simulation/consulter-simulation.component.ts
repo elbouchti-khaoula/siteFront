@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { SimulationDetaillee } from 'app/core/projects/projects.types';
+import { SimulationDetaillee } from 'app/core/services/projects/projects.types';
 import { Router } from '@angular/router';
 
 @Component({
