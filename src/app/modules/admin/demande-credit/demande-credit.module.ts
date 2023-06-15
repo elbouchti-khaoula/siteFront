@@ -12,9 +12,9 @@ import { demandeCreditRoutes } from './demande-credit.routing';
 import { ChangerAgenceModule } from './changer-agence/changer-agence.module';
 import { TableauAmortissementModule } from '../tableau-amortissement/tableau-amortissement.module';
 import { CheckListModule } from 'app/modules/common/check-list/check-list.module';
-import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
-import { FormatTelephonePipeModule } from '@fuse/pipes/format-telephone-pipe/format-telephone-pipe.module';
-import { CaptchaModule } from 'app/core/captcha/captcha.module';
+import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
+import { FormatTelephonePipeModule } from 'app/core/pipes/format-telephone-pipe/format-telephone-pipe.module';
+import { CaptchaModule } from 'app/modules/common/captcha/captcha.module';
 import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({

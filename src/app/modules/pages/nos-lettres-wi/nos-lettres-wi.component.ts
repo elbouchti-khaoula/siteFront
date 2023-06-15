@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
-import { DocumentInstitutionnel } from 'app/core/referentiel/referentiel.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { DocumentInstitutionnel } from 'app/core/services/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 
 
 @Component({

@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AnimateAfterAppearDirective } from './animate-after-appear.directive';
-import { IntersectionObserverService, IntersectionObserverServiceConfig } from '../services/intersection-observer.service';
+import { IntersectionObserverService, IntersectionObserverServiceConfig } from 'app/core/services/intersection-observer/intersection-observer.service';
 
 @NgModule({
     imports: [

@@ -17,7 +17,7 @@ import { ProjetContactComponent } from './projets-result/contact/contact.compone
 import { ProjetModule } from './projet/projet.module';
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
 import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
-import { FormatTelephoneModule } from '@fuse/directives/formatage-telephone/format-tele.module';
+import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
 import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
 
 @NgModule({

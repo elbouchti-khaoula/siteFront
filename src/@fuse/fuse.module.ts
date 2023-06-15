@@ -6,7 +6,6 @@ import { FuseLoadingModule } from '@fuse/services/loading';
 import { FuseMediaWatcherModule } from '@fuse/services/media-watcher/media-watcher.module';
 import { FuseSplashScreenModule } from '@fuse/services/splash-screen/splash-screen.module';
 import { FuseUtilsModule } from '@fuse/services/utils/utils.module';
-import { AnimateCounterModule } from './services/animate-counter/animate-counter.module';
 
 @NgModule({
     imports  : [
@@ -14,8 +13,7 @@ import { AnimateCounterModule } from './services/animate-counter/animate-counter
         FuseLoadingModule,
         FuseMediaWatcherModule,
         FuseSplashScreenModule,
-        FuseUtilsModule,
-        AnimateCounterModule
+        FuseUtilsModule
     ],
     providers: [
         {

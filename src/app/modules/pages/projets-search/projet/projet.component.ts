@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjetsService } from 'app/core/projets/projets.service';
-import { Projet, ProjetFavori } from 'app/core/projets/projets.types';
+import { ProjetsService } from 'app/core/services/projets/projets.service';
+import { Projet, ProjetFavori } from 'app/core/services/projets/projets.types';
 import { fuseAnimations } from '@fuse/animations';
 import { Location } from "@angular/common";
 import { cloneDeep } from 'lodash-es';
@@ -10,6 +10,7 @@ import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
+import { Router } from '@angular/router';
 
 // import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
@@ -56,6 +57,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
      */
     constructor(
         private _location: Location,
+        private _router: Router,
         private _projetsService: ProjetsService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _matDialog: MatDialog,
@@ -108,70 +110,74 @@ export class ProjetComponent implements OnInit, OnDestroy {
 
     ajouterAuxFavoris() {
 
-        const projetFavori: ProjetFavori = {
-            userName: this.user.username,
-            userEmail: this.user.email,
-            statutFavorite: 'ENCOURS',
-            realEstateProject: { id: this.projet.id },
-            dateCreation: new Date()
-        }
+        if (!this.user) {
+            this._router.navigate(['sign-in'], { queryParams: { redirectURL: this._router.url } });
+        } else {
+            const projetFavori: ProjetFavori = {
+                userName: this.user.username,
+                userEmail: this.user.email,
+                statutFavorite: 'ENCOURS',
+                realEstateProject: { id: this.projet.id },
+                dateCreation: new Date()
+            }
 
-        this._projetsService.addProjetFavori(projetFavori)
-            .subscribe((response: ProjetFavori) => {
-                if (response === null) {
-                    // Open the dialog
-                    this._fuseConfirmationService.open(
-                        {
-                            "title": "Projet favori",
-                            "message": "Le projet favori existe déjà",
-                            "icon": {
-                                "show": true,
-                                "name": "heroicons_outline:information-circle",
-                                "color": "warn"
-                            },
-                            "actions": {
-                                "confirm": {
+            this._projetsService.addProjetFavori(projetFavori)
+                .subscribe((response: ProjetFavori) => {
+                    if (response === null) {
+                        // Open the dialog
+                        this._fuseConfirmationService.open(
+                            {
+                                "title": "Projet favori",
+                                "message": "Le projet favori existe déjà",
+                                "icon": {
                                     "show": true,
-                                    "label": "Ok",
+                                    "name": "heroicons_outline:information-circle",
                                     "color": "warn"
                                 },
-                                "cancel": {
-                                    "show": false,
-                                    "label": "Cancel"
-                                }
-                            },
-                            "dismissible": false
-                        }
-                    );
-                } else {
-                    this.projet.estFavoris = true;
-                    
-                    // Open the dialog
-                    this._fuseConfirmationService.open(
-                        {
-                            "title": "Projet favori",
-                            "message": "Le projet est ajouté aux favoris avec succès",
-                            "icon": {
-                                "show": true,
-                                "name": "heroicons_outline:check-circle",
-                                "color": "success"
-                            },
-                            "actions": {
-                                "confirm": {
-                                    "show": true,
-                                    "label": "Ok",
-                                    "color": "primary"
+                                "actions": {
+                                    "confirm": {
+                                        "show": true,
+                                        "label": "Ok",
+                                        "color": "warn"
+                                    },
+                                    "cancel": {
+                                        "show": false,
+                                        "label": "Cancel"
+                                    }
                                 },
-                                "cancel": {
-                                    "show": false,
-                                    "label": "Cancel"
-                                }
-                            },
-                            "dismissible": false
-                        }
-                    );
-                }
-            });
+                                "dismissible": false
+                            }
+                        );
+                    } else {
+                        this.projet.estFavoris = true;
+                        
+                        // Open the dialog
+                        this._fuseConfirmationService.open(
+                            {
+                                "title": "Projet favori",
+                                "message": "Le projet est ajouté aux favoris avec succès",
+                                "icon": {
+                                    "show": true,
+                                    "name": "heroicons_outline:check-circle",
+                                    "color": "success"
+                                },
+                                "actions": {
+                                    "confirm": {
+                                        "show": true,
+                                        "label": "Ok",
+                                        "color": "primary"
+                                    },
+                                    "cancel": {
+                                        "show": false,
+                                        "label": "Cancel"
+                                    }
+                                },
+                                "dismissible": false
+                            }
+                        );
+                    }
+                });
+        }
     }
 
     /**

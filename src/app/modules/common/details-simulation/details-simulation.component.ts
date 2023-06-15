@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, View
 import { NavigationExtras, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { TableauAmortissementService } from '../../admin/tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableauAmortissementComponent } from 'app/modules/admin/tableau-amortissement/tableau-amortissement.component';

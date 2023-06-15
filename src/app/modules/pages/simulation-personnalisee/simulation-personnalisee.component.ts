@@ -2,15 +2,15 @@ import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild,
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
-import { AnimateCounterService } from '@fuse/services/animate-counter/animate-counter.service';
+import { AnimateCounterService } from 'app/core/services/animate-counter/animate-counter.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { CategorieSocioProfessionnelle, Nationalite } from 'app/core/referentiel/referentiel.types';
-import { ReferentielService } from 'app/core/referentiel/referentiel.service';
+import { CategorieSocioProfessionnelle, Nationalite } from 'app/core/services/referentiel/referentiel.types';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 import { SimulationPersonnalisee } from './simulation.types';
 import { SimulationPersonaliseeService } from './simulation.service';
-import { SalesForceService } from 'app/core/salesforce/salesforce.service';
-import { resize } from '@fuse/animations/resize';
+import { SalesForceService } from 'app/core/services/salesforce/salesforce.service';
+import { resize } from 'app/core/animations/resize';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 

@@ -11,7 +11,6 @@ export class BienvenueComponent implements OnInit {
 
     user: User;
     @Input() showWelcome: boolean = false;
-    panelOpenState = false;
 
     /**
      * Constructor

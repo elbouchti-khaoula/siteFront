@@ -1,4 +1,4 @@
-import { Piece } from "app/core/upload-document/upload-document.types";
+import { Piece } from "app/core/services/upload-document/upload-document.types";
 
 export interface Reclamation {
 	id?              	: number;

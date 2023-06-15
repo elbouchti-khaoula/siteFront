@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseUtilsService } from '@fuse/services/utils';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
-import { DemandeCredit } from 'app/core/records-in-progress/records-in-progress.types';
+import { RecordsInProgressService } from 'app/core/services/records-in-progress/records-in-progress.service';
+import { DemandeCredit } from 'app/core/services/records-in-progress/records-in-progress.types';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

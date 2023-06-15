@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { RecordsInProgressService } from 'app/core/services/records-in-progress/records-in-progress.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Injectable({

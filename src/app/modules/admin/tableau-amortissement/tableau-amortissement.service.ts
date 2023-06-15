@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Observable, switchMap, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { TableauAmortissement } from './tableau-amortissement.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 

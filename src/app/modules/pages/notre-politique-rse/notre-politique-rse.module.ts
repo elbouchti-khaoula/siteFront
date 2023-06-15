@@ -9,7 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez-nous.module';
 import { DetailParInitiativeComponent } from './detail-par-initiative/detail-par-initiative.component';
 import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
-
+import { SwiperModule } from 'swiper/angular';
+import { Navigation, Pagination } from 'swiper';
 @NgModule({
     declarations: [
         NotrePolitiqueRseComponent,
@@ -22,7 +23,8 @@ import { PageHeaderModule } from 'app/modules/common/page-header/page-header.mod
         MatButtonModule,
         MatIconModule,
         ContactezNousModule,
-        PageHeaderModule
+        PageHeaderModule,
+        SwiperModule
     ]
 })
 export class NotrePolitiqueRseModule
