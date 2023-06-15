@@ -8,7 +8,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 export class PageHeaderComponent {
 
     @Input() headerStyle: string = "";
-    @Input() headerLibelle: string = "";
+    @Input() headerLibelle: string;
     @Input() subHeaderLibelle: string;
 
     /**

@@ -193,7 +193,7 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
           })]
       }
 
-      console.log("+-+-+- piece index", piece, index);
+      // console.log("+-+-+- piece index", piece, index);
 
       if (piece.listFilesArray.length > 0) {
 

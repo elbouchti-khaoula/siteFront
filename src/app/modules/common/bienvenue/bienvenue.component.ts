@@ -1,5 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 
@@ -8,11 +7,11 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     templateUrl: './bienvenue.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class BienvenueComponent implements OnInit, OnDestroy {
+export class BienvenueComponent implements OnInit {
 
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
     user: User;
-    @Input() hide: boolean = false;
+    @Input() showWelcome: boolean = false;
+    panelOpenState = false;
 
     /**
      * Constructor
@@ -32,15 +31,6 @@ export class BienvenueComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this.user = this._authenticationService.connectedUser;
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
 }

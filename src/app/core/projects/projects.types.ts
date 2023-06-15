@@ -76,7 +76,7 @@ export interface SimulationDetaillee {
     fraisDivers                     : number;
     totalFrais?                     : number;
 
-    newSimulation?                  : boolean;
+    estConsultation?                  : boolean;
 }
 
 export interface Project

@@ -34,9 +34,12 @@ export class AuthInterceptor implements HttpInterceptor {
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
 
-        // console.log("+-+-+- newReq.url?.substring(0, 5)", newReq.url?.substring(0, 5), newReq.url?.substring(0, 4), newReq.url?.substring(0, 5) === "/api/" || newReq.url?.substring(0, 4) === "api/");
-        if ((newReq.url?.substring(0, 5) === "/api/" || newReq.url?.substring(0, 4) === "api/") &&  !newReq.url.includes('apimsg/v2') ) {
+        // console.log("+-+-+- newReq.url?.substring(0, 5)", newReq.url, newReq.url?.substring(0, 5), newReq.url?.substring(0, 4), newReq.url?.substring(0, 5) === "/api/" || newReq.url?.substring(0, 4) === "api/");
 
+        if ((newReq.url?.substring(0, 5) === "/api/" || newReq.url?.substring(0, 4) === "api/")
+            && !newReq.url.includes('apimsg/v2')
+            && !newReq.url.includes('api/authentication/getToken')) 
+        {
             let token = this.getToken();
             if (token) {
                 newReq = req.clone({

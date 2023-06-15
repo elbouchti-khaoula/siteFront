@@ -72,7 +72,6 @@ export class UserService
         return this._httpClient.post('api/authentication/users/search', userKeycloak)
             .pipe(
                 map((response: UserKeycloak[]) => {
-                    // console.log("+-+-+- response searchUser : UserKeycloak[]", response);
 
                     return response.map(element => {
                         return this.mapUserKeycloakToUser(element)
@@ -91,7 +90,6 @@ export class UserService
         return this.searchUser({ email: email })
             .pipe(
                 map((response: User[]) => {
-                    // console.log("+-+-+- response searchUserByEmail", response);
 
                     if (response && response.length > 0) {
                         // Set user
@@ -166,7 +164,7 @@ export class UserService
     }
 
     /**
-     * send mail de vérification to user
+     * send mail de vï¿½rification to user
      *
      * @param userKeycloak
      * return userKeycloakId

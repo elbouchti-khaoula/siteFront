@@ -76,7 +76,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     //     "objetFinancement": "ACQUISITION",
     //     "nomPromoteur": "KETTANI IMMO",
     //     "typeTaux": "Valeur Fixe",
-    //     "newSimulation": false,
+    //     "estConsultation": true,
     //     "id": 675141,
     //     "montant": "2 500 000.00",
     //     "montantProposition": "2 000 000.00",
@@ -296,8 +296,6 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     this.pieces.forEach((piece, index) => {
       piece = {
         id_projet: this.simulationResultat.id,
-        // id_dossier: 0,
-        // id_Tiers: 0,
         libelleDocument: piece.libelleDocument,
         listFilesArray:
           [...piece.listFilesArray.map(e => {
@@ -310,7 +308,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           })]
       }
 
-      console.log("+-+-+- piece index", piece, index);
+      // console.log("+-+-+- piece index", piece, index);
 
       if (piece.listFilesArray.length > 0) {
 

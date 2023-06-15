@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { BienvenueComponent } from './bienvenue.component';
 
 @NgModule({
@@ -9,7 +10,8 @@ import { BienvenueComponent } from './bienvenue.component';
     ],
     imports     : [
         SharedModule,
-        MatIconModule
+        MatIconModule,
+        MatExpansionModule
     ],
     exports     : [
         BienvenueComponent

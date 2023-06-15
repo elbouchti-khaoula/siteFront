@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -16,16 +16,6 @@ export class Landing3Component implements OnInit {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     @ViewChild('simulationId', { read: ElementRef }) public simulationId: ElementRef<any>;
 
-    // // Declare height and width variables
-    // scrHeight: any;
-    // scrWidth: any;
-    // @HostListener('window:resize', ['$event'])
-    // getScreenSize(event?) {
-    //     this.scrHeight = window.innerHeight;
-    //     this.scrWidth = window.innerWidth;
-    //     console.log("+-+-+- this.scrHeight, this.scrWidth", this.scrHeight, this.scrWidth);
-    // }
-
     /**
      * Constructor
      */
@@ -33,7 +23,6 @@ export class Landing3Component implements OnInit {
         private _fuseMediaWatcherService: FuseMediaWatcherService
     )
     {
-        // this.getScreenSize();
     }
 
     // -----------------------------------------------------------------------------------------------------

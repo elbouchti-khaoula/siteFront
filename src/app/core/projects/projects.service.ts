@@ -114,7 +114,7 @@ export class SimulationDetailleeService {
             .pipe(
                 map((response: Project[]) => {
 
-                    let result = this.convertToSimulation(response[0]);
+                    let result = this.convertToSimulation(response[0], false);
                     this._simulation.next(result);
                     return result;
                 })
@@ -143,19 +143,19 @@ export class SimulationDetailleeService {
      *
      * @param projectId
      */
-    getProjectById(projectId: number): Observable<SimulationDetaillee> {
+    // getProjectById(projectId: number): Observable<SimulationDetaillee> {
 
-        return this._httpClient.get(`api/projects/${projectId}`)
-            .pipe(
-                map((response: Project[]) => {
+    //     return this._httpClient.get(`api/projects/${projectId}`)
+    //         .pipe(
+    //             map((response: Project[]) => {
 
-                    let convert = this.convertToSimulation(response[0]);
-                    this._simulation.next(convert);
-                    return convert;
+    //                 let convert = this.convertToSimulation(response[0], true);
+    //                 this._simulation.next(convert);
+    //                 return convert;
 
-                })
-            );
-    }
+    //             })
+    //         );
+    // }
 
     /**
      * récupérer information du tiers d'une simulation
@@ -188,7 +188,6 @@ export class SimulationDetailleeService {
                         objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
                         nomPromoteur: response[0].nomPromoteur,
                         typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
-                        newSimulation: false,
                         ...simulation
                     };
 
@@ -210,7 +209,7 @@ export class SimulationDetailleeService {
                 map((response: Project[]) => {
 
                     if (response && response.length > 0) {
-                        let result = this.convertToSimulations(response);
+                        let result = this.convertToSimulations(response, true);
                         this._simulations.next(result);
                         return result;
                     }
@@ -286,8 +285,6 @@ export class SimulationDetailleeService {
                     response.sort((a, b) => a.libelle.localeCompare(b.libelle));
 
                     this._employeurs.next(response);
-
-                    // console.log("+-+-+- EmployeurConventionne[]", response);
 
                     return response;
                 })
@@ -371,7 +368,7 @@ export class SimulationDetailleeService {
             mensualite: this._fuseUtilsService.numberFormat(echeanceGlobal, 2, '.', ' '),
             montant: this._fuseUtilsService.numberFormat(simulation.montant, 2, '.', ' '),
             montantProposition: this._fuseUtilsService.numberFormat(simulation.montantProposition, 2, '.', ' '),
-            tauxEffectifGlobal: this._fuseUtilsService.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
+            tauxEffectifGlobalPondere: this._fuseUtilsService.numberFormat(simulation.tauxEffectifGlobalPondere, 3, '.', ' '),
             totalFrais: this._fuseUtilsService.numberFormat(simulation.totalFrais, 2, '.', ' '),
             droitsEnregistrement: this._fuseUtilsService.numberFormat(simulation.droitsEnregistrement, 2, '.', ' '),
             conservationFonciere: this._fuseUtilsService.numberFormat(simulation.conservationFonciere, 2, '.', ' '),
@@ -385,7 +382,7 @@ export class SimulationDetailleeService {
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------
-    private convertToSimulation(response: Project): SimulationDetaillee {
+    private convertToSimulation(response: Project, estConsultation: boolean): SimulationDetaillee {
         return {
             id: response.id,
             montant: response.montant,
@@ -402,11 +399,12 @@ export class SimulationDetailleeService {
             conservationFonciere: response.fraisAnnexes.conservationFonciere,
             honorairesNotaire: response.fraisAnnexes.honorairesNotaire,
             fraisDivers: response.fraisAnnexes.fraisDossier,
-            totalFrais: response.fraisAnnexes.coutTotal
+            totalFrais: response.fraisAnnexes.coutTotal,
+            estConsultation: estConsultation
         }
     }
 
-    private convertToSimulations(response: Project[]): SimulationDetaillee[] {
+    private convertToSimulations(response: Project[], estConsultation: boolean): SimulationDetaillee[] {
         return response.map(element => {
             return {
                 id: element.id,
@@ -424,7 +422,8 @@ export class SimulationDetailleeService {
                 conservationFonciere: element.fraisAnnexes.conservationFonciere,
                 honorairesNotaire: element.fraisAnnexes.honorairesNotaire,
                 fraisDivers: element.fraisAnnexes.fraisDossier,
-                totalFrais: element.fraisAnnexes.coutTotal
+                totalFrais: element.fraisAnnexes.coutTotal,
+                estConsultation: estConsultation
             }
         })
     }
