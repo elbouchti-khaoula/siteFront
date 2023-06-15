@@ -160,7 +160,18 @@ export const appRoutes: Route[] = [
             initialTokenResolver: InitialGenericTokenResolver
         },
         children: [
-
+            {
+               path: 'landing1',
+               loadChildren: () => import('app/modules/pages/landing1/landing1.module').then(m => m.Landing1Module),
+            },
+            {
+                path: 'landing2',
+                loadChildren: () => import('app/modules/pages/landing2/landing2.module').then(m => m.Landing2Module),
+            },
+            {
+                path: 'landing3',
+                loadChildren: () => import('app/modules/pages/landing3/landing3.module').then(m => m.Landing3Module),
+            },
             {
                 path: 'darrahetbal',
                 loadChildren: () => import('app/modules/pages/darrahetbal/darrahetbal.module').then(m => m.DarrahetbalModule),
