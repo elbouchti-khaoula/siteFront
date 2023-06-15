@@ -22,8 +22,6 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
     imageSrc2 = 'assets/images/pages/nous-connaitre/Icon 2.svg';
     imageSrc3 = 'assets/images/pages/nous-connaitre/Icon 3.svg';
-    
-    panelOpenState = false;
 
     isXsScreen: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();

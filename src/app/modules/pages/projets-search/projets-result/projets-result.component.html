@@ -112,42 +112,42 @@
                                             </div>
                                             
                                             <div class="flex flex-col justify-between">
-                                                <div class="grid grid-cols-3 gap-x-3">
+                                                <div class="md:hidden w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                    à partir de <strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
+                                                </div>
 
+                                                <div class="grid grid-cols-3 gap-x-3 max-md:mt-3">
                                                     <!-- projet description -->
-                                                    <div class="col-span-2 flex flex-col">
-                                                        <div class="w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                                                            à partir de 
-                                                            <strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
+                                                    <div class="col-span-2 flex flex-col space-y-0.5">
+                                                        <div class="hidden md:inline-flex mb-3 w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                            à partir de&nbsp;<strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
                                                         </div>
-                                                        <div class="flex flex-col space-y-0.5 mt-3 md:mt-5">
-                                                            <div class="font-extrabold text-xl uppercase text-primary">
-                                                                {{projet.nom}}
-                                                                <mat-icon *ngIf="projet.estFavoris"
-                                                                    class="icon-size-5 text-red-500"
-                                                                    [svgIcon]="'heroicons_solid:heart'">
-                                                                </mat-icon>
-                                                            </div>
-                                                            <div class="-ml-1 flex items-center text-center">
-                                                                <mat-icon class="icon-size-5 text-primary-700"
-                                                                    [svgIcon]="'heroicons_outline:location-marker'">
-                                                                </mat-icon>
-                                                                <span class="ml-1 text-md">{{projet.libelleVille}}</span>
-                                                            </div>
-                                                            <span class="font-medium text-second-600">{{projet.statut}}</span>
-                                                            <span class="font-medium">{{projet.libelleTypeBien}}</span>
+                                                        <div class="font-extrabold text-xl uppercase text-primary">
+                                                            {{projet.nom}}
+                                                            <mat-icon *ngIf="projet.estFavoris"
+                                                                class="icon-size-5 text-red-500"
+                                                                [svgIcon]="'heroicons_solid:heart'">
+                                                            </mat-icon>
                                                         </div>
+                                                        <div class="-ml-1 flex items-center text-center">
+                                                            <mat-icon class="icon-size-5 text-primary-700"
+                                                                [svgIcon]="'heroicons_outline:location-marker'">
+                                                            </mat-icon>
+                                                            <span class="ml-1 text-md">{{projet.libelleVille}}</span>
+                                                        </div>
+                                                        <span class="font-medium text-second-600">{{projet.statut}}</span>
+                                                        <span class="font-medium">{{projet.libelleTypeBien}}</span>
                                                     </div>
 
                                                     <!-- logo promoteur -->
-                                                    <div class="w-full ml-auto h-36 sm:h-40">
+                                                    <div class="w-full ml-auto mt-1">
                                                         <ng-container *ngIf="projet.promoter.logoPath">
                                                             <figure class="flex items-center justify-center h-32 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
                                                                 <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
                                                             </figure>
                                                         </ng-container>
                                                         <ng-container *ngIf="!projet.promoter.logoPath">
-                                                            <span class="flex items-center justify-center h-32 h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                            <span class="flex items-center justify-center h-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                                 No Logo
                                                             </span>
                                                         </ng-container>
@@ -158,15 +158,15 @@
                                                     <div class="prose prose-sm overflow-hidden"
                                                         [innerHTML]="projet.descriptionSmall"></div>
 
-                                                    <div class="flex flex-row w-full mt-3">
-                                                        <button class="flex-auto"
+                                                    <div class="flex justify-center mt-3">
+                                                        <button class="px-5"
                                                             mat-flat-button 
                                                             [color]="'primary'"
                                                             [routerLink]="['/projets-search/projet-details']"
                                                             [queryParams]="{id: projet.id}">
                                                             En savoir plus
                                                         </button>
-                                                        <button class="ml-2 md:ml-3 flex-auto"
+                                                        <button class="ml-2 md:ml-3 px-5"
                                                             mat-stroked-button 
                                                             [color]="'primary'"
                                                             (click)="openContact(projet)">

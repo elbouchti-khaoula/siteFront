@@ -16,7 +16,7 @@
 
         <fuse-card class="flex flex-col px-6 pb-8 pt-3 ring-1 ring-primary bg-card rounded-xl shadow-md overflow-visible">
 
-            <div *ngIf="simulationResultat?.newSimulation"
+            <div *ngIf="!simulationResultat?.estConsultation"
                 class="absolute inset-x-0 -top-4 flex items-center justify-center">
                 <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
                     Votre simulation personnalisée
@@ -367,7 +367,7 @@
                     (click)="navigateToDemandeCredit()">
                     Demander mon crédit
                 </button>
-                <button *ngIf="simulationResultat?.newSimulation" class="md:ml-2 bg-gray-200"
+                <button *ngIf="!simulationResultat?.estConsultation" class="md:ml-2 bg-gray-200"
                     mat-stroked-button type="button" [routerLink]="['/espace-connecte/mes-simulations']">
                     Enregistrer ma simulation
                 </button>

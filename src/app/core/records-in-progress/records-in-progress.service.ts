@@ -92,7 +92,6 @@ export class RecordsInProgressService {
 
         this._httpClient.post('api/records-in-progress/document', { origin: "SITE", dossier: dossierId, type: code }, { responseType: 'blob' })
             .subscribe((blob: any) => {
-                // console.log("+-+- blob", blob);
                 if (blob) {
                     saveAs(blob, fileName);
                 }

@@ -15,13 +15,13 @@
     </div>
 
     <!-- Main Form -->
-    <div class="px-10 py-6 overflow-y-auto">
+    <div class="overflow-y-auto">
 
         <!-- Opérations SAV référentiel list -->
         <ng-container *ngIf="operationsSAVRef && operationsSAVRef.length > 0; else noOperationsSAVRef">
             <div class="relative w-full md:w-100 bg-gray-200 px-5 md:px-10 pt-8 pb-6">
 
-                <img class="absolute inset-0 object-cover h-full opacity-20" src="assets/images/admin/mes-credits/sav.jpg">
+                <img class="absolute inset-0 object-cover h-full opacity-10" src="assets/images/admin/mes-credits/sav.jpg">
 
                 <!-- titre -->
                 <div class="relative z-20 flex items-center">
@@ -34,11 +34,14 @@
 
                 <div class="relative z-20 mx-auto max-w-100 grid grid-cols-1 md:grid-cols-2 md:gap-x-5 gap-y-3 mt-7">
                     <ng-container *ngFor="let operation of operationsSAVRef; trackBy: trackByFn">
-                        <div class="group px-5 py-3 flex flex-col items-center bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
-                            (click)="navigateCreerDemandeSAV(operation)">
-                            <mat-icon class="icon-size-8 mb-3 text-white group-hover:text-black" [svgIcon]="'heroicons_outline:support'">
+                        <div class="group h-30 px-5 pt-5 pb-3 flex flex-col items-center justify-between bg-black/[.7] rounded-2xl cursor-pointer transition-transform duration-500 ease-in-out hover:scale-[1.07] hover:bg-second-500"
+                            (click)="navigateCreerDemandeSAV(operation);matDialogRef.close()">
+                            <mat-icon class="icon-size-8 text-white group-hover:text-black"
+                                [svgIcon]="'mat_outline:build'">
                             </mat-icon>
-                            <span class="font-semibold text-center text-white group-hover:text-black">{{operation.nomOperation}}</span>
+                            <div class="h-10 flex flex-col">
+                                <span class="font-semibold text-center text-white group-hover:text-black">{{operation.nomOperation}}</span>
+                            </div>
                         </div>
                     </ng-container>
                 </div>

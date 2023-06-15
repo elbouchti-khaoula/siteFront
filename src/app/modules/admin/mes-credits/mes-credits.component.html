@@ -1,7 +1,11 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <page-header-connecte [headerStyle]="'mes-credits-bg-header'" [headerLibelle]="'Consultation mes crédits'"></page-header-connecte>
+    <!-- [headerLibelle]="'Consultation mes crédits'" -->
+    <page-header-connecte
+        [headerStyle]="'mes-credits-bg-header'"
+        [showUser]="'true'">
+    </page-header-connecte>
 
     <div class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20">
 
@@ -9,10 +13,10 @@
 
             <div class="flex flex-col">
                 <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
-                    Mes crédits en cours
+                    Mes crédits
                 </span>
                 <div class="max-w-xl mt-2 md:text-xl text-secondary">
-                    Vous avez ({{creditsEnCours.length}}) crédits en cours
+                    Vous avez ({{creditsEnCours.length}}) crédits
                 </div>
             </div>
             
@@ -135,7 +139,7 @@
                             <!-- right -->
                             <div class="relative w-full md:w-100 bg-gray-200 px-5 md:px-10 pt-8 pb-6">
 
-                                <img class="absolute inset-0 object-cover h-full opacity-20" src="assets/images/admin/mes-credits/sav.jpg">
+                                <img class="absolute inset-0 object-cover h-full opacity-10" src="assets/images/admin/mes-credits/sav.jpg">
 
                                 <!-- titre -->
                                 <div class="relative z-20 flex items-center">
@@ -180,7 +184,7 @@
                 <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent min-h-60 border border border-gray-200 shadow-sm rounded-md mt-10">
                     <mat-icon class="icon-size-20 md:icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-secondary">
-                        Il n'y a pas de crédit en cours!
+                        Il n'y a pas de crédit!
                     </div>
                 </div>
             </ng-template>

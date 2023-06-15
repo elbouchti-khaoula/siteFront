@@ -1,10 +1,11 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
+    <!-- [headerLibelle]="'Simulation détaillée'" -->
     <page-header-connecte
         [headerStyle]="'simul-det-bg-header'"
-        [headerLibelle]="'Simulation détaillée'"
-        [hideSmallScreen]="'true'">
+        [hideSmallScreen]="'true'"
+        [showUser]="'true'">
     </page-header-connecte>
 
     <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
@@ -55,7 +56,7 @@
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
 
-                    <div class="flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
+                    <div class="mx-auto w-fit flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
                         <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
                         </mat-icon>
                         <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
@@ -131,7 +132,6 @@
                                         Téléphone obligatoire
                                     </mat-error>
                                 </mat-form-field>
-
 
                                 <!-- Email -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
@@ -347,7 +347,7 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Mensualité de vos crédits en cours -->
+                                <!-- Mensualité de vos crédits -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'creditsEnCours'"
@@ -357,7 +357,7 @@
                                     <span matSuffix>MAD</span>
                                     <mat-error
                                         *ngIf="simulationStepperForm.get('step2').get('creditsEnCours').hasError('required')">
-                                        Mensualités de vos crédits en cours obligatoire
+                                        Le total des mensualités est obligatoire
                                     </mat-error>
                                 </mat-form-field>
                             </div>
