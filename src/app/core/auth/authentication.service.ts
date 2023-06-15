@@ -173,6 +173,23 @@ export class AuthenticationService {
         return of(true);
     }
 
+
+    checkTokenGeneric(): boolean {
+
+        // Check the access token availability
+        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '') {
+            return false;
+        }
+
+        // Check the access token expire date
+        // if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
+        //     return of(false);
+        // }
+
+        // If the access token exists and it didn't expire, sign in using it
+        // return this.signInUsingToken();
+        return true;
+    }
     /**
      * Check the authentication status of access token admin
      */
