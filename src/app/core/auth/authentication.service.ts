@@ -177,7 +177,7 @@ export class AuthenticationService {
     checkTokenGeneric(): boolean {
 
         // Check the access token availability
-        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '') {
+        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '' || this.accessTokenGeneric === 'undefined' ) {
             return false;
         }
 
