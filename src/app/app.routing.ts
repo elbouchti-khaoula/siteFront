@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
-import {InitialDataResolver, InitialGenericTokenResolver, NavigationResolver} from 'app/app.resolvers';
+import { InitialDataResolver, NavigationResolver } from 'app/app.resolvers';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -10,31 +10,7 @@ import {InitialDataResolver, InitialGenericTokenResolver, NavigationResolver} fr
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/landing'
-    { path: '',
-
-
-        pathMatch: 'full', redirectTo: 'landing'
-
-
-    },
-//page entree landing de l'application=>ilfait appel services repositries
-    //TODO :pourquoi l'appel de getOperationsSAVRef fait dans ce resolver
-    {
-        path: '',
-        component: LayoutComponent,
-        resolve: {
-            navigation: NavigationResolver,
-            initialData: InitialDataResolver,
-        },
-        children: [
-            {
-                path: 'landing',
-                loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule)
-            }
-        ]
-    },
-//a mettre ici les urls qui besion le token generic en entree de la page
-
+    { path: '', pathMatch: 'full', redirectTo: 'landing' },
 
     // Redirect signed in user to the '/landing'
     //
@@ -91,14 +67,15 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // Admin routes espace connecté geérer par AuthGuard
+    // Admin routes
     {
         path: '',
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
-            navigation: NavigationResolver
+            navigation: NavigationResolver,
+            initialData: InitialDataResolver,
         },
         children: [
 
@@ -157,12 +134,16 @@ export const appRoutes: Route[] = [
         component: LayoutComponent,
         resolve: {
             navigation: NavigationResolver,
-            initialTokenResolver: InitialGenericTokenResolver
+            initialData: InitialDataResolver,
         },
         children: [
             {
-               path: 'landing1',
-               loadChildren: () => import('app/modules/pages/landing1/landing1.module').then(m => m.Landing1Module),
+                path: 'landing',
+                loadChildren: () => import('app/modules/pages/landing/landing.module').then(m => m.LandingModule),
+            },
+            {
+                path: 'landing1',
+                loadChildren: () => import('app/modules/pages/landing1/landing1.module').then(m => m.Landing1Module),
             },
             {
                 path: 'landing2',
@@ -185,6 +166,11 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
             },
             {
+                path: 'nous-connaitre',
+                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
+            },
+
+            {
                 path: 'nos-offres-miftah',
                 loadChildren: () => import('app/modules/pages/nos-offres-miftah/nos-offres-miftah.module').then(m => m.NosOffresMiftahModule),
             },
@@ -192,6 +178,16 @@ export const appRoutes: Route[] = [
             {
                 path: 'nos-conventions',
                 loadChildren: () => import('app/modules/pages/nos-conventions/nos-conventions.module').then(m => m.NosConventionsModule),
+            },
+
+            {
+                path: 'nos-etats-financiers',
+                loadChildren: () => import('app/modules/pages/nos-etats-financiers/nos-etats-financiers.module').then(m => m.NosEtatsFinanciersModule),
+            },
+
+            {
+                path: 'nos-lettres-wi',
+                loadChildren: () => import('app/modules/pages/nos-lettres-wi/nos-lettres-wi.module').then(m => m.NosLettresWiModule),
             },
 
             {
@@ -233,28 +229,15 @@ export const appRoutes: Route[] = [
                 path: 'agences',
                 loadChildren: () => import('app/modules/pages/agences/agences.module').then(m => m.AgencesModule),
             },
+            {
+                path: 'reclamation',
+                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
+            },
 
             // Maintenance
             {
                 path: 'maintenance',
                 loadChildren: () => import('app/modules/pages/maintenance/maintenance.module').then(m => m.MaintenanceModule),
-            },
-            {
-                path: 'nos-etats-financiers',
-                loadChildren: () => import('app/modules/pages/nos-etats-financiers/nos-etats-financiers.module').then(m => m.NosEtatsFinanciersModule),
-            },
-
-            {
-                path: 'nos-lettres-wi',
-                loadChildren: () => import('app/modules/pages/nos-lettres-wi/nos-lettres-wi.module').then(m => m.NosLettresWiModule),
-            },
-            {
-                path: 'reclamation',
-                loadChildren: () => import('app/modules/pages/reclamation/reclamation.module').then(m => m.ReclamationModule),
-            },
-            {
-                path: 'nous-connaitre',
-                loadChildren: () => import('app/modules/pages/nous-connaitre/nous-connaite.module').then(m => m.NousConnaitreModule),
             },
             // 404 & 500 & Catch all
             {
