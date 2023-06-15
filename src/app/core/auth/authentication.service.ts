@@ -173,6 +173,23 @@ export class AuthenticationService {
         return of(true);
     }
 
+
+    checkTokenGeneric(): boolean {
+
+        // Check the access token availability
+        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '' || this.accessTokenGeneric === 'undefined' ) {
+            return false;
+        }
+
+        // Check the access token expire date
+        // if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
+        //     return of(false);
+        // }
+
+        // If the access token exists and it didn't expire, sign in using it
+        // return this.signInUsingToken();
+        return true;
+    }
     /**
      * Check the authentication status of access token admin
      */
@@ -225,6 +242,21 @@ export class AuthenticationService {
                 return of(response.accesToken);
             })
         );
+    }
+    /**
+     * Get access token generic from api with promise call
+     *
+     */
+    // eslint-disable-next-line @typescript-eslint/member-ordering
+    getSyncAccessTokenGeneric(): Promise<any> {
+
+        // @ts-ignore
+        return this._httpClient.post('api/authentication/getToken',
+            {
+                username: 'siteweb',
+                password: 'w@afa2022'
+            }
+        ).toPromise();
     }
 
     /**

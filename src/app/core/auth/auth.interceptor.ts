@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
      * @param next
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
         // Clone the request object
         let newReq = req.clone();
 
@@ -46,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     headers: req.headers.set('Authorization', 'Bearer ' + token)
                 });
             }
-            // console.log("+-+-+- newReq", newReq);
+            console.log("+-+-+- newReq", newReq);
         }
 
         // Response
