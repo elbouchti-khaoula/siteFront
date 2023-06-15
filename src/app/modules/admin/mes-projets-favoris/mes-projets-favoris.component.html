@@ -1,7 +1,11 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <page-header-connecte [headerStyle]="'mes-projets-bg-header'" [headerLibelle]="'Consultation mes projets favoris'"></page-header-connecte>
+    <!-- [headerLibelle]="'Consultation mes projets favoris'" -->
+    <page-header-connecte
+        [headerStyle]="'mes-projets-bg-header'"
+        [showUser]="'true'">
+    </page-header-connecte>
 
     <div class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20">
 
@@ -44,33 +48,31 @@
                                 </ng-container>
                             </div>
 
-                            <div class="flex flex-col items-center mt-5">
+                            <div class="flex flex-col mt-5 px-3 sm:px-6">
 
-                                <div class="grid grid-cols-3 gap-x-3 px-3 sm:px-6">
+                                <div class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                    à partir de&nbsp;<strong>{{projetFav.realEstateProject.prixMinStr}} {{projetFav.realEstateProject.devise}}</strong>
+                                </div>
 
+                                <div class="grid grid-cols-3 gap-x-3 mt-3">
+                                    
                                     <!-- projet description -->
-                                    <div class="col-span-2 flex flex-col">
-                                        <div class="w-fit py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                                            à partir de 
-                                            <strong>{{projetFav.realEstateProject.prixMinStr}} {{projetFav.realEstateProject.devise}}</strong>
+                                    <div class="col-span-2 flex flex-col space-y-0.5">
+                                        <span class="font-extrabold text-xl uppercase text-primary">
+                                            {{projetFav.realEstateProject.nom}}
+                                        </span>
+                                        <div class="-ml-1 flex items-center text-center">
+                                            <mat-icon class="icon-size-5 text-primary-700"
+                                                [svgIcon]="'heroicons_outline:location-marker'">
+                                            </mat-icon>
+                                            <span class="ml-1 text-md">{{projetFav.realEstateProject.libelleVille}}</span>
                                         </div>
-                                        <div class="flex flex-col space-y-0.5 mt-3">
-                                            <span class="font-extrabold text-xl uppercase text-primary">
-                                                {{projetFav.realEstateProject.nom}}
-                                            </span>
-                                            <div class="-ml-1 flex items-center text-center">
-                                                <mat-icon class="icon-size-5 text-primary-700"
-                                                    [svgIcon]="'heroicons_outline:location-marker'">
-                                                </mat-icon>
-                                                <span class="ml-1 text-md">{{projetFav.realEstateProject.libelleVille}}</span>
-                                            </div>
-                                            <span class="font-medium text-second-600">{{projetFav.realEstateProject.statut}}</span>
-                                            <span class="font-medium">{{projetFav.realEstateProject.libelleTypeBien}}</span>
-                                        </div>
+                                        <span class="font-medium text-second-600">{{projetFav.realEstateProject.statut}}</span>
+                                        <span class="font-medium">{{projetFav.realEstateProject.libelleTypeBien}}</span>
                                     </div>
 
                                     <!-- logo promoteur -->
-                                    <div class="w-full ml-auto h-28 md:h-32">
+                                    <div class="w-full ml-auto h-28 md:h-32 mt-1">
                                         <ng-container *ngIf="projetFav.realEstateProject.promoter.logoPath">
                                             <figure class="flex items-center justify-center h-24 md:h-28 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
                                                 <img [src]="projetFav.realEstateProject.promoter.logoPath" class="object-cover w-full" />
@@ -85,7 +87,7 @@
                                 </div>
 
                                 <!-- Actions -->
-                                <div class="flex justify-center border-t pt-3 px-5 mt-3">
+                                <div class="flex justify-center border-t pt-3 mt-3">
                                     <button class="px-5"
                                         mat-flat-button 
                                         [color]="'primary'"

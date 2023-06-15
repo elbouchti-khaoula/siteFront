@@ -5,14 +5,7 @@ import { nosLettresWiComponentRoutes } from './nos-lettres-wi.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ContactezNousModule } from '../landing/contactez-nous/contactez-nous.module';
-
-
-
-'app/modules/common/parcours-small/parcours-small.module';
-
-
-
+import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez-nous.module';
 
 @NgModule({
     declarations: [

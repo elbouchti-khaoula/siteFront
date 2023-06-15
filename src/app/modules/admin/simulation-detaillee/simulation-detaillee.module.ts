@@ -62,12 +62,12 @@ import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connect
             provide : MAT_DATE_FORMATS,
             useValue: {
                 parse  : {
-                    dateInput: moment.ISO_8601
+                    dateInput: 'DD/MM/YYYY'
                 },
                 display: {
-                    dateInput         : 'll',
-                    monthYearLabel    : 'MMM YYYY',
-                    dateA11yLabel     : 'LL',
+                    dateInput: 'DD/MM/YYYY',
+                    monthYearLabel: 'MMM YYYY',
+                    dateA11yLabel: 'LL',
                     monthYearA11yLabel: 'MMMM YYYY'
                 }
             }

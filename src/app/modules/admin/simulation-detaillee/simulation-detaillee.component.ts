@@ -10,7 +10,6 @@ import { SimulationDetailleeService } from 'app/core/projects/projects.service';
 import * as moment from 'moment';
 import { resize } from '@fuse/animations/resize';
 import { DetailsSimulationComponent } from 'app/modules/common/details-simulation/details-simulation.component';
-import { BienvenueComponent } from 'app/modules/common/bienvenue/bienvenue.component';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
@@ -148,6 +147,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
+    // this.isVisible = true;
 
     this._simulationService.getEmployeursConventionnes().pipe(
       takeUntil(this._unsubscribeAll))
@@ -180,7 +180,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         filter(value => value && value.length >= this.minLength)
       ).subscribe((value) => {
         this.getEmployeurs(value).subscribe((employeurs) => {
-          console.log(employeurs);
           this.employeurs = employeurs;
 
           this.resultEmployeurs = [...employeurs];
@@ -202,7 +201,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         filter(value => value && value.length >= this.minLength)
       ).subscribe((value) => {
         this.getPromoteurs(value).subscribe((promoteurs) => {
-          console.log(promoteurs);
           this.promoteurs = promoteurs;
 
           this.resultPromoteurs = [...promoteurs];
@@ -210,7 +208,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.search.next(this.resultPromoteurs);
         });
       });
-    // this.isVisible = true;
 
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
@@ -331,9 +328,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     }
 
     if (this.queryParams?.dateNaissance) {
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(this.queryParams?.dateNaissance);
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(this.queryParams?.dateNaissance));
     } else if (currentUser?.dateNaissance) {
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(currentUser?.dateNaissance);
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(currentUser?.dateNaissance));
     }
   }
 
@@ -353,11 +350,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   getEmployeurs(search: string = ''): Observable<EmployeurConventionne[]> {
     return this.employeurs$.pipe(
       map((response) => {
-        console.log(response);
         let employeurs = response;
         if (search) {
           employeurs = employeurs.filter(employeur => employeur.libelle && employeur.libelle.toLowerCase().includes(search.toLowerCase()));
-
         }
         return employeurs;
       })
@@ -367,11 +362,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   getPromoteurs(search: string = ''): Observable<PromoteurConventionne[]> {
     return this.promoteurs$.pipe(
       map((response) => {
-        console.log(response);
         let promoteurs = response;
         if (search) {
           promoteurs = promoteurs.filter(promoteur => promoteur.libelle && promoteur.libelle.toLowerCase().includes(search.toLowerCase()));
-
         }
         return promoteurs;
       })
@@ -471,7 +464,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
           statutProjet: this.selectedStatutProjetLabel,
           typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
-          newSimulation: true,
+          estConsultation: false,
           ...this._simulationService.convertSimulationToString(simulation)
         };
 
@@ -479,6 +472,10 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.animationState = 'smallDesktop';
         }
         this.isVisible = true;
+
+        // setTimeout(() => {
+        //   this.detailsSimulation.setSimulation(this.simulationResultat);
+        // }, 200);
 
         if (this.isScreenSmall) {
           setTimeout(() => {
@@ -539,7 +536,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
           statutProjet: this.selectedStatutProjetLabel,
           typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
-          newSimulation: true,
+          estConsultation: false,
           conservationFonciere:simulation.conservationFonciere,
           dossiers: dossiers ,
           droitsEnregistrement:simulation.droitsEnregistrement,

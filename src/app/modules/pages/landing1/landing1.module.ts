@@ -6,26 +6,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
 
-import { LandingComponent } from './landing.component';
-import { landingRoutes } from './landing.routing';
+import { Landing1Component } from './landing1.component';
+import { landing1Routes } from './landing1.routing';
 
 import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
-import { VosAvantagesModule } from './nos-avantages/vos-avantages.module';
-import { RechercheVilleModule } from './recherche-ville/recherche-ville.module';
 import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
-import { NousChoisirModule } from './nous-choisir/nous-choisir.module';
-import { CinqEtapesModule } from './cinq-etapes/cinq-etapes.module';
-import { ActualitesModule } from './actualites/actualites.module';
 import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez-nous.module';
 import { ParcoursModule } from 'app/modules/common/parcours/parcours.module';
 import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-small.module';
+import { VosAvantagesModule } from '../landing/nos-avantages/vos-avantages.module';
+import { RechercheVilleModule } from '../landing/recherche-ville/recherche-ville.module';
+import { NousChoisirModule } from '../landing/nous-choisir/nous-choisir.module';
+import { CinqEtapesModule } from '../landing/cinq-etapes/cinq-etapes.module';
+import { ActualitesModule } from '../landing/actualites/actualites.module';
 
 @NgModule({
     declarations: [
-        LandingComponent
+        Landing1Component
     ],
     imports     : [
-        RouterModule.forChild(landingRoutes),
+        RouterModule.forChild(landing1Routes),
         SharedModule,
         MatButtonModule,
         MatIconModule,
@@ -44,6 +44,6 @@ import { ParcoursSmallModule } from 'app/modules/common/parcours-small/parcours-
         ContactezNousModule
     ]
 })
-export class LandingModule
+export class Landing1Module
 {
 }

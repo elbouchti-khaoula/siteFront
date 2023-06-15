@@ -61,6 +61,14 @@
 
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+            <a href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne"
+                target="blank"
+                class="hidden md:flex flex-row items-center rounded-3xl bg-primary text-on-primary px-5 py-2.5">
+                <img class="h-5 w-fit" src="assets/images/logo/logo-awb.jpg">
+                <span class="ml-3">
+                    Ouvrir un compte
+                </span>
+            </a>
             <button class="hidden md:block md:ml-3 bg-gray-200 bg-opacity-70" 
                 mat-stroked-button
                 [routerLink]="'/nous-contacter'">
@@ -96,19 +104,21 @@
                 Otherwise, layout changes won't be registered and the view won't be updated! -->
             <router-outlet *ngIf="true"></router-outlet>
 
+            <!-- Footer -->
             <div class="relative hidden md:flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-gray-900 dark:bg-transparent print:hidden">
                 <span class="font-medium text-secondary">Wafa Immobilier &copy; {{currentYear}}</span>
             </div>
         </div>
     </div>
     
+    <!-- Content old -->
     <!-- <div class="flex flex-col flex-auto max-md:mb-12"> -->
         <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
              Otherwise, layout changes won't be registered and the view won't be updated! -->
         <!-- <router-outlet *ngIf="true"></router-outlet>
     </div> -->
 
-    <!-- Footer -->
+    <!-- Footer old -->
     <!-- <div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
         <span class="font-medium text-secondary">Wafa Immobilier &copy; {{currentYear}} - Tous droits réservés</span>
     </div> -->
