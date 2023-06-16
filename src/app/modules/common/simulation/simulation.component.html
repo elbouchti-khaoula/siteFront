@@ -1,14 +1,15 @@
 <!-- Je simule mon crédit -->
-<div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary"
-    [ngClass]="{'md:text-4xl': isFull}">
+<!-- [ngClass]="{'md:text-4xl': isFull}" -->
+<div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary">
     Je simule mon crédit
 </div>
 
+<!-- md:mt-16 md:gap-6': isFull -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 w-full mt-7 items-center"
     [ngClass]="{'md:grid-cols-2': !isFull, 
-                'md:mt-16 md:grid-cols-4 md:gap-6': isFull}">
+                'md:grid-cols-5': isFull}">
     <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
-        [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
+        [ngClass]="{'sm:mt-3': isFull}">
         Montant du crédit (MAD)
     </div>
     <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
@@ -37,7 +38,7 @@
     </div>
 
     <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
-        [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
+        [ngClass]="{'sm:mt-3': isFull}">
         Durée (ans)
     </div>
     <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
@@ -66,7 +67,7 @@
     </div>
 
     <div class="text-sm md:text-base font-bold uppercase col-span-1 md:col-span-2"
-        [ngClass]="{'sm:mt-3 md:text-lg': isFull}">
+        [ngClass]="{'sm:mt-3': isFull}">
         Taux du crédit (%)
     </div>
     <div class="relative flex flex-row items-center col-span-1 sm:col-span-2 max-sm:mt-3"
@@ -95,8 +96,8 @@
     </div>
 </div>
 
-<div class="flex flex-col w-full mt-7 p-3 pt-6 ring-1 ring-second-500 bg-second-100 rounded-md"
-    [ngClass]="{'hidden': isFull}">
+<!-- [ngClass]="{'hidden': isFull}" -->
+<div class="flex flex-col w-full mt-7 p-3 pt-5 ring-1 ring-second-500 bg-second-100 rounded-md">
     <div class="flex flex-row">
         <div class="uppercase text-sm sm:text-base md:text-lg font-bold tracking-tight leading-6 truncate">
             Mensualité HT
@@ -119,8 +120,8 @@
     </div>
 </div>
 
-<div class="flex flex-col items-center mt-7"
-    [ngClass]="{'md:mt-10': isFull}">
+<!-- [ngClass]="{'md:mt-10': isFull}" -->
+<div class="flex flex-col items-center mt-7">
     <div class="font-semibold mb-5">
         Besoin d’une simulation personnalisée ? Calculez la mensualité de votre crédit la plus adaptée à votre profil  !
     </div>

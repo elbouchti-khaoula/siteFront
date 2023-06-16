@@ -16,7 +16,7 @@ export class ProjetsResultComponent implements
     OnDestroy,
     AfterViewInit
 {
-
+    isScreenSmall: boolean;
     drawerMainOpened: boolean = true;
     drawerMainMode: 'over' | 'side' = 'side';
 
@@ -108,6 +108,9 @@ export class ProjetsResultComponent implements
                     this.drawerMainMode = 'over';
                     this.drawerMainOpened = false;
                 }
+
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

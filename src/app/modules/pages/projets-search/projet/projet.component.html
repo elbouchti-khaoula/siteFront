@@ -47,6 +47,7 @@
     </header>
 
     <div class="z-20 px-5 sm:px-16 pb-10">
+
         <!-- header md -->
         <div class="hidden md:flex flex-row justify-center mx-auto w-full max-w-360 h-40 shadow-md rounded-2xl bg-card -mt-20">
             <div class="flex flex-row items-center justify-between w-[30%]">
@@ -80,7 +81,7 @@
                     <div class="ml-3 text-lg font-semibold">{{projet.standing}}</div>
                 </div> -->
                 <div class="flex flex-row items-center">
-                    <mat-icon class="icon-size-7" svgIcon="underconstruct">
+                    <mat-icon class="icon-size-7" [svgIcon]="'heroicons_solid:lightning-bolt'">
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
                 </div>
@@ -101,6 +102,11 @@
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">Ajouter au favoris</div>
                 </div>
+                <button class="text-md uppercase w-fit fuse-mat-button-small"
+                    mat-flat-button
+                    [color]="'primary'">
+                    Contacter le promoteur
+                </button>
             </div>
     
             <div class="ml-5 mr-10 my-auto border-gray-400 border-l-2 h-3/4"></div>
@@ -119,7 +125,8 @@
         </div>
 
         <!-- header xs, sm -->
-        <div class="md:hidden flex flex-col w-full sm:px-10 -mt-15">
+        <div class="md:hidden w-full flex flex-col space-y-5 sm:px-10 -mt-15">
+
             <div class="w-full flex flex-row items-center space-x-3">
                 <div class="flex items-center justify-center rounded-xl border-primary border p-1 h-30 w-28">
                     <img [src]="projet.promoter.logoPath" class="object-cover" />
@@ -132,7 +139,7 @@
                 </button>
             </div>
     
-            <div class="flex flex-col mt-5">
+            <div class="flex flex-col">
                 <div class="font-extrabold text-2xl uppercase text-primary">
                     {{projet.nom}}
                 </div>
@@ -143,7 +150,7 @@
                 </div>
             </div>
     
-            <div class="flex flex-col mt-5">
+            <div class="flex flex-col">
                 <div class="w-fit py-0.5 px-3 rounded-full md:text-lg font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
                     à partir de&nbsp;<strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
                 </div>
@@ -155,101 +162,143 @@
                 </button>
             </div>
     
-            <hr class="w-full border-t my-5">
+            <hr class="w-full border-t">
     
-            <div class="flex flex-col">
-                <!-- <div class="flex flex-row items-center">
-                    <mat-icon class="icon-size-5" [svgIcon]="'mat_outline:home_work'">
-                    </mat-icon>
-                    <div class="ml-3 font-semibold">{{projet.standing}}</div>
-                </div> -->
-                <div class="flex flex-row items-center mt-2">
-                    <mat-icon class="icon-size-5" svgIcon="underconstruct">
+            <div class="flex flex-col space-y-3">
+                <div class="flex flex-row items-center">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'">
                     </mat-icon>
                     <div class="ml-3 font-semibold">{{projet.statut}}</div>
                 </div>
-                <div *ngIf="user != undefined && !projet.estFavoris" 
-                    class="flex flex-row items-center mt-2"
-                    (click)="ajouterAuxFavoris()">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:heart'">
-                    </mat-icon>
-                    <div class="ml-3 font-semibold">Ajouter au favoris</div>
-                </div>
                 <div *ngIf="user != undefined && projet.estFavoris" 
-                    class="flex flex-row items-center mt-2">
+                    class="flex flex-row items-center">
                     <mat-icon
                         class="icon-size-5 text-red-500"
                         [svgIcon]="'heroicons_solid:heart'">
                     </mat-icon>
                     <div class="ml-3 font-semibold">Projet favori</div>
                 </div>
+                <div *ngIf="!projet.estFavoris" 
+                    class="flex flex-row items-center"
+                    (click)="ajouterAuxFavoris()">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:heart'">
+                    </mat-icon>
+                    <div class="ml-3 font-semibold">Ajouter au favoris</div>
+                </div>
+                <button class="text-md uppercase w-fit fuse-mat-button-small"
+                    mat-flat-button
+                    [color]="'primary'">
+                    Contacter le promoteur
+                </button>
             </div>
+
+            <hr class="w-full border-t">
         </div>
+
     </div>
 
     <section class="flex flex-col items-center px-5 sm:px-16 pb-10 sm:pb-18">
+
         <div class="flex flex-row w-full md:max-w-400">
             <div class="h-fit w-full md:w-3/5 rounded-2xl overflow-hidden">
-                <iframe
-                    src="https://www.youtube.com/embed/OQL6KiB10bA?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=OQL6KiB10bA"
+                <!-- Video -->
+                <iframe *ngIf="existeVideo"
+                    [src]="iframeSrc"
                     frameborder="0">
                 </iframe>
+
+                <!-- Description -->
+                <div *ngIf="!existeVideo">
+                    <div class="flex flex-col md:flex-row max-md:space-y-2 md:space-x-6 md:max-w-4xl">
+                        <div class="flex flex-row items-center md:w-1/4">
+                            <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:close_fullscreen'">
+                            </mat-icon>
+                            <div class="ml-3 font-semibold">Superficie min : {{projet.superficieMin}}</div>
+                        </div>
+                        <div class="flex flex-row items-center md:w-1/4">
+                            <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:open_in_full'">
+                            </mat-icon>
+                            <div class="ml-3 font-semibold">Superficie max : {{projet.superficieMax}}</div>
+                        </div>
+                        <div class="flex flex-row items-center md:w-2/5">
+                            <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:real_estate_agent'">
+                            </mat-icon>
+                            <div class="ml-3 font-semibold">Disponibilité : {{projet.statut}}</div>
+                        </div>
+                    </div>
+    
+                    <div class="mt-7">
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate text-primary">
+                            Description complète
+                        </h2>
+                    </div>
+    
+                    <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div>
+                </div>
             </div>
 
             <div class="hidden md:inline-flex w-2/5 ml-7">
                 <div class="w-full p-7 shadow-md rounded-2xl bg-card">
-                    <simulation></simulation>
+                    <simulation [isFull]="'true'"></simulation>
                 </div>
             </div>
         </div>
 
-        <div class="w-full md:max-w-360 mt-5">
+        <div class="w-full md:max-w-400">
 
-            <div class="flex flex-col md:flex-row max-md:space-y-2 md:space-x-6 max-w-4xl">
-                <div class="flex flex-row items-center md:w-1/4">
-                    <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:close_fullscreen'">
-                    </mat-icon>
-                    <div class="ml-3 font-semibold">Superficie min : {{projet.superficieMin}}</div>
+            <!-- Description -->
+            <div *ngIf="existeVideo">
+                <div class="flex flex-col md:flex-row max-md:space-y-2 md:space-x-6 max-w-4xl mt-7 md:mt-10">
+                    <div class="flex flex-row items-center md:w-1/4">
+                        <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:close_fullscreen'">
+                        </mat-icon>
+                        <div class="ml-3 font-semibold">Superficie min : {{projet.superficieMin}}</div>
+                    </div>
+                    <div class="flex flex-row items-center md:w-1/4">
+                        <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:open_in_full'">
+                        </mat-icon>
+                        <div class="ml-3 font-semibold">Superficie max : {{projet.superficieMax}}</div>
+                    </div>
+                    <div class="flex flex-row items-center md:w-2/5">
+                        <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:real_estate_agent'">
+                        </mat-icon>
+                        <div class="ml-3 font-semibold">Disponibilité : {{projet.statut}}</div>
+                    </div>
                 </div>
-                <div class="flex flex-row items-center md:w-1/4">
-                    <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:open_in_full'">
-                    </mat-icon>
-                    <div class="ml-3 font-semibold">Superficie max : {{projet.superficieMax}}</div>
+
+                <div class="mt-7">
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate text-primary">
+                        Description complète
+                    </h2>
                 </div>
-                <div class="flex flex-row items-center md:w-2/5">
-                    <mat-icon class="icon-size-5 md:icon-size-7" [svgIcon]="'mat_outline:real_estate_agent'">
-                    </mat-icon>
-                    <div class="ml-3 font-semibold">Disponibilité : {{projet.statut}}</div>
-                </div>
+
+                <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div>
             </div>
 
-            <div class="mt-7">
-                <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate text-primary">
-                    Description complète
-                </h2>
+            <!-- Actions separator -->
+            <hr *ngIf="existeBrochure || existeMaquetteOrPlan" class="w-full border-t my-7">
+            <!-- Actions -->
+            <div *ngIf="existeBrochure || existeMaquetteOrPlan" 
+                class="mx-auto grid grid-cols-1 md:grid-cols-2 md:max-w-max md:gap-x-7 max-md:gap-y-2">
+                <button *ngIf="existeBrochure"
+                    class="px-5 uppercase"
+                    mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
+                    <span class="ml-2">Brochure</span>
+                </button>
+                <button *ngIf="existeMaquetteOrPlan"
+                    class="uppercase"
+                    mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
+                    <span class="ml-2">Maquette et plan du site</span>
+                </button>
             </div>
-
-            <div class="max-w-360 prose prose-sm mt-5" [innerHTML]="projet.description"></div>
 
             <hr class="w-full border-t my-7">
 
-            <div class="mx-auto grid grid-cols-1 md:grid-cols-3 md:max-w-max md:gap-x-7 max-md:gap-y-2">
-                <button class="uppercase" mat-flat-button [color]="'primary'">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
-                    Téléchargez la brochure
-                </button>
-                <button class="uppercase" mat-flat-button [color]="'primary'">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
-                    Téléchargez la maquette
-                </button>
-                <button class="uppercase" mat-flat-button [color]="'primary'">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
-                    Téléchargez le plan du site
-                </button>
-            </div>
-
-            <hr class="w-full border-t my-7">
-
+            <!-- Adresse -->
             <div class="flex flex-col space-y-5">
                 <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate text-primary">
                     Adresse
@@ -257,7 +306,7 @@
                 <div class="flex items-center">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:location-marker'">
                     </mat-icon>
-                    <div class="ml-3 text-md font-semibold">{{projet.adresse}}, {{projet.libelleVille}}</div>
+                    <div class="ml-3 md:text-lg font-semibold">{{projet.adresse}}, {{projet.libelleVille}}</div>
                 </div>
                 <div class="w-full h-80 md:h-128">
                     <google-map

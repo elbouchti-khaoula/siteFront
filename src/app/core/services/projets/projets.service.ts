@@ -197,8 +197,9 @@ export class ProjetsService {
                     ];
 
                     for (let i = 0; i < projets?.length; i++) {
-                        projets[i].medias = images[i % 5];
-                        projets[i].promoter.logoPath = logos[i % 5];
+                        // projets[i].medias1 = projets[i].medias;
+                        // projets[i].medias = images[i % 5];
+                        // projets[i].promoter.logoPath = logos[i % 5];
                         this.fillReferentielLabels(projets[i], false);
                     }
 
@@ -340,8 +341,9 @@ export class ProjetsService {
                                 ];
 
                                 for (let i = 0; i < projets?.length; i++) {
-                                    projets[i].medias = images[i % 5];
-                                    projets[i].promoter.logoPath = logos[i % 5];
+                                    // projets[i].medias1 = projets[i].medias;
+                                    // projets[i].medias = images[i % 5];
+                                    // projets[i].promoter.logoPath = logos[i % 5];
                                     this.fillReferentielLabels(projets[i], projetsFavoris.some(e => e.realEstateProject.id === projets[i].id));
                                 }
 
@@ -556,8 +558,8 @@ export class ProjetsService {
                     ];
 
                     for (let i = 0; i < projetsFavoris?.length; i++) {
-                        projetsFavoris[i].realEstateProject.medias = images[i % 5];
-                        projetsFavoris[i].realEstateProject.promoter.logoPath = logos[i % 5];
+                        // projetsFavoris[i].realEstateProject.medias = images[i % 5];
+                        // projetsFavoris[i].realEstateProject.promoter.logoPath = logos[i % 5];
                         this.fillReferentielLabels(projetsFavoris[i].realEstateProject, true);
                     }
 

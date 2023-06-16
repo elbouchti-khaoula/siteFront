@@ -38,22 +38,28 @@ export interface Projet {
     dateCreation?: Date | null;
     dateModification?: Date | null;
 
-    medias?: {
-        id?: number;
-        chemin: string | null;
-        classement?: number;
-        type?: number;
-    }[];
-    promoter?: {
-        id: number;
-        code: string | null;
-        nom: string | null;
-        logo: string | null;
-        logoPath: string | null;
-        extensionLogo: string | null;
-    }
+    medias?: Media[];
+    // medias1?: Media[];
+
+    promoter?: Promoteur;
 
     estFavoris?: boolean;
+}
+
+export interface Media {
+    id?: number;
+    chemin: string | null;
+    classement?: number;
+    type?: string;
+}
+
+export interface Promoteur {
+    id: number;
+    code: string | null;
+    nom: string | null;
+    logo: string | null;
+    logoPath: string | null;
+    extensionLogo: string | null;
 }
 
 export interface ProjetFavori {
