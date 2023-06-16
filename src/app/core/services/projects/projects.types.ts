@@ -59,6 +59,7 @@ export interface SimulationDetaillee {
 
     // résultat
     id                              : number;
+    dateCreation?                   : Date | null;
     montant?                        : number;
     montantProposition              : number;
     duree                           : number;
@@ -82,6 +83,7 @@ export interface SimulationDetaillee {
 export interface Project
 {
     id                          : number;
+    dateCreation?               : Date | null;
     montant?                    : number;
     montantProposition          : number;
     duree                       : number;

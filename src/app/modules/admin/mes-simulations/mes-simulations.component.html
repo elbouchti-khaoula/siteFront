@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Add simulation button -->
-                <button class="ml-auto px-5"
+                <button class="ml-auto"
                     mat-flat-button
                     [color]="'primary'"
                     [routerLink]="['/espace-connecte/simulation-detaillee']">
@@ -52,20 +52,24 @@
                                 (click)="navigateToConsulterSimulation(simulation)">
                                 <div class="text-2xl font-bold leading-tight uppercase">Simulation N° {{simulation.id}}
                                 </div>
-                                <div *ngIf="simulation.dossiers?.length > 1" class="text-secondary">
+                                <div class="text-secondary">
+                                    {{simulation.dateCreation}}
+                                </div>
+                                <div *ngIf="simulation.dossiers?.length > 1"
+                                    class="text-secondary">
                                     {{simulation.dossiers.length}} dossiers
                                 </div>
                                 <div *ngIf="simulation.dossiers?.length === 1">
-                                    &nbsp;
+                                    <span>&nbsp;</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-5 px-2 mt-10">
-                                    <div class="flex flex-col items-center">
-                                        <span class="font-medium uppercase">Mensualité</span>
-                                        <span class="text-xl font-semibold">{{simulation?.mensualite}}</span>
-                                    </div>
+                                <div class="grid grid-cols-2 gap-5 px-2 mt-5">
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Montant</span>
                                         <span class="text-xl font-semibold">{{simulation?.montantProposition}}</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-medium uppercase">Mensualité</span>
+                                        <span class="text-xl font-semibold">{{simulation?.mensualite}}</span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium uppercase">Durée</span>
@@ -80,14 +84,13 @@
 
                             <div class="flex items-center border-t pt-5">
                                 <button
-                                    class="px-5"
                                     mat-flat-button
                                     [color]="'primary'"
                                     (click)="navigateToDemandeCredit(simulation)">
                                     Demander mon crédit
                                 </button>
                                 <button
-                                    class="px-5 ml-2"
+                                    class="ml-2"
                                     mat-stroked-button
                                     [matTooltip]="'J abandonne'"
                                     (click)="abandonner(simulation)">
@@ -99,6 +102,7 @@
                     </ng-container>
 
                 </div>
+                
             </ng-container>
 
             <!-- No simulation template -->

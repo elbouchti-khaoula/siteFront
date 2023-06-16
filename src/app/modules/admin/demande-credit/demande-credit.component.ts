@@ -268,7 +268,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
             // If the confirm button pressed...
             if (result === 'confirmed') {
               setTimeout(() => {
-                this._router.navigate(['/espace-connecte/mes-simulations']);
+                this._router.navigate(['/espace-connecte/mes-demandes-credit']);
               }, 200);
             }
           });

@@ -49,7 +49,7 @@
 
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-14 md:space-x-7 mt-7 md:mt-10">
 
-                <form class="flex flex-col items-center space-y-5 px-6 pt-7 pb-5 bg-card rounded-xl overflow-hidden ring-1 ring-current"
+                <form class="flex flex-col items-center space-y-5 px-6 pt-7 pb-5 ring-1 ring-current bg-card rounded-xl overflow-hidden"
                     [formGroup]="simulationForm"
                     [@resize]="!isScreenSmall && animationState">
 
@@ -265,247 +265,255 @@
                 </form>
 
                 <!-- Résultat -->
-                <fuse-card #resultat
+                <div #resultat
                     *ngIf="isVisible"
-                    class="relative flex flex-col md:w-1/2 px-6 pb-8 pt-3 bg-default rounded-md shadow overflow-visible ring-1 ring-primary"
+                    class="md:w-1/2" 
                     [@fadeInBottom]="{value:!isScreenSmall, params: {duration: 1000, delay: 300}}">
-                    
-                    <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
-                        <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
-                            Votre simulation
-                        </div>
-                    </div>
 
-                    <div class="flex flex-col space-y-7">
-
-                        <!-- mensualité -->
-                        <div class="w-full mt-5">
-
-                            <!-- header -->
-                            <div class="flex flex-col py-3 px-5 bg-primary-500 shadow rounded-md dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
-
-                                <div class="flex flex-col text-white">
-                                    <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualité</div>
-                                    <div class="flex flex-col md:flex-row md:items-center md:space-x-3">
-                                        <div class="flex flex-row items-baseline whitespace-nowrap ml-auto">
-                                            <span>de</span>
-                                            <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMin">
-                                                {{simulationPersonnaliseeStr?.mensualiteMin}}
-                                            </span>
-                                            <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
-                                        </div>
-                                        <div class="flex flex-row items-baseline whitespace-nowrap max-md:ml-auto">
-                                            <span class="hidden md:block">jusqu'à</span>
-                                            <span class="md:hidden">à</span>
-                                            <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMax">
-                                                {{simulationPersonnaliseeStr?.mensualiteMax}}
-                                            </span>
-                                            <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                                <div class="w-8 h-1 rounded-2xl bg-second-500 mt-2"></div>
-
-                                <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
-                                    Cette échéance inclut les intérêts et frais d’assurance
-                                </div>
+                    <fuse-card class="relative flex flex-col px-6 pb-8 pt-3 bg-default rounded-md shadow overflow-visible ring-1 ring-primary">
+                        <!-- <div class="mx-auto -mt-7 flex items-center justify-center">
+                            <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
+                                Votre simulation
                             </div>
-
-                            <!-- details -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-md:gap-y-5 mt-5">
-                                
-                                <!-- Montant -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <!-- Border -->
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <!-- Content -->
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Montant de crédit
-                                        </div>
-                                        <div class="flex items-baseline whitespace-nowrap mt-2">
-                                            <div class="font-semibold text-xl leading-tight tracking-tight" #montantId [appFormatMontant]="simulationPersonnaliseeStr?.montant">
-                                                {{simulationPersonnaliseeStr?.montant}}
-                                            </div>
-                                            <div class="ml-2 text-lg leading-none">MAD</div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-
-                                <!-- Durée -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Durée
-                                        </div>
-                                        <div class="flex flex-row mt-2">
-                                            <div class="flex items-baseline whitespace-nowrap">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #nbreAnneeId>
-                                                    {{simulationPersonnaliseeStr?.nbreAnnee}}
-                                                </div>
-                                                <div class="ml-2 text-lg leading-none">ans</div>
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap ml-2"
-                                                [ngClass]="{'hidden' : simulationPersonnaliseeStr?.nbreMois === 0}">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
-                                                    {{simulationPersonnaliseeStr?.nbreMois}}
-                                                </div>
-                                                <div class="ml-2 text-lg leading-none">mois</div>
-                                            </div>
-                                            <div class="flex items-baseline whitespace-nowrap ml-1">
-                                                <div class="ml-2 text-lg leading-none">(</div>
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
-                                                    {{simulationPersonnaliseeStr?.duree}}
-                                                </div>
-                                                <div class="ml-2 text-lg leading-none"> mois)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Coût total du crédit -->
-                                <!-- <div class="relative p-3 bg-card rounded-md shadow overflow-hidden md:col-span-2">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Coût total du crédit
-                                        </div>
-                                        <div class="flex flex-col md:flex-row md:items-center md:space-x-3 mt-2">
-                                            <div class="flex flex-row items-baseline whitespace-nowrap">
+                        </div> -->
+    
+                        <div class="absolute inset-x-0 -top-4 flex items-center justify-center">
+                            <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">
+                                Votre simulation
+                            </div>
+                        </div>
+    
+                        <div class="flex flex-col space-y-7">
+    
+                            <!-- mensualité -->
+                            <div class="w-full mt-5">
+    
+                                <!-- header -->
+                                <div class="flex flex-col py-3 px-5 bg-primary-500 shadow rounded-md dark:bg-white dark:bg-opacity-5 dark:text-primary-400">
+    
+                                    <div class="flex flex-col text-white">
+                                        <div class="text-xl md:text-2xl font-semibold leading-tight tracking-tight">Mensualité</div>
+                                        <div class="flex flex-col md:flex-row md:items-center md:space-x-3">
+                                            <div class="flex flex-row items-baseline whitespace-nowrap ml-auto">
                                                 <span>de</span>
-                                                <span class=" ml-2 font-semibold text-xl leading-tight tracking-tight" #coutTotalMinId>
-                                                    {{simulationPersonnaliseeStr?.coutTotalMin}}
+                                                <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMin">
+                                                    {{simulationPersonnaliseeStr?.mensualiteMin}}
                                                 </span>
-                                                <span class="ml-2 text-lg leading-none">MAD</span>
+                                                <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
                                             </div>
-                                            <div class="flex flex-row items-baseline whitespace-nowrap">
+                                            <div class="flex flex-row items-baseline whitespace-nowrap max-md:ml-auto">
                                                 <span class="hidden md:block">jusqu'à</span>
                                                 <span class="md:hidden">à</span>
-                                                <span class="font-semibold text-xl leading-tight tracking-tight ml-2" #coutTotalMaxId>
-                                                    {{simulationPersonnaliseeStr?.coutTotalMax}}
+                                                <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMax">
+                                                    {{simulationPersonnaliseeStr?.mensualiteMax}}
                                                 </span>
-                                                <span class="ml-2 text-lg leading-none">MAD</span>
+                                                <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-                                <!-- Expertise immobilière -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Expertise immobilière
-                                        </div>
-                                        <div class="flex items-baseline whitespace-nowrap mt-2">
-                                            <div class="font-semibold text-xl leading-tight tracking-tight"
-                                                #expertiseImmobiliereId
-                                                [appFormatMontant]="simulationPersonnaliseeStr?.expertiseImmobiliere"
-                                                [ngClass]="{'text-green-600 ': !estExpImmoNum}">
-                                                {{simulationPersonnaliseeStr?.expertiseImmobiliere}}
-                                            </div>
-                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estExpImmoNum}">MAD</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Frais de dossier -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <span class="font-medium tracking-tight leading-none">
-                                            Frais de dossier
-                                        </span>
-                                        <div class="flex items-baseline whitespace-nowrap mt-2">
-                                            <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDossierId
-                                                [appFormatMontant]="simulationPersonnaliseeStr?.fraisDossier"
-                                                [ngClass]="{'text-green-600 ': !estFraisDossNum}">
-                                                {{simulationPersonnaliseeStr?.fraisDossier}}
-                                            </div>
-                                            <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">MAD</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                            </div>
-                        </div>
-
-                        <!-- frais annexes -->
-                        <div class="w-full">
-
-                            <div class="text-2xl font-semibold leading-tight tracking-tight">
-                                Frais annexes *
-                            </div>
-
-                            <!-- details -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-md:gap-y-5 mt-3">
-
-                                <!-- Frais d'enregistrement -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Frais d'enregistrement
-                                        </div>
-                                        <div class="flex items-baseline whitespace-nowrap mt-2">
-                                            <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId
-                                                [appFormatMontant]="simulationPersonnaliseeStr?.droitsEnregistrement">
-                                                {{simulationPersonnaliseeStr?.droitsEnregistrement}}
-                                            </div>
-                                            <div class="ml-2 text-lg leading-none">MAD</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-        
-                                <!-- Frais de conservation financière -->
-                                <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
-                                    <div class="flex flex-col">
-                                        <div class="font-medium tracking-tight leading-none">
-                                            Frais de conservation financière
-                                        </div>
-                                        <div class="flex items-baseline whitespace-nowrap mt-2">
-                                            <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId
-                                                [appFormatMontant]="simulationPersonnaliseeStr?.conservationFonciere">
-                                                {{simulationPersonnaliseeStr?.conservationFonciere}}
-                                            </div>
-                                            <div class="ml-2 text-lg leading-none">MAD</div>
                                         </div>
                                     </div>
                                     
+    
+                                    <div class="w-8 h-1 rounded-2xl bg-second-500 mt-2"></div>
+    
+                                    <div class="text-sm font-semibold leading-none tracking-tight text-second-500 mt-2">
+                                        Cette échéance inclut les intérêts et frais d’assurance
+                                    </div>
                                 </div>
-
+    
+                                <!-- details -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-md:gap-y-5 mt-5">
+                                    
+                                    <!-- Montant -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <!-- Border -->
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <!-- Content -->
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Montant de crédit
+                                            </div>
+                                            <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #montantId [appFormatMontant]="simulationPersonnaliseeStr?.montant">
+                                                    {{simulationPersonnaliseeStr?.montant}}
+                                                </div>
+                                                <div class="ml-2 text-lg leading-none">MAD</div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+    
+                                    <!-- Durée -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Durée
+                                            </div>
+                                            <div class="flex flex-row mt-2">
+                                                <div class="flex items-baseline whitespace-nowrap">
+                                                    <div class="font-semibold text-xl leading-tight tracking-tight" #nbreAnneeId>
+                                                        {{simulationPersonnaliseeStr?.nbreAnnee}}
+                                                    </div>
+                                                    <div class="ml-2 text-lg leading-none">ans</div>
+                                                </div>
+                                                <div class="flex items-baseline whitespace-nowrap ml-2"
+                                                    [ngClass]="{'hidden' : simulationPersonnaliseeStr?.nbreMois === 0}">
+                                                    <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
+                                                        {{simulationPersonnaliseeStr?.nbreMois}}
+                                                    </div>
+                                                    <div class="ml-2 text-lg leading-none">mois</div>
+                                                </div>
+                                                <div class="flex items-baseline whitespace-nowrap ml-1">
+                                                    <div class="ml-2 text-lg leading-none">(</div>
+                                                    <div class="font-semibold text-xl leading-tight tracking-tight" #nbreMoisId>
+                                                        {{simulationPersonnaliseeStr?.duree}}
+                                                    </div>
+                                                    <div class="ml-2 text-lg leading-none"> mois)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Coût total du crédit -->
+                                    <!-- <div class="relative p-3 bg-card rounded-md shadow overflow-hidden md:col-span-2">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Coût total du crédit
+                                            </div>
+                                            <div class="flex flex-col md:flex-row md:items-center md:space-x-3 mt-2">
+                                                <div class="flex flex-row items-baseline whitespace-nowrap">
+                                                    <span>de</span>
+                                                    <span class=" ml-2 font-semibold text-xl leading-tight tracking-tight" #coutTotalMinId>
+                                                        {{simulationPersonnaliseeStr?.coutTotalMin}}
+                                                    </span>
+                                                    <span class="ml-2 text-lg leading-none">MAD</span>
+                                                </div>
+                                                <div class="flex flex-row items-baseline whitespace-nowrap">
+                                                    <span class="hidden md:block">jusqu'à</span>
+                                                    <span class="md:hidden">à</span>
+                                                    <span class="font-semibold text-xl leading-tight tracking-tight ml-2" #coutTotalMaxId>
+                                                        {{simulationPersonnaliseeStr?.coutTotalMax}}
+                                                    </span>
+                                                    <span class="ml-2 text-lg leading-none">MAD</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+    
+                                    <!-- Expertise immobilière -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Expertise immobilière
+                                            </div>
+                                            <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight"
+                                                    #expertiseImmobiliereId
+                                                    [appFormatMontant]="simulationPersonnaliseeStr?.expertiseImmobiliere"
+                                                    [ngClass]="{'text-green-600 ': !estExpImmoNum}">
+                                                    {{simulationPersonnaliseeStr?.expertiseImmobiliere}}
+                                                </div>
+                                                <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estExpImmoNum}">MAD</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Frais de dossier -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <span class="font-medium tracking-tight leading-none">
+                                                Frais de dossier
+                                            </span>
+                                            <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDossierId
+                                                    [appFormatMontant]="simulationPersonnaliseeStr?.fraisDossier"
+                                                    [ngClass]="{'text-green-600 ': !estFraisDossNum}">
+                                                    {{simulationPersonnaliseeStr?.fraisDossier}}
+                                                </div>
+                                                <div class="ml-2 text-lg leading-none" [ngClass]="{'hidden': !estFraisDossNum}">MAD</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+    
+                                </div>
                             </div>
-
-                            <div class="italic text-sm leading-none tracking-tight text-secondary mt-2">
-                                * Ces montants sont affichés à titre indicatif et ne sont aucunement contractuels
+    
+                            <!-- frais annexes -->
+                            <div class="w-full">
+    
+                                <div class="text-2xl font-semibold leading-tight tracking-tight">
+                                    Frais annexes *
+                                </div>
+    
+                                <!-- details -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-md:gap-y-5 mt-3">
+    
+                                    <!-- Frais d'enregistrement -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Frais d'enregistrement
+                                            </div>
+                                            <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId
+                                                    [appFormatMontant]="simulationPersonnaliseeStr?.droitsEnregistrement">
+                                                    {{simulationPersonnaliseeStr?.droitsEnregistrement}}
+                                                </div>
+                                                <div class="ml-2 text-lg leading-none">MAD</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+            
+                                    <!-- Frais de conservation financière -->
+                                    <div class="relative p-3 bg-card rounded-md shadow overflow-hidden">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500"></div>
+                                        <div class="flex flex-col">
+                                            <div class="font-medium tracking-tight leading-none">
+                                                Frais de conservation financière
+                                            </div>
+                                            <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId
+                                                    [appFormatMontant]="simulationPersonnaliseeStr?.conservationFonciere">
+                                                    {{simulationPersonnaliseeStr?.conservationFonciere}}
+                                                </div>
+                                                <div class="ml-2 text-lg leading-none">MAD</div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+    
+                                </div>
+    
+                                <div class="italic text-sm leading-none tracking-tight text-secondary mt-2">
+                                    * Ces montants sont affichés à titre indicatif et ne sont aucunement contractuels
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Action -->
-                        <div class="flex flex-col items-center">
-                            <div class="font-semibold mb-5">
-                                Vous souhaitez détailler davantage votre simulation et connaître votre mensualité exacte ? Cliquez pour y accéder.
+    
+                            <!-- Action -->
+                            <div class="flex flex-col items-center">
+                                <div class="font-semibold mb-5">
+                                    Vous souhaitez détailler davantage votre simulation et connaître votre mensualité exacte ? Cliquez pour y accéder.
+                                </div>
+                                <button 
+                                    class="w-fit"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    (click)="navigateToSimulationDetaillee()">
+                                    Détailler ma simulation
+                                </button>
                             </div>
-                            <button 
-                                class="w-fit"
-                                mat-flat-button
-                                [color]="'primary'"
-                                (click)="navigateToSimulationDetaillee()">
-                                Détailler ma simulation
-                            </button>
+                            
                         </div>
                         
-                    </div>
+                    </fuse-card>
                     
-                </fuse-card>
-
+                </div>
             </div>
         </div>
     </div>

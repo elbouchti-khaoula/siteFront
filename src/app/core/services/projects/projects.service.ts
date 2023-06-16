@@ -385,6 +385,7 @@ export class SimulationDetailleeService {
     private convertToSimulation(response: Project, estConsultation: boolean): SimulationDetaillee {
         return {
             id: response.id,
+            dateCreation: response.dateCreation,
             montant: response.montant,
             montantProposition: response.montantProposition,
             duree: response.duree,
@@ -405,27 +406,7 @@ export class SimulationDetailleeService {
     }
 
     private convertToSimulations(response: Project[], estConsultation: boolean): SimulationDetaillee[] {
-        return response.map(element => {
-            return {
-                id: element.id,
-                montant: element.montant,
-                montantProposition: element.montantProposition,
-                duree: element.duree,
-                statut: element.statut,
-                tauxNominalPondere: element.tauxNominalPondere,
-                tauxEffectifGlobalPondere: element.tauxEffectifGlobalPondere,
-                tauxAssurancePondere: element.tauxAssurancePondere,
-                tauxInteretsClientTtc: element.tauxInteretsClientTtc,
-                dossiers: element.dossiers,
-                // frais
-                droitsEnregistrement: element.fraisAnnexes.enregistrementHypothecaire,
-                conservationFonciere: element.fraisAnnexes.conservationFonciere,
-                honorairesNotaire: element.fraisAnnexes.honorairesNotaire,
-                fraisDivers: element.fraisAnnexes.fraisDossier,
-                totalFrais: element.fraisAnnexes.coutTotal,
-                estConsultation: estConsultation
-            }
-        })
+        return response.map(element => { return this.convertToSimulation(element, estConsultation);})
     }
 
 }

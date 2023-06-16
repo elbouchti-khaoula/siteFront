@@ -61,29 +61,29 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   simulationStepperForm: UntypedFormGroup;
   simulationFormDefaults: any = {
     // profil
-    nom: 'test1',
-    prenom: 'test1',
-    telephone: '0522111111',
-    email: 'test1@test1.com',
+    nom: null, // 'test1',
+    prenom: null, // 'test1',
+    telephone: null, // '0522111111',
+    email: null, // 'test1@test1.com',
     dateNaissance: null,
-    nationalite: 'MA',
-    residantMaroc: 'true',
-    agreements: true,
+    nationalite: null, // 'MA',
+    residantMaroc: null, // 'true',
+    agreements: null, // true,
     // situation
     categorieSocioProfessionnelle: null, // 'SASP',
-    nomEmployeur: 'WAFA SALAF',
+    nomEmployeur: null, // 'WAFA SALAF',
     // anciennete: 12,
-    salaire: 500000,
-    autresRevenus: 200000,
-    creditsEnCours: 3000,
+    salaire: null, // 500000,
+    autresRevenus: null, // 200000,
+    creditsEnCours: null, // 3000,
     // projet
-    objetFinancement: 'ACQU',
-    montant: 500000,
-    montantProposition: 500000,
-    duree: 240,
+    objetFinancement: null, // 'ACQU',
+    montant: null, // 500000,
+    montantProposition: null, // 500000,
+    duree: null, // 240,
     typeTaux: null, // 'FIXE',
-    statutProjet: 'statut1',
-    nomPromoteur: 'Promoteur'
+    statutProjet: null, // 'statut1',
+    nomPromoteur: null, // 'Promoteur'
   };
   tab = ['step1', 'step2', 'step3'];
 
@@ -326,11 +326,18 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
     }
 
-    // if (this.queryParams?.dateNaissance) {
-    //   this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(this.queryParams?.dateNaissance));
-    // } else if (currentUser?.dateNaissance) {
-    //   this.simulationStepperForm.get('step1').get('dateNaissance').setValue(moment(currentUser?.dateNaissance));
-    // }
+    var dateNaiss;
+    if (this.queryParams?.dateNaissance) {
+      dateNaiss = this.queryParams?.dateNaissance;
+    } else if (currentUser?.dateNaissance) {
+      dateNaiss = currentUser?.dateNaissance;
+    }
+    if (dateNaiss) {
+      var momentObj = moment(dateNaiss, "DD-MM-YYYY");
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(momentObj);
+    }
+
+    this._changeDetectorRef.detectChanges();
   }
 
   /**
