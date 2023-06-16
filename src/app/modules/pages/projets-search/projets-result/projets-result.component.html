@@ -159,14 +159,14 @@
                                                         [innerHTML]="projet.descriptionSmall"></div>
 
                                                     <div class="flex justify-center mt-3">
-                                                        <button class="px-5"
+                                                        <button
                                                             mat-flat-button 
                                                             [color]="'primary'"
                                                             [routerLink]="['/projets-search/projet-details']"
                                                             [queryParams]="{id: projet.id}">
                                                             En savoir plus
                                                         </button>
-                                                        <button class="ml-2 md:ml-3 px-5"
+                                                        <button class="ml-2 md:ml-3"
                                                             mat-stroked-button 
                                                             [color]="'primary'"
                                                             (click)="openContact(projet)">

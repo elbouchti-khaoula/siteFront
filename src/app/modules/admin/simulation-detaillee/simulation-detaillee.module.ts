@@ -12,8 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-import * as moment from 'moment';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { SimulationDetailleeComponent } from './simulation-detaillee.component';
@@ -58,6 +57,7 @@ import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connect
     providers   : [
         DecimalPipe,
         CurrencyPipe,
+        { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
         {
             provide : MAT_DATE_FORMATS,
             useValue: {
@@ -66,7 +66,7 @@ import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connect
                 },
                 display: {
                     dateInput: 'DD/MM/YYYY',
-                    monthYearLabel: 'MMM YYYY',
+                    monthYearLabel: 'MMMM YYYY',
                     dateA11yLabel: 'LL',
                     monthYearA11yLabel: 'MMMM YYYY'
                 }

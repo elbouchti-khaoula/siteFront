@@ -11,7 +11,8 @@
 
         <div class="w-full max-w-400 mx-auto">
 
-            <div class="flex flex-col md:flex-row md:items-baseline max-md:space-y-5">
+            <!-- <div class="flex flex-col md:flex-row md:items-baseline max-md:space-y-5"> -->
+
                 <div class="flex flex-col">
                     <span class="text-2xl md:text-4xl uppercase font-extrabold leading-tight tracking-tight text-primary">
                         Mes demandes de crédit
@@ -21,15 +22,16 @@
                     </div>
                 </div>
 
-                <a href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne"
+                <!-- <a href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne"
                     target="blank"
                     class="ml-auto rounded-3xl bg-primary text-on-primary px-5 py-2.5 flex flex-row items-center">
                     <img class="h-5 w-fit" src="assets/images/logo/logo-awb.jpg">
                     <span class="ml-3">
                         Ouvrir un compte
                     </span>
-                </a>
-            </div>
+                </a> -->
+                
+            <!-- </div> -->
             
             <ng-container *ngIf="demandes && demandes.length > 0; else noDemandes">
 
@@ -56,7 +58,7 @@
                                 </div>
 
                                 <div class="flex flex-col items-center mt-7">
-                                    <span class="font-medium">Montant demandé</span>
+                                    <span class="font-medium">Montant du crédit</span>
                                     <span class="text-3xl font-semibold">{{demande.mtProjet}}</span>
                                 </div>
                             </div>
@@ -94,7 +96,7 @@
                                             </ng-container>
                                             <ng-container *ngIf="step.id === demande.phaseId">
                                                 <div class="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-default">
-                                                    <!-- album adjust pending -->
+                                                    <!-- icones: album adjust pending -->
                                                     <mat-icon class="icon-size-7 text-primary"
                                                         [svgIcon]="'mat_solid:radio_button_checked'">
                                                     </mat-icon>

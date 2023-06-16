@@ -18,8 +18,7 @@
 
             <fuse-card class="mx-auto hidden md:flex flex-row items-center justify-evenly max-w-4xl mt-7 h-22 shadow-md">
                 <div class="flex flex-row items-center justify-start w-52">
-                    <div
-                        class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                         <span class="text-7xl font-bold text-gray-500">1</span>
                     </div>
                     <div class="flex flex-col items-start ml-5">
@@ -39,8 +38,7 @@
                 </div>
 
                 <div class="flex flex-row items-center justify-start w-52">
-                    <div
-                        class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500">
                         <span class="text-7xl font-bold text-gray-500">3</span>
                     </div>
                     <div class="flex flex-col items-start ml-5">
@@ -52,11 +50,11 @@
 
             <div class="flex flex-col md:flex-row md:items-start max-md:space-y-10 md:space-x-7 mt-10">
 
-                <form class="ring-1 ring-current bg-card rounded-xl shadow-md overflow-hidden"
+                <form class="flex flex-col items-center ring-1 ring-current bg-card rounded-xl shadow-md overflow-hidden"
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
 
-                    <div class="mx-auto w-fit flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
+                    <div class="w-fit flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
                         <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
                         </mat-icon>
                         <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
@@ -183,7 +181,7 @@
                                             <button mat-button
                                                 (click)="simulationStepperForm.get('step1').get('dateNaissance').setValue(null)"
                                                 matDatepickerCancel>
-                                                Clear
+                                                Vider
                                             </button>
                                             <button mat-flat-button [color]="'primary'" matDatepickerApply>
                                                 Select
@@ -231,7 +229,9 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-7">
-                                <button class="md:px-5" mat-flat-button [color]="'primary'"
+                                <button 
+                                    mat-flat-button
+                                    [color]="'primary'"
                                     [disabled]="simulationStepperStep1.stepControl.pristine || simulationStepperStep1.stepControl.invalid"
                                     type="button" matStepperNext>
                                     Suivre
@@ -364,11 +364,11 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-5">
-                                <button class="md:px-5 mr-2" mat-flat-button [color]="'accent'" type="button"
+                                <button class="mr-2" mat-flat-button [color]="'accent'" type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button class="md:px-5" mat-flat-button [color]="'primary'"
+                                <button mat-flat-button [color]="'primary'"
                                     [disabled]="simulationStepperStep2.stepControl.pristine || simulationStepperStep2.stepControl.invalid"
                                     type="button" matStepperNext>
                                     Suivre
@@ -525,11 +525,11 @@
                             
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
-                                <button class="md:px-5 mr-2" mat-flat-button [color]="'accent'" type="button"
+                                <button class="mr-2" mat-flat-button [color]="'accent'" type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button class="md:px-5"
+                                <button
                                     [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid}"
                                     mat-flat-button [color]="'primary'" type="button"
                                     [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid || !isCaptchaValid"
