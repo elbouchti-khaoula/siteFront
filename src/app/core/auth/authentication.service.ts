@@ -154,7 +154,7 @@ export class AuthenticationService {
     }
 
     /**
-     * Check the authentication status of access token admin
+     * Check the authentication status of access token generic
      */
     checkAuthenticationGeneric(): Observable<boolean> {
 
@@ -173,25 +173,8 @@ export class AuthenticationService {
         return of(true);
     }
 
-
-    checkTokenGeneric(): boolean {
-
-        // Check the access token availability
-        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '' || this.accessTokenGeneric === 'undefined' ) {
-            return false;
-        }
-
-        // Check the access token expire date
-         if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
-             return false;
-         }
-
-        // If the access token exists and it didn't expire, sign in using it
-        // return this.signInUsingToken();
-        return true;
-    }
     /**
-     * Check the authentication status of access token admin
+     * Check the authentication status of access token user
      */
     checkAuthenticationUser(): Observable<boolean> {
 
@@ -215,6 +198,23 @@ export class AuthenticationService {
         // If the access token exists and it didn't expire, sign in using it
         // return this.signInUsingToken();
         return of(true);
+    }
+
+    checkTokenGeneric(): boolean {
+
+        // Check the access token availability
+        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '' || this.accessTokenGeneric === 'undefined' ) {
+            return false;
+        }
+
+        // Check the access token expire date
+         if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
+             return false;
+         }
+
+        // If the access token exists and it didn't expire, sign in using it
+        // return this.signInUsingToken();
+        return true;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -243,6 +243,7 @@ export class AuthenticationService {
             })
         );
     }
+
     /**
      * Get access token generic from api with promise call
      *

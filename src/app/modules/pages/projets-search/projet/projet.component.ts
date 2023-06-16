@@ -11,6 +11,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 // import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
@@ -27,16 +28,19 @@ SwiperCore.use([Autoplay, EffectCoverflow, Pagination, Navigation]);
 })
 export class ProjetComponent implements OnInit, OnDestroy {
 
-    user: User;
-    projet: Projet;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
-
     pagination = {
         clickable: true,
         renderBullet: function (index, className) {
             return '<span class="' + className + '">' + '<i></i>' + '<b></b>' + "</span>";
         },
     };
+
+    user: User;
+    projet: Projet;
+    existeVideo : boolean;
+    existeMaquetteOrPlan : boolean;
+    existeBrochure : boolean;
+    iframeSrc: SafeUrl;
 
     mapOptions: google.maps.MapOptions = {
         center: {
@@ -52,6 +56,8 @@ export class ProjetComponent implements OnInit, OnDestroy {
     };
     markerPositions: google.maps.LatLngLiteral[] = [];
 
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
+
     /**
      * Constructor
      */
@@ -62,9 +68,14 @@ export class ProjetComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _matDialog: MatDialog,
         private _fuseConfirmationService: FuseConfirmationService,
-        private _authenticationService: AuthenticationService
+        private _authenticationService: AuthenticationService,
+        private sanitizer: DomSanitizer
     )
     {
+        let id = 'OQL6KiB10bA';
+        let suffix = `?controls=0&autoplay=1&mute=1&loop=1&modestbranding=1&fs=0&rel=0&showinfo=0&disablekb=1&playlist=${id}`;
+        let url = `https://www.youtube.com/embed/${id}`;
+        this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url + suffix);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -85,6 +96,11 @@ export class ProjetComponent implements OnInit, OnDestroy {
 
                 this.markerPositions.push(new google.maps.LatLng(response.gpsLatitude, response.gpsLongitude).toJSON());
                 this.mapOptions.center = new google.maps.LatLng(response.gpsLatitude, response.gpsLongitude).toJSON();
+
+                // this.existeVideo = true;
+                this.existeVideo = response?.medias?.some(e => e.type === "VIDEO");
+                this.existeMaquetteOrPlan = response?.medias?.some(e => e.type == "MAQUETTE" || e.type == "PLAN");
+                this.existeBrochure = response?.medias?.some(e => e.type == "BROCHURE");
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
@@ -150,7 +166,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
                         );
                     } else {
                         this.projet.estFavoris = true;
-                        
+
                         // Open the dialog
                         this._fuseConfirmationService.open(
                             {

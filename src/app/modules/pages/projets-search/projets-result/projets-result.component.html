@@ -142,12 +142,12 @@
                                                     <!-- logo promoteur -->
                                                     <div class="w-full ml-auto mt-1">
                                                         <ng-container *ngIf="projet.promoter.logoPath">
-                                                            <figure class="flex items-center justify-center h-32 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
+                                                            <figure class="flex items-center justify-center h-28 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
                                                                 <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
                                                             </figure>
                                                         </ng-container>
                                                         <ng-container *ngIf="!projet.promoter.logoPath">
-                                                            <span class="flex items-center justify-center h-32 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                            <span class="flex items-center justify-center h-28 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                                                 No Logo
                                                             </span>
                                                         </ng-container>
@@ -170,7 +170,8 @@
                                                             mat-stroked-button 
                                                             [color]="'primary'"
                                                             (click)="openContact(projet)">
-                                                            Contacter le promoteur
+                                                            <span *ngIf="!isScreenSmall">Contacter le promoteur</span>
+                                                            <span *ngIf="isScreenSmall">Contact promoteur</span>
                                                         </button>
                                                     </div>
                                                 </div>
