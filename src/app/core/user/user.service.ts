@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, of, ReplaySubject, switchMap } from 'rxjs';
 import { User, UserKeycloak } from 'app/core/user/user.types';
 
@@ -115,7 +115,7 @@ export class UserService
         dateNaissance: string;
         clientAWB: boolean;
         password: string
-    }): Observable<User> {
+    }): Observable<any> {
 
         let userKeycloak: UserKeycloak = {
             firstName: user.firstName,
@@ -138,13 +138,7 @@ export class UserService
             ]
         }
 
-        return this.createUser(userKeycloak)
-            .pipe(
-                switchMap((response: string) => {
-
-                    return this.get(response)
-                })
-            );
+        return this.createUser(userKeycloak);
     }
 
     /**

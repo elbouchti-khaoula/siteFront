@@ -11,6 +11,7 @@ import { SmsService } from 'app/core/services/sms/sms.service';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
 import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
     selector: 'sign-up',
@@ -99,6 +100,7 @@ export class AuthSignUpComponent implements OnInit {
             telephone: ['', [Validators.required]],
             pass1: ['', [Validators.required]],
             pass2: ['', [Validators.required]],
+            password: ['', ],
             agreements: [''],
             clientAWB: ['']
         });
@@ -204,66 +206,48 @@ export class AuthSignUpComponent implements OnInit {
     }
 
     signUp2(): void
-    {   
+    {
+
+
 
         if ( this.signUpForm2.invalid)
         {
             return;
         }
-
+    if(this.signUpForm2.value.pass2!==this.signUpForm2.value.pass1){
+        this.alert = {
+            type   : 'error',
+            message: 'Le mot de passe et la confirmation doivent avoir la même valeur'
+        };
+        this.showAlert = true;
+        return;
+    }
         this.signUpForm2.disable();
         this.showAlert = false;
-
+        this.signUpForm2.controls['password'].setValue(this.signUpForm2.value.pass2);
         this._userService.signUp(this.signUpForm2.value)
-        //this._authService.signUp(this.signUpForm2.value)
-            .subscribe(
-                () => {
+            .subscribe({
+                next:(response) => {
+                    console.log('response',JSON.stringify(response));
+                    this.alert = {
+                        type   : 'success',
+                        message: 'Un lien d\'activation vous a été envoyé à votre adresse mail.'
+                    };
 
-                    // send mail
-                    let currentUser = this._authenticationService.connectedUser;
-                    this._userService.sendMailToUser(currentUser.id)
-                    //this._authService.sendMail()
-                        .subscribe(
-                            () => {
+                    this.showAlert = true;
+                    // Redirect after the countdown
+                    timer(1000, 1000)
+                        .pipe(
+                            finalize(() => {
+                                this._router.navigate(['landing']);
+                            }),
+                            takeWhile(() => this.countdown > 0),
+                            takeUntil(this._unsubscribeAll),
+                            tap(() => this.countdown--)).subscribe();
 
-                                this.alert = {
-                                    type   : 'success',
-                                    message: 'Un lien d\'activation vous a été envoyé à votre adresse mail.'
-                                };
-
-                                this.showAlert = true;
-
-                                // Redirect after the countdown
-                                timer(1000, 1000)
-                                .pipe(
-                                    finalize(() => {
-                                        this._router.navigate(['landing']);
-                                    }),
-                                    takeWhile(() => this.countdown > 0),
-                                    takeUntil(this._unsubscribeAll),
-                                    tap(() => this.countdown--)
-                                )
-                                .subscribe();
-                            },
-                            (response) => {
-
-                                // Delete user
-                                //this._authService.deleteUser().subscribe();
-                                this._userService.deleteUser(currentUser.id).subscribe();
-
-                                this.alert = {
-                                    type   : 'error',
-                                    message: 'Erreur lors de l\'envoi du lien d\'activation par email.'
-                                };
-                                this.signUpForm2.enable();
-                                this.showAlert = true;
-                            }
-                        );
-
-                },
-                (response) => {
-
-                    if (response.status == 409) {
+                    },
+                error:(err: any) =>{
+                    if (err.status === 409) {
                         this.alert = {
                             type: 'warning',
                             message: 'Compte existant.'
@@ -280,7 +264,7 @@ export class AuthSignUpComponent implements OnInit {
                         this.showAlert = true;
                     }
                 }
-            );
+                });
 
     }
 
@@ -304,11 +288,11 @@ export class AuthSignUpComponent implements OnInit {
                         type: 'error',
                         message: 'Erreur lors de l\'envoi du code d\'activation via \'sms.'
                     }
-    
+
                     this.isClient = true
                     this.isNum = false
                     this.isSendSms = false
-    
+
                     this.showAlert = true;
                     this.signUpForm3.enable();
                 }
