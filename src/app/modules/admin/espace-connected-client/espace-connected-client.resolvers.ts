@@ -45,7 +45,7 @@ export class CountCreditResolver implements Resolve<any>
         });
         // const email = 'firstname.lastname@gmail.com';
 
-        return this._recordsInProgressService.getCountCreditByEmailAndCin(cin);
+        return this._recordsInProgressService.getCountCreditByEmailAndCin(cin,email);
 
 
 
