@@ -43,8 +43,9 @@ export class ReclamationsService {
         return this._httpClient.get<Motif[]>('api/reclamations/motifs/selfcare')
             .pipe(
                 tap((response: Motif[]) => {
-                    response.push({ id: -1, libelle: "Alerte éthique", libelleselfcare: "Alerte éthique" });
+                    // response.push({ id: -1, libelle: "Alerte éthique", libelleselfcare: "Alerte éthique" });
                     response.sort((a, b) => a.libelleselfcare.localeCompare(b.libelleselfcare));
+                    response.push(...response.splice(response.findIndex(v => v.libelleselfcare == 'Autre'), 1))
                     this._motifs.next(response);
                 })
             );
