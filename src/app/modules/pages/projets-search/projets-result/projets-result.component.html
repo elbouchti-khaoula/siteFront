@@ -158,22 +158,25 @@
                                                     <div class="prose prose-sm overflow-hidden"
                                                         [innerHTML]="projet.descriptionSmall"></div>
 
-                                                    <div class="flex justify-center mt-3">
-                                                        <button
-                                                            mat-flat-button 
-                                                            [color]="'primary'"
-                                                            [routerLink]="['/projets-search/projet-details']"
-                                                            [queryParams]="{id: projet.id}">
-                                                            En savoir plus
-                                                        </button>
-                                                        <button class="ml-2 md:ml-3"
-                                                            mat-stroked-button 
-                                                            [color]="'primary'"
-                                                            (click)="openContact(projet)">
-                                                            <span *ngIf="!isScreenSmall">Contacter le promoteur</span>
-                                                            <span *ngIf="isScreenSmall">Contact promoteur</span>
-                                                        </button>
+                                                    <!-- Actions -->
+                                                    <div class="w-full border-t pt-4 mt-3">
+                                                        <div class="flex flex-col max-md:mx-auto max-md:max-w-max max-md:space-y-2 md:flex-row md:justify-center">
+                                                            <button
+                                                                mat-flat-button 
+                                                                [color]="'primary'"
+                                                                [routerLink]="['/projets-search/projet-details']"
+                                                                [queryParams]="{id: projet.id}">
+                                                                En savoir plus
+                                                            </button>
+                                                            <button class="md:ml-3"
+                                                                mat-stroked-button 
+                                                                [color]="'primary'"
+                                                                (click)="openContact(projet)">
+                                                                Contacter le promoteur
+                                                            </button>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

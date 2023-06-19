@@ -15,13 +15,15 @@
     }
 }
 
+@media (max-width: 959px) {
+    .mat-horizontal-stepper-header {
+        padding: 20px 10px  !important;
+    }
+}
 
 @media (min-width: 960px) {
     .mat-horizontal-stepper-header {
-        box-sizing: border-box;
         flex-direction: column-reverse !important;
-        height: auto;
-        padding: 24px;
     }
 
     .mat-horizontal-stepper-header .mat-step-label {
@@ -32,10 +34,15 @@
     .mat-horizontal-stepper-header:not(:last-child)::after,
     .mat-stepper-horizontal-line {
         top: 68px !important;
-        border-top-width: 2px !important;
-        border-top-style: solid !important;
-        border-top-color: rgb(75, 181, 67) !important;
     }
+}
+
+.mat-horizontal-stepper-header:not(:first-child)::before,
+.mat-horizontal-stepper-header:not(:last-child)::after,
+.mat-stepper-horizontal-line {
+    border-top-width: 2px !important;
+    border-top-style: solid !important;
+    border-top-color: rgb(75, 181, 67) !important;
 }
 
 .mat-horizontal-stepper-header[aria-selected='true']::after,
@@ -48,7 +55,6 @@
 .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {
     background-color: rgb(75, 181, 67) !important;
-
     +.mat-step-label {
         color: rgb(75, 181, 67) !important;
     }
@@ -60,7 +66,7 @@
 .mat-step-header .mat-step-icon-selected,
 .mat-step-header .mat-step-icon-state-edit {
   color:#fff !important;
-}  
+}
 
 
 
