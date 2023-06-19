@@ -172,7 +172,7 @@ export class CountDemandesCreditsResolver implements Resolve<any>
         });
         // const email = 'firstname.lastname@gmail.com';
 
-        return this._recordsInProgressService.getCountDemandesCredits(cin);
+        return this._recordsInProgressService.getCountDemandesCredits(cin,email);
     }
 }
 

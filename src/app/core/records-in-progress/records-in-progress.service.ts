@@ -74,9 +74,10 @@ export class RecordsInProgressService {
      * count mes demandes de credits
      *
      * @param cin
+     * @param email
      */
     getCountCreditByEmailAndCin(cin: string): Observable<number> {
-        return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: cin,mail:""})
+        return this._httpClient.post<number>('api/records-in-progress/credits/count', { origin: "SITE", cin: cin,mail:null})
             .pipe(
                 map((response: number) => response)
             );
@@ -86,9 +87,10 @@ export class RecordsInProgressService {
      * count mes credits
      *
      * @param cin
+     * @param email
      */
-      getCountDemandesCredits(cin: string): Observable<number> {
-        return this._httpClient.post<number>('api/records-in-progress/demandes/count', { origin: "SITE", cin: cin, mail:""})
+      getCountDemandesCredits(cin: string,email: string): Observable<number> {
+        return this._httpClient.post<number>('api/records-in-progress/demandes/count', { origin: "SITE", cin: cin, mail:email})
             .pipe(
                 map((response: number) => response)
             );
