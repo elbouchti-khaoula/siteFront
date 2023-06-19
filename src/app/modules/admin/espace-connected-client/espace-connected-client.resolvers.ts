@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RecordsInProgressService } from 'app/core/records-in-progress/records-in-progress.service';
+import { RecordsInProgressService } from 'app/core/services/records-in-progress/records-in-progress.service';
 import { UserService } from 'app/core/user/user.service';
-import { SimulationDetailleeService } from 'app/core/projects/projects.service';
-import { ProjetsService } from 'app/core/projets/projets.service';
-import { DemandeSAVService } from 'app/core/demandes-sav/demandes-sav.service';
+import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
+import { ProjetsService } from 'app/core/services/projets/projets.service';
+import { DemandeSAVService } from 'app/core/services/demandes-sav/demandes-sav.service';
 
 
 @Injectable({
