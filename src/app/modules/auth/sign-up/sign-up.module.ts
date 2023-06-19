@@ -14,10 +14,16 @@ import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
 import { MatSelectModule } from '@angular/material/select';
+import {AccountService} from '../../../core/services/accounts/accounts.service';
+import {SmsService} from '../../../core/services/sms/sms.service';
+
 
 @NgModule({
     declarations: [
         AuthSignUpComponent
+    ],
+    providers: [
+        AccountService,SmsService
     ],
     imports     : [
         RouterModule.forChild(authSignupRoutes),
