@@ -98,7 +98,7 @@ export class ProjetsService {
 
                     // Sort the projets by the dateCreation field by default
                     // projets.sort((a, b) => a.nom.localeCompare(b.nom));
-                    projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
+                    // projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
 
                     let images = [
                         [
@@ -242,7 +242,7 @@ export class ProjetsService {
 
                                 // Sort the projets by the dateCreation field by default
                                 // projets.sort((a, b) => a.nom.localeCompare(b.nom));
-                                projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
+                                // projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
 
                                 let images = [
                                     [

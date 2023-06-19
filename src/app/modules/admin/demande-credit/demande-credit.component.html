@@ -52,7 +52,7 @@
 
                 <!-- Récap -->
                 <mat-drawer-container
-                    class="bg-transparent md:w-9/20 rounded-xl md:-mt-5"
+                    class="bg-transparent md:w-9/20 rounded-xl md:-mt-0.5"
                     [hasBackdrop]="true"
                     #drawerContainerResult>
 
@@ -64,19 +64,19 @@
                         <tableau-amortissement [drawer]="drawerTableauDC"></tableau-amortissement>
                     </mat-drawer>
 
-                    <mat-drawer-content class="px-1 pt-5 pb-1">
+                    <mat-drawer-content class="p-0.5">
 
                         <fuse-card class="flex flex-col px-6 pb-8 pt-7 bg-gray-50 ring-1 ring-primary rounded-xl shadow-md overflow-hidden">
                             
                             <!-- titre -->
-                            <div class="flex flex-row">
+                            <div class="flex flex-col md:flex-row">
                                 <div class="w-full flex items-center">
                                     <div class="flex items-center justify-center h-16 w-16 rounded-full font-medium text-center leading-none bg-primary-500">
                                         <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
                                         </mat-icon>
                                     </div>
                                     <div class="ml-6 text-2xl font-bold leading-tight uppercase">
-                                        Simulation N° {{simulationResultat?.id}}
+                                        Ma simulation N° {{simulationResultat?.id}}
                                     </div>
                                 </div>
 
@@ -207,7 +207,7 @@
                                         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 gap-y-5 mt-5 p-5 ring-1 ring-second-500 bg-second-100 rounded-md">
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Socio Professionnelle
+                                                    Catégorie socio-professionnelle
                                                 </div>
                                                 <div class="font-semibold text-lg leading-tight tracking-tight mt-2">
                                                     {{simulationResultat?.categorieSocioProfessionnelle}}
@@ -248,7 +248,7 @@
                                             </div> -->
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
-                                                    Montant des crédits en cours
+                                                    Crédits en cours
                                                 </div>
                                                 <div class="font-semibold text-lg leading-tight tracking-tight mt-2">
                                                     {{simulationResultat?.creditsEnCours}}
@@ -428,7 +428,7 @@
 
                                                     <div class="flex flex-col">
                                                         <div class="text-sm font-semibold leading-none text-secondary">
-                                                            Assurances
+                                                            Frais d'assurance
                                                         </div>
                                                         <div class="flex items-baseline whitespace-nowrap mt-2">
                                                             <div class="font-semibold text-lg leading-tight tracking-tight" #assurancesId>
@@ -522,7 +522,7 @@
                 <!-- Chargement document -->
                 <div class="w-full md:w-11/20">
                     
-                    <div class="bg-card shadow-md rounded-xl overflow-hidden ring-1 ring-current p-6">
+                    <div class="bg-card shadow-md rounded-xl overflow-hidden ring-1 ring-current px-6 pb-8 pt-7">
 
                         <!-- titre -->
                         <div class="w-full flex items-center">
@@ -530,7 +530,7 @@
                                 <mat-icon class="icon-size-16 text-black -mt-1" svgIcon="checklist">
                                 </mat-icon>
                             </div>
-                            <div class="ml-6 text-2xl font-bold leading-tight uppercase">Chargement de document</div>
+                            <div class="ml-6 text-2xl font-bold leading-tight uppercase">Mes documents justificatifs</div>
                         </div>
 
                         <!-- warning -->
@@ -542,7 +542,7 @@
                             </span>
                         </div>
 
-                        <div class="text-lg font-semibold mt-7">Veuillez charger les fichiers ci-dessous : </div>
+                        <div class="text-lg font-semibold mt-7">Afin de valider votre demande de crédit, nous vous invitons à nous soumettre les documents ci-dessous :</div>
 
                         <!-- checkList -->
                         <div class="flex flex-col space-y-5 mt-3">
@@ -584,16 +584,18 @@
                     </div>
 
                     <!-- Changer d'agence -->
-                    <div class="flex flex-col max-md:space-y-2 md:flex-row items-center justify-between md:space-x-5 mt-5 p-3 bg-card shadow-md rounded-xl ring-1 ring-current">
+                    <div class="flex flex-col max-md:space-y-3 md:flex-row md:justify-between mt-5 p-5 bg-card shadow-md rounded-xl ring-1 ring-current">
                         <div class="flex flex-col">
                             <span>Agence :</span>
                             <span class="whitespace-nowrap">{{simulationResultat?.nomAgence}}</span>
                         </div>
-                        <span *ngIf="simulationResultat?.codeApporteur === '100'">
-                            Vous souhaitez poursuivre au niveau d'une autre agence ?
+                        <span *ngIf="simulationResultat?.codeApporteur === '100'"
+                            class="md:w-1/2">
+                            Si vous souhaitez poursuivre au niveau d’une agence physique, veuillez sélectionner l’agence de votre choix
                         </span>
                         <button
                             *ngIf="simulationResultat?.codeApporteur === '100'"
+                            class="max-md:mx-auto"
                             mat-flat-button
                             type="button"
                             [color]="'primary'"

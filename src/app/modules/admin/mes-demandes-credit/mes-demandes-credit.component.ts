@@ -30,7 +30,7 @@ export class MesDemandesCreditComponent implements OnInit, OnDestroy {
   {
     this.steps.push({ id: 1, libelle: 'Instruction' });
     this.steps.push({ id: 2, libelle: 'Autorisation' });
-    this.steps.push({ id: 3, libelle: 'Déblocage' });
+    this.steps.push({ id: 3, libelle: 'Mise à disposition des fonds' });
   }
 
   // -----------------------------------------------------------------------------------------------------

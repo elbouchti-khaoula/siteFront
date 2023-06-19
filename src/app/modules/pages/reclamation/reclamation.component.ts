@@ -71,15 +71,15 @@ export class ReclamationComponent implements OnInit {
     ngOnInit(): void {
         // Create the reclamation form
         this.reclamationForm = this._formBuilder.group({
-            motif: ['', Validators.required],
-            nom: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            prenom: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            cin: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            motif       : ['', Validators.required],
+            nom         : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            prenom      : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            cin         : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
             // numeroDossier   : [''],
-            email: ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
-            telephone: ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            text: ['', Validators.required],
-            bonneFoi: ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value == -1)]],
+            email       : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
+            telephone   : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            text        : ['', Validators.required],
+            bonneFoi    : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value == -1)]],
         });
 
         // Get the motifs
@@ -197,7 +197,7 @@ export class ReclamationComponent implements OnInit {
 
                     this._showAlertMessage(
                         'success',
-                        'Nous avons bien reçu votre message. Nous le traiterons dans les plus bref délais'
+                        'Votre réclamation est enregistrée avec succès, nous vous contacterons dans les plus brefs délais'
                     );
 
                     // Clear the form

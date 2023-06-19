@@ -54,7 +54,7 @@
                     [formGroup]="simulationStepperForm"
                     [@resize]="!isScreenSmall && animationState">
 
-                    <div class="w-fit flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mx-6 mt-5 mb-3">
+                    <div class="w-fit flex flex-row bg-gray-300 rounded-md shadow py-2 px-3 mt-5 mb-3 mx-5">
                         <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
                         </mat-icon>
                         <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
@@ -62,7 +62,10 @@
                         </span>
                     </div>
 
-                    <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #simulationStepper
+                    <mat-horizontal-stepper
+                        [linear]="true"
+                        labelPosition="bottom"
+                        #simulationStepper
                         class="bg-transparent">
 
                         <ng-template matStepperIcon="number" let-active="active">
@@ -81,22 +84,18 @@
                             <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:check'">
                             </mat-icon>
                         </ng-template> -->
-                        <!-- <ng-template matStepperIcon="number" let-index="index">
-                            <span *ngIf="simulationStepperForm.get(tab[index]).pristine || simulationStepperForm.get(tab[index]).invalid">{{index + 1}}</span>
-                            <mat-icon 
-                                *ngIf="!simulationStepperForm.get(tab[index]).pristine && simulationStepperForm.get(tab[index]).valid"
-                                [svgIcon]="'heroicons_outline:check'">
-                            </mat-icon>
-                        </ng-template> -->
 
                         <!-- step 1 -->
-                        <mat-step [formGroupName]="'step1'" [stepControl]="simulationStepperForm.get('step1')"
-                            [label]="isXsScreen ? '' : 'Mon profil'" #simulationStepperStep1>
+                        <mat-step
+                            [formGroupName]="'step1'"
+                            [stepControl]="simulationStepperForm.get('step1')"
+                            [label]="isXsScreen ? '' : 'Mon profil'"
+                            #simulationStepperStep1>
 
-                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Nom -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'nom'">
@@ -108,7 +107,7 @@
                                 </mat-form-field>
 
                                 <!-- Prénom -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
                                     </mat-icon>
                                     <input matInput [formControlName]="'prenom'">
@@ -120,7 +119,7 @@
                                 </mat-form-field>
 
                                 <!-- Téléphone -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'"
                                         matPrefix></mat-icon>
                                     <input matInput [formControlName]="'telephone'" appFormatTelephone>
@@ -132,7 +131,7 @@
                                 </mat-form-field>
 
                                 <!-- Email -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix>
                                     </mat-icon>
                                     <input type="email" matInput [formControlName]="'email'">
@@ -148,7 +147,7 @@
                                 </mat-form-field>
 
                                 <!-- Nationalité -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:flag'" matPrefix>
                                     </mat-icon>
                                     <mat-select [formControlName]="'nationalite'">
@@ -167,7 +166,7 @@
                                 </mat-form-field>
 
                                 <!-- Birthday -->
-                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-label>Date de naissance</mat-label>
                                     <mat-icon matPrefix class="hidden sm:flex icon-size-5"
                                         [svgIcon]="'heroicons_solid:cake'">
@@ -191,7 +190,7 @@
                                 </mat-form-field>
 
                                 <!-- Résident -->
-                                <mat-radio-group class="flex flex-col w-full" [color]="'primary'"
+                                <mat-radio-group class="flex flex-col" [color]="'primary'"
                                     [formControlName]="'residantMaroc'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Résident au Maroc ?
                                         *</mat-label>
@@ -232,7 +231,7 @@
                                 <button 
                                     mat-flat-button
                                     [color]="'primary'"
-                                    [disabled]="simulationStepperStep1.stepControl.pristine || simulationStepperStep1.stepControl.invalid"
+                                    [disabled]="simulationStepperStep1.stepControl.invalid"
                                     type="button" matStepperNext>
                                     Suivre
                                 </button>
@@ -241,13 +240,16 @@
                         </mat-step>
 
                         <!-- step 2 -->
-                        <mat-step [formGroupName]="'step2'" [stepControl]="simulationStepperForm.get('step2')"
+                        <mat-step
+                            [formGroupName]="'step2'"
+                            [stepControl]="simulationStepperForm.get('step2')"
                             #simulationStepperStep2>
+
                             <ng-template matStepLabel *ngIf="!isXsScreen">Ma situation</ng-template>
 
-                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
-                                <!-- Catégorie socio professionnelle -->
+                                <!-- Catégorie socio-professionnelle -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:briefcase'" matPrefix>
                                     </mat-icon>
@@ -364,24 +366,32 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end mt-5">
-                                <button class="mr-2" mat-flat-button [color]="'accent'" type="button"
+                                <button class="mr-2"
+                                    mat-flat-button
+                                    [color]="'accent'"
+                                    type="button"
                                     matStepperPrevious>
                                     Retour
                                 </button>
-                                <button mat-flat-button [color]="'primary'"
-                                    [disabled]="simulationStepperStep2.stepControl.pristine || simulationStepperStep2.stepControl.invalid"
+                                <button mat-flat-button
+                                    [color]="'primary'"
+                                    [disabled]="simulationStepperStep2.stepControl.invalid"
                                     type="button" matStepperNext>
                                     Suivre
                                 </button>
                             </div>
+
                         </mat-step>
 
                         <!-- step 3 -->
-                        <mat-step [formGroupName]="'step3'" [stepControl]="simulationStepperForm.get('step3')"
+                        <mat-step
+                            [formGroupName]="'step3'"
+                            [stepControl]="simulationStepperForm.get('step3')"
                             #simulationStepperStep3>
+
                             <ng-template matStepLabel *ngIf="!isXsScreen">Mon projet</ng-template>
 
-                            <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-2 md:mt-5">
 
                                 <!-- Prix du bien -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
@@ -519,9 +529,9 @@
 
                             </div>
 
-                            <div class="flex justify-center mt-9">
+                            <!-- <div class="flex justify-center mt-9 max-sm:max-w-60">
                                 <app-captcha (captchaValid)="isCaptchaValid = $event"></app-captcha>
-                            </div>
+                            </div> -->
                             
                             <!-- Actions -->
                             <div class="flex justify-end mt-9">
@@ -529,19 +539,21 @@
                                     matStepperPrevious>
                                     Retour
                                 </button>
+                                <!-- || !isCaptchaValid -->
                                 <button
-                                    [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid}"
+                                    [ngClass]="{'bg-primary-200' : simulationStepperStep3.stepControl.invalid}"
                                     mat-flat-button [color]="'primary'" type="button"
-                                    [disabled]="simulationStepperStep3.stepControl.pristine || simulationStepperStep3.stepControl.invalid || !isCaptchaValid"
+                                    [disabled]="simulationStepperStep3.stepControl.invalid"
                                     (click)="simuler()">
                                     Valider
                                 </button>
                             </div>
+
                         </mat-step>
 
                     </mat-horizontal-stepper>
 
-                    <div class="flex flex-row bg-amber-100 rounded-md shadow py-2 px-3 mx-6 mb-5">
+                    <div class="flex flex-row bg-amber-100 rounded-md shadow py-2 px-3 mb-5 mx-5">
                         <mat-icon class="icon-size-5 text-amber-500" [svgIcon]="'heroicons_solid:information-circle'">
                         </mat-icon>
                         <span class="ml-2 text-sm font-semibold">« Conformément à la loi 09-08, vous disposez d'un droit
