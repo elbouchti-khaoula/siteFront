@@ -15,14 +15,109 @@ export class ProjetsService {
     private _projets: BehaviorSubject<Projet[] | null> = new BehaviorSubject(null);
     private _projetsFavoris: BehaviorSubject<ProjetFavori[] | null> = new BehaviorSubject(null);
 
+    images = [
+        [
+            {
+                chemin: 'assets/images/pages/marketplace/projet1/princ.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet1/salon.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet1/kitchen.jpeg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet1/bedroom.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet1/childroom.jpg'
+            }
+        ],
+        [
+            {
+                chemin: 'assets/images/pages/marketplace/projet2/princ.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet2/salon.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet2/kitchen.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet2/bedroom.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet2/childroom.jpg'
+            }
+        ],
+        [
+            {
+                chemin: 'assets/images/pages/marketplace/projet3/princ.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet3/salon.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet3/kitchen.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet3/bedroom.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet3/childroom.jpg'
+            }
+        ],
+        [
+            {
+                chemin: 'assets/images/pages/marketplace/projet4/princ.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet4/salon.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet4/kitchen.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet4/bedroom.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet4/childroom.jpg'
+            }
+        ],
+        [
+            {
+                chemin: 'assets/images/pages/marketplace/projet5/princ.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet5/salon.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet5/kitchen.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet5/bedroom.jpg'
+            },
+            {
+                chemin: 'assets/images/pages/marketplace/projet5/childroom.jfif'
+            }
+        ]
+    ];
+
+    logos = [
+        'assets/images/pages/marketplace/projet1/promoteur.png',
+        'assets/images/pages/marketplace/projet2/promoteur.jpeg',
+        'assets/images/pages/marketplace/projet3/promoteur.png',
+        'assets/images/pages/marketplace/projet4/promoteur.png',
+        'assets/images/pages/marketplace/projet5/promoteur.png'
+    ];
+
     /**
      * Constructor
      */
     constructor(
         private _httpClient: HttpClient,
         private _fuseUtilsService: FuseUtilsService
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -50,6 +145,9 @@ export class ProjetsService {
         return this._projetsFavoris.asObservable();
     }
 
+
+
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -76,7 +174,6 @@ export class ProjetsService {
         }
     }
 
-
     /**
      * Search projets without favoris
      *
@@ -96,111 +193,11 @@ export class ProjetsService {
             .pipe(
                 tap((projets: Projet[]) => {
 
-                    // Sort the projets by the dateCreation field by default
-                    // projets.sort((a, b) => a.nom.localeCompare(b.nom));
-                    // projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
-
-                    let images = [
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/kitchen.jpeg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/childroom.jfif'
-                            }
-                        ]
-                    ];
-
-                    let logos = [
-                        'assets/images/pages/marketplace/projet1/promoteur.png',
-                        'assets/images/pages/marketplace/projet2/promoteur.jpeg',
-                        'assets/images/pages/marketplace/projet3/promoteur.png',
-                        'assets/images/pages/marketplace/projet4/promoteur.png',
-                        'assets/images/pages/marketplace/projet5/promoteur.png'
-                    ];
-
                     for (let i = 0; i < projets?.length; i++) {
                         // projets[i].medias1 = projets[i].medias;
-                        // projets[i].medias = images[i % 5];
-                        // projets[i].promoter.logoPath = logos[i % 5];
-                        this.fillReferentielLabels(projets[i], false);
+                        // projets[i].medias = this.images[i % 5];
+                        // projets[i].promoter.logoPath = this.logos[i % 5];
+                        this.fillReferentielLabels(projets[i], null);
                     }
 
                     this._projets.next(projets);
@@ -240,111 +237,12 @@ export class ProjetsService {
                             }),
                             switchMap((projetsFavoris: ProjetFavori[]) => {
 
-                                // Sort the projets by the dateCreation field by default
-                                // projets.sort((a, b) => a.nom.localeCompare(b.nom));
-                                // projets.sort((a, b) => +a.dateCreation - +b.dateCreation);
-
-                                let images = [
-                                    [
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet1/princ.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet1/salon.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet1/kitchen.jpeg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet1/bedroom.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet1/childroom.jpg'
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet2/princ.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet2/salon.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet2/kitchen.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet2/bedroom.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet2/childroom.jpg'
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet3/princ.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet3/salon.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet3/kitchen.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet3/bedroom.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet3/childroom.jpg'
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet4/princ.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet4/salon.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet4/kitchen.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet4/bedroom.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet4/childroom.jpg'
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet5/princ.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet5/salon.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet5/kitchen.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet5/bedroom.jpg'
-                                        },
-                                        {
-                                            chemin: 'assets/images/pages/marketplace/projet5/childroom.jfif'
-                                        }
-                                    ]
-                                ];
-
-                                let logos = [
-                                    'assets/images/pages/marketplace/projet1/promoteur.png',
-                                    'assets/images/pages/marketplace/projet2/promoteur.jpeg',
-                                    'assets/images/pages/marketplace/projet3/promoteur.png',
-                                    'assets/images/pages/marketplace/projet4/promoteur.png',
-                                    'assets/images/pages/marketplace/projet5/promoteur.png'
-                                ];
-
                                 for (let i = 0; i < projets?.length; i++) {
                                     // projets[i].medias1 = projets[i].medias;
-                                    // projets[i].medias = images[i % 5];
-                                    // projets[i].promoter.logoPath = logos[i % 5];
-                                    this.fillReferentielLabels(projets[i], projetsFavoris.some(e => e.realEstateProject.id === projets[i].id));
+                                    // projets[i].medias = this.images[i % 5];
+                                    // projets[i].promoter.logoPath = this.logos[i % 5];
+                                    let projetFavoris = projetsFavoris.find(e => e.realEstateProject.id === projets[i].id);
+                                    this.fillReferentielLabels(projets[i], projetFavoris);
                                 }
 
                                 this._projets.next(projets);
@@ -444,6 +342,41 @@ export class ProjetsService {
     }
 
     /**
+     * Remove a projet favori
+     *
+     * @param projetFavori
+     */
+    removeProjetFavori(projetFavori: ProjetFavori): Observable<boolean> {
+        return this.searchProjetsFavorisQuery({
+            userName: projetFavori.userName,
+            userEmail: projetFavori.userEmail,
+            statutFavorite: 'ENCOURS',
+            realEstateProject: { id: projetFavori.realEstateProject.id }
+        })
+            .pipe(
+                catchError(err1 => {
+                    console.log("Error from first call: ");
+                    return throwError(() => err1);
+                }),
+                switchMap((response: ProjetFavori[]) => {
+
+                    console.log("+-+- search projet favoris", response);
+
+                    if (response && response.length > 0) {
+                        return this.deleteProjetFavori(projetFavori)
+                            .pipe(
+                                catchError(err2 => {
+                                    console.log("Error from second call: ");
+                                    return throwError(() => err2);
+                                })
+                            );
+                    } else {
+                        return of(false);
+                    }
+                }));
+    }
+
+    /**
      * Search projets favoris with given query
      *
      * @param projetFavori
@@ -461,106 +394,10 @@ export class ProjetsService {
                     // Sort the projets favoris by the dateCreation field by default
                     projetsFavoris.sort((a, b) => +a.dateCreation - +b.dateCreation);
 
-                    let images = [
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/kitchen.jpeg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet1/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet2/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet3/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet4/childroom.jpg'
-                            }
-                        ],
-                        [
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/princ.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/salon.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/kitchen.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/bedroom.jpg'
-                            },
-                            {
-                                chemin: 'assets/images/pages/marketplace/projet5/childroom.jfif'
-                            }
-                        ]
-                    ];
-
-                    let logos = [
-                        'assets/images/pages/marketplace/projet1/promoteur.png',
-                        'assets/images/pages/marketplace/projet2/promoteur.jpeg',
-                        'assets/images/pages/marketplace/projet3/promoteur.png',
-                        'assets/images/pages/marketplace/projet4/promoteur.png',
-                        'assets/images/pages/marketplace/projet5/promoteur.png'
-                    ];
-
                     for (let i = 0; i < projetsFavoris?.length; i++) {
-                        // projetsFavoris[i].realEstateProject.medias = images[i % 5];
-                        // projetsFavoris[i].realEstateProject.promoter.logoPath = logos[i % 5];
-                        this.fillReferentielLabels(projetsFavoris[i].realEstateProject, true);
+                        // projetsFavoris[i].realEstateProject.medias = this.images[i % 5];
+                        // projetsFavoris[i].realEstateProject.promoter.logoPath = this.logos[i % 5];
+                        this.fillReferentielLabels(projetsFavoris[i].realEstateProject, projetsFavoris[i]);
                     }
 
                     this._projetsFavoris.next(projetsFavoris);
@@ -615,19 +452,42 @@ export class ProjetsService {
             );
     }
 
-    private fillReferentielLabels(projet: Projet, estFavoris: boolean) {
-        let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
-        let typesBiens: TypeBien[] = JSON.parse(localStorage.getItem('typesBiens'));
-        let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
+    /**
+     * Delete a projet favori
+     *
+     * @param projetFavori
+     */
+    private deleteProjetFavori(projetFavori: ProjetFavori): Observable<boolean> {
+        return this._httpClient.delete<ProjetFavori>(`api/real-estate-projects/favoris/${projetFavori.id}`)
+            .pipe(
+                map(response => {
 
-        projet.estFavoris = estFavoris;
+                    // Return a new observable with the response
+                    return true;
+                })
+            );;
+    }
+
+    private fillReferentielLabels(projet: Projet, projetFavori: ProjetFavori) {
+        if (projetFavori != undefined && projetFavori != null) {
+            projet.estFavoris = true;
+            projet.projetFavorisId = projetFavori.id;
+        } else {
+            projet.estFavoris = false;
+            projet.projetFavorisId = undefined;
+        }
         projet.prixMinStr = this._fuseUtilsService.numberFormat(projet.prixMin, 2, '.', ' ');
         projet.prixMaxStr = this._fuseUtilsService.numberFormat(projet.prixMax, 2, '.', ' ');
         projet.devise = "MAD";
-        projet.descriptionSmall = projet?.description ? projet?.description.substring(0, 90) + '...' : "";
-        // projet.libelleVille = villes?.length > 0 ? villes.find(e => e.codeVille == projet.codeVille)?.description : "";
-        // projet.libelleTypeBien = typesBiens?.length > 0 ? typesBiens.find(e => e.code == projet.codeTypeBien)?.libelle : "";
-        // projet.libelleQuartier = quartiers?.length > 0 ? quartiers.find(e => e.code == projet.codeQuartier)?.libelle : "";
+        projet.description = projet.description?.replace(/\\r\\n/g, "\n");
+        projet.descriptionSmall =
+            projet?.description != undefined && projet?.description != null ?
+                projet?.description.length > 70 ? projet?.description.substring(0, 70) + '...' : projet?.description
+                : "";
+
+        let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
+        let typesBiens: TypeBien[] = JSON.parse(localStorage.getItem('typesBiens'));
+        let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
         projet.libelleVille = villes?.find(e => e.codeVille == projet.codeVille)?.description;
         projet.libelleTypeBien = typesBiens?.find(e => e.code == projet.codeTypeBien)?.libelle;
         projet.libelleQuartier = quartiers?.find(e => e.code == projet.codeQuartier)?.libelle;

@@ -44,6 +44,7 @@ export interface Projet {
     promoter?: Promoteur;
 
     estFavoris?: boolean;
+    projetFavorisId?: number;
 }
 
 export interface Media {

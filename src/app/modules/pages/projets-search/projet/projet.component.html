@@ -67,7 +67,7 @@
                         mat-flat-button
                         [color]="'primary'"
                         (click)="openFaitesVousRappelerDialog()">
-                        Nous rappeler
+                        Me rappeler
                     </button>
                 </div>
             </div>
@@ -80,13 +80,14 @@
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">{{projet.standing}}</div>
                 </div> -->
-                <div class="flex flex-row items-center">
+                <div *ngIf="projet.statut" class="flex flex-row items-center">
                     <mat-icon class="icon-size-7" [svgIcon]="'heroicons_solid:lightning-bolt'">
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
                 </div>
                 <div *ngIf="user != undefined && projet.estFavoris" 
-                    class="flex flex-row items-center">
+                    class="flex flex-row items-center cursor-pointer"
+                    (click)="supprimerDesFavoris()">
                     <mat-icon
                         class="icon-size-7 text-red-500"
                         [svgIcon]="'heroicons_solid:heart'">
@@ -119,7 +120,7 @@
                 <button class="mt-5 uppercase"
                     mat-flat-button
                     [color]="'primary'"
-                    [routerLink]="'/espace-connecte/simulation-detaillee'">
+                    [routerLink]="'/simulation-personnalisee'">
                     Obtenir mon financement
                 </button>
             </div>
@@ -136,7 +137,7 @@
                     mat-flat-button
                     [color]="'primary'"
                     (click)="openFaitesVousRappelerDialog()">
-                    Nous rappeler
+                    Me rappeler
                 </button>
             </div>
     
@@ -158,7 +159,7 @@
                 <button class="fuse-mat-button-small mt-3 w-fit uppercase"
                     mat-flat-button
                     [color]="'primary'"
-                    [routerLink]="'/espace-connecte/simulation-detaillee'">
+                    [routerLink]="'/simulation-personnalisee'">
                     Obtenir mon financement
                 </button>
             </div>
@@ -166,13 +167,14 @@
             <hr class="w-full border-t">
     
             <div class="flex flex-col space-y-3">
-                <div class="flex flex-row items-center">
+                <div *ngIf="projet.statut" class="flex flex-row items-center">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:lightning-bolt'">
                     </mat-icon>
                     <div class="ml-3 font-semibold">{{projet.statut}}</div>
                 </div>
                 <div *ngIf="user != undefined && projet.estFavoris" 
-                    class="flex flex-row items-center">
+                    class="flex flex-row items-center cursor-pointer"
+                    (click)="supprimerDesFavoris()">
                     <mat-icon
                         class="icon-size-5 text-red-500"
                         [svgIcon]="'heroicons_solid:heart'">
@@ -202,12 +204,11 @@
     <section class="flex flex-col items-center px-5 sm:px-16 pb-10 sm:pb-18">
 
         <div class="flex flex-row w-full md:max-w-400">
-            <div class="h-fit w-full md:w-3/5 rounded-2xl overflow-hidden">
+            <div class="w-full md:w-3/5">
                 <!-- Video -->
-                <iframe *ngIf="existeVideo"
-                    [src]="iframeSrc"
-                    frameborder="0">
-                </iframe>
+                <div *ngIf="existeVideo" class="h-fit rounded-2xl overflow-hidden">
+                    <iframe [src]="iframeSrc" frameborder="0"></iframe>
+                </div>
 
                 <!-- Description -->
                 <div *ngIf="!existeVideo">
@@ -234,8 +235,8 @@
                             Description complète
                         </h2>
                     </div>
-    
-                    <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div>
+                    <div class="max-w-none mt-5" [innerText]="projet.description"></div>
+                    <!-- <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div> -->
                 </div>
             </div>
 
@@ -274,7 +275,8 @@
                     </h2>
                 </div>
 
-                <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div>
+                <div class="max-w-none mt-5" [innerText]="projet.description"></div>
+                <!-- <div class="max-w-none prose prose-sm md:prose-md mt-5" [innerHTML]="projet.description"></div> -->
             </div>
 
             <!-- Actions separator -->

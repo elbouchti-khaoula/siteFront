@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map, Observable, of, ReplaySubject, switchMap } from 'rxjs';
 import { User, UserKeycloak } from 'app/core/user/user.types';
 
@@ -39,8 +39,8 @@ export class UserService
 
     getUserConnecte(): User
     {
-        const userStorage=localStorage.getItem('connectedUser');
-        return  JSON.parse(userStorage)?? {};
+        const userStorage = localStorage.getItem('connectedUser');
+        return JSON.parse(userStorage) ?? {};
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -122,7 +122,7 @@ export class UserService
         clientAWB: boolean;
         password: string
     }): Observable<any> {
-//creation user  avec cin null=>la mise à jour se fait par la suite via un batch
+        //creation user  avec cin null=>la mise à jour se fait par la suite via un batch
         let userKeycloak: UserKeycloak = {
             firstName: user.firstName,
             lastName: user.lastName,

@@ -7,15 +7,15 @@ import { SalesForceService } from 'app/core/services/salesforce/salesforce.servi
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Projet } from 'app/core/services/projets/projets.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
-    selector       : 'nous-rappeler-popup',
-    templateUrl    : './nous-rappeler-popup.component.html',
-    encapsulation  : ViewEncapsulation.None,
+    selector: 'me-rappeler-popup',
+    templateUrl: './me-rappeler-popup.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewInit
-{
+export class MeRappelerPopupComponent implements OnInit, OnDestroy, AfterViewInit {
     isScreenSmall: boolean;
     alert: any;
     projet: Projet;
@@ -29,15 +29,15 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
      */
     constructor(
         @Inject(MAT_DIALOG_DATA) private _data: { projet: Projet },
-        public matDialogRef: MatDialogRef<NousRappelerPopupComponent>,
+        public matDialogRef: MatDialogRef<MeRappelerPopupComponent>,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _formBuilder: FormBuilder,
         private _router: Router,
         private _salesForceService: SalesForceService,
-        private _authenticationService: AuthenticationService
-    )
-    {
+        private _authenticationService: AuthenticationService,
+        private _fuseConfirmationService: FuseConfirmationService
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -47,10 +47,8 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
     /**
      * On init
      */
-    ngOnInit(): void
-    {
-        if ( this._data.projet.id )
-        {
+    ngOnInit(): void {
+        if (this._data.projet.id) {
             this.projet = this._data.projet;
         }
 
@@ -62,14 +60,14 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
-            
+
         // Prepare the form
         this.faitesVousRappelerForm = this._formBuilder.group({
-            nom         : ['', Validators.required],
-            prenom      : ['', Validators.required],
-            email       : ['', [Validators.required, Validators.email]],
-            telephone   : ['', Validators.required],
-            message     : ['']
+            nom: ['', Validators.required],
+            prenom: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            telephone: ['', Validators.required],
+            message: ['']
         });
     }
 
@@ -78,31 +76,30 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
      */
     ngAfterViewInit(): void {
         let currentUser = this._authenticationService.connectedUser;
-    
+
         if (currentUser?.email) {
-          this.faitesVousRappelerForm.get('email').setValue(currentUser?.email);
+            this.faitesVousRappelerForm.get('email').setValue(currentUser?.email);
         }
-    
+
         if (currentUser?.lastName) {
-          this.faitesVousRappelerForm.get('nom').setValue(currentUser?.lastName);
+            this.faitesVousRappelerForm.get('nom').setValue(currentUser?.lastName);
         }
-    
+
         if (currentUser?.firstName) {
-          this.faitesVousRappelerForm.get('prenom').setValue(currentUser?.firstName);
+            this.faitesVousRappelerForm.get('prenom').setValue(currentUser?.firstName);
         }
-    
+
         if (currentUser?.telephone) {
-          this.faitesVousRappelerForm.get('telephone').setValue(currentUser?.telephone);
+            this.faitesVousRappelerForm.get('telephone').setValue(currentUser?.telephone);
         }
-    
+
         this._changeDetectorRef.detectChanges();
     }
 
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
@@ -133,7 +130,7 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
             this.faitesVousRappelerForm.get('telephone').value,
             this.faitesVousRappelerForm.get('message').value,
             "Flux Marketplace",
-            "Nous rappeler : "
+            "Me rappeler : "
         )
             .pipe(
                 catchError((error) => {
@@ -152,7 +149,35 @@ export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewI
                     return throwError(() => error);
                 }))
             .subscribe((response: string) => {
-                this._showAlertMessage('success', 'Votre message est envoyé.', false);
+                // this._showAlertMessage('success', 'Votre message est envoyé.', false);
+                
+                // Close the popup
+                this.matDialogRef.close();
+
+                // Open the dialog
+                this._fuseConfirmationService.open(
+                    {
+                        "title": "Me rappeler",
+                        "message": "Votre message a été envoyé avec succès",
+                        "icon": {
+                            "show": true,
+                            "name": "heroicons_outline:check-circle",
+                            "color": "success"
+                        },
+                        "actions": {
+                            "confirm": {
+                                "show": true,
+                                "label": "Ok",
+                                "color": "primary"
+                            },
+                            "cancel": {
+                                "show": false,
+                                "label": "Cancel"
+                            }
+                        },
+                        "dismissible": false
+                    }
+                );
             });
 
         // Clear the form
