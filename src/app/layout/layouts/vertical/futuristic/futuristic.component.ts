@@ -63,11 +63,8 @@ export class FuturisticLayoutComponent implements OnInit, OnDestroy
             });
 
         // Subscribe to the user service
-        this._userService.user$
-            .pipe((takeUntil(this._unsubscribeAll)))
-            .subscribe((user: User) => {
-                this.user = user;
-            });
+
+        this.user=this._userService.getUserConnecte();
 
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
