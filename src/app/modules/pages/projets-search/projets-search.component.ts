@@ -39,9 +39,9 @@ export class ProjetsSearchComponent implements
         if (fragment && document.getElementById(fragment) != null) {
           setTimeout(() => {
             try {
-              document.getElementById(this.fragment).scrollIntoView();
+              document.getElementById(this.fragment).scrollIntoView({ behavior: "smooth" });
             } catch (e) { }
-          }, 300);
+          }, 1500);
         } 
         // else {
         //   setTimeout(() => {

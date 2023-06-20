@@ -1,28 +1,32 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 import { SalesForceService } from 'app/core/services/salesforce/salesforce.service';
+import { BehaviorSubject, catchError, Subject, takeUntil, throwError } from 'rxjs';
+import { Projet } from 'app/core/services/projets/projets.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
-    selector: 'support',
-    templateUrl: './support.component.html',
-    styleUrls: ['./support.component.scss'],
+    selector: 'contact-promoteur',
+    templateUrl: './contact-promoteur.component.html',
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SupportComponent implements OnInit, AfterViewInit {
+export class ContactPromoteurComponent implements OnInit, AfterViewInit {
+
+    @Input() visible: BehaviorSubject<boolean>;
+    @Input() projet: Projet;
+
     isScreenSmall: boolean;
-    isCaptchaValid: boolean = false;
-    @Input() drawer: MatDrawer;
-    @ViewChild('supportNgForm') supportNgForm: NgForm;
-    supportForm: FormGroup;
     alert: any;
+    @ViewChild('contactNgForm') contactNgForm: NgForm;
+    contactForm: FormGroup;
+
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -51,19 +55,31 @@ export class SupportComponent implements OnInit, AfterViewInit {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({ matchingAliases }) => {
 
-                // Check if the screen is small
-                this.isScreenSmall = !matchingAliases.includes('md');
+            // Check if the screen is small
+            this.isScreenSmall = !matchingAliases.includes('md');
             });
 
-        // Create the support form
-        this.supportForm = this._formBuilder.group({
-            nom         : ['', Validators.required],
-            prenom      : ['', Validators.required],
-            email       : ['', [Validators.required, Validators.email]],
-            telephone   : ['', Validators.required],
-            message     : ['']
-        });
+        // Create the contact form
+        this.contactForm = this._formBuilder.group(
+            {
+                nom         : ['', Validators.required],
+                prenom      : ['', Validators.required],
+                email       : ['', [Validators.required, Validators.email]],
+                telephone   : ['', Validators.required],
+                message     : ['']
+            },
+            // { validators: this.atLeastEmailOrPhone }
+        );
     }
+
+    // atLeastEmailOrPhone(form: FormGroup): ValidationErrors {
+    //   const emailCtrl = form.get('email');
+    //   const phoneCtr = form.get('telephone');
+    //   if (!!emailCtrl.value || !!phoneCtr.value) {
+    //     return null;
+    //   }
+    //   return { atLeastEmailOrPhone: '* Veuillez saisir émail ou téléphone' };
+    // }
 
     /**
      * After view init
@@ -72,19 +88,19 @@ export class SupportComponent implements OnInit, AfterViewInit {
         let currentUser = this._authenticationService.connectedUser;
     
         if (currentUser?.email) {
-            this.supportForm.get('email').setValue(currentUser?.email);
+            this.contactForm.get('email').setValue(currentUser?.email);
         }
     
         if (currentUser?.lastName) {
-            this.supportForm.get('nom').setValue(currentUser?.lastName);
+            this.contactForm.get('nom').setValue(currentUser?.lastName);
         }
     
         if (currentUser?.firstName) {
-            this.supportForm.get('prenom').setValue(currentUser?.firstName);
+            this.contactForm.get('prenom').setValue(currentUser?.firstName);
         }
     
         if (currentUser?.telephone) {
-            this.supportForm.get('telephone').setValue(currentUser?.telephone);
+            this.contactForm.get('telephone').setValue(currentUser?.telephone);
         }
     
         this._changeDetectorRef.detectChanges();
@@ -93,32 +109,31 @@ export class SupportComponent implements OnInit, AfterViewInit {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-
     /**
      * Clear the form
      */
     clearForm(): void {
         // Reset the form
-        this.supportNgForm.resetForm();
+        // this.contactNgForm.resetForm();
+        this.contactForm.get('message').setValue(null);
     }
 
-    /**
     /**
      * Send the form
      */
     sendForm(): void {
         this._salesForceService.createWeb2Lead(
-            null,
-            this.supportForm.get('nom').value,
-            this.supportForm.get('prenom').value,
-            this.supportForm.get('email').value,
-            this.supportForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
-            this.supportForm.get('message').value,
-            "Site WAFA IMMOBILIER",
-            "Contacter nous : "
+            this.projet.id,
+            this.contactForm.get('nom').value,
+            this.contactForm.get('prenom').value,
+            this.contactForm.get('email').value,
+            this.contactForm.get('telephone').value,
+            this.contactForm.get('message').value,
+            "Flux Marketplace",
+            "Contacter promoteur : "
         )
             .pipe(
-                catchError((error) => {
+                catchError((error: HttpErrorResponse) => {
                     // Log the error
                     console.error(error);
 
@@ -134,7 +149,8 @@ export class SupportComponent implements OnInit, AfterViewInit {
                     return throwError(() => error);
                 }))
             .subscribe((response: string) => {
-                this._showAlertMessage('success', 'Votre message est envoyé.', false);
+                this.visible.next(true);
+                this._showAlertMessage('success', 'Votre message est envoyé au promoteur. Veuillez trouver ci-dessous ses coordonnées', false);
             });
 
         // Clear the form
@@ -165,4 +181,5 @@ export class SupportComponent implements OnInit, AfterViewInit {
             }, 7000);
         }
     }
+
 }

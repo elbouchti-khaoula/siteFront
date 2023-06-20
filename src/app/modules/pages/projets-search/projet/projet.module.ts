@@ -8,17 +8,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { SwiperModule } from 'swiper/angular';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
-import { ProjetComponent } from './projet.component';
-import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
+import { ContactPromoteurModule } from 'app/modules/common/contact-promoteur/contact-promoteur.module';
+
+import { ProjetComponent } from './projet.component';
+import { NousRappelerPopupComponent } from './nous-rappeler-popup/nous-rappeler-popup.component';
+import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contact-promoteur-popup.component';
 
 @NgModule({
     declarations: [
         ProjetComponent,
-        FaitesVousRappelerComponent
+        NousRappelerPopupComponent,
+        ContactPromoteurPopupComponent
     ],
     imports     : [
         RouterModule,
@@ -32,7 +36,8 @@ import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/f
         SwiperModule,
         GoogleMapsModule,
         MatDialogModule,
-        FormatTelephoneModule
+        FormatTelephoneModule,
+        ContactPromoteurModule
     ],
     exports     : [
         ProjetComponent

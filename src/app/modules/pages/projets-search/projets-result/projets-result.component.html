@@ -95,7 +95,7 @@
                                             <!-- carousel projet images -->
                                             <div class="flex flex-0 items-center justify-center">
                                                 <ng-container *ngIf="projet.medias && projet.medias.length > 0">
-                                                    <angular-carousel [auto]="true" [infinite]="true" [duration]="3000" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
+                                                    <angular-carousel [auto]="true" [infinite]="true" [duration]="5000" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
                                                         <ng-container *ngFor="let image of projet.medias; trackBy: trackByFn">
                                                             <div *angularCarouselSlide class="h-50 md:h-68">
                                                                 <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>

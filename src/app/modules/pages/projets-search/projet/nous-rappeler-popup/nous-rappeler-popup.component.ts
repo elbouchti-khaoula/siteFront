@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
@@ -6,14 +6,15 @@ import { Router } from '@angular/router';
 import { SalesForceService } from 'app/core/services/salesforce/salesforce.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Projet } from 'app/core/services/projets/projets.types';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
-    selector       : 'faites-vous-rappeler',
-    templateUrl    : './faites-vous-rappeler.component.html',
+    selector       : 'nous-rappeler-popup',
+    templateUrl    : './nous-rappeler-popup.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FaitesVousRappelerComponent implements OnInit, OnDestroy
+export class NousRappelerPopupComponent implements OnInit, OnDestroy, AfterViewInit
 {
     isScreenSmall: boolean;
     alert: any;
@@ -28,12 +29,13 @@ export class FaitesVousRappelerComponent implements OnInit, OnDestroy
      */
     constructor(
         @Inject(MAT_DIALOG_DATA) private _data: { projet: Projet },
-        public matDialogRef: MatDialogRef<FaitesVousRappelerComponent>,
+        public matDialogRef: MatDialogRef<NousRappelerPopupComponent>,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _formBuilder: FormBuilder,
         private _router: Router,
-        private _salesForceService: SalesForceService
+        private _salesForceService: SalesForceService,
+        private _authenticationService: AuthenticationService
     )
     {
     }
@@ -69,6 +71,31 @@ export class FaitesVousRappelerComponent implements OnInit, OnDestroy
             telephone   : ['', Validators.required],
             message     : ['']
         });
+    }
+
+    /**
+     * After view init
+     */
+    ngAfterViewInit(): void {
+        let currentUser = this._authenticationService.connectedUser;
+    
+        if (currentUser?.email) {
+          this.faitesVousRappelerForm.get('email').setValue(currentUser?.email);
+        }
+    
+        if (currentUser?.lastName) {
+          this.faitesVousRappelerForm.get('nom').setValue(currentUser?.lastName);
+        }
+    
+        if (currentUser?.firstName) {
+          this.faitesVousRappelerForm.get('prenom').setValue(currentUser?.firstName);
+        }
+    
+        if (currentUser?.telephone) {
+          this.faitesVousRappelerForm.get('telephone').setValue(currentUser?.telephone);
+        }
+    
+        this._changeDetectorRef.detectChanges();
     }
 
     /**

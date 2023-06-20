@@ -6,12 +6,14 @@ import { fuseAnimations } from '@fuse/animations';
 import { Location } from "@angular/common";
 import { cloneDeep } from 'lodash-es';
 import { MatDialog } from '@angular/material/dialog';
-import { FaitesVousRappelerComponent } from './faites-vous-rappeler/faites-vous-rappeler.component';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { User } from 'app/core/user/user.types';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+import { NousRappelerPopupComponent } from './nous-rappeler-popup/nous-rappeler-popup.component';
+import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contact-promoteur-popup.component';
 
 // import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
@@ -201,7 +203,20 @@ export class ProjetComponent implements OnInit, OnDestroy {
      */
     openFaitesVousRappelerDialog(): void
     {
-        this._matDialog.open(FaitesVousRappelerComponent, {
+        this._matDialog.open(NousRappelerPopupComponent, {
+            autoFocus: false,
+            data: {
+                projet: cloneDeep(this.projet)
+            }
+        });
+    }
+
+    /**
+     * Open the dialog
+     */
+    openContacterPromoteurDialog(): void
+    {
+        this._matDialog.open(ContactPromoteurPopupComponent, {
             autoFocus: false,
             data: {
                 projet: cloneDeep(this.projet)
