@@ -116,7 +116,7 @@ export class UserService
         clientAWB: boolean;
         password: string
     }): Observable<any> {
-
+//creation user  avec cin null=>la mise à jour se fait par la suite via un batch
         let userKeycloak: UserKeycloak = {
             firstName: user.firstName,
             lastName: user.lastName,
@@ -124,7 +124,7 @@ export class UserService
             enabled: true,
             username: user.email,
             attributes: {
-                cin: [user.cin],
+                cin: [''],
                 telephone: [user.telephone],
                 dateNaissance: [user.dateNaissance],
                 clientAWB: [user.clientAWB.toString()]
