@@ -62,7 +62,9 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
                 this.navigation = navigation;
             });
 
-        this.user=this._userService.getUserConnecte();
+        // Subscribe to the user service
+        this.user = this._userService.getUserConnecte();
+        
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))

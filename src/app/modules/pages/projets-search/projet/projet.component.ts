@@ -12,7 +12,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-import { NousRappelerPopupComponent } from './nous-rappeler-popup/nous-rappeler-popup.component';
+import { MeRappelerPopupComponent } from './me-rappeler-popup/me-rappeler-popup.component';
 import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contact-promoteur-popup.component';
 
 // import { SwiperComponent } from "swiper/angular";
@@ -39,9 +39,9 @@ export class ProjetComponent implements OnInit, OnDestroy {
 
     user: User;
     projet: Projet;
-    existeVideo : boolean;
-    existeMaquetteOrPlan : boolean;
-    existeBrochure : boolean;
+    existeVideo: boolean;
+    existeMaquetteOrPlan: boolean;
+    existeBrochure: boolean;
     iframeSrc: SafeUrl;
 
     mapOptions: google.maps.MapOptions = {
@@ -198,12 +198,55 @@ export class ProjetComponent implements OnInit, OnDestroy {
         }
     }
 
+    supprimerDesFavoris() {
+        const projetFavori: ProjetFavori = {
+            id: this.projet.projetFavorisId,
+            userName: this.user.username,
+            userEmail: this.user.email,
+            statutFavorite: 'ENCOURS',
+            realEstateProject: { id: this.projet.id },
+            dateCreation: new Date()
+        }
+
+        this._projetsService.removeProjetFavori(projetFavori)
+            .subscribe((response: boolean) => {
+                if (response) {
+                    this.projet.estFavoris = false;
+
+                    // Open the dialog
+                    this._fuseConfirmationService.open(
+                        {
+                            "title": "Projet favori",
+                            "message": "Le projet est supprimé des favoris avec succès",
+                            "icon": {
+                                "show": true,
+                                "name": "heroicons_outline:check-circle",
+                                "color": "success"
+                            },
+                            "actions": {
+                                "confirm": {
+                                    "show": true,
+                                    "label": "Ok",
+                                    "color": "primary"
+                                },
+                                "cancel": {
+                                    "show": false,
+                                    "label": "Cancel"
+                                }
+                            },
+                            "dismissible": false
+                        }
+                    );
+                }
+            });
+    }
+
     /**
      * Open the dialog
      */
     openFaitesVousRappelerDialog(): void
     {
-        this._matDialog.open(NousRappelerPopupComponent, {
+        this._matDialog.open(MeRappelerPopupComponent, {
             autoFocus: false,
             data: {
                 projet: cloneDeep(this.projet)

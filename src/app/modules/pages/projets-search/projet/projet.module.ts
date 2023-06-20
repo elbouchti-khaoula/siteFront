@@ -15,13 +15,13 @@ import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/f
 import { ContactPromoteurModule } from 'app/modules/common/contact-promoteur/contact-promoteur.module';
 
 import { ProjetComponent } from './projet.component';
-import { NousRappelerPopupComponent } from './nous-rappeler-popup/nous-rappeler-popup.component';
+import { MeRappelerPopupComponent } from './me-rappeler-popup/me-rappeler-popup.component';
 import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contact-promoteur-popup.component';
 
 @NgModule({
     declarations: [
         ProjetComponent,
-        NousRappelerPopupComponent,
+        MeRappelerPopupComponent,
         ContactPromoteurPopupComponent
     ],
     imports     : [

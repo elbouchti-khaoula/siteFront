@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -55,8 +54,8 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({ matchingAliases }) => {
 
-            // Check if the screen is small
-            this.isScreenSmall = !matchingAliases.includes('md');
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
             });
 
         // Create the contact form
@@ -86,23 +85,23 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
      */
     ngAfterViewInit(): void {
         let currentUser = this._authenticationService.connectedUser;
-    
+
         if (currentUser?.email) {
             this.contactForm.get('email').setValue(currentUser?.email);
         }
-    
+
         if (currentUser?.lastName) {
             this.contactForm.get('nom').setValue(currentUser?.lastName);
         }
-    
+
         if (currentUser?.firstName) {
             this.contactForm.get('prenom').setValue(currentUser?.firstName);
         }
-    
+
         if (currentUser?.telephone) {
             this.contactForm.get('telephone').setValue(currentUser?.telephone);
         }
-    
+
         this._changeDetectorRef.detectChanges();
     }
 
@@ -150,6 +149,7 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
                 }))
             .subscribe((response: string) => {
                 this.visible.next(true);
+                
                 this._showAlertMessage('success', 'Votre message est envoyé au promoteur. Veuillez trouver ci-dessous ses coordonnées', false);
             });
 
