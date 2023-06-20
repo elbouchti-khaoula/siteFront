@@ -19,6 +19,7 @@ import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-fi
 import { LocalisationModule } from 'app/modules/common/localisation/localisation.module';
 import { FormatTelephoneModule } from 'app/core/directives/formatage-telephone/format-tele.module';
 import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connecte/page-header-connecte.module';
+import { ContactPromoteurModule } from 'app/modules/common/contact-promoteur/contact-promoteur.module';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { PageHeaderConnecteModule } from 'app/modules/common/page-header-connect
         ProjetModule,
         LocalisationModule,
         FormatTelephoneModule,
-        PageHeaderConnecteModule
+        PageHeaderConnecteModule,
+        ContactPromoteurModule
     ]
 })
 export class ProjetsSearchModule

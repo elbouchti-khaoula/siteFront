@@ -1,0 +1,99 @@
+<!-- Main Form -->
+<div class="p-5 md:px-10 md:py-6 overflow-y-auto">
+    <!-- Alert -->
+    <fuse-alert *ngIf="alert" [type]="alert.type" [showIcon]="false">
+        {{alert.message}}
+    </fuse-alert>
+
+    <!-- Promoteur card -->
+    <fuse-card *ngIf="visible | async" [@fadeInLeft]="{value:'', params: {duration: 700}}"
+        class="w-full flex flex-col md:flex-row items-center justify-between p-6 mt-3 ring-1 ring-second-500 bg-second-100 rounded-md shadow">
+        <div class="flex flex-col">
+            <div class="text-2xl font-semibold leading-tight">{{projet.contact}}</div>
+            <div class="text-md text-secondary">{{projet.telephone}}</div>
+            <div class="text-md text-secondary">{{projet.email}}</div>
+        </div>
+        <!-- logo promoteur -->
+        <div class="w-28 sm:w-32 max-md:mt-5 md:ml-auto">
+            <ng-container *ngIf="projet.promoter.logoPath">
+                <figure class="flex items-center justify-center h-32 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
+                    <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
+                </figure>
+            </ng-container>
+            <ng-container *ngIf="!projet.promoter.logoPath">
+                <span class="flex items-center justify-center h-32 h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                    No Logo
+                </span>
+            </ng-container>
+        </div>
+    </fuse-card>
+
+    <form *ngIf="!(visible | async)" class="space-y-1" [formGroup]="contactForm" #contactNgForm="ngForm">
+
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-2 gap-y-1">
+            <!-- Nom -->
+            <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                </mat-icon>
+                <input matInput [formControlName]="'nom'">
+                <mat-label class="max-md:text-sm max-md:font-semibold">Nom</mat-label>
+                <mat-error *ngIf="contactForm.get('nom').hasError('required')">
+                    Nom obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Prénom -->
+            <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix>
+                </mat-icon>
+                <input matInput [formControlName]="'prenom'">
+                <mat-label class="max-md:text-sm max-md:font-semibold">Prénom</mat-label>
+                <mat-error *ngIf="contactForm.get('prenom').hasError('required')">
+                    Prénom obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Téléphone -->
+            <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                <input matInput [formControlName]="'telephone'" appFormatTelephone>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Téléphone</mat-label>
+                <mat-error *ngIf="contactForm.get('telephone').hasError('required')">
+                    Téléphone obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                <input type="email" matInput [formControlName]="'email'">
+                <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
+                <mat-error *ngIf="contactForm.get('email').hasError('email')">
+                    Enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('email').hasError('required')">
+                    Email obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Message -->
+            <mat-form-field class="fuse-mat-textarea w-full md:col-span-2">
+                <textarea matInput [formControlName]="'message'" [rows]="3" matTextareaAutosize>
+                    </textarea>
+                <mat-label class="max-md:text-sm max-md:font-semibold">Message</mat-label>
+            </mat-form-field>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-button [color]="'accent'" [disabled]="contactForm.pristine || contactForm.untouched"
+                (click)="clearForm()">
+                Vider
+            </button>
+            <button class="ml-2" mat-flat-button [color]="'primary'"
+                [disabled]="contactForm.pristine || contactForm.invalid" (click)="sendForm()">
+                Envoyer
+            </button>
+        </div>
+    </form>
+</div>

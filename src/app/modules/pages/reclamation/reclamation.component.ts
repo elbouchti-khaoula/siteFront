@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -9,6 +9,7 @@ import { ReclamationsService } from './reclamation.service';
 import { Motif, Reclamation } from './reclamation.types';
 import { Piece } from 'app/core/services/upload-document/upload-document.types';
 import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
     selector: 'reclamation',
@@ -17,7 +18,7 @@ import { UploadDocumentService } from 'app/core/services/upload-document/upload-
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations
 })
-export class ReclamationComponent implements OnInit {
+export class ReclamationComponent implements OnInit, AfterViewInit {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
     isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
@@ -45,7 +46,8 @@ export class ReclamationComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _reclamationsService: ReclamationsService,
-        private _uploadDocumentService: UploadDocumentService
+        private _uploadDocumentService: UploadDocumentService,
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -123,6 +125,35 @@ export class ReclamationComponent implements OnInit {
             });
     }
 
+    /**
+     * After view init
+     */
+    ngAfterViewInit(): void {
+        let currentUser = this._authenticationService.connectedUser;
+    
+        if (currentUser?.email) {
+            this.reclamationForm.get('email').setValue(currentUser?.email);
+        }
+    
+        if (currentUser?.lastName) {
+            this.reclamationForm.get('nom').setValue(currentUser?.lastName);
+        }
+    
+        if (currentUser?.firstName) {
+            this.reclamationForm.get('prenom').setValue(currentUser?.firstName);
+        }
+    
+        if (currentUser?.telephone) {
+            this.reclamationForm.get('telephone').setValue(currentUser?.telephone);
+        }
+
+        if (currentUser?.cin) {
+            this.reclamationForm.get('cin').setValue(currentUser?.cin);
+        }
+    
+        this._changeDetectorRef.detectChanges();
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -188,8 +219,6 @@ export class ReclamationComponent implements OnInit {
                 return throwError(() => error);
             }))
             .subscribe((response: Reclamation) => {
-
-                console.log("+-+-+- reclamation return", response);
 
                 if (response && response.id != undefined && response.id != null) {
 

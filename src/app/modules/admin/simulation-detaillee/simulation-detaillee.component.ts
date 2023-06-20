@@ -299,6 +299,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * After view init
+   */
   ngAfterViewInit(): void {
     let currentUser = this._authenticationService.connectedUser;
 
@@ -478,10 +481,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           this.animationState = 'smallDesktop';
         }
         this.isVisible = true;
-
-        // setTimeout(() => {
-        //   this.detailsSimulation.setSimulation(this.simulationResultat);
-        // }, 200);
 
         if (this.isScreenSmall) {
           setTimeout(() => {
