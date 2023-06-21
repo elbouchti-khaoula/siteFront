@@ -237,29 +237,18 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
         // Fill the form with the values from query
         // params without emitting any form events
-        // this.simulationStepperForm.get('step1').get('nom').setValue(queryParams?.nom ?? this.simulationFormDefaults.nom);
-        // this.simulationStepperForm.get('step1').get('prenom').setValue(queryParams?.prenom ?? this.simulationFormDefaults.prenom);
-        // this.simulationStepperForm.get('step1').get('telephone').setValue(queryParams?.telephone ?? this.simulationFormDefaults.telephone);
-        // this.simulationStepperForm.get('step1').get('email').setValue(queryParams?.email ?? this.simulationFormDefaults.email);
-        // this.simulationStepperForm.get('step1').get('dateNaissance').setValue(queryParams?.dateNaissance ?? this.simulationFormDefaults.dateNaissance);
         this.simulationStepperForm.get('step1').get('nationalite').setValue(queryParams?.nationaliteCode ?? this.simulationFormDefaults.nationalite);
         this.simulationStepperForm.get('step1').get('residantMaroc').setValue(queryParams?.residentMarocain ?? this.simulationFormDefaults.residantMaroc);
         this.simulationStepperForm.get('step1').get('agreements').setValue(queryParams?.agreements ?? this.simulationFormDefaults.agreements);
         // ma situation
         this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').setValue(queryParams?.cspCode ?? this.simulationFormDefaults.categorieSocioProfessionnelle);
-        this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(queryParams?.nomEmployeur ?? this.simulationFormDefaults.nomEmployeur);
-        // this.simulationStepperForm.get('step2').get('anciennete').setValue(queryParams?.anciennete ?? this.simulationFormDefaults.anciennete);
-        this.simulationStepperForm.get('step2').get('salaire').setValue(queryParams?.salaire ?? this.simulationFormDefaults.salaire);
-        this.simulationStepperForm.get('step2').get('autresRevenus').setValue(queryParams?.autresRevenus ?? this.simulationFormDefaults.autresRevenus);
-        this.simulationStepperForm.get('step2').get('creditsEnCours').setValue(queryParams?.creditsEnCours ?? this.simulationFormDefaults.creditsEnCours);
         // Mon projet
         this.simulationStepperForm.get('step3').get('montantProposition').setValue(queryParams?.montant ?? this.simulationFormDefaults.montantProposition);
         this.simulationStepperForm.get('step3').get('duree').setValue(queryParams?.duree ?? this.simulationFormDefaults.duree);
         this.simulationStepperForm.get('step3').get('objetFinancement').setValue(queryParams?.objetFinancement ?? this.simulationFormDefaults.objetFinancement);
-        this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(queryParams?.nomPromoteur ?? this.simulationFormDefaults.nomPromoteur);
-        this.simulationStepperForm.get('step3').get('statutProjet').setValue(queryParams?.statutProjet ?? this.simulationFormDefaults.statutProjet);
-        this.simulationStepperForm.get('step3').get('typeTaux').setValue(queryParams?.typeTaux ?? this.simulationFormDefaults.typeTaux);
       });
+
+    this.initInfosConnectedUser();
 
     // Get the categories
     this._referentielService.categoriesSocioProf$
@@ -296,51 +285,6 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
       });
-
-  }
-
-  /**
-   * After view init
-   */
-  ngAfterViewInit(): void {
-    let currentUser = this._authenticationService.connectedUser;
-
-    if (this.queryParams?.email) {
-      this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
-    } else if (currentUser?.email) {
-      this.simulationStepperForm.get('step1').get('email').setValue(currentUser?.email);
-    }
-
-    if (this.queryParams?.nom) {
-      this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
-    } else if (currentUser?.lastName) {
-      this.simulationStepperForm.get('step1').get('nom').setValue(currentUser?.lastName);
-    }
-
-    if (this.queryParams?.prenom) {
-      this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
-    } else if (currentUser?.firstName) {
-      this.simulationStepperForm.get('step1').get('prenom').setValue(currentUser?.firstName);
-    }
-
-    if (this.queryParams?.telephone) {
-      this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
-    } else if (currentUser?.telephone) {
-      this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
-    }
-
-    var dateNaiss;
-    if (this.queryParams?.dateNaissance) {
-      dateNaiss = this.queryParams?.dateNaissance;
-    } else if (currentUser?.dateNaissance) {
-      dateNaiss = currentUser?.dateNaissance;
-    }
-    if (dateNaiss) {
-      var momentObj = moment(dateNaiss, "DD-MM-YYYY");
-      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(momentObj);
-    }
-
-    this._changeDetectorRef.detectChanges();
   }
 
   /**
@@ -606,6 +550,47 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
   // @ Private methods
   // -----------------------------------------------------------------------------------------------------
+  private initInfosConnectedUser() {
+    let currentUser = this._authenticationService.connectedUser;
+
+    if (this.queryParams?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
+    } else if (currentUser?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(currentUser?.email);
+    }
+
+    if (this.queryParams?.nom) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
+    } else if (currentUser?.lastName) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(currentUser?.lastName);
+    }
+
+    if (this.queryParams?.prenom) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
+    } else if (currentUser?.firstName) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(currentUser?.firstName);
+    }
+
+    if (this.queryParams?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
+    } else if (currentUser?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
+    }
+
+    var dateNaiss;
+    if (this.queryParams?.dateNaissance) {
+      dateNaiss = this.queryParams?.dateNaissance;
+    } else if (currentUser?.dateNaissance) {
+      dateNaiss = currentUser?.dateNaissance;
+    }
+    if (dateNaiss) {
+      var momentObj = moment(dateNaiss, "DD-MM-YYYY");
+      this.simulationStepperForm.get('step1').get('dateNaissance').setValue(momentObj);
+    }
+
+    this._changeDetectorRef.detectChanges();
+  }
+  
   private formatMomentToString(date: moment.Moment): string {
     return date.format("DD/MM/YYYY");
   }

@@ -70,23 +70,15 @@
                     <div class="w-full grid grid-cols-1 md:grid-cols-6 gap-x-2 items-start">
                         
                         <!-- Montant -->
-                        <!--mat-form-field class="md:col-span-3 w-full"
+                        <mat-form-field class="md:col-span-3 w-full"
                             [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix>
-                            </mat-icon>
-                            <input matInput [formControlName]="'montant'">
+                            <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
+                            <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationForm.get('montant').value">
                             <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
                             <span matSuffix>MAD</span>
                             <mat-error *ngIf="simulationForm.get('montant').hasError('required')">
                                 Montant obligatoire
                             </mat-error>
-                        </mat-form-field-->
-                        <mat-form-field class="md:col-span-3 w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                            <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
-                            <input matInput [formControlName]="'montant'" [appFormatMontant]="simulationForm.get('montant').value">
-                            <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
-                            <span matSuffix>MAD</span>
-                            <mat-error *ngIf="simulationForm.get('montant').hasError('required')">Montant obligatoire</mat-error>
                         </mat-form-field>
 
                         <!-- Durée -->
@@ -293,7 +285,7 @@
                                             <div class="flex flex-row items-baseline whitespace-nowrap ml-auto">
                                                 <!-- <span>à</span> -->
                                                 <span>à partir de&nbsp;</span>
-                                                <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMin">
+                                                <span class="ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMinId>
                                                     {{simulationPersonnaliseeStr?.mensualiteMin}}
                                                 </span>
                                                 <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
@@ -301,7 +293,7 @@
                                             <!-- <div class="flex flex-row items-baseline whitespace-nowrap max-md:ml-auto">
                                                 <span class="hidden md:block">jusqu'à</span>
                                                 <span class="md:hidden">à</span>
-                                                <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId [appFormatMontant]="simulationPersonnaliseeStr?.mensualiteMax">
+                                                <span class=" ml-2 text-4xl font-bold leading-tight tracking-tight" #mensualiteMaxId>
                                                     {{simulationPersonnaliseeStr?.mensualiteMax}}
                                                 </span>
                                                 <span class="ml-2 md:text-xl leading-none">MAD/mois</span>
@@ -330,7 +322,7 @@
                                                 Montant de crédit
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #montantId [appFormatMontant]="simulationPersonnaliseeStr?.montant">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #montantId>
                                                     {{simulationPersonnaliseeStr?.montant}}
                                                 </div>
                                                 <div class="ml-2 text-lg leading-none">MAD</div>
@@ -408,7 +400,6 @@
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
                                                 <div class="font-semibold text-xl leading-tight tracking-tight"
                                                     #expertiseImmobiliereId
-                                                    [appFormatMontant]="simulationPersonnaliseeStr?.expertiseImmobiliere"
                                                     [ngClass]="{'text-green-600 ': !estExpImmoNum}">
                                                     {{simulationPersonnaliseeStr?.expertiseImmobiliere}}
                                                 </div>
@@ -425,8 +416,8 @@
                                                 Frais de dossier
                                             </span>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #fraisDossierId
-                                                    [appFormatMontant]="simulationPersonnaliseeStr?.fraisDossier"
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" 
+                                                    #fraisDossierId
                                                     [ngClass]="{'text-green-600 ': !estFraisDossNum}">
                                                     {{simulationPersonnaliseeStr?.fraisDossier}}
                                                 </div>
@@ -457,8 +448,7 @@
                                                 Frais d'enregistrement
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId
-                                                    [appFormatMontant]="simulationPersonnaliseeStr?.droitsEnregistrement">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #droitsEnregistrementId>
                                                     {{simulationPersonnaliseeStr?.droitsEnregistrement}}
                                                 </div>
                                                 <div class="ml-2 text-lg leading-none">MAD</div>
@@ -475,8 +465,7 @@
                                                 Frais de conservation foncière
                                             </div>
                                             <div class="flex items-baseline whitespace-nowrap mt-2">
-                                                <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId
-                                                    [appFormatMontant]="simulationPersonnaliseeStr?.conservationFonciere">
+                                                <div class="font-semibold text-xl leading-tight tracking-tight" #conservationFonciereId>
                                                     {{simulationPersonnaliseeStr?.conservationFonciere}}
                                                 </div>
                                                 <div class="ml-2 text-lg leading-none">MAD</div>

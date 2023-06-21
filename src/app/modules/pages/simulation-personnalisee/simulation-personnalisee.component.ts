@@ -51,7 +51,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   estExpImmoNum: boolean = true;
   estFraisDossNum: boolean = true;
   @ViewChild('mensualiteMinId') mensualiteMinId: any;
-  @ViewChild('mensualiteMaxId') mensualiteMaxId: any;
+  // @ViewChild('mensualiteMaxId') mensualiteMaxId: any;
   @ViewChild('nbreAnneeId') nbreAnneeId: any;
   @ViewChild('nbreMoisId') nbreMoisId: any;
   @ViewChild('montantId') montantId: any;
@@ -60,12 +60,12 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   // @ViewChild('coutTotalMaxId') coutTotalMaxId: any;
   @ViewChild('expertiseImmobiliereId') expertiseImmobiliereId: any;
   @ViewChild('fraisDossierId') fraisDossierId: any;
-  // @ViewChild('totalFraisId') totalFraisId: any;
   @ViewChild('droitsEnregistrementId') droitsEnregistrementId: any;
   @ViewChild('conservationFonciereId') conservationFonciereId: any;
   // @ViewChild('fraisDiversId') fraisDiversId: any;
   // @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
-
+  // @ViewChild('totalFraisId') totalFraisId: any;
+  
   /**
    * Constructor
    */
@@ -210,12 +210,11 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
    */
   newSimulation(): void {
 
-    // this.simulationForm.reset(this.simulationFormDefaults);
     this.simulationForm.get('montant').reset();
     this.simulationForm.get('duree').reset();
 
     this._animateCounterService.animateValue(this.mensualiteMinId, this.simulationPersonnalisee.mensualiteMin, 0, 600);
-    this._animateCounterService.animateValue(this.mensualiteMaxId, this.simulationPersonnalisee.mensualiteMax, 0, 600);
+    // this._animateCounterService.animateValue(this.mensualiteMaxId, this.simulationPersonnalisee.mensualiteMax, 0, 600);
     this._animateCounterService.animateValue(this.nbreAnneeId, this.simulationPersonnalisee.nbreAnnee, 0, 600);
     this._animateCounterService.animateValue(this.nbreMoisId, this.simulationPersonnalisee.nbreMois, 0, 600);
     this._animateCounterService.animateValue(this.montantId, this.simulationPersonnalisee.montant, 0, 600);
@@ -238,11 +237,11 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     this._animateCounterService.animateValue(this.fraisDossierId, nbFrai, 0, 600);
 
     // Frais
-    // this._animateCounterService.animateValue(this.totalFraisId, this.simulationPersonnalisee.totalFrais, 0, 600);
     this._animateCounterService.animateValue(this.droitsEnregistrementId, this.simulationPersonnalisee.droitsEnregistrement, 0, 600);
     this._animateCounterService.animateValue(this.conservationFonciereId, this.simulationPersonnalisee.conservationFonciere, 0, 600);
     // this._animateCounterService.animateValue(this.fraisDiversId, this.simulationPersonnalisee.fraisDivers, 0, 600);
     // this._animateCounterService.animateValue(this.honorairesNotaireId, this.simulationPersonnalisee.honorairesNotaire, 0, 600);
+    // this._animateCounterService.animateValue(this.totalFraisId, this.simulationPersonnalisee.totalFrais, 0, 600);
   }
 
   simuler(): void {
@@ -362,7 +361,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     }
 
     this.mensualiteMinId.nativeElement.textContent = this.simulationPersonnaliseeStr.mensualiteMin;
-    this.mensualiteMaxId.nativeElement.textContent = this.simulationPersonnaliseeStr.mensualiteMax;
+    // this.mensualiteMaxId.nativeElement.textContent = this.simulationPersonnaliseeStr.mensualiteMax;
     this.nbreAnneeId.nativeElement.textContent = this.simulationPersonnaliseeStr.nbreAnnee;
     this.nbreMoisId.nativeElement.textContent = this.simulationPersonnaliseeStr.nbreMois;
     this.montantId.nativeElement.textContent = this.simulationPersonnaliseeStr.montant;

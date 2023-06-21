@@ -211,7 +211,14 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    * Perform the search
    */
   search(): void {
-    this._projetsService.searchProjets(this.searchForm.value, this.user)
+    this._projetsService.searchProjets(
+      {
+        codeVille: this.searchForm.get('codeVille').value,
+        codeQuartier: this.searchForm.get('codeQuartier').value,
+        codeTypeBien: this.searchForm.get('codeTypeBien').value,
+        prixMin: Number(this.searchForm.get('prixMin').value.toString().replace(/\D/g, '')),
+        prixMax: Number(this.searchForm.get('prixMax').value.toString().replace(/\D/g, ''))
+      }, this.user)
       .pipe(
         // Error here means the requested is not available
         catchError((error) => {
