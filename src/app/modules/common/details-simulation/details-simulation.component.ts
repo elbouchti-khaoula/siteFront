@@ -77,56 +77,90 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
    */
   abandonner(): void {
 
-    this._simulationService.abandonner(this.simulationResultat.id)
-      .pipe(
-        // Error here means the requested is not available
-        catchError((error) => {
+    // Open the confirmation dialog
+    const confirmation1 = this._fuseConfirmationService.open(
+      {
+        "title": "Abandonner simulation",
+        "message": `Êtes-vous sûr de vouloir abandonner la simulation N° ${this.simulationResultat.id} ?`,
+        "icon": {
+          "show": true,
+          "name": "heroicons_outline:check-circle",
+          "color": "success"
+        },
+        "actions": {
+          "confirm": {
+            "show": true,
+            "label": "Oui",
+            "color": "primary"
+          },
+          "cancel": {
+            "show": false,
+            "label": "Non"
+          }
+        },
+        "dismissible": false
+      }
+    );
 
-          // Throw an error
-          return throwError(() => error);
-        })
-      )
-      .subscribe((response) => {
+    confirmation1.afterClosed().subscribe((result) => {
 
-        if (response.codeStatut === "PABA") {
+      // If the confirm button pressed...
+      if (result === 'confirmed') {
 
-          // Open the confirmation dialog
-          const confirmation = this._fuseConfirmationService.open(
-            {
-              "title": "Abandonner simulation",
-              "message": "Votre simulation a été abaandonnée avec succès",
-              "icon": {
-                "show": true,
-                "name": "heroicons_outline:check-circle",
-                "color": "success"
-              },
-              "actions": {
-                "confirm": {
-                  "show": true,
-                  "label": "Ok",
-                  "color": "primary"
-                },
-                "cancel": {
-                  "show": false,
-                  "label": "Cancel"
+        this._simulationService.abandonner(this.simulationResultat.id)
+          .pipe(
+            // Error here means the requested is not available
+            catchError((error) => {
+
+              // Throw an error
+              return throwError(() => error);
+            })
+          )
+          .subscribe((response) => {
+
+            if (response.codeStatut === "PABA") {
+
+              // Open the confirmation dialog
+              const confirmation = this._fuseConfirmationService.open(
+                {
+                  "title": "Abandonner simulation",
+                  "message": "Votre simulation a été abaandonnée avec succès",
+                  "icon": {
+                    "show": true,
+                    "name": "heroicons_outline:check-circle",
+                    "color": "success"
+                  },
+                  "actions": {
+                    "confirm": {
+                      "show": true,
+                      "label": "Ok",
+                      "color": "primary"
+                    },
+                    "cancel": {
+                      "show": false,
+                      "label": "Cancel"
+                    }
+                  },
+                  "dismissible": false
                 }
-              },
-              "dismissible": false
-            }
-          );
+              );
 
-          confirmation.afterClosed().subscribe((result) => {
+              confirmation.afterClosed().subscribe((result) => {
 
-            // If the confirm button pressed...
-            if (result === 'confirmed') {
-              setTimeout(() => {
-                this._router.navigate(['/espace-connecte/mes-simulations']);
-              }, 200);
+                // If the confirm button pressed...
+                if (result === 'confirmed') {
+                  setTimeout(() => {
+                    this._router.navigate(['/espace-connecte/mes-simulations']);
+                  }, 200);
+                }
+              });
             }
+
           });
-        }
+      }
+    });
 
-      });
+
 
   }
 

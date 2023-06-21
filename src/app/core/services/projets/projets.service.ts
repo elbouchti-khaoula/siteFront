@@ -255,9 +255,9 @@ export class ProjetsService {
     }
 
     /**
-     * Get projet by id
+     * find projet in projets list, by id
      */
-    getProjetById(id: number): Observable<Projet> {
+    findProjetById(id: number): Observable<Projet> {
         return this._projets.pipe(
             take(1),
             map((projets) => {
@@ -287,27 +287,55 @@ export class ProjetsService {
      *
      * @param id
      */
-    // getProjetById(id: number): Observable<any>
-    // {
-    //     return this._httpClient.get<Projet>('api/real-estate-projects/' + id).pipe(
-    //         map((response) => {
+    getProjetById(id: number, user: User): Observable<Projet> {
+        return this._httpClient.get<Projet>('api/real-estate-projects/' + id)
+            .pipe(
+                catchError(err1 => {
+                    console.log("Error from first call: ");
+                    return throwError(() => err1);
+                }),
+                switchMap((response: Projet) => {
+                    if (user) {
+                        return this.searchProjetsFavorisQuery({
+                            userName: user.username,
+                            userEmail: user.email,
+                            statutFavorite: 'ENCOURS',
+                            realEstateProject: { id: response.id }
+                        }).pipe(
+                            catchError(err2 => {
+                                console.log("Error from second call: ");
+                                return throwError(() => err2);
+                            }),
+                            switchMap((projetsFavoris: ProjetFavori[]) => {
 
-    //             // Update the projet
-    //             this._projet.next(response);
+                                // response.medias = this.images[0];
+                                // response.promoter.logoPath = this.logos[0];
+                                if (projetsFavoris && projetsFavoris.length > 0) {
+                                    this.fillReferentielLabels(response, projetsFavoris[0]);
+                                } else {
+                                    this.fillReferentielLabels(response, null);
+                                }
 
-    //             // Return the projet
-    //             return response;
-    //         }),
-    //         switchMap((response) => {
+                                this._projet.next(response);
 
-    //             if (!response) {
-    //                 return throwError('Could not found project with id of ' + id + '!');
-    //             }
+                                return of(response);
+                            })
+                        );
+                    }
+                    else {
+                        // response.medias = this.images[0];
+                        // response.promoter.logoPath = this.logos[0];
+                        this.fillReferentielLabels(response, null);
 
-    //             return of(response);
-    //         })
-    //     );
-    // }
+                        // Update the projet
+                        this._projet.next(response);
+
+                        // Return the projet
+                        return of(response);
+                    }
+                })
+            );
+    }
 
     /**
      * Create a projet favori
@@ -410,7 +438,7 @@ export class ProjetsService {
      *
      * @param projetFavori
      */
-    searchProjetsFavorisQuery(projetFavori: ProjetFavori): Observable<ProjetFavori[]> {
+    private searchProjetsFavorisQuery(projetFavori: ProjetFavori): Observable<ProjetFavori[]> {
 
         return this._httpClient.post<ProjetFavori[]>('api/real-estate-projects/favoris/searchLastSix', projetFavori)
             .pipe(

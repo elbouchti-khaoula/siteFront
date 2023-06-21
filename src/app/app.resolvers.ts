@@ -65,11 +65,13 @@ export class InitialDataResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
 
-
         return new Observable<any>((observer) => {
-           console.log( this._authenticationService.checkTokenGeneric());
-         if (this._authenticationService.checkTokenGeneric()){
-                console.log('utilisation token '+this._authenticationService.accessTokenGeneric);
+            // console.log(this._authenticationService.checkTokenGeneric());
+
+            if (this._authenticationService.checkTokenGeneric()) {
+
+                // console.log('utilisation token ' + this._authenticationService.accessTokenGeneric);
+
                 observer.next(this._referentielService.getVilles().subscribe());
                 observer.next(this._referentielService.getTypesBiens().subscribe());
                 observer.next(this._referentielService.getAgences().subscribe());
@@ -79,30 +81,29 @@ export class InitialDataResolver implements Resolve<any>
                 observer.next(this._referentielService.getOperationsSAVRef().subscribe());
                 observer.complete();
                 observer.unsubscribe();
-            }else{
-               this._authenticationService.getSyncAccessTokenGeneric()
-                .catch((error: any)=>
-                {
-                    console.error('erreur génération token [généric]'+error.message);
-                }).then((response: any) => {
+            } else {
+
+                this._authenticationService.getSyncAccessTokenGeneric()
+                    .catch((error: any) => {
+                        console.error('erreur génération token [généric]' + error.message);
+                    })
+                    .then((response: any) => {
                         // console.log('génération new token:: ' + response.accesToken);
-                    this._authenticationService.accessTokenGeneric = response.accesToken;
-                    observer.next(this._referentielService.getVilles().subscribe());
-                    observer.next(this._referentielService.getTypesBiens().subscribe());
-                    observer.next(this._referentielService.getAgences().subscribe());
-                    observer.next(this._referentielService.getNationalites().subscribe());
-                    observer.next(this._referentielService.getCategories().subscribe());
-                    observer.next(this._referentielService.getObjetsFinancement().subscribe());
-                    observer.next(this._referentielService.getOperationsSAVRef().subscribe());
-                    observer.complete();
-                    observer.unsubscribe();
-                });
-        }
+                        this._authenticationService.accessTokenGeneric = response.accesToken;
+                        observer.next(this._referentielService.getVilles().subscribe());
+                        observer.next(this._referentielService.getTypesBiens().subscribe());
+                        observer.next(this._referentielService.getAgences().subscribe());
+                        observer.next(this._referentielService.getNationalites().subscribe());
+                        observer.next(this._referentielService.getCategories().subscribe());
+                        observer.next(this._referentielService.getObjetsFinancement().subscribe());
+                        observer.next(this._referentielService.getOperationsSAVRef().subscribe());
+                        observer.complete();
+                        observer.unsubscribe();
+                    });
             }
-        );
+
+        });
     }
-
-
 
 }
 
@@ -125,25 +126,25 @@ export class InitialGenericTokenResolver implements Resolve<any> {
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        console.log( this._authenticationService.checkTokenGeneric());
+
+        // console.log(this._authenticationService.checkTokenGeneric());
+
         if (!this._authenticationService.checkTokenGeneric()) {
             return new Observable<any>((observer) => {
 
-                    this._authenticationService.getSyncAccessTokenGeneric()
-                        .catch((error: any)=>
-                        {
-                            console.error('erreur génération token [généric]'+error.message);
-                        }).then((response: any) => {
+                this._authenticationService.getSyncAccessTokenGeneric()
+                    .catch((error: any) => {
+                        console.error('erreur génération token [généric]' + error.message);
+                    })
+                    .then((response: any) => {
                         this._authenticationService.accessTokenGeneric = response.accesToken;
                         //alert('resolver token ');
                         console.log('génération new token:: ' + response.accesToken);
                         observer.unsubscribe();
                     });
-                }
-            );}
+            });
+        }
 
     }
-
-
 
 }

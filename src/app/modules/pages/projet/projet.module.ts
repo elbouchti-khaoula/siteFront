@@ -17,6 +17,7 @@ import { ContactPromoteurModule } from 'app/modules/common/contact-promoteur/con
 import { ProjetComponent } from './projet.component';
 import { MeRappelerPopupComponent } from './me-rappeler-popup/me-rappeler-popup.component';
 import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contact-promoteur-popup.component';
+import { projetRoutes } from './projet.routing';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import { ContactPromoteurPopupComponent } from './contact-promoteur-popup/contac
         ContactPromoteurPopupComponent
     ],
     imports     : [
-        RouterModule,
+        RouterModule.forChild(projetRoutes),
         SharedModule,
         SimulationModule,
         MatButtonModule,

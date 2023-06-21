@@ -9,7 +9,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { Landing2Component } from './landing2.component';
 import { landing2Routes } from './landing2.routing';
 
-import { ProjetsFilterModule } from 'app/modules/common/projetsFilter/projets-filter.module';
+import { ProjetsFilterModule } from 'app/modules/common/projets-filter/projets-filter.module';
 import { SimulationModule } from 'app/modules/common/simulation/simulation.module';
 import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez-nous.module';
 import { ParcoursModule } from 'app/modules/common/parcours/parcours.module';

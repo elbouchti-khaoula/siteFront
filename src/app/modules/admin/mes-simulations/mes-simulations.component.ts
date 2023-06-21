@@ -5,6 +5,7 @@ import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { SimulationDetaillee } from 'app/core/services/projects/projects.types';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
   selector: 'mes-simulations',
@@ -27,9 +28,9 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _simulationService: SimulationDetailleeService,
-    private _fuseConfirmationService: FuseConfirmationService
-  )
-  {
+    private _fuseConfirmationService: FuseConfirmationService,
+    private _authenticationService: AuthenticationService
+  ) {
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -43,15 +44,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((response: SimulationDetaillee[]) => {
 
-        let res = [];
-        if (response && response.length > 0) {
-          res = response.map(
-            e => {
-              return this._simulationService.convertSimulationToString(e)
-            }
-          );
-        }
-        this.simulations = res;
+        this.convertSimulations(response);
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -94,56 +87,95 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
    */
   abandonner(selectedSimulation: any): void {
 
-    this._simulationService.abandonner(selectedSimulation.id)
-      .pipe(
-        // Error here means the requested is not available
-        catchError((error) => {
+    // Open the confirmation dialog
+    const confirmation1 = this._fuseConfirmationService.open(
+      {
+        "title": "Abandonner simulation",
+        "message": `Êtes-vous sûr de vouloir abandonner la simulation N° ${selectedSimulation.id} ?`,
+        "icon": {
+          "show": true,
+          "name": "heroicons_outline:check-circle",
+          "color": "success"
+        },
+        "actions": {
+          "confirm": {
+            "show": true,
+            "label": "Oui",
+            "color": "primary"
+          },
+          "cancel": {
+            "show": true,
+            "label": "Non"
+          }
+        },
+        "dismissible": false
+      }
+    );
 
-          // Throw an error
-          return throwError(() => error);
-        })
-      )
-      .subscribe((response) => {
+    confirmation1.afterClosed().subscribe((result) => {
 
-        if (response.codeStatut === "PABA") {
+      // If the confirm button pressed...
+      if (result === 'confirmed') {
 
-          // Open the confirmation dialog
-          const confirmation = this._fuseConfirmationService.open(
-            {
-              "title": "Abandonner simulation",
-              "message": "Votre simulation a été abaandonnée avec succès",
-              "icon": {
-                "show": true,
-                "name": "heroicons_outline:check-circle",
-                "color": "success"
-              },
-              "actions": {
-                "confirm": {
-                  "show": true,
-                  "label": "Ok",
-                  "color": "primary"
-                },
-                "cancel": {
-                  "show": false,
-                  "label": "Cancel"
+        this._simulationService.abandonner(selectedSimulation.id)
+          .pipe(
+            // Error here means the requested is not available
+            catchError((error) => {
+
+              // Throw an error
+              return throwError(() => error);
+            })
+          )
+          .subscribe((response) => {
+
+            if (response.codeStatut === "PABA") {
+
+              // Open the confirmation dialog
+              const confirmation = this._fuseConfirmationService.open(
+                {
+                  "title": "Abandonner simulation",
+                  "message": "Votre simulation a été abaandonnée avec succès",
+                  "icon": {
+                    "show": true,
+                    "name": "heroicons_outline:check-circle",
+                    "color": "success"
+                  },
+                  "actions": {
+                    "confirm": {
+                      "show": true,
+                      "label": "Ok",
+                      "color": "primary"
+                    },
+                    "cancel": {
+                      "show": false,
+                      "label": "Cancel"
+                    }
+                  },
+                  "dismissible": false
                 }
-              },
-              "dismissible": false
-            }
-          );
+              );
 
-          confirmation.afterClosed().subscribe((result) => {
+              confirmation.afterClosed().subscribe((result) => {
 
-            // If the confirm button pressed...
-            if (result === 'confirmed') {
-              setTimeout(() => {
-                this._router.navigate(['./']);
-              }, 200);
+                // If the confirm button pressed...
+                if (result === 'confirmed') {
+                  setTimeout(() => {
+                    // this.simulations.splice(this.simulations.findIndex(element => element.id === selectedSimulation.id) , 1);
+                    let user = this._authenticationService.connectedUser;
+                    this._simulationService.search(user.email)
+                      .subscribe((response) => {
+
+                        this.convertSimulations(response);
+                      });
+                  }, 100);
+                }
+              });
             }
+
           });
-        }
 
-      });
+      }
+    });
   }
 
   /**
@@ -157,7 +189,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
   }
 
   // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
+  // @ Private methods
   // -----------------------------------------------------------------------------------------------------
   private addInfosTiers(selectedSimulation: any, routeLink: string): any {
 
@@ -165,7 +197,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
     this._simulationService.getInfoTiers(selectedSimulation)
       .pipe(
         catchError((error) => {
-          
+
           // Throw an error
           return throwError(() => error);
         })
@@ -183,6 +215,18 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
 
       });
 
+  }
+  
+  private convertSimulations(response: SimulationDetaillee[]) {
+    let res = [];
+    if (response && response.length > 0) {
+      res = response.map(
+        e => {
+          return this._simulationService.convertSimulationToString(e);
+        }
+      );
+    }
+    this.simulations = res;
   }
 
 }

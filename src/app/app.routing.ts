@@ -162,6 +162,10 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/pages/projets-search/projets-search.module').then(m => m.ProjetsSearchModule),
             },
             {
+                path: 'projet-details',
+                loadChildren: () => import('app/modules/pages/projet/projet.module').then(m => m.ProjetModule),
+            },
+            {
                 path: 'simulation-personnalisee',
                 loadChildren: () => import('app/modules/pages/simulation-personnalisee/simulation-personnalisee.module').then(m => m.SimulationPersonaliseeModule),
             },

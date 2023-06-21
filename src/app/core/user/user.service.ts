@@ -37,12 +37,6 @@ export class UserService
         return this._user.asObservable();
     }
 
-    getUserConnecte(): User
-    {
-        const userStorage = localStorage.getItem('connectedUser');
-        return JSON.parse(userStorage) ?? {};
-    }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------

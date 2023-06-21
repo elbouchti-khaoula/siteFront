@@ -6,7 +6,7 @@ import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/co
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { User } from 'app/core/user/user.types';
-import { UserService } from 'app/core/user/user.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
     selector     : 'futuristic-layout',
@@ -27,7 +27,7 @@ export class FuturisticLayoutComponent implements OnInit, OnDestroy
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _navigationService: NavigationService,
-        private _userService: UserService,
+        private _authenticationService: AuthenticationService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService
     )
@@ -63,7 +63,7 @@ export class FuturisticLayoutComponent implements OnInit, OnDestroy
             });
 
         // Subscribe to the user service
-        this.user = this._userService.getUserConnecte();
+        this.user = this._authenticationService.connectedUser;
 
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
