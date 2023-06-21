@@ -3,8 +3,8 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { AuthService } from 'app/core/auth/auth.service';
-import { UserService } from 'app/core/user/user.service';
 import { FuseAlertType } from '@fuse/components/alert';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 @Component({
     selector     : 'auth-unlock-session',
@@ -35,7 +35,7 @@ export class AuthUnlockSessionComponent implements OnInit
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
-        private _userService: UserService
+        private _authenticationService: AuthenticationService
     )
     {
     }
@@ -50,9 +50,7 @@ export class AuthUnlockSessionComponent implements OnInit
     ngOnInit(): void
     {
         // Get the user's name;
-
-        const user=this._userService.getUserConnecte();
-
+        const user = this._authenticationService.connectedUser;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this._email = user.email;

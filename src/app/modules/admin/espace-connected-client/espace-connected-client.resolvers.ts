@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RecordsInProgressService } from 'app/core/services/records-in-progress/records-in-progress.service';
-import { UserService } from 'app/core/user/user.service';
 import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { ProjetsService } from 'app/core/services/projets/projets.service';
 import { DemandeSAVService } from 'app/core/services/demandes-sav/demandes-sav.service';
+import { AuthenticationService } from 'app/core/auth/authentication.service';
 
 
 @Injectable({
@@ -18,8 +18,7 @@ export class CountCreditResolver implements Resolve<any>
      */
     constructor(
         private _recordsInProgressService: RecordsInProgressService,
-        private _userService: UserService
-
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -34,25 +33,13 @@ export class CountCreditResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-
-        const user=this._userService.getUserConnecte();
-        const  email = user?.email ? user.email : '';
-        const  cin = user?.cin ? user.cin : '';
-
-
+        const user = this._authenticationService.connectedUser;
+        const email = user?.email ? user.email : '';
+        const cin = user?.cin ? user.cin : '';
         // const email = 'firstname.lastname@gmail.com';
 
-        return this._recordsInProgressService.getCountCreditByEmailAndCin(cin,email);
-
-
-
-
-
+        return this._recordsInProgressService.getCountCreditByEmailAndCin(cin, email);
     }
-
-
-
-
 }
 
 
@@ -66,8 +53,7 @@ export class CountSimulationResolver implements Resolve<any>
      */
     constructor(
         private _simulationService: SimulationDetailleeService,
-        private _userService: UserService
-
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -82,10 +68,9 @@ export class CountSimulationResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        // alert(localStorage.getItem('accessTokenAdmin'));
-        const user=this._userService.getUserConnecte();
-        const  email = user?.email ? user.email : '';
-        const  cin = user?.cin ? user.cin : '';
+        const user = this._authenticationService.connectedUser;
+        const email = user?.email ? user.email : '';
+        const cin = user?.cin ? user.cin : '';
 
         return this._simulationService.getCountSimulation(email, cin);
     }
@@ -103,7 +88,7 @@ export class CountProjetsFavorisResolver implements Resolve<any>
      */
     constructor(
         private _projetsService: ProjetsService,
-        private _userService: UserService
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -118,10 +103,8 @@ export class CountProjetsFavorisResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        // alert(localStorage.getItem('accessTokenAdmin'));
-
-        const user=this._userService.getUserConnecte();
-        const  email = user?.email ? user.email : '';
+        const user = this._authenticationService.connectedUser;
+        const email = user?.email ? user.email : '';
 
         // const email = 'firstname.lastname@gmail.com';
 
@@ -140,8 +123,7 @@ export class CountDemandesCreditsResolver implements Resolve<any>
      */
     constructor(
         private _recordsInProgressService: RecordsInProgressService,
-        private _userService: UserService
-
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -156,15 +138,12 @@ export class CountDemandesCreditsResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-
-
-            const user=this._userService.getUserConnecte();
-            const email = user?.email ? user.email : '';
-            const cin = user?.cin ? user.cin : '';
-
+        const user = this._authenticationService.connectedUser;
+        const email = user?.email ? user.email : '';
+        const cin = user?.cin ? user.cin : '';
         // const email = 'firstname.lastname@gmail.com';
 
-        return this._recordsInProgressService.getCountDemandesCredits(cin,email);
+        return this._recordsInProgressService.getCountDemandesCredits(cin, email);
     }
 }
 
@@ -180,7 +159,7 @@ export class CountDemandesSAVResolver implements Resolve<any>
      */
     constructor(
         private _demandeSAVService: DemandeSAVService,
-        private _userService: UserService
+        private _authenticationService: AuthenticationService
     ) {
     }
 
@@ -195,8 +174,8 @@ export class CountDemandesSAVResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        const user=this._userService.getUserConnecte();
-      //  const email = user?.email ? user.email : '';
+        const user = this._authenticationService.connectedUser;
+        //  const email = user?.email ? user.email : '';
         const cin = user?.cin ? user.cin : '';
         // const email = 'firstname.lastname@gmail.com';
 
