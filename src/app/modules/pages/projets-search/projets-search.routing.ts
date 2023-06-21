@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
-import { ProjetsProjetResolver, ProjetsResolver } from './projets.resolvers';
+import { ProjetsResolver } from './projets.resolvers';
 import { ProjetsSearchComponent } from './projets-search.component';
-import { ProjetComponent } from './projet/projet.component';
 import { ProjetsResultComponent } from './projets-result/projets-result.component';
 
 export const projetsSearchRoutes: Route[] = [
@@ -17,12 +16,5 @@ export const projetsSearchRoutes: Route[] = [
                 }
             }
         ]
-    },
-    {
-        path     : 'projet-details',
-        component: ProjetComponent,
-        resolve: {
-            projet: ProjetsProjetResolver
-        },
     }
 ];

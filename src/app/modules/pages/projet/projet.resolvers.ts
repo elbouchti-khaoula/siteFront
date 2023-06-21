@@ -8,7 +8,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
 @Injectable({
     providedIn: 'root'
 })
-export class ProjetsResolver implements Resolve<any>
+export class ProjetResolver implements Resolve<any>
 {
     /**
      * Constructor
@@ -17,8 +17,7 @@ export class ProjetsResolver implements Resolve<any>
         private _projetsService: ProjetsService,
         private _router: Router,
         private _authenticationService: AuthenticationService
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -31,11 +30,11 @@ export class ProjetsResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet[]>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Projet>
     {
         let currentUser = this._authenticationService.connectedUser;
 
-        return this._projetsService.searchProjets(state.root.queryParams, currentUser).pipe(
+        return this._projetsService.getProjetById(Number(route.queryParamMap.get('id')), currentUser).pipe(
             // Error here means the requested projet is not available
             catchError((error) => {
 
@@ -60,5 +59,4 @@ export class ProjetsResolver implements Resolve<any>
         );
     }
 }
-
 
