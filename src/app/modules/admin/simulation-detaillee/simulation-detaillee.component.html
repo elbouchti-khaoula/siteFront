@@ -406,7 +406,6 @@
                                     </mat-error>
                                 </mat-form-field>
 
-
                                 <!-- Objet de financement -->
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:home'" matPrefix>
@@ -433,8 +432,7 @@
                                         [appFormatMontant]="simulationStepperForm.get('step3').get('montantProposition').value">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Montant</mat-label>
                                     <span matSuffix>MAD</span>
-                                    <mat-error
-                                        *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
+                                    <mat-error *ngIf="simulationStepperForm.get('step3').get('montantProposition').hasError('required')">
                                         Montant obligatoire
                                     </mat-error>
                                 </mat-form-field>
