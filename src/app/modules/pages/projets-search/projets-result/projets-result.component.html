@@ -1,207 +1,193 @@
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden max-sm:px-3">
+<div class="absolute inset-0 flex flex-col flex-auto min-w-0 overflow-hidden">
 
-    <mat-drawer-container
-        class="flex-auto" 
-        [hasBackdrop]="false">
+    <ng-container *ngIf="projets && projetsCount > 0; else noProjets">
+        <mat-drawer-container
+            [hasBackdrop]="false">
 
-        <!-- Main Drawer overlay -->
-        <mat-drawer class="w-full md:w-5/12 lg:border-r lg:shadow-none dark:bg-gray-900"
-            [autoFocus]="false"
-            [position]="'end'"
-            [mode]="drawerMainMode"
-            [(opened)]="drawerMainOpened"
-            #drawerMain>
+            <!-- Main Drawer overlay -->
+            <mat-drawer class="w-full md:w-5/12 lg:border-r lg:shadow-none dark:bg-gray-900"
+                [autoFocus]="false"
+                [position]="'end'"
+                [mode]="drawerMainMode"
+                [(opened)]="drawerMainOpened"
+                #drawerMain>
 
-            <localisation [drawer]="drawerMain" [parentComponent]="'projets'"></localisation>
+                <localisation [drawer]="drawerMain" [parentComponent]="'projets'"></localisation>
 
-        </mat-drawer>
+            </mat-drawer>
 
-        <!-- Main Drawer Content -->
-        <mat-drawer-content>
+            <!-- Main Drawer Content -->
+            <mat-drawer-content>
 
-            <mat-drawer-container
-                class="flex-auto h-full bg-card dark:bg-transparent"
-                [hasBackdrop]="true"
-                #drawerContainerProjets>
+                <mat-drawer-container
+                    class="flex-auto h-full bg-card dark:bg-transparent"
+                    [hasBackdrop]="true"
+                    #drawerContainerProjets>
 
-                <!-- Sub Drawer overlay  -->
-                <mat-drawer
-                    class="w-full sm:w-3/4 lg:border-r lg:shadow-none dark:bg-gray-900"
-                    [autoFocus]="false"
-                    [(opened)]="drawerChildOpened"
-                    #drawerContact>
+                    <!-- Sub Drawer overlay  -->
+                    <mat-drawer class="w-full sm:w-3/4 lg:border-r lg:shadow-none dark:bg-gray-900"
+                        [autoFocus]="false"
+                        [(opened)]="drawerChildOpened"
+                        #drawerContact>
 
-                    <!-- Contact -->
-                    <ng-container *ngIf="drawerChildComponent === 'contact'">
-                        <projet-contact [drawer]="drawerContact" [projet]="selectedProjet"></projet-contact>
-                    </ng-container>
-
-                </mat-drawer>
-
-                <!-- Sub Drawer content -->
-                <mat-drawer-content class="flex flex-col flex-auto h-full dark:bg-default">
-
-                    <!-- Header -->
-                    <div class="flex flex-row p-5 md:p-7 border-b">
-                        <!-- Title -->
-                        <div>
-                            <div class="text-2xl md:text-4xl font-extrabold tracking-tight leading-none">
-                                Projets immobiliers
-                            </div>
-                            <div class="ml-0.5 font-semibold text-secondary">
-                                <ng-container *ngIf="projetsCount > 0">
-                                    {{projetsCount}}
-                                </ng-container>
-                                {{projetsCount | i18nPlural: {
-                                '=0' : 'No projets',
-                                '=1' : 'projet',
-                                'other': 'projets'
-                                } }}
-                            </div>
-                        </div>
-
-                        <!-- Open localisation -->
-                        <button class="ml-auto lg:hidden rounded-full bg-[#fae7e8]"
-                            mat-icon-button
-                            (click)="toggleMain()">
-                            <mat-icon
-                                class="icon-size-6 text-primary-700"
-                                [svgIcon]="'heroicons_solid:location-marker'">
-                            </mat-icon>
-                        </button>
-                    </div>
-
-                    <!-- Projets list -->
-                    <ng-container *ngIf="projets$ | async as projets">
-                        <ng-container *ngIf="projets && projetsCount > 0; else noProjets">
-
-                            <div class="relative overflow-y-auto" cdkScrollable #projectsList>
-
-                                <ng-container *ngFor="let projet of projets; let i = index; trackBy: trackByFn">
-                                    <!-- Group -->
-                                    <!-- <ng-container *ngIf="i === 0 || projet.nom.charAt(0) !== projets[i - 1].nom.charAt(0)">
-                                        <div class="z-10 sticky top-0 -mt-px px-6 md:py-1 border-t border-b font-semibold uppercase text-secondary bg-gray-50 dark:bg-gray-800">
-                                            {{projet.nom.charAt(0)}}
-                                        </div>
-                                    </ng-container> -->
-
-                                    <!-- Projet -->
-                                    <a class="z-20 flex items-center px-3 md:px-6 py-5 cursor-pointer border-b"
-                                        [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedProjet || selectedProjet.id !== projet.id,
-                                                    'bg-[#fae7e8] dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
-                                        (click)="selectProjet(projet)">
-
-                                        <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-5">
-                                            <!-- carousel projet images -->
-                                            <div class="flex flex-0 items-center justify-center">
-                                                <ng-container *ngIf="projet.medias && projet.medias.length > 0">
-                                                    <angular-carousel [auto]="true" [infinite]="true" [duration]="5000" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
-                                                        <ng-container *ngFor="let image of projet.medias; trackBy: trackByFn">
-                                                            <div *angularCarouselSlide class="h-50 md:h-68">
-                                                                <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
-                                                                <img [src]="image.chemin" class="object-cover h-full" />
-                                                            </div>
-                                                        </ng-container>
-                                                    </angular-carousel>
-                                                </ng-container>
-                                                <ng-container *ngIf="!projet.medias || !projet.medias.length">
-                                                    <span class="flex items-center justify-center w-full h-50 md:h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                        No image
-                                                    </span>
-                                                </ng-container>
-                                            </div>
-                                            
-                                            <div class="flex flex-col justify-between">
-                                                <div class="md:hidden w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                                                    à partir de <strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
-                                                </div>
-
-                                                <div class="grid grid-cols-3 gap-x-3 max-md:mt-3">
-                                                    <!-- projet description -->
-                                                    <div class="col-span-2 flex flex-col space-y-0.5">
-                                                        <div class="hidden md:inline-flex mb-3 w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
-                                                            à partir de&nbsp;<strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
-                                                        </div>
-                                                        <div class="font-extrabold text-xl uppercase text-primary">
-                                                            {{projet.nom}}
-                                                            <mat-icon *ngIf="projet.estFavoris"
-                                                                class="icon-size-5 text-red-500"
-                                                                [svgIcon]="'heroicons_solid:heart'">
-                                                            </mat-icon>
-                                                        </div>
-                                                        <div class="-ml-1 flex items-center text-center">
-                                                            <mat-icon class="icon-size-5 text-primary-700"
-                                                                [svgIcon]="'heroicons_outline:location-marker'">
-                                                            </mat-icon>
-                                                            <span class="ml-1 text-md">{{projet.libelleVille}}</span>
-                                                        </div>
-                                                        <span class="font-medium text-second-600">{{projet.statut}}</span>
-                                                        <span class="font-medium">{{projet.libelleTypeBien}}</span>
-                                                    </div>
-
-                                                    <!-- logo promoteur -->
-                                                    <div class="w-full ml-auto mt-1">
-                                                        <ng-container *ngIf="projet.promoter.logoPath">
-                                                            <figure class="flex items-center justify-center h-28 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
-                                                                <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
-                                                            </figure>
-                                                        </ng-container>
-                                                        <ng-container *ngIf="!projet.promoter.logoPath">
-                                                            <span class="flex items-center justify-center h-28 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                                No Logo
-                                                            </span>
-                                                        </ng-container>
-                                                    </div>
-                                                </div>
-
-                                                <div class="max-md:mt-5">
-                                                    <div class="prose prose-sm" [innerHTML]="projet.descriptionSmall"></div>
-
-                                                    <!-- Actions -->
-                                                    <div class="w-full border-t pt-4 mt-3">
-                                                        <div class="flex flex-col max-md:mx-auto max-md:max-w-max max-md:space-y-2 md:flex-row md:justify-center">
-                                                            <button
-                                                                mat-flat-button 
-                                                                [color]="'primary'"
-                                                                [routerLink]="'/projet-details'"
-                                                                [queryParams]="{id: projet.id}">
-                                                                En savoir plus
-                                                            </button>
-                                                            <button class="md:ml-3"
-                                                                mat-stroked-button 
-                                                                [color]="'primary'"
-                                                                (click)="openContact(projet)">
-                                                                Contacter le promoteur
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </ng-container>
-
-                            </div>
+                        <!-- Contact -->
+                        <ng-container *ngIf="drawerChildComponent === 'contact'">
+                            <projet-contact [drawer]="drawerContact" [projet]="selectedProjet"></projet-contact>
                         </ng-container>
-                    </ng-container>
 
-                    <!-- No projets template -->
-                    <ng-template #noProjets>
-                        <div class="flex flex-col flex-auto items-center justify-center bg-second-100 dark:bg-transparent">
-                            <mat-icon class="icon-size-20 md:icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
-                            <div class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-secondary">
-                                Il n'y a pas de projet!
+                    </mat-drawer>
+
+                    <!-- Sub Drawer content -->
+                    <mat-drawer-content class="flex flex-col flex-auto h-full dark:bg-default">
+
+                        <!-- Header -->
+                        <div class="flex flex-row p-5 md:p-7 border-b">
+                            <!-- Title -->
+                            <div>
+                                <div class="text-2xl md:text-4xl font-extrabold tracking-tight leading-none">
+                                    Projets immobiliers
+                                </div>
+                                <div class="ml-0.5 font-semibold text-secondary">
+                                    <ng-container *ngIf="projetsCount > 0">
+                                        {{projetsCount}}
+                                    </ng-container>
+                                    {{projetsCount | i18nPlural: {
+                                    '=0' : 'No projets',
+                                    '=1' : 'projet',
+                                    'other': 'projets'
+                                    } }}
+                                </div>
                             </div>
+
+                            <!-- Open localisation -->
+                            <button class="ml-auto lg:hidden rounded-full bg-[#fae7e8]"
+                                mat-icon-button
+                                (click)="toggleMain()">
+                                <mat-icon
+                                    class="icon-size-6 text-primary-700"
+                                    [svgIcon]="'heroicons_solid:location-marker'">
+                                </mat-icon>
+                            </button>
                         </div>
-                    </ng-template>
 
-                </mat-drawer-content>
+                        <!-- Projets list -->
+                        <div class="relative overflow-y-auto" cdkScrollable #projectsList>
+                            <ng-container *ngFor="let projet of projets; let i = index; trackBy: trackByFn">
+                                <!-- Projet -->
+                                <a class="z-20 flex items-center px-3 md:px-6 py-5 cursor-pointer border-b"
+                                    [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedProjet || selectedProjet.id !== projet.id,
+                                                'bg-[#fae7e8] dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
+                                    (click)="selectProjet(projet)">
 
-            </mat-drawer-container>
+                                    <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-5">
+                                        <!-- carousel projet images -->
+                                        <div class="flex flex-0 items-center justify-center">
+                                            <ng-container *ngIf="projet.medias && projet.medias.length > 0">
+                                                <angular-carousel [auto]="true" [infinite]="true" [duration]="5000" class="rounded-2xl w-full h-50 md:h-68 overflow-hidden">
+                                                    <ng-container *ngFor="let image of projet.medias; trackBy: trackByFn">
+                                                        <div *angularCarouselSlide class="h-50 md:h-68">
+                                                            <div class="z-[2] absolute inset-0 bg-black/[.3]"></div>
+                                                            <img [src]="image.chemin" class="object-cover h-full" />
+                                                        </div>
+                                                    </ng-container>
+                                                </angular-carousel>
+                                            </ng-container>
+                                            <ng-container *ngIf="!projet.medias || !projet.medias.length">
+                                                <span class="flex items-center justify-center w-full h-50 md:h-60 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    No image
+                                                </span>
+                                            </ng-container>
+                                        </div>
 
-        </mat-drawer-content>
+                                        <div class="flex flex-col justify-between">
+                                            <div class="md:hidden w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                à partir de <strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
+                                            </div>
 
-    </mat-drawer-container>
+                                            <div class="grid grid-cols-3 gap-x-3 max-md:mt-3">
+                                                <!-- projet description -->
+                                                <div class="col-span-2 flex flex-col space-y-0.5">
+                                                    <div class="hidden md:inline-flex mb-3 w-fit mt-0.5 py-0.5 px-3 rounded-full text-sm font-semibold text-primary-700 ring-1 ring-inset ring-primary bg-hover">
+                                                        à partir de&nbsp;<strong>{{projet.prixMinStr}} {{projet.devise}}</strong>
+                                                    </div>
+                                                    <div class="font-extrabold text-xl uppercase text-primary">
+                                                        {{projet.nom}}
+                                                        <mat-icon *ngIf="projet.estFavoris"
+                                                            class="icon-size-5 text-red-500"
+                                                            [svgIcon]="'heroicons_solid:heart'">
+                                                        </mat-icon>
+                                                    </div>
+                                                    <div class="-ml-1 flex items-center text-center">
+                                                        <mat-icon class="icon-size-5 text-primary-700"
+                                                            [svgIcon]="'heroicons_outline:location-marker'">
+                                                        </mat-icon>
+                                                        <span class="ml-1 text-md">{{projet.libelleVille}}</span>
+                                                    </div>
+                                                    <span class="font-medium text-second-600">{{projet.statut}}</span>
+                                                    <span class="font-medium">{{projet.libelleTypeBien}}</span>
+                                                </div>
+
+                                                <!-- logo promoteur -->
+                                                <div class="w-full ml-auto mt-1">
+                                                    <ng-container *ngIf="projet.promoter.logoPath">
+                                                        <figure class="flex items-center justify-center h-28 sm:h-36 p-2 rounded-2xl overflow-hidden bg-card ring-1 ring-gray-300">
+                                                            <img [src]="projet.promoter.logoPath" class="object-cover w-full" />
+                                                        </figure>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!projet.promoter.logoPath">
+                                                        <span class="flex items-center justify-center h-28 sm:h-36 rounded-2xl text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                            No Logo
+                                                        </span>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+
+                                            <div class="max-md:mt-5">
+                                                <div class="prose prose-sm" [innerHTML]="projet.descriptionSmall"></div>
+
+                                                <!-- Actions -->
+                                                <div class="w-full border-t pt-4 mt-3">
+                                                    <div class="flex flex-col max-md:mx-auto max-md:max-w-max max-md:space-y-2 md:flex-row md:justify-center">
+                                                        <button
+                                                            mat-flat-button
+                                                            [color]="'primary'"
+                                                            [routerLink]="'/projet-details'"
+                                                            [queryParams]="{id: projet.id}">
+                                                            En savoir plus
+                                                        </button>
+                                                        <button class="md:ml-3"
+                                                            mat-stroked-button
+                                                            [color]="'primary'"
+                                                            (click)="openContact(projet)">
+                                                            Contacter le promoteur
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+
+                    </mat-drawer-content>
+
+                </mat-drawer-container>
+
+            </mat-drawer-content>
+
+        </mat-drawer-container>
+    </ng-container>
+
+    <!-- No projets template -->
+    <ng-template #noProjets>
+        <div class="flex flex-col items-center justify-center min-h-60 bg-second-100 dark:bg-transparent">
+            <mat-icon class="icon-size-20 md:icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
+            <div class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-secondary">
+                Aucun projet ne correspond à votre recherche!
+            </div>
+        </div>
+    </ng-template>
 
 </div>

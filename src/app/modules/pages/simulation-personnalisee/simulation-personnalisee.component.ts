@@ -13,6 +13,7 @@ import { SalesForceService } from 'app/core/services/salesforce/salesforce.servi
 import { resize } from 'app/core/animations/resize';
 import { FuseUtilsService } from '@fuse/services/utils';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
   selector: 'simulation-personnalisee',
@@ -65,7 +66,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   // @ViewChild('fraisDiversId') fraisDiversId: any;
   // @ViewChild('honorairesNotaireId') honorairesNotaireId: any;
   // @ViewChild('totalFraisId') totalFraisId: any;
-  
+
   /**
    * Constructor
    */
@@ -80,9 +81,9 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     private _simulationService: SimulationPersonaliseeService,
     private _salesForceService: SalesForceService,
     private _authenticationService: AuthenticationService,
-    private _fuseUtilsService: FuseUtilsService
-  )
-  {
+    private _fuseUtilsService: FuseUtilsService,
+    private _fuseConfirmationService: FuseConfirmationService
+  ) {
     this.simulationPersonnalisee = {
       montant: 0.00,
       duree: 0,
@@ -265,7 +266,30 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           if (error.status === 500) {
             this._router.navigateByUrl('/500-server-error');
           } else if (error.status === 400) {
-            this._router.navigateByUrl('/404-not-found');
+            // Open the confirmation dialog
+            this._fuseConfirmationService.open(
+              {
+                "title": "Simulation personnalisée",
+                "message": "Aucun résultat trouvé",
+                "icon": {
+                  "show": true,
+                  "name": "heroicons_outline:check-circle",
+                  "color": "success"
+                },
+                "actions": {
+                  "confirm": {
+                    "show": true,
+                    "label": "Ok",
+                    "color": "primary"
+                  },
+                  "cancel": {
+                    "show": false,
+                    "label": "Cancel"
+                  }
+                },
+                "dismissible": false
+              }
+            );
           } else {
             // Get the parent url
             const parentUrl = this._router.routerState.snapshot.url.split('/').slice(0, -1).join('/');
@@ -330,7 +354,33 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
   }
 
-  convertSimulationPersonaliseeToString(): void {
+  navigateToSimulationDetaillee(): void {
+
+    // Add query params using the router
+    this._router.navigate(
+      ['/espace-connecte/simulation-detaillee'],
+      {
+        queryParams:
+        {
+          nom: this.simulationForm.get('nom').value,
+          prenom: this.simulationForm.get('prenom').value,
+          telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
+          email: this.simulationForm.get('email').value,
+          nationaliteCode: this.simulationForm.get('nationaliteCode').value,
+          residentMarocain: this.simulationForm.get('residentMarocain').value,
+          agreements: this.simulationForm.get('agreements').value,
+          cspCode: this.simulationForm.get('cspCode').value,
+          montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, ''),
+          duree: this.simulationForm.get('duree').value
+        }
+      }
+    );
+  }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Private methods
+  // -----------------------------------------------------------------------------------------------------
+  private convertSimulationPersonaliseeToString(): void {
 
     let expertiseImmobiliereStr = "";
     if (this.simulationPersonnalisee.expertiseImmobiliere && this.simulationPersonnalisee.expertiseImmobiliere > 0) {
@@ -377,29 +427,6 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     this.conservationFonciereId.nativeElement.textContent = this.simulationPersonnaliseeStr.conservationFonciere;
     // this.fraisDiversId.nativeElement.textContent = this.simulationPersonnaliseeStr.fraisDivers;
     // this.honorairesNotaireId.nativeElement.textContent = this.simulationPersonnaliseeStr.honorairesNotaire;
-  }
-
-  navigateToSimulationDetaillee(): void {
-
-    // Add query params using the router
-    this._router.navigate(
-      ['/espace-connecte/simulation-detaillee'],
-      {
-        queryParams:
-        {
-          nom             : this.simulationForm.get('nom').value,
-          prenom          : this.simulationForm.get('prenom').value,
-          telephone       : this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
-          email           : this.simulationForm.get('email').value,
-          nationaliteCode : this.simulationForm.get('nationaliteCode').value,
-          residentMarocain: this.simulationForm.get('residentMarocain').value,
-          agreements      : this.simulationForm.get('agreements').value,
-          cspCode         : this.simulationForm.get('cspCode').value,
-          montant         : this.simulationForm.get('montant').value.toString().replace(/\D/g, ''),
-          duree           : this.simulationForm.get('duree').value
-        }
-      }
-    );
   }
 
 }

@@ -216,8 +216,8 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         codeVille: this.searchForm.get('codeVille').value,
         codeQuartier: this.searchForm.get('codeQuartier').value,
         codeTypeBien: this.searchForm.get('codeTypeBien').value,
-        prixMin: Number(this.searchForm.get('prixMin').value.toString().replace(/\D/g, '')),
-        prixMax: Number(this.searchForm.get('prixMax').value.toString().replace(/\D/g, ''))
+        prixMin: this.searchForm.get('prixMin').value ? Number(this.searchForm.get('prixMin').value.toString().replace(/\D/g, '')) : null,
+        prixMax: this.searchForm.get('prixMax').value ? Number(this.searchForm.get('prixMax').value.toString().replace(/\D/g, '')) : null
       }, this.user)
       .pipe(
         // Error here means the requested is not available
