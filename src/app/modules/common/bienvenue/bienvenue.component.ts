@@ -10,7 +10,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
 export class BienvenueComponent implements OnInit {
 
     user: User;
-    @Input() showWelcome: boolean = false;
+    @Input() showName: boolean = false;
 
     /**
      * Constructor

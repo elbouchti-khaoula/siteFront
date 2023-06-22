@@ -1,11 +1,10 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- Header -->
-    <!-- [headerLibelle]="'Simulation détaillée'" -->
     <page-header-connecte
         [headerStyle]="'simul-det-bg-header'"
-        [hideSmallScreen]="'true'"
-        [showUser]="'true'">
+        [headerLibelle]="'Simulation détaillée'"
+        [hideSmallScreen]="'true'">
     </page-header-connecte>
 
     <div class="px-5 sm:px-16 max-md:py-10 md:pb-20 simul-det-bg-header-sm">
@@ -58,7 +57,7 @@
                         <mat-icon class="icon-size-5 text-warn-600" [svgIcon]="'heroicons_outline:exclamation'">
                         </mat-icon>
                         <span class="ml-2 font-semibold">Si vous êtes client Attijariwafa Bank, veuillez vous connectez à
-                            l'application Attijari Mobile pour avoir de meilleurs résultats.
+                            l'application Attijari Mobile pour avoir de meilleurs conditions.
                         </span>
                     </div>
 
@@ -136,13 +135,11 @@
                                     </mat-icon>
                                     <input type="email" matInput [formControlName]="'email'">
                                     <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
-                                    <mat-error
-                                        *ngIf="simulationStepperForm.get('step1').get('email').hasError('email')">
-                                        Enter a valid email address
+                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('email').hasError('email')">
+                                        Veuillez saisir une adresse mail valide
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="simulationStepperForm.get('step1').get('email').hasError('required')">
-                                        Email obligatoire
+                                    <mat-error *ngIf="simulationStepperForm.get('step1').get('email').hasError('required')">
+                                        Adresse mail obligatoire
                                     </mat-error>
                                 </mat-form-field>
 
@@ -167,12 +164,13 @@
 
                                 <!-- Birthday -->
                                 <mat-form-field [ngClass]="{'fuse-mat-dense': isScreenSmall}">
-                                    <mat-label>Date de naissance</mat-label>
                                     <mat-icon matPrefix class="hidden sm:flex icon-size-5"
                                         [svgIcon]="'heroicons_solid:cake'">
                                     </mat-icon>
                                     <input matInput [matDatepicker]="dateNaissancePicker"
-                                        [formControlName]="'dateNaissance'" [placeholder]="'Date de naissance'">
+                                        [formControlName]="'dateNaissance'">
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Date de naissance
+                                    </mat-label>
                                     <mat-datepicker-toggle matSuffix [for]="dateNaissancePicker">
                                     </mat-datepicker-toggle>
                                     <mat-datepicker #dateNaissancePicker>
@@ -187,6 +185,18 @@
                                             </button>
                                         </mat-datepicker-actions>
                                     </mat-datepicker>
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('dateNaissance').hasError('required')">
+                                        Date de naissance obligatoire
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('dateNaissance').getError('younger') as error">
+                                        Âge minimum est : {{ error.minAge }} ans
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="simulationStepperForm.get('step1').get('dateNaissance').getError('invalidDate')">
+                                        Date de naissance invalide
+                                    </mat-error>
                                 </mat-form-field>
 
                                 <!-- Résident -->
@@ -326,7 +336,7 @@
                                     <mat-icon class="icon-size-5" [svgIcon]="'mat_solid:money'" matPrefix></mat-icon>
                                     <input matInput [formControlName]="'salaire'"
                                         [appFormatMontant]="simulationStepperForm.get('step2').get('salaire').value">
-                                    <mat-label class="max-md:text-sm max-md:font-semibold">Salaire annuel
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Salaire/Revenu annuel
                                         net</mat-label>
                                     <span matSuffix>MAD</span>
                                     <mat-error

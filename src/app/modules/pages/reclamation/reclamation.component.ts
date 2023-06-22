@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -18,7 +18,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations
 })
-export class ReclamationComponent implements OnInit, AfterViewInit {
+export class ReclamationComponent implements OnInit, OnDestroy {
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
     isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
@@ -123,35 +123,17 @@ export class ReclamationComponent implements OnInit, AfterViewInit {
 
                 this.notAlerteEthique = value !== -1;
             });
+        
+        this._initInfosConnectedUser();
     }
 
     /**
-     * After view init
+     * On destroy
      */
-    ngAfterViewInit(): void {
-        let currentUser = this._authenticationService.connectedUser;
-    
-        if (currentUser?.email) {
-            this.reclamationForm.get('email').setValue(currentUser?.email);
-        }
-    
-        if (currentUser?.lastName) {
-            this.reclamationForm.get('nom').setValue(currentUser?.lastName);
-        }
-    
-        if (currentUser?.firstName) {
-            this.reclamationForm.get('prenom').setValue(currentUser?.firstName);
-        }
-    
-        if (currentUser?.telephone) {
-            this.reclamationForm.get('telephone').setValue(currentUser?.telephone);
-        }
-
-        if (currentUser?.cin) {
-            this.reclamationForm.get('cin').setValue(currentUser?.cin);
-        }
-    
-        this._changeDetectorRef.detectChanges();
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next(null);
+        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -299,6 +281,32 @@ export class ReclamationComponent implements OnInit, AfterViewInit {
             // Mark for check
             this._changeDetectorRef.markForCheck();
         }, 7000);
+    }
+
+    private _initInfosConnectedUser() {
+        let currentUser = this._authenticationService.connectedUser;
+    
+        if (currentUser?.email) {
+            this.reclamationForm.get('email').setValue(currentUser?.email);
+        }
+    
+        if (currentUser?.lastName) {
+            this.reclamationForm.get('nom').setValue(currentUser?.lastName);
+        }
+    
+        if (currentUser?.firstName) {
+            this.reclamationForm.get('prenom').setValue(currentUser?.firstName);
+        }
+    
+        if (currentUser?.telephone) {
+            this.reclamationForm.get('telephone').setValue(currentUser?.telephone);
+        }
+
+        if (currentUser?.cin) {
+            this.reclamationForm.get('cin').setValue(currentUser?.cin);
+        }
+    
+        this._changeDetectorRef.detectChanges();
     }
 
 }

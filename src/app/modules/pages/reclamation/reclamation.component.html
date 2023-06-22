@@ -116,10 +116,10 @@
                             <mat-label class="max-md:text-sm max-md:font-semibold">E-mail<span
                                     *ngIf="notAlerteEthique">&nbsp;*</span></mat-label>
                             <mat-error *ngIf="reclamationForm.get('email').hasError('email')">
-                                Enter a valid email address
+                                Veuillez saisir une adresse mail valide
                             </mat-error>
                             <mat-error *ngIf="reclamationForm.get('email').hasError('required')">
-                                Email obligatoire
+                                Adresse mail obligatoire
                             </mat-error>
                         </mat-form-field>
 

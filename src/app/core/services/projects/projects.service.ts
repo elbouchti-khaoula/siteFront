@@ -16,7 +16,6 @@ export class SimulationDetailleeService {
     private _simulation: BehaviorSubject<SimulationDetaillee | null> = new BehaviorSubject(null);
     private _critereSimulation: BehaviorSubject<CritereDetaillee | null> = new BehaviorSubject(null);
     private _documents: BehaviorSubject<any | null> = new BehaviorSubject(null);
-    private _simulationResultat: BehaviorSubject<any | null> = new BehaviorSubject(null);
     private _employeurs: BehaviorSubject<EmployeurConventionne[] | null> = new BehaviorSubject(null);
     private _promoteurs: BehaviorSubject<PromoteurConventionne[] | null> = new BehaviorSubject(null);
 
@@ -53,13 +52,6 @@ export class SimulationDetailleeService {
      */
     get critereSimulation$(): Observable<CritereDetaillee> {
         return this._critereSimulation.asObservable();
-    }
-
-    /**
-     * Getter for simulation resultat
-     */
-    get simulationResultat$(): Observable<any> {
-        return this._simulationResultat.asObservable();
     }
 
     /**
@@ -191,7 +183,6 @@ export class SimulationDetailleeService {
                         ...simulation
                     };
 
-                    this._simulationResultat.next(simulationResult);
                     return simulationResult;
                 })
             );
