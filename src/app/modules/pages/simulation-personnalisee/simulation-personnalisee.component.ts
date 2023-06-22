@@ -265,16 +265,16 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
 
           if (error.status === 500) {
             this._router.navigateByUrl('/500-server-error');
-          } else if (error.status === 400) {
+          } else if (error.status === 404) {
             // Open the confirmation dialog
             this._fuseConfirmationService.open(
               {
                 "title": "Simulation personnalisée",
-                "message": "Aucun résultat trouvé",
+                "message": "Aucun offre trouvé",
                 "icon": {
                   "show": true,
-                  "name": "heroicons_outline:check-circle",
-                  "color": "success"
+                  "name": "heroicons_outline:information-circle",
+                  "color": "warn"
                 },
                 "actions": {
                   "confirm": {
@@ -327,28 +327,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
 
         // Création du lead dans salesForce
-        this._salesForceService.createLead(
-          {
-            nom: this.simulationForm.get('nom').value,
-            prenom: this.simulationForm.get('prenom').value,
-            email: this.simulationForm.get('email').value,
-            telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
-            nationaliteCode: this.simulationForm.get('nationaliteCode').value,
-            residentMarocain: this.simulationForm.get('residentMarocain').value,
-            cspCode: this.simulationForm.get('cspCode').value,
-            montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, '')
-          }
-        )
-          .pipe(
-            catchError((error) => {
-              // Log the error
-              console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
-              // Throw an error
-              return throwError(() => error);
-            }))
-          .subscribe((response) => {
-            console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
-          });
+        this.createLead();
 
       });
 
@@ -427,6 +406,31 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     this.conservationFonciereId.nativeElement.textContent = this.simulationPersonnaliseeStr.conservationFonciere;
     // this.fraisDiversId.nativeElement.textContent = this.simulationPersonnaliseeStr.fraisDivers;
     // this.honorairesNotaireId.nativeElement.textContent = this.simulationPersonnaliseeStr.honorairesNotaire;
+  }
+
+  private createLead() {
+    this._salesForceService.createLead(
+      {
+        nom: this.simulationForm.get('nom').value,
+        prenom: this.simulationForm.get('prenom').value,
+        email: this.simulationForm.get('email').value,
+        telephone: this.simulationForm.get('telephone').value.replace(/-/g, '').substring(0, 10),
+        nationaliteCode: this.simulationForm.get('nationaliteCode').value,
+        residentMarocain: this.simulationForm.get('residentMarocain').value,
+        cspCode: this.simulationForm.get('cspCode').value,
+        montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, '')
+      }
+    )
+      .pipe(
+        catchError((error) => {
+          // Log the error
+          console.error("+-+-+-+ création lead salesforce simulation personnalisée error", error);
+          // Throw an error
+          return throwError(() => error);
+        }))
+      .subscribe((response) => {
+        console.log("+-+-+- création lead salesforce simulation personnalisée success: ", response);
+      });
   }
 
 }

@@ -5,7 +5,7 @@
     [matMenuTriggerFor]="userActions">
     <span class="relative">
         <span *ngIf="user"
-            class="absolute -right-5 -bottom-2 w-2 h-2 rounded-full"
+            class="absolute -right-5 -bottom-2.5 w-2 h-2 rounded-full"
             [ngClass]="{'mr-px mb-px': !showAvatar || !user.avatar,
                           'bg-green-500': user.status === 'online',
                           'bg-amber-500': user.status === 'away',

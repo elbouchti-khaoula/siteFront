@@ -69,10 +69,10 @@
                 <input type="email" matInput [formControlName]="'email'">
                 <mat-label class="max-md:text-sm max-md:font-semibold">E-mail</mat-label>
                 <mat-error *ngIf="contactForm.get('email').hasError('email')">
-                    Enter a valid email address
+                    Veuillez saisir une adresse mail valide
                 </mat-error>
                 <mat-error *ngIf="contactForm.get('email').hasError('required')">
-                    Email obligatoire
+                    Adresse mail obligatoire
                 </mat-error>
             </mat-form-field>
 

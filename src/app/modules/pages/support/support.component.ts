@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     animations: fuseAnimations,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SupportComponent implements OnInit, AfterViewInit {
+export class SupportComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     isCaptchaValid: boolean = false;
     @Input() drawer: MatDrawer;
@@ -63,31 +63,17 @@ export class SupportComponent implements OnInit, AfterViewInit {
             telephone   : ['', Validators.required],
             message     : ['']
         });
-    }
 
+        this._initInfosConnectedUser();
+    }
+    
     /**
-     * After view init
+     * On destroy
      */
-    ngAfterViewInit(): void {
-        let currentUser = this._authenticationService.connectedUser;
-    
-        if (currentUser?.email) {
-            this.supportForm.get('email').setValue(currentUser?.email);
-        }
-    
-        if (currentUser?.lastName) {
-            this.supportForm.get('nom').setValue(currentUser?.lastName);
-        }
-    
-        if (currentUser?.firstName) {
-            this.supportForm.get('prenom').setValue(currentUser?.firstName);
-        }
-    
-        if (currentUser?.telephone) {
-            this.supportForm.get('telephone').setValue(currentUser?.telephone);
-        }
-    
-        this._changeDetectorRef.detectChanges();
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next(null);
+        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -141,6 +127,11 @@ export class SupportComponent implements OnInit, AfterViewInit {
         this.clearForm();
     }
 
+    
+    // -----------------------------------------------------------------------------------------------------
+    // @ private methods
+    // -----------------------------------------------------------------------------------------------------
+
     /**
      * Show Alert message
      */
@@ -164,5 +155,27 @@ export class SupportComponent implements OnInit, AfterViewInit {
                 this._changeDetectorRef.markForCheck();
             }, 7000);
         }
+    }
+
+    private _initInfosConnectedUser() {
+        let currentUser = this._authenticationService.connectedUser;
+    
+        if (currentUser?.email) {
+            this.supportForm.get('email').setValue(currentUser?.email);
+        }
+    
+        if (currentUser?.lastName) {
+            this.supportForm.get('nom').setValue(currentUser?.lastName);
+        }
+    
+        if (currentUser?.firstName) {
+            this.supportForm.get('prenom').setValue(currentUser?.firstName);
+        }
+    
+        if (currentUser?.telephone) {
+            this.supportForm.get('telephone').setValue(currentUser?.telephone);
+        }
+    
+        this._changeDetectorRef.detectChanges();
     }
 }

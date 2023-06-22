@@ -18,8 +18,6 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   simulations: any[] = [];
-  selectedSimulation: SimulationDetaillee;
-  simulationResultat: any;
 
   /**
    * Constructor
@@ -161,6 +159,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
                 if (result === 'confirmed') {
                   setTimeout(() => {
                     // this.simulations.splice(this.simulations.findIndex(element => element.id === selectedSimulation.id) , 1);
+                    
                     let user = this._authenticationService.connectedUser;
                     this._simulationService.search(user.email)
                       .subscribe((response) => {

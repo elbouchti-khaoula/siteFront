@@ -1,7 +1,7 @@
 <div *ngIf="user" class="px-5 sm:px-16">
 
     <div class="w-full max-w-400 mx-auto">
-        
+
         <!-- User info -->
         <div class="hidden md:flex flex-col flex-0 lg:flex-row items-center lg:h-18 bg-card py-3">
 
@@ -13,36 +13,38 @@
             </div>
 
             <!-- Welcome -->
-            <div *ngIf="showWelcome" class="flex flex-col items-center lg:items-start mt-4 lg:mt-0 lg:ml-8">
-                <div class="text-lg md:text-2xl font-bold leading-none">Bienvenue {{user?.firstName}} {{user?.lastName}}
+            <div *ngIf="showName" class="flex flex-col items-center lg:items-start mt-4 lg:mt-0 lg:ml-8">
+                <div class="flex flex-col items-center">
+                    <span class="text-lg md:text-2xl font-bold">{{user?.firstName}}</span>
+                    <span class="md:text-xl font-semibold">{{user?.lastName}}</span>
                 </div>
             </div>
 
             <!-- Separator -->
-            <div *ngIf="showWelcome" class="hidden lg:flex h-8 mx-10 border-l-2"></div>
+            <div *ngIf="showName" class="hidden lg:flex h-8 mx-10 border-l-2"></div>
 
             <!-- infos user -->
             <div class="flex items-center mt-6 lg:mt-0 space-x-5"
-                [ngClass]="{'ml-10': !showWelcome}">
-                <div class="flex flex-col items-center">
+                [ngClass]="{'ml-10': !showName}">
+                <div *ngIf="user?.email" class="flex flex-col items-center">
                     <span class="text-sm font-medium text-secondary">E-mail</span>
                     <span class="font-bold">{{user?.email}}</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div *ngIf="user?.telephone" class="flex flex-col items-center">
                     <span class="text-sm font-medium text-secondary">Téléphone</span>
                     <span class="font-bold">{{user?.telephone}}</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div *ngIf="user?.cin" class="flex flex-col items-center">
                     <span class="text-sm font-medium text-secondary">CIN</span>
                     <span class="font-bold">{{user?.cin}}</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div *ngIf="user?.dateNaissance" class="flex flex-col items-center">
                     <span class="text-sm font-medium text-secondary">Date de naissance</span>
                     <span class="font-bold">{{user?.dateNaissance}}</span>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </div>

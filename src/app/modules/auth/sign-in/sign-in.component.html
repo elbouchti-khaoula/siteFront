@@ -42,10 +42,10 @@
                             matInput
                             [formControlName]="'email'">
                         <mat-error *ngIf="signInForm.get('email').hasError('required')">
-                            Adresse email est obligatoire
+                            Adresse mail obligatoire
                         </mat-error>
                         <mat-error *ngIf="signInForm.get('email').hasError('email')">
-                            Merci de saisir un émail valide
+                            Veuillez saisir une adresse mail valide
                         </mat-error>
                     </mat-form-field>
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
@@ -15,7 +15,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MeRappelerPopupComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MeRappelerPopupComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     alert: any;
     projet: Projet;
@@ -69,31 +69,8 @@ export class MeRappelerPopupComponent implements OnInit, OnDestroy, AfterViewIni
             telephone: ['', Validators.required],
             message: ['']
         });
-    }
 
-    /**
-     * After view init
-     */
-    ngAfterViewInit(): void {
-        let currentUser = this._authenticationService.connectedUser;
-
-        if (currentUser?.email) {
-            this.faitesVousRappelerForm.get('email').setValue(currentUser?.email);
-        }
-
-        if (currentUser?.lastName) {
-            this.faitesVousRappelerForm.get('nom').setValue(currentUser?.lastName);
-        }
-
-        if (currentUser?.firstName) {
-            this.faitesVousRappelerForm.get('prenom').setValue(currentUser?.firstName);
-        }
-
-        if (currentUser?.telephone) {
-            this.faitesVousRappelerForm.get('telephone').setValue(currentUser?.telephone);
-        }
-
-        this._changeDetectorRef.detectChanges();
+        this._initInfosConnectedUser();
     }
 
     /**
@@ -184,6 +161,10 @@ export class MeRappelerPopupComponent implements OnInit, OnDestroy, AfterViewIni
         this.clearForm();
     }
 
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
     /**
      * Show Alert message
      */
@@ -207,6 +188,28 @@ export class MeRappelerPopupComponent implements OnInit, OnDestroy, AfterViewIni
                 this._changeDetectorRef.markForCheck();
             }, 7000);
         }
+    }
+
+    private _initInfosConnectedUser() {
+        let currentUser = this._authenticationService.connectedUser;
+
+        if (currentUser?.email) {
+            this.faitesVousRappelerForm.get('email').setValue(currentUser?.email);
+        }
+
+        if (currentUser?.lastName) {
+            this.faitesVousRappelerForm.get('nom').setValue(currentUser?.lastName);
+        }
+
+        if (currentUser?.firstName) {
+            this.faitesVousRappelerForm.get('prenom').setValue(currentUser?.firstName);
+        }
+
+        if (currentUser?.telephone) {
+            this.faitesVousRappelerForm.get('telephone').setValue(currentUser?.telephone);
+        }
+
+        this._changeDetectorRef.detectChanges();
     }
 
 }

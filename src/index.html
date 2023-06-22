@@ -1,79 +1,152 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Wimmo Web - Site web de Wafa Immobilier</title>
-        <meta charset="utf-8">
-        <meta
-            name="description"
-            content="Admin Template and Starter Kit with Angular, Angular Material Components and TailwindCSS">
-        <meta
-            name="keywords"
-            content="Wimmoweb,HTML,CSS,Angular,Angular 2,Angular 11,Angular 12,Angular 13,Material,Material 2,Angular Components,Tailwind,Tailwind CSS,TailwindCSS,Admin Template,Admin Starter Kit">
-        <meta
-            name="viewport"
-            content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
 
-        <base href="/">
+<head>
+    <title>Wimmo Web - Site web de Wafa Immobilier</title>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Admin Template and Starter Kit with Angular, Angular Material Components and TailwindCSS">
+    <meta name="keywords"
+        content="Wimmoweb,HTML,CSS,Angular,Angular 2,Angular 11,Angular 12,Angular 13,Material,Material 2,Angular Components,Tailwind,Tailwind CSS,TailwindCSS,Admin Template,Admin Starter Kit">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
 
-        <!-- Favicon -->
-        <link
-            rel="icon"
-            type="image/png"
-            href="favicon-16x16.png">
-        <link
-            rel="icon"
-            type="image/png"
-            href="favicon-32x32.png">
+    <base href="/">
 
-        <!-- Fonts -->
-        <link
-            href="assets/fonts/montserrat/montserrat.css"
-            rel="stylesheet">
-        <link
-            href="assets/fonts/almohanad/almohanad.css"
-            rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
 
-        <link
-            href="https://fonts.gstatic.com"
-            rel="preconnect">
-        <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-            rel="stylesheet">
+    <!-- Fonts -->
+    <link href="assets/fonts/montserrat/montserrat.css" rel="stylesheet">
+    <link href="assets/fonts/almohanad/almohanad.css" rel="stylesheet">
 
-        <!-- Icon fonts -->
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
 
-        <!-- Splash screen styles -->
-        <link href="assets/styles/splash-screen.css" rel="stylesheet">
+    <!-- Icon fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
- 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4KEB-a5M-NwOaPSad9yEXNiRddtRrNt4&callback=initMap&libraries=&v=weekly&channel=2&region=MA"></script>
-        <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4KEB-a5M-NwOaPSad9yEXNiRddtRrNt4&callback=initMap">
-        </script> -->
-        <!-- ancienne clée : developpement only-->
-        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFaXNvUSNlqQoqlNBgCgppWcSeYxb5kDM"></script> -->
+    <!-- Splash screen styles -->
+    <link href="assets/styles/splash-screen.css" rel="stylesheet">
 
-    </head>
+    <!-- Chat bot styles -->
+    <link href="assets/styles/chat-bot.css" rel="stylesheet">
 
-    <body>
+    <!-- Google maps -->
+    <script>
+        function initMap() {
+            //your code here
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4KEB-a5M-NwOaPSad9yEXNiRddtRrNt4&callback=initMap&libraries=&v=weekly&channel=2&region=MA"></script>
+    <!-- ancienne clée : developpement only-->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFaXNvUSNlqQoqlNBgCgppWcSeYxb5kDM"></script> -->
 
-        <!-- Splash screen -->
-        <fuse-splash-screen>
-            <img
-                src="assets/images/logo/logo.png"
-                alt="Logo">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
+    <!-- Chat bot -->
+    <script>
+        var SMARTLY_APP_ID = "61e677c191a9de4695c9cca4";
+        var SMARTLY_LANG = "fr-fr";
+        var SMARTLY_USER_DATA = {};
+    </script>
+    <script>
+        const loadBotFr = () => {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://cdn.smartly.ai/webchat.min.js" + "?ts=" + new Date().getTime(); s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+            d.getElementById("btn-fr").style.background = "rgb(250, 3, 3)";
+            d.getElementById("btn-fr").style.color = "rgb(255, 255, 255)";
+            // d.getElementById("btn").style.display = "none";
+            // d.getElementById("myForm").style.display = "none";
+            d.getElementById("chat-bot").style.display = "none";
+            setTimeout(function () { initWebchatIframe(); }, 1000);
+        }
+        const loadBotArabe = () => {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://cdn.smartly.ai/webchat.min.js" + "?ts=" + new Date().getTime(); s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+            d.getElementById("btn-ar").style.background = "rgb(250, 3, 3)";
+            d.getElementById("btn-ar").style.color = "rgb(255, 255, 255)";
+            // d.getElementById("btn").style.display = "none";
+            // d.getElementById("myForm").style.display = "none";
+            d.getElementById("chat-bot").style.display = "none";
+            setTimeout(function () { initWebchatIframe(); }, 1000);
+        }
+        const changeVariableToArabe = () => {
+            SMARTLY_APP_ID = "62e2af7cec32038dd151410d";
+            SMARTLY_LANG = "ar-ma";
+            loadBotArabe();
+        }
+    </script>
+    <script>
+        // if (window.location.href === "https://www.wafaimmobilier.com/" || window.location.href === "https://www.wafaimmobilier.com") {
+        //     document.getElementById("myForm").style.display = "block";
+        // }
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+            document.getElementById("btn").style.display = "none";
+        }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+            document.getElementById("btn").style.display = "inline-flex";
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Splash screen -->
+    <fuse-splash-screen>
+        <img src="assets/images/logo/logo.png" alt="Logo">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </fuse-splash-screen>
+
+    <div class="container-bot" id="chat-bot">
+        <div class="smartly-chat smartly-font-family" id="myForm">
+            <div class="smartly-chat-title accent-4">
+                <span>Choississez une langue :</span>
+                <i class="material-icons" value="Close Div and session" id="smartly-open-popup-close-session"
+                    onclick="closeForm()">clear</i>
             </div>
-        </fuse-splash-screen>
+            <div id="modal-start-page" class="smartly-font-family flex justify-center" style="display: flex;justify-content: center;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img class="image-bot-cgi"
+                            src="https://media.smartly.ai/image/1667568536145602bc89001fcfcfc076c10fdKaaavJHdwwxXjRUIZSSU.png"
+                            class="start-page-icon">
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="h3-fr">
+                            Choississez la langue de votre choix :</h3>
+                        <h3 class="h3-ar">
+                            المرجو إختيار
+                            لغتكم :</h3>
+                    </div>
+                    <div class="modal-footer-bot">
+                        <button type="button" id="btn-fr" class="quickreplie"
+                            onclick="loadBotFr()">Français</button>
+                        <button type="button" id="btn-ar" class="quickreplie"
+                            onclick="changeVariableToArabe()">عربية</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="btn" class="btn-show" onclick="openForm()">
+            <img src="https://media.smartly.ai/image/1667569562804602bc89001fcfcfc076c10fdzRSJWrlZXmVpbihBczIn.jpg"
+                class="smartly-webchat-icon" alt="chat">
+        </button>
+    </div>
 
-        <!-- App root -->
-        <app-root></app-root>
+    <!-- App root -->
+    <app-root></app-root>
 
-    </body>
+</body>
 
 </html>

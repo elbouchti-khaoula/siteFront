@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -16,7 +16,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     animations: fuseAnimations,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactPromoteurComponent implements OnInit, AfterViewInit {
+export class ContactPromoteurComponent implements OnInit, OnDestroy {
 
     @Input() visible: BehaviorSubject<boolean>;
     @Input() projet: Projet;
@@ -69,6 +69,8 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
             },
             // { validators: this.atLeastEmailOrPhone }
         );
+
+        this._initInfosConnectedUser();
     }
 
     // atLeastEmailOrPhone(form: FormGroup): ValidationErrors {
@@ -81,28 +83,12 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
     // }
 
     /**
-     * After view init
+     * On destroy
      */
-    ngAfterViewInit(): void {
-        let currentUser = this._authenticationService.connectedUser;
-
-        if (currentUser?.email) {
-            this.contactForm.get('email').setValue(currentUser?.email);
-        }
-
-        if (currentUser?.lastName) {
-            this.contactForm.get('nom').setValue(currentUser?.lastName);
-        }
-
-        if (currentUser?.firstName) {
-            this.contactForm.get('prenom').setValue(currentUser?.firstName);
-        }
-
-        if (currentUser?.telephone) {
-            this.contactForm.get('telephone').setValue(currentUser?.telephone);
-        }
-
-        this._changeDetectorRef.detectChanges();
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next(null);
+        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -157,10 +143,14 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
         this.clearForm();
     }
 
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
     /**
      * Show Alert message
      */
-    _showAlertMessage(typeP: string, msgP: string, hide: boolean): void {
+    private _showAlertMessage(typeP: string, msgP: string, hide: boolean): void {
         // Show the message
         this.alert = {
             type: typeP,
@@ -180,6 +170,28 @@ export class ContactPromoteurComponent implements OnInit, AfterViewInit {
                 this._changeDetectorRef.markForCheck();
             }, 7000);
         }
+    }
+
+    private _initInfosConnectedUser() {
+        let currentUser = this._authenticationService.connectedUser;
+
+        if (currentUser?.email) {
+            this.contactForm.get('email').setValue(currentUser?.email);
+        }
+
+        if (currentUser?.lastName) {
+            this.contactForm.get('nom').setValue(currentUser?.lastName);
+        }
+
+        if (currentUser?.firstName) {
+            this.contactForm.get('prenom').setValue(currentUser?.firstName);
+        }
+
+        if (currentUser?.telephone) {
+            this.contactForm.get('telephone').setValue(currentUser?.telephone);
+        }
+
+        this._changeDetectorRef.detectChanges();
     }
 
 }

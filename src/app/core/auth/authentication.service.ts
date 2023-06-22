@@ -119,7 +119,7 @@ export class AuthenticationService {
 
                         if (user) {
                             // Set user
-                            this.connectedUser = user;
+                            this.connectedUser = {...user, status: 'online'};
                             // Set user in service
                             this._userService.user = user;
 
