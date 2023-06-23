@@ -32,7 +32,7 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
      */
     constructor(
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private route: ActivatedRoute
+        private _activatedRoute: ActivatedRoute
     ) {
     }
 
@@ -52,15 +52,15 @@ export class EspaceConnectedClientComponent implements OnInit, OnDestroy {
             });
 
         // et count mes projets favoris
-        this.countProjetFavoris = this.route.snapshot.data.countProjetFavoris;
+        this.countProjetFavoris = this._activatedRoute.snapshot.data.countProjetFavoris;
         // get count mes credit en cours
-        this.countCredit = this.route.snapshot.data.countCredit;
+        this.countCredit = this._activatedRoute.snapshot.data.countCredit;
         // get count mes simulations
-        this.countSimulation = this.route.snapshot.data.countSimulation;
+        this.countSimulation = this._activatedRoute.snapshot.data.countSimulation;
         // get count mes demandes credits
-        this.countDemandesCredits = this.route.snapshot.data.countDemandesCredits;
+        this.countDemandesCredits = this._activatedRoute.snapshot.data.countDemandesCredits;
         // get count mes demandes SAV
-        this.countDemandesSAV = this.route.snapshot.data.countDemandesSAV;
+        this.countDemandesSAV = this._activatedRoute.snapshot.data.countDemandesSAV;
     }
 
     /**

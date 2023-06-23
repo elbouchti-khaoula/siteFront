@@ -8,11 +8,11 @@
     //     grid-template-columns: 48px auto 112px 112px;
     // }
 
-    grid-template-columns: 120px 160px 160px 160px 160px;
+    grid-template-columns: 120px 120px 120px 160px 140px;
 
     // screen md
     @media (min-width: 960px) {
-        grid-template-columns: 120px 160px auto 160px 160px;
+        grid-template-columns: 120px 160px 160px 160px 160px;
     }
 
     // screen lg
