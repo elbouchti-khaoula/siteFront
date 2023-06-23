@@ -49,11 +49,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   listEmployeurs: EmployeurConventionne[];
   listPromoteurs: PromoteurConventionne[];
 
+  countSimulation: number;
+
   @ViewChild(DetailsSimulationComponent) detailsSimulation;
   isScreenSmall: boolean;
   isXsScreen: boolean;
   animationState: string;
   isVisible: boolean = false;
+  showEmployeur: boolean = true;
 
   categories: CategorieSocioProfessionnelle[];
   nationalites: Nationalite[];
@@ -99,11 +102,11 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
    * Constructor
    */
   constructor(
+    private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _formBuilder: UntypedFormBuilder,
-    private _activatedRoute: ActivatedRoute,
     private _referentielService: ReferentielService,
     private _simulationService: SimulationDetailleeService,
     private _salesForceService: SalesForceService,
@@ -157,8 +160,12 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // this.isVisible = true;
 
-    this._simulationService.getEmployeursConventionnes().pipe(
-      takeUntil(this._unsubscribeAll))
+    // get count mes simulations
+    this.countSimulation = this._activatedRoute.snapshot.data.countSimulation;
+
+    this._simulationService.getEmployeursConventionnes()
+      .pipe(
+        takeUntil(this._unsubscribeAll))
       .subscribe((employeur: EmployeurConventionne[]) => {
         this.listEmployeurs = employeur;
 
@@ -166,8 +173,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       });
     this.employeurs$ = this._simulationService.employeurs$;
 
-    this._simulationService.getPromoteursConventionnes().pipe(
-      takeUntil(this._unsubscribeAll))
+    this._simulationService.getPromoteursConventionnes()
+      .pipe(
+        takeUntil(this._unsubscribeAll))
       .subscribe((promoteur: PromoteurConventionne[]) => {
         this.listPromoteurs = promoteur;
 
@@ -294,6 +302,19 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
       });
+    
+    // Subscribe to motif change
+    this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').valueChanges
+      .pipe(
+          debounceTime(100),
+          takeUntil(this._unsubscribeAll)
+      )
+      .subscribe((value) => {
+          this.showEmployeur = value === 'SALA' || value === 'FONC';
+      });
+
+    this.showEmployeur = this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === 'SALA' 
+                          || this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === 'FONC';
   }
 
   /**

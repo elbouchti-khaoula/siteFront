@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, View
 import { NavigationExtras, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { catchError, Subject, takeUntil, throwError } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
+import { STATUT_SIMULATION_ANNULLEE, SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { TableauAmortissementService } from '../../admin/tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableauAmortissementComponent } from 'app/modules/admin/tableau-amortissement/tableau-amortissement.component';
@@ -118,13 +118,13 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
           )
           .subscribe((response) => {
 
-            if (response.codeStatut === "PABA") {
+            if (response.codeStatut === STATUT_SIMULATION_ANNULLEE) {
 
               // Open the confirmation dialog
               const confirmation = this._fuseConfirmationService.open(
                 {
                   "title": "Abandonner simulation",
-                  "message": "Votre simulation a été abaandonnée avec succès",
+                  "message": "Votre simulation a été abandonnée avec succès",
                   "icon": {
                     "show": true,
                     "name": "heroicons_outline:check-circle",
@@ -159,8 +159,6 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
           });
       }
     });
-
-
 
   }
 

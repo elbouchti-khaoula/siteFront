@@ -21,7 +21,7 @@ export class ProjetsSearchComponent implements
   /**
    * Constructor
    */
-  constructor(private _route: ActivatedRoute) {
+  constructor(private _activatedRoute: ActivatedRoute) {
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ export class ProjetsSearchComponent implements
    * On init
    */
   ngOnInit(): void {
-    this._route.fragment
+    this._activatedRoute.fragment
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(fragment => {
         this.fragment = fragment;

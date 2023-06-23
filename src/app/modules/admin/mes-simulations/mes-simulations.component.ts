@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } fr
 import { NavigationExtras, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
+import { STATUT_SIMULATION_ANNULLEE, SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { SimulationDetaillee } from 'app/core/services/projects/projects.types';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
@@ -126,7 +126,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
           )
           .subscribe((response) => {
 
-            if (response.codeStatut === "PABA") {
+            if (response.codeStatut === STATUT_SIMULATION_ANNULLEE) {
 
               // Open the confirmation dialog
               const confirmation = this._fuseConfirmationService.open(

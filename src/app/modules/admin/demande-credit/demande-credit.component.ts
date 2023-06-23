@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChangerAgenceComponent } from './changer-agence/changer-agence.component';
 import { TableauAmortissementService } from '../tableau-amortissement/tableau-amortissement.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
+import { STATUT_DEMANDE_CREDIT, SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import { TableauAmortissementComponent } from '../tableau-amortissement/tableau-amortissement.component';
 import { Agence } from 'app/core/services/referentiel/referentiel.types';
 import { CheckListComponent } from 'app/modules/common/check-list/check-list.component';
@@ -234,7 +234,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
       )
       .subscribe((response) => {
 
-        if (response.codeStatut === "DINS") {
+        if (response.codeStatut === STATUT_DEMANDE_CREDIT) {
 
           this.uploadCheckList();
 

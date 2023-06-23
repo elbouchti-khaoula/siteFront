@@ -228,7 +228,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
           if (error.status === 500) {
             this._router.navigateByUrl('/500-server-error');
-          } else if (error.status === 400) {
+          } else if (error.status === 404) {
             this._router.navigateByUrl('/404-not-found');
           } else {
             // Get the parent url

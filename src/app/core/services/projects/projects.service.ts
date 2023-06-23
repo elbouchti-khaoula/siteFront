@@ -6,6 +6,9 @@ import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from '..
 import { FuseUtilsService } from '@fuse/services/utils';
 import { EmployeurConventionne, PromoteurConventionne } from './projects.types';
 
+export const STATUT_SIMULATION_ANNULLEE = "PABA"
+export const STATUT_DEMANDE_CREDIT = "DINS"
+
 @Injectable({
     providedIn: 'root'
 })
@@ -120,7 +123,7 @@ export class SimulationDetailleeService {
      */
     abandonner(projectId: number): Observable<any> {
 
-        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "PABA" })
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: STATUT_SIMULATION_ANNULLEE })
             .pipe(
                 map((updatedProject: any) => {
 
@@ -234,7 +237,7 @@ export class SimulationDetailleeService {
      */
     transformer(projectId: number): Observable<any> {
 
-        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: "DINS" })
+        return this._httpClient.patch(`api/projects/${projectId}`, { codeStatut: STATUT_DEMANDE_CREDIT })
             .pipe(
                 map((updatedProject: any) => {
 
