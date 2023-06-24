@@ -1,7 +1,9 @@
 .consul-simul-bg-header {
-    // background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/admin/consulter-simulation/header.jpg');
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/no-image.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/admin/mes-simulations/header.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    @media (max-width: 959px) {
+        background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url('/assets/images/admin/mes-simulations/header-sm.jpg');
+    }
 }
