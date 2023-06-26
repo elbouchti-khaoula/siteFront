@@ -279,7 +279,13 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         ['/projets-search'],
         {
           fragment: 'projetsResultId',
-          queryParams: this.searchForm.value
+          queryParams: {
+            codeVille: this.searchForm.get('codeVille').value,
+            codeQuartier: this.searchForm.get('codeQuartier').value,
+            codeTypeBien: this.searchForm.get('codeTypeBien').value,
+            prixMin: this.searchForm.get('prixMin').value ? Number(this.searchForm.get('prixMin').value.toString().replace(/\D/g, '')) : null,
+            prixMax: this.searchForm.get('prixMax').value ? Number(this.searchForm.get('prixMax').value.toString().replace(/\D/g, '')) : null
+          }
         }
       );
 

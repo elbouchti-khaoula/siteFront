@@ -40,7 +40,7 @@
 
                     <ng-container *ngFor="let simulation of simulations; let i = index; trackBy: trackByFn">
                         
-                        <fuse-card class="sm:max-w-90 relative flex flex-col items-center px-3 sm:px-5 pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]">
+                        <fuse-card class="md:w-fit relative flex flex-col items-center px-5 pb-6 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]">
 
                             <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
                                 <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
@@ -61,29 +61,43 @@
                                 <div *ngIf="simulation.dossiers?.length === 1">
                                     <span>&nbsp;</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-5 px-2 mt-5">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-y-5 mt-5">
                                     <div class="flex flex-col items-center">
-                                        <span class="font-medium uppercase">Montant</span>
-                                        <span class="text-xl font-semibold">{{simulation?.montantProposition}}</span>
+                                        <span class="font-medium">Montant</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{simulation?.montantProposition}}</span>
+                                            <span class="ml-1 font-medium">MAD</span>
+                                        </div>
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <span class="font-medium uppercase">Mensualité</span>
-                                        <span class="text-xl font-semibold">{{simulation?.mensualite}}</span>
+                                        <span class="font-medium">Mensualité</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{simulation?.mensualite}}</span>
+                                            <span class="ml-1 font-medium">MAD</span>
+                                        </div>
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <span class="font-medium uppercase">Durée</span>
-                                        <span class="text-xl font-semibold">{{simulation?.duree}} mois</span>
+                                        <span class="font-medium">Durée</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{simulation?.duree}}</span>
+                                            <span class="ml-1 font-medium">mois</span>
+                                        </div>
+                                        
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <span class="font-medium uppercase">TEG</span>
-                                        <span class="text-xl font-semibold">{{simulation?.tauxEffectifGlobalPondere}} %</span>
+                                        <span class="font-medium">TEG</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{simulation?.tauxEffectifGlobalPondere}}</span>
+                                            <span class="ml-1 font-medium">%</span>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Actions -->
                             <div class="w-full border-t pt-5">
-                                <div class="mx-auto flex flex-col max-md:max-w-max max-md:space-y-2 md:flex-row">
+                                <div class="mx-auto flex flex-col max-md:max-w-max max-md:space-y-2 md:flex-row md:justify-center">
                                     <button
                                         mat-flat-button
                                         [color]="'primary'"

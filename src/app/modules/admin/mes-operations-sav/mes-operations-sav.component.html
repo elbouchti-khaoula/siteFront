@@ -102,23 +102,35 @@
 
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium">Montant du crédit</span>
-                                        <span class="text-2xl font-semibold">{{dossierCredit.montant}}</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{dossierCredit.montant}}</span>
+                                            <span class="ml-1 font-semibold">MAD</span>
+                                        </div>
                                     </div>
                                     
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium">Capital restand dû</span>
-                                        <span class="text-2xl font-semibold">{{dossierCredit.crd}}</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{dossierCredit.crd}}</span>
+                                            <span class="ml-1 font-semibold">MAD</span>
+                                        </div>
                                     </div>
 
                                     <div class="flex flex-col items-center">
                                         <span class="font-medium">Mensualité</span>
-                                        <span class="text-2xl font-semibold">{{dossierCredit.mensuaite}}</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{dossierCredit.mensuaite}}</span>
+                                            <span class="ml-1 font-semibold">MAD</span>
+                                        </div>
                                     </div>
         
                                     <div *ngIf="dossierCredit.existeImpaye" 
                                         class="flex flex-col items-center text-warn">
                                         <span class="font-medium">Total des impayés</span>
-                                        <span class="text-2xl font-semibold">{{dossierCredit.impayes}}</span>
+                                        <div>
+                                            <span class="text-2xl font-bold">{{dossierCredit.impayes}}</span>
+                                            <span class="ml-1 font-semibold">MAD</span>
+                                        </div>
                                     </div>
                                 </div>
 
