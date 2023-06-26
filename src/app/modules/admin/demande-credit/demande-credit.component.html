@@ -285,8 +285,11 @@
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Prix du bien
                                                 </div>
-                                                <div class="font-semibold text-lg leading-tight tracking-tight mt-2">
-                                                    {{simulationResultat?.montant}}
+                                                <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                    <div class="font-semibold text-lg leading-tight tracking-tight">
+                                                        {{simulationResultat?.montant}}
+                                                    </div>
+                                                    <div class="ml-2 text-md leading-none">MAD</div>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -301,16 +304,22 @@
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Montant
                                                 </div>
-                                                <div class="font-semibold text-lg leading-tight tracking-tight mt-2">
-                                                    {{simulationResultat?.montantProposition}}
+                                                <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                    <div class="font-semibold text-lg leading-tight tracking-tight">
+                                                        {{simulationResultat?.montantProposition}}
+                                                    </div>
+                                                    <div class="ml-2 text-md leading-none">MAD</div>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
                                                 <div class="text-sm font-semibold leading-none text-secondary">
                                                     Durée
                                                 </div>
-                                                <div class="font-semibold text-lg leading-tight tracking-tight mt-2">
-                                                    {{simulationResultat?.duree}}
+                                                <div class="flex items-baseline whitespace-nowrap mt-2">
+                                                    <div class="font-semibold text-lg leading-tight tracking-tight">
+                                                        {{simulationResultat?.duree}}
+                                                    </div>
+                                                    <div class="ml-2 text-md leading-none">mois</div>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col">
@@ -584,12 +593,12 @@
 
                     <!-- Changer d'agence -->
                     <div class="flex flex-col max-md:space-y-3 md:flex-row md:justify-between mt-5 p-5 bg-card shadow-md rounded-xl ring-1 ring-current">
-                        <div class="flex flex-col">
+                        <div *ngIf="simulationResultat?.codeApporteur !== '100'" class="flex flex-col">
                             <span>Agence :</span>
                             <span class="whitespace-nowrap">{{simulationResultat?.nomAgence}}</span>
                         </div>
                         <span *ngIf="simulationResultat?.codeApporteur === '100'"
-                            class="md:w-1/2">
+                            class="md:w-3/5">
                             Si vous souhaitez poursuivre au niveau d’une agence physique, veuillez sélectionner l’agence de votre choix
                         </span>
                         <button

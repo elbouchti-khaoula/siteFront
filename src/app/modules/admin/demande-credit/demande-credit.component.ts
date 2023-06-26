@@ -242,7 +242,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
           const confirmation = this._fuseConfirmationService.open(
             {
               "title": "Demande de crédit",
-              "message": "Votre demande de crédit à été validée avec succès",
+              "message": "Votre demande de crédit est enregistrée. Vous pouvez suivre désormais votre demande sur votre espace abonné.",
               "icon": {
                 "show": true,
                 "name": "heroicons_outline:check-circle",
