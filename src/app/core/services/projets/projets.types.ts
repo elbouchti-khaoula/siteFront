@@ -13,6 +13,7 @@ export interface Projet {
     email?: string | null;
 
     statut?: string | null;
+    disponibilite?: string | null;
     standing?: string | null;
 
     devise?: string | null;

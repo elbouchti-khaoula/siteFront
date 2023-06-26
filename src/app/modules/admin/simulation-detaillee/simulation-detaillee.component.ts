@@ -419,7 +419,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
             this._fuseConfirmationService.open(
               {
                 "title": "Simulation détaillée",
-                "message": "Aucun offre trouvé",
+                "message": "Nous vous invitons à vérifier les informations saisies",
                 "icon": {
                   "show": true,
                   "name": "heroicons_outline:information-circle",
