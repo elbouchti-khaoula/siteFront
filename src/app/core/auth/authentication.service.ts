@@ -8,6 +8,8 @@ import { UserService } from 'app/core/user/user.service';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
+    user: User;
+
     /**
      * Constructor
      */
@@ -16,6 +18,9 @@ export class AuthenticationService {
         private _userService: UserService
     )
     {
+        this._userService.user$.subscribe((user: User) =>
+            this.user = user
+        );
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -49,7 +54,7 @@ export class AuthenticationService {
     }
 
     get connectedUser(): User {
-        return localStorage.getItem('connectedUser') ? JSON.parse(localStorage.getItem('connectedUser')): null;
+        return localStorage.getItem('connectedUser') ? JSON.parse(localStorage.getItem('connectedUser')) : null;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -118,10 +123,14 @@ export class AuthenticationService {
                     switchMap((user: User) => {
 
                         if (user) {
-                            // Set user
-                            this.connectedUser = {...user, status: 'online'};
+
+                            var usr = { ...user, status: 'online' };
+
+                            // Set user in locale storage
+                            this.connectedUser = usr;
+
                             // Set user in service
-                            this._userService.user = user;
+                            this._userService.user = usr;
 
                             return of(true);
                         } else {
@@ -159,14 +168,15 @@ export class AuthenticationService {
     checkAuthenticationGeneric(): Observable<boolean> {
 
         // Check the access token availability
-        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '') {
+        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === ''
+            || this.accessTokenGeneric === 'null' || this.accessTokenGeneric === 'undefined') {
             return of(false);
         }
 
         // Check the access token expire date
-        // if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
-        //     return of(false);
-        // }
+        if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
+            return of(false);
+        }
 
         // If the access token exists and it didn't expire, sign in using it
         // return this.signInUsingToken();
@@ -184,37 +194,41 @@ export class AuthenticationService {
         }
 
         // Check the access token availability
-        if (this.accessTokenUser === undefined || this.accessTokenUser === null || this.accessTokenUser === '')
-        {
+        if (this.accessTokenUser === undefined || this.accessTokenUser === null || this.accessTokenUser === ''
+            || this.accessTokenUser === 'null' || this.accessTokenUser === 'undefined') {
             return of(false);
         }
 
         // Check the access token expire date
-        // if ( AuthUtils.isTokenExpired(this.accessTokenUser) )
-        // {
-        //     return of(false);
-        // }
+        if ( AuthUtils.isTokenExpired(this.accessTokenUser) )
+        {
+            return of(false);
+        }
 
         // If the access token exists and it didn't expire, sign in using it
         // return this.signInUsingToken();
         return of(true);
     }
 
-    checkTokenGeneric(): boolean {
+    /**
+     * Set user in service from locale storage
+     *
+     * @param user
+     */
+    setUserFromStorage(): Observable<any> {
 
-        // Check the access token availability
-        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === '' || this.accessTokenGeneric === 'undefined' ) {
-            return false;
+        let userStorage = this.connectedUser;
+
+        if ((this.user == undefined || this.user == null)
+            && userStorage != undefined && userStorage != null && userStorage.id != null) {
+
+            // Set user in service
+            this._userService.user = { ...userStorage, status: 'online' };
+
+            return of(true);
         }
 
-        // Check the access token expire date
-         if (AuthUtils.isTokenExpired(this.accessTokenGeneric)) {
-             return false;
-         }
-
-        // If the access token exists and it didn't expire, sign in using it
-        // return this.signInUsingToken();
-        return true;
+        return of(false);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -242,22 +256,6 @@ export class AuthenticationService {
                 return of(response.accesToken);
             })
         );
-    }
-
-    /**
-     * Get access token generic from api with promise call
-     *
-     */
-    // eslint-disable-next-line @typescript-eslint/member-ordering
-    getSyncAccessTokenGeneric(): Promise<any> {
-
-        // @ts-ignore
-        return this._httpClient.post('api/authentication/getToken',
-            {
-                username: 'siteweb',
-                password: 'w@afa2022'
-            }
-        ).toPromise();
     }
 
     /**

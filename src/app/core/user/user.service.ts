@@ -49,23 +49,23 @@ export class UserService
     get(userId: string): Observable<User> {
         return this._httpClient.get(`api/authentication/users/${userId}`)
             .pipe(
-                switchMap((response: UserKeycloak) => {
+                map((response: UserKeycloak) => {
 
                     let user = this.mapUserKeycloakToUser(response);
 
-                    // Set user
-                    this.user = user;
+                    // Set user in service
+                    this._user.next(user);
 
-                    return of(user);
+                    return user;
                 })
             );
     }
 
     /**
-     * serach user
+     * search user
      *
      * @param userKeycloak
-     * return userKeycloakId
+     * return User
      */
     searchUser(userKeycloak: UserKeycloak): Observable<User[]> {
 
@@ -92,8 +92,9 @@ export class UserService
                 map((response: User[]) => {
 
                     if (response && response.length > 0) {
-                        // Set user
-                        this.user = response[0];
+
+                        // Set user in service
+                        this._user.next(response[0]);
 
                         return response[0];
                     }
@@ -115,14 +116,14 @@ export class UserService
         dateNaissance: string;
         clientAWB: boolean;
         password: string
-    }): Observable<any> {
-        //creation user  avec cin null=>la mise à jour se fait par la suite via un batch
+    }): Observable<string> {
+        // création user avec cin null => la mise à jour va se faire par la suite via un batch
         let userKeycloak: UserKeycloak = {
+            username: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             enabled: true,
-            username: user.email,
             attributes: {
                 cin: [''],
                 telephone: [user.telephone],
@@ -158,7 +159,7 @@ export class UserService
     }
 
     /**
-     * send mail de v�rification to user
+     * send mail de vérification to user
      *
      * @param userKeycloak
      * return userKeycloakId
@@ -182,12 +183,32 @@ export class UserService
      *
      * @param user
      */
-    update(user: User): Observable<any> {
-        return this._httpClient.patch<User>('api/common/user', { user }).pipe(
-            map((response) => {
-                this._user.next(response);
-            })
-        );
+    updateUser(user: User): Observable<User> {
+        let userKeycloak: UserKeycloak = {
+            username: user.email,
+            attributes: {
+                cin: [user.cin],
+                telephone: [user.telephone],
+                dateNaissance: [user.dateNaissance],
+                clientAWB: [user.clientAWB.toString()]
+            }
+        }
+
+        return this._httpClient.put<User>(`api/authentication/users/${user.id}`, userKeycloak)
+            .pipe(
+                switchMap((response: UserKeycloak) => {
+
+                    let userResult = {...this.mapUserKeycloakToUser(response), status: user.status};
+
+                    // Set user in locale storage
+                    localStorage.setItem('connectedUser', JSON.stringify(userResult));
+
+                    // Set user in service
+                    this._user.next(userResult);
+
+                    return of(userResult);
+                })
+            );
     }
 
     // -----------------------------------------------------------------------------------------------------

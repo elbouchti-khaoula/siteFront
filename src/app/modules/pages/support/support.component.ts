@@ -120,7 +120,7 @@ export class SupportComponent implements OnInit, OnDestroy {
                     return throwError(() => error);
                 }))
             .subscribe((response: string) => {
-                this._showAlertMessage('success', 'Votre message est envoyé.', false);
+                this._showAlertMessage('success', 'Votre message est envoyé avec succès.', false);
             });
 
         // Clear the form

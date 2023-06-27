@@ -126,8 +126,7 @@ export class MeRappelerPopupComponent implements OnInit, OnDestroy {
                     return throwError(() => error);
                 }))
             .subscribe((response: string) => {
-                // this._showAlertMessage('success', 'Votre message est envoyé.', false);
-                
+               
                 // Close the popup
                 this.matDialogRef.close();
 
@@ -135,7 +134,7 @@ export class MeRappelerPopupComponent implements OnInit, OnDestroy {
                 this._fuseConfirmationService.open(
                     {
                         "title": "Me rappeler",
-                        "message": "Votre message a été envoyé avec succès",
+                        "message": "Votre message est envoyé avec succès",
                         "icon": {
                             "show": true,
                             "name": "heroicons_outline:check-circle",

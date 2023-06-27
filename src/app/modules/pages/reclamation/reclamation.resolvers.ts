@@ -30,29 +30,7 @@ export class MotifsResolver implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Motif[]>
     {
-        return this._reclamationsService.getMotifs().pipe(
-            // Error here means the requested is not available
-            catchError((error) => {
-
-                // Log the error
-                console.error(error);
-
-                if (error.status === 500) {
-                    this._router.navigateByUrl('/500-server-error');
-                } else if (error.status === 404) {
-                    this._router.navigateByUrl('/404-not-found');
-                } else {
-                    // Get the parent url
-                    const parentUrl = state.url.split('/').slice(0, -1).join('/');
-
-                    // Navigate to there
-                    this._router.navigateByUrl(parentUrl);
-                }
-
-                // Throw an error
-                return throwError(() => error);
-            })
-        );
+        return this._reclamationsService.getMotifs();
     }
 }
 

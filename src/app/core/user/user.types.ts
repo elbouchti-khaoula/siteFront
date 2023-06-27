@@ -5,7 +5,7 @@ export interface UserKeycloak
     createdTimestamp?   : number;
     enabled?            : boolean;
 	emailVerified?      : boolean;
-    firstName?          : string; // prénom
+    firstName?          : string;
     lastName?           : string;
     email?              : string;
     attributes?         : Attributes;
@@ -42,6 +42,7 @@ export interface User
     telephone?      : string;
     cin?            : string;
     dateNaissance?  : string;
+    
     avatar?         : string;
     status?         : string;
 }

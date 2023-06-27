@@ -5,7 +5,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { CategorieSocioProfessionnelle, Nationalite, ObjetFinancement } from 'app/core/services/referentiel/referentiel.types';
 import { EmployeurConventionne, PromoteurConventionne, SimulationDetaillee } from 'app/core/services/projects/projects.types';
-import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { CSP_PRIVE, CSP_PUBLIC, ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 import { SimulationDetailleeService } from 'app/core/services/projects/projects.service';
 import * as moment from 'moment';
 import { resize } from 'app/core/animations/resize';
@@ -18,6 +18,8 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
 import { SalesForceService } from 'app/core/services/salesforce/salesforce.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { User } from 'app/core/user/user.types';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'simulation-detaillee',
@@ -28,6 +30,8 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 })
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
+
+  user: User;
 
   @Input() debounce: number = 300;
   @Input() minLength: number = 3;
@@ -112,7 +116,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     private _salesForceService: SalesForceService,
     private _fuseUtilsService: FuseUtilsService,
     private _authenticationService: AuthenticationService,
-    private _fuseConfirmationService: FuseConfirmationService
+    private _fuseConfirmationService: FuseConfirmationService,
+    private _userService: UserService
   ) {
 
     // Horizontal stepper form
@@ -302,19 +307,19 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
       });
-    
+
     // Subscribe to motif change
     this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').valueChanges
       .pipe(
-          debounceTime(100),
-          takeUntil(this._unsubscribeAll)
+        debounceTime(100),
+        takeUntil(this._unsubscribeAll)
       )
       .subscribe((value) => {
-          this.showEmployeur = value === 'SALA' || value === 'FONC';
+        this.showEmployeur = value === CSP_PRIVE || value === CSP_PUBLIC;
       });
 
-    this.showEmployeur = this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === 'SALA' 
-                          || this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === 'FONC';
+    this.showEmployeur = this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === CSP_PRIVE
+      || this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value === CSP_PUBLIC;
   }
 
   /**
@@ -497,6 +502,26 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
 
+        // Appel update dateNaissance userKeycloak
+        if (this.user.dateNaissance === undefined || this.user.dateNaissance === null || this.user.dateNaissance === "") {
+          this.user = {
+            ...this.user,
+            dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value)
+          }
+          this._userService.updateUser(this.user)
+            .pipe(
+              catchError((error) => {
+                // Log the error
+                console.error("+-+-+- update date naissance of user keyCloak error", error);
+                // Throw an error
+                return throwError(() => error);
+              }))
+            .subscribe((response: User) => {
+
+              console.log("+-+-+- update date naissance of user keyCloak  success: ", response);
+            });
+        }
+
         // Appel SalesForce
         this.createLeadAccountOpportunity();
       });
@@ -517,37 +542,37 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
   // @ Private methods
   // -----------------------------------------------------------------------------------------------------
   private _initInfosConnectedUser() {
-    let currentUser = this._authenticationService.connectedUser;
+    this.user = this._authenticationService.connectedUser;
 
     if (this.queryParams?.email) {
       this.simulationStepperForm.get('step1').get('email').setValue(this.queryParams?.email);
-    } else if (currentUser?.email) {
-      this.simulationStepperForm.get('step1').get('email').setValue(currentUser?.email);
+    } else if (this.user?.email) {
+      this.simulationStepperForm.get('step1').get('email').setValue(this.user?.email);
     }
 
     if (this.queryParams?.nom) {
       this.simulationStepperForm.get('step1').get('nom').setValue(this.queryParams?.nom);
-    } else if (currentUser?.lastName) {
-      this.simulationStepperForm.get('step1').get('nom').setValue(currentUser?.lastName);
+    } else if (this.user?.lastName) {
+      this.simulationStepperForm.get('step1').get('nom').setValue(this.user?.lastName);
     }
 
     if (this.queryParams?.prenom) {
       this.simulationStepperForm.get('step1').get('prenom').setValue(this.queryParams?.prenom);
-    } else if (currentUser?.firstName) {
-      this.simulationStepperForm.get('step1').get('prenom').setValue(currentUser?.firstName);
+    } else if (this.user?.firstName) {
+      this.simulationStepperForm.get('step1').get('prenom').setValue(this.user?.firstName);
     }
 
     if (this.queryParams?.telephone) {
       this.simulationStepperForm.get('step1').get('telephone').setValue(this.queryParams?.telephone);
-    } else if (currentUser?.telephone) {
-      this.simulationStepperForm.get('step1').get('telephone').setValue(currentUser?.telephone);
+    } else if (this.user?.telephone) {
+      this.simulationStepperForm.get('step1').get('telephone').setValue(this.user?.telephone);
     }
 
     var dateNaiss;
     if (this.queryParams?.dateNaissance) {
       dateNaiss = this.queryParams?.dateNaissance;
-    } else if (currentUser?.dateNaissance) {
-      dateNaiss = currentUser?.dateNaissance;
+    } else if (this.user?.dateNaissance) {
+      dateNaiss = this.user?.dateNaissance;
     }
     if (dateNaiss) {
       var momentObj = moment(dateNaiss, "DD-MM-YYYY");
@@ -606,8 +631,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.code,
       nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
-      autresRevenus: Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')),
-      creditsEnCours: Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')),
+      autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')) : null,
+      creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')) : null,
       objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.code,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
       statutProjet: this.selectedStatutProjetLabel,

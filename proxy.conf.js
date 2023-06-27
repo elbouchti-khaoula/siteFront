@@ -80,6 +80,7 @@ const PROXY_CONFIG = [
         context: [
             "/api/authentication"
         ],
+        // target: "http://localhost:8010",
         target: "http://10.10.1.187:8010",
         secure: false,
         logLevel: "debug"
