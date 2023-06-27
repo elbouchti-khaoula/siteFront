@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         if ((newReq.url?.substring(0, 5) === "/api/" || newReq.url?.substring(0, 4) === "api/")
             && !newReq.url.includes('apimsg/v2')
-            && !newReq.url.includes('api/authentication/getToken')) 
+            && !newReq.url.includes('api/authentication')) 
         {
             let token = this.getToken();
             if (token) {
@@ -74,7 +74,7 @@ export class AuthInterceptor implements HttpInterceptor {
             // console.log("+-+-+- this._authenticationService.accessTokenGeneric", this._authenticationService.accessTokenGeneric)
             if (this._authenticationService.accessTokenGeneric !== undefined
                 && this._authenticationService.accessTokenGeneric !== null
-                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
+                && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)
             ) {
                 return this._authenticationService.accessTokenGeneric;
             }
@@ -83,7 +83,7 @@ export class AuthInterceptor implements HttpInterceptor {
             // console.log("+-+-+- this._authenticationService.accessTokenUser", this._authenticationService.accessTokenUser)
             if (this._authenticationService.accessTokenUser !== undefined
                 && this._authenticationService.accessTokenUser !== null
-                // && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
+                && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenUser)
             ) {
                 return this._authenticationService.accessTokenUser;
             }

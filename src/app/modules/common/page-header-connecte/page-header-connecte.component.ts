@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuthenticationService } from 'app/core/auth/authentication.service';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'page-header-connecte',
@@ -16,10 +17,15 @@ export class PageHeaderConnecteComponent implements OnInit {
     @Input() showUser: boolean = false;
     user: User;
 
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
+
     /**
      * Constructor
      */
-    constructor(private _authenticationService: AuthenticationService)
+    constructor(
+        private _changeDetectorRef: ChangeDetectorRef,
+        private _userService: UserService
+    )
     {
     }
 
@@ -31,7 +37,15 @@ export class PageHeaderConnecteComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
-        this.user = this._authenticationService.connectedUser;
+        // Subscribe to user changes
+        this._userService.user$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((user: User) => {
+                this.user = user;
+
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
     }
 
 }

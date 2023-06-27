@@ -4,6 +4,9 @@ import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError 
 import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, DocumentInstitutionnel, OperationSAVDocument } from './referentiel.types';
 import { saveAs } from "file-saver";
 
+export const CSP_PRIVE = "SALA"
+export const CSP_PUBLIC = "FONC"
+
 @Injectable({
     providedIn: 'root'
 })

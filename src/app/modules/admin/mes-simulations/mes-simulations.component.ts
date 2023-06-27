@@ -132,7 +132,7 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
               const confirmation = this._fuseConfirmationService.open(
                 {
                   "title": "Abandonner simulation",
-                  "message": "Votre simulation a été abaandonnée avec succès",
+                  "message": "Votre simulation est abandonnée avec succès",
                   "icon": {
                     "show": true,
                     "name": "heroicons_outline:check-circle",
@@ -158,9 +158,8 @@ export class MesSimulationsComponent implements OnInit, OnDestroy {
                 // If the confirm button pressed...
                 if (result === 'confirmed') {
                   setTimeout(() => {
-                    // this.simulations.splice(this.simulations.findIndex(element => element.id === selectedSimulation.id) , 1);
-                    
                     let user = this._authenticationService.connectedUser;
+                    
                     this._simulationService.search(user.email)
                       .subscribe((response) => {
 
