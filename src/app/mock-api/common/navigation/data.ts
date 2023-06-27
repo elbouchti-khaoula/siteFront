@@ -93,14 +93,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'nous-connaitre',
-        title: 'Nous connaitre',
+        title: 'Nous connaître',
         type : 'basic',
         icon : 'heroicons_outline:globe-alt',
         link : '/nous-connaitre'
     },
     {
         id   : 'notre-politique-RSE',
-        title: 'Notre politique RSE',
+        title: 'Notre démarche RSE',
         type : 'basic',
         icon : 'heroicons_outline:collection',
         link : '/notre-politique-rse'
@@ -115,14 +115,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
 
     {
         id   : 'nos-lettres-wi',
-        title: 'Nos lettres wi',
+        title: 'Lettres Wafa Immobilier',
         type : 'basic',
         icon : 'heroicons_outline:search-circle',
         link : '/nos-lettres-wi'
     },
     {
         id   : 'nos-guides-conseils',
-        title: 'Nos Guides & Conseils',
+        title: 'Guides & Conseils',
         type : 'basic',
         icon : 'heroicons_outline:collection',
         link : '/nos-guides-conseils'
@@ -150,14 +150,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'darrahetbal',
-        title: 'Espace multimédia',
+        title: 'Série web "Dar Brahet Lbal"',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
     },
     {
         id   : 'espace-multimedia',
-        title: 'Espace multimédia2',
+        title: 'Espace multimédia',
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/espace-multimedia'
@@ -465,7 +465,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:film',
         link : '/darrahetbal'
-    }, 
+    },
     {
         id   : 'espace-multimedia',
         title: 'Espace multimédia2',
