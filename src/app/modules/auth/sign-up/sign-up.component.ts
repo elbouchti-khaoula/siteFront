@@ -219,7 +219,7 @@ export class AuthSignUpComponent implements OnInit {
         {
             this.alert = {
                 type   : 'error',
-                message: 'Merici d\'accepter les conditions d\'utilisations.'
+                message: 'Veuillez accepter les conditions d\'utilisations.'
             };
             this.showAlert = true;
             return;
