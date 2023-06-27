@@ -80,7 +80,7 @@ export class AuthSignInComponent implements OnInit
                 () => {
 
                     let currentUser = this._authenticationService.connectedUser;
-                    
+
                     if (currentUser != undefined && currentUser != null && currentUser.emailVerified) {
 
                         const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
@@ -118,7 +118,7 @@ export class AuthSignInComponent implements OnInit
                     // Set the alert
                     this.alert = {
                         type: 'error',
-                        message: 'Wrong email or password'
+                        message: 'email ou mot de passe incorrect'
                     };
 
                     // Show the alert
