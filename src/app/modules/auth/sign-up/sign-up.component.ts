@@ -89,7 +89,7 @@ export class AuthSignUpComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             cin: ['', [Validators.required]],
             dateNaissance: ['', [Validators.required]],
-            agreements: [''],
+            agreements: [false, [Validators.required]],
             clientAWB: ['']
         });
 
@@ -214,6 +214,17 @@ export class AuthSignUpComponent implements OnInit {
         {
             return;
         }
+
+        if ( !this.signUpForm2.value.agreements)
+        {
+            this.alert = {
+                type   : 'error',
+                message: 'Merici d\'accepter les conditions d\'utilisations.'
+            };
+            this.showAlert = true;
+            return;
+        }
+
     if(this.signUpForm2.value.pass2!==this.signUpForm2.value.pass1){
         this.alert = {
             type   : 'error',
