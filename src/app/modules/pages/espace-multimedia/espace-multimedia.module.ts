@@ -7,9 +7,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez-nous.module';
-
-
-
+import { PageHeaderModule } from 'app/modules/common/page-header/page-header.module';
 
 @NgModule({
     declarations: [
@@ -21,9 +19,11 @@ import { ContactezNousModule } from 'app/modules/common/contactez-nous/contactez
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        ContactezNousModule
+        ContactezNousModule,
+        PageHeaderModule
     ]
 })
+
 export class EspaceMultiMediaModule
 {
 }

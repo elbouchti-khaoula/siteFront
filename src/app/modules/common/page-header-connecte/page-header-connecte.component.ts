@@ -10,10 +10,13 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class PageHeaderConnecteComponent implements OnInit {
 
+    @Input() hideSmallScreen: boolean = false;
     @Input() headerStyle: string = "";
     @Input() headerLibelle: string;
     @Input() subHeaderLibelle: string;
-    @Input() hideSmallScreen: boolean = false;
+    @Input() hideSubHeaderSmallScreen: boolean = false;
+    @Input() textColor: string = "text-default";
+    
     @Input() showUser: boolean = false;
     user: User;
 

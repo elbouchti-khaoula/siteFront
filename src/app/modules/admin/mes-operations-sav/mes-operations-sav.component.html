@@ -47,7 +47,7 @@
                                         <mat-icon class="icon-size-16 text-black -mt-2" svgIcon="home-repair">
                                         </mat-icon>
                                     </div>
-                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Opérations SAV
+                                    <div class="ml-6 text-xl md:text-2xl font-bold leading-tight uppercase">Opérations SAV
                                     </div>
                                 </div>
 
@@ -94,7 +94,7 @@
                                         <mat-icon class="icon-size-16 text-white ml-0.5" svgIcon="finance">
                                         </mat-icon>
                                     </div>
-                                    <div class="ml-6 text-2xl font-bold leading-tight uppercase">Dossier de crédit N° {{dossierCredit.id}}</div>
+                                    <div class="ml-6 text-xl md:text-2xl font-bold leading-tight uppercase">Dossier de crédit N° {{dossierCredit.id}}</div>
                                 </div>
 
                                 <!-- données -->
@@ -156,9 +156,8 @@
             <!-- No demande template -->
             <ng-template #noOperationsSAV>
                 <div class="flex flex-col items-center justify-center bg-second-100 dark:bg-transparent min-h-100 border border border-gray-200 shadow-sm rounded-md mt-10">
-                    <mat-icon class="icon-size-20 md:icon-size-24" [svgIcon]="'mat_outline:search_off'"></mat-icon>
                     <div class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-secondary">
-                        Il n'y a pas d'opération SAV'!
+                        Aucune opération SAV!
                     </div>
                 </div>
             </ng-template>

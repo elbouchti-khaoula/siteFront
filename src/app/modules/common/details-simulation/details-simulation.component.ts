@@ -124,7 +124,7 @@ export class DetailsSimulationComponent implements OnInit, OnDestroy {
               const confirmation = this._fuseConfirmationService.open(
                 {
                   "title": "Abandonner simulation",
-                  "message": "Votre simulation a été abandonnée avec succès",
+                  "message": "Votre simulation est abandonnée avec succès",
                   "icon": {
                     "show": true,
                     "name": "heroicons_outline:check-circle",

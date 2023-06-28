@@ -125,8 +125,8 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
           // Open the dialog
           const confirmation = this._fuseConfirmationService.open(
             {
-              "title": "Demande opération SAV",
-              "message": "La demande a été créée avec succès",
+              "title": "Demande SAV",
+              "message": "Votre demande est envoyée avec succès",
               "icon": {
                 "show": true,
                 "name": "heroicons_outline:check-circle",
