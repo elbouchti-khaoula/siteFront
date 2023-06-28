@@ -1,10 +1,13 @@
-<header class="flex flex-col bg-card shadow">
-    <div class="{{headerStyle}} flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-68 md:min-h-76">
+<header class="flex flex-col bg-card shadow"
+    [ngClass]="{'hidden md:flex': hideSmallScreen}">
+    <div class="{{headerStyle}} {{textColor}} flex flex-col items-center justify-center px-5 sm:px-16 w-full min-h-68 md:min-h-76">
         <div class="w-full max-w-400">
             <div class="max-w-2xl text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight">
                 {{headerLibelle}}
             </div>
-            <div *ngIf="subHeaderLibelle" class="max-w-2xl text-xl mt-2">
+            <div *ngIf="subHeaderLibelle"
+                class="max-w-2xl text-xl mt-3"
+                [ngClass]="{'hidden md:block': hideSubHeaderSmallScreen}">
                 <span [innerText]="subHeaderLibelle"></span>
                 <!-- <span [innerHTML]="subHeaderLibelle"></span> -->
             </div>

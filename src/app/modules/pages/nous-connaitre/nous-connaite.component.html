@@ -1,23 +1,10 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header
-    class=" hidden md:flex flex-col  px-16 w-full min-h-[32vh] nous-connaitre-bg-header">
-
-    <div class="max-w-xl text-2xl md:text-6xl font-bold uppercase tracking-tight leading-tight text-white mt-32">
-      NOUS connaître
-  </div>
-
-  </header>
-
-  <!-- Header version sm-->
-  <header class=" md:hidden flex-col items-center justify-center px-16 w-full min-h-[32vh] nous-connaitre-bg-header-sm">
-
-    <div class="max-w-xl text-2xl md:text-6xl font-bold uppercase tracking-tight leading-tight text-white mt-32">
-      NOUS connaître
-  </div>
-
-  </header>
+  <page-header
+    [headerStyle]="'nous-connaitre-bg-header'"
+    [headerLibelle]="'NOUS connaître'">
+  </page-header>
 
   <!-- version md -->
   <div class="hidden md:flex flex-col">
@@ -25,17 +12,18 @@
     <fuse-card class="mx-auto flex flex-row items-center justify-evenly -mt-10 h-22 shadow-md px-10">
 
       <div class="div-1 flex flex-row items-center justify-start w-52" role="button" (click)="onDivClick($event)">
-        <div class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500 flex-shrink-0">
+        <div
+          class="div-1 flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500 flex-shrink-0">
           <div class="flex items-center justify-center w-full h-full">
             <img class="div-1 h-8 w-auto object-cover" [src]="imageSrc" alt="" />
           </div>
         </div>
-      
+
         <div class="div-1 flex flex-col items-start ml-5">
           <span class="text-lg">Qui sommes-nous ?</span>
         </div>
       </div>
-      
+
 
       <span class="hidden md:block border-gray-500 border-l h-22 w-0 mx-10"></span>
 
@@ -121,7 +109,7 @@
 
         <div class="w-full max-w-400 mx-auto">
 
-          
+
           <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
             NOTRE EXPERTISE
           </div>
@@ -163,7 +151,7 @@
       <div class="hidden md:flex px-5 sm:px-16 md:pb-20">
 
         <div class="w-full max-w-400 mx-auto">
-          
+
           <div class="text-2xl md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-5">
             CHIFFRES CLES
           </div>
@@ -194,24 +182,27 @@
 
           <p class="mt-10 " style="font-size: 20px;">
             Wafa Immobilier met un point d’honneur à
-            accompagner durablement et de la meilleure manière qui soit, ses collaborateurs, ses clients et ses partenaires.
+            accompagner durablement et de la meilleure manière qui soit, ses collaborateurs, ses clients et ses
+            partenaires.
           </p>
-    
+
           <p class="mt-10 " style="font-size: 20px;">
-            Pour y parvenir, elle s’engage à viser encore plus d’excellence, de performance et d’engagement afin d’offrir un
+            Pour y parvenir, elle s’engage à viser encore plus d’excellence, de performance et d’engagement afin
+            d’offrir un
             accompagnement
             personnalisé à ses
             clients acquéreurs et promoteurs, tout en s’alignant aux standards internationaux.
           </p>
-    
+
           <p class="mt-10" style="font-size: 20px;">
-            Une vision nouvelle qui permet à Wafa Immobilier de confirmer sa position de leader sur le marché marocain, dans chacune de ses activités :
+            Une vision nouvelle qui permet à Wafa Immobilier de confirmer sa position de leader sur le marché marocain,
+            dans chacune de ses activités :
           </p>
           <div class="mt-5 bg-transparent border-2 border-orange-500 rounded-lg text-center py-4 px-10 w-2/3 mx-auto">
             <span class="text-orange-500 font-bold text-2xl">PERFORMANCES COMMERCIALES ET FINANCIERES</span>
           </div>
-          
-          
+
+
           <div class="mt-5 bg-transparent border-2 border-orange-500 rounded-lg text-center py-4 px-10 w-2/3 mx-auto">
             <span class="text-orange-500 font-bold text-2xl">EXPERIENCE CLIENTS</span>
           </div>
@@ -220,29 +211,29 @@
             <span class="text-orange-500 font-bold text-2xl">DIGITALISATION DU PARCOURS DE CREDIT ACQUEREUR ET
               PROMOTEUR</span>
           </div>
-          
+
 
           <div class="mt-5 bg-transparent border-2 border-orange-500 rounded-lg text-center py-4 px-10 w-2/3 mx-auto">
             <span class="text-orange-500 font-bold text-2xl">SATISFACTION CLIENT</span>
           </div>
-          
+
 
           <div class="mt-5 bg-transparent border-2 border-orange-500 rounded-lg text-center py-4 px-10 w-2/3 mx-auto">
             <span class="text-orange-500 font-bold text-2xl">CAPACITE D’EXECUTION</span>
           </div>
-          
+
 
           <div class="mt-5 bg-transparent border-2 border-orange-500 rounded-lg text-center py-4 px-10 w-2/3 mx-auto">
             <span class="text-orange-500 font-bold text-2xl">PARCOURS D'ACHAT IMMOBILIER OMNICANAL</span>
           </div>
-          
-          
-          
-         
 
-    
-          
-  
+
+
+
+
+
+
+
 
           <p class="mt-10 " style="font-size: 20px;">
             Une trajectoire qui s’aligne sur les synergies du Groupe Attijariwafa Bank et qui permet, in fine, à Wafa
@@ -250,7 +241,7 @@
             aux attentes et besoins actuels de ses clients et partenaires, tout en anticipant ceux de demain.
           </p>
 
-          
+
         </div>
 
       </div>
@@ -267,31 +258,34 @@
           <p class="mt-10" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
             L’expertise immobilière au service de votre projet immobilier
           </p>
-    
-    
+
+
           <p class="mt-10 " style="font-size: 20px;">
             Afin de garantir le meilleur accompagnement à ses clients, Wafa immobilier s’attache à développer des liens
             privilégiés et une connaissance accrue du marché de l’immobilier, grâce à une collaboration étroite avec les
             différents acteurs du secteur : administrations, associations professionnelles du bâtiment,
             promoteurs immobiliers, notaires, architectes, etc…
           </p>
-    
+
           <p class="mt-10 " style="font-size: 20px;">
             Ainsi, la nature et la valeur des biens sont appréciées à leur juste valeur,
-            garantissant une transparence totale sur les actions entreprises et instaurant une relation de confiance sur la
+            garantissant une transparence totale sur les actions entreprises et instaurant une relation de confiance sur
+            la
             durée avec ses clients.
           </p>
-    
+
           <p class="mt-10" style="font-size: 16px; font-weight: bold; text-decoration: underline;">
             La rigueur professionnelle pour vous garantir le meilleur accompagnement
           </p>
-    
+
           <p class="mt-10 " style="font-size: 20px;">
-            Un engagement continu qui lui a valu la certification ISO 9001 Version 2015 pour l’ensemble de ses activités,
+            Un engagement continu qui lui a valu la certification ISO 9001 Version 2015 pour l’ensemble de ses
+            activités,
             attribuée par le Bureau Veritas.
           </p>
           <p class="mt-10 " style="font-size: 20px;">
-            Wafa Immobilier est, ainsi, la première société de financement de la place à introduire de nouvelles exigences
+            Wafa Immobilier est, ainsi, la première société de financement de la place à introduire de nouvelles
+            exigences
             en matière
             d’information des clients et des partenaires, ainsi que de gestion des risques.
           </p>
@@ -314,44 +308,45 @@
 
 
           <img class="mx-auto h-58 w-100 object-cover mt-5" src="assets/images/pages/nous-connaitre/Vis_1.png" alt="" />
-  
-        <p class="mt-5" style="font-size: 18px;">
-          Bien plus que des mots, les valeurs représentent de véritables r
-          epères à suivre pour donner de la cohérence, en interne comme en externe.
-        </p>
-  
-        <p class="mt-5" style="font-size: 18px;">
-          Dans cette optique, Wafa Immobilier oriente sa culture d’entreprise autour de 5
-          nouvelles valeurs, qui se dévoilent à travers l'acronyme “ EEESI” :
-        </p>
-  
-  
-        <div class="flex justify-center mt-10">
-          <div class="flex items-center justify-between">
-            <span class="text-orange font-bold text-3xl mr-8">Engagement</span>
-            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-  
-            <span class="text-orange font-bold text-3xl mr-8">Excellence</span>
-            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-  
-            <span class="text-orange font-bold text-3xl mr-8">Expertise</span>
-            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-  
-            <span class="text-orange font-bold text-3xl mr-8">Solidarité</span>
-            <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-  
-            <span class="text-orange font-bold text-3xl">Innovation</span>
+
+          <p class="mt-5" style="font-size: 18px;">
+            Bien plus que des mots, les valeurs représentent de véritables r
+            epères à suivre pour donner de la cohérence, en interne comme en externe.
+          </p>
+
+          <p class="mt-5" style="font-size: 18px;">
+            Dans cette optique, Wafa Immobilier oriente sa culture d’entreprise autour de 5
+            nouvelles valeurs, qui se dévoilent à travers l'acronyme “ EEESI” :
+          </p>
+
+
+          <div class="flex justify-center mt-10">
+            <div class="flex items-center justify-between">
+              <span class="text-orange font-bold text-3xl mr-8">Engagement</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+
+              <span class="text-orange font-bold text-3xl mr-8">Excellence</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+
+              <span class="text-orange font-bold text-3xl mr-8">Expertise</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+
+              <span class="text-orange font-bold text-3xl mr-8">Solidarité</span>
+              <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
+
+              <span class="text-orange font-bold text-3xl">Innovation</span>
+            </div>
           </div>
-        </div>
-  
-  
-  
-        <p class="mt-15 " style="font-size: 20px;">
-          Ces valeurs porteront notre vision, traduiront nos engagements et devront, in fine, être incarné au quotidien,
-          au sein de nos agences et de notre Siège,
-          afin que Wafa Immobilier évolue sereinement et puisse prendre les meilleures orientations stratégiques à
-          l’avenir.
-        </p>
+
+
+
+          <p class="mt-15 " style="font-size: 20px;">
+            Ces valeurs porteront notre vision, traduiront nos engagements et devront, in fine, être incarné au
+            quotidien,
+            au sein de nos agences et de notre Siège,
+            afin que Wafa Immobilier évolue sereinement et puisse prendre les meilleures orientations stratégiques à
+            l’avenir.
+          </p>
 
         </div>
       </div>
@@ -371,55 +366,56 @@
 
           <p class="mt-15 " style="font-size: 20px;">
             Le Groupe Attijariwafa bank, premier groupe bancaire et financier du Maghreb, est une multinationale
-            panafricaine qui accompagne aujourd’hui 10,8 millions de clients particuliers, professionnels, entreprises et
+            panafricaine qui accompagne aujourd’hui 10,8 millions de clients particuliers, professionnels, entreprises
+            et
             institutionnels, et mobilise 20 590 collaborateurs,
             dans 26 pays en Afrique, en Europe et au Moyen-Orient.
           </p>
-    
+
           <p class="mt-15 " style="font-size: 20px;">
             Le groupe Attijariwafa Bank se concentre sur 4 piliers fondamentaux pour poursuivre sa mission :
           </p>
-          
+
           <div class="flex justify-center mt-10">
             <div class="flex items-center justify-between">
               <span class="text-orange font-bold text-3xl mr-8">Expérience-Client</span>
               <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-    
+
               <span class="text-orange font-bold text-3xl mr-8">Innovation</span>
               <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-    
+
               <span class="text-orange font-bold text-3xl mr-8">Dynamique Africaine</span>
               <span class="hidden md:block border-primary border-l h-8 w-0 mx-10"></span>
-    
+
               <span class="text-orange font-bold text-3xl mr-8">Responsabilités</span>
-    
+
             </div>
           </div>
-    
-    
+
+
           <p class="mt-15 " style="font-size: 20px;">
             Pour plus d’information, accédez au site web d’Attijariwafa Bank :
           </p>
-    
+
           <p class="mt-15" style="font-size: 20px;">
             <a href="https://www.attijariwafabank.com"
               style="color: #5bc0de; text-decoration: underline;">www.attijariwafabank.com</a>
           </p>
-          
-  
 
-         
 
-          
+
+
+
+
         </div>
 
       </div>
 
-     
+
 
     </div>
 
- 
+
     <!-- </div> -->
 
   </div>
@@ -446,7 +442,7 @@
 
           <span class=" md:block border-gray-500 border-l h-22 w-0 mx-7"></span>
 
-    
+
           <div class="div-2 flex flex-col items-center cursor-pointer" (click)="onDivClick2($event)">
             <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500"
               style="background-color: white">
@@ -459,9 +455,9 @@
               <span>VISION</span>
             </div>
           </div>
-    
+
           <span class=" md:block border-gray-500 border-l h-22 w-0 mx-7"></span>
-    
+
           <div class="div-3 flex flex-col items-center cursor-pointer" (click)="onDivClick3($event)">
             <div class="flex items-center justify-center w-16 h-16 rounded-full overflow-hidden ring-1 ring-gray-500"
               style="background-color: white">
@@ -475,8 +471,8 @@
         </div>
       </div>
     </div>
-    
-    
+
+
     <div *ngIf="showDiv"
       class="flex flex-col items-center space-y-5 px-6 pt-7 pb-3 bg-gray rounded-md overflow-hidden mt-5">
 

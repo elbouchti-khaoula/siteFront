@@ -1,22 +1,23 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-76 nos-lettre-bg-header">
-    <div class="w-full max-w-400 mx-auto flex flex-col items-start justify-center">
-      <div class="max-w-xl text-2xl md:text-4xl font-bold uppercase tracking-tight leading-tight text-white">
-        S’informer en un seul clic !
-      </div>
+  <page-header
+    [headerStyle]="'nos-lettre-bg-header'"
+    [headerLibelle]="'S’informer en un seul clic !'"
+    [subHeaderLibelle]="'La lettre Wafa Immobilier vous facilite d’avoir toutes les actualités de l’immobilier !\n\nDécouvrez dans chaque numéro, toutes les nouveautés du secteur, ses chiffres clés, des dossiers immobiliers et bien plus encore.'"
+    [hideSubHeaderSmallScreen]="'true'"
+    [textColor]="'text-white'">
+  </page-header>
 
-      <div class="max-w-xl md:block text-xl text-white mt-3">
-        La lettre Wafa Immobilier vous facilite d’avoir toutes les actualités de l’immobilier !
-      </div>
-
-      <div class="max-w-xl md:block text-xl text-white mt-3">
-        Découvrez dans chaque numéro, toutes les nouveautés du secteur, ses chiffres clés, des dossiers immobiliers et
-        bien plus encore.
-      </div>
+  <section class="md:hidden px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-gray-200">
+    <div class="text-lg">
+      La lettre Wafa Immobilier vous facilite d’avoir toutes les actualités de l’immobilier !
     </div>
-  </header>
+
+    <div class="text-lg mt-3">
+      Découvrez dans chaque numéro, toutes les nouveautés du secteur, ses chiffres clés, des dossiers immobiliers et bien plus encore.
+    </div>
+  </section>
 
   <section class="py-10 sm:pt-18 sm:pb-20 min-h-160">
     <ng-container *ngFor="let lettre of lettres; let even = even; trackBy:">

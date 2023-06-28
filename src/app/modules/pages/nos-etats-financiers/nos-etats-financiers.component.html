@@ -1,34 +1,32 @@
 <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
   <!-- Header -->
-  <header class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 w-full min-h-76 etat-financier-bg-header">
-    <div class="w-full max-w-400 mx-auto flex flex-col items-start justify-center">
-      <div class="max-w-xl text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-primary mt-5">
-        NOS ÉTATS FINANCIERS
-      </div>
+  <page-header
+    [headerStyle]="'etat-financier-bg-header'"
+    [headerLibelle]="'NOS ÉTATS FINANCIERS'"
+    [subHeaderLibelle]="'Chez Wafa Immobilier, nous partageons régulièrement l’ensemble de nos nos états financiers, afin que vous soyez en mesure de mieux comprendre notre activité, nos réalisations et nos perspectives d’avenir.\n\nEt pour vous simplifier la vie, vous avez la possibilité de les consulter directement sur notre site.'"
+    [hideSubHeaderSmallScreen]="'true'">
+  </page-header>
 
-      <div class="max-w-xl md:block text-2xl text-white mt-3">
-        Chez Wafa Immobilier, nous partageons régulièrement l’ensemble de nos nos états financiers, afin que vous soyez
-        en
-        mesure de mieux comprendre notre activité, nos réalisations et nos perspectives d'avenir.
-      </div>
-
-      <div class=" md:block text-xl text-white mt-3">
-        Et pour vous simplifier la vie, vous avez la possibilité de les consulter directement sur notre site.
-      </div>
+  <section class="md:hidden px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-gray-200">
+    <div class="text-lg">
+      Chez Wafa Immobilier, nous partageons régulièrement l’ensemble de nos nos états financiers, afin que vous soyez
+      en mesure de mieux comprendre notre activité, nos réalisations et nos perspectives d'avenir.
     </div>
-  </header>
+    <div class="text-lg mt-3">
+      Et pour vous simplifier la vie, vous avez la possibilité de les consulter directement sur notre site.
+    </div>
+  </section>
 
-  <!-- version md -->
-  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 etat-financier-bg-body min-h-160">
+  <section class="px-5 sm:px-16 py-10 sm:pt-18 sm:pb-20 etat-financier-bg-body min-h-100 md:min-h-160">
     <div class="w-full max-w-400 mx-auto">
 
       <div class="flex flex-col md:w-1/2">
-        <div class="text-lg md:text-3xl uppercase font-extrabold tracking-tight leading-tight text-primary mt-6 md:mt-10">
-          ACCÉDER A NOS ÉTATS FINANCIERS
+        <div class="text-2xl md:text-4xl uppercase font-extrabold tracking-tight leading-tight text-primary">
+          ACCÉDER à NOS ÉTATS FINANCIERS
         </div>
 
-        <div class="flex flex-col space-y-2 md:space-y-4 mt-8 md:mt-5">
+        <div class="flex flex-col space-y-2 md:space-y-4 mt-7 md:mt-10">
           <div class="rounded-full border border-white bg-transparent px-5 py-2 text-white flex items-center"
             *ngFor="let etatFinancier of etatsFinanciers">
             <span class="max-md:text-md">Télécharger le rapport d'activité {{ etatFinancier.periode }}</span>
