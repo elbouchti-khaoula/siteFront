@@ -1,44 +1,16 @@
 .nos-offres-miftah-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nos-offres-miftah/Nos offres miftah.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-
-
-       @media (max-width: 959px) {
-     background-image:  linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)),  url('/assets/images/pages/nos-offres-miftah/Vis_1.png');
-   }
-}
-
-.nos-offres-miftah-bg-header-sm {
-  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nos-offres-miftah/Vis_1.png');
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nos-offres-miftah/Nos offres miftah.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+
+  @media (max-width: 959px) {
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nos-offres-miftah/Vis_1.png');
+  }
 }
-.text-orange {
-    color: rgb(238, 125, 33);
+
+.btn-style {
+  width: 200px;
+  height: 50px;
 }
-
-.orange-circle {
-    background-color: orange;
-  }
-
-  .selected {
-    border: 2px solid blue;
-  }
-
-
-  @media (max-width: 767px) {
-    .mobile-full-width {
-      width: 100%;
-    }
-  }
-
-  .btn-style {
-    width: 200px;
-    height: 50px;
-  }
-  
-
-  

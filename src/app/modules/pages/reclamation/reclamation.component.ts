@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -10,6 +10,7 @@ import { Motif, Reclamation } from './reclamation.types';
 import { Piece } from 'app/core/services/upload-document/upload-document.types';
 import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
+import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 
 @Component({
     selector: 'reclamation',
@@ -19,7 +20,10 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     animations: fuseAnimations
 })
 export class ReclamationComponent implements OnInit, OnDestroy {
+
+    @ViewChild('reclamationTag', { read: ElementRef }) public reclamationTag: ElementRef<any>;
     @ViewChild('reclamationNgForm') reclamationNgForm: NgForm;
+
     isCaptchaValid: boolean = false;
     isScreenSmall: boolean;
     alert: any;
@@ -46,6 +50,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
         private _formBuilder: FormBuilder,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _reclamationsService: ReclamationsService,
+        private _referentielService: ReferentielService,
         private _uploadDocumentService: UploadDocumentService,
         private _authenticationService: AuthenticationService
     ) {
@@ -123,7 +128,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
 
                 this.notAlerteEthique = value !== -1;
             });
-        
+
         this._initInfosConnectedUser();
     }
 
@@ -165,6 +170,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
                     motif: this.reclamationForm.get('motif').value,
                     motifLibelle: this.selectedMotifLabel,
                     text: this.reclamationForm.get('text').value,
+                    commentaire: this.reclamationForm.get('text').value,
                     statut: 'publié',
                     canal: 7,
                     initiateur: 'siteweb',
@@ -182,34 +188,55 @@ export class ReclamationComponent implements OnInit, OnDestroy {
                     dateReception: new Date(),
                     type: "AlerteEthique"
                 }
-        ).pipe(
-            // Error here means the requested is not available
-            catchError((error: HttpErrorResponse) => {
-                // Log the error
-                console.error(error);
+        )
+            .pipe(
+                // Error here means the requested is not available
+                catchError((error: HttpErrorResponse) => {
+                    // Log the error
+                    console.error(error);
 
-                if (error.status === 500) {
-                    this._router.navigateByUrl('/500-server-error');
-                } else if (error.status === 404) {
-                    this._router.navigateByUrl('/404-not-found');
-                } else {
-                    // + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage
-                    this._showAlertMessage('error', 'Erreur champ de saisie');
-                }
+                    if (error.status === 500) {
+                        this._router.navigateByUrl('/500-server-error');
+                    } else if (error.status === 404) {
+                        this._router.navigateByUrl('/404-not-found');
+                    } else {
+                        // + error.error?.errors[0].field + ' : ' + error.error?.errors[0].defaultMessage
+                        this._showAlertMessage('error', 'Erreur champ de saisie');
+                    }
 
-                // Throw an error
-                return throwError(() => error);
-            }))
+                    // Throw an error
+                    return throwError(() => error);
+                }))
             .subscribe((response: Reclamation) => {
 
                 if (response && response.id != undefined && response.id != null) {
 
+                    // Send Mail : accusé de réception au client
+                    this._referentielService.sendMailReclamation(response)
+                        .pipe(
+                            catchError((error) => {
+                                // Log the error
+                                console.error("+-+-+-+ Envoi mail accusé réception réclamation error", error);
+                                // Throw an error
+                                return throwError(() => error);
+                            }))
+                        .subscribe((response) => {
+                            console.log("+-+-+- Envoi mail accusé réception réclamation success", response);
+                        });
+
+                    // Upload documents
                     this.uploadCheckList(response.id);
 
                     this._showAlertMessage(
                         'success',
                         'Votre réclamation est enregistrée avec succès, nous vous contacterons dans les plus brefs délais'
                     );
+
+                    // Reset the element's scroll position to the top
+                    this.reclamationTag.nativeElement.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                    });
 
                     // Clear the form
                     this.clearForm();
@@ -239,7 +266,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
                     })]
             }
 
-            console.log("+-+-+- piece index", piece, index);
+            // console.log("+-+-+- piece index", piece, index);
 
             if (piece.listFilesArray.length > 0) {
 
@@ -273,31 +300,31 @@ export class ReclamationComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
 
-        // Hide it after 7 seconds
+        // Hide it after 10 seconds
         setTimeout(() => {
 
             this.alert = null;
 
             // Mark for check
             this._changeDetectorRef.markForCheck();
-        }, 7000);
+        }, 10000);
     }
 
     private _initInfosConnectedUser() {
         let currentUser = this._authenticationService.connectedUser;
-    
+
         if (currentUser?.email) {
             this.reclamationForm.get('email').setValue(currentUser?.email);
         }
-    
+
         if (currentUser?.lastName) {
             this.reclamationForm.get('nom').setValue(currentUser?.lastName);
         }
-    
+
         if (currentUser?.firstName) {
             this.reclamationForm.get('prenom').setValue(currentUser?.firstName);
         }
-    
+
         if (currentUser?.telephone) {
             this.reclamationForm.get('telephone').setValue(currentUser?.telephone);
         }
@@ -305,7 +332,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
         if (currentUser?.cin) {
             this.reclamationForm.get('cin').setValue(currentUser?.cin);
         }
-    
+
         this._changeDetectorRef.detectChanges();
     }
 
