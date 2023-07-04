@@ -7,7 +7,7 @@
     </page-header-connecte>
 
     <!-- notification -->
-    <section class="px-5 sm:px-16 mt-5">
+    <!-- <section class="px-5 sm:px-16 mt-5">
         <div class="w-full max-w-400 mx-auto">
             <div class="ml-auto max-w-70">
                 <mat-accordion>
@@ -23,224 +23,286 @@
                 </mat-accordion>
             </div>
         </div>
-    </section>
+    </section> -->
+
+    <!-- le menu principale xs,sm -->
+    <div class="md:hidden flex flex-col items-center w-full bg-card px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+        <div class="grid grid-cols-1 gap-y-3 text-primary">
+
+            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+                <mat-icon class="icon-size-8 text-primary" [svgIcon]="'home-heart'">
+                </mat-icon>
+                <a routerLink="/espace-connecte/mes-projets-favoris" 
+                    class="ml-2">
+                    Mes Projets Favoris ( {{ countProjetFavoris }} )
+                </a>
+            </div>
+
+            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+                <mat-icon class="icon-size-8 text-primary" [svgIcon]="'calculation'">
+                </mat-icon>
+                <a routerLink="/espace-connecte/mes-simulations"
+                    class="ml-2">
+                    Mes Simulations réalisées ( {{ countSimulation }} )
+                </a>
+            </div>
+
+            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+                <mat-icon class="icon-size-8 text-primary" [svgIcon]="'survey'">
+                </mat-icon>
+                <a routerLink="/espace-connecte/mes-demandes-credit"
+                    class="ml-2">
+                    Mes Demandes de crédit ( {{ countDemandesCredits }} )
+                </a>
+            </div>
+
+            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+                <mat-icon class="icon-size-8 text-primary" [svgIcon]="'finance'">
+                </mat-icon>
+                <a routerLink="/espace-connecte/mes-credits"
+                    class="ml-2">
+                    Mes crédits en cours ( {{ countCredit }} )
+                </a>
+            </div>
+
+            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
+                <mat-icon class="icon-size-8 text-primary" [svgIcon]="'home-repair'">
+                </mat-icon>
+                <a routerLink="/espace-connecte/mes-operations-sav"
+                    class="ml-2">
+                    Mes opérations SAV ( {{ countDemandesSAV }} )
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu principale md -->
+    <div class="flex-auto hidden md:flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+
+        <div class="grid grid-cols-5 gap-x-10 mt-7">
+
+            <fuse-card class="w-60 relative flex flex-col items-center px-5 pb-7 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+                routerLink="/espace-connecte/mes-projets-favoris">
+
+                <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
+                    <mat-icon class="icon-size-12 text-on-primary -mt-1" svgIcon="home-heart">
+                    </mat-icon>
+                </div>
+
+                <div class="flex flex-col space-y-7 items-center mt-14">
+                    <div class="flex flex-col items-center text-xl md:text-2xl font-semibold">
+                        <span>Mes Projets</span>
+                        <span>favoris</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-[#f4ced0] text-4xl font-bold">
+                        {{ countProjetFavoris }}
+                    </div>
+                </div>
+
+            </fuse-card>
+
+            <fuse-card class="w-60 relative flex flex-col items-center px-5 pb-7 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+                routerLink="/espace-connecte/mes-simulations">
+
+                <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
+                    <mat-icon class="icon-size-14 text-on-primary -mt-1" svgIcon="calculation">
+                    </mat-icon>
+                </div>
+
+                <div class="flex flex-col space-y-7 items-center mt-14">
+                    <div class="flex flex-col items-center text-xl md:text-2xl font-semibold">
+                        <span>Mes Simulations</span>
+                        <span>réalisées</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-[#f4ced0] text-4xl font-bold">
+                        {{ countSimulation }}
+                    </div>
+                </div>
+
+            </fuse-card>
+            
+            <fuse-card class="w-60 relative flex flex-col items-center px-5 pb-7 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+                routerLink="/espace-connecte/mes-demandes-credit">
+
+                <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
+                    <mat-icon class="icon-size-14 text-on-primary ml-2" svgIcon="survey">
+                    </mat-icon>
+                </div>
+
+                <div class="flex flex-col space-y-7 items-center mt-14">
+                    <div class="flex flex-col items-center text-xl md:text-2xl font-semibold">
+                        <span>Mes Demandes</span>
+                        <span>de crédit</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-[#f4ced0] text-4xl font-bold">
+                        {{ countDemandesCredits }}
+                    </div>
+                </div>
+
+            </fuse-card>
+
+            <fuse-card class="w-60 relative flex flex-col items-center px-5 pb-7 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+                routerLink="/espace-connecte/mes-credits">
+
+                <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
+                    <mat-icon class="icon-size-16 text-on-primary ml-0.5" svgIcon="finance">
+                    </mat-icon>
+                </div>
+
+                <div class="flex flex-col space-y-7 items-center mt-14">
+                    <div class="flex flex-col items-center text-xl md:text-2xl font-semibold">
+                        <span>Mes crédits</span>
+                        <span>en cours</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-[#f4ced0] text-4xl font-bold">
+                        {{ countCredit }}
+                    </div>
+                </div>
+
+            </fuse-card>
+            
+            <fuse-card class="w-60 relative flex flex-col items-center px-5 pb-7 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+                routerLink="/espace-connecte/mes-operations-sav">
+
+                <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
+                    <mat-icon class="icon-size-14 text-on-primary -mt-2" svgIcon="home-repair">
+                    </mat-icon>
+                </div>
+
+                <div class="flex flex-col space-y-7 items-center mt-14">
+                    <div class="flex flex-col items-center text-xl md:text-2xl font-semibold">
+                        <span>Mes opérations</span>
+                        <span>SAV</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-[#f4ced0] text-4xl font-bold">
+                        {{ countDemandesSAV }}
+                    </div>
+                </div>
+
+            </fuse-card>
+
+        </div>
+
+    </div>
+
+    <div class="px-6 sm:px-16 py-10 sm:py-12 bg-primary-600 text-on-primary-600">
+        <div class="flex flex-col items-center w-full max-w-7xl mx-auto text-center">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10">Je réalise mon projet immobilier</div>
+            <div class="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold leading-6 sm:leading-10 text-black text-opacity-70">avec un parcours simplifié et 100% digital</div>
+        </div>
+    </div>
 
     <!-- Parcours xs,sm -->
     <div class="md:hidden mt-3 mb-5">
         <parcours-small></parcours-small>
     </div>
 
-    <!-- la barre xs,sm -->
-    <div class="md:hidden flex flex-col items-center w-full px-6 bg-card md:bg-white-500 md:text-primary">
-        <div class=" grid grid-cols-1 gap-y-3 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10 mt-5">
-
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'property'">
-                </mat-icon>
-
-                <a routerLink="/espace-connecte/mes-projets-favoris" class=" md:hidden span-clicable">Mes Projets
-                    Favoris ( {{ countProjetFavoris }} )</a>
-            </div>
-
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
-                </mat-icon>
-                <a routerLink="/espace-connecte/mes-simulations" class=" md:hidden span-clicable">Mes Simulations
-                    réalisées (
-                        {{ countSimulation }}  )</a>
-
-            </div>
-
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'calculation'">
-                </mat-icon>
-
-                <a routerLink="/espace-connecte/mes-demandes-credit" class=" md:hidden span-clicable">Mes Demandes de
-                    crédit ( {{ countDemandesCredits }}  )</a>
-            </div>
-
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-
-            <div class="flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'survey'">
-                </mat-icon>
-
-                <a routerLink="/espace-connecte/mes-credits" class=" md:hidden span-clicable">Mes crédits en cours ( {{ countCredit }} 
-                    )</a>
-            </div>
-
-            <span class="hidden md:block border-black border-l h-16 w-0.5 mx-10"></span>
-            
-            <div class="  flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary px-3 sm:max-md:px-5 py-2">
-
-                <mat-icon class="md:hidden icon-size-8 text-primary" [svgIcon]="'timeline'">
-                </mat-icon>
-
-                <a routerLink="/espace-connecte/mes-operations-sav" class=" md:hidden span-clicable">Mes opérations SAV ( {{ countDemandesSAV }}  )</a>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Menu principale md -->
-    <div class="flex-auto hidden md:flex flex-col items-center pb-6 px-8 sm:pb-10 sm:px-10 ">
-
-        <!-- Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-y-8 md:gap-y-0 md:gap-x-8 w-full max-w-sm md:max-w-7xl -mt-16 sm:-mt-0">
-
-            <!-- border-2 border-primary-500  -->
-            <button
-                class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                routerLink="/espace-connecte/mes-projets-favoris">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-xl font-semibold">Mes Projets Favoris </div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/admin/espace-conn/dem_red.PNG">
-                    </span>
-                    <div class="text-3xl font-semibold">( {{countProjetFavoris}} )</div>
+    <!-- Parcours MD -->
+    <div class="hidden md:flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-gray-300">
+        
+        <div class="flex flex-row items-center space-x-7">
+        
+            <div class="relative flex flex-row items-center justify-center rounded-full ring-1 ring-gray-600 p-2 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05]"
+                routerLink='/projets-search'>
+                <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-md">
+                    <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
+                        <mat-icon class="icon-size-12 text-black -ml-0.5" svgIcon="property">
+                        </mat-icon>
+                    </div>
+                    <div class="mx-5 flex flex-col text-xl font-semibold">
+                        <span>Je recherche</span>
+                        <span>mon bien</span>
+                    </div>
                 </div>
-            </button>
-
-            <button
-                class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                routerLink="/espace-connecte/mes-simulations">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-xl font-semibold">Mes Simulations réalisées</div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/admin/espace-conn/calc_red.PNG">
-                    </span>
-                    <div class="text-3xl font-semibold">( {{ countSimulation }} )</div>
-                </div>
-
-            </button>
-
-            <button
-                class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                routerLink="/espace-connecte/mes-demandes-credit">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-xl font-semibold">Mes Demandes de crédit </div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/admin/espace-conn/cred_red_v.PNG">
-                    </span>
-                    <div class="text-3xl font-semibold">( {{countDemandesCredits}} )</div>
-                </div>
-            </button>
-
-
-            <button
-            class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-            routerLink="/espace-connecte/mes-credits">
-            <div class="flex flex-col flex-auto items-center p-8 text-center">
-                <div class="text-xl font-semibold">Mes crédits en cours</div>
-                <span class="flex items-center justify-center w-22 h-22 rounded ">
-                    <img class="max-w-20" src="assets/images/admin/espace-conn/calc_red.PNG">
+                <span class="z-10 absolute -right-4 bg-gray-300 rounded-full h-10 w-10">
                 </span>
-                <div class="text-3xl font-semibold">( {{ countCredit }} )</div>
+                <span class="z-30 absolute -right-2.5 bg-black rounded-full h-6 w-6">
+                </span>
+                <mat-icon class="z-40 absolute -right-3 icon-size-7 text-second-500" svgIcon="arrow-right">
+                </mat-icon>
             </div>
 
-        </button>
-         
-
-
-      
-            <button
-                class="h-54 flex flex-col rounded-xl shadow hover:shadow-lg overflow-hidden bg-card transition-transform ease-in-out duration-500 hover:-translate-y-1 hover:scale-[1.05] mt-10"
-                routerLink="/espace-connecte/mes-operations-sav">
-                <div class="flex flex-col flex-auto items-center p-8 text-center">
-                    <div class="text-xl font-semibold">Mes opérations SAV</div>
-                    <span class="flex items-center justify-center w-22 h-22 rounded ">
-                        <img class="max-w-20" src="assets/images/admin/espace-conn/sav.PNG">
-                    </span>
-                    <div class="text-3xl font-semibold">( {{countDemandesSAV}} )</div>
+            <div class="relative flex flex-row items-center justify-center rounded-full ring-1 ring-gray-600 p-2 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05]"
+                routerLink='/simulation-personnalisee'>
+                <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-md">
+                    <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
+                        <mat-icon class="icon-size-12 text-black ml-0.5" svgIcon="calculation">
+                        </mat-icon>
+                    </div>
+                    <div class="mx-5 flex flex-col text-xl font-semibold text-black">
+                        <span>Je simule</span>
+                        <span>mon crédit</span>
+                    </div>
                 </div>
-
-            </button>
-        </div>
-
-    </div>
-
-    <!-- parcours MD -->
-    <div class="hidden md:flex flex-col items-center pb-6 px-8 sm:pb-10 sm:px-10 bg-card max-h-50">
-
-        <span class="text-center text-xl md:text-xl uppercase font-bold text-primary md:text-primary-700 pt-10 pb-8">
-            Je réalise mon projet immobilier <br class="sm:hidden" /> avec un parcours simplifié 100% digital :
-        </span>
-
-        <div class="grid grid-cols-1 gap-y-2 max-md:text-primary md:flex md:flex-row md:items-center mb-14 md:mb-10">
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                routerLink = '/projets-search'>
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
-                    Je recherche<br>mon bien
+                <span class="z-10 absolute -right-4 bg-gray-300 rounded-full h-10 w-10">
                 </span>
-            </button>
-
-            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
-            </mat-icon>
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                routerLink = '/simulation-personnalisee'>
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
-                    Je simule<br>mon crédit
+                <span class="z-30 absolute -right-2.5 bg-black rounded-full h-6 w-6">
                 </span>
-            </button>
+                <mat-icon class="z-40 absolute -right-3 icon-size-7 text-second-500" svgIcon="arrow-right">
+                </mat-icon>
+            </div>
 
-
-            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
-            </mat-icon>
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                routerLink='/simulation-detaillee'>
-            <span class=" ml-3 text-sm font-bold sm:text-xl text-primary">
-                Je demande<br>mon crédit
+            <div class="relative flex flex-row items-center justify-center rounded-full ring-1 ring-gray-600 p-2 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05]"
+                routerLink='/espace-connecte/simulation-detaillee'>
+                <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-md">
+                    <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
+                        <mat-icon class="icon-size-12 text-black ml-1" svgIcon="survey">
+                        </mat-icon>
+                    </div>
+                    <div class="mx-5 flex flex-col text-xl font-semibold text-black">
+                        <span>Je demande</span>
+                        <span>mon crédit</span>
+                    </div>
+                </div>
+                <span class="z-10 absolute -right-4 bg-gray-300 rounded-full h-10 w-10">
                 </span>
-            </button>
+                <span class="z-30 absolute -right-2.5 bg-black rounded-full h-6 w-6">
+                </span>
+                <mat-icon class="z-40 absolute -right-3 icon-size-7 text-second-500" svgIcon="arrow-right">
+                </mat-icon>
+            </div>
 
-            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
-            </mat-icon>
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
+            <div class="relative flex flex-row items-center justify-center rounded-full ring-1 ring-gray-600 p-2 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05]"
                 routerLink='/espace-connecte/mes-demandes-credit'>
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
-                    Je suis<br>ma demande
+                <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-md">
+                    <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
+                        <mat-icon class="icon-size-14 text-black -mt-0.5" svgIcon="fork">
+                        </mat-icon>
+                    </div>
+                    <div class="mx-5 flex flex-col text-xl font-semibold text-black">
+                        <span>Je suis</span>
+                        <span>ma demande</span>
+                    </div>
+                </div>
+                <span class="z-10 absolute -right-4 bg-gray-300 rounded-full h-10 w-10">
                 </span>
-            </button>
-
-            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
-            </mat-icon>
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                routerLink='/espace-connecte/mes-demandes-credit'>
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
-                    J'ouvre<br>mon compte
+                <span class="z-30 absolute -right-2.5 bg-black rounded-full h-6 w-6">
                 </span>
-            </button>
+                <mat-icon class="z-40 absolute -right-3 icon-size-7 text-second-500" svgIcon="arrow-right">
+                </mat-icon>
+            </div>
 
-            <mat-icon class="ml-3 icon-size-10 text-primary" svgIcon="arrow-right">
-            </mat-icon>
-
-            <button
-                class="ml-3 bg-gray-200 rounded-md flex flex-row items-center max-md:rounded-lg max-md:border-2 max-md:border-primary-500 px-3 sm:max-md:px-5 py-3 hover:transform hover:-translate-y-1 hover:scale-105"
-                routerLink='/simulation-detaillee'>
-                <span class="ml-3 text-sm font-bold sm:text-xl text-primary">
-                    Je gère<br>mon crédit
-                </span>
-            </button>
+            <div class="relative flex flex-row items-center justify-center rounded-full ring-1 ring-gray-600 p-2 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05]"
+                routerLink='/espace-connecte/mes-credits'>
+                <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-md">
+                    <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
+                        <mat-icon class="icon-size-12 text-black" svgIcon="timeline">
+                        </mat-icon>
+                    </div>
+                    <div class="mx-5 flex flex-col text-xl font-semibold text-black">
+                        <span>Je gère</span>
+                        <span>mon crédit</span>
+                    </div>
+                </div>
+            </div>
 
         </div>
+
     </div>
 
 </div>
