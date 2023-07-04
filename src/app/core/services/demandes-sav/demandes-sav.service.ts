@@ -70,7 +70,7 @@ export class DemandeSAVService {
      */
     getDemandesSAV(cin: string): Observable<DemandeSAV[]> {
 
-        return this._httpClient.post<DemandeSAV[]>('api/sav/demandessav', { cin: cin, mail: "" })
+        return this._httpClient.post<DemandeSAV[]>('api/sav/demandessav/search', { cin: cin, mail: "" })
             .pipe(
                 map((response: DemandeSAV[]) => {
 

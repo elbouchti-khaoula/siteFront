@@ -10,6 +10,7 @@ export interface Reclamation {
     telephone?      	: string | null;
 	motif?          	: number;
 	motifLibelle?      	: string;
+	commentaire?		: string;
 	text	           	: string | null;
     statut?         	: string;
 	canal?          	: number;

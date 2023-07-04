@@ -36,7 +36,7 @@ export class ProjetsSearchComponent implements
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(fragment => {
         this.fragment = fragment;
-        if (fragment && document.getElementById(fragment) != null) {
+        if (fragment && document.getElementById(fragment)) {
           setTimeout(() => {
             try {
               document.getElementById(this.fragment).scrollIntoView({ behavior: "smooth" });

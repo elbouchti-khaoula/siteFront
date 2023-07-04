@@ -49,7 +49,7 @@ export class MesDemandesCreditComponent implements OnInit, OnDestroy {
               return {
                 ...e,
                 mtProjet: this._fuseUtilsService.numberFormat(e.mtProjet, 2, '.', ' '),
-                phaseId: this.steps.find(step => step.libelle == e.phase).id
+                phaseId: this.steps.find(step => step.libelle === e.phase).id
               }
             }
           );

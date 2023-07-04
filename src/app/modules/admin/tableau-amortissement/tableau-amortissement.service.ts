@@ -8,7 +8,7 @@ import { AuthenticationService } from 'app/core/auth/authentication.service';
     providedIn: 'root'
 })
 export class TableauAmortissementService {
-    
+
     // Private
     private _tableauAmortissement: BehaviorSubject<TableauAmortissement[] | null> = new BehaviorSubject(null);
 
@@ -19,7 +19,7 @@ export class TableauAmortissementService {
         private _httpClient: HttpClient,
         private _authenticationService: AuthenticationService,
     )
-    {   
+    {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -40,29 +40,13 @@ export class TableauAmortissementService {
     }
 
     getTableauAmortissement(dossierId: number): Observable<TableauAmortissement[]> {
-        
-        // return this._authenticationService.getTokenGeneric()
-        //     .pipe(
-        //         switchMap((token: string) => {
 
-        //             if (token != undefined && token != '') {
-        //                 const headers = new HttpHeaders({
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': `Bearer ${token}`
-        //                 });
-
-                        return this._httpClient.get<TableauAmortissement[]>(
-                            `api/projects/dossiers/${dossierId}/amortissement`
-                            // , { headers: headers }
-                        ).pipe(
-                            tap((response) => {
-                                this._tableauAmortissement.next(response);
-                            })
-                        );
-                //     }
-
-                //     return EMPTY;
-                // }));
+        return this._httpClient.get<TableauAmortissement[]>(`api/projects/dossiers/${dossierId}/amortissement`)
+            .pipe(
+                tap((response) => {
+                    this._tableauAmortissement.next(response);
+                })
+            );
     }
 
 }

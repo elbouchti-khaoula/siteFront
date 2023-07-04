@@ -281,7 +281,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
     private existeFileInPiece(file: File): boolean {
         var exist: boolean = false;
         for (const piece of this.pieces) {
-            exist = piece.listFilesArray.some(x => x.nom == file.name && x.extension == file.type)
+            exist = piece.listFilesArray.some(x => x.nom === file.name && x.extension === file.type)
             if (exist) {
                 return true;
             }
@@ -341,7 +341,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
     private existePieceRempli() {
         for (const piece of this.pieces) {
-            this.existePieceAttachee = piece.listFilesArray.some(fichier => fichier.nom !== undefined && fichier.nom !== null && fichier.nom !== '');
+            this.existePieceAttachee = piece.listFilesArray.some(fichier => fichier.nom && fichier.nom !== '');
             if (this.existePieceAttachee) {
                 break;
             }

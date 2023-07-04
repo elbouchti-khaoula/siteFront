@@ -172,15 +172,15 @@ export class SimulationDetailleeService {
                         codeApporteur: response[0].codeApporteur,
                         codeUtilisateur: response[0].codeUtilisateur,
                         // Mon profil
-                        nationalite: nationalites?.length > 0 ? nationalites.find(e => e.code === response[0].tiers.nationalite)?.libelle : "",
+                        nationalite: nationalites?.find(e => e.code === response[0].tiers.nationalite)?.libelle ?? "",
                         residantMaroc: response[0].tiers.residantMaroc ? "Oui" : "Non",
                         // ma situation
-                        categorieSocioProfessionnelle: categories?.length > 0 ? categories.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle : "",
+                        categorieSocioProfessionnelle: categories?.find(e => e.code === response[0].tiers.categorieSocioProfessionnelle)?.libelle ?? "",
                         // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
                         salaire: this._fuseUtilsService.numberFormat(response[0].tiers.salaireEtAutresRevenus, 2, '.', ' '),
                         creditsEnCours: this._fuseUtilsService.numberFormat(response[0].tiers.creditsEnCours, 2, '.', ' '),
                         // Mon projet
-                        objetFinancement: objetsFinancement?.length > 0 ? objetsFinancement.find(e => e.code === response[0].objetFinancement)?.libelle : "",
+                        objetFinancement: objetsFinancement?.find(e => e.code === response[0].objetFinancement)?.libelle ?? "",
                         nomPromoteur: response[0].nomPromoteur,
                         typeTaux: response[0].typeTaux === "FIXE" ? "Valeur Fixe" : "Valeur variable",
                         ...simulation

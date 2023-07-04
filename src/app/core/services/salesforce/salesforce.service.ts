@@ -82,7 +82,7 @@ export class SalesForceService {
         // console.log("+-+-+- enter check");
 
         // Check the access token availability
-        if (this.accessTokenSalesForce === undefined || this.accessTokenSalesForce === null || this.accessTokenSalesForce === '') {
+        if (this.accessTokenSalesForce == null || this.accessTokenSalesForce === '') {
             return of(false);
         }
 

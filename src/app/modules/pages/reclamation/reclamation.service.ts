@@ -45,7 +45,8 @@ export class ReclamationsService {
                 tap((response: Motif[]) => {
                     // response.push({ id: -1, libelle: "Alerte éthique", libelleselfcare: "Alerte éthique" });
                     response.sort((a, b) => a.libelleselfcare.localeCompare(b.libelleselfcare));
-                    response.push(...response.splice(response.findIndex(v => v.libelleselfcare == 'Autre'), 1))
+                    response.push(...response.splice(response.findIndex(v => v.libelleselfcare === "Autre"), 1));
+                    
                     this._motifs.next(response);
                 })
             );
@@ -99,12 +100,12 @@ export class ReclamationsService {
         return this.createReclamation(reclamationParam)
             .pipe(
                 catchError(err1 => {
-                    console.log("Error from first call: ");
+                    console.log("Error from first call: créer réclamation");
                     return throwError(() => err1);
                 }),
                 switchMap((reclamationCree: Reclamation) => {
 
-                    if (reclamationCree?.id != undefined && reclamationCree?.id != null) {
+                    if (reclamationCree?.id) {
 
                         let statut = {
                             id: {
@@ -123,23 +124,14 @@ export class ReclamationsService {
                         return this.createStatut(statut)
                             .pipe(
                                 catchError(err2 => {
-                                    console.log("Error from second call: ");
+                                    console.log("Error from second call: créer statut");
                                     return throwError(() => err2);
                                 }),
                                 switchMap((statutCree: any) => {
 
-                                    if (statutCree != null) {
-
-                                        return this._referentielService.sendMail(this.getMessage(reclamationCree))
-                                            .pipe(
-                                                catchError(err3 => {
-                                                    console.log("Error from third call: ");
-                                                    return throwError(() => err3);
-                                                }),
-                                                switchMap((response: EnvoiMail) => {
-                                                    return of(reclamationCree);
-                                                })
-                                            );
+                                    if (statutCree) {
+                                        
+                                        return of(reclamationCree);
                                     }
                                 })
                             );
@@ -147,78 +139,6 @@ export class ReclamationsService {
                     return of(reclamationCree);
                 })
             );
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-    getMessage(reclamation: Reclamation) {
-        var envoiMail: EnvoiMail;
-
-        if (reclamation.type === "Reclamation") {
-            var body: string = "Bonjour,\n\n";
-            body += "Nous vous informons que nous avons bien reçu la réclamation détaillée ci-dessous le "
-                + reclamation.dateReception;
-            body += "\n Nous vous promettons de vous revenir dès que le nécessaire sera fait.";
-            body += "<fieldset>"
-                + "<legend><h2>Données sur le Réclamant</h2></legend>"
-                + "<p>" + "  <b>Nom du réclamant :</b>"
-                + "  <span>  " + (reclamation.nom == null ? "NC" : reclamation.nom) + "</span>"
-                + "  </p>"
-                + "   <p>"
-                + "   <b>Prénom du réclamant :</b>"
-                + "   <span>" + (reclamation.prenom == null ? "NC" : reclamation.prenom) + "</span></p>"
-                + "    <p><b>CIN : </b><span>" + (reclamation.cin == null ? "NC" : reclamation.cin) + " </span></p>"
-                + "</fieldset>"
-
-                + "<fieldset>"
-                + "<legend><h2>Coordonnées</h2></legend>"
-                + "<p><b>E-mail:</b>" + (reclamation.email == null ? "NC" : reclamation.email) + "  </p>"
-                + "   <p><b>Téléphone Portable: </b> " + (reclamation.telephone == null ? " NC" : reclamation.telephone) + "</p>"
-                // + "<p><b>Téléphone Domicile: </b> " + (reclamation.getPhoneDom() == null ? " NC" : reclamation.getPhoneDom()) + "</p>"
-                // + "<p><b>Téléphone Bureau:</b>  " + (reclamation.getPhoneBureau() == null ? " NC" : reclamation.getPhoneBureau()) + "</p>"
-                // + "<p><b>Aupe Téléphone:</b>  " + (reclamation.getAutrePhone() == null ? " NC" : reclamation.getAutrePhone()) + "</p>   "
-                // + "     <p><b>Ville:</b> " + (reclamation.getCity() == null ? "NC" : reclamation.getCity()) + "</p>"
-                // + " <p><b>Adresse de Résidence:</b> " + (reclamation.getAddress() == null ? " NC" : reclamation.getAddress()) + "</p> "
-                // + "<p><b>Adresse de Correspondance:</b>  "
-                // + (reclamation.getPostalAddress() == null ? "NC" : reclamation.getPostalAddress()) + " </p>" 
-                // + " <p><b>Fax:</b><b>" + (reclamation.getFax() == null ? "NC" : reclamation.getFax()) + " </p>   " 
-                // + " <p><b>Moyen de Communication: </b> " + reclamation.getChoix() + "</p>" 
-                + "</fieldset>"
-
-                + "<fieldset>"
-                + "<legend><h2>Données de la Réclamation: </h2></legend>"
-                + "<p><b>Identifiant de la réclamation: </b>" + (reclamation.id == null ? "NC" : reclamation.id) + "   </p> "
-                // + "  <p><b>N° de Dossier: </b>" + (reclamation.numeroDossier == null ? " NC" : reclamation.numeroDossier) + " </p>" 
-                // + "  <p><b>ID Projet: </b> " + (reclamation.projetId == null ? "NC" : reclamation.projetId) + " </p>"
-                + "<p><b>Date de Reception: </b> " + reclamation.dateReception + "</p>"
-                + "<p><b>Motif de la réclamation : </b> " + reclamation.motifLibelle + "</p>"
-                + " <p><b>Canal de Réception: </b> " + reclamation.canal + "</p>"
-                + " <p><b>Description: </b> " + (reclamation.text == null ? " NC" : reclamation.text) + "</p>"
-                + " <p><b>initiateur : </b> " + reclamation.initiateur + "</p>"
-                + "   <p><b>Statut: </b> " + reclamation.statut + "</p>  "
-                + "</fieldset>";
-
-            envoiMail = {
-                type: "Réclamation",
-                destination: reclamation.email,
-                // cc : "k.qasmi@wafaimmobilier.co.ma,M.SAADI@wafaimmobilier.co.ma",
-                titre: "Reclamation n°: " + reclamation.id + " - Motif: " + reclamation.motifLibelle,
-                message: body
-            }
-
-        } else if (reclamation.type === "AlerteEthique") {
-            var body: string = "Bonjour,\n\n";
-            body += reclamation.text;
-
-            envoiMail = {
-                type: "Alerte éthique",
-                destination: reclamation.email,
-                titre: "Alerte éthique",
-                message: body
-            }
-        }
-        return envoiMail;
     }
 
 }

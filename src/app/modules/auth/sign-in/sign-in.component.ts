@@ -81,7 +81,7 @@ export class AuthSignInComponent implements OnInit
 
                     let currentUser = this._authenticationService.connectedUser;
 
-                    if (currentUser != undefined && currentUser != null && currentUser.emailVerified) {
+                    if (currentUser && currentUser.emailVerified) {
 
                         const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
 

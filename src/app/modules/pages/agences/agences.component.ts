@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
 import { Ville } from 'app/core/services/referentiel/referentiel.types';
 
@@ -16,6 +16,7 @@ import { Ville } from 'app/core/services/referentiel/referentiel.types';
 })
 export class AgencesComponent implements OnInit, OnDestroy {
 
+    selectedVille: Ville = null;
     isScreenSmall: boolean;
     searchForm: UntypedFormGroup;
     queryParams: Params;
@@ -33,7 +34,7 @@ export class AgencesComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _formBuilder: UntypedFormBuilder
-    ) 
+    )
     {
     }
 
@@ -45,6 +46,8 @@ export class AgencesComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+        this._referentielService.ville = null;
+
         // Prepare the search form with defaults
         this.searchForm = this._formBuilder.group(
             {
@@ -75,6 +78,19 @@ export class AgencesComponent implements OnInit, OnDestroy {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
+
+        this.searchForm.get('codeVille').valueChanges
+            .pipe(
+                debounceTime(300),
+                takeUntil(this._unsubscribeAll)
+            )
+            .subscribe((value) => {
+                if (value) {
+                    this.selectedVille = this.villes.find(e => e.codeVille === value);
+                } else {
+                    this.selectedVille = null;
+                }
+            });
     }
 
     /**
@@ -95,7 +111,10 @@ export class AgencesComponent implements OnInit, OnDestroy {
      */
     reset(): void {
         this.searchForm.reset();
+
         this._referentielService.getAgences().subscribe(() => {
+
+            this._referentielService.ville = null;
 
             this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
         });
@@ -108,10 +127,10 @@ export class AgencesComponent implements OnInit, OnDestroy {
         this._referentielService.getAgencesByVille(this.searchForm.get('codeVille').value)
             .subscribe(() => {
 
+                this._referentielService.ville = this.selectedVille;
+
                 this.agencesResult.nativeElement.scrollIntoView({ behavior: "smooth" });
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
             });
     }
 

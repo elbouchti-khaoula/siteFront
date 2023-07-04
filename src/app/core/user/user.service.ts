@@ -228,7 +228,7 @@ export class UserService
             cin: userKeycloak.attributes?.cin?.[0],
             telephone: userKeycloak.attributes?.telephone?.[0],
             dateNaissance: userKeycloak.attributes?.dateNaissance?.[0],
-            clientAWB: userKeycloak.attributes?.clientAWB?.[0] == "true",
+            clientAWB: userKeycloak.attributes?.clientAWB?.[0] === "true",
         }
         return result;
     }

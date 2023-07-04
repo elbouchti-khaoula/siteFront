@@ -55,7 +55,7 @@ export class ProjetsResultComponent implements
                 // if (refineUrl.localeCompare("projets-search") === 0) {
                 //     console.log("+-+-+- here 2 ev.url === this.previousUrl", 'projets-search', refineUrl, this.previousUrl);
                 // } else {
-                //     console.log("+-+-+- here 3 ev.url != this.previousUrl", 'projets-search', refineUrl, this.previousUrl);
+                //     console.log("+-+-+- here 3 ev.url !== this.previousUrl", 'projets-search', refineUrl, this.previousUrl);
                 // }
             });
     }

@@ -33,9 +33,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
   queryParams: Params;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  selectedVille: Ville = null;
   villes: Ville[];
   typesBiens: TypeBien[];
-  quartiers: Quartier[];
   quartiers$: Observable<Quartier[]>;
 
   /**
@@ -105,6 +105,9 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
         // Mark for check
         this._changeDetectorRef.markForCheck();
       });
+    
+    // Get the quartiers
+    this.quartiers$ = this._referentielService.quartiers$;
 
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
@@ -137,13 +140,17 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
           this.searchForm.markAsDirty();
         }
 
-        // if (queryParams?.codeVille) {
-        //   this.quartiers$ = this._referentielService.getQuartiersByVille(queryParams?.codeVille);
-        // }
+        if (queryParams?.codeVille) {
+          // this._referentielService.getQuartiersByVille(queryParams.codeVille).subscribe();
+          let ville = this.villes.find(e => e.codeVille === Number(queryParams.codeVille));
+          this.selectedVille = ville;
+          this._referentielService.ville = ville;
+        } else {
+          this._referentielService.ville = null;
+        }
       });
 
-    this.quartiers$ = this._referentielService.quartiers$;
-
+    // Subscribe to codeVille value changes
     this.searchForm.get('codeVille').valueChanges
       .pipe(
         debounceTime(300),
@@ -172,14 +179,12 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
    *
    * @param codeVille
    */
-  getQuartiersByVille(codeVille: number) {
-    if (codeVille) {
-      this._referentielService.getQuartiersByVille(codeVille)
-        .subscribe((response) => {
-
-          // Set the quartiers
-          this.quartiers = response;
-        });
+  getQuartiersByVille(selectedCodeVille: number) {
+    if (selectedCodeVille) {
+      this.selectedVille = this.villes.find(e => e.codeVille === selectedCodeVille);
+      this._referentielService.getQuartiersByVille(selectedCodeVille).subscribe();
+    } else {
+      this.selectedVille = null;
     }
   }
 
@@ -193,6 +198,8 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
       this._projetsService.searchProjets({}, this.user)
         .subscribe(() => {
+
+          this._referentielService.ville = null;
 
           this._router.navigate([], {
             fragment: null,
@@ -242,6 +249,8 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
           return throwError(() => error);
         }))
       .subscribe(() => {
+
+        this._referentielService.ville = this.selectedVille;
 
         // Add query params using the router
         this._router.navigate([], {

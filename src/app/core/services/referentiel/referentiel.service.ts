@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { CategorieSocioProfessionnelle, Ville, Quartier, TypeBien, Nationalite, ObjetFinancement, Agence, EnvoiMail, OperationSAVRef, DocumentInstitutionnel, OperationSAVDocument } from './referentiel.types';
 import { saveAs } from "file-saver";
+import { Reclamation } from 'app/modules/pages/reclamation/reclamation.types';
 
 export const CSP_PRIVE = "SALA"
 export const CSP_PUBLIC = "FONC"
@@ -17,6 +18,7 @@ export class ReferentielService {
     private _nationalites: BehaviorSubject<Nationalite[] | null> = new BehaviorSubject(null);
     private _objetsFinancement: BehaviorSubject<ObjetFinancement[] | null> = new BehaviorSubject(null);
     private _villes: BehaviorSubject<Ville[] | null> = new BehaviorSubject(null);
+    private _ville: BehaviorSubject<Ville | null> = new BehaviorSubject(null);
     private _quartiers: BehaviorSubject<Quartier[] | null> = new BehaviorSubject(null);
     private _typesBiens: BehaviorSubject<TypeBien[] | null> = new BehaviorSubject(null);
     private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
@@ -63,6 +65,19 @@ export class ReferentielService {
     }
 
     /**
+     * Setter & getter for ville
+     *
+     * @param value
+     */
+    set ville(value: Ville) {
+        // Store the value
+        this._ville.next(value);
+    }
+    get ville$(): Observable<Ville> {
+        return this._ville.asObservable();
+    }
+
+    /**
      * Getter for quartiers
      */
     get quartiers$(): Observable<Quartier[]> {
@@ -77,8 +92,14 @@ export class ReferentielService {
     }
 
     /**
-     * Getter for agences
+     * Setter & getter for agences
+     *
+     * @param value
      */
+    set agences(value: Agence[]) {
+        // Store the value
+        this._agences.next(value);
+    }
     get agences$(): Observable<Agence[]> {
         return this._agences.asObservable();
     }
@@ -176,7 +197,7 @@ export class ReferentielService {
                     response.sort((a, b) => a.description.localeCompare(b.description));
 
                     response.some((item, idx) =>
-                        item.description == 'CASABLANCA' &&
+                        item.description === "CASABLANCA" &&
                         response.unshift(
                             // remove the found item, in-place (by index with splice), 
                             // returns an array of a single item removed
@@ -239,8 +260,10 @@ export class ReferentielService {
                     response.sort((a, b) => a.nom.localeCompare(b.nom));
 
                     let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
-                    for (let i = 0; i < response?.length; i++) {
-                        response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                    if (villes?.length > 0) {
+                        for (let i = 0; i < response?.length; i++) {
+                            response[i].libelleVille = villes.find((e) => e.codeVille === Number(response[i].codeVille))?.description ?? "";
+                        }
                     }
 
                     localStorage.setItem('agences', JSON.stringify(response));
@@ -264,8 +287,10 @@ export class ReferentielService {
                 response.sort((a, b) => a.nom.localeCompare(b.nom));
 
                 let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
-                for (let i = 0; i < response?.length; i++) {
-                    response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                if (villes?.length > 0) {
+                    for (let i = 0; i < response?.length; i++) {
+                        response[i].libelleVille = villes.find((e) => e.codeVille === Number(response[i].codeVille))?.description ?? "";
+                    }
                 }
 
                 this._agences.next(response);
@@ -336,6 +361,13 @@ export class ReferentielService {
     /**
      * send mail accusé réception of reclamation
      */
+    sendMailReclamation(reclamationCree: Reclamation): Observable<EnvoiMail> {
+        return this.sendMail(this.getMessage(reclamationCree));
+    }
+
+    /**
+     * send mail
+     */
     sendMail(envoiMail: EnvoiMail): Observable<EnvoiMail> {
 
         console.log("+-+- enter envoiMail", envoiMail);
@@ -344,7 +376,6 @@ export class ReferentielService {
             .pipe(
                 map((envoiMailRes: EnvoiMail) => {
 
-                    // Return a new observable with the response
                     return envoiMailRes;
                 })
             );
@@ -367,7 +398,6 @@ export class ReferentielService {
                     // Sort the agences by the libelle field by default
                     documents.sort((a, b) => a.nom.localeCompare(b.nom));
 
-
                     this._documents.next(documents);
                 })
             );
@@ -380,6 +410,78 @@ export class ReferentielService {
                 // const filename = 'Demande Client Financier.pdf';
                 saveAs(blob, fileName);
             });
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+    private getMessage(reclamation: Reclamation) {
+        var envoiMail: EnvoiMail;
+
+        if (reclamation.type === "Reclamation") {
+            var body: string = "Bonjour,\n\n";
+            body += "Nous vous informons que nous avons bien reçu la réclamation détaillée ci-dessous le "
+                + reclamation.dateReception;
+            body += "\n Nous vous promettons de vous revenir dès que le nécessaire sera fait.";
+            body += "<fieldset>"
+                + "<legend><h2>Données sur le Réclamant</h2></legend>"
+                + "<p>" + "  <b>Nom du réclamant :</b>"
+                + "  <span>  " + (reclamation.nom == null ? "NC" : reclamation.nom) + "</span>"
+                + "  </p>"
+                + "   <p>"
+                + "   <b>Prénom du réclamant :</b>"
+                + "   <span>" + (reclamation.prenom == null ? "NC" : reclamation.prenom) + "</span></p>"
+                + "    <p><b>CIN : </b><span>" + (reclamation.cin == null ? "NC" : reclamation.cin) + " </span></p>"
+                + "</fieldset>"
+
+                + "<fieldset>"
+                + "<legend><h2>Coordonnées</h2></legend>"
+                + "<p><b>E-mail:</b>" + (reclamation.email == null ? "NC" : reclamation.email) + "  </p>"
+                + "   <p><b>Téléphone Portable: </b> " + (reclamation.telephone == null ? " NC" : reclamation.telephone) + "</p>"
+                // + "<p><b>Téléphone Domicile: </b> " + (reclamation.getPhoneDom() == null ? " NC" : reclamation.getPhoneDom()) + "</p>"
+                // + "<p><b>Téléphone Bureau:</b>  " + (reclamation.getPhoneBureau() == null ? " NC" : reclamation.getPhoneBureau()) + "</p>"
+                // + "<p><b>Aupe Téléphone:</b>  " + (reclamation.getAutrePhone() == null ? " NC" : reclamation.getAutrePhone()) + "</p>   "
+                // + "     <p><b>Ville:</b> " + (reclamation.getCity() == null ? "NC" : reclamation.getCity()) + "</p>"
+                // + " <p><b>Adresse de Résidence:</b> " + (reclamation.getAddress() == null ? " NC" : reclamation.getAddress()) + "</p> "
+                // + "<p><b>Adresse de Correspondance:</b>  "
+                // + (reclamation.getPostalAddress() == null ? "NC" : reclamation.getPostalAddress()) + " </p>" 
+                // + " <p><b>Fax:</b><b>" + (reclamation.getFax() == null ? "NC" : reclamation.getFax()) + " </p>   " 
+                // + " <p><b>Moyen de Communication: </b> " + reclamation.getChoix() + "</p>" 
+                + "</fieldset>"
+
+                + "<fieldset>"
+                + "<legend><h2>Données de la Réclamation: </h2></legend>"
+                + "<p><b>Identifiant de la réclamation: </b>" + (reclamation.id == null ? "NC" : reclamation.id) + "   </p> "
+                // + "  <p><b>N° de Dossier: </b>" + (reclamation.numeroDossier == null ? " NC" : reclamation.numeroDossier) + " </p>" 
+                // + "  <p><b>ID Projet: </b> " + (reclamation.projetId == null ? "NC" : reclamation.projetId) + " </p>"
+                + "<p><b>Date de Reception: </b> " + reclamation.dateReception + "</p>"
+                + "<p><b>Motif de la réclamation : </b> " + reclamation.motifLibelle + "</p>"
+                + " <p><b>Canal de Réception: </b> " + reclamation.canal + "</p>"
+                + " <p><b>Description: </b> " + (reclamation.text == null ? " NC" : reclamation.text) + "</p>"
+                + " <p><b>initiateur : </b> " + reclamation.initiateur + "</p>"
+                + "   <p><b>Statut: </b> " + reclamation.statut + "</p>  "
+                + "</fieldset>";
+
+            envoiMail = {
+                type: "Réclamation",
+                destination: reclamation.email,
+                // cc : "k.qasmi@wafaimmobilier.co.ma,M.SAADI@wafaimmobilier.co.ma",
+                titre: "Reclamation n°: " + reclamation.id + " - Motif: " + reclamation.motifLibelle,
+                message: body
+            }
+
+        } else if (reclamation.type === "AlerteEthique") {
+            var body: string = "Bonjour,\n\n";
+            body += reclamation.text;
+
+            envoiMail = {
+                type: "Alerte éthique",
+                destination: reclamation.email,
+                titre: "Alerte éthique",
+                message: body
+            }
+        }
+        return envoiMail;
     }
 
 }

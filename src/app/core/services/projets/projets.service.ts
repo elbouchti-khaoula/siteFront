@@ -163,10 +163,7 @@ export class ProjetsService {
         user: User
     ): Observable<Projet[]> {
 
-        if (user
-            && user.username != null && user.username != undefined
-            && user.email != null && user.email != undefined) {
-
+        if (user && user.username && user.email) {
             return this.searchProjetsWithFavoris(queryParams, user);
         }
         else {
@@ -388,8 +385,6 @@ export class ProjetsService {
                 }),
                 switchMap((response: ProjetFavori[]) => {
 
-                    console.log("+-+- search projet favoris", response);
-
                     if (response && response.length > 0) {
                         return this.deleteProjetFavori(projetFavori)
                             .pipe(
@@ -497,28 +492,28 @@ export class ProjetsService {
     }
 
     private fillReferentielLabels(projet: Projet, projetFavori: ProjetFavori) {
-        if (projetFavori != undefined && projetFavori != null) {
+        if (projetFavori) {
             projet.estFavoris = true;
             projet.projetFavorisId = projetFavori.id;
         } else {
             projet.estFavoris = false;
-            projet.projetFavorisId = undefined;
+            projet.projetFavorisId = null;
         }
         projet.prixMinStr = this._fuseUtilsService.numberFormat(projet.prixMin, 2, '.', ' ');
         projet.prixMaxStr = this._fuseUtilsService.numberFormat(projet.prixMax, 2, '.', ' ');
         projet.devise = "MAD";
         projet.description = projet.description?.replace(/\\r\\n/g, "\n");
         projet.descriptionSmall =
-            projet?.description != undefined && projet?.description != null ?
+            projet?.description ?
                 projet?.description.length > 70 ? projet?.description.substring(0, 70) + '...' : projet?.description
                 : "";
 
         let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
         let typesBiens: TypeBien[] = JSON.parse(localStorage.getItem('typesBiens'));
         let quartiers: Quartier[] = JSON.parse(localStorage.getItem('quartiers'));
-        projet.libelleVille = villes?.find(e => e.codeVille == projet.codeVille)?.description;
-        projet.libelleTypeBien = typesBiens?.find(e => e.code == projet.codeTypeBien)?.libelle;
-        projet.libelleQuartier = quartiers?.find(e => e.code == projet.codeQuartier)?.libelle;
+        projet.libelleVille = villes?.find(e => e.codeVille === Number(projet.codeVille))?.description ?? "";
+        projet.libelleTypeBien = typesBiens?.find(e => e.code === projet.codeTypeBien.toString())?.libelle ?? "";
+        projet.libelleQuartier = quartiers?.find(e => e.code === Number(projet.codeQuartier))?.libelle ?? "";
     }
 
 }

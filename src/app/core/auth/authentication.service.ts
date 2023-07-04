@@ -168,7 +168,7 @@ export class AuthenticationService {
     checkAuthenticationGeneric(): Observable<boolean> {
 
         // Check the access token availability
-        if (this.accessTokenGeneric === undefined || this.accessTokenGeneric === null || this.accessTokenGeneric === ''
+        if (this.accessTokenGeneric == null || this.accessTokenGeneric === ''
             || this.accessTokenGeneric === 'null' || this.accessTokenGeneric === 'undefined') {
             return of(false);
         }
@@ -189,12 +189,12 @@ export class AuthenticationService {
     checkAuthenticationUser(): Observable<boolean> {
 
         // Check if the user is logged in
-        if (this.connectedUser === undefined || this.connectedUser === null) {
+        if (this.connectedUser == null) {
             return of(false);
         }
 
         // Check the access token availability
-        if (this.accessTokenUser === undefined || this.accessTokenUser === null || this.accessTokenUser === ''
+        if (this.accessTokenUser == null || this.accessTokenUser === ''
             || this.accessTokenUser === 'null' || this.accessTokenUser === 'undefined') {
             return of(false);
         }
@@ -219,8 +219,7 @@ export class AuthenticationService {
 
         let userStorage = this.connectedUser;
 
-        if ((this.user == undefined || this.user == null)
-            && userStorage != undefined && userStorage != null && userStorage.id != null) {
+        if (this.user == null && userStorage && userStorage.id) {
 
             // Set user in service
             this._userService.user = { ...userStorage, status: 'online' };

@@ -424,7 +424,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
             this._fuseConfirmationService.open(
               {
                 "title": "Simulation détaillée",
-                "message": "Nous vous invitons à vérifier les informations saisies",
+                "message": error.message, //"Nous vous invitons à vérifier les informations saisies",
                 "icon": {
                   "show": true,
                   "name": "heroicons_outline:information-circle",
@@ -470,16 +470,16 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
           telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
           email: this.simulationStepperForm.get('step1').get('email').value,
           dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-          nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle,
+          nationalite: this.nationalites?.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.libelle ?? "",
           residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? "Oui" : "Non",
           // ma situation
-          categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.libelle,
+          categorieSocioProfessionnelle: this.categories?.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.libelle ?? "",
           nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
           // anciennete: this.simulationStepperForm.get('step2').get('anciennete').value,
           salaire: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('salaire').value + this.simulationStepperForm.get('step2').get('autresRevenus').value, 2, '.', ' '),
           creditsEnCours: this._fuseUtilsService.numberFormat(this.simulationStepperForm.get('step2').get('creditsEnCours').value, 2, '.', ' '),
           // Mon projet
-          objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle,
+          objetFinancement: this.objetsFinancement?.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.libelle ?? "",
           nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
           statutProjet: this.selectedStatutProjetLabel,
           typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
@@ -503,7 +503,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
 
         // Appel update dateNaissance userKeycloak
-        if (this.user.dateNaissance === undefined || this.user.dateNaissance === null || this.user.dateNaissance === "") {
+        if (this.user.dateNaissance == null || this.user.dateNaissance === "") {
           this.user = {
             ...this.user,
             dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value)
@@ -626,14 +626,14 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
       email: this.simulationStepperForm.get('step1').get('email').value,
       dateNaissance: this.simulationStepperForm.get('step1').get('dateNaissance').value.format(),
-      nationalite: this.nationalites.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.code,
+      nationalite: this.nationalites?.find((e) => e.code === this.simulationStepperForm.get('step1').get('nationalite').value)?.code,
       residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? true : false,
-      categorieSocioProfessionnelle: this.categories.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.code,
+      categorieSocioProfessionnelle: this.categories?.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.code,
       nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
       autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')) : null,
       creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')) : null,
-      objetFinancement: this.objetsFinancement.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.code,
+      objetFinancement: this.objetsFinancement?.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.code,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
       statutProjet: this.selectedStatutProjetLabel,
       typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value ? "Valeur Fixe" : "Valeur variable",
