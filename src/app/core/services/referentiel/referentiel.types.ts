@@ -24,6 +24,8 @@ export interface TypeBien {
 export interface Ville {
     codeVille?  : number;
     description?: string;
+    gpsLatitude?: number;
+    gpsLongitude?: number;
 }
 
 export interface Quartier {

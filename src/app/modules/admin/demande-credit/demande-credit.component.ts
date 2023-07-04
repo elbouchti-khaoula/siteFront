@@ -54,7 +54,7 @@ export class DemandeCreditComponent implements OnInit, OnDestroy {
     if (data) {
       this.simulationResultat = {
         ...data,
-        nomAgence: agences?.find(e => e.code == data.codeApporteur)?.nom
+        nomAgence: agences?.find(e => e.code === data.codeApporteur.toString())?.nom
       };
     }
     // else {

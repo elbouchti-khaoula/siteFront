@@ -2,7 +2,8 @@
 
     <ng-container *ngIf="projets && projetsCount > 0; else noProjets">
         <mat-drawer-container
-            [hasBackdrop]="false">
+            [hasBackdrop]="false"
+            class="h-full">
 
             <!-- Main Drawer overlay -->
             <mat-drawer class="w-full md:w-5/12 lg:border-r lg:shadow-none dark:bg-gray-900"
@@ -77,7 +78,9 @@
                                 <a class="z-20 flex items-center px-3 md:px-6 py-5 cursor-pointer border-b"
                                     [ngClass]="{'hover:bg-gray-100 dark:hover:bg-hover': !selectedProjet || selectedProjet.id !== projet.id,
                                                 'bg-[#fae7e8] dark:bg-hover': selectedProjet && selectedProjet.id === projet.id}"
-                                    (click)="selectProjet(projet)">
+                                    (click)="selectProjet(projet)"
+                                    [routerLink]="'/projet-details'"
+                                    [queryParams]="{id: projet.id}">
 
                                     <div class="w-full grid grid-cols-1 md:grid-cols-2 max-md:gap-y-5 md:gap-x-5">
                                         <!-- carousel projet images -->

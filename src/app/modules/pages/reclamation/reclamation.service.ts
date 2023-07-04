@@ -45,7 +45,8 @@ export class ReclamationsService {
                 tap((response: Motif[]) => {
                     // response.push({ id: -1, libelle: "Alerte éthique", libelleselfcare: "Alerte éthique" });
                     response.sort((a, b) => a.libelleselfcare.localeCompare(b.libelleselfcare));
-                    response.push(...response.splice(response.findIndex(v => v.libelleselfcare == 'Autre'), 1))
+                    response.push(...response.splice(response.findIndex(v => v.libelleselfcare === "Autre"), 1));
+                    
                     this._motifs.next(response);
                 })
             );
@@ -104,7 +105,7 @@ export class ReclamationsService {
                 }),
                 switchMap((reclamationCree: Reclamation) => {
 
-                    if (reclamationCree?.id != undefined && reclamationCree?.id != null) {
+                    if (reclamationCree?.id) {
 
                         let statut = {
                             id: {
@@ -128,7 +129,7 @@ export class ReclamationsService {
                                 }),
                                 switchMap((statutCree: any) => {
 
-                                    if (statutCree != null) {
+                                    if (statutCree) {
                                         
                                         return of(reclamationCree);
                                     }

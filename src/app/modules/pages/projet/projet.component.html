@@ -85,7 +85,7 @@
                     </mat-icon>
                     <div class="ml-3 text-lg font-semibold">{{projet.statut}}</div>
                 </div>
-                <div *ngIf="user != undefined && projet.estFavoris" 
+                <div *ngIf="user && user.id && projet.estFavoris" 
                     class="flex flex-row items-center cursor-pointer"
                     (click)="supprimerDesFavoris()">
                     <mat-icon
@@ -172,7 +172,7 @@
                     </mat-icon>
                     <div class="ml-3 font-semibold">{{projet.statut}}</div>
                 </div>
-                <div *ngIf="user != undefined && projet.estFavoris" 
+                <div *ngIf="user && user.id && projet.estFavoris" 
                     class="flex flex-row items-center cursor-pointer"
                     (click)="supprimerDesFavoris()">
                     <mat-icon

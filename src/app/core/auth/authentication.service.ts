@@ -219,8 +219,8 @@ export class AuthenticationService {
 
         let userStorage = this.connectedUser;
 
-        if ((this.user == undefined || this.user == null)
-            && userStorage != undefined && userStorage != null && userStorage.id != null) {
+        if ((this.user === undefined || this.user === null)
+            && userStorage && userStorage.id) {
 
             // Set user in service
             this._userService.user = { ...userStorage, status: 'online' };

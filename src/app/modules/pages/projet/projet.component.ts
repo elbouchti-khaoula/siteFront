@@ -101,8 +101,8 @@ export class ProjetComponent implements OnInit, OnDestroy {
 
                 // this.existeVideo = true;
                 this.existeVideo = response?.medias?.some(e => e.type === "VIDEO");
-                this.existeMaquetteOrPlan = response?.medias?.some(e => e.type == "MAQUETTE" || e.type == "PLAN");
-                this.existeBrochure = response?.medias?.some(e => e.type == "BROCHURE");
+                this.existeMaquetteOrPlan = response?.medias?.some(e => e.type === "MAQUETTE" || e.type === "PLAN");
+                this.existeBrochure = response?.medias?.some(e => e.type === "BROCHURE");
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
@@ -141,6 +141,7 @@ export class ProjetComponent implements OnInit, OnDestroy {
 
             this._projetsService.addProjetFavori(projetFavori)
                 .subscribe((response: ProjetFavori) => {
+                    
                     if (response === null) {
                         // Open the dialog
                         this._fuseConfirmationService.open(

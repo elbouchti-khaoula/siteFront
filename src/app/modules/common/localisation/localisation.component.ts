@@ -4,7 +4,7 @@ import { ProjetsService } from 'app/core/services/projets/projets.service';
 import { Projet } from 'app/core/services/projets/projets.types';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
-import { Agence } from 'app/core/services/referentiel/referentiel.types';
+import { Agence, Ville } from 'app/core/services/referentiel/referentiel.types';
 
 @Component({
     selector: 'localisation',
@@ -15,13 +15,13 @@ export class LocalisationComponent implements OnInit, OnDestroy {
 
     @Input() parentComponent: 'agences' | 'projets';
     @Input() drawer: MatDrawer;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     center: google.maps.LatLngLiteral = {
-        lat: 33.55,
-        lng: -7.6
+        lat: 31.791702, // 33.55,
+        lng: -7.092620 // -7.6
     };
-    zoom = 11;
+    zoom = 5.5;
+
     mapOptions: google.maps.MapOptions = {
         center: this.center,
         zoom: this.zoom,
@@ -33,6 +33,7 @@ export class LocalisationComponent implements OnInit, OnDestroy {
     };
     markerPositions: google.maps.LatLngLiteral[] = [];
 
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
     // display: any;
     // moveMap(event: google.maps.MapMouseEvent) {
     //     if (event.latLng != null) this.center = (event.latLng.toJSON());
@@ -59,6 +60,30 @@ export class LocalisationComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+
+        // Subscribe to ville changes
+        this._referentielService.ville$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((response: Ville) => {
+
+                if (response) {
+                    this.mapOptions = {
+                        ...this.mapOptions,
+                        center: new google.maps.LatLng(response.gpsLatitude, response.gpsLongitude).toJSON(),
+                        zoom: 10
+                    }
+                } else {
+                    this.mapOptions = {
+                        ...this.mapOptions,
+                        center: this.center,
+                        zoom: this.zoom,
+                    }
+                }
+
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
+
         if (this.parentComponent === 'projets') {
             // Get the projets
             this._projetsService.projets$
@@ -116,4 +141,5 @@ export class LocalisationComponent implements OnInit, OnDestroy {
     trackByFn(index: number, item: any): any {
         return item.id || index;
     }
+
 }

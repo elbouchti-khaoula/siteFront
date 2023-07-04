@@ -118,7 +118,7 @@ export class DemandeSAVComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((response: DemandeSAV) => {
-        if (response !== null && response !== undefined && response.demandeSavId != null) {
+        if (response && response.demandeSavId) {
 
           this.uploadCheckList(response.demandeSavId);
 

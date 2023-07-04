@@ -130,7 +130,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     // this.isVisible = true;
 
     let currentUser = this._authenticationService.connectedUser;
-    if (currentUser != undefined && currentUser != null) {
+    if (currentUser) {
       this.simulationForm.get('email').setValue(currentUser?.email ? currentUser.email : this.simulationFormDefaults.email);
       this.simulationForm.get('nom').setValue(currentUser?.lastName ? currentUser.lastName : this.simulationFormDefaults.nom);
       this.simulationForm.get('prenom').setValue(currentUser?.firstName ? currentUser.firstName : this.simulationFormDefaults.prenom);

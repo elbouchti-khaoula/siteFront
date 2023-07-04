@@ -86,7 +86,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
             email       : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
             telephone   : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
             text        : ['', Validators.required],
-            bonneFoi    : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value == -1)]],
+            bonneFoi    : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value === -1)]],
         });
 
         // Get the motifs
@@ -117,7 +117,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
                 takeUntil(this._unsubscribeAll)
             )
             .subscribe((value) => {
-                this.selectedMotifLabel = this.motifs.find(e => e.id === value)?.libelleselfcare;
+                this.selectedMotifLabel = this.motifs?.find(e => e.id === value)?.libelleselfcare;
                 this.pieces = [...this.piecesRef.filter(e => e.parent === value).map(e => { return { ...e, listFilesArray: [] } })];
                 this.reclamationForm.get('nom').updateValueAndValidity();
                 this.reclamationForm.get('prenom').updateValueAndValidity();
@@ -209,7 +209,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
                 }))
             .subscribe((response: Reclamation) => {
 
-                if (response && response.id != undefined && response.id != null) {
+                if (response && response.id) {
 
                     // Send Mail : accusé de réception au client
                     this._referentielService.sendMailReclamation(response)

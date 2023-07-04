@@ -18,6 +18,7 @@ export class ReferentielService {
     private _nationalites: BehaviorSubject<Nationalite[] | null> = new BehaviorSubject(null);
     private _objetsFinancement: BehaviorSubject<ObjetFinancement[] | null> = new BehaviorSubject(null);
     private _villes: BehaviorSubject<Ville[] | null> = new BehaviorSubject(null);
+    private _ville: BehaviorSubject<Ville | null> = new BehaviorSubject(null);
     private _quartiers: BehaviorSubject<Quartier[] | null> = new BehaviorSubject(null);
     private _typesBiens: BehaviorSubject<TypeBien[] | null> = new BehaviorSubject(null);
     private _agences: BehaviorSubject<Agence[] | null> = new BehaviorSubject(null);
@@ -64,6 +65,19 @@ export class ReferentielService {
     }
 
     /**
+     * Setter & getter for ville
+     *
+     * @param value
+     */
+    set ville(value: Ville) {
+        // Store the value
+        this._ville.next(value);
+    }
+    get ville$(): Observable<Ville> {
+        return this._ville.asObservable();
+    }
+
+    /**
      * Getter for quartiers
      */
     get quartiers$(): Observable<Quartier[]> {
@@ -78,8 +92,14 @@ export class ReferentielService {
     }
 
     /**
-     * Getter for agences
+     * Setter & getter for agences
+     *
+     * @param value
      */
+    set agences(value: Agence[]) {
+        // Store the value
+        this._agences.next(value);
+    }
     get agences$(): Observable<Agence[]> {
         return this._agences.asObservable();
     }
@@ -177,7 +197,7 @@ export class ReferentielService {
                     response.sort((a, b) => a.description.localeCompare(b.description));
 
                     response.some((item, idx) =>
-                        item.description == 'CASABLANCA' &&
+                        item.description === "CASABLANCA" &&
                         response.unshift(
                             // remove the found item, in-place (by index with splice), 
                             // returns an array of a single item removed
@@ -240,8 +260,10 @@ export class ReferentielService {
                     response.sort((a, b) => a.nom.localeCompare(b.nom));
 
                     let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
-                    for (let i = 0; i < response?.length; i++) {
-                        response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                    if (villes?.length > 0) {
+                        for (let i = 0; i < response?.length; i++) {
+                            response[i].libelleVille = villes.find((e) => e.codeVille === Number(response[i].codeVille))?.description ?? "";
+                        }
                     }
 
                     localStorage.setItem('agences', JSON.stringify(response));
@@ -265,8 +287,10 @@ export class ReferentielService {
                 response.sort((a, b) => a.nom.localeCompare(b.nom));
 
                 let villes: Ville[] = JSON.parse(localStorage.getItem('villes'));
-                for (let i = 0; i < response?.length; i++) {
-                    response[i].libelleVille = villes?.length > 0 ? villes.find((e) => e.codeVille == response[i].codeVille)?.description : "";
+                if (villes?.length > 0) {
+                    for (let i = 0; i < response?.length; i++) {
+                        response[i].libelleVille = villes.find((e) => e.codeVille === Number(response[i].codeVille))?.description ?? "";
+                    }
                 }
 
                 this._agences.next(response);

@@ -65,9 +65,9 @@ export class MesCreditsComponent implements OnInit, OnDestroy {
                 montant: this._fuseUtilsService.numberFormat(e.montant, 2, '.', ' '),
                 crd: this._fuseUtilsService.numberFormat(e.crd, 2, '.', ' '),
                 mensuaite: this._fuseUtilsService.numberFormat(e.mensuaite, 2, '.', ' '),
-                existeImpaye: e.impayes !== null && e.impayes !== 0,
-                estCTX: e.statut == 'CTX',
-                estEchu: e.statut == 'ECHU',
+                existeImpaye: e.impayes && e.impayes !== 0,
+                estCTX: e.statut === 'CTX',
+                estEchu: e.statut === 'ECHU',
                 // statutAS: 1,
                 // existeImpaye: true
                 // estCTX: true,

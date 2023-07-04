@@ -57,11 +57,11 @@ export class MesOperationsSavComponent implements OnInit, OnDestroy
               mensuaite: 2000,
               dureeRestante: 170,
               duree: 240,
-              operations: [{...item, nomOperation: operationsSAVRef?.find(e => e.codeOperation == item.codeOperation)?.nomOperation, dateCreationStr: moment(item.dateCreation).format('DD/MM/yyyy hh:mm')}]
+              operations: [{...item, nomOperation: operationsSAVRef?.find(e => e.codeOperation === item.codeOperation)?.nomOperation, dateCreationStr: moment(item.dateCreation).format('DD/MM/yyyy hh:mm')}]
             }
           );
         } else {
-          dossier.operations.push({...item, nomOperation: operationsSAVRef?.find(e => e.codeOperation == item.codeOperation)?.nomOperation, dateCreationStr: moment(item.dateCreation).format('DD/MM/yyyy hh:mm')})
+          dossier.operations.push({...item, nomOperation: operationsSAVRef?.find(e => e.codeOperation === item.codeOperation)?.nomOperation, dateCreationStr: moment(item.dateCreation).format('DD/MM/yyyy hh:mm')})
         }
       }
     });
