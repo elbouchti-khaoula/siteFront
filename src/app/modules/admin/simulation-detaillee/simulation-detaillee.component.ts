@@ -503,7 +503,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
 
         // Appel update dateNaissance userKeycloak
-        if (this.user.dateNaissance === undefined || this.user.dateNaissance === null || this.user.dateNaissance === "") {
+        if (this.user.dateNaissance == null || this.user.dateNaissance === "") {
           this.user = {
             ...this.user,
             dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value)

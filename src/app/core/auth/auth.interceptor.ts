@@ -70,7 +70,7 @@ export class AuthInterceptor implements HttpInterceptor {
     getToken(): string {
         let currentUser = this._authenticationService.connectedUser;
 
-        if (currentUser === undefined || currentUser === null) {
+        if (currentUser == null) {
             // console.log("+-+-+- this._authenticationService.accessTokenGeneric", this._authenticationService.accessTokenGeneric)
             if (this._authenticationService.accessTokenGeneric
                 && !AuthUtils.isTokenExpired(this._authenticationService.accessTokenGeneric)

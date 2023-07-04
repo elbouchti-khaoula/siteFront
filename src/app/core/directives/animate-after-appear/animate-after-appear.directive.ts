@@ -43,7 +43,7 @@ export class AnimateAfterAppearDirective implements OnInit, OnDestroy {
         // console.log("+-+- animateAfterAppear animationOptions animationCustom", this.animateAfterAppear, this.animationOptions, this.animationCustom);
         // console.log("+-+- fuseAnimationsMap", fuseAnimationsMap);
 
-        if (this.animationCustom !== null && this.animationCustom !== undefined) {
+        if (this.animationCustom) {
             animationFactory = this._animationBuilder.build(this.animationCustom);
         } else if (!!this.animateAfterAppear && !!this.getAnimation(this.animateAfterAppear)) {
             const animation = this.getAnimation(this.animateAfterAppear);
