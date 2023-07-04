@@ -53,6 +53,7 @@ export class AuthSignUpComponent implements OnInit {
     isClient: boolean = false;
     isNum: boolean = false;
     isSendSms: boolean = false;
+    showClientAwb: boolean = true;
     numeros;
 
     /**
@@ -83,13 +84,15 @@ export class AuthSignUpComponent implements OnInit {
             clientAWB: [false]
         });
 
+        this.showClientAwb = true;
+
         this.signUpForm = this._formBuilder.group({
             lastName: ['', Validators.required],
             firstName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             cin: ['', [Validators.required]],
             dateNaissance: ['', [Validators.required]],
-            agreements: [false, [Validators.required]],
+            agreements: [''],
             clientAWB: ['']
         });
 
@@ -152,6 +155,18 @@ export class AuthSignUpComponent implements OnInit {
             return;
         }
 
+        if ( !this.signUpForm.value.agreements)
+        {
+            this.alert = {
+                type   : 'error',
+                message: 'Veuillez accepter les conditions d\'utilisations.'
+            };
+            this.showAlert = true;
+            return;
+        }
+
+        this.showClientAwb = false;
+
         this.showAlert = false;
         this.signUpForm.disable();
 
@@ -163,27 +178,14 @@ export class AuthSignUpComponent implements OnInit {
 
         this._accountService.checkUserTelephones(this.signUpForm.value).subscribe(
             response => {
-
-                let numsList = response.nums
-
-                if (numsList == undefined) {
-                    this.alert = {
-                        type: 'warning',
-                        message: 'Auncun numéro correspondant, veuillez contacter votre agence.'
-                    };
-                    this.showAlert = true;
-                    this.signUpForm.enable();
-                }
-                else {
-                    this.numeros = numsList
-                    this.isClient = true
-                    this.isNum = true
-                    this.isSendSms = false
-                    this.signUpForm.enable();
-                }
+                this.numeros = response.nums
+                this.isClient = true
+                this.isNum = true
+                this.isSendSms = false
+                this.signUpForm.enable();
             },
             (error: HttpErrorResponse) => {
-                if (error.status == 404) {
+                if (error.status == 400) {
                     this.alert = {
                         type: 'warning',
                         message: 'Auncun client correspondant, cin ou date de naissasnce incorrecte.'
@@ -191,13 +193,24 @@ export class AuthSignUpComponent implements OnInit {
                     this.showAlert = true;
                     this.signUpForm.enable();
                 }
-                else {
-                    this.alert = {
-                        type: 'error',
-                        message: 'Une erreur s\'est produite.'
-                    };
-                    this.showAlert = true;
-                    this.signUpForm.enable();
+                else{
+                    if (error.status == 404) {
+                        console.log(error);
+                        this.alert = {
+                            type: 'warning',
+                            message: 'Auncun numéro correspondant, veuillez contacter votre agence.'
+                        };
+                        this.showAlert = true;
+                        this.signUpForm.enable();
+                    }
+                    else {
+                        this.alert = {
+                            type: 'error',
+                            message: 'Une erreur s\'est produite.'
+                        };
+                        this.showAlert = true;
+                        this.signUpForm.enable();
+                    }
                 }
             }
         );
@@ -233,6 +246,9 @@ export class AuthSignUpComponent implements OnInit {
         this.showAlert = true;
         return;
     }
+
+    this.showClientAwb = false;
+
         this.signUpForm2.disable();
         this.showAlert = false;
         this.signUpForm2.controls['password'].setValue(this.signUpForm2.value.pass2);
@@ -284,6 +300,8 @@ export class AuthSignUpComponent implements OnInit {
         if (this.signUpForm3.invalid) {
             return;
         }
+
+        this.showClientAwb = false;
 
         this.showAlert = false;
         this.signUpForm3.disable();
@@ -345,6 +363,8 @@ export class AuthSignUpComponent implements OnInit {
         if (this.signUpForm4.invalid) {
             return;
         }
+
+        this.showClientAwb = false;
 
         this.showAlert = false;
         this.signUpForm4.disable();
