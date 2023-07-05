@@ -36,7 +36,7 @@ export class NosOffresMiftahComponent
     showDiv14 = false;
 
     /* l image du visuel */
-    imageVisDet = 'assets/images/pages/nos-offres-miftah/Vis_2.png';
+    imageVisDet = 'assets/images/pages/nos-offres-miftah/Vis_2.jpg';
     imageSrc = 'assets/images/pages/nous-connaitre/Icon 1_2.svg';
 
     imageVisDet2 = 'assets/images/pages/nos-offres-miftah/Construction_243297886.jpg';

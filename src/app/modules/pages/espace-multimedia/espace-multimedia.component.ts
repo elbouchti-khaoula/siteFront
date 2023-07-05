@@ -24,11 +24,8 @@ export class EspaceMultiMediaComponent
     constructor(private router: Router)
     {
     }
+    
     isScreenSmall :boolean ;
-    imageVisDet10 = 'assets/images/pages/nos-offres-miftah/Santé_1946243179.jpg';
-    imageVisDet14= 'assets/images/pages/nos-offres-miftah/Attaalim_2007116861.jpg';
-    imageVisDet5 = 'assets/images/pages/nos-offres-miftah/Professionel 2_284936198.jpg';
-    imageVisDet7 = 'assets/images/pages/nos-guides-et-conseils/conseil3.png';
 
     desc1 : boolean ;
     desc2 : boolean ;

@@ -1,11 +1,11 @@
 .nous-connaitre-bg-header {
-  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/nous-connaitre.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/header.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 
   @media (max-width: 959px) {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/shutterstock_1296270229.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/nous-connaitre/header-sm.jpg');
   }
 }
 
