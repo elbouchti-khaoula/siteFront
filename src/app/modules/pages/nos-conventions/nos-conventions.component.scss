@@ -1,8 +1,12 @@
 .nos-conventions-bg-header {
-  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nos-conventions/photos/nos-convension-vd.jpg');
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('/assets/images/pages/nos-conventions/header.jpg');
   background-repeat: no-repeat;
   background-position: center center;
-   background-size: cover;
+  background-size: cover;
+
+  @media (max-width: 959px) {
+    background-image:  linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('/assets/images/pages/nos-conventions/header-sm.png');
+  }
 }
 
 
