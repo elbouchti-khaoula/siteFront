@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -11,6 +11,7 @@ import { Piece } from 'app/core/services/upload-document/upload-document.types';
 import { UploadDocumentService } from 'app/core/services/upload-document/upload-document.service';
 import { AuthenticationService } from 'app/core/auth/authentication.service';
 import { ReferentielService } from 'app/core/services/referentiel/referentiel.service';
+import { FuseUtilsService } from '@fuse/services/utils';
 
 @Component({
     selector: 'reclamation',
@@ -52,7 +53,8 @@ export class ReclamationComponent implements OnInit, OnDestroy {
         private _reclamationsService: ReclamationsService,
         private _referentielService: ReferentielService,
         private _uploadDocumentService: UploadDocumentService,
-        private _authenticationService: AuthenticationService
+        private _authenticationService: AuthenticationService,
+        private _fuseUtilsService: FuseUtilsService,
     ) {
     }
 
@@ -60,17 +62,7 @@ export class ReclamationComponent implements OnInit, OnDestroy {
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
 
-    requiredIfValidator(predicate): ValidatorFn {
-        return (formControl => {
-            if (!formControl.parent) {
-                return null;
-            }
-            if (predicate()) {
-                return Validators.required(formControl);
-            }
-            return null;
-        })
-    }
+
 
     /**
      * On init
@@ -79,14 +71,14 @@ export class ReclamationComponent implements OnInit, OnDestroy {
         // Create the reclamation form
         this.reclamationForm = this._formBuilder.group({
             motif       : ['', Validators.required],
-            nom         : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            prenom      : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
-            cin         : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            nom         : ['', this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            prenom      : ['', this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            cin         : ['', this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
             // numeroDossier   : [''],
-            email       : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
-            telephone   : ['', this.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
+            email       : ['', [this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1), Validators.email]],
+            telephone   : ['', this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value !== -1)],
             text        : ['', Validators.required],
-            bonneFoi    : ['', [this.requiredIfValidator(() => this.reclamationForm.get('motif').value === -1)]],
+            bonneFoi    : ['', [this._fuseUtilsService.requiredIfValidator(() => this.reclamationForm.get('motif').value === -1)]],
         });
 
         // Get the motifs

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ValidatorFn, Validators } from '@angular/forms';
 import { IsActiveMatchOptions } from '@angular/router';
 
 @Injectable({
@@ -89,6 +90,23 @@ export class FuseUtilsService
       s[1] += new Array(prec - s[1].length + 1).join('0');
     }
     return s.join(dec);
+  }
+
+  /**
+   * test required with predicate
+   *
+   * @param predicate
+   */
+  requiredIfValidator(predicate): ValidatorFn {
+    return (formControl => {
+      if (!formControl.parent) {
+        return null;
+      }
+      if (predicate()) {
+        return Validators.required(formControl);
+      }
+      return null;
+    })
   }
 
 }

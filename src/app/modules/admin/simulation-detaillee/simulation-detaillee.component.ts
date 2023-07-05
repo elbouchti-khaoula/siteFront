@@ -78,7 +78,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
     residantMaroc: null, // 'true',
     agreements: null, // true,
     // situation
-    categorieSocioProfessionnelle: null, // 'SASP',
+    categorieSocioProfessionnelle: 'SALA',
     nomEmployeur: null, // 'WAFA SALAF',
     // anciennete: 12,
     salaire: null, // 500000,
@@ -130,7 +130,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         dateNaissance : [this.simulationFormDefaults.dateNaissance, [this.olderThanValidator(18), Validators.required]],
         nationalite   : [this.simulationFormDefaults.nationalite, [Validators.required]],
         residantMaroc : [this.simulationFormDefaults.residantMaroc, [Validators.required]],
-        agreements    : [this.simulationFormDefaults.agreements, [Validators.required]],
+        agreements    : [this.simulationFormDefaults.agreements, [Validators.requiredTrue]],
       }),
       step2: this._formBuilder.group({
         categorieSocioProfessionnelle : [this.simulationFormDefaults.categorieSocioProfessionnelle, [Validators.required]],

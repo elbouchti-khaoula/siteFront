@@ -41,7 +41,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
     nationaliteCode: null,
     residentMarocain: null,
     agreements: null,
-    cspCode: null,
+    cspCode: 'SALA',
     montant: null,
     duree: null,
   };
@@ -114,7 +114,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         email           : [this.simulationFormDefaults.email, [Validators.email, Validators.required]],
         nationaliteCode : [this.simulationFormDefaults.nationaliteCode, [Validators.required]],
         residentMarocain: [this.simulationFormDefaults.residentMarocain, [Validators.required]],
-        agreements      : [this.simulationFormDefaults.agreements, [Validators.required]],
+        agreements      : [this.simulationFormDefaults.agreements, [Validators.requiredTrue]],
         cspCode         : [this.simulationFormDefaults.cspCode, [Validators.required]],
         montant         : [this.simulationFormDefaults.montant, [Validators.required]],
         duree           : [this.simulationFormDefaults.duree, [Validators.required]]
