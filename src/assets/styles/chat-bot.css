@@ -27,7 +27,7 @@
     position: fixed !important;
     bottom: 10px;
     right: 10px;
-    z-index: 11;
+    z-index: 60;
     box-sizing: content-box;
     display: inline-flex;
     /* position: fixed; */
@@ -46,7 +46,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    display: none;
+    /* display: none; */
 }
 
 #modal-start-page .modal-content {
