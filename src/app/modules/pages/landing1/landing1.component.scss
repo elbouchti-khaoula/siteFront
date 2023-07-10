@@ -1,80 +1,16 @@
 // css simulation
 .bg-simul {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/landing/bg-simul.jpg');
+    background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/assets/images/pages/landing/bg-simul.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
 }
 
 .landing1-bg-header {
-    background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/landing/header.jpg');
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('/assets/images/pages/landing/header.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
     min-height: calc(100vh - 5rem);
-
-    // @media (max-width: 767px) {
-    //     background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('/assets/images/pages/landing/header-sm.jpg');
-    // }
-}
-
-
-.mat-tab-group {
-
-    .mat-tab-header {
-
-        .mat-tab-label-container {
-
-            .mat-tab-list {
-
-                .mat-tab-labels {
-
-                    .mat-tab-label {
-
-                        border-radius: 0px !important;
-
-                        &:first-child {
-                            border-top-left-radius: 8px !important;
-                        }
-    
-                        &:last-child {
-                            border-top-right-radius: 8px !important;
-                        }
-                        
-                        @apply text-white;
-                        @apply bg-black bg-opacity-50;
-
-                        &.mat-tab-label-active {
-                            @apply bg-card bg-opacity-100 #{'!important'};
-                            @apply text-default #{'!important'};
-                        }
-
-                        + .mat-tab-label {
-                            margin-left: 0px;
-                        }
-
-                    }
-                }
-
-                .mat-ink-bar {
-                    display: inline-block !important;
-                }
-            }
-        }
-    }
-
-    .mat-tab-body-wrapper {
-
-        .mat-tab-body {
-
-            .mat-tab-body-content {
-                border-radius: 16px;
-                background: #fff;
-                min-height: 120px;
-                min-width: 650px;
-            }
-
-        }
-    }
 }
