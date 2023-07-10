@@ -1,9 +1,10 @@
 <form [formGroup]="searchForm"
-    class="flex flex-col rounded-2xl shadow overflow-hidden bg-card p-4 md:py-5 md:px-7"
-    [ngClass]="{'md:bg-opacity-70': parentComponent === 'landing'}">
+    class="flex flex-col"
+    [ngClass]="{'md:bg-opacity-70': parentComponent === 'landing',
+                'rounded-2xl shadow overflow-hidden bg-card p-4 md:py-5 md:px-7': parentComponent !== 'landing1'}">
 
     <div class="w-full mb-5"
-        [ngClass]="{'md:hidden': parentComponent === 'projets-search'}">
+        [ngClass]="{'md:hidden': parentComponent !== 'landing'}">
         <div class="text-lg font-bold text-primary">
             Rechercher mon bien
         </div>
@@ -11,7 +12,7 @@
     </div>
 
     <div class="flex flex-col"
-        [ngClass]="{'md:flex-row items-end': parentComponent === 'projets-search'}">
+        [ngClass]="{'md:flex-row items-center justify-between': parentComponent === 'projets-search' || parentComponent === 'landing1'}">
 
         <div class="w-full grid grid-cols-2 gap-3"
             [ngClass]="{'md:grid-cols-5 md:w-5/6': parentComponent === 'projets-search'}">
@@ -33,7 +34,7 @@
             </mat-form-field>
 
             <!-- Quartier -->
-            <mat-form-field class="fuse-mat-no-subscript w-full"
+            <mat-form-field *ngIf="parentComponent !== 'landing1'" class="fuse-mat-no-subscript w-full"
                 [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:template'" matPrefix>
                 </mat-icon>
@@ -65,16 +66,17 @@
                 </mat-select>
             </mat-form-field>
 
-            <div [ngClass]="{'md:hidden': parentComponent === 'projets-search'}"></div>
+            <div *ngIf="parentComponent !== 'landing1'" [ngClass]="{'md:hidden': parentComponent === 'projets-search'}"></div>
 
             <!-- Prix min -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field *ngIf="parentComponent !== 'landing1'" class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMin'" [placeholder]="'Prix min'" [appFormatMontant]="searchForm.get('prixMin').value">
                 <span matSuffix>MAD</span>
             </mat-form-field>
             
             <!-- Prix max -->
-            <mat-form-field class="fuse-mat-no-subscript w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+            <mat-form-field *ngIf="parentComponent !== 'landing1'" class="fuse-mat-no-subscript w-full"
+                [ngClass]="{'fuse-mat-dense': isScreenSmall}">
                 <input matInput [formControlName]="'prixMax'" [placeholder]="'Prix max'" [appFormatMontant]="searchForm.get('prixMax').value">
                 <span matSuffix>MAD</span>
             </mat-form-field>
@@ -91,12 +93,12 @@
                 class="bg-default"
                 type="button" 
                 [color]="'primary'"
-                [disabled]="parentComponent === 'projets-search' ? searchForm.invalid : (searchForm.pristine || searchForm.invalid)"
+                [disabled]="searchForm.invalid"
                 (click)="reset()">
                 Vider
             </button>
             <button 
-                class="ml-2"
+                class="ml-2 min-w-28"
                 [ngClass]="{'bg-primary-200' : searchForm.pristine || searchForm.invalid}"
                 mat-flat-button
                 type="button"

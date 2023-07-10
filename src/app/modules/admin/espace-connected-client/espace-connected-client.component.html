@@ -1,4 +1,4 @@
-<div class="flex flex-col flex-auto min-w-0 min-h-[85vh]" [@fadeInRight]="{value:'', params: {duration: 700}}">
+<div class="flex flex-col flex-auto min-w-0" [@fadeInRight]="{value:'', params: {duration: 700}}">
 
     <!-- [headerLibelle]="'Mon espace'" -->
     <page-header-connecte
@@ -77,11 +77,11 @@
     </div>
 
     <!-- Menu principale md -->
-    <div class="flex-auto hidden md:flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20">
+    <div class="hidden md:flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-14 sm:pb-20">
 
-        <div class="grid grid-cols-5 gap-x-10 mt-5">
+        <div class="flex flex-row flex-wrap items-center justify-center">
 
-            <fuse-card class="w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+            <fuse-card class="mx-5 mt-10 w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
                 routerLink="/espace-connecte/mes-projets-favoris">
 
                 <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
@@ -102,7 +102,7 @@
 
             </fuse-card>
 
-            <fuse-card class="w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+            <fuse-card class="mx-5 mt-10 w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
                 routerLink="/espace-connecte/mes-simulations">
 
                 <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
@@ -123,7 +123,7 @@
 
             </fuse-card>
             
-            <fuse-card class="w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+            <fuse-card class="mx-5 mt-10 w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
                 routerLink="/espace-connecte/mes-demandes-credit">
 
                 <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
@@ -144,7 +144,7 @@
 
             </fuse-card>
 
-            <fuse-card class="w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+            <fuse-card class="mx-5 mt-10 w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
                 routerLink="/espace-connecte/mes-credits">
 
                 <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
@@ -165,7 +165,7 @@
 
             </fuse-card>
             
-            <fuse-card class="w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
+            <fuse-card class="mx-5 mt-10 w-56 relative flex flex-col items-center px-5 pb-5 overflow-visible ring-1 ring-primary-500 cursor-pointer transition-transform duration-500 ease-in-out hover:-translate-y-3 hover:scale-[1.05] hover:bg-[#fae7e8]"
                 routerLink="/espace-connecte/mes-operations-sav">
 
                 <div class="mx-auto absolute inset-x-0 -top-8 flex items-center justify-center h-16 w-16 rounded-full bg-primary-500">
@@ -205,9 +205,9 @@
     <!-- Parcours MD -->
     <div class="hidden md:flex flex-col items-center px-6 sm:px-16 py-10 sm:pt-18 sm:pb-20 bg-gray-200">
         
-        <div class="flex flex-row items-center space-x-7">
+        <div class="flex flex-row flex-wrap items-center justify-center">
         
-            <div class="relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
+            <div class="mx-3 mt-5 relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
                 routerLink='/projets-search'>
                 <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-xl hover:bg-second-200 w-56 border border-gray-300">
                     <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
@@ -227,7 +227,7 @@
                 </mat-icon>
             </div>
 
-            <div class="relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
+            <div class="mx-3 mt-5 relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
                 routerLink='/simulation-personnalisee'>
                 <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-xl hover:bg-second-200 w-56 border border-gray-300">
                     <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
@@ -247,7 +247,7 @@
                 </mat-icon>
             </div>
 
-            <div class="relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
+            <div class="mx-3 mt-5 relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
                 routerLink='/espace-connecte/simulation-detaillee'>
                 <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-xl hover:bg-second-200 w-56 border border-gray-300">
                     <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
@@ -267,7 +267,7 @@
                 </mat-icon>
             </div>
 
-            <div class="relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
+            <div class="mx-3 mt-5 relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
                 routerLink='/espace-connecte/mes-demandes-credit'>
                 <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-xl hover:bg-second-200 w-56 border border-gray-300">
                     <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
@@ -275,8 +275,8 @@
                         </mat-icon>
                     </div>
                     <div class="ml-5 flex flex-col text-lg font-bold text-black">
-                        <span>Je suis ma</span>
-                        <span>demande</span>
+                        <span>Je suis</span>
+                        <span>ma demande</span>
                     </div>
                 </div>
                 <span class="z-10 absolute -right-4 bg-gray-200 rounded-full h-10 w-10">
@@ -287,7 +287,7 @@
                 </mat-icon>
             </div>
 
-            <div class="relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
+            <div class="mx-3 mt-5 relative flex flex-row items-center justify-center rounded-full ring-[1.5px] ring-second-800 p-1.5 cursor-pointer"
                 routerLink='/espace-connecte/mes-credits'>
                 <div class="z-20 flex flex-row items-center rounded-full bg-card p-1.5 shadow-xl hover:bg-second-200 w-56 border border-gray-300">
                     <div class="flex items-center justify-center h-14 w-14 rounded-full bg-second-500">
