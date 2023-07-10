@@ -11,4 +11,6 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
+    min-height: calc(100vh - 5rem);
 }

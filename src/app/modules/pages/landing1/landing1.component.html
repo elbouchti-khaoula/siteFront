@@ -1,51 +1,260 @@
 <ng-container *transloco="let t">
 
-    <div class="flex flex-col flex-auto min-w-0 overflow-hidden" [@fadeInRightBis]="{value:'', params: {duration: 700}}">
+    <div class="flex flex-col flex-auto min-w-0 overflow-hidden"
+        [@fadeInRightBis]="{value:'', params: {duration: 700}}">
 
-        <div class="fixed flex items-center justify-center right-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
+        <!-- <div class="fixed flex items-center justify-center right-2 bottom-16 w-13 h-13 sm:w-16 sm:h-16 shadow-xl rounded-l-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
             <img class="rounded-l-lg opacity-60 hover:opacity-100" src="assets/images/wimo.jpg">
-        </div>
+        </div> -->
 
-        <div class="fixed flex items-center justify-center left-0 bottom-16 w-13 h-13 sm:w-24 sm:h-24 shadow-xl rounded-r-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
+        <!-- <div class="fixed flex items-center justify-center left-0 bottom-16 w-13 h-13 sm:w-24 sm:h-24 shadow-xl rounded-r-lg z-90 cursor-pointer print:hidden transition-transform duration-150 ease-in-out hover:-translate-y-1 hover:scale-[1.03]">
             <a href="https://www.attijariwafabank.com/fr/profil/mre/ouvrir-un-compte-bancaire-en-ligne" target="blank">
                 <img class="rounded-r-lg opacity-60 hover:opacity-100" src="assets/images/open-awb.jpg">
             </a>
-        </div>
+        </div> -->
 
         <!-- Header -->
-        <header class="w-full flex flex-col justify-center space-y-14 md:py-14 min-h-80 sm:min-h-[92vh] landing-bg-header md:bg-fixed">
+        <header class="relative w-full flex flex-col justify-center max-md:min-h-80 landing1-bg-header">
 
-            <div class="w-full max-w-6xl mx-auto flex flex-row justify-center md:items-center md:justify-between md:h-2/3">
-                <!-- Titre -->
-                <div class="md:w-1/2 text-white">
-                    <div class="text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight">
-                        {{t('header1')}}<br />
-                        {{t('header2')}}
+            <!-- Ouvrir compte -->
+            <div class="z-20 hidden md:block absolute top-40 -right-0.5 w-6 rounded-l-xl">
+                <div class="flex flex-row w-48 h-48 transition-transform duration-400 ease-drawer rounded-l-xl overflow-hidden"
+                    [ngClass]="{'-translate-x-40': opened, 'translate-x-0': !opened}">
+
+                    <div (click)="toggle()" class="w-6 h-full bg-primary-500 flex flex-col justify-center">
+                        <mat-icon *ngIf="opened" class="icon-size-5 text-white"
+                            [svgIcon]="'heroicons_solid:chevron-right'">
+                        </mat-icon>
+                        <mat-icon *ngIf="!opened" class="icon-size-5 text-white"
+                            [svgIcon]="'heroicons_solid:chevron-left'">
+                        </mat-icon>
                     </div>
 
-                    <div class="hidden md:block max-w-lg text-xl mt-2">
-                        {{t('underheader')}}
-                    </div>
-                </div>
+                    <div class="w-40 bg-black bg-opacity-60 flex flex-col items-center justify-center space-y-4 text-white">
 
-                <!-- Formulaire recherche md -->
-                <div class="hidden md:block w-1/2 max-w-md">
-                    <projets-filter [parentComponent]="'landing'"></projets-filter>
+                        <img class="h-12 w-fit" src="assets/images/logo/logo-awb.jpg">
+
+                        <div class="flex flex-col items-center">
+                            <span>Ouvrir un compte</span>
+                            <!-- <span>Attijariwafa bank</span> -->
+                            <span>maintenant !</span>
+                        </div>
+
+                        <a href="https://www.attijariwafabank.com/fr/profil/particulier/ouvrir-un-compte-bancaire-en-ligne"
+                            target="blank"
+                            class="flex flex-row items-center rounded-3xl border border-gray-500 px-5 py-1.5 bg-primary-500">
+                            <span class="font-semibold">
+                                Ouvrir
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Parcours md -->
-            <parcours [inputMethod]="this.scrollToSimulation.bind(this)"></parcours>
+            <div class="z-20 w-full max-w-6xl mx-auto flex flex-col flex-auto items-center justify-center md:h-2/3">
+                <!-- Titre -->
+                <div class="text-white text-2xl md:text-5xl font-extrabold uppercase tracking-tight leading-tight text-center">
+                    Devenir propriétaire n'a jamais été aussi <span class="text-second-500">simple</span>
+                </div>
+
+                <!-- recherche -->
+                <mat-tab-group [animationDuration]="'0ms'" class="hidden md:block mt-20">
+
+                    <mat-tab label="Rechercher mon bien">
+
+                        <ng-template matTabContent>
+
+                            <projets-filter [parentComponent]="'landing1'"></projets-filter>
+
+                        </ng-template>
+
+                    </mat-tab>
+
+                    <mat-tab label="Simuler mon crédit">
+
+                        <ng-template matTabContent>
+                            <div class="flex flex-row flex-wrap items-center justify-between space-x-3">
+                                <!-- <div class="flex flex-row"> -->
+                                    <mat-form-field class="fuse-mat-no-subscript"
+                                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                        <input matInput
+                                            type="number"
+                                            step="50000"
+                                            [(ngModel)]="montantValue"
+                                            [placeholder]="'Montant'">
+                                        <span class="ml-2" matSuffix>MAD</span>
+                                    </mat-form-field>
+                                    <mat-form-field class="fuse-mat-no-subscript"
+                                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                        <input matInput
+                                            type="number"
+                                            step="1"
+                                            [(ngModel)]="dureeValue"
+                                            [placeholder]="'Durée'">
+                                        <span class="ml-2" matSuffix>ans</span>
+                                    </mat-form-field>
+                                    <mat-form-field class="fuse-mat-no-subscript"
+                                        [ngClass]="{'fuse-mat-dense': isScreenSmall}">
+                                        <input matInput
+                                            type="number"
+                                            step="0.1"
+                                            [(ngModel)]="tauxValue"
+                                            [placeholder]="'Taux'">
+                                        <span class="ml-2" matSuffix>%</span>
+                                    </mat-form-field>
+                                <!-- </div> -->
+                                <button class="min-w-28"
+                                    mat-flat-button
+                                    [ngClass]="{'fuse-mat-button-small': isScreenSmall}"
+                                    [color]="'primary'"
+                                    (click)="navigateToSimulationPersonnalisee()">
+                                    Continuer
+                                </button>
+                            </div>
+                        </ng-template>
+
+                    </mat-tab>
+
+                </mat-tab-group>
+            </div>
+
+            <!-- parcours -->
+            <div class="relative hidden md:flex flex-col justify-center bg-gray-300 px-6 pb-10 min-h-68">
+                <!-- Background - @formatter:off -->
+                <!-- Rings -->
+                <svg class="absolute inset-0 pointer-events-none"
+                    viewBox="0 0 960 540" width="100%" height="100%"
+                    preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+                    <g class="text-gray-400 opacity-20" fill="none" stroke="currentColor" stroke-width="50">
+                        <circle r="170" cx="196" cy="323"></circle>
+                        <circle r="170" cx="750" cy="550"></circle>
+                    </g>
+                </svg>
+                <!-- @formatter:on -->
+
+                <div class="w-full max-w-400 mx-auto">
+
+                    <div class="w-full flex flex-row flex-wrap items-center justify-center">
+    
+                        <!-- 01 -->
+                        <fuse-card class="mx-5 mt-10 w-52 h-52 px-5 py-3 flex flex-col items-center cursor-pointer shadow hover:shadow-lg transition-shadow ease-in-out duration-150">
+                            <div class="flex items-center justify-center h-14 w-14 rounded-full">
+                                <mat-icon class="icon-size-14 text-gray-700" svgIcon="property">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-1">
+                                <span class="font-semibold">Je recherche mon bien</span>
+                                <span class="px-5 text-sm text-center mt-1">Pour trouver le bien de mes rêves en toute sérénité.</span>
+                            </div>
+
+                            <button class="fuse-mat-button-small mt-3 bg-second-400"
+                                mat-stroked-button
+                                [routerLink]="['/projets-search']">
+                                Chercher
+                            </button>
+                        </fuse-card>
+
+                        <!-- 02 -->
+                        <fuse-card class="mx-5 mt-10 w-52 h-52 px-5 py-3 flex flex-col items-center cursor-pointer shadow hover:shadow-lg transition-shadow ease-in-out duration-150">
+   
+                            <div class="flex items-center justify-center h-14 w-14 rounded-full">
+                                <mat-icon class="icon-size-14 text-gray-700" svgIcon="calculation">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-1">
+                                <span class="font-semibold">Je simule mon crédit</span>
+                                <span class="px-5 text-sm text-center mt-1">Pour définir mon budget et calculer mon échéance</span>
+                            </div>
+
+                            <button class="fuse-mat-button-small mt-3 bg-second-400"
+                                mat-stroked-button
+                                (click)="scrollToSimulation()">
+                                Simuler
+                            </button>
+                            
+                        </fuse-card>
+
+                        <!-- 03 -->
+                        <fuse-card class="mx-5 mt-10 w-52 h-52 px-4 py-3 flex flex-col items-center cursor-pointer shadow hover:shadow-lg transition-shadow ease-in-out duration-150">
+    
+                            <div class="flex items-center justify-center h-14 w-14 rounded-full">
+                                <mat-icon class="icon-size-14 text-gray-700" svgIcon="survey">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-1">
+                                <span class="font-semibold">Je demande mon crédit</span>
+                                <span class="px-5 text-sm text-center mt-1">Pour obtenir mon financement sur mesure de mon projet</span>
+                            </div>
+
+                            <button class="fuse-mat-button-small mt-3 bg-second-400"
+                                mat-stroked-button
+                                [routerLink]="['/espace-connecte/simulation-detaillee']">
+                                Demander
+                            </button>
+                            
+                        </fuse-card>
+    
+                        <!-- 04 -->
+                        <fuse-card class="mx-5 mt-10 w-52 h-52 px-5 py-3 flex flex-col items-center cursor-pointer shadow hover:shadow-lg transition-shadow ease-in-out duration-150">
+    
+                            <div class="flex items-center justify-center h-14 w-14 rounded-full">
+                                <mat-icon class="icon-size-16 text-gray-700" svgIcon="fork">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-1">
+                                <span class="font-semibold">Je suis ma demande</span>
+                                <span class="px-5 text-sm text-center mt-1">Pour consulter l'avancement de mon projet</span>
+                            </div>
+
+                            <button class="fuse-mat-button-small mt-3 bg-second-400"
+                                mat-stroked-button
+                                [routerLink]="['/espace-connecte/mes-demandes-credit']">
+                                Accéder
+                            </button>
+
+                        </fuse-card>
+    
+                        <!-- 05 -->
+                        <fuse-card class="mx-5 mt-10 w-52 h-52 px-5 py-3 flex flex-col items-center cursor-pointer shadow hover:shadow-lg transition-shadow ease-in-out duration-150">
+    
+                            <div class="flex items-center justify-center h-14 w-14 rounded-full">
+                                <mat-icon class="icon-size-14 text-gray-700" svgIcon="timeline">
+                                </mat-icon>
+                            </div>
+
+                            <div class="flex flex-col items-center mt-1">
+                                <span class="font-semibold">Je gère mon crédit</span>
+                                <span class="px-3 text-sm text-center mt-1">Pour consulter ou modifier les conditions de mon prêt</span>
+                            </div>
+
+                            <button class="fuse-mat-button-small mt-3 bg-second-400"
+                                mat-stroked-button
+                                [routerLink]="['/espace-connecte/mes-credits']">
+                                Accéder
+                            </button>
+                            
+                        </fuse-card>
+                        
+    
+                    </div>
+
+                </div>
+
+            </div>
 
         </header>
 
         <!-- Formulaire recherche xs,sm et Parcours xs,sm -->
         <div class="md:hidden relative w-full p-5 -mt-16 sm:max-w-md sm:mx-auto">
-            
+
             <projets-filter [parentComponent]="'landing'"></projets-filter>
 
-            <!-- Parcours xs,sm -->
             <parcours-small [inputMethod]="this.scrollToSimulation.bind(this)"></parcours-small>
+
         </div>
 
         <vos-avantages></vos-avantages>

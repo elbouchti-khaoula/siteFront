@@ -90,6 +90,18 @@ export class AppComponent
             "agent",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/AGENT.svg")
         );
+        this.matIconRegistry.addSvgIcon(
+            "email",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/email.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "phone",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/phone.svg")
+        );
+        this.matIconRegistry.addSvgIcon(
+            "address",
+            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/iconswi/address.svg")
+        );
         
     }
 }
