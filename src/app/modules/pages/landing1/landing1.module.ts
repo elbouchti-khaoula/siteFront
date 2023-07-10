@@ -5,6 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { TranslocoModule } from '@ngneat/transloco';
+import { FuseCardModule } from '@fuse/components/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FuseDrawerModule } from '@fuse/components/drawer';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { Landing1Component } from './landing1.component';
 import { landing1Routes } from './landing1.routing';
@@ -31,7 +36,13 @@ import { ActualitesModule } from '../landing/actualites/actualites.module';
         MatIconModule,
         TranslocoModule,
         TranslocoLocaleModule,
+        FuseCardModule,
+        MatTabsModule,
+        FuseDrawerModule,
+        MatFormFieldModule,
+        MatInputModule,
 
+        
         ProjetsFilterModule,
         ParcoursModule,
         ParcoursSmallModule,

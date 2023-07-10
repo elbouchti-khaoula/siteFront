@@ -19,7 +19,7 @@ export class ProjetsFilterComponent implements OnInit, OnDestroy {
 
   user: User;
   isScreenSmall: boolean;
-  @Input() parentComponent: 'landing' | 'projets-search';
+  @Input() parentComponent: 'landing' | 'projets-search' | 'landing1';
 
   searchForm: UntypedFormGroup;
   searchFormDefaults: any = {

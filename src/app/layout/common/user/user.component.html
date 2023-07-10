@@ -1,5 +1,24 @@
+<div *ngIf="!user" class="hidden md:block flex flex-row">
+    <button
+        mat-stroked-button
+        (click)="signIn()">
+        <mat-icon [svgIcon]="'heroicons_outline:login'"></mat-icon>
+        <span class="ml-2">Se connecter</span>
+    </button>
+
+    <button
+        class="fuse-mat-button-rounded bg-accent-700 ml-2"
+        mat-flat-button
+        [color]="'accent'"
+        (click)="signUp()">
+        <mat-icon [svgIcon]="'heroicons_solid:user-add'">
+        </mat-icon>
+        <span class="ml-2">S'enregistrer</span>
+    </button>
+</div>
+
 <!-- Button -->
-<button class="hidden md:block"
+<!-- <button *ngIf="user" class="hidden md:block"
     mat-stroked-button
     [color]="'primary'"
     [matMenuTriggerFor]="userActions">
@@ -7,12 +26,38 @@
         <span *ngIf="user"
             class="absolute -right-5 -bottom-2.5 w-2 h-2 rounded-full"
             [ngClass]="{'mr-px mb-px': !showAvatar || !user.avatar,
-                          'bg-green-500': user.status === 'online',
-                          'bg-amber-500': user.status === 'away',
-                          'bg-red-500': user.status === 'busy',
-                          'bg-gray-400': user.status === 'not-visible'}">
+                        'bg-green-500': user.status === 'online',
+                        'bg-amber-500': user.status === 'away',
+                        'bg-red-500': user.status === 'busy',
+                        'bg-gray-400': user.status === 'not-visible'}">
         </span>
         <span>Mon espace</span>
+    </span>
+</button> -->
+
+<button *ngIf="user" class="hidden md:block flex flex-row items-center fuse-mat-button-large"
+    mat-flat-button
+    [matMenuTriggerFor]="userActions">
+    <span class="relative">
+        <!-- <img
+            class="w-7 h-7 rounded-full"
+            *ngIf="showAvatar && user.avatar"
+            [src]="user.avatar">
+        <mat-icon
+            *ngIf="!showAvatar || !user.avatar"
+            [svgIcon]="'heroicons_outline:user-circle'"></mat-icon> -->
+        <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
+        <span class="absolute right-0 bottom-0 w-2 h-2 rounded-full"
+            [ngClass]="{'mr-px mb-px': !showAvatar || !user.avatar,
+                        'bg-green-500': user.status === 'online',
+                        'bg-amber-500': user.status === 'away',
+                        'bg-red-500': user.status === 'busy',
+                        'bg-gray-400': user.status === 'not-visible'}">
+        </span>
+    </span>
+    <span class="flex flex-col leading-none ml-3">
+        <span class="font-semibold">{{user.firstName}}</span>
+        <span class="mt-1.5 text-md font-medium">{{user.lastName}}</span>
     </span>
 </button>
 
@@ -21,9 +66,8 @@
     [matMenuTriggerFor]="userActions">
     <span class="relative">
         <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
-        <span *ngIf="user"
-            class="absolute right-0 bottom-0 w-2 h-2 rounded-full"
-            [ngClass]="{'mr-px mb-px': !showAvatar || !user.avatar,
+        <span *ngIf="user" class="absolute right-0 bottom-0 w-2 h-2 rounded-full"
+        [ngClass]="{'mr-px mb-px': !showAvatar || !user.avatar,
                           'bg-green-500': user.status === 'online',
                           'bg-amber-500': user.status === 'away',
                           'bg-red-500': user.status === 'busy',
@@ -32,80 +76,78 @@
     </span>
 </button>
 
-<mat-menu
-    [xPosition]="'before'"
+
+
+<mat-menu [xPosition]="'before'"
     #userActions="matMenu">
     <div *ngIf="user">
-        <button mat-menu-item>
+        <!-- <button mat-menu-item>
             <span class="flex flex-col leading-none">
                 <span>Connecté en tant que</span>
                 <span class="mt-1.5 text-md font-medium">{{user.email}}</span>
             </span>
         </button>
-        <!-- <mat-divider class="my-2"></mat-divider>
+        <mat-divider class="my-2"></mat-divider>
         <button mat-menu-item>
+                <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon [svgIcon]="'heroicons_outline:cog'"></mat-icon>
+                <span>Settings</span>
+            </button> -->
+        <button mat-menu-item
+            [routerLink]="'/espace-connecte'">
             <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
-            <span>Profile</span>
+            <span>Mon espace</span>
         </button>
-        <button mat-menu-item>
-            <mat-icon [svgIcon]="'heroicons_outline:cog'"></mat-icon>
-            <span>Settings</span>
+        <button mat-menu-item
+            [routerLink]="'/nous-contacter'">
+            <mat-icon [svgIcon]="'heroicons_outline:support'"></mat-icon>
+            <span>Nous contater</span>
         </button>
-        <button
-            mat-menu-item
-            [matMenuTriggerFor]="userStatus">
+        <!-- <button mat-menu-item [matMenuTriggerFor]="userStatus">
             <mat-icon [svgIcon]="'heroicons_outline:dots-circle-horizontal'"></mat-icon>
             <span>Status</span>
         </button> -->
         <mat-divider class="my-2"></mat-divider>
-        <button
-            mat-menu-item
-            (click)="signOut()">
+        <button mat-menu-item (click)="signOut()">
             <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>
             <span>Me déconnecter</span>
         </button>
     </div>
+
     <div *ngIf="!user">
         <button
             mat-menu-item
             (click)="signIn()">
             <mat-icon [svgIcon]="'heroicons_outline:login'"></mat-icon>
-            <span>Me connecter</span>
+            <span>Se connecter</span>
         </button>
         <mat-divider class="my-2"></mat-divider>
         <button
             mat-menu-item
             (click)="signUp()">
             <mat-icon [svgIcon]="'heroicons_outline:user-add'"></mat-icon>
-            <span>Créer mon compte</span>
+            <span>S'enregister</span>
         </button>
     </div>
 </mat-menu>
 
-<mat-menu
-    class="user-status-menu"
-    #userStatus="matMenu">
-    <button
-        mat-menu-item
-        (click)="updateUserStatus('online')">
+<mat-menu class="user-status-menu" #userStatus="matMenu">
+    <button mat-menu-item (click)="updateUserStatus('online')">
         <span class="w-4 h-4 mr-3 rounded-full bg-green-500"></span>
         <span>Online</span>
     </button>
-    <button
-        mat-menu-item
-        (click)="updateUserStatus('away')">
+    <button mat-menu-item (click)="updateUserStatus('away')">
         <span class="w-4 h-4 mr-3 rounded-full bg-amber-500"></span>
         <span>Away</span>
     </button>
-    <button
-        mat-menu-item
-        (click)="updateUserStatus('busy')">
+    <button mat-menu-item (click)="updateUserStatus('busy')">
         <span class="w-4 h-4 mr-3 rounded-full bg-red-500"></span>
         <span>Busy</span>
     </button>
-    <button
-        mat-menu-item
-        (click)="updateUserStatus('not-visible')">
+    <button mat-menu-item (click)="updateUserStatus('not-visible')">
         <span class="w-4 h-4 mr-3 rounded-full bg-gray-400"></span>
         <span>Invisible</span>
     </button>
