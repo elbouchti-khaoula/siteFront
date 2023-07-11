@@ -31,6 +31,32 @@ import { UserService } from 'app/core/user/user.service';
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
+  selectPromoteur(value: string) {
+    if (this.resultPromoteurs.some(result => result.libelle === value) || !value) {
+      this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(value);
+    }
+  }
+  
+  selectEmployeur(value: string) {
+    if (this.resultEmployeurs.some(result => result.libelle === value) || !value) {
+      this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(value);
+    }
+  }
+  //pour un nouveau promoteur ne figurant pas dasn la liste des propoteurs
+  handleSearchNewPromoteur() {
+    const value = this.searchPromoteurControl.value;
+    if (value) {
+      this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(value);
+    }
+  }
+  
+  handleSearchNewEmployeur() {
+    const value = this.searchEmployeurControl.value;
+    if (value) {
+      this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(value);
+    }
+  }
+  
   user: User;
 
   @Input() debounce: number = 300;
@@ -407,7 +433,7 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-
+  
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
