@@ -31,28 +31,6 @@ import { UserService } from 'app/core/user/user.service';
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
-  selectedPromoteur: string;
-  isPromoteurSelected(value: string) {
-    const nomPromoteur = this.simulationStepperForm.get('step3').get('nomPromoteur').value;
-    return !!nomPromoteur && nomPromoteur === value;
-}
-
-selectPromoteur(value: string) {
-    this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(value);
-}
-
-selectedEmployeur: string;
-
-isEmployeurSelected(value: string) {
-    const nomEmployeur = this.simulationStepperForm.get('step2').get('nomEmployeur').value;
-    return !!nomEmployeur && nomEmployeur === value;
-}
-
-selectEmployeur(value: string) {
-    this.selectedEmployeur = value;
-    this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(value);
-}
-
   user: User;
 
   @Input() debounce: number = 300;
@@ -429,7 +407,7 @@ selectEmployeur(value: string) {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-console.log("le critère est =====================",critere);
+
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
