@@ -12,17 +12,20 @@ export class FormatMontantDirective {
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
-    const montantNumerique = parseFloat(this.montant.toString());
+    if (this.montant !== null && this.montant !== undefined) {
+      const montantNumerique = parseFloat(this.montant.toString());
   
-    if (!isNaN(montantNumerique) && montantNumerique <= 5000000) {
-      this.valueBeforeFormat = this.montant.toString();
-      this.lastValidValue = this.montant.toString();
-      this.formatMontant(montantNumerique, true); // Appliquer le formatage avec les décimales
+      if (!isNaN(montantNumerique) && montantNumerique <= 5000000) {
+        this.valueBeforeFormat = this.montant.toString();
+        this.lastValidValue = this.montant.toString();
+        this.formatMontant(montantNumerique, true); // Appliquer le formatage avec les décimales
+      } else {
+        this.clearInput();
+      }
     } else {
       this.clearInput();
     }
   }
-  
   
 
   @HostListener('input')
