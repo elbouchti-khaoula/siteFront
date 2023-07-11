@@ -12,8 +12,18 @@ export class FormatMontantDirective {
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.formatMontant(this.montant);
+    const montantNumerique = parseFloat(this.montant.toString());
+  
+    if (!isNaN(montantNumerique) && montantNumerique <= 5000000) {
+      this.valueBeforeFormat = this.montant.toString();
+      this.lastValidValue = this.montant.toString();
+      this.formatMontant(montantNumerique, true); // Appliquer le formatage avec les décimales
+    } else {
+      this.clearInput();
+    }
   }
+  
+  
 
   @HostListener('input')
   onInput() {
@@ -35,19 +45,25 @@ export class FormatMontantDirective {
     }
   }
 
-  @HostListener('blur')
+  @HostListener('focusout')
   onBlur() {
     const value = this.elementRef.nativeElement.value;
     const montantSansEspaces = value.replace(/\s/g, '');
     const montantValide = montantSansEspaces.replace(/[^\d.,]/g, '');
     const montantNumerique = parseFloat(montantValide);
-
+  
     if (!isNaN(montantNumerique)) {
       this.formatMontant(montantNumerique, true); // appliquer le formatage avec les décimales
+  
+      // Réintroduire les espaces dans la valeur du montant
+      const montantFormate = this.elementRef.nativeElement.value;
+      const montantAvecEspaces = montantFormate.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+      this.renderer.setProperty(this.elementRef.nativeElement, 'value', montantAvecEspaces);
     } else {
       this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.valueBeforeFormat); // la valeur avant le formatage
     }
   }
+  
 
   private formatMontant(value: number, includeDecimal: boolean = true) {
     if (value !== null && value !== undefined) {

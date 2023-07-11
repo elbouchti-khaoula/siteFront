@@ -429,6 +429,7 @@ selectEmployeur(value: string) {
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
+console.log("le critère est =====================",critere);
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
