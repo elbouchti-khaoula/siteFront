@@ -279,7 +279,7 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Employeur -->
+                                <!-- Employeur 
                                 <mat-form-field *ngIf="showEmployeur" class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop @slideOutTop>
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
@@ -292,7 +292,10 @@
                                         Aucun élément!
                                       </mat-option>
                                       <ng-container *ngFor="let resultEmpl of resultEmployeurs; trackBy: trackByFn">
-                                        <mat-option [value]="resultEmpl.libelle" (click)="selectEmployeur(resultEmpl.libelle)">
+                                        <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step2').get('nomEmployeur').setValue(resultEmpl.libelle)">
+
                                           <ng-container *ngTemplateOutlet="emplResult; context: {$implicit: resultEmpl}"></ng-container>
                                         </mat-option>
                                       </ng-container>
@@ -305,8 +308,48 @@
                                             <span [innerHTML]="resultEmpl.libelle"></span>
                                         </div>
                                     </div>
+                                </ng-template>-->
+                                <!-- Employeur -->
+                                <mat-form-field *ngIf="showEmployeur" class="w-full"
+                                    [ngClass]="{'fuse-mat-dense': isScreenSmall}"
+                                    @slideInTop
+                                    @slideOutTop>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                        matPrefix></mat-icon>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Employeur</mat-label>
+                                    <mat-error *ngIf="simulationStepperForm.get('step2').get('nomEmployeur').hasError('required')">
+                                        Employeur obligatoire
+                                    </mat-error>
+                                    <input matInput [formControlName]="'nomEmployeur'"
+                                        [formControl]="searchEmployeurControl"
+                                        [matAutocomplete]="matAutocompleteEmployeur"
+                                        [placeholder]="'Rechercher un Employeur'" #barSearchInput  (blur)="handleSearchNewEmployeur()" />
+                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md"
+                                        [disableRipple]="true" #matAutocompleteEmployeur>
+                                        <mat-option
+                                            class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
+                                            *ngIf="resultEmployeurs && !resultEmployeurs.length">
+                                            Aucun élément!
+                                        </mat-option>
+                                        <ng-container *ngFor="let resultEmpl of resultEmployeurs; trackBy: trackByFn">
+                                            <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step2').get('nomEmployeur').setValue(resultEmpl.libelle)">
+                                                <ng-container
+                                                    *ngTemplateOutlet="emplResult; context: {$implicit: resultEmpl}"></ng-container>
+                                            </mat-option>
+                                        </ng-container>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+
+                                <ng-template #emplResult let-resultEmpl>
+                                    <div class="flex items-center">
+                                        <div class="ml-3 truncate">
+                                            <span [innerHTML]="resultEmpl.libelle"></span>
+                                        </div>
+                                    </div>
                                 </ng-template>
-  
+
                                     
 
                                 <!-- Ancienneté -->
@@ -471,7 +514,7 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <!-- Promoteur -->
+                                <!-- Promoteur 
                                 <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop @slideOutTop>
                                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
                                     <mat-label class="max-md:text-sm max-md:font-semibold">Promoteur</mat-label>
@@ -484,7 +527,9 @@
                                         Aucun élément!
                                     </mat-option>
                                     <ng-container *ngFor="let resultProm of resultPromoteurs; trackBy: trackByFn">
-                                        <mat-option [value]="resultProm.libelle" (click)="selectPromoteur(resultProm.libelle)">
+                                        <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step3').get('nomPromoteur').setValue(resultProm.libelle)">
                                         <ng-container *ngTemplateOutlet="promResult; context: {$implicit: resultProm}"></ng-container>
                                         </mat-option>
                                     </ng-container>
@@ -497,7 +542,43 @@
                                         <span [innerHTML]="resultProm.libelle"></span>
                                     </div>
                                     </div>
+                                </ng-template>-->
+                                <!-- Promoteur -->
+                                <mat-form-field class="w-full" [ngClass]="{'fuse-mat-dense': isScreenSmall}" @slideInTop
+                                    @slideOutTop>
+                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'"
+                                        matPrefix></mat-icon>
+                                    <mat-label class="max-md:text-sm max-md:font-semibold">Promoteur</mat-label>
+                                    <input matInput [formControlName]="'nomPromoteur'"
+                                        [formControl]="searchPromoteurControl"
+                                        [matAutocomplete]="matAutocompletePromoteur"
+                                        [placeholder]="'Rechercher un Promoteur'" #barSearchInput (blur)="handleSearchNewPromoteur()"/>
+                                    <mat-autocomplete class="max-h-128 sm:px-2 border-t rounded-b shadow-md"
+                                        [disableRipple]="true" #matAutocompletePromoteur>
+                                        <mat-option
+                                            class="py-0 px-6 text-md pointer-events-none text-secondary bg-transparent"
+                                            *ngIf="resultPromoteurs && !resultPromoteurs.length">
+                                            Aucun élément!
+                                        </mat-option>
+                                        <ng-container *ngFor="let resultProm of resultPromoteurs; trackBy: trackByFn">
+                                            <mat-option
+                                                class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
+                                                (click)="simulationStepperForm.get('step3').get('nomPromoteur').setValue(resultProm.libelle)">
+                                                <ng-container
+                                                    *ngTemplateOutlet="promResult; context: {$implicit: resultProm}"></ng-container>
+                                            </mat-option>
+                                        </ng-container>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <ng-template #promResult let-resultProm>
+                                    <div class="flex items-center">
+                                        <div class="ml-3 truncate">
+                                            <span [innerHTML]="resultProm.libelle"></span>
+                                        </div>
+                                    </div>
                                 </ng-template>
+
+
                                 
 
                                 <!-- Type de taux -->

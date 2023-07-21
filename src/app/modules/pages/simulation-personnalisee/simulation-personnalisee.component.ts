@@ -248,7 +248,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
   simuler(): void {
 
     const critere = {
-      montant         : Number(this.simulationForm.get('montant').value.toString().replace(/\D/g, '')),
+      montant         : Number(this.simulationForm.get('montant').value.toString().split(".")[0].replace(/\D/g, '')),
       duree           : Number(this.simulationForm.get('duree').value),
       cspCode         : this.simulationForm.get('cspCode').value,
       nationaliteCode : this.simulationForm.get('nationaliteCode').value,
@@ -349,7 +349,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
           residentMarocain: this.simulationForm.get('residentMarocain').value,
           agreements: this.simulationForm.get('agreements').value,
           cspCode: this.simulationForm.get('cspCode').value,
-          montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, ''),
+          montant: this.simulationForm.get('montant').value.toString().split(".")[0].replace(/\D/g, ''),
           duree: this.simulationForm.get('duree').value
         }
       }
@@ -418,7 +418,7 @@ export class SimulationPersonaliseeComponent implements OnInit, OnDestroy {
         nationaliteCode: this.simulationForm.get('nationaliteCode').value,
         residentMarocain: this.simulationForm.get('residentMarocain').value,
         cspCode: this.simulationForm.get('cspCode').value,
-        montant: this.simulationForm.get('montant').value.toString().replace(/\D/g, '')
+        montant: this.simulationForm.get('montant').value.toString().split(".")[0].replace(/\D/g, '')
       }
     )
       .pipe(

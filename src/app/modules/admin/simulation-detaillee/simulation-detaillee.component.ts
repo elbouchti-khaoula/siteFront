@@ -31,17 +31,6 @@ import { UserService } from 'app/core/user/user.service';
 
 export class SimulationDetailleeComponent implements OnInit, OnDestroy {
 
-  selectPromoteur(value: string) {
-    if (this.resultPromoteurs.some(result => result.libelle === value) || !value) {
-      this.simulationStepperForm.get('step3').get('nomPromoteur').setValue(value);
-    }
-  }
-  
-  selectEmployeur(value: string) {
-    if (this.resultEmployeurs.some(result => result.libelle === value) || !value) {
-      this.simulationStepperForm.get('step2').get('nomEmployeur').setValue(value);
-    }
-  }
   //pour un nouveau promoteur ne figurant pas dasn la liste des propoteurs
   handleSearchNewPromoteur() {
     const value = this.searchPromoteurControl.value;
@@ -411,8 +400,8 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       codeApporteur: "100",
       codeUtilisateur: "WEB",
       objetFinancement: this.simulationStepperForm.get('step3').get('objetFinancement').value,
-      montant: Number(this.simulationStepperForm.get('step3').get('montant').value.toString().replace(/\D/g, '')),
-      montantProposition: Number(this.simulationStepperForm.get('step3').get('montantProposition').value.toString().replace(/\D/g, '')),
+      montant: Number(this.simulationStepperForm.get('step3').get('montant').value.toString().split(".")[0].replace(/\D/g, '')),
+      montantProposition: Number(this.simulationStepperForm.get('step3').get('montantProposition').value.toString().split(".")[0].replace(/\D/g, '')),
       duree: Number(this.simulationStepperForm.get('step3').get('duree').value),
       typeTaux: this.simulationStepperForm.get('step3').get('typeTaux').value,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
@@ -425,15 +414,15 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
         nationalite: this.simulationStepperForm.get('step1').get('nationalite').value,
         segment: "NV",
         dateNaissance: this.formatMomentToString(this.simulationStepperForm.get('step1').get('dateNaissance').value),
-        salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
-        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')) : null,
-        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')) : null,
+        salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().split(".")[0].replace(/\D/g, '')),
+        autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().split(".")[0].replace(/\D/g, '')) : null,
+        creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().split(".")[0].replace(/\D/g, '')) : null,
         telephone: this.simulationStepperForm.get('step1').get('telephone').value.replace(/-/g, '').substring(0, 10),
         email: this.simulationStepperForm.get('step1').get('email').value,
         nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
       }
     }
-  
+   console.log("le critere:====================",critere);
     // simuler crédit
     this._simulationService.simuler(critere)
       .pipe(
@@ -656,9 +645,9 @@ export class SimulationDetailleeComponent implements OnInit, OnDestroy {
       residantMaroc: this.simulationStepperForm.get('step1').get('residantMaroc').value ? true : false,
       categorieSocioProfessionnelle: this.categories?.find((e) => e.code === this.simulationStepperForm.get('step2').get('categorieSocioProfessionnelle').value)?.code,
       nomEmployeur: this.simulationStepperForm.get('step2').get('nomEmployeur').value,
-      salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().replace(/\D/g, '')),
-      autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().replace(/\D/g, '')) : null,
-      creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().replace(/\D/g, '')) : null,
+      salaire: Number(this.simulationStepperForm.get('step2').get('salaire').value.toString().split(".")[0].replace(/\D/g, '')),
+      autresRevenus: this.simulationStepperForm.get('step2').get('autresRevenus').value ? Number(this.simulationStepperForm.get('step2').get('autresRevenus').value.toString().split(".")[0].replace(/\D/g, '')) : null,
+      creditsEnCours: this.simulationStepperForm.get('step2').get('creditsEnCours').value ? Number(this.simulationStepperForm.get('step2').get('creditsEnCours').value.toString().split(".")[0].replace(/\D/g, '')) : null,
       objetFinancement: this.objetsFinancement?.find((e) => e.code === this.simulationStepperForm.get('step3').get('objetFinancement').value)?.code,
       nomPromoteur: this.simulationStepperForm.get('step3').get('nomPromoteur').value,
       statutProjet: this.selectedStatutProjetLabel,
